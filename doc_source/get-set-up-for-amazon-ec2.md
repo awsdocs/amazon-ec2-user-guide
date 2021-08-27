@@ -42,7 +42,11 @@ If you haven't created a key pair already, you can create one by using the Amazo
 
 1. For **Name**, enter a descriptive name for the key pair\. Amazon EC2 associates the public key with the name that you specify as the key name\. A key name can include up to 255 ASCII characters\. It can’t include leading or trailing spaces\.
 
-1. For **File format**, choose the format in which to save the private key\. To save the private key in a format that can be used with OpenSSH, choose **pem**\. To save the private key in a format that can be used with PuTTY, choose **ppk**\.
+1. For **Key pair type**, choose either **RSA** or **ED25519**\. Note that **ED25519** keys are not supported for Windows instances, EC2 Instance Connect, or EC2 Serial Console\.
+
+1. For **Private key file format**, choose the format in which to save the private key\. To save the private key in a format that can be used with OpenSSH, choose **pem**\. To save the private key in a format that can be used with PuTTY, choose **ppk**\.
+
+   If you chose **ED25519** in the previous step, the **Private key file format** options do not appear, and the private key format defaults to **pem**\.
 
 1. Choose **Create key pair**\.
 

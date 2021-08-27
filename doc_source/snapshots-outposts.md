@@ -37,7 +37,7 @@ You can create snapshots manually using the AWS Command Line Interface \(AWS CLI
 No\. The Outpost must have connectivity with its Region as the Region provides the access, authorization, logging, and monitoring services that are critical for your snapshots' health\. If there is no connectivity, you can't create new local snapshots, create volumes or launch instances from existing local snapshots, or delete local snapshots\.
 
 **7\. How quickly is Amazon S3 storage capacity made available after deleting local snapshots?**  
-Amazon S3 storage capacity becomes available within 48 hours after deleting local snapshots and the volumes that reference them\.
+Amazon S3 storage capacity becomes available within 72 hours after deleting local snapshots and the volumes that reference them\.
 
 **8\. How can I ensure that I do not run out of Amazon S3 capacity on my Outpost?**  
 We recommend that you use Amazon CloudWatch alarms to monitor your Amazon S3 storage capacity, and delete snapshots and volumes that you no longer need to avoid running out of storage capacity\. If you are using Amazon Data Lifecycle Manager to automate the lifecycle of local snapshots, ensure that your snapshot retention policies do not retain snapshots for longer than is needed\.
@@ -60,7 +60,7 @@ Keep the following in mind when working with local snapshots\.
 + Snapshot metadata is stored in the AWS Region associated with the Outpost\. This does not include any snapshot data\.
 + Snapshots stored on Outposts are encrypted by default\. Unencrypted snapshots are not supported\. Snapshots that are created on an Outpost and snapshots that are copied to an Outpost are encrypted using the default KMS key for the Region or a different KMS key that you specify at the time of the request\.
 + When you create a volume on an Outpost from a local snapshot, you cannot re\-encrypt the volume using a different KMS key\. Volumes created from local snapshots must be encrypted using the same KMS key as the source snapshot\.
-+ After you delete local snapshots from an Outpost, the Amazon S3 storage capacity used by the deleted snapshots becomes available within 48 hours\. For more information, see [Delete local snapshots](#delete-snapshots)\.
++ After you delete local snapshots from an Outpost, the Amazon S3 storage capacity used by the deleted snapshots becomes available within 72 hours\. For more information, see [Delete local snapshots](#delete-snapshots)\.
 + You can't export local snapshots from an Outpost\.
 + You can't enable fast snapshot restore for local snapshots\.
 + EBS direct APIs are not supported with local snapshots\.
@@ -390,7 +390,7 @@ You can launch instances from AMIs that are backed by local snapshots\. You must
 
 ### Delete local snapshots<a name="delete-snapshots"></a>
 
-You can delete local snapshots from an Outpost\. After you delete a snapshot from an Outpost, the Amazon S3 storage capacity used by the deleted snapshot becomes available within 48 hours after deleting the snapshot and the volumes that reference that snapshot\. 
+You can delete local snapshots from an Outpost\. After you delete a snapshot from an Outpost, the Amazon S3 storage capacity used by the deleted snapshot becomes available within 72 hours after deleting the snapshot and the volumes that reference that snapshot\. 
 
 Because Amazon S3 storage capacity does not become available immediately, we recommend that you use Amazon CloudWatch alarms to monitor your Amazon S3 storage capacity\. Delete snapshots and volumes that you no longer need to avoid running out of storage capacity\.
 

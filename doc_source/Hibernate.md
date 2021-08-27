@@ -58,22 +58,20 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 ## Hibernation prerequisites<a name="hibernating-prerequisites"></a>
 
 To hibernate an On\-Demand Instance or Reserved Instance, the following prerequisites must be in place:
-+ **Supported Linux AMIs** \(must be an HVM AMI that supports hibernation\):
-  + Amazon Linux 2 AMI released 2019\.08\.29 or later\.
-  + Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later\.
-  + Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later\.\*
-  + Ubuntu 16\.04 LTS \- Xenial AMI\.\* \([Additional configuration](#ubuntu-16.04) is required\.\)
++ **Supported Linux AMIs** \(must be an HVM AMI that supports hibernation\)  
+****    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 
-    \*We recommend disabling KASLR on instances with Ubuntu 18\.04 LTS \- Bionic and Ubuntu 16\.04 LTS \- Xenial\. For more information, see [Disable KASLR on an instance \(Ubuntu only\)](#hibernation-disable-kaslr)\.
+  † We recommend disabling KASLR on instances with Ubuntu 18\.04 LTS \- Bionic and Ubuntu 16\.04 LTS \- Xenial\. For more information, see [Disable KASLR on an instance \(Ubuntu only\)](#hibernation-disable-kaslr)\.
 
   To configure your own AMI to support hibernation, see [Configure an existing AMI to support hibernation](#hibernation-enabled-AMI)\.
 
   Support for other versions of Ubuntu and other operating systems is coming soon\.
 
-  For information about the supported AMIs for Windows, see [Hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html#hibernating-prerequisites) in the *Amazon EC2 User Guide for Windows Instances*\.
+  For information about the supported Windows AMIs, see [Hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html#hibernating-prerequisites) in the *Amazon EC2 User Guide for Windows Instances*\.
 + **Supported instance families**
   + Xen: C3, C4, I3, M3, M4, R3, R4, T2
-  + Nitro: C5, M5, M5a, M5ad, `m6i.8xlarge` and smaller, R5, R5a, R5ad, T3, T3a
+  + Nitro: C5, C5d, M5, M5a, M5ad, M5d, R5, R5a, R5ad, R5d, T3, T3a
 + **Instance size** \- not supported for bare metal instances\.
 + **Instance RAM size** \- must be less than 150 GB\.
 + **Root volume type** \- must be an EBS volume, not an instance store volume\.

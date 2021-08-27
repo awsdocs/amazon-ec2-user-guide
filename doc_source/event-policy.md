@@ -2,7 +2,7 @@
 
 Automating cross\-account snapshot copies enables you to copy your Amazon EBS snapshots to specific Regions in an isolated account and encrypt those snapshots with an encryption key\. This enables you to protect yourself against data loss in the event of your account being compromised\.
 
-Automating cross\-account snapshots copies involves two accounts:
+Automating cross\-account snapshot copies involves two accounts:
 + **Source account**—The source account is the account that creates and shares the snapshots with the target account\. In this account, you must create an EBS snapshot policy that creates snapshots at set intervals and then shares them with other AWS accounts\.
 + **Target account**—The target account is the account with destination account with which the snapshots are shared, and it is the account that creates copies of the shared snapshots\. In this account, you must create a cross\-account copy event policy that automatically copies snapshots that are shared with it by one or more specified source accounts\.
 
@@ -64,7 +64,9 @@ Use the [ get\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms
 For example, the following command retrieves the key policy for a KMS key with an ID of `9d5e2b3d-e410-4a27-a958-19e220d83a1e` and writes it to a file named `snapshotKey.json`\.
 
 ```
-$ aws kms get-key-policy --policy-name default --key-id 9d5e2b3d-e410-4a27-a958-19e220d83a1e --query Policy --output text > snapshotKey.json
+$ aws kms get-key-policy \
+--policy-name default --key-id 9d5e2b3d-e410-4a27-a958-19e220d83a1e \
+--query Policy --output text > snapshotKey.json
 ```
 
 Open the key policy using your preferred text editor\. Add the ARN of the IAM role that you specified when you created the snapshot policy and the ARNs of the target accounts with which to share the KMS key\.
@@ -118,7 +120,9 @@ Save and close the file\. Then use the [ put\-key\-policy](https://docs.aws.amaz
 
 
 ```
-$ aws kms put-key-policy --policy-name default --key-id 9d5e2b3d-e410-4a27-a958-19e220d83a1e —policy file://snapshotKey.json
+$ aws kms put-key-policy \
+--policy-name default --key-id 9d5e2b3d-e410-4a27-a958-19e220d83a1e 
+--policy file://snapshotKey.json
 ```
 
 ------
@@ -211,7 +215,10 @@ Use the [create\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/refer
 For example, the following command creates a cross\-account copy event policy in target account `222222222222`\. The policy copies snapshots that are shared by source account `111111111111`\. The policy copies snapshots to `sa-east-1` and `eu-west-2`\. Snapshots copied to `sa-east-1` are unencrypted and they are retained for 3 days\. Snapshots copied to `eu-west-2` are encrypted using KMS key `8af79514-350d-4c52-bac8-8985e84171c7` and they are retained for 1 month\. The policy uses the default IAM role\.
 
 ```
-$ aws dlm create-lifecycle-policy --description "Copy policy" --state ENABLED --execution-role-arn arn:aws:iam::222222222222:role/service-role/AWSDataLifecycleManagerDefaultRole --policy-details file://policyDetails.json
+$ aws dlm create-lifecycle-policy \
+--description "Copy policy" \
+--state ENABLED --execution-role-arn arn:aws:iam::222222222222:role/service-role/AWSDataLifecycleManagerDefaultRole \
+--policy-details file://policyDetails.json
 ```
 
 The following shows the contents of the `policyDetails.json` file\.
@@ -377,7 +384,10 @@ Save and close the file\. Then use the [ put\-role\-policy](https://docs.aws.ama
 For example
 
 ```
-$ aws iam put-role-policy –role-name AWSDataLifecycleManagerDefaultRole --policy-name CopyPolicy --policy-document file://AdminPolicy.json
+$ aws iam put-role-policy \
+--role-name AWSDataLifecycleManagerDefaultRole \
+--policy-name CopyPolicy \
+--policy-document file://AdminPolicy.json
 ```
 
 ------

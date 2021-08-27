@@ -48,6 +48,8 @@ These instances are well suited for general\-purpose workloads such as the follo
 + Small and midsize databases
 + Caching fleets
 
+For more information, see [Amazon EC2 M6i Instances](http://aws.amazon.com/ec2/instance-types/m6i)\.
+
 **Mac1 instances**  
 These instances are powered by Apple Mac mini computers\. They provide up to 10 Gbps of network bandwidth and 8 Gbps EBS bandwidth through high\-speed Thunderbolt 3 connections\. They are well suited to develop, build, test, and sign applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\.
 
@@ -402,7 +404,7 @@ For more information, see the following:
   + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
   + Debian 10 or later \(64\-bit Arm\)
-+ To get the best performance from your M6i instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\:
++ To get the best performance from your M6i instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\.
   + Amazon Linux 2 with kernel 4\.14\.186
   + Ubuntu 20\.04 with kernel 5\.4\.0\-1025\-aws
   + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH

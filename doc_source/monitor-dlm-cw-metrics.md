@@ -9,8 +9,10 @@ For more information about Amazon CloudWatch, see the [Amazon CloudWatch User Gu
 **Topics**
 + [Supported metrics](#metrics)
 + [View CloudWatch metrics for your policies](#view-metrics)
++ [Graph metrics](#graph-metrics)
 + [Create a CloudWatch alarm for a policy](#create-alarm)
 + [Example use cases](#use-cases)
++ [Managing policies that report failed actions](#manage)
 
 ## Supported metrics<a name="metrics"></a>
 
@@ -62,6 +64,10 @@ The following metrics can be used with EBS\-backed AMI policies:
 |  `ImagesCopiedRegionFailed`  |  The number of cross\-Region AMI copies that could not be created by an EBS\-backed AMI policy\.  | 
 |  `ImagesCopiedRegionDeregisterCompleted`  |  The number of cross\-Region AMI copies deregistered, as designated by the retention rule, by an EBS\-backed AMI policy\.  | 
 |  `ImagesCopiedRegionDeregisteredFailed`  |  The number of cross\-Region AMI copies that could not be deregistered, as designated by the retention rule, by an EBS\-backed AMI policy\.  | 
+|  `EnableImageDeprecationCompleted`  |  The number of AMIs that were marked for deprecation by an EBS\-backed AMI policy\.  | 
+|  `EnableImageDeprecationFailed`  |  The number of AMIs that could not be marked for deprecation by an EBS\-backed AMI policy\.  | 
+|  `EnableCopiedImageDeprecationCompleted`  |  The number of cross\-Region AMI copies that were marked for deprecation by an EBS\-backed AMI policy\.  | 
+|  `EnableCopiedImageDeprecationFailed`  |  The number of cross\-Region AMI copies that could not be marked for deprecation by an EBS\-backed AMI policy\.  | 
 
 ------
 #### [ Cross\-account copy event policies ]
@@ -82,6 +88,17 @@ The following metrics can be used with cross\-account copy event policies:
 ## View CloudWatch metrics for your policies<a name="view-metrics"></a>
 
 You can use the AWS Management Console or the command line tools to list the metrics that Amazon Data Lifecycle Manager sends to Amazon CloudWatch\.
+
+------
+#### [ Amazon EC2 console ]
+
+**To view metrics using the Amazon EC2 console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Lifecycle Manager**\.
+
+1. Select a policy in the grid and then choose the **Monitoring** tab\.
 
 ------
 #### [ CloudWatch console ]
@@ -120,6 +137,43 @@ $ aws cloudwatch list-metrics --namespace AWS/EBS --metric-name SnapshotsCreateC
 
 ------
 
+## Graph metrics for your policies<a name="graph-metrics"></a>
+
+After you create a policy, you can open the Amazon EC2 console and view the monitoring graphs for the policy on the **Monitoring** tab\. Each graph is based on one of the available Amazon EC2 metrics\.
+
+The following graphs metrics are available:
++ Resources targeted \(based on `ResourcesTargeted`\)
++ Snapshot creation started \(based on `SnapshotsCreateStarted`\)
++ Snapshot creation completed \(based on `SnapshotsCreateCompleted`\)
++ Snapshot creation failed \(based on `SnapshotsCreateFailed`\)
++ Snapshot sharing completed \(based on `SnapshotsSharedCompleted`\)
++ Snapshot deletion completed \(based on `SnapshotsDeleteCompleted`\)
++ Snapshot deletion failed \(based on `SnapshotsDeleteFailed`\)
++ Snapshot cross\-Region copy started \(based on `SnapshotsCopiedRegionStarted`\)
++ Snapshot cross\-Region copy completed \(based on `SnapshotsCopiedRegionCompleted`\)
++ Snapshot cross\-Region copy failed \(based on `SnapshotsCopiedRegionFailed`\)
++ Snapshot cross\-Region copy deletion completed \(based on `SnapshotsCopiedRegionDeleteCompleted`\)
++ Snapshot cross\-Region copy deletion failed \(based on `SnapshotsCopiedRegionDeleteFailed`\)
++ Snapshot cross\-account copy started \(based on `SnapshotsCopiedAccountStarted`\)
++ Snapshot cross\-account copy completed \(based on `SnapshotsCopiedAccountCompleted`\)
++ Snapshot cross\-account copy failed \(based on `SnapshotsCopiedAccountFailed`\)
++ Snapshot cross\-account copy deletion completed \(based on `SnapshotsCopiedAccountDeleteCompleted`\)
++ Snapshot cross\-account copy deletion failed \(based on `SnapshotsCopiedAccountDeleteFailed`\)
++ AMI creation started \(based on `ImagesCreateStarted`\)
++ AMI creation completed \(based on `ImagesCreateCompleted`\)
++ AMI creation failed \(based on `ImagesCreateFailed`\)
++ AMI deregistration completed \(based on `ImagesDeregisterCompleted`\)
++ AMI deregistration failed \(based on `ImagesDeregisterFailed`\)
++ AMI cross\-Region copy started \(based on `ImagesCopiedRegionStarted`\)
++ AMI cross\-Region copy completed \(based on `ImagesCopiedRegionCompleted`\)
++ AMI cross\-Region copy failed \(based on `ImagesCopiedRegionFailed`\)
++ AMI cross\-Region copy deregistration completed \(based on `ImagesCopiedRegionDeregisterCompleted`\)
++ AMI cross\-Region copy deregister failed \(based on `ImagesCopiedRegionDeregisteredFailed`\)
++ AMI enable deprecation completed \(based on `EnableImageDeprecationCompleted`\)
++ AMI enable deprecation failed \(based on `EnableImageDeprecationFailed`\)
++ AMI cross\-Region copy enable deprecation completed \(based on `EnableCopiedImageDeprecationCompleted`\)
++ AMI cross\-Region copy enable deprecation failed \(based on `EnableCopiedImageDeprecationFailed`\)
+
 ## Create a CloudWatch alarm for a policy<a name="create-alarm"></a>
 
 You can create a CloudWatch alarm that monitors CloudWatch metrics for your policies\. CloudWatch will automatically send you a notification when the metric reaches a threshold that you specify\. You can create a CloudWatch alarm using the CloudWatch console\.
@@ -148,7 +202,7 @@ You can use the following command to create this alarm:
 ```
 $ aws cloudwatch put-metric-alarm \
 --alarm-name resource-targeted-monitor \
---alarm-description "Alarm when resources targeted exceeds count 50" \
+--alarm-description "Alarm when policy targets more than 50 resources" \
 --metric-name ResourcesTargeted \
 --namespace AWS/EBS \
 --statistic Sum \
@@ -171,7 +225,7 @@ You can use the following command to create this alarm:
 ```
 $ aws cloudwatch put-metric-alarm \
 --alarm-name snapshot-deletion-failed-monitor \
---alarm-description "Alarm when snapshots deletion fails" \
+--alarm-description "Alarm when snapshot deletions fail" \
 --metric-name SnapshotsDeleteFailed \
 --namespace AWS/EBS \
 --statistic Sum \
@@ -205,3 +259,7 @@ $ aws cloudwatch put-metric-alarm \
 --evaluation-periods 1 \
 --alarm-actions sns_topic_arn
 ```
+
+## Managing policies that report failed actions<a name="manage"></a>
+
+For more information about what to do when one of your policies reports an unexpected non\-zero value for a failed action metric, see the [What should I do if Amazon Data Lifecycle Manager reports failed actions in CloudWatch metrics?](http://aws.amazon.com/premiumsupport/knowledge-center/cloudwatch-metrics-dlm/) AWS Knowledge Center article\.

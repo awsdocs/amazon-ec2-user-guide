@@ -248,7 +248,7 @@ The following table summarizes the networking and storage features supported by 
 | T4g | Yes | Yes | No | No | ENA | 
 | High memory \(u\-\*\) | Yes | Yes | No |  Virtualized: Yes Bare metal: No  | ENA | 
 | X1 | No | No | SSD \* | Yes | ENA | 
-| X1e | No | Yes | SSD \* | Yes | ENA | 
+| X1e | No | No | SSD \* | Yes | ENA | 
 | X2gd | No | Yes | NVMe \* | Yes | ENA | 
 | z1d | No | Yes | NVMe \* | Yes | ENA | 
 

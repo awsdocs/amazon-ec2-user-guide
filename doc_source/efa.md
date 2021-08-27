@@ -57,7 +57,11 @@ The following instance types support EFAs:
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` option and the appropriate Region code\.
 
 ```
-aws ec2 describe-instance-types --region us-east-2 --filters Name=network-info.efa-supported,Values=true --query "InstanceTypes[*].[InstanceType]" --output text
+$ aws ec2 describe-instance-types \
+--region us-east-2 \
+--filters Name=network-info.efa-supported,Values=true \
+--query "InstanceTypes[*].[InstanceType]" \
+--output text
 ```
 
 The following is example output\.
@@ -88,6 +92,8 @@ The following AMIs support EFA with Intel x86\-based instance types:
 
 The following AMIs support EFA with Arm\-based \(Graviton 2\) instance types:
 + Amazon Linux 2
++ CentOS 8
++ RHEL 8
 + Ubuntu 18\.04 and 20\.04
 + SUSE Linux Enterprise 15 SP2 and later
 

@@ -1,14 +1,14 @@
 # Amazon EC2 key pairs and Linux instances<a name="ec2-key-pairs"></a>
 
-A key pair, consisting of a public key and a private key, is a set of security credentials that you use to prove your identity when connecting to an EC2 instance\. Amazon EC2 stores the public key on your instance, and you store the private key\. For Linux instances, the private key allows you to securely SSH into your instance\. Anyone who possesses your private key can connect to your instances, so it's important that you store your private key in a secure place\.
+A key pair, consisting of a public key and a private key, is a set of security credentials that you use to prove your identity when connecting to an Amazon EC2 instance\. Amazon EC2 stores the public key on your instance, and you store the private key\. For Linux instances, the private key allows you to securely SSH into your instance\. Anyone who possesses your private key can connect to your instances, so it's important that you store your private key in a secure place\.
 
-When you launch an instance, you are [prompted for a key pair](launching-instance.md#step-7-review-instance-launch)\. If you plan to connect to the instance using SSH, you must specify a key pair\. You can choose an existing key pair or create a new one\. When your instance boots for the first time, the public key that you specified at launch is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\. When you connect to your Linux instance using SSH, to log in you must specify the private key that corresponds to the public key\. For more information about connecting to your instance, see [Connect to your Linux instance](AccessingInstances.md)\. For more information about key pairs and Windows instances, see [Amazon EC2 key pairs and Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Windows Instances*
+When you launch an instance, you are [prompted for a key pair](launching-instance.md#step-7-review-instance-launch)\. If you plan to connect to the instance using SSH, you must specify a key pair\. You can choose an existing key pair or create a new one\. When your instance boots for the first time, the public key that you specified at launch is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\. When you connect to your Linux instance using SSH, to log in you must specify the private key that corresponds to the public key\. For more information about connecting to your instance, see [Connect to your Linux instance](AccessingInstances.md)\. For more information about key pairs and Windows instances, see [Amazon EC2 key pairs and Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 Because Amazon EC2 doesn't keep a copy of your private key, there is no way to recover a private key if you lose it\. However, there can still be a way to connect to instances for which you've lost the private key\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
 You can use Amazon EC2 to create your key pairs\. You can also use a third\-party tool to create your key pairs, and then import the public keys to Amazon EC2\.
 
-The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\.
+The keys that Amazon EC2 uses are ED25519 or 2048\-bit SSH\-2 RSA keys\.
 
 You can have up to 5,000 key pairs per Region\.
 
@@ -43,11 +43,17 @@ You can create a key pair using one of the following methods\.
 
 1. For **Name**, enter a descriptive name for the key pair\. Amazon EC2 associates the public key with the name that you specify as the key name\. A key name can include up to 255 ASCII characters\. It can’t include leading or trailing spaces\.
 
-1. For **File format**, choose the format in which to save the private key\. To save the private key in a format that can be used with OpenSSH, choose **pem**\. To save the private key in a format that can be used with PuTTY, choose **ppk**\.
+1. For **Key pair type**, choose either **RSA** or **ED25519**\. Note that **ED25519** keys are not supported for Windows instances, EC2 Instance Connect, or EC2 Serial Console\.
+
+1. For **Private key file format**, choose the format in which to save the private key\. To save the private key in a format that can be used with OpenSSH, choose **pem**\. To save the private key in a format that can be used with PuTTY, choose **ppk**\.
+
+   If you chose **ED25519** in the previous step, the **Private key file format** options do not appear, and the private key format defaults to **pem**\.
+
+1. To add a tag to the public key, choose **Add tag**, and enter the key and value for the tag\. Repeat for each tag\. 
 
 1. Choose **Create key pair**\.
 
-1. The private key file is automatically downloaded by your browser\. The base file name is the name you specified as the name of your key pair, and the file name extension is determined by the file format you chose\. Save the private key file in a safe place\.
+1. The private key file is automatically downloaded by your browser\. The base file name is the name that you specified as the name of your key pair, and the file name extension is determined by the file format that you chose\. Save the private key file in a safe place\.
 **Important**  
 This is the only chance for you to save the private key file\.
 
@@ -64,10 +70,22 @@ This is the only chance for you to save the private key file\.
 
 **To create your key pair**
 
-1. Use the [create\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) AWS CLI command as follows to generate the key and save it to a `.pem` file\.
+1. Use the [create\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) command as follows to generate the key pair and to save the private key to a `.pem` file\.
+
+   For `--key-name`, specify a name for the public key\. The name can be up to 255 ASCII characters\.
+
+   For `--key-type`, specify either `rsa` or `ed25519`\. If you do not include the `--key-type` parameter, an `rsa` key is created by default\. Note that ED25519 keys are not supported for Windows instances, EC2 Instance Connect, and EC2 Serial Console\.
+
+   `--query "KeyMaterial"` prints the private key material to the output\.
+
+   `--output text > my-key-pair.pem` saves the private key material in a file with the `.pem` extension\. The private key can have a name that's different from the public key name, but for ease of use, use the same name\.
 
    ```
-   aws ec2 create-key-pair --key-name my-key-pair --query "KeyMaterial" --output text > my-key-pair.pem
+   aws ec2 create-key-pair \
+       --key-name my-key-pair \
+       --key-type rsa \
+       --query "KeyMaterial" \
+       --output text > my-key-pair.pem
    ```
 
 1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
@@ -84,30 +102,37 @@ This is the only chance for you to save the private key file\.
 **To create your key pair**  
 Use the [New\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) AWS Tools for Windows PowerShell command as follows to generate the key and save it to a `.pem` file\.
 
+For `-KeyName`, specify a name for the public key\. The name can be up to 255 ASCII characters\.
+
+For `-KeyType`, specify either `rsa` or `ed25519`\. If you do not include the `-KeyType` parameter, an `rsa` key is created by default\. Note that ED25519 keys are not supported for Windows instances, EC2 Instance Connect, and EC2 Serial Console\.
+
+`KeyMaterial` prints the private key material to the output\.
+
+`Out-File -Encoding ascii -FilePath C:\path\my-key-pair.pem` saves the private key material in a file with the `.pem` extension\. The private key can have a name that's different from the public key name, but for ease of use, use the same name\.
+
 ```
-PS C:\> (New-EC2KeyPair -KeyName "my-key-pair").KeyMaterial | Out-File -Encoding ascii -FilePath C:\path\my-key-pair.pem
+PS C:\> (New-EC2KeyPair -KeyName "my-key-pair" -KeyType "rsa").KeyMaterial | Out-File -Encoding ascii -FilePath C:\path\my-key-pair.pem
 ```
 
 ------
 
 ## Create a key pair using a third\-party tool and import the public key to Amazon EC2<a name="how-to-generate-your-own-key-and-import-it-to-aws"></a>
 
-Instead of using Amazon EC2 to create your key pair, you can create an RSA key pair using a third\-party tool and then import the public key to Amazon EC2\.
+Instead of using Amazon EC2 to create your key pair, you can create an RSA or ED25519 key pair by using a third\-party tool, and then import the public key to Amazon EC2\.
 
 **Requirements for key pairs**
-+ Supported type: RSA\. Amazon EC2 does not accept DSA keys\.
-+ 
-
-  Supported formats:
++ Supported types: RSA and ED25519\. Amazon EC2 does not accept DSA keys\.
+  + Note that ED25519 keys are not supported for Windows instances, EC2 Instance Connect, and EC2 Serial Console\.
++ Supported formats:
   + OpenSSH public key format \(the format in `~/.ssh/authorized_keys`\)\. If you connect using SSH while using the EC2 Instance Connect API, the SSH2 format is also supported\.
   + SSH private key file format must be PEM
-  + Base64 encoded DER format
-  + SSH public key file format as specified in [RFC 4716](https://www.ietf.org/rfc/rfc4716.txt)
+  + \(RSA only\) Base64 encoded DER format
+  + \(RSA only\) SSH public key file format as specified in [RFC 4716](https://www.ietf.org/rfc/rfc4716.txt)
 + Supported lengths: 1024, 2048, and 4096\. If you connect using SSH while using the EC2 Instance Connect API, the supported lengths are 2048 and 4096\.
 
 **To create a key pair using a third\-party tool**
 
-1. Generate a key pair with a third\-party tool of your choice\. For example, you can use ssh\-keygen \(a tool provided with the standard OpenSSH installation\)\. Alternatively, Java, Ruby, Python, and many other programming languages provide standard libraries that you can use to create an RSA key pair\.
+1. Generate a key pair with a third\-party tool of your choice\. For example, you can use ssh\-keygen \(a tool provided with the standard OpenSSH installation\)\. Alternatively, Java, Ruby, Python, and many other programming languages provide standard libraries that you can use to create an RSA or ED25519 key pair\.
 **Important**  
 The private key must be in the PEM format\. For example, use `ssh-keygen -m PEM` to generate the OpenSSH key in the PEM format\.
 
@@ -115,7 +140,7 @@ The private key must be in the PEM format\. For example, use `ssh-keygen -m PEM`
 
 1. Save the private key to a local file that has the `.pem` extension\. For example, `~/.ssh/my-key-pair.pem`\.
 **Important**  
-Save the private key file in a safe place\. You'll need to provide the name of your public key when you launch an instance and the corresponding private key each time you connect to the instance\.
+Save the private key file in a safe place\. You'll need to provide the name of your public key when you launch an instance, and the corresponding private key each time you connect to the instance\.
 
 After you have created the key pair, use one of the following methods to import your public key to Amazon EC2\.
 
@@ -287,7 +312,7 @@ chmod 400 my-key-pair.pem
 
 ## Retrieve the public key through instance metadata<a name="retrieving-the-public-key-instance"></a>
 
-The public key that you specified when you launched an instance is also available through the instance metadata\. To view the public key that you specified when launching the instance, use the following command from your instance:
+The public key that you specified when you launched an instance is also available through the instance metadata\. To view the public key that you specified when launching the instance, use the following command from your instance\.
 
 ------
 #### [ IMDSv2 ]
@@ -384,10 +409,18 @@ If you created a key pair using a third\-party tool and uploaded the public key 
 $ openssl rsa -in path_to_private_key -pubout -outform DER | openssl md5 -c
 ```
 
-If you created an OpenSSH key pair using OpenSSH 7\.8 or later and uploaded the public key to AWS, you can use ssh\-keygen to generate the fingerprint as shown in the following example\.
+If you created an OpenSSH key pair using OpenSSH 7\.8 or later and uploaded the public key to AWS, you can use ssh\-keygen to generate the fingerprint as shown in the following examples\.
+
+For RSA key pairs:
 
 ```
 $ ssh-keygen -ef path_to_private_key -m PEM | openssl rsa -RSAPublicKey_in -outform DER | openssl md5 -c
+```
+
+For ED25519 key pairs:
+
+```
+$ ssh-keygen -l -f path_to_private_key.pem
 ```
 
 ## Add or replace a key pair for your instance<a name="replacing-key-pair"></a>
@@ -405,7 +438,7 @@ These procedures are for modifying the key pair for the default user account, su
 
 **To add or replace a key pair**
 
-1. Create a new key pair using [the Amazon EC2 console](#having-ec2-create-your-key-pair) or a [third\-party tool](#how-to-generate-your-own-key-and-import-it-to-aws)\.
+1. Create a new key pair using the [Amazon EC2 console](#having-ec2-create-your-key-pair) or a [third\-party tool](#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
 1. Retrieve the public key from your new key pair\. For more information, see [Retrieve the public key from the private key](#retrieving-the-public-key)\.
 

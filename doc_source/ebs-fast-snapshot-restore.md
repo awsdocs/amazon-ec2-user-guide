@@ -83,7 +83,7 @@ Use the following procedure to enable or disable fast snapshot restore for a sna
 1. To track the state of fast snapshot restore as it is enabled, see **Fast Snapshot Restore** on the **Description** tab\.
 
 **Note**  
-After you enable fast snapsohot restore for a snapshot, it enters the `optimizing` state\. Snapshots that are in the `optimizing` state provide some performance benefits when using them to restore volumes\. They start to provide the full performance benefits of fast snapshot restore only after they enter the `enabled` state\.
+After you enable fast snapshot restore for a snapshot, it enters the `optimizing` state\. Snapshots that are in the `optimizing` state provide some performance benefits when using them to restore volumes\. They start to provide the full performance benefits of fast snapshot restore only after they enter the `enabled` state\.
 
 **To manage fast snapshot restore using the AWS CLI**
 + [enable\-fast\-snapshot\-restores](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-fast-snapshot-restores.html)

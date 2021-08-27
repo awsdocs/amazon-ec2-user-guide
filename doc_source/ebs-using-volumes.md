@@ -16,7 +16,7 @@ Suppose that you have an EC2 instance with an EBS volume for the root device, `/
 
 1. The device could be attached to the instance with a different device name than you specified in the block device mapping\. For more information, see [Device names on Linux instances](device_naming.md)\. Use the lsblk command to view your available disk devices and their mount points \(if applicable\) to help you determine the correct device name to use\. The output of lsblk removes the `/dev/` prefix from full device paths\.
 
-   The following is example output for an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), which exposes EBS volumes as NVMe block devices\. The root device is `/dev/nvme0n1`\. The attached volume is `/dev/nvme1n1`, which is not yet mounted\.
+   The following is example output for an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), which exposes EBS volumes as NVMe block devices\. The root device is `/dev/nvme0n1`, which has two partitions named `nvme0n1p1` and `nvme0n1p128`\. The attached volume is `/dev/nvme1n1`, which has no partitions and is not yet mounted\.
 
    ```
    [ec2-user ~]$ lsblk
@@ -27,7 +27,7 @@ Suppose that you have an EC2 instance with an EBS volume for the root device, `/
    -nvme0n1p128  259:3    0   1M  0 part
    ```
 
-   The following is example output for a T2 instance\. The root device is `/dev/xvda`\. The attached volume is `/dev/xvdf`, which is not yet mounted\.
+   The following is example output for a T2 instance\. The root device is `/dev/xvda`, which has one partition named `xvda1`\. The attached volume is `/dev/xvdf`, which has no partitions and is not yet mounted\.
 
    ```
    [ec2-user ~]$ lsblk
@@ -59,7 +59,7 @@ Suppose that you have an EC2 instance with an EBS volume for the root device, `/
      [ec2-user ~]$ sudo lsblk -f
      ```
 
-     For example, the following output shows that there are three devices attached to the instances—`nvme1n1`, `nvme0n1`, and `nvme2n1`\. The first column lists the devices and their partitions\. The `FSTYPE` column shows the file system type for each device\. If the column is empty for a specific device, it means that the device does not have a file system\. In this case, `nvme1n1`, `nvme0n1` are both formatted using the XFS file system, while `nvme2n1` does not have a file system\.
+     For example, the following output shows that there are three devices attached to the instances—`nvme1n1`, `nvme0n1`, and `nvme2n1`\. The first column lists the devices and their partitions\. The `FSTYPE` column shows the file system type for each device\. If the column is empty for a specific device, it means that the device does not have a file system\. In this case, device `nvme1n1` and partition `nvme0n1p1` on device `nvme0n1` are both formatted using the XFS file system, while device `nvme2n1` and partition `nvme0n1p128` on device `nvme0n1` do not have file systems\.
 
      ```
      NAME		FSTYPE	LABEL	UUID						MOUNTPOINT

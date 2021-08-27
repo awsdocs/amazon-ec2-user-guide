@@ -14,7 +14,6 @@ Use the appropriate configuration strategies to create an EC2 Fleet that meets y
 
 **Topics**
 + [Planning an EC2 Fleet](#plan-ec2-fleet)
-+ [EC2 Fleet request types](#ec2-fleet-request-type)
 + [Allocation strategies for Spot Instances](#ec2-fleet-allocation-strategy)
 + [Configure EC2 Fleet for On\-Demand backup](#ec2-fleet-on-demand-backup)
 + [Capacity Rebalancing](#ec2-fleet-capacity-rebalance)
@@ -25,7 +24,7 @@ Use the appropriate configuration strategies to create an EC2 Fleet that meets y
 ## Planning an EC2 Fleet<a name="plan-ec2-fleet"></a>
 
 When planning your EC2 Fleet, we recommend that you do the following:
-+ Determine whether you want to create an EC2 Fleet that submits a synchronous or asynchronous one\-time request for the desired target capacity, or one that maintains a target capacity over time\. For more information, see [EC2 Fleet request types](#ec2-fleet-request-type)\.
++ Determine whether you want to create an EC2 Fleet that submits a synchronous or asynchronous one\-time request for the desired target capacity, or one that maintains a target capacity over time\. For more information, see [EC2 Fleet request types](ec2-fleet-request-type.md)\.
 + Determine the instance types that meet your application requirements\.
 + If you plan to include Spot Instances in your EC2 Fleet, review [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices) before you create the fleet\. Use these best practices when you plan your fleet so that you can provision the instances at the lowest possible price\.
 + Determine the target capacity for your EC2 Fleet\. You can set target capacity in instances or in custom units\. For more information, see [EC2 Fleet instance weighting](#ec2-fleet-instance-weighting)\.
@@ -33,21 +32,6 @@ When planning your EC2 Fleet, we recommend that you do the following:
 + Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. If you are not using instance weighting, the default price per unit is the price per instance hour\.
 + Determine the maximum amount per hour that you’re willing to pay for your fleet\. For more information, see [Control spending](#ec2-fleet-control-spending)\.
 + Review the possible options for your EC2 Fleet\. For more information, see the [EC2 Fleet JSON configuration file reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\. For EC2 Fleet configuration examples, see [EC2 Fleet example configurations](ec2-fleet-examples.md)\.
-
-## EC2 Fleet request types<a name="ec2-fleet-request-type"></a>
-
-There are three types of EC2 Fleet requests: 
-
-`instant`  
-If you configure the request type as `instant`, EC2 Fleet places a synchronous one\-time request for your desired capacity\. In the API response, it returns the instances that launched, along with errors for those instances that could not be launched\.
-
-`request`  
-If you configure the request type as `request`, EC2 Fleet places an asynchronous one\-time request for your desired capacity\. Thereafter, if capacity is diminished because of Spot interruptions, the fleet does not attempt to replenish Spot Instances, nor does it submit requests in alternative Spot capacity pools if capacity is unavailable\.
-
-`maintain`  
-\(Default\) If you configure the request type as `maintain`, EC2 Fleet places an asynchronous request for your desired capacity, and maintains capacity by automatically replenishing any interrupted Spot Instances\.
-
-All three types of requests benefit from an allocation strategy\. For more information, see [Allocation strategies for Spot Instances](#ec2-fleet-allocation-strategy)\.
 
 ## Allocation strategies for Spot Instances<a name="ec2-fleet-allocation-strategy"></a>
 

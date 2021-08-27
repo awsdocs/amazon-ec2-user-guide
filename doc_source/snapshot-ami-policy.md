@@ -166,7 +166,10 @@ To simplify the syntax, the following examples use a JSON file, `policyDetails.j
 This example creates a snapshot lifecycle policy that creates snapshots of all volumes that have a tag key of `costcenter` with a value of `115`\. The policy includes two schedules\. The first schedule creates a snapshot every day at 03:00 UTC\. The second schedule creates a weekly snapshot every Friday at 17:00 UTC\.
 
 ```
-aws dlm create-lifecycle-policy --description "My volume policy" --state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole --policy-details file://policyDetails.json
+aws dlm create-lifecycle-policy \
+--description "My volume policy" \
+--state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+--policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.
@@ -228,7 +231,10 @@ Upon success, the command returns the ID of the newly created policy\. The follo
 This example creates a snapshot lifecycle policy that creates snapshots of volumes tagged with `team=dev` across all of your Outposts\. The policy creates the snapshots on the same Outposts as the source volumes\. The policy creates snapshots every `12` hours starting at `00:00` UTC\.
 
 ```
-aws dlm create-lifecycle-policy --description "My local snapshot policy" --state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole --policy-details file://policyDetails.json
+aws dlm create-lifecycle-policy \
+--description "My local snapshot policy" \
+--state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+--policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.
@@ -266,7 +272,10 @@ The following is an example of the `policyDetails.json` file\.
 The following example policy creates snapshots of volumes that are tagged with `team=dev`\. Snapshots are created in the same Region as the source volume\. Snapshots are created every `12` hours starting at `00:00` UTC, and retains a maximum of `1` snapshot\. The policy also copies the snapshots to Outpost `arn:aws:outposts:us-east-1:123456789012:outpost/op-1234567890abcdef0`, encrypts the copied snapshots using the default encryption KMS key, and retains the copies for `1` month\.
 
 ```
-aws dlm create-lifecycle-policy --description "Copy snapshots to Outpost" --state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole --policy-details file://policyDetails.json
+aws dlm create-lifecycle-policy \
+--description "Copy snapshots to Outpost" \
+--state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+--policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.

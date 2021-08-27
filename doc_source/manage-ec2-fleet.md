@@ -369,7 +369,7 @@ If the value for `TotalTargetCapacity` is higher than the combined values for `O
 + `instant` – The EC2 Fleet submits a synchronous one\-time request for your desired capacity, and returns errors for any instances that could not be launched\.
 + `request` – The EC2 Fleet submits an asynchronous one\-time request for your desired capacity, but does submit Spot requests in alternative Spot capacity pools if Spot capacity is unavailable, and does not maintain Spot capacity if Spot Instances are interrupted\.
 + `maintain` – The EC2 Fleet submits an asynchronous request for your desired capacity, and continues to maintain your desired Spot capacity by replenishing interrupted Spot Instances\.
-For more information, see [EC2 Fleet request types](ec2-fleet-configuration-strategies.md#ec2-fleet-request-type)\.
+For more information, see [EC2 Fleet request types](ec2-fleet-request-type.md)\.
 
 **ValidFrom**  
 \(Optional\) To create a request that is valid only during a specific time period, enter a start date\.

@@ -1,6 +1,6 @@
 # Copy an AMI<a name="CopyingAMIs"></a>
 
-You can copy an Amazon Machine Image \(AMI\) within or across AWS Regions using the AWS Management Console, the AWS Command Line Interface or SDKs, or the Amazon EC2 API, all of which support the `CopyImage` action\. You can copy both Amazon EBS\-backed AMIs and instance\-store\-backed AMIs\. You can copy AMIs with encrypted snapshots and also change encryption status during the copy process\.
+You can copy an Amazon Machine Image \(AMI\) within or across AWS Regions\. You can copy both Amazon EBS\-backed AMIs and instance\-store\-backed AMIs\. You can copy AMIs with encrypted snapshots and also change encryption status during the copy process\. You can copy AMIs that are shared with you\.
 
 Copying a source AMI results in an identical but distinct target AMI with its own unique identifier\. You can change or deregister the source AMI with no effect on the target AMI\. The reverse is also true\.
 
@@ -15,11 +15,11 @@ There are no charges for copying an AMI\. However, standard storage and data tra
 
 **Topics**
 + [Permissions for copying an instance store\-backed AMI](#copy-ami-permissions)
++ [Copy an AMI](#ami-copy-steps)
++ [Stop a pending AMI copy operation](#ami-copy-stop)
 + [Cross\-Region copying](#copy-amis-across-regions)
 + [Cross\-account copying](#copy-ami-across-accounts)
 + [Encryption and copying](#ami-copy-encryption)
-+ [Copy an AMI](#ami-copy-steps)
-+ [Stop a pending AMI copy operation](#ami-copy-stop)
 
 ## Permissions for copying an instance store\-backed AMI<a name="copy-ami-permissions"></a>
 
@@ -65,6 +65,66 @@ To find the Amazon Resource Name \(ARN\) of the AMI source bucket, open the Amaz
 
 **Note**  
 The `s3:CreateBucket` permission is only needed the first time that the IAM user copies an instance store\-backed AMI to an individual Region\. After that, the Amazon S3 bucket that is already created in the Region is used to store all future AMIs that you copy to that Region\.
+
+## Copy an AMI<a name="ami-copy-steps"></a>
+
+You can copy an AMI using the AWS Management Console, the AWS Command Line Interface or SDKs, or the Amazon EC2 API, all of which support the `CopyImage` action\.
+
+**Prerequisite**  
+Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use the Amazon EC2 console to search a wide variety of AMIs provided by AWS\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) and [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
+
+**To copy an AMI using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. From the console navigation bar, select the Region that contains the AMI\. In the navigation pane, choose **Images**, **AMIs** to display the list of AMIs available to you in the Region\.
+
+1. Select the AMI to copy and choose **Actions**, **Copy AMI**\.
+
+1. In the **Copy AMI** dialog box, specify the following information and then choose **Copy AMI**:
+   + **Destination region**: The Region in which to copy the AMI\. For more information, see [Cross\-Region copying](#copy-amis-across-regions)\.
+   + **Name**: A name for the new AMI\. You can include operating system information in the name, as we do not provide this information when displaying details about the AMI\.
+   + **Description**: By default, the description includes information about the source AMI so that you can distinguish a copy from its original\. You can change this description as needed\.
+   + **Encryption**: Select this field to encrypt the target snapshots, or to re\-encrypt them using a different key\. If you have enabled [encryption by default](EBSEncryption.md#encryption-by-default), the **Encryption** option is set and cannot be unset\. For more information, see [Encryption and copying](#ami-copy-encryption)\.
+   + **KMS Key**: The KMS key to used to encrypt the target snapshots\.
+
+1. We display a confirmation page to let you know that the copy operation has been initiated and to provide you with the ID of the new AMI\.
+
+   To check on the progress of the copy operation immediately, follow the provided link\. To check on the progress later, choose **Done**, and then when you are ready, use the navigation bar to switch to the target Region \(if applicable\) and locate your AMI in the list of AMIs\.
+
+   The initial status of the target AMI is `pending` and the operation is complete when the status is `available`\.
+
+**To copy an AMI using the AWS CLI**  
+You can copy an AMI using the [copy\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html) command\. You must specify both the source and destination Regions\. You specify the source Region using the `--source-region` parameter\. You can specify the destination Region using either the `--region` parameter or an environment variable\. For more information, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
+
+When you encrypt a target snapshot during copying, you must specify these additional parameters: `--encrypted` and `--kms-key-id`\.
+
+**To copy an AMI using the Tools for Windows PowerShell**  
+You can copy an AMI using the [Copy\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Image.html) command\. You must specify both the source and destination Regions\. You specify the source Region using the `-SourceRegion` parameter\. You can specify the destination Region using either the `-Region` parameter or the `Set-AWSDefaultRegion` command\. For more information, see [Specifying AWS Regions](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-installing-specifying-region.html)\.
+
+When you encrypt a target snapshot during copying, you must specify these additional parameters: `-Encrypted` and `-KmsKeyId`\.
+
+## Stop a pending AMI copy operation<a name="ami-copy-stop"></a>
+
+You can stop a pending AMI copy as follows\.
+
+**To stop an AMI copy operation using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. From the navigation bar, select the destination Region from the Region selector\.
+
+1. In the navigation pane, choose **AMIs**\.
+
+1. Select the AMI to stop copying and choose **Actions**, **Deregister**\.
+
+1. When asked for confirmation, choose **Continue**\.
+
+**To stop an AMI copy operation using the command line**
+
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
++ [deregister\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-image.html) \(AWS CLI\)
++ [Unregister\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
 ## Cross\-Region copying<a name="copy-amis-across-regions"></a>
 
@@ -127,63 +187,3 @@ Enabling [encryption by default](EBSEncryption.md#encryption-by-default) has the
 Setting the `Encrypted` parameter encrypts the single snapshot for this instance\. If you do not specify the `KmsKeyId` parameter, the default customer managed key is used to encrypt the snapshot copy\.
 
 For more information about copying AMIs with encrypted snapshots, see [Use encryption with EBS\-backed AMIs](AMIEncryption.md)\.
-
-## Copy an AMI<a name="ami-copy-steps"></a>
-
-You can copy an AMI as follows\.
-
-**Prerequisite**  
-Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use the Amazon EC2 console to search a wide variety of AMIs provided by AWS\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) and [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
-
-**To copy an AMI using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. From the console navigation bar, select the Region that contains the AMI\. In the navigation pane, choose **Images**, **AMIs** to display the list of AMIs available to you in the Region\.
-
-1. Select the AMI to copy and choose **Actions**, **Copy AMI**\.
-
-1. In the **Copy AMI** dialog box, specify the following information and then choose **Copy AMI**:
-   + **Destination region**: The Region in which to copy the AMI\.
-   + **Name**: A name for the new AMI\. You can include operating system information in the name, as we do not provide this information when displaying details about the AMI\.
-   + **Description**: By default, the description includes information about the source AMI so that you can distinguish a copy from its original\. You can change this description as needed\.
-   + **Encryption**: Select this field to encrypt the target snapshots, or to re\-encrypt them using a different key\. If you have enabled [encryption by default](EBSEncryption.md#encryption-by-default), the **Encryption** option is set and cannot be unset\.
-   + **KMS Key**: The KMS key to used to encrypt the target snapshots\.
-
-1. We display a confirmation page to let you know that the copy operation has been initiated and to provide you with the ID of the new AMI\.
-
-   To check on the progress of the copy operation immediately, follow the provided link\. To check on the progress later, choose **Done**, and then when you are ready, use the navigation bar to switch to the target Region \(if applicable\) and locate your AMI in the list of AMIs\.
-
-   The initial status of the target AMI is `pending` and the operation is complete when the status is `available`\.
-
-**To copy an AMI using the AWS CLI**  
-You can copy an AMI using the [copy\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html) command\. You must specify both the source and destination Regions\. You specify the source Region using the `--source-region` parameter\. You can specify the destination Region using either the `--region` parameter or an environment variable\. For more information, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
-
-When you encrypt a target snapshot during copying, you must specify these additional parameters: `--encrypted` and `--kms-key-id`\.
-
-**To copy an AMI using the Tools for Windows PowerShell**  
-You can copy an AMI using the [Copy\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Image.html) command\. You must specify both the source and destination Regions\. You specify the source Region using the `-SourceRegion` parameter\. You can specify the destination Region using either the `-Region` parameter or the `Set-AWSDefaultRegion` command\. For more information, see [Specifying AWS Regions](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-installing-specifying-region.html)\.
-
-When you encrypt a target snapshot during copying, you must specify these additional parameters: `-Encrypted` and `-KmsKeyId`\.
-
-## Stop a pending AMI copy operation<a name="ami-copy-stop"></a>
-
-You can stop a pending AMI copy as follows\.
-
-**To stop an AMI copy operation using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. From the navigation bar, select the destination Region from the Region selector\.
-
-1. In the navigation pane, choose **AMIs**\.
-
-1. Select the AMI to stop copying and choose **Actions**, **Deregister**\.
-
-1. When asked for confirmation, choose **Continue**\.
-
-**To stop an AMI copy operation using the command line**
-
-You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
-+ [deregister\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-image.html) \(AWS CLI\)
-+ [Unregister\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Image.html) \(AWS Tools for Windows PowerShell\)

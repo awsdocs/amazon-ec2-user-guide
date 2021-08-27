@@ -1,12 +1,12 @@
 # Boot modes<a name="ami-boot"></a>
 
-When a computer boots up, the first software that it runs is responsible for initializing the platform and providing an interface for the operating system to perform platform\-specific operations\.
+When a computer boots, the first software that it runs is responsible for initializing the platform and providing an interface for the operating system to perform platform\-specific operations\.
 
 **Default boot modes**  
 In EC2, two variants of the boot mode software are supported: Legacy BIOS and Unified Extensible Firmware Interface \(UEFI\)\. By default, Intel and AMD instance types run on Legacy BIOS, and Graviton instance types run on UEFI\.
 
-**Intel and AMD instances types that can optionally run on UEFI**  
-[Most Intel and AMD instance types](#UEFI-supported-types) can also run on UEFI instead of on the default Legacy BIOS\. To use UEFI, you must select an AMI with the boot mode parameter set to **uefi**, and the operating system contained in the AMI must be configured to support UEFI\.
+**Running Intel and AMD instances types on UEFI**  
+[Most Intel and AMD instance types](#UEFI-supported-types) can run on both UEFI and Legacy BIOS\. To use UEFI, you must select an AMI with the boot mode parameter set to **uefi**, and the operating system contained in the AMI must be configured to support UEFI\.
 
 **Purpose of the AMI boot mode parameter**  
 The AMI boot mode parameter signals to EC2 which boot mode to use when launching an instance\. When the boot mode parameter is set to **uefi**, EC2 attempts to launch the instance on UEFI\. If the operating system is not configured to support UEFI, the instance launch might be unsuccessful\.

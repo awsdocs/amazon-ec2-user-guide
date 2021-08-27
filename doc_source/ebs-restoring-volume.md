@@ -110,16 +110,16 @@ You can view the root volume replacement tasks for an instance using one of the 
 #### [ AWS CLI ]
 
 **To view the status of a root volume replacement task**  
-Use the [describe\-replace\-root\-volume\-task](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-replace-root-volume-task.html) command and specify the IDs of the root volume replacement tasks to view\.
+Use the [describe\-replace\-root\-volume\-tasks](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-replace-root-volume-tasks.html) command and specify the IDs of the root volume replacement tasks to view\.
 
 ```
-$ aws ec2 describe-replace-root-volume-task --replace-root-volume-task-ids task_id_1 task_id_2
+$ aws ec2 describe-replace-root-volume-tasks --replace-root-volume-task-ids task_id_1 task_id_2
 ```
 
 For example:
 
 ```
-$ aws ec2 describe-replace-root-volume-task --replace-root-volume-task-ids replacevol-1234567890abcdef0 
+$ aws ec2 describe-replace-root-volume-tasks --replace-root-volume-task-ids replacevol-1234567890abcdef0 
 ```
 
 ```
@@ -141,13 +141,13 @@ $ aws ec2 describe-replace-root-volume-task --replace-root-volume-task-ids repla
 Alternatively, specify the `instance-id` filter to filter the results by instance\.
 
 ```
-$ aws ec2 describe-replace-root-volume-task --filters Name=instance-id,Values=instance_id
+$ aws ec2 describe-replace-root-volume-tasks --filters Name=instance-id,Values=instance_id
 ```
 
 For example:
 
 ```
-$ aws ec2 describe-replace-root-volume-task --filters Name=instance-id,Values=i-1234567890abcdef0
+$ aws ec2 describe-replace-root-volume-tasks --filters Name=instance-id,Values=i-1234567890abcdef0
 ```
 
 ------

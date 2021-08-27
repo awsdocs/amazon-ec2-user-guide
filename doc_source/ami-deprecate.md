@@ -11,6 +11,8 @@ After an AMI is deprecated:
 
 You can deprecate both private and public AMIs\.
 
+You can also create Amazon Data Lifecycle Manager EBS\-backed AMI policies to automate the deprecation of EBS\-backed AMIs\. For more information, see [Automate AMI lifecycles](ami-policy.md)\.
+
 **Topics**
 + [Costs](#ami-deprecate-costs)
 + [Limitations](#limitations)

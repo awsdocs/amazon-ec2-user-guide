@@ -88,6 +88,8 @@ Launch a temporary instance that you can use to install and configure the EFA so
    1. Choose **Next: Add Storage**\.
 
 1. On the **Add Storage** page, specify the volumes to attach to the instances, in addition to the volumes specified by the AMI \(such as the root device volume\)\. Ensure that you provision enough storage for the Nvidia CUDA Toolkit\. Then choose **Next: Add Tags**\.
+**Note**  
+You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Toolkit\. If you do not provision enough storage, you will receive an *insufficient disk space* error when attempting to install the Nvidia drivers and CUDA toolkit\.
 
 1. On the **Add Tags** page, specify a tag that you can use to identify the temporary instance, and then choose **Next: Configure Security Group**\.
 
@@ -611,7 +613,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.12.3.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.13.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -639,7 +641,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.12.3.tar.gz.sig && gpg --verify ./aws-efa-installer-1.12.3.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.13.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.13.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -657,7 +659,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.12.3.tar.gz && cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.13.0.tar.gz && cd aws-efa-installer
    ```
 
 1. Run the EFA software installation script\.

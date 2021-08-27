@@ -77,15 +77,27 @@ EBS uses single\-root I/O virtualization \(SR\-IOV\) to provide volume attachmen
 
 We recommend that you use stable identifiers for your EBS volumes within your instance, such as one of the following:
 + For Nitro\-based instances, the block device mappings that are specified in the Amazon EC2 console when you are attaching an EBS volume or during `AttachVolume` or `RunInstances` API calls are captured in the vendor\-specific data field of the NVMe controller identification\. With Amazon Linux AMIs later than version 2017\.09\.01, we provide a `udev` rule that reads this data and creates a symbolic link to the block\-device mapping\.
-+ NVMe EBS volumes have the EBS volume ID set as the serial number in the device identification\. Use the `lsblk -o +SERIAL` command to list the serial number\. 
++ The EBS volume ID and the mount point are stable between instance state changes\. The NVMe device name can change depending on the order in which the devices respond during instance boot\. We recommend using the EBS volume ID and the mount point for consistent device identification\.
++ NVMe EBS volumes have the EBS volume ID set as the serial number in the device identification\. Use the `lsblk -o +SERIAL` command to list the serial number\.
++ The NVMe device name format can vary depending on whether the EBS volume was attached during or after the instance launch\. NVMe device names for volumes attached after instance launch include the `/dev/` prefix, while NVMe device names for volumes attached during instance launch do not include the `/dev/` prefix\. If you are using an Amazon Linux or FreeBSD AMI, use the `sudo ebsnvme-id /dev/nvme0n1 -u` command for a consistent NVMe device name\. For other distributions, use the `sudo ebsnvme-id /dev/nvme0n1 -u` command to determine the NVMe device name\.
 + When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md) and [Boot from the wrong volume](instance-booting-from-wrong-volume.md)\.
 
 **Amazon Linux AMIs**  
 With Amazon Linux AMI 2017\.09\.01 or later \(including Amazon Linux 2\), you can run the ebsnvme\-id command as follows to map the NVMe device name to a volume ID and device name:
 
+The following example shows the command and output for a volume attached during instance launch\. Note that the NVMe device name does not include the `/dev/` prefix\.
+
+```
+[ec2-user ~]$ sudo /sbin/ebsnvme-id /dev/nvme0n1
+Volume ID: vol-01324f611e2463981
+sda
+```
+
+The following example shows the command and output for a volume attached after instance launch\. Note that the NVMe device name includes the `/dev/` prefix\.
+
 ```
 [ec2-user ~]$ sudo /sbin/ebsnvme-id /dev/nvme1n1
-Volume ID: vol-01324f611e2463981
+Volume ID: vol-064784f1011136656
 /dev/sdf
 ```
 
@@ -97,14 +109,27 @@ Starting with FreeBSD 12\.2\-RELEASE, you can run the ebsnvme\-id command as sho
 **Other Linux AMIs**  
 With a kernel version of 4\.2 or later, you can run the nvme id\-ctrl command as follows to map an NVMe device to a volume ID\. First, install the NVMe command line package, `nvme-cli`, using the package management tools for your Linux distribution\. For download and installation instructions for other distributions, refer to the documentation specific to your distribution\.
 
-The following example gets the volume ID and device name\. The device name is available through the NVMe controller vendor\-specific extension \(bytes 384:4095 of the controller identification\):
+The following example gets the volume ID and NVMe device name for a volume that was attached during instance launch\. Note that the NVMe device name does not include the `/dev/` prefix\. The device name is available through the NVMe controller vendor\-specific extension \(bytes 384:4095 of the controller identification\):
+
+```
+[ec2-user ~]$ sudo nvme id-ctrl -v /dev/nvme0n1
+NVME Identify Controller:
+vid     : 0x1d0f
+ssvid   : 0x1d0f
+sn      : vol01234567890abcdef
+mn      : Amazon Elastic Block Store
+...
+0000: 2f 64 65 76 2f 73 64 6a 20 20 20 20 20 20 20 20 "sda..."
+```
+
+The following example gets the volume ID and NVMe device name for a volume that was attached after instance launch\. Note that the NVMe device name includes the `/dev/` prefix\.
 
 ```
 [ec2-user ~]$ sudo nvme id-ctrl -v /dev/nvme1n1
 NVME Identify Controller:
 vid     : 0x1d0f
 ssvid   : 0x1d0f
-sn      : vol01234567890abcdef
+sn      : volabcdef01234567890
 mn      : Amazon Elastic Block Store
 ...
 0000: 2f 64 65 76 2f 73 64 6a 20 20 20 20 20 20 20 20 "/dev/sdf..."

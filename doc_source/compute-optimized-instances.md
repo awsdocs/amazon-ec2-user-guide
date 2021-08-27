@@ -293,7 +293,7 @@ For more information, see the following:
   + Amazon Linux 2 with kernel 4\.14\.186
   + Ubuntu 20\.04 with kernel 5\.4\.0\-1025\-aws
   + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
-  + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.4\.0\-1025\-aws
+  + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.3\.18\-24\.15\.1
 + [Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/) is not supported on C6gn instances\.
 + To launch AMIs for all Linux distributions on C6gn instances, use AMIs with the latest version and run an update for the latest driver\. For earlier versions, download the latest driver from [GitHub](https://github.com/amzn/amzn-drivers/tree/master/kernel/linux/ena)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.

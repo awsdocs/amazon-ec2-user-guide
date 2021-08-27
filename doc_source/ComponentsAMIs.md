@@ -30,7 +30,7 @@ The following table summarizes the important differences when using the two type
 | Characteristic | Amazon EBS\-backed AMI | Amazon instance store\-backed AMI | 
 | --- | --- | --- | 
 |  Boot time for an instance  |  Usually less than 1 minute  |  Usually less than 5 minutes  | 
-|  Size limit for a root device  |  16 TiB  |  10 GiB  | 
+|  Size limit for a root device  |  64 TiB\*\*  |  10 GiB  | 
 |  Root device volume  |  EBS volume  |  Instance store volume  | 
 |  Data persistence  |  By default, the root volume is deleted when the instance terminates\.\* Data on any other EBS volumes persists after instance termination by default\.   |  Data on any instance store volumes persists only during the life of the instance\.  | 
 |  Modifications  |  The instance type, kernel, RAM disk, and user data can be changed while the instance is stopped\.  |  Instance attributes are fixed for the life of an instance\.  | 
@@ -39,6 +39,8 @@ The following table summarizes the important differences when using the two type
 |  Stopped state  |  Can be in a stopped state\. Even when the instance is stopped and not running, the root volume is persisted in Amazon EBS  |  Cannot be in stopped state; instances are running or terminated  | 
 
 \* By default, EBS root volumes have the `DeleteOnTermination` flag set to `true`\. For information about how to change this flag so that the volume persists after termination, see [Change the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
+
+\*\* Supported with `io2` EBS Block Express only\. For more information, see [`io2` Block Express volumes](ebs-volume-types.md#io2-block-express)\.
 
 ### Determine the root device type of your AMI<a name="display-ami-root-device-type"></a>
 

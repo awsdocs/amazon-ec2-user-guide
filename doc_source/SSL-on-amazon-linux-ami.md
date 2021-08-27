@@ -7,7 +7,7 @@ For historical reasons, web encryption is often referred to simply as SSL\. Whil
 This tutorial refers to modern web encryption simply as TLS\.
 
 **Important**  
-These procedures are intended for use with the Amazon Linux AMI\. If you are trying to set up a LAMP web server on an instance with a different distribution, some procedures in this tutorial might not work for you\. For Amazon Linux 2, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For Red Hat Enterprise Linux, see the following in the Customer Portal: [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\. For other distributions, see their specific documentation\.
+These procedures are intended for use with the Amazon Linux AMI\. If you are trying to set up a LAMP web server on an instance with a different distribution, some procedures in this tutorial might not work for you\. For Amazon Linux 2, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For Red Hat Enterprise Linux, see the following: [Setting up the Apache HTTP Web Server](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deploying_different_types_of_servers/setting-apache-http-server_deploying-different-types-of-servers)\. For other distributions, see their specific documentation\.
 
 **Topics**
 + [Prerequisites](#ssl-prereq-alami)

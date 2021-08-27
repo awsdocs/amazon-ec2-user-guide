@@ -157,7 +157,7 @@ Your instance was stopped because the Spot price exceeded your maximum price\.
 Your instance was stopped because a user stopped the instance or ran the shutdown command from the instance\.
 
 `instance-stopped-no-capacity`  
-Your instance was stopped because there was no longer enough Spot capacity available for the instance\.
+Your instance was stopped due to EC2 capacity management needs\.
 
 `instance-terminated-by-price`  
 Your instance was terminated because the Spot price exceeded your maximum price\. If your request is persistent, the process restarts, so your request is pending evaluation\.
@@ -175,7 +175,7 @@ You terminated a Spot Instance that had been fulfilled, so the request state is 
 One or more of the instances in your launch group was terminated, so the launch group constraint is no longer fulfilled\.
 
 `instance-terminated-no-capacity`  
-Your instance was terminated because there is no longer enough Spot capacity available for the instance\.
+Your instance was terminated due to standard capacity management processes\.
 
 `launch-group-constraint`  
 Amazon EC2 cannot launch all the instances that you requested at the same time\. All instances in a launch group are started and terminated together\.

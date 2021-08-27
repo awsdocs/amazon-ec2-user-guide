@@ -55,9 +55,19 @@ All schedules must have the same retention type\. You can specify the retention 
 
       1. To specify additional tags to assign to AMIs created by this schedule, choose **Add tags**\.
 
+   1. To deprecate AMIs when they should no longer be used, in the **AMI deprecation** section, select **Enable AMI deprecation for this schedule** and then specify the AMI deprecation rule\. The AMI deprecation rule specifies when AMIs are to be deprecated\.
+
+      If the schedule uses count\-based AMI retention, you must specify the number of oldest AMIs to deprecate\. The deprecation count must be less than or equal to the schedule's AMI retention count, and it can't be greater than 1000\. For example, if the schedule is configured to retain a maximum of 5 AMIs, then you can configure the scheduled to deprecate up to old 5 oldest AMIs\.
+
+      If the schedule uses age\-based AMI retention, you must specify the period after which AMIs are to be deprecated\. The deprecation count must be less than or equal to the schedule's AMI retention period, and it can't be greater than 10 years \(120 months, 520 weeks, or 3650 days\)\. For example, if the schedule is configured to retain AMIs for 10 days, then you can configure the scheduled to deprecate AMIs after periods up to 10 days after creation\.
+
    1. To copy AMIs created by the schedule to different Regions, in the **Cross\-Region copy** section, select **Enable cross\-Region copy**\. You can copy AMIs to up to three additional Regions in your account\. You must specify a separate cross\-Region copy rule for each destination Region\.
 
-      For each Region, you can choose different retention policies and you can choose whether to copy all tags or no tags\. If the source AMI is encrypted, or if encryption by default is enabled, the copied AMIs are encrypted\. If the source AMI is unencrypted, you can enable encryption\. If you do not specify a KMS key, the AMIs are encrypted using the default KMS key for EBS encryption in each destination Region\. If you specify a KMS key for the destination Region, then the selected IAM role must have access to the KMS key\.
+      For each destination Region, you can specify the following:
+      + A retention policy for the AMI copy\. When the retention period expires, the copy in the destination Region is automatically deregistered\.
+      + Encryption status for the AMI copy\. If the source AMI is encrypted, or if encryption by default is enabled, the copied AMIs are always encrypted\. If the source AMI is unencrypted and encryption by default is disabled, you can optionally enable encryption\. If you do not specify a KMS key, the AMIs are encrypted using the default KMS key for EBS encryption in each destination Region\. If you specify a KMS key for the destination Region, then the selected IAM role must have access to the KMS key\.
+      + A deprecation rule for the AMI copy\. When the deprecation period expires, the AMI copy is automatically deprecated\. The deprecation period must be less than or equal to the copy retention period, and it can't be greater than 10 years\.
+      + Whether to copy all tags or no tags from the source AMI\.
 **Note**  
 Do not exceed the number of concurrent AMI copies per Region\.
 
@@ -114,11 +124,14 @@ Use the [create\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/refer
 **Note**  
 To simplify the syntax, the following examples use a JSON file, `policyDetails.json`, that includes the policy details\.
 
-**AMI lifecycle policy**  
-This example creates an AMI lifecycle policy that creates AMIs of all instances that have a tag key of `purpose` with a value of `production` without rebooting the targeted instances\. The policy includes one schedule that creates an AMI every day at 01:00 UTC\. The policy will retain the two most recent AMIs and their backing snapshots\. It also copies the tags from the source instance to the AMIs that it creates\.
+**Example 1: Age\-based retention and AMI deprecation**  
+This example creates an AMI lifecycle policy that creates AMIs of all instances that have a tag key of `purpose` with a value of `production` without rebooting the targeted instances\. The policy includes one schedule that creates an AMI every day at `01:00` UTC\. The policy retains AMIs for `2` days and deprecates them after `1` day\. It also copies the tags from the source instance to the AMIs that it creates\.
 
 ```
-aws dlm create-lifecycle-policy --description "My AMI policy" --state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRoleForAMIManagement --policy-details file://policyDetails.json
+aws dlm create-lifecycle-policy \
+--description "My AMI policy" \
+--state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRoleForAMIManagement \
+--policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.
@@ -146,8 +159,13 @@ The following is an example of the `policyDetails.json` file\.
                     "01:00"
                 ]
             },
-            "RetainRule": {
-                "Count": 2
+            RetainRule":{
+                "Interval" : 2,
+                "IntervalUnit" : "DAYS"
+            },
+            DeprecateRule": {
+                "Interval" : 1,
+                "IntervalUnit" : "DAYS"
             },
             "CopyTags": true
         }
@@ -163,6 +181,63 @@ Upon success, the command returns the ID of the newly created policy\. The follo
 ```
 {
    "PolicyId": "policy-9876543210abcdef0"
+}
+```
+
+**Example 2: Count\-based retention and AMI deprecation with cross\-Region copy**  
+This example creates an AMI lifecycle policy that creates AMIs of all instances that have a tag key of `purpose` with a value of `production` and reboots the target instances\. The policy includes one schedule that creates an AMI every `6` hours starting at `17:30` UTC\. The policy retains `3` AMIs and automatically deprecates the `2` oldest AMIs\. It also has a cross\-Region copy rule that copies AMIs to `us-east-1`, retains `2` AMI copies, and automatically deprecates the oldest AMI\.
+
+```
+aws dlm create-lifecycle-policy \
+--description "My AMI policy" \
+--state ENABLED \
+--execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRoleForAMIManagement \
+--policy-details file://policyDetails.json
+```
+
+The following is an example of the `policyDetails.json` file\.
+
+```
+{
+    "PolicyType": "IMAGE_MANAGEMENT",
+    "ResourceTypes" : [
+        "INSTANCE"
+    ],
+    "TargetTags": [{
+        "Key":"purpose", 
+        "Value":"production"
+    }],
+    "Parameters" : {
+          "NoReboot": true
+    },
+    "Schedules" : [{
+        "Name" : "Schedule1",
+        "CopyTags": true,
+        "CreateRule" : {
+            "Interval": 6,
+            "IntervalUnit": "HOURS",
+            "Times" : ["17:30"]
+        },
+        "RetainRule":{
+            "Count" : 3
+        },
+        "DeprecateRule":{
+            "Count" : 2
+        },
+        "CrossRegionCopyRules": [{
+            "TargetRegion": "us-east-1",
+            "Encrypted": true,
+            "RetainRule":{
+                "IntervalUnit": "DAYS",
+                "Interval": 2
+            },
+            "DeprecateRule":{
+                "IntervalUnit": "DAYS",
+                "Interval": 1
+            },
+            "CopyTags": true
+        }]
+    }]
 }
 ```
 

@@ -16,11 +16,11 @@ Amazon Data Lifecycle Manager cannot be used to automate the creation, retention
 **Topics**
 + [How Amazon Data Lifecycle Manager works](#dlm-elements)
 + [Considerations for Amazon Data Lifecycle Manager](#dlm-considerations)
-+ [Prerequisites](#dlm-prerequisites)
 + [Automate snapshot lifecycles](snapshot-ami-policy.md)
 + [Automate AMI lifecycles](ami-policy.md)
 + [Automate cross\-account snapshot copies](event-policy.md)
 + [View, modify, and delete lifecycle policies](view-modify-delete.md)
++ [AWS Identity and Access Management](dlm-prerequisites.md)
 + [Monitor the lifecycle of snapshots and AMIs](dlm-monitor-lifecycle.md)
 
 ## How Amazon Data Lifecycle Manager works<a name="dlm-elements"></a>
@@ -139,179 +139,12 @@ The following considerations apply to cross\-account copy event policies:
 + You can create a cross\-account copy event policy that copies snapshots that are shared outside of Amazon Data Lifecycle Manager\.
 + If you want to encrypt snapshots in the target account, then the IAM role selected for the cross\-account copy event policy must have permission to use the required KMS key\.
 
-## Prerequisites<a name="dlm-prerequisites"></a>
-
-The following prerequisites are required by Amazon Data Lifecycle Manager\.
-
-**Topics**
-+ [Permissions for Amazon Data Lifecycle Manager](#dlm-permissions)
-+ [Permissions for IAM users](#dlm-access-control)
-+ [Permissions for encryption](#dlm-access-cmk)
-
-### Permissions for Amazon Data Lifecycle Manager<a name="dlm-permissions"></a>
-
-Amazon Data Lifecycle Manager uses IAM roles to get the permissions that are required to manage snapshots and AMIs on your behalf\. Amazon Data Lifecycle Manager creates the following default roles the first time you create a lifecycle policy using the AWS Management Console\.
-+ **AWSDataLifecycleManagerDefaultRole**—default role for managing snapshots\. It is created the first time you create a snapshot lifecycle policy using the console\.
-+ **AWSDataLifecycleManagerDefaultRoleForAMIManagement**—default role for managing AMIs\. It is created the first time you create an AMI lifecycle policy using the console\.
-
-You can also create this role manually using the [create\-default\-role](https://docs.aws.amazon.com/cli/latest/reference/dlm/create-default-role.html) command\. For `--resource-type`, specify one of the following, depending on the role to create:
-+ `snapshot`—to create the default role for managing snapshot lifecycle policies
-+ `image`—to create the default role for managing AMI lifecycle policies
-
-```
-aws dlm create-default-role --resource-type snapshot|image
-```
-
-Alternatively, you can create custom IAM roles with the required permissions and select them when you create a lifecycle policy\. 
-
-**To create a custom IAM role**
-
-1. Create roles with the following permissions\.
-   + Permissions for managing snapshot lifecycle policies
-
-     ```
-     {
-         "Version": "2012-10-17",
-         "Statement": [
-             {
-                 "Effect": "Allow",
-                 "Action": [
-                     "ec2:CreateSnapshot",
-                     "ec2:CreateSnapshots",
-                     "ec2:DeleteSnapshot",
-                     "ec2:DescribeInstances",
-                     "ec2:DescribeVolumes",
-                     "ec2:DescribeSnapshots",
-                     "ec2:EnableFastSnapshotRestores",
-                     "ec2:DescribeFastSnapshotRestores",
-                     "ec2:DisableFastSnapshotRestores",
-                     "ec2:CopySnapshot",
-                     "ec2:ModifySnapshotAttribute",
-                     "ec2:DescribeSnapshotAttribute"
-                 ],
-                 "Resource": "*"
-             },
-             {
-                 "Effect": "Allow",
-                 "Action": [
-                     "ec2:CreateTags"
-                 ],
-                 "Resource": "arn:aws:ec2:*::snapshot/*"
-             },
-             {
-                 "Effect": "Allow",
-                 "Action": [
-                     "events:PutRule",
-                     "events:DeleteRule",
-                     "events:DescribeRule",
-                     "events:EnableRule",
-                     "events:DisableRule",
-                     "events:ListTargetsByRule",
-                     "events:PutTargets",
-                     "events:RemoveTargets"
-                 ],
-                 "Resource": "arn:aws:events:*:*:rule/AwsDataLifecycleRule.managed-cwe.*"
-             }
-         ]
-     }
-     ```
-   + Permissions for managing AMI lifecycle policies
-
-     ```
-     {
-         "Version": "2012-10-17",
-         "Statement": [
-         {
-             "Effect": "Allow",
-             "Action": "ec2:CreateTags",
-             "Resource": [
-                 "arn:aws:ec2:*::snapshot/*",
-                 "arn:aws:ec2:*::image/*"
-             ]
-         },
-         {
-             "Effect": "Allow",
-             "Action": [
-                 "ec2:DescribeImages",
-                 "ec2:DescribeInstances",
-                 "ec2:DescribeImageAttribute",
-                 "ec2:DescribeVolumes",
-                 "ec2:DescribeSnapshots"
-             ],
-             "Resource": "*"
-         },
-         {
-             "Effect": "Allow",
-             "Action": "ec2:DeleteSnapshot",
-             "Resource": "arn:aws:ec2:*::snapshot/*"
-         },
-         {
-             "Effect": "Allow",
-             "Action": [
-             "ec2:ResetImageAttribute",
-             "ec2:DeregisterImage",
-             "ec2:CreateImage",
-             "ec2:CopyImage",
-             "ec2:ModifyImageAttribute"
-         ],
-         "Resource": "*"
-         }]
-     }
-     ```
-
-   For more information, see [ Creating a Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
-
-1. Add a trust relationship to the roles\.
-
-   1. In the IAM console, choose **Roles**\.
-
-   1. Select the roles that you created and then choose **Trust relationships**\.
-
-   1. Choose **Edit Trust Relationship**, add the following policy, and then choose **Update Trust Policy**\.
-
-      ```
-      { 
-          "Version": "2012-10-17",
-          "Statement": [ 
-          { 
-              "Effect": "Allow", 
-              "Principal": { 
-              "Service": "dlm.amazonaws.com"
-          }, 
-              "Action": "sts:AssumeRole" 
-          } ] 
-      }
-      ```
-
-### Permissions for IAM users<a name="dlm-access-control"></a>
-
-An IAM user must have the following permissions to use Amazon Data Lifecycle Manager\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-    {
-        "Effect": "Allow",
-        "Action": ["iam:PassRole", "iam:ListRoles"],
-        "Resource": "arn:aws:iam::123456789012:role/AWSDataLifecycleManagerDefaultRole"
-    },
-    {
-        "Effect": "Allow", 
-        "Action": "dlm:*",
-        "Resource": "*"
-    }]
-}
-```
-
-For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
-
-### Permissions for encryption<a name="dlm-access-cmk"></a>
-
-If the source volume is encrypted, ensure that the Amazon Data Lifecycle Manager default roles \(**AWSDataLifecycleManagerDefaultRole** and **AWSDataLifecycleManagerDefaultRoleForAMIManagement**\) have permission to use the KMS keys used to encrypt the volume\.
-
-If you enable **Cross Region copy** for unencrypted snapshots or AMIs backed by unencrypted snapshots, and choose to enable encryption in the destination Region, ensure that the default roles have permission to use the KMS key needed to perform the encryption in the destination Region\.
-
-If you enable **Cross Region copy** for encrypted snapshots or AMIs backed by encrypted snapshots, ensure that the default roles have permission to use both the source and destination KMS keys\. 
-
-For more information, see [Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide*\.
+The following considerations apply to EBS\-backed AMI policies and AMI deprecation:
++ If you increase the AMI deprecation count for a schedule with count\-based retention, the change is applied to all AMIs \(existing and new\) created by the schedule\.
++ If you increase the AMI deprecation period for a schedule with age\-based retention, the change is applied to new AMIs only\. Existing AMIs are not affected\.
++ If you remove the AMI deprecation rule from a schedule, Amazon Data Lifecycle Manager will not cancel deprecation for AMIs that were previously deprecated by that schedule\.
++ If you decrease the AMI deprecation count or period for a schedule, Amazon Data Lifecycle Manager will not cancel deprecation for AMIs that were previously deprecated by that schedule\.
++ If you manually deprecate an AMI that was created by an AMI policy, Amazon Data Lifecycle Manager will not override the deprecation\.
++ If you manually cancel deprecation for an AMI that was previously deprecated by an AMI policy, Amazon Data Lifecycle Manager will not override the cancellation\.
++ If an AMI is created by multiple conflicting schedules, and one or more of those schedules do not have an AMI deprecation rule, Amazon Data Lifecycle Manager will not deprecate that AMI\.
++ If an AMI is created by multiple conflicting schedules, and all of those schedules have an AMI deprecation rule, Amazon Data Lifecycle Manager will use the deprecation rule with the latest deprecation date\.

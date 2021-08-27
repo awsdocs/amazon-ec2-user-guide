@@ -4,19 +4,27 @@ A consistent and accurate time reference is crucial for many server tasks and pr
 
 Amazon provides the Amazon Time Sync Service, which is accessible from all EC2 instances, and is also used by other AWS services\. This service uses a fleet of satellite\-connected and atomic reference clocks in each AWS Region to deliver accurate current time readings of the Coordinated Universal Time \(UTC\) global standard through Network Time Protocol \(NTP\)\. The Amazon Time Sync Service automatically smooths any leap seconds that are added to UTC\.
 
-The Amazon Time Sync Service is available through NTP at the `169.254.169.123` IP address for any instance running in a VPC\. Your instance does not require access to the internet, and you do not have to configure your security group rules or your network ACL rules to allow access\. The latest versions of Amazon Linux 2 and Amazon Linux AMIs synchronize with the Amazon Time Sync Service by default\.
+The Amazon Time Sync Service is available through NTP at the `169.254.169.123` IPv4 address or the `fd00:ec2::123` IPv6 address for any instance running in a VPC\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\. Your instance does not require access to the internet, and you do not have to configure your security group rules or your network ACL rules to allow access\. The latest versions of Amazon Linux 2 and Amazon Linux AMIs synchronize with the Amazon Time Sync Service by default\.
 
 Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\. Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\.
 
 For Windows instances, see [Set the time for a Windows instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-set-time.html)\.
 
 **Topics**
++ [Configure the time for EC2 instances with IPv4 addresses](#configure-amazon-time-service-amazon-linux-IPv4)
++ [Configure the time for EC2 instances with IPv6 addresses](#configure-amazon-time-service-amazon-linux-IPv6)
++ [Change the time zone on Amazon Linux](#change_time_zone)
+
+## Configure the time for EC2 instances with IPv4 addresses<a name="configure-amazon-time-service-amazon-linux-IPv4"></a>
+
+This section describes how to set the time for EC2 instances with IPv4 addresses depending on the type of Linux distribution\.
+
+**Topics**
 + [Configure the Amazon Time Sync Service on Amazon Linux AMI](#configure-amazon-time-service-amazon-linux)
 + [Configure the Amazon Time Sync Service on Ubuntu](#configure-amazon-time-service-ubuntu)
 + [Configure the Amazon Time Sync Service on SUSE Linux](#configure-amazon-time-service-suse)
-+ [Change the time zone on Amazon Linux](#change_time_zone)
 
-## Configure the Amazon Time Sync Service on Amazon Linux AMI<a name="configure-amazon-time-service-amazon-linux"></a>
+### Configure the Amazon Time Sync Service on Amazon Linux AMI<a name="configure-amazon-time-service-amazon-linux"></a>
 
 **Note**  
 On Amazon Linux 2, `chrony` is already installed and configured to use the Amazon Time Sync Service IP address\.
@@ -71,24 +79,24 @@ On RHEL and CentOS \(up to version 6\), the service name is `chrony` instead of 
 
    ```
    210 Number of sources = 7
-   
-     .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
-    / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
-   | /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
-   ||                                                 .- xxxx [ yyyy ] +/- zzzz
-   ||      Reachability register (octal) -.           |  xxxx = adjusted offset,
-   ||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
-   ||                                \     |          |  zzzz = estimated error.
-   ||                                 |    |           \
-   MS Name/IP address         Stratum Poll Reach LastRx Last sample               
-   ===============================================================================
-   ^* 169.254.169.123               3   6    17    43    -30us[ -226us] +/-  287us
-   ^- ec2-12-34-231-12.eu-west>     2   6    17    43   -388us[ -388us] +/-   11ms
-   ^- tshirt.heanet.ie              1   6    17    44   +178us[  +25us] +/- 1959us
-   ^? tbag.heanet.ie                0   6     0     -     +0ns[   +0ns] +/-    0ns
-   ^? bray.walcz.net                0   6     0     -     +0ns[   +0ns] +/-    0ns
-   ^? 2a05:d018:c43:e312:ce77:>     0   6     0     -     +0ns[   +0ns] +/-    0ns
-   ^? 2a05:d018:dab:2701:b70:b>     0   6     0     -     +0ns[   +0ns] +/-    0ns
+           
+             .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+            / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+           | /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+           ||                                                 .- xxxx [ yyyy ] +/- zzzz
+           ||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+           ||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+           ||                                \     |          |  zzzz = estimated error.
+           ||                                 |    |           \
+           MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+           ===============================================================================
+           ^* 169.254.169.123               3   6    17    43    -30us[ -226us] +/-  287us
+           ^- ec2-12-34-231-12.eu-west>     2   6    17    43   -388us[ -388us] +/-   11ms
+           ^- tshirt.heanet.ie              1   6    17    44   +178us[  +25us] +/- 1959us
+           ^? tbag.heanet.ie                0   6     0     -     +0ns[   +0ns] +/-    0ns
+           ^? bray.walcz.net                0   6     0     -     +0ns[   +0ns] +/-    0ns
+           ^? 2a05:d018:c43:e312:ce77:>     0   6     0     -     +0ns[   +0ns] +/-    0ns
+           ^? 2a05:d018:dab:2701:b70:b>     0   6     0     -     +0ns[   +0ns] +/-    0ns
    ```
 
    In the output that's returned, `^*` indicates the preferred time source\.
@@ -101,21 +109,21 @@ On RHEL and CentOS \(up to version 6\), the service name is `chrony` instead of 
 
    ```
    Reference ID    : A9FEA97B (169.254.169.123)
-   Stratum         : 4
-   Ref time (UTC)  : Wed Nov 22 13:18:34 2017
-   System time     : 0.000000626 seconds slow of NTP time
-   Last offset     : +0.002852759 seconds
-   RMS offset      : 0.002852759 seconds
-   Frequency       : 1.187 ppm fast
-   Residual freq   : +0.020 ppm
-   Skew            : 24.388 ppm
-   Root delay      : 0.000504752 seconds
-   Root dispersion : 0.001112565 seconds
-   Update interval : 64.4 seconds
-   Leap status     : Normal
+           Stratum         : 4
+           Ref time (UTC)  : Wed Nov 22 13:18:34 2017
+           System time     : 0.000000626 seconds slow of NTP time
+           Last offset     : +0.002852759 seconds
+           RMS offset      : 0.002852759 seconds
+           Frequency       : 1.187 ppm fast
+           Residual freq   : +0.020 ppm
+           Skew            : 24.388 ppm
+           Root delay      : 0.000504752 seconds
+           Root dispersion : 0.001112565 seconds
+           Update interval : 64.4 seconds
+           Leap status     : Normal
    ```
 
-## Configure the Amazon Time Sync Service on Ubuntu<a name="configure-amazon-time-service-ubuntu"></a>
+### Configure the Amazon Time Sync Service on Ubuntu<a name="configure-amazon-time-service-ubuntu"></a>
 
 You must edit the `chrony` configuration file to add a server entry for the Amazon Time Sync Service\.
 
@@ -153,24 +161,24 @@ If necessary, update your instance first by running `sudo apt update`\.
 
    ```
    210 Number of sources = 7
-   
-     .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
-    / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
-   | /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
-   ||                                                 .- xxxx [ yyyy ] +/- zzzz
-   ||      Reachability register (octal) -.           |  xxxx = adjusted offset,
-   ||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
-   ||                                \     |          |  zzzz = estimated error.
-   ||                                 |    |           \
-   MS Name/IP address         Stratum Poll Reach LastRx Last sample
-   ===============================================================================
-   ^* 169.254.169.123               3   6    17    12    +15us[  +57us] +/-  320us
-   ^- tbag.heanet.ie                1   6    17    13  -3488us[-3446us] +/- 1779us
-   ^- ec2-12-34-231-12.eu-west-     2   6    17    13   +893us[ +935us] +/- 7710us
-   ^? 2a05:d018:c43:e312:ce77:6     0   6     0   10y     +0ns[   +0ns] +/-    0ns
-   ^? 2a05:d018:d34:9000:d8c6:5     0   6     0   10y     +0ns[   +0ns] +/-    0ns
-   ^? tshirt.heanet.ie              0   6     0   10y     +0ns[   +0ns] +/-    0ns
-   ^? bray.walcz.net                0   6     0   10y     +0ns[   +0ns] +/-    0ns
+               
+                 .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+                / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+               | /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+               ||                                                 .- xxxx [ yyyy ] +/- zzzz
+               ||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+               ||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+               ||                                \     |          |  zzzz = estimated error.
+               ||                                 |    |           \
+               MS Name/IP address         Stratum Poll Reach LastRx Last sample
+               ===============================================================================
+               ^* 169.254.169.123               3   6    17    12    +15us[  +57us] +/-  320us
+               ^- tbag.heanet.ie                1   6    17    13  -3488us[-3446us] +/- 1779us
+               ^- ec2-12-34-231-12.eu-west-     2   6    17    13   +893us[ +935us] +/- 7710us
+               ^? 2a05:d018:c43:e312:ce77:6     0   6     0   10y     +0ns[   +0ns] +/-    0ns
+               ^? 2a05:d018:d34:9000:d8c6:5     0   6     0   10y     +0ns[   +0ns] +/-    0ns
+               ^? tshirt.heanet.ie              0   6     0   10y     +0ns[   +0ns] +/-    0ns
+               ^? bray.walcz.net                0   6     0   10y     +0ns[   +0ns] +/-    0ns
    ```
 
    In the output that's returned, `^*` indicates the preferred time source\.
@@ -183,21 +191,21 @@ If necessary, update your instance first by running `sudo apt update`\.
 
    ```
    Reference ID    : 169.254.169.123 (169.254.169.123)
-   Stratum         : 4
-   Ref time (UTC)  : Wed Nov 29 07:41:57 2017
-   System time     : 0.000000011 seconds slow of NTP time
-   Last offset     : +0.000041659 seconds
-   RMS offset      : 0.000041659 seconds
-   Frequency       : 10.141 ppm slow
-   Residual freq   : +7.557 ppm
-   Skew            : 2.329 ppm
-   Root delay      : 0.000544 seconds
-   Root dispersion : 0.000631 seconds
-   Update interval : 2.0 seconds
-   Leap status     : Normal
+               Stratum         : 4
+               Ref time (UTC)  : Wed Nov 29 07:41:57 2017
+               System time     : 0.000000011 seconds slow of NTP time
+               Last offset     : +0.000041659 seconds
+               RMS offset      : 0.000041659 seconds
+               Frequency       : 10.141 ppm slow
+               Residual freq   : +7.557 ppm
+               Skew            : 2.329 ppm
+               Root delay      : 0.000544 seconds
+               Root dispersion : 0.000631 seconds
+               Update interval : 2.0 seconds
+               Leap status     : Normal
    ```
 
-## Configure the Amazon Time Sync Service on SUSE Linux<a name="configure-amazon-time-service-suse"></a>
+### Configure the Amazon Time Sync Service on SUSE Linux<a name="configure-amazon-time-service-suse"></a>
 
 Install chrony from [https://software\.opensuse\.org/package/chrony](https://software.opensuse.org/package/chrony)\.
 
@@ -207,7 +215,28 @@ Open the `/etc/chrony.conf` file using a text editor \(such as vim or nano\)\. V
 server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
 ```
 
-If this line is not present, add it\. Comment out any other server or pool lines\. Open yast and enable the chrony service\.
+If this line is not present, add it\. Comment out any other server or pool lines\. Open yaST and enable the chrony service\.
+
+## Configure the time for EC2 instances with IPv6 addresses<a name="configure-amazon-time-service-amazon-linux-IPv6"></a>
+
+This section explains how the process described in [Configure the time for EC2 instances with IPv4 addresses](#configure-amazon-time-service-amazon-linux-IPv4) differs if you are configuring Amazon Time Sync Service for EC2 instances that use an IPv6 address\. It doesn't explain the entire Amazon Time Sync Service configuration process\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
+
+**Note**  
+We don't recommend using both the IPv4 address and the IPv6 address entries together in your chrony\.conf file\. The IPv4 and IPv6 NTP packets come from the same local server for your instance\. You will likely get mixed results with some packets coming from the IPv4 endpoint and some from the IPv6 endpoint if you are using both at the same time\.
+
+Depending on the Linux distribution you are using, when you reach the step to edit the chrony\.conf file, you'll be using the IPv6 endpoint of the Amazon Time Sync Service \(`fd00:ec2::123`\) rather than the IPv4 endpoint \(`169.254.169.123`\):
+
+```
+server fd00:ec2::123 prefer iburst minpoll 4 maxpoll 4
+```
+
+Save the file and verify that `chrony` is using the `fd00:ec2::123` IPv6 address to synchronize time: 
+
+```
+[ec2-user ~]$ chronyc sources -v
+```
+
+In the output, if you see the `fd00:ec2::123` IPv6 address, the configuration is complete\.
 
 ## Change the time zone on Amazon Linux<a name="change_time_zone"></a>
 

@@ -21,8 +21,10 @@ An On\-Demand Instance specified in an EC2 Fleet or Spot Fleet cannot be interru
 
 The following are the possible reasons that Amazon EC2 might interrupt your Spot Instances:
 + Price – The Spot price is greater than your maximum price\.
-+ Capacity – If there are not enough unused EC2 instances to meet the demand for On\-Demand Instances, Amazon EC2 interrupts Spot Instances\. The order in which the instances are interrupted is determined by Amazon EC2\.
++ Capacity – Amazon EC2 can interrupt your Spot Instance when it needs it back\. EC2 reclaims your instance mainly to repurpose capacity, but it can also occur for other reasons such as host maintenance or hardware decommission\.
 + Constraints – If your request includes a constraint such as a launch group or an Availability Zone group, these Spot Instances are terminated as a group when the constraint can no longer be met\.
+
+You can see the historical interruption rates for your instance type in the [Spot Instance Advisor](http://aws.amazon.com/ec2/spot/instance-advisor/)\.
 
 ## Interruption behaviors<a name="interruption-behavior"></a>
 

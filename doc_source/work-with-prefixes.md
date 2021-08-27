@@ -1,7 +1,5 @@
 # Work with prefixes<a name="work-with-prefixes"></a>
 
-You can use only the AWS CLI to assign and configure prefixes\.
-
 **Topics**
 + [Assign prefixes during network interface creation](#create-net-interface-prefix)
 + [Assign prefixes to existing network interfaces](#assign-net-interface-prefix)

@@ -47,6 +47,20 @@ Follow these steps to set up a Remote Desktop Protocol \(RDP\) connection from y
    [ec2-user ~]$ sudo passwd ec2-user
    ```
 
+1. Install the certificate and key\.
+
+   If you already have a certificate and key, copy them to the `/etc/xrdp/` directory as follows:
+   + Certificate — `/etc/xrdp/cert.pem`
+   + Key — `/etc/xrdp/key.pem`
+
+   If you do have a certificate and key, use the following command to generate them in the `/etc/xrdp` directory\.
+
+   ```
+   $ sudo openssl req -x509 -sha384 -newkey rsa:3072 -nodes -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365
+   ```
+**Note**  
+This command generates a certificate that is valid for 365 days\.
+
 1. Open an RDP client on the computer from which you will connect to the instance \(for example, Remote Desktop Connection on a computer running Microsoft Windows\)\. Enter `ec2-user` as the user name and enter the password that you set in the previous step\.
 
 **To disable the MATE Desktop Environment on your Amazon EC2 instance**  

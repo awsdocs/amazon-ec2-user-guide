@@ -4,13 +4,20 @@ Because your instance metadata is available from your running instance, you do n
 
 Instance metadata is divided into categories\. For a description of each instance metadata category, see [Instance metadata categories](instancedata-data-categories.md)\.
 
-To view all categories of instance metadata from within a running instance, use the following URI\.
+To view all categories of instance metadata from within a running instance, use the following IPv4 or IPv6 URIs:
 
 ```
 http://169.254.169.254/latest/meta-data/
 ```
 
-The IP address `169.254.169.254` is a link\-local address and is valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
+```
+http://[fd00:ec2::254]/latest/meta-data/
+```
+
+The IP addresses are link\-local address and are valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
+
+**Note**  
+The examples in this section use the IPv4 address of the instance metadata service: `169.254.169.254`\. If you are retrieving instance metadata for EC2 instances over the IPv6 address, ensure that you enable and use the IPv6 address instead: `fd00:ec2::254`\. The IPv6 address of the instance metadata service is compatible with IMDSv2 commands\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
 The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
 
@@ -404,7 +411,7 @@ If you are throttled while accessing the instance metadata service, retry your q
 You can consider using local firewall rules to disable access from some or all processes to the instance metadata service\.
 
 **Note**  
-For [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) IMDS can be reachable from your own network when a network appliance within your VPC, such as a virtual router, forwards packets to the IMDS address, and the default [source/destination check](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) on the instance is disabled\. To prevent a source from outside your VPC reaching IMDS, we recommend that you modify the configuration of the network appliance to drop packets with the destination IP address of IMDS 169\.254\.169\.254\.
+For [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances), IMDS can be reached from your own network when a network appliance within your VPC, such as a virtual router, forwards packets to the IMDS address, and the default [source/destination check](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) on the instance is disabled\. To prevent a source from outside your VPC reaching IMDS, we recommend that you modify the configuration of the network appliance to drop packets with the destination IPv4 address of IMDS 169\.254\.169\.254 and, if you enabled the IPv6 endpoint, the IPv6 address of IMDS fd00:ec2::254\.
 
 **Using iptables to limit access**
 
