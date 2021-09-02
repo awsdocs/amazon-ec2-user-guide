@@ -126,13 +126,13 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
 
 1. For **User name**, enter the default user name for your AMI\.
    + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-   + For a CentOS AMI, the user name is `centos`\.
+   + For a CentOS AMI, the user name is `centos` or `ec2-user`\.
    + For a Debian AMI, the user name is `admin`\.
-   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
+   + For a Fedora AMI, the user name is `fedora` or `ec2-user`\.
    + For a RHEL AMI, the user name is `ec2-user` or `root`\.
    + For a SUSE AMI, the user name is `ec2-user` or `root`\.
    + For an Ubuntu AMI, the user name is `ubuntu`\.
-   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
+   + Otherwise, check with the AMI provider\.
 
 1. Specify the private key for your instance\. For **Private key**, enter the path to your private key, or choose the "**\.\.\.**" button to browse for the file\. To open the advanced site settings, for newer versions of WinSCP, choose **Advanced**\. To find the **Private key file** setting, under **SSH**, choose **Authentication**\.
 

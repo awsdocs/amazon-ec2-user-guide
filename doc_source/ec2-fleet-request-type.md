@@ -11,4 +11,4 @@ If you configure the request type as `request`, EC2 Fleet places an asynchronous
 `maintain`  
 \(Default\) If you configure the request type as `maintain`, EC2 Fleet places an asynchronous request for your desired capacity, and maintains capacity by automatically replenishing any interrupted Spot Instances\.
 
-All three types of requests benefit from an allocation strategy\. For more information, see [Allocation strategies for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
+All three types of requests benefit from an allocation strategy\. For more information, see [Allocation strategies for Spot Instances](ec2-fleet-allocation-strategy.md)\.

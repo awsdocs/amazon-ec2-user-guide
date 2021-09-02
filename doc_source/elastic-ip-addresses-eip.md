@@ -420,8 +420,6 @@ If a reverse DNS record is associated with an Elastic IP address, the Elastic IP
 **Note**  
 Before you create a reverse DNS record, you must set a corresponding forward DNS record \(record type A\) that points to your Elastic IP address\.
 
-For the US East \(Ohio\), Africa \(Cape Town\), Asia Pacific \(Mumbai\), Canada \(Central\), and Europe \(Milan\) Regions, use one of the following options\.
-
 ------
 #### [ Console ]
 

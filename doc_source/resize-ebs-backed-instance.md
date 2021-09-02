@@ -1,4 +1,6 @@
-# Resize an Amazon EBS–backed instance<a name="resize-ebs-backed-instance"></a>
+# Change the instance type of an Amazon EBS–backed instance<a name="resize-ebs-backed-instance"></a>
+
+## Considerations<a name="resize-ebs-backed-instance-considerations"></a>
 
 You must stop your Amazon EBS–backed instance before you can change its instance type\. When you stop and start an instance, be aware of the following:
 + We move the instance to new hardware; however, the instance ID does not change\.
@@ -10,14 +12,16 @@ You must stop your Amazon EBS–backed instance before you can change its instan
 
 For more information, see [Stop and start your instance](Stop_Start.md)\.
 
-Use the following procedure to resize an Amazon EBS–backed instance using the AWS Management Console\.
+## Change the instance type<a name="resize-ebs-backed-instance-considerations-how-to"></a>
+
+Use the following procedure to change the instance type of an Amazon EBS–backed instance using the AWS Management Console\.
 
 ------
 #### [ New console ]
 
-**To resize an Amazon EBS–backed instance**
+**To change the instance type of an Amazon EBS–backed instance**
 
-1. \(Optional\) If the new instance type requires drivers that are not installed on the existing instance, you must connect to your instance and install the drivers first\. For more information, see [Compatibility for resizing instances](resize-limitations.md)\.
+1. \(Optional\) If the new instance type requires drivers that are not installed on the existing instance, you must connect to your instance and install the drivers first\. For more information, see [Compatibility for changing the instance type](resize-limitations.md)\.
 
 1. Open the Amazon EC2 console\.
 
@@ -31,7 +35,7 @@ Use the following procedure to resize an Amazon EBS–backed instance using the 
 
 1. In the **Change instance type** dialog box, do the following:
 
-   1. From **Instance type**, select the instance type that you want\. If the instance type that you want does not appear in the list, then it is not compatible with the configuration of your instance \(for example, because of virtualization type\)\. For more information, see [Compatibility for resizing instances](resize-limitations.md)\.
+   1. From **Instance type**, select the instance type that you want\. If the instance type that you want does not appear in the list, then it is not compatible with the configuration of your instance \(for example, because of virtualization type\)\. For more information, see [Compatibility for changing the instance type](resize-limitations.md)\.
 
    1. \(Optional\) If the instance type that you selected supports EBS–optimization, select **EBS\-optimized** to enable EBS–optimization or deselect **EBS\-optimized** to disable EBS–optimization\. If the instance type that you selected is EBS–optimized by default, **EBS\-optimized** is selected and you can't deselect it\.
 
@@ -44,9 +48,9 @@ Use the following procedure to resize an Amazon EBS–backed instance using the 
 ------
 #### [ Old console ]
 
-**To resize an Amazon EBS–backed instance**
+**To change the instance type of an Amazon EBS–backed instance**
 
-1. \(Optional\) If the new instance type requires drivers that are not installed on the existing instance, you must connect to your instance and install the drivers first\. For more information, see [Compatibility for resizing instances](resize-limitations.md)\.
+1. \(Optional\) If the new instance type requires drivers that are not installed on the existing instance, you must connect to your instance and install the drivers first\. For more information, see [Compatibility for changing the instance type](resize-limitations.md)\.
 
 1. Open the Amazon EC2 console\.
 
@@ -60,7 +64,7 @@ Use the following procedure to resize an Amazon EBS–backed instance using the 
 
 1. In the **Change Instance Type** dialog box, do the following:
 
-   1. From **Instance Type**, select the instance type that you want\. If the instance type that you want does not appear in the list, then it is not compatible with the configuration of your instance \(for example, because of virtualization type\)\. For more information, see [Compatibility for resizing instances](resize-limitations.md)\.
+   1. From **Instance Type**, select the instance type that you want\. If the instance type that you want does not appear in the list, then it is not compatible with the configuration of your instance \(for example, because of virtualization type\)\. For more information, see [Compatibility for changing the instance type](resize-limitations.md)\.
 
    1. \(Optional\) If the instance type that you selected supports EBS–optimization, select **EBS\-optimized** to enable EBS–optimization or deselect **EBS\-optimized** to disable EBS–optimization\. If the instance type that you selected is EBS–optimized by default, **EBS\-optimized** is selected and you can't deselect it\.
 

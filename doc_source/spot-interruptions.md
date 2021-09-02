@@ -109,7 +109,7 @@ If you do not specify an interruption behavior, the default is to terminate Spot
 
 If you request Spot Instances using the [launch instance wizard](launching-instance.md), you can specify the interruption behavior as follows: Select the **Persistent request** check box and then, from **Interruption behavior**, choose an interruption behavior\.
 
-If you request Spot Instances using the [Spot console](spot-fleet-requests.md#create-spot-fleet), you can specify the interruption behavior as follows: Select the **Maintain target capacity** check box and then, from **Interruption behavior**, choose an interruption behavior\.
+If you request Spot Instances using the [Spot console](work-with-spot-fleets.md#create-spot-fleet), you can specify the interruption behavior as follows: Select the **Maintain target capacity** check box and then, from **Interruption behavior**, choose an interruption behavior\.
 
 If you configure Spot Instances in a [launch template](ec2-launch-templates.md#create-launch-template), you can specify the interruption behavior as follows: In the launch template, expand **Advanced details** and select the **Request Spot Instances** check box\. Choose **Customize** and then, from **Interruption behavior**, choose an interruption behavior\.
 

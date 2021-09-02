@@ -1,4 +1,4 @@
-# Compatibility for resizing instances<a name="resize-limitations"></a>
+# Compatibility for changing the instance type<a name="resize-limitations"></a>
 
 You can resize an instance only if its current instance type and the new instance type that you want are compatible in the following ways:
 + **Virtualization type**: Linux AMIs use one of two types of virtualization: paravirtual \(PV\) or hardware virtual machine \(HVM\)\. You can't resize an instance that was launched from a PV AMI to an instance type that is HVM only\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\. To check the virtualization type of your instance, see the **Virtualization** field on the details pane of the **Instances** screen in the Amazon EC2 console\.

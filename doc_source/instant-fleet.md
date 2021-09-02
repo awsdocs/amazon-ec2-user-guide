@@ -214,7 +214,7 @@ The following example specifies the parameters required in an EC2 Fleet of type 
 
 The following examples use instance weighting, which means that the price is per unit hour instead of per instance hour\. Each launch configuration lists a different instance type and a different weight based on how many units of the workload can run on the instance assuming a unit of the workload requires a 15 GB of memory and 4 vCPUs\. For example an m5\.xlarge \(4 vCPUs and 16 GB of memory\) can run one unit and is weighted 1, m5\.2xlarge \(8 vCPUs and 32 GB of memory\) can run 2 units and is weighted 2, and so on\. The total target capacity is set to 40 units\. The default purchasing option is spot, and the allocation strategy is capacity\-optimized, which results in either 40 m5\.xlarge \(40 divided by 1\), 20 m5\.2xlarge \(40 divided by 2\), 10 m5\.4xlarge \(40 divided by 4\), 5 m5\.8xlarge \(40 divided by 8\), or a mix of the instance types with weights adding up to the desired capacity based on the capacity\-optimized allocation strategy\.
 
-For more information, see [EC2 Fleet instance weighting](ec2-fleet-configuration-strategies.md#ec2-fleet-instance-weighting)\.
+For more information, see [EC2 Fleet instance weighting](ec2-fleet-instance-weighting.md)\.
 
 ```
 {

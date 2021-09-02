@@ -14,11 +14,19 @@ We strongly recommend that you never put confidential or sensitive information, 
 
 ## Encryption at rest<a name="encryption-rest"></a>
 
+**EBS volumes**  
 Amazon EBS encryption is an encryption solution for your EBS volumes and snapshots\. It uses AWS KMS keys\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
+**Instance store volumes**  
 The data on NVMe instance store volumes is encrypted using an XTS\-AES\-256 cipher implemented on a hardware module on the instance\. The encryption keys are generated using the hardware module and are unique to each NVMe instance storage device\. All encryption keys are destroyed when the instance is stopped or terminated and cannot be recovered\. You cannot disable this encryption and you cannot provide your own encryption key\.
 
 The data on HDD instance store volumes on H1, D3, and D3en instances is encrypted using XTS\-AES\-256 and one\-time keys\.
+
+**Memory**
+
+Memory encryption is enabled on the following instances:
++ Instances with AWS Graviton 2 processors, such as M6g instances\. These processors support always\-on memory encryption\. The encryption keys are securely generated within the host system, do not leave the host system, and are destroyed when the host is rebooted or powered down\.
++ Instances with Intel Xeon Scalable processors \(Ice Lake\), such as M6i instances\. These processors support always\-on memory encryption using Intel Total Memory Encryption \(TME\)\. 
 
 ## Encryption in transit<a name="encryption-transit"></a>
 

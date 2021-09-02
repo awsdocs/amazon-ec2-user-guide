@@ -5,6 +5,7 @@ You can get a list of some types of resources using the Amazon EC2 console\. You
 **Topics**
 + [List and filter resources using the console](#advancedsearch)
 + [List and filter using the CLI and API](#Filtering_Resources_CLI)
++ [List and filter resources across Regions using Amazon EC2 Global View](#global-view)
 
 ## List and filter resources using the console<a name="advancedsearch"></a>
 
@@ -216,3 +217,50 @@ aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "
 
 **Filter based on tags**  
 For examples of how to filter a list of resources according to their tags, see [Work with tags using the command line](Using_Tags.md#Using_Tags_CLI)\.
+
+## List and filter resources across Regions using Amazon EC2 Global View<a name="global-view"></a>
+
+Amazon EC2 Global View enables you to view some of your Amazon EC2 and Amazon VPC resources across a single AWS Region, or across multiple Regions in a single console\. Using Amazon EC2 Global View, you can view a summary of all of your VPCs, subnets, instances, security groups, and volumes across all of the Regions for which your AWS account is enabled\. Amazon EC2 Global View also provides *global search* functionality that lets you search for specific resources or specific resource types across multiple Regions simultaneously\. 
+
+Amazon EC2 Global View does not let you modify resources in any way\.
+
+**Required permissions**  
+An IAM user must have the following permissions to use Amazon EC2 Global View\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+  {
+    "Effect": "Allow",
+    "Action": [
+    "ec2:DescribeInstances",
+    "ec2:DescribeVpcs",
+    "ec2:DescribeRegions",
+    "ec2:DescribeVolumes",
+    "ec2:DescribeSubnets",
+    "ec2:DescribeSecurityGroups"
+  ],
+  "Resource": "*"
+  }]
+}
+```
+
+**To use Amazon EC2 Global View**  
+Open the Amazon EC2 Global View console at [ https://console\.aws\.amazon\.com/ec2globalview/home](https://console.aws.amazon.com/ec2globalview/home)\.
+
+The console consists of two tabs:
++ **Region explorer**—This tab includes the following sections:
+  + **Resource summary**—Provides a high\-level overview of your resources across all Regions\.
+
+    **Enabled Regions** indicates the number of Regions for which your AWS account is enabled\. The remaining fields indicate the number of resources that you currently have in those Regions\. Choose any of the links to view the resources of that type across all Regions\. For example, if the link below the **Instances** label is **29 in 10 Regions**, it indicates that you currently have `29` instances across `10` Regions\. Choose the link to view a list of all 29 instances\.
+  + **Resource counts per Region**—Lists all of the AWS Regions \(including those for which your account is not enabled\) and provides totals for each resource type for each Region\.
+
+    Choose a Region name to view all resources of all types for that specific Region\. For example, choose **Africa \(Cape Town\) af\-south\-1** to view all VPCs, subnets, instances, security groups, and volumes in that Region\. Alternatively, select a Region and choose **View resources for selected Region**\.
+
+    Choose the value for a specific resource type in a specific Region to view only resources of that type in that Region\. For example, choose the value for Instances for **Africa \(Cape Town\) af\-south\-1** to view only the instances in that Region\.
++ **Global search**—This tab enables you to search for specific resources or specific resource types across a single Region or across multiple Regions\. It also enables you to view details for a specific resource\.
+
+  To search for resources, enter the search criteria in the field preceding the grid\. You can search by Region, by resource type, and by the tags assigned to resources\.
+
+  To view the details for a specific resource, select it in the grid\. You can also choose the resource ID of a resource to open it in its respective console\. For example, choose an instance ID to open the instance in the Amazon EC2 console, or choose a subnet ID to open the subnet in the Amazon VPC console\.

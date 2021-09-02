@@ -5,7 +5,7 @@ To launch a Spot Instance, either you create a *Spot Instance request*, or Amazo
 You can launch a Spot Instance using several different services\. For more information, see [Getting Started with Amazon EC2 Spot Instances](http://aws.amazon.com/ec2/spot/getting-started/)\. In this user guide, we describe the following ways to launch a Spot Instance using EC2:
 + You can create a Spot Instance request\. For more information, see [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
 + You can create an EC2 Fleet, in which you specify the desired number of Spot Instances\. Amazon EC2 creates a Spot Instance request on your behalf for every Spot Instance that is specified in the EC2 Fleet\. For more information, see [Create an EC2 Fleet](manage-ec2-fleet.md#create-ec2-fleet)\.
-+ You can create a Spot Fleet request, in which you specify the desired number of Spot Instances\. Amazon EC2 creates a Spot Instance request on your behalf for every Spot Instance that is specified in the Spot Fleet request\. For more information, see [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)\.
++ You can create a Spot Fleet request, in which you specify the desired number of Spot Instances\. Amazon EC2 creates a Spot Instance request on your behalf for every Spot Instance that is specified in the Spot Fleet request\. For more information, see [Create a Spot Fleet request](work-with-spot-fleets.md#create-spot-fleet)\.
 
 The Spot Instance request must include the maximum price that you're willing to pay per hour per instance\. If you don't specify a price, the price defaults to the On\-Demand price\. The request can include other constraints such as the instance type and Availability Zone\.
 

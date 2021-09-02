@@ -45,7 +45,7 @@ Example Corp could use a global price per unit hour of $0\.7 and be competitive 
 
 ## Verify permissions<a name="instance-weighting-walkthrough-permissions"></a>
 
-Before creating a Spot Fleet request, Example Corp verifies that it has an IAM role with the required permissions\. For more information, see [Spot Fleet permissions](spot-fleet-requests.md#spot-fleet-prerequisites)\.
+Before creating a Spot Fleet request, Example Corp verifies that it has an IAM role with the required permissions\. For more information, see [Spot Fleet permissions](work-with-spot-fleets.md#spot-fleet-prerequisites)\.
 
 ## Create the request<a name="instance-weighting-walkthrough-request"></a>
 
@@ -86,7 +86,7 @@ Example Corp creates the Spot Fleet request using the [request\-spot\-fleet](htt
 aws ec2 request-spot-fleet --spot-fleet-request-config file://config.json
 ```
 
-For more information, see [Spot Fleet requests](spot-fleet-requests.md)\.
+For more information, see [Spot Fleet request types](spot-fleet-requests.md)\.
 
 ## Fulfillment<a name="instance-weighting-walkthrough-fulfillment"></a>
 

@@ -558,7 +558,7 @@ For more information, see [Create an EC2 Fleet](manage-ec2-fleet.md#create-ec2-f
 
 You can create a Spot Fleet request and specify a launch template in the instance configuration\. When Amazon EC2 fulfills the Spot Fleet request, it uses the launch parameters defined in the associated launch template\. You can override some of the parameters that are specified in the launch template\.
 
-For more information, see [Spot Fleet requests](spot-fleet-requests.md)\.
+For more information, see [Spot Fleet request types](spot-fleet-requests.md)\.
 
 **To create a Spot Fleet request with a launch template using the AWS CLI**
 + Use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command\. Use the `LaunchTemplateConfigs` parameter to specify the launch template and any overrides for the launch template\.

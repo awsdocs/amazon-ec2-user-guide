@@ -125,7 +125,7 @@ After you've submitted your Spot Instance request, you can't change the paramete
 
 If you request multiple Spot Instances at one time, Amazon EC2 creates separate Spot Instance requests so that you can track the status of each request separately\. For more information about tracking Spot Instance requests, see [Spot request status](spot-request-status.md)\.
 
-To launch a fleet that includes Spot Instances and On\-Demand Instances, see [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)\.
+To launch a fleet that includes Spot Instances and On\-Demand Instances, see [Create a Spot Fleet request](work-with-spot-fleets.md#create-spot-fleet)\.
 
 **Note**  
 You can't launch a Spot Instance and an On\-Demand Instance in the same call using the launch instance wizard or the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command\.

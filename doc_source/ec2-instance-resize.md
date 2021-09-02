@@ -8,7 +8,7 @@ If you want a recommendation for an instance type that is best able to handle yo
 
 **Topics**
 + [Requirements for changing the instance type](resize-requirements.md)
-+ [Compatibility for resizing instances](resize-limitations.md)
-+ [Resize an Amazon EBS–backed instance](resize-ebs-backed-instance.md)
++ [Compatibility for changing the instance type](resize-limitations.md)
++ [Change the instance type of an Amazon EBS–backed instance](resize-ebs-backed-instance.md)
 + [Migrate an instance store\-backed instance](resize-instance-store-backed-instance.md)
 + [Migrate to a new instance configuration](migrate-instance-configuration.md)

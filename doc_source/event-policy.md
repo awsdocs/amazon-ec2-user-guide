@@ -166,7 +166,7 @@ Use one of the following methods to create the cross\-account copy event policy\
 
    1. For **Expire**, specify how long to retain the snapshot copies in the target Region after creation\.
 
-   1. To encrypt the snapshot copy, for **Encryption**, select **Enable encryption**\. If the source snapshot is encrypted, or if encryption by default is enabled for your account, the snapshot copy is always encrypted, even if you do enable encryption here\. If the source snapshot is unencrypted and encryption by default is not enabled for your account, you can choose to enable or disable encryption\. If you enable encryption, but do not specify a KMS key, the snapshots are encrypted using the default encryption KMS key in each destination Region\. If you specify a KMS key for the destination Region, you must have access to the KMS key\.
+   1. To encrypt the snapshot copy, for **Encryption**, select **Enable encryption**\. If the source snapshot is encrypted, or if encryption by default is enabled for your account, the snapshot copy is always encrypted, even if you do not enable encryption here\. If the source snapshot is unencrypted and encryption by default is not enabled for your account, you can choose to enable or disable encryption\. If you enable encryption, but do not specify a KMS key, the snapshots are encrypted using the default encryption KMS key in each destination Region\. If you specify a KMS key for the destination Region, you must have access to the KMS key\.
 
 1. To add additional snapshot copy actions, choose **Add new Regions**\.
 
@@ -199,7 +199,7 @@ Use one of the following methods to create the cross\-account copy event policy\
 
    1. For **Retain copy for**, specify how long to retain the snapshot copies in the target Region after creation\.
 
-   1. For **Encryption**, select **Enable** to encrypt the snapshot copy in the target Region\. If the source snapshot is encrypted, or if encryption by default is enabled for your account, the snapshot copy is always encrypted, even if you do enable encryption here\. If the source snapshot is unencrypted and encryption by default is not enabled for your account, you can choose to enable or disable encryption\. If you enable encryption, but do not specify a KMS key, the snapshots are encrypted using the default encryption KMS key in each destination Region\. If you specify a KMS key for the destination Region, you must have access to the KMS key\.
+   1. For **Encryption**, select **Enable** to encrypt the snapshot copy in the target Region\. If the source snapshot is encrypted, or if encryption by default is enabled for your account, the snapshot copy is always encrypted, even if you do not enable encryption here\. If the source snapshot is unencrypted and encryption by default is not enabled for your account, you can choose to enable or disable encryption\. If you enable encryption, but do not specify a KMS key, the snapshots are encrypted using the default encryption KMS key in each destination Region\. If you specify a KMS key for the destination Region, you must have access to the KMS key\.
 
    1. \(Optional\) To copy the snapshot to additional Regions, choose **Add additional region**, and then complete the required fields\.
 

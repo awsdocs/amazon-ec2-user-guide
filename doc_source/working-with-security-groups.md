@@ -157,6 +157,11 @@ Use one of the following commands\.
 + [Get\-EC2SecurityGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2SecurityGroup.html) \(AWS Tools for Windows PowerShell\)
 
 ------
+#### [ Amazon EC2 Global View ]
+
+You can use Amazon EC2 Global View to view your security groups across all Regions for which your AWS account is enabled\. For more information, see [List and filter resources across Regions using Amazon EC2 Global View](Using_Filtering.md#global-view)\.
+
+------
 
 ## Add rules to a security group<a name="adding-security-group-rule"></a>
 

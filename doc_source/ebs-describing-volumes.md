@@ -46,6 +46,11 @@ You can use one of the following commands to view volume attributes\. For more i
 + [Get\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
 
 ------
+#### [ Amazon EC2 Global View ]
+
+You can use Amazon EC2 Global View to view your volumes across all Regions for which your AWS account is enabled\. For more information, see [List and filter resources across Regions using Amazon EC2 Global View](Using_Filtering.md#global-view)\.
+
+------
 
 ### Volume state<a name="volume-state"></a>
 

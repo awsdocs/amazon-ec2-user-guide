@@ -24,7 +24,7 @@ This policy is attached to the service\-linked role named **AWSServiceRoleForEC2
 
 ## AWS managed policy: AWSEC2SpotFleetServiceRolePolicy<a name="security-iam-awsmanpol-AWSEC2SpotFleetServiceRolePolicy"></a>
 
-This policy is attached to the service\-linked role named **AWSServiceRoleForEC2SpotFleet** to allow Spot Fleet to launch and manage instances on your behalf\. For more information, see [Service\-linked role for Spot Fleet](spot-fleet-requests.md#service-linked-roles-spot-fleet-requests)\.
+This policy is attached to the service\-linked role named **AWSServiceRoleForEC2SpotFleet** to allow Spot Fleet to launch and manage instances on your behalf\. For more information, see [Service\-linked role for Spot Fleet](work-with-spot-fleets.md#service-linked-roles-spot-fleet-requests)\.
 
 ## AWS managed policy: AWSEC2SpotServiceRolePolicy<a name="security-iam-awsmanpol-AWSEC2SpotServiceRolePolicy"></a>
 

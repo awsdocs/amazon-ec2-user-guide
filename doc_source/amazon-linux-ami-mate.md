@@ -53,7 +53,7 @@ Follow these steps to set up a Remote Desktop Protocol \(RDP\) connection from y
    + Certificate — `/etc/xrdp/cert.pem`
    + Key — `/etc/xrdp/key.pem`
 
-   If you do have a certificate and key, use the following command to generate them in the `/etc/xrdp` directory\.
+   If you do not have a certificate and key, use the following command to generate them in the `/etc/xrdp` directory\.
 
    ```
    $ sudo openssl req -x509 -sha384 -newkey rsa:3072 -nodes -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365

@@ -23,7 +23,7 @@ Prevent new work from being scheduled
 When you receive the rebalance recommendation signal for a Spot Instance, you can prevent new work from being scheduled on the instance, while continuing to use the instance until the scheduled work is completed\.
 
 Proactively launch new replacement instances  
-You can configure Auto Scaling groups, EC2 Fleet, or Spot Fleet to automatically launch replacement Spot Instances when a rebalance recommendation signal is emitted\. For more information, see [Amazon EC2 Auto Scaling Capacity Rebalancing](https://docs.aws.amazon.com/autoscaling/ec2/userguide/capacity-rebalance.html) in the *Amazon EC2 Auto Scaling User Guide*, and [Capacity Rebalancing](ec2-fleet-configuration-strategies.md#ec2-fleet-capacity-rebalance) for EC2 Fleet and [Capacity Rebalancing](how-spot-fleet-works.md#spot-fleet-capacity-rebalance) for Spot Fleet in this user guide\.
+You can configure Auto Scaling groups, EC2 Fleet, or Spot Fleet to automatically launch replacement Spot Instances when a rebalance recommendation signal is emitted\. For more information, see [Amazon EC2 Auto Scaling Capacity Rebalancing](https://docs.aws.amazon.com/autoscaling/ec2/userguide/capacity-rebalance.html) in the *Amazon EC2 Auto Scaling User Guide*, and [Capacity Rebalancing](ec2-fleet-capacity-rebalance.md) for EC2 Fleet and [Capacity Rebalancing](spot-fleet-capacity-rebalance.md) for Spot Fleet in this user guide\.
 
 ## Monitor rebalance recommendation signals<a name="monitor-rebalance-recommendations"></a>
 
@@ -143,5 +143,5 @@ If the signal has not been emitted for the instance, `events/recommendations/reb
 
 Amazon EC2 Auto Scaling, EC2 Fleet, and Spot Fleet use the rebalance recommendation signal to make it easy for you to maintain workload availability by proactively augmenting your fleet with a new Spot Instance before a running instance receives the two\-minute Spot Instance interruption notice\. You can have these services monitor and respond proactively to changes affecting the availability of your Spot Instances\. For more information, see the following:
 + [Amazon EC2 Auto Scaling Capacity Rebalancing](https://docs.aws.amazon.com/autoscaling/ec2/userguide/capacity-rebalance.html) in the *Amazon EC2 Auto Scaling User Guide*
-+ [Capacity Rebalancing](ec2-fleet-configuration-strategies.md#ec2-fleet-capacity-rebalance) in the EC2 Fleet topic in this user guide
-+ [Capacity Rebalancing](how-spot-fleet-works.md#spot-fleet-capacity-rebalance) in the Spot Fleet topic in this user guide
++ [Capacity Rebalancing](ec2-fleet-capacity-rebalance.md) in the EC2 Fleet topic in this user guide
++ [Capacity Rebalancing](spot-fleet-capacity-rebalance.md) in the Spot Fleet topic in this user guide
