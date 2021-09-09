@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Hibernation support for RHEL, Fedora, and CentOS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html#hibernation-prereqs-supported-amis) | Hibernate your newly\-launched instances that were launched from RHEL, Fedora, and CentOS AMIs\. | September 9, 2021 | 
+| [New Local Zones added](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#local-zones-available) | Add Local Zones in Chicago, Minneapolis, and Kansas City\. | September 8, 2021 | 
 | [Amazon EC2 Global View](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Filtering.html#global-view) | Amazon EC2 Global View enables you to view VPCs, subnets, instances, security groups, and volumes across multiple AWS Regions in a single console\. | September 1, 2021 | 
 | [AMI deprecation support for Amazon Data Lifecycle Manager](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-policy.html) | Amazon Data Lifecycle Manager EBS\-backed AMI policies can deprecate AMIs\. The AWSDataLifecycleManagerServiceRoleForAMIManagement AWS managed policy has been updated to support this feature\. | August 23, 2021 | 
 | [Hibernation support for C5d, M5d, and R5d](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites) | Hibernate your newly\-launched instances running on C5d, M5d, and R5d instance types\. | August 19, 2021 | 

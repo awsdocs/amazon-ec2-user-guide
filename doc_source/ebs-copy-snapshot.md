@@ -17,7 +17,7 @@ For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot
 
 **Prerequisites**
 + You can copy any accessible snapshots that have a `completed` status, including shared snapshots and snapshots that you have created\.
-+ You can copy AWS Marketplace, VM Import/Export, and AWS Storage Gateway snapshots, but you must verify that the snapshot is supported in the destination Region\.
++ You can copy AWS Marketplace, VM Import/Export, and Storage Gateway snapshots, but you must verify that the snapshot is supported in the destination Region\.
 
 **Considerations**
 + Each account can have up to twenty concurrent snapshot copy requests to a single destination Region\.

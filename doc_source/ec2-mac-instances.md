@@ -290,6 +290,9 @@ You can use Homebrew to install updates to packages in the EC2 macOS AMIs, so th
    [ec2-user ~]$ brew upgrade
    ```
 
+**Warning**  
+Do not install beta or prerelease macOS versions on your EC2 Mac instances, as this configuration is currently not supported\. Installing beta or prerelease macOS versions will lead to degradation of your EC2 Mac Dedicated Host when you stop or terminate your instance, and will prevent you from starting or launching a new instance on that host\. 
+
 ## EC2 macOS Init<a name="ec2-macos-init"></a>
 
 EC2 macOS Init is used to initialize EC2 Mac instances at launch\. It uses priority groups to run logical groups of tasks at the same time\.

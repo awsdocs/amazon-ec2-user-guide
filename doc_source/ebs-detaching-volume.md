@@ -28,7 +28,7 @@ Use the following procedures to unmount and detach a volume from an instance\. T
 From your Linux instance, use the following command to unmount the `/dev/sdh` device\.
 
 ```
-[ec2-user ~]$ Sudo umount -d /dev/sdh
+[ec2-user ~]$ umount -d /dev/sdh
 ```
 
 ### Step 2: Detach the volume from the instance<a name="detach"></a>

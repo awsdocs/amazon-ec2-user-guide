@@ -31,7 +31,7 @@ To configure GRUB, choose one of the following procedures based on the AMI that 
    + Add `GRUB_TERMINAL="console serial"`\.
    + Add `GRUB_SERIAL_COMMAND="serial --speed=115200"`\.
 
-   The following is an example of `/etc/default/grub`\.
+   The following is an example of `/etc/default/grub`\. You might need to change the configuration based on your system setup\.
 
    ```
    GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 nvme_core.io_timeout=4294967295 rd.emergency=poweroff rd.shell=0"
@@ -61,7 +61,7 @@ To configure GRUB, choose one of the following procedures based on the AMI that 
    + Remove `GRUB_HIDDEN_TIMEOUT`\.
    + Add `GRUB_SERIAL_COMMAND="serial --speed=115200"`\.
 
-   The following is an example of `/etc/default/grub.d/50-cloudimg-settings.cfg`\.
+   The following is an example of `/etc/default/grub.d/50-cloudimg-settings.cfg`\. You might need to change the configuration based on your system setup\.
 
    ```
    # Cloud Image specific Grub settings for Generic Cloud Images
@@ -100,7 +100,7 @@ To configure GRUB, choose one of the following procedures based on the AMI that 
    + Add `GRUB_TERMINAL="console serial"`\.
    + Add `GRUB_SERIAL_COMMAND="serial --speed=115200"`\.
 
-   The following is an example of `/etc/default/grub`\.
+   The following is an example of `/etc/default/grub`\. You might need to change the configuration based on your system setup\.
 
    ```
    GRUB_TIMEOUT=1
@@ -125,7 +125,7 @@ To configure GRUB, choose one of the following procedures based on the AMI that 
 
 For instances that are launched using a CentOS AMI, GRUB is configured for the serial console by default\.
 
-The following is an example of `/etc/default/grub`\.
+The following is an example of `/etc/default/grub`\. Your configuration might be different based on your system setup\.
 
 ```
 GRUB_TIMEOUT=1

@@ -1,6 +1,6 @@
 # List the available CloudWatch metrics for your instances<a name="viewing_metrics_with_cloudwatch"></a>
 
-Amazon EC2 sends metrics to Amazon CloudWatch\. You can use the AWS Management Console, the AWS CLI, or an API to list the metrics that Amazon EC2 sends to CloudWatch\. By default, each data point covers the 5 minutes that follow the start time of activity for the instance\. If you've enabled detailed monitoring, each data point covers the next minute of activity from the start time\. Note that for the Minimum, Maximum, and Average statistics, the minimum granuality for the metrics that EC2 provides is 1 minute\.
+Amazon EC2 sends metrics to Amazon CloudWatch\. You can use the AWS Management Console, the AWS CLI, or an API to list the metrics that Amazon EC2 sends to CloudWatch\. By default, each data point covers the 5 minutes that follow the start time of activity for the instance\. If you've enabled detailed monitoring, each data point covers the next minute of activity from the start time\. Note that for the Minimum, Maximum, and Average statistics, the minimum granularity for the metrics that EC2 provides is 1 minute\.
 
 For information about getting the statistics for these metrics, see [Get statistics for metrics for your instances](monitoring_get_statistics.md)\.
 
