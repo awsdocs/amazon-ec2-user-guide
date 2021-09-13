@@ -374,6 +374,9 @@ You can also view this information programatically using the AWS CLI\. For more 
 | u\-12tb1\.metal | 38,000 | 4,750 | 160,000 | 
 | u\-18tb1\.metal | 38,000 | 4,750 | 160,000 | 
 | u\-24tb1\.metal | 38,000 | 4,750 | 160,000 | 
+| vt1\.3xlarge \* | 4,750 | 593\.750 | 20,000 | 
+| vt1\.6xlarge | 4,750 | 593\.750 | 20,000 | 
+| vt1\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | x1\.16xlarge | 7,000 | 875 | 40,000 | 
 | x1\.32xlarge | 14,000 | 1,750 | 80,000 | 
 | x1e\.xlarge | 500 | 62\.5 | 3,700 | 
@@ -535,6 +538,7 @@ You can also view this information programatically using the AWS CLI\. For more 
 | t4g\.large | 512 | 64 | 4,000 | 
 | t4g\.xlarge | 1,024 | 128 | 4,000 | 
 | t4g\.2xlarge | 2,048 | 256 | 4,000 | 
+| vt1\.3xlarge | 2,375 | 296\.875 | 10,000 | 
 | x2gd\.medium | 2,520 | 315 | 2,500 | 
 | x2gd\.large | 5,040 | 630 | 3,600 | 
 | x2gd\.xlarge | 9,504 | 1,188 | 6,000 | 

@@ -14,6 +14,9 @@ After you launch an instance, it can take a few minutes for the instance to be r
 **Get the public DNS name and user name to connect to your instance**  
 To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [Prerequisites for connecting to your instance](connection-prereqs.md)\.
 
+**Locate the private key and set the permissions**  
+To locate the private key that is required to connect to your instance, and to set the key permissions, see [Locate the private key and set the permissions](connection-prereqs.md#connection-prereqs-private-key)\.
+
 **Install an SSH client on your local computer as needed**  
 Your local computer might have an SSH client installed by default\. You can verify this by typing ssh at the command line\. If your computer doesn't recognize the command, you can install an SSH client\.  
 + Recent versions of Windows Server 2019 and Windows 10 \- OpenSSH is included as an installable component\. For more information, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
@@ -26,7 +29,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
 
 **To connect to your instance using SSH**
 
-1. In a terminal window, use the ssh command to connect to the instance\. You specify the path and file name of the private key \(`.pem`\), the user name for your instance, and the public DNS name or IPv6 address for your instance\. For more information about how to find the private key, the user name for your instance, and the DNS name or IPv6 address for an instance, see [Locate the private key](connection-prereqs.md#connection-prereqs-private-key) and [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\. To connect to your instance, use one of the following commands\.
+1. In a terminal window, use the ssh command to connect to the instance\. You specify the path and file name of the private key \(`.pem`\), the user name for your instance, and the public DNS name or IPv6 address for your instance\. For more information about how to find the private key, the user name for your instance, and the DNS name or IPv6 address for an instance, see [Locate the private key and set the permissions](connection-prereqs.md#connection-prereqs-private-key) and [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\. To connect to your instance, use one of the following commands\.
    + \(Public DNS\) To connect using your instance's public DNS name, enter the following command\.
 
      ```

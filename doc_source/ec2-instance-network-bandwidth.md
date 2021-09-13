@@ -1,18 +1,20 @@
 # Amazon EC2 instance network bandwidth<a name="ec2-instance-network-bandwidth"></a>
 
-The network bandwidth available to an EC2 instance depends on the destination of the traffic\. The following bandwidth quotas apply to aggregate multi\-flow bandwidth on a per\-instance basis\.
+The network bandwidth available to an EC2 instance depends on several factors\.
 
-**Inside the Region**  
-Traffic between an instance and a target destination in the same Region can utilize the full network bandwidth available to the instance\.
+Bandwidth for aggregate multi\-flow traffic available to an instance depends on the destination of the traffic\.
 
-**Outside the Region**  
-Traffic between an instance and a target destination has an aggregate bandwidth quota of 5 Gbps if the target is not in the same Region as the instance, including traffic to AWS Direct Connect or the internet\.
+**Within the Region**  
+Traffic can utilize the full network bandwidth available to the instance\.
 
-Single flow \(5\-tuple\) bandwidth is limited to 5 Gbps, regardless of the direction of traffic\. For use cases that require low latency and high single flow bandwidth, use a [cluster placement group](placement-groups.md#placement-groups-cluster) to achieve bandwidth up to 10 Gbps for instances in the same placement group\. Alternatively, set up multiple paths between any two endpoints to achieve higher bandwidth using Multipath TCP \(MPTCP\)\.
+**To other Regions, an internet gateway, or Direct Connect**  
+Traffic can utilize up to 50% of the network bandwidth available to a [current generation instance](instance-types.md#current-gen-instances) with a minimum of 32 vCPUs\. Bandwidth for a current generation instance with less than 32 vCPUs is limited to 5 Gbps\.
+
+Bandwidth for single\-flow \(5\-tuple\) traffic is limited to 5 Gbps, regardless of the destination of the traffic\. For use cases that require low latency and high single\-flow bandwidth, use a [cluster placement group](placement-groups.md#placement-groups-cluster) to achieve up to 10 Gbps for instances in the same placement group\. Alternatively, set up multiple paths between two endpoints to achieve higher bandwidth using Multipath TCP \(MPTCP\)\.
 
 ## Available instance bandwidth<a name="available-instance-bandwidth"></a>
 
-The available network bandwidth of an instance depends on the number of vCPUs that it has\. For example, an `m5.8xlarge` instance has 32 vCPUs and 10 Gbps network bandwidth, and an `m5.16xlarge` instance has 64 vCPUs and 20 Gbps network bandwidth\. However, instances might not achieve this bandwidth; for example, if they exceed network allowances at the instance level, such as packet per second or number of tracked connections\.
+The available network bandwidth of an instance depends on the number of vCPUs that it has\. For example, an `m5.8xlarge` instance has 32 vCPUs and 10 Gbps network bandwidth, and an `m5.16xlarge` instance has 64 vCPUs and 20 Gbps network bandwidth\. However, instances might not achieve this bandwidth; for example, if they exceed network allowances at the instance level, such as packet per second or number of tracked connections\. How much of the available bandwidth the traffic can utilize depends on the number of vCPUs and the destination\. For example, an `m5.6xlarge` instance has 64 vCPUs, so traffic to another instance in the Region can utilize the full bandwidth available \(20 Gbps\)\. However, traffic to another instance in a different Region can utilize only 50% of the bandwidth available \(10 Gbps\)\.
 
 Typically, instances with 16 vCPUs or fewer \(size `4xlarge` and smaller\) are documented as having "up to" a specified bandwidth; for example, "up to 10 Gbps"\. These instances have a baseline bandwidth\. To meet additional demand, they can use a network I/O credit mechanism to burst beyond their baseline bandwidth\. Instances can use burst bandwidth for a limited time, typically from 5 to 60 minutes, depending on the instance size\.
 

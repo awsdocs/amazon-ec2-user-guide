@@ -473,6 +473,9 @@ The following table lists the maximum number of network interfaces per instance 
 | u\-12tb1\.metal | 15 | 50 | 50 | 
 | u\-18tb1\.metal | 15 | 50 | 50 | 
 | u\-24tb1\.metal | 15 | 50 | 50 | 
+| vt1\.3xlarge | 4 | 15 | 15 | 
+| vt1\.6xlarge | 8 | 30 | 30 | 
+| vt1\.24xlarge | 15 | 50 | 50 | 
 | x1\.16xlarge | 8 | 30 | 30 | 
 | x1\.32xlarge | 8 | 30 | 30 | 
 | x1e\.xlarge | 3 | 10 | 10 | 

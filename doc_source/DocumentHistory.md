@@ -4,6 +4,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [VT1 instances](#DocumentHistory) | New accelerated computing instances that use Xilinx Alveo U30 media accelerators and are designed for live video transcoding workloads\. | September 13, 2021 | 
 | [Hibernation support for RHEL, Fedora, and CentOS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html#hibernation-prereqs-supported-amis) | Hibernate your newly\-launched instances that were launched from RHEL, Fedora, and CentOS AMIs\. | September 9, 2021 | 
 | [New Local Zones added](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#local-zones-available) | Add Local Zones in Chicago, Minneapolis, and Kansas City\. | September 8, 2021 | 
 | [Amazon EC2 Global View](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Filtering.html#global-view) | Amazon EC2 Global View enables you to view VPCs, subnets, instances, security groups, and volumes across multiple AWS Regions in a single console\. | September 1, 2021 | 
@@ -165,7 +166,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 |  C5 instances  |  2016\-11\-15  |  C5 instances are designed for compute\-heavy applications\. For more information, see [Compute optimized instances](compute-optimized-instances.md)\.  | 6 November 2017 | 
 |  Merge and split Convertible Reserved Instances  |  2016\-11\-15  |  You can exchange \(merge\) two or more Convertible Reserved Instances for a new Convertible Reserved Instance\. You can also use the modification process to split a Convertible Reserved Instance into smaller reservations\. For more information, see [Exchange Convertible Reserved Instances](ri-convertible-exchange.md)\.  | 6 November 2017 | 
 |  P3 instances  |  2016\-11\-15  |  P3 instances are compute\-optimized GPU instances\. For more information, see [Linux accelerated computing instances](accelerated-computing-instances.md)\.  | 25 October 2017 | 
-|  Modify VPC tenancy  |  2016\-11\-15  |  You can change the instance tenancy attribute of a VPC from `dedicated` to `default`\. For more information, see [Change the tenancy of a VPC](dedicated-instance.md#change-tenancy-vpc)\.  | 16 October 2017 | 
+|  Modify VPC tenancy  |  2016\-11\-15  |  You can change the instance tenancy attribute of a VPC from `dedicated` to `default`\. For more information, see [Change the tenancy of a VPC](dedicated-usage-overview.md#change-tenancy-vpc)\.  | 16 October 2017 | 
 |  Per second billing  |  2016\-11\-15  |  Amazon EC2 charges for Linux\-based usage by the second, with a one\-minute minimum charge\.  | 2 October 2017 | 
 |  Stop on interruption  |  2016\-11\-15  |  You can specify whether Amazon EC2 should stop or terminate Spot Instances when they are interrupted\. For more information, see [Interruption behaviors](spot-interruptions.md#interruption-behavior)\.  | 18 September 2017 | 
 |  Tag NAT gateways  |  2016\-11\-15  |  You can tag your NAT gateway\. For more information, see [Tag your resources](Using_Tags.md#tag-resources)\.  | 7 September 2017 | 

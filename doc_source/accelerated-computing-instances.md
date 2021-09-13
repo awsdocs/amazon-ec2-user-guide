@@ -6,6 +6,7 @@ If you require high processing capability, you'll benefit from using accelerated
 
 **Topics**
 + [GPU instances](#gpu-instances)
++ [Video transcoding instances](#video-transcoding)
 + [Instances with AWS Inferentia](#aws-inferentia-instances)
 + [FPGA instances](#fpga-instances)
 + [Hardware specifications](#gpu-instance-specifications)
@@ -59,6 +60,21 @@ P3 instances support NVIDIA NVLink peer to peer transfers\. For more information
 P2 instances use NVIDIA Tesla K80 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models\. P2 instances provide high\-bandwidth networking, powerful single and double precision floating\-point capabilities, and 12 GiB of memory per GPU, which makes them ideal for deep learning, graph databases, high\-performance databases, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\.
 
 P2 instances support NVIDIA GPUDirect peer to peer transfers\. For more information, see [NVIDIA GPUDirect](https://developer.nvidia.com/gpudirect)\.
+
+## Video transcoding instances<a name="video-transcoding"></a>
+
+These instances are designed to accelerate video transcoding workloads, such as live broadcast, video conferencing, and just\-in\-time transcoding\.
+<a name="vt1-instances"></a>
+**VT1 instances**  
+VT1 instances feature Xilinx Alveo U30 media accelerators and are designed for live video transcoding workloads\. These instances offer up to 8 Xilinx Alveo U30 acceleration cards, provide up to 192 GB of system memory, and up to 25 Gbps of network bandwidth\. VT1 instances feature H\.264/AVC and H\.265/HEVC codecs and support up to 4K UHD resolutions for multi\-stream video transcoding\.
+
+There are a variety of ways that you can get started:
++ Launch a VT1 instance using the Xilinx U30 AMIs on AWS Marketplace\.
++ Launch a VT1 instance using your own AMI and install the [Xilinx U30 drivers and Xilinx Video SDK](https://xilinx.github.io/video-sdk/)\.
++ Launch a container instance using a VT1 instance and an Amazon ECS\-optimized AMI\.
++ Create an Amazon EKS cluster with nodes running VT1 instances\.
+
+For more information, see [Amazon EC2 VT1 Instances](https://aws.amazon.com/ec2/instance-types/vt1/)\.
 
 ## Instances with AWS Inferentia<a name="aws-inferentia-instances"></a>
 
@@ -133,6 +149,9 @@ The following is a summary of the hardware specifications for accelerated comput
 | inf1\.2xlarge | 8 | 16 | 1 | 
 | inf1\.6xlarge | 24 | 48 | 4 | 
 | inf1\.24xlarge | 96 | 192 | 16 | 
+| vt1\.3xlarge | 12 | 24 | 2 | 
+| vt1\.6xlarge | 24 | 48 | 4 | 
+| vt1\.24xlarge | 96 | 192 | 16 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -158,10 +177,10 @@ The following is a summary of network performance for accelerated computing inst
 |  f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge and smaller \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g4ad\.8xlarge | 15 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  g4dn\.4xlarge and smaller  \| inf1\.2xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  g4dn\.4xlarge and smaller  \| inf1\.2xlarge and smaller  \| vt1\.3xlarge  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  \| vt1\.6xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge  \| vt1\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  p4d\.24xlarge  | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
@@ -175,6 +194,7 @@ The following is a summary of network performance for accelerated computing inst
 | g4dn\.xlarge | 5 | 25 | 
 | g4dn\.2xlarge | 10 | 25 | 
 | g4dn\.4xlarge | 20 | 25 | 
+| vt1\.3xlarge | 12\.5 | 25 | 
 
 ## Instance features<a name="gpu-instances-features"></a>
 
@@ -192,6 +212,7 @@ The following is a summary of features for accelerated computing instances\.
 | P2 | Yes | No | No | Yes | 
 | P3 |  24xlarge: No All other sizes: Yes  |  24xlarge: Yes All other sizes: No  | 24xlarge: NVMe \* | Yes | 
 | P4d | No | Yes | NVMe \* | Yes | 
+| VT1 | Yes | Yes | No | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 

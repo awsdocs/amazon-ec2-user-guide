@@ -50,7 +50,7 @@ You can run a Spot Instance on single\-tenant hardware\. Dedicated Spot Instance
 
 To run a Dedicated Spot Instance, do one of the following:
 + Specify a tenancy of `dedicated` when you create the Spot Instance request\. For more information, see [Create a Spot Instance request](#using-spot-instances-request)\.
-+ Request a Spot Instance in a VPC with an instance tenancy of `dedicated`\. For more information, see [Create a VPC with an instance tenancy of dedicated](dedicated-instance.md#creatingdedicatedvpc)\. You cannot request a Spot Instance with a tenancy of `default` if you request it in a VPC with an instance tenancy of `dedicated`\.
++ Request a Spot Instance in a VPC with an instance tenancy of `dedicated`\. For more information, see [Create a VPC with an instance tenancy of dedicated](dedicated-usage-overview.md#creatingdedicatedvpc)\. You cannot request a Spot Instance with a tenancy of `default` if you request it in a VPC with an instance tenancy of `dedicated`\.
 
 All instance families support Dedicated Spot Instances except T instances\. For each supported instance family, only the largest instance size or metal size supports Dedicated Spot Instances\.
 

@@ -122,6 +122,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Host recovery](dedicated-hosts-recovery.md)
          + [Track configuration changes](dedicated-hosts-aws-config.md)
       + [Dedicated Instances](dedicated-instance.md)
+         + [Work with Dedicated Instances](dedicated-usage-overview.md)
       + [On-Demand Capacity Reservations](ec2-capacity-reservations.md)
          + [Capacity Reservation pricing and billing](capacity-reservations-pricing-billing.md)
          + [Work with Capacity Reservations](capacity-reservations-using.md)

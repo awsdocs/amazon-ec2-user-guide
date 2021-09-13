@@ -28,7 +28,7 @@ The Spot Fleet request must have a request type of `maintain`\. Automatic scalin
 
 1. On the **Specify metric and conditions** page, choose **Select metric**\. 
 
-1. Choose **EC2 Spot**, **Fleet Request Metrics**, select a metric \(for example, CPUUtilization\), and then choose **Select metric**\.
+1. Choose **EC2 Spot**, **Fleet Request Metrics**, select a metric \(for example, TargetCapacity\), and then choose **Select metric**\.
 
    The **Specify metric and conditions** page appears, showing a graph and other information about the metric you selected\. 
 
