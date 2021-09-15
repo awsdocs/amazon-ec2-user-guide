@@ -54,6 +54,9 @@ You can also specify multiple actions using wildcards\. For example, you can spe
 "Action": "ec2:Describe*"
 ```
 
+**Note**  
+Currently, the Amazon EC2 Describe\* API actions do not support resource\-level permissions\. For more information about resource\-level permissions for Amazon EC2, see [IAM policies for Amazon EC2](iam-policies-for-amazon-ec2.md)\.
+
 To specify all Amazon EC2 API actions, use the \* wildcard as follows:
 
 ```

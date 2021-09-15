@@ -385,15 +385,15 @@ You can also view this information programatically using the AWS CLI\. For more 
 | x1e\.8xlarge | 3,500 | 437\.5 | 20,000 | 
 | x1e\.16xlarge | 7,000 | 875 | 40,000 | 
 | x1e\.32xlarge | 14,000 | 1,750 | 80,000 | 
-| x2gd\.medium \* | 38,000 | 4,750 | 20,000 | 
-| x2gd\.large \* | 38,000 | 4,750 | 20,000 | 
-| x2gd\.xlarge \* | 38,000 | 4,750 | 20,000 | 
-| x2gd\.2xlarge \* | 38,000 | 4,750 | 20,000 | 
-| x2gd\.4xlarge | 38,000 | 4,750 | 20,000 | 
-| x2gd\.8xlarge | 76,000 | 9,500 | 40,000 | 
-| x2gd\.12xlarge | 114,000 | 14,250 | 60,000 | 
-| x2gd\.16xlarge | 152,000 | 19,000 | 80,000 | 
-| x2gd\.metal | 152,000 | 19,000 | 80,000 | 
+| x2gd\.medium \* | 4,750 | 593\.75 | 20,000 | 
+| x2gd\.large \* | 4,750 | 593\.75 | 20,000 | 
+| x2gd\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| x2gd\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| x2gd\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| x2gd\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| x2gd\.12xlarge | 14,250 | 1,781\.25 | 60,000 | 
+| x2gd\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| x2gd\.metal | 19,000 | 2,375 | 80,000 | 
 | z1d\.large \* | 3,170 | 396\.25 | 13,333 | 
 | z1d\.xlarge \* | 3,170 | 396\.25 | 13,333 | 
 | z1d\.2xlarge | 3,170 | 396\.25 | 13,333 | 
@@ -539,10 +539,10 @@ You can also view this information programatically using the AWS CLI\. For more 
 | t4g\.xlarge | 1,024 | 128 | 4,000 | 
 | t4g\.2xlarge | 2,048 | 256 | 4,000 | 
 | vt1\.3xlarge | 2,375 | 296\.875 | 10,000 | 
-| x2gd\.medium | 2,520 | 315 | 2,500 | 
-| x2gd\.large | 5,040 | 630 | 3,600 | 
-| x2gd\.xlarge | 9,504 | 1,188 | 6,000 | 
-| x2gd\.2xlarge | 19,000 | 2,375 | 12,000 | 
+| x2gd\.medium | 315 | 39\.375 | 2,500 | 
+| x2gd\.large | 630 | 78\.75 | 3,600 | 
+| x2gd\.xlarge | 1,188 | 148\.5 | 6,000 | 
+| x2gd\.2xlarge | 2,375 | 296\.875 | 12,000 | 
 | z1d\.large | 800 | 100 | 3,333 | 
 | z1d\.xlarge | 1,580 | 197\.5 | 6,667 | 
 

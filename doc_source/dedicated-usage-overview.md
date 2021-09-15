@@ -135,6 +135,7 @@ You can change the tenancy of a stopped instance only from `dedicated` to `host`
 
 **Note**  
 You can't change the tenancy of an instance from `default` to `dedicated` or `host` after launch\. And you can't change the tenancy of an instance from `dedicated` or `host` to `default` after launch\.
+For T3 instances, you can't change the tenancy from `dedicated` to `host`, or from `host` to `dedicated`\. Attempting to make one of these unsupported tenancy changes results in the `InvalidTenancy` error code\.
 
 ------
 #### [ Console ]

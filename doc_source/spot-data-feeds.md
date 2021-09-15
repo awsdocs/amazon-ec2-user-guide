@@ -7,6 +7,8 @@ Data feed files arrive in your bucket typically once an hour, and each hour of u
 **Note**  
 If you don't have a Spot Instance running during a certain hour, you don't receive a data feed file for that hour\.
 
+Spot Instance data feed is supported in all AWS Regions except China \(Beijing\), China \(Ningxia\), AWS GovCloud \(US\), and the [Regions that are disabled by default](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)\.
+
 **Topics**
 + [Data feed file name and format](#using-spot-instances-format)
 + [Amazon S3 bucket requirements](#using-spot-instances-dfs3)

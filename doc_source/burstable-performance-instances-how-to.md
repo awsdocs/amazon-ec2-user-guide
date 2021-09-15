@@ -2,6 +2,7 @@
 
 The steps for launching, monitoring, and modifying these instances are similar\. The key difference is the default credit specification when they launch\. If you do not change the default credit specification, the default is that:
 + T4g, T3a and T3 instances launch as `unlimited`
++ T3 instances on a Dedicated Host launch as `standard`
 + T2 instances launch as `standard`
 
 **Topics**
@@ -50,6 +51,9 @@ When burstable performance instances are launched or started, they require CPU c
 ### Create a launch template<a name="burstable-performance-instances-asg-launch-template"></a>
 
 You must use a *launch template* for launching instances as `unlimited` in an Auto Scaling group\. A launch configuration does not support launching instances as `unlimited`\.
+
+**Note**  
+`unlimited` mode is not supported for T3 instances that are launched on a Dedicated Host\.
 
 **To create a launch template that launches instances as Unlimited \(console\)**
 

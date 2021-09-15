@@ -197,7 +197,9 @@ Using the console, you can change the `DeleteOnTermination` attribute when you l
 
 1. Complete the remaining wizard pages, and then choose **Launch**\.
 
-You can verify the setting by viewing details for the root device volume on the instance's details pane\. Next to **Block devices**, choose the entry for the root device volume\. By default, **Delete on termination** is `True`\. If you change the default behavior, **Delete on termination** is `False`\.
+In the new console experience, you can verify the setting by viewing details for the root device volume on the instance's details pane\. On the **Storage** tab, under **Block devices**, scroll right to view the **Delete on termination** setting for the volume\. By default, **Delete on termination** is `Yes`\. If you change the default behavior, **Delete on termination** is `No`\.
+
+In the old console experience, you can verify the setting by viewing details for the root device volume on the instance's details pane\. Next to **Block devices**, choose the entry for the root device volume\. By default, **Delete on termination** is `True`\. If you change the default behavior, **Delete on termination** is `False`\.
 
 ### Change the root volume to persist at launch using the command line<a name="delete-on-termination-cli"></a>
 

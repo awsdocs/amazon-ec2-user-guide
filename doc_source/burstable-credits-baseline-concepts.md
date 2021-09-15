@@ -86,6 +86,9 @@ The following table summarizes the key credit differences between the burstable 
 | Previous generation | 
 | T2 |  Earned credits, Accrued credits, Spent credits, Launch credits \(Standard mode only\), Surplus credits \(Unlimited mode only\)  |  Standard \(default\), Unlimited  |  0 days \(credits are lost when an instance stops\)  | 
 
+**Note**  
+Unlimited mode is not supported for T3 instances that are launched on a Dedicated Host\.
+
 ## Earn CPU credits<a name="earning-CPU-credits"></a>
 
 Each burstable performance instance continuously earns \(at a millisecond\-level resolution\) a set rate of CPU credits per hour, depending on the instance size\. The accounting process for whether credits are accrued or spent also happens at a millisecond\-level resolution, so you don't have to worry about overspending CPU credits; a short burst of CPU uses a small fraction of a CPU credit\.
@@ -151,7 +154,7 @@ The CPU credit balance limit differs for each instance size\. For example, a `t3
 
 T2 Standard instances also earn launch credits\. Launch credits do not count towards the CPU credit balance limit\. If a T2 instance has not spent its launch credits, and remains idle over a 24\-hour period while accruing earned credits, its CPU credit balance appears as over the limit\. For more information, see [Launch credits](burstable-performance-instances-standard-mode-concepts.md#launch-credits)\. 
 
-T4g, T3a and T3 instances do not earn launch credits\. These instances launch as `unlimited` by default, and therefore can burst immediately upon start without any launch credits\.
+T4g, T3a and T3 instances do not earn launch credits\. These instances launch as `unlimited` by default, and therefore can burst immediately upon start without any launch credits\. T3 instances launched on a Dedicated Host launch as `standard` by default; `de>unlimited` mode is not supported for T3 instances on a Dedicated Host\.
 
 ## Accrued CPU credits life span<a name="accrued-CPU-credits-life-span"></a>
 

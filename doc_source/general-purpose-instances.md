@@ -223,8 +223,8 @@ The following is a summary of network performance for general purpose instances 
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-| t2\.nano \| t2\.micro \| t2\.small \| t2\.medium \| t2\.large \| t2\.xlarge \| t2\.2xlarge | Up to 1 Gbps | Not supported | 
-| t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge \| t4g\.nano \| t4g\.micro \| t4g\.small \| t4g\.medium \| t4g\.large \| t4g\.xlarge \| t4g\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| T2 | Up to 1 Gbps | Not supported | 
+| T3 \| T3a \| T4g | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | m4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 |  m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge  | High | [Intel 82599 VF](sriov-networking.md) | 
 |  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller \| m6g\.4xlarge and smaller \| m6gd\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
@@ -289,6 +289,27 @@ The following is a summary of network performance for general purpose instances 
 | m6i\.xlarge | 1\.562 | 12\.5 | 
 | m6i\.2xlarge | 3\.125 | 12\.5 | 
 | m6i\.4xlarge | 6\.25 | 12\.5 | 
+| t3\.nano | \.032 | 5 | 
+| t3\.micro | \.064 | 5 | 
+| t3\.small | \.128 | 5 | 
+| t3\.medium | \.256 | 5 | 
+| t3\.large | \.512 | 5 | 
+| t3\.xlarge | 1\.024 | 5 | 
+| t3\.2xlarge | 2\.048 | 5 | 
+| t3a\.nano | \.032 | 5 | 
+| t3a\.micro | \.064 | 5 | 
+| t3a\.small | \.128 | 5 | 
+| t3a\.medium | \.256 | 5 | 
+| t3a\.large | \.512 | 5 | 
+| t3a\.xlarge | 1\.024 | 5 | 
+| t3a\.2xlarge | 2\.048 | 5 | 
+| t4g\.nano | \.032 | 5 | 
+| t4g\.micro | \.064 | 5 | 
+| t4g\.small | \.128 | 5 | 
+| t4g\.medium | \.256 | 5 | 
+| t4g\.large | \.512 | 5 | 
+| t4g\.xlarge | 1\.024 | 5 | 
+| t4g\.2xlarge | 2\.048 | 5 | 
 
 ## SSD I/O performance<a name="general-purpose-ssd-perf"></a>
 

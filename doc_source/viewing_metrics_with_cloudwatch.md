@@ -7,6 +7,7 @@ For information about getting the statistics for these metrics, see [Get statist
 **Topics**
 + [Instance metrics](#ec2-cloudwatch-metrics)
 + [CPU credit metrics](#cpu-credit-metrics)
++ [Dedicated Host metrics](#dh-metrics)
 + [Amazon EBS metrics for Nitro\-based instances](#ebs-metrics-nitro)
 + [Status check metrics](#status-check-metrics)
 + [Traffic mirroring metrics](#traffic-mirroring-metrics)
@@ -44,6 +45,15 @@ The `AWS/EC2` namespace includes the following CPU credit metrics for your [burs
 | CPUCreditBalance |  The number of earned CPU credits that an instance has accrued since it was launched or started\. For T2 Standard, the `CPUCreditBalance` also includes the number of launch credits that have been accrued\. Credits are accrued in the credit balance after they are earned, and removed from the credit balance when they are spent\. The credit balance has a maximum limit, determined by the instance size\. After the limit is reached, any new credits that are earned are discarded\. For T2 Standard, launch credits do not count towards the limit\. The credits in the `CPUCreditBalance` are available for the instance to spend to burst beyond its baseline CPU utilization\. When an instance is running, credits in the `CPUCreditBalance` do not expire\. When a T3 or T3a instance stops, the `CPUCreditBalance` value persists for seven days\. Thereafter, all accrued credits are lost\. When a T2 instance stops, the `CPUCreditBalance` value does not persist, and all accrued credits are lost\. CPU credit metrics are available at a 5\-minute frequency only\. Units: Credits \(vCPU\-minutes\)  | 
 | CPUSurplusCreditBalance  |  The number of surplus credits that have been spent by an `unlimited` instance when its `CPUCreditBalance` value is zero\. The `CPUSurplusCreditBalance` value is paid down by earned CPU credits\. If the number of surplus credits exceeds the maximum number of credits that the instance can earn in a 24\-hour period, the spent surplus credits above the maximum incur an additional charge\. CPU credit metrics are available at a 5\-minute frequency only\. Units: Credits \(vCPU\-minutes\)   | 
 | CPUSurplusCreditsCharged |  The number of spent surplus credits that are not paid down by earned CPU credits, and which thus incur an additional charge\. Spent surplus credits are charged when any of the following occurs:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html) CPU credit metrics are available at a 5\-minute frequency only\. Units: Credits \(vCPU\-minutes\)  | 
+
+## Dedicated Host metrics<a name="dh-metrics"></a>
+
+The `AWS/EC2` namespace includes the following metrics for T3 Dedicated Hosts\.
+
+
+| Metric | Description | 
+| --- | --- | 
+|  DedicatedHostCPUUtilization |  The percentage of allocated compute capacity that is currently in use by the instances running on the Dedicated Host\. Unit: Percent  | 
 
 ## Amazon EBS metrics for Nitro\-based instances<a name="ebs-metrics-nitro"></a>
 

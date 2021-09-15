@@ -36,9 +36,10 @@ If your account is less than 12 months old, you can use a `t2.micro` instance fo
 + On\-Demand Instances
 + Reserved Instances
 + Dedicated Instances \(T3 only\)
++ Dedicated Hosts \(T3 only, in `standard` mode only\)
 + Spot Instances
 
-T instances are not supported on a Dedicated Host\. For more information, see [Instance purchasing options](instance-purchasing-options.md)\.
+For more information, see [Instance purchasing options](instance-purchasing-options.md)\.
 
 **Topics**
 + [EC2 burstable instance types](#burstable-instance-types)

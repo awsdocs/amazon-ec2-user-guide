@@ -471,6 +471,9 @@ PS C:\> Edit-EC2Host --InstanceType m5.xlarge --HostId h-012a3456b7890cdef
 
 You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated`, after you have launched it\. You can also modify the affinity between the instance and the host\. To modify either instance tenancy or affinity, the instance must be in the `stopped` state\.
 
+**Note**  
+For T3 instances, you can't change the tenancy from `dedicated` to `host`, or from `host` to `dedicated`\. Attempting to make one of these unsupported tenancy changes results in the `InvalidTenancy` error code\.
+
 You can modify an instance's tenancy and affinity using the following methods\.
 
 ------
