@@ -414,13 +414,13 @@ If you created an OpenSSH key pair using OpenSSH 7\.8 or later and uploaded the 
 For RSA key pairs:
 
 ```
-$ ssh-keygen -ef path_to_private_key -m PEM | openssl rsa -RSAPublicKey_in -outform DER | openssl md5 -c
+$ ssh-keygen -ef path_to_public_key -m PEM | openssl rsa -RSAPublicKey_in -outform DER | openssl md5 -c
 ```
 
 For ED25519 key pairs:
 
 ```
-$ ssh-keygen -l -f path_to_private_key.pem
+$ ssh-keygen -l -f path_to_public_key.pem
 ```
 
 ## Add or replace a key pair for your instance<a name="replacing-key-pair"></a>
