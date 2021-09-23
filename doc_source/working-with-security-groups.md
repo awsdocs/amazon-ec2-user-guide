@@ -38,7 +38,7 @@ A security group can be used only in the VPC for which it is created\.
 
 1. In the **Basic details** section, do the following\.
 
-   1. Enter a descriptive name and brief description for the security group\. They can't be edited after the security group is created\. The name and description can be up to 255 characters long\. The valid characters are `a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*`\.
+   1. Enter a descriptive name and brief description for the security group\. They can't be edited after the security group is created\. The name and description can be up to 255 characters long\. The valid characters are a\-z, A\-Z, 0\-9, spaces, and \.\_\-:/\(\)\#,@\[\]\+=&;\{\}\!$\*\.
 
    1. For **VPC**, choose the VPC\.
 
@@ -181,9 +181,9 @@ When you add a rule to a security group, the new rule is automatically applied t
 1. For each rule, choose **Add rule** and do the following\.
 
    1. For **Type**, choose the type of protocol to allow\.
-      + For TCP or UDP, you must enter the port range to allow\.
-      + For custom ICMP, you must choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port range**\.
-      + For any other type, the protocol and port range are configured automatically\.
+      + For custom TCP or UDP, you must enter the port range to allow\.
+      + For custom ICMP, you must choose the ICMP type from **Protocol**, and, if applicable, the code from **Port range**\. For example, to allow ping commands, choose **Echo Request** from **Protocol**\.
+      + For any other type, the protocol and port range are configured for you\.
 
    1. For **Source**, do one of the following to allow traffic\.
       + Choose **Custom** and then enter an IP address in CIDR notation, a CIDR block, another security group, or a prefix list\.
@@ -207,8 +207,8 @@ When you add a rule to a security group, the new rule is automatically applied t
 1. For each rule, choose **Add rule** and do the following\.
 
    1. For **Type**, choose the type of protocol to allow\.
-      + For TCP or UDP, you must enter the port range to allow\.
-      + For custom ICMP, you must choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port range**\.
+      + For custom TCP or UDP, you must enter the port range to allow\.
+      + For custom ICMP, you must choose the ICMP type from **Protocol**, and, if applicable, the code from **Port range**\.
       + For any other type, the protocol and port range are configured automatically\.
 
    1. For **Destination**, do one of the following\.
@@ -236,12 +236,12 @@ When you add a rule to a security group, the new rule is automatically applied t
 1. In the dialog, choose **Add Rule** and do the following:
    + For **Type**, select the protocol\.
    + If you select a custom TCP or UDP protocol, specify the port range in **Port Range**\. 
-   + If you select a custom ICMP protocol, choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port Range**\.
+   + If you select a custom ICMP protocol, choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port Range**\. For example, to allow ping commands, choose **Echo Request** from **Protocol**\.
    + For **Source**, choose one of the following:
      + **Custom**: in the provided field, you must specify an IP address in CIDR notation, a CIDR block, or another security group\.
-     + **Anywhere**: automatically adds the `0.0.0.0/0` IPv4 CIDR block\. This option enables all traffic of the specified type to reach your instance\. This is acceptable for a short time in a test environment, but it's unsafe for production environments\. In production, authorize only a specific IP address or range of addresses to access your instance\.
+     + **Anywhere**: automatically adds the 0\.0\.0\.0/0 IPv4 CIDR block\. This option enables all traffic of the specified type to reach your instance\. This is acceptable for a short time in a test environment, but it's unsafe for production environments\. In production, authorize only a specific IP address or range of addresses to access your instance\.
 
-       If your security group is in a VPC that's enabled for IPv6, the **Anywhere** option creates two rules—one for IPv4 traffic \(`0.0.0.0/0`\) and one for IPv6 traffic \(`::/0`\)\.
+       If your security group is in a VPC that's enabled for IPv6, the **Anywhere** option creates two rules—one for IPv4 traffic \(0\.0\.0\.0/0\) and one for IPv6 traffic \(::/0\)\.
      + **My IP**: automatically adds the public IPv4 address of your local computer\.
    + For **Description**, you can optionally specify a description for the rule\.
 
@@ -255,9 +255,9 @@ When you add a rule to a security group, the new rule is automatically applied t
    + If you select a custom ICMP protocol, choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port Range**\.
    + For **Destination**, choose one of the following:
      + **Custom**: in the provided field, you must specify an IP address in CIDR notation, a CIDR block, or another security group\.
-     + **Anywhere**: automatically adds the `0.0.0.0/0` IPv4 CIDR block\. This option enables outbound traffic to all IP addresses\.
+     + **Anywhere**: automatically adds the 0\.0\.0\.0/0 IPv4 CIDR block\. This option enables outbound traffic to all IP addresses\.
 
-       If your security group is in a VPC that's enabled for IPv6, the **Anywhere** option creates two rules—one for IPv4 traffic \(`0.0.0.0/0`\) and one for IPv6 traffic \(`::/0`\)\.
+       If your security group is in a VPC that's enabled for IPv6, the **Anywhere** option creates two rules—one for IPv4 traffic \(0\.0\.0\.0/0\) and one for IPv6 traffic \(::/0\)\.
      + **My IP**: automatically adds the IP address of your local computer\.
    + For **Description**, you can optionally specify a description for the rule\.
 

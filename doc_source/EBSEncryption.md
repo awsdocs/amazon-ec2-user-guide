@@ -228,7 +228,7 @@ Public snapshots of encrypted volumes are not supported, but you can share an en
 
 ### Encrypt unencrypted resources<a name="encrypt-unencrypted"></a>
 
-Although there is no direct way to encrypt an existing unencrypted volume or snapshot, you can encrypt them by creating either a volume or a snapshot\. If you enabled encryption by default, Amazon EBS encrypts the resulting new volume or snapshot using your default KMS key for EBS encryption\. Even if you have not enabled encryption by default, you can enable encryption when you create an individual volume or snapshot\. Whether you enable encryption by default or in individual creation operations, you can override the default KMS key for EBS encryption and select a symmetric customer managed key\. For more information, see [Create an Amazon EBS volume](ebs-creating-volume.md) and [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)\.
+You cannot directly encrypt existing unencrypted volumes or snapshots\. However, you can create encrypted volumes or snapshots from unencrypted volumes or snapshots\. If you enable encryption by default, Amazon EBS automatically encrypts new volumes and snapshots using your default KMS key for EBS encryption\. Otherwise, you can enable encryption when you create an individual volume or snapshot, using either the default KMS key for EBS encryption or a symmetric customer managed key\. For more information, see [Create an Amazon EBS volume](ebs-creating-volume.md) and [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)\.
 
 To encrypt the snapshot copy to a customer managed key, you must both enable encryption and specify the KMS key, as shown in [Copy an unencrypted snapshot \(encryption by default not enabled\)](#snapshot-account-off)\. 
 

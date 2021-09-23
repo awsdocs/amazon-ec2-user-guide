@@ -30,6 +30,8 @@
     + For a RHEL AMI, the user name is `ec2-user` or `root`\.
     + For a SUSE AMI, the user name is `ec2-user` or `root`\.
     + For an Ubuntu AMI, the user name is `ubuntu`\.
+    + For an Oracle AMI, the user name is `ec2-user`\.
+    + For a Bitnami AMI, the user name is `bitnami`\.
     + Otherwise, check with the AMI provider\.
 
 ## Enable inbound traffic to your instance<a name="connection-prereqs-enable-inbound-traffic"></a>

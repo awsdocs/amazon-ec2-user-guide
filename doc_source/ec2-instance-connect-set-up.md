@@ -5,7 +5,7 @@ To use EC2 Instance Connect to connect to an instance, you need to configure eve
 **Topics**
 + [Task 1: Configure network access to an instance](#ec2-instance-connect-setup-security-group)
 + [Task 2: \(Conditional\) Install EC2 Instance Connect on an instance](#ec2-instance-connect-install)
-+ [Task 3: \(Optional\) Install the EC2 Instance Connect CLI](#ec2-instance-connect-install-eic-CLI)
++ [Task 3: \(Optional\) Install the EC2 Instance Connect CLI on your computer](#ec2-instance-connect-install-eic-CLI)
 + [Task 4: Configure IAM permissions for EC2 Instance Connect](#ec2-instance-connect-configure-IAM-role)
 
 For more information about setting up EC2 Instance Connect, see [Securing your bastion hosts with Amazon EC2 Instance Connect](http://aws.amazon.com/blogs/infrastructure-and-automation/securing-your-bastion-hosts-with-amazon-ec2-instance-connect/)\.
@@ -34,7 +34,7 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
 
 You must configure the following network access so that your users can connect to your instance using EC2 Instance Connect:
 + If your users will access your instance over the internet, then your instance must have a public IP address and be in a public subnet\. For more information, see [Enable internet access](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access) in the *Amazon VPC User Guide*\.
-+ If your users will access your instance via the instance's private IP address, then you must establish private network connectivity to your VPC, such as by using AWS Direct Connect, AWS Site\-to\-Site VPN, or VPC peering, so that your users can reach the instance's private IP address\.
++ If your users will access your instance through the instance's private IP address, then you must establish private network connectivity to your VPC, such as by using AWS Direct Connect, AWS Site\-to\-Site VPN, or VPC peering, so that your users can reach the instance's private IP address\.
 + Ensure that the security group associated with your instance [allows inbound SSH traffic](authorizing-access-to-an-instance.md#add-rule-authorize-access) on port 22 from your IP address or from your network\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard allows incoming SSH traffic by default\. For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 + \(Amazon EC2 console browser\-based client\) Ensure that the security group associated with your instance allows inbound SSH traffic from the IP address range for this service\. To identify the address range, download the JSON file provided by AWS and filter for the subset for EC2 Instance Connect, using `EC2_INSTANCE_CONNECT` as the service value\. For more information about downloading the JSON file and filtering by service, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
 
@@ -170,7 +170,7 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
 
 For more information about the EC2 Instance Connect package, see [aws/aws\-ec2\-instance\-connect\-config ](https://github.com/aws/aws-ec2-instance-connect-config) on the GitHub website\.
 
-## Task 3: \(Optional\) Install the EC2 Instance Connect CLI<a name="ec2-instance-connect-install-eic-CLI"></a>
+## Task 3: \(Optional\) Install the EC2 Instance Connect CLI on your computer<a name="ec2-instance-connect-install-eic-CLI"></a>
 
 The EC2 Instance Connect CLI provides a simplified experience to connect to EC2 instances through a single command, `mssh instance_id`\. For more information, see [Connect using the EC2 Instance Connect CLI](ec2-instance-connect-methods.md#ec2-instance-connect-connecting-ec2-cli)\.
 

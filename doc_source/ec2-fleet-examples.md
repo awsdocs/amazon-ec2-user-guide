@@ -7,13 +7,12 @@ The following examples show launch configurations that you can use with the [cre
 + [Example 2: Launch On\-Demand Instances as the default purchasing option](#ec2-fleet-config2)
 + [Example 3: Launch On\-Demand Instances as the primary capacity](#ec2-fleet-config3)
 + [Example 4: Launch Spot Instances using the `lowest-price` allocation strategy](#ec2-fleet-config4)
-+ [Example 5: Launch On\-Demand Instances using Capacity Reservations and the `prioritized` allocation strategy](#ec2-fleet-config5)
-+ [Example 6: Launch On\-Demand Instances using Capacity Reservations and the `prioritized` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations](#ec2-fleet-config6)
-+ [Example 7: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy](#ec2-fleet-config7)
-+ [Example 8: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations](#ec2-fleet-config8)
-+ [Example 9: Configure Capacity Rebalancing to launch replacement Spot Instances](#ec2-fleet-config9)
-+ [Example 10: Launch Spot Instances in a capacity\-optimized fleet](#ec2-fleet-config10)
-+ [Example 11: Launch Spot Instances in a capacity\-optimized fleet with priorities](#ec2-fleet-config11)
++ [Example 5: Launch On\-Demand Instances using multiple Capacity Reservations](#ec2-fleet-config5)
++ [Example 6: Launch On\-Demand Instances using Capacity Reservations when the total target capacity exceeds the number of unused Capacity Reservations](#ec2-fleet-config6)
++ [Example 7: Launch On\-Demand Instances using targeted Capacity Reservations](#ec2-fleet-config7)
++ [Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances](#ec2-fleet-config9)
++ [Example 9: Launch Spot Instances in a capacity\-optimized fleet](#ec2-fleet-config10)
++ [Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities](#ec2-fleet-config11)
 
 ## Example 1: Launch Spot Instances as the default purchasing option<a name="ec2-fleet-config1"></a>
 
@@ -121,244 +120,20 @@ If the allocation strategy for Spot Instances is not specified, the default allo
 }
 ```
 
-## Example 5: Launch On\-Demand Instances using Capacity Reservations and the `prioritized` allocation strategy<a name="ec2-fleet-config5"></a>
+## Example 5: Launch On\-Demand Instances using multiple Capacity Reservations<a name="ec2-fleet-config5"></a>
 
-You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. And if multiple instance pools have unused Capacity Reservations, the chosen On\-Demand allocation strategy is applied\. In this example, the On\-Demand allocation strategy is `prioritized`\.
+You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. This example demonstrates how the fleet selects the Capacity Reservations to use when there are more Capacity Reservations than are needed to fulfil the target capacity\.
 
-In this example, there are 15 available unused Capacity Reservations\. This is more than the fleet's target On\-Demand capacity of 12 On\-Demand Instances\.
+In this example, the fleet configuration is as follows:
++ Target capacity: 12 On\-Demand Instances
++ Total unused Capacity Reservations: 15 \(more than the fleet's target capacity of 12 On\-Demand Instances\)
++ Number of Capacity Reservation pools: 3 \(`m5.large`, `m4.xlarge`, and `m4.2xlarge`\)
++ Number of Capacity Reservations per pool: 5
++ On\-Demand allocation strategy: `lowest-price` \(When there are multiple unused Capacity Reservations in multiple instance pools, the fleet determines the pools in which to launch the On\-Demand Instances based on the On\-Demand allocation strategy\.\)
 
-The account has the following 15 unused Capacity Reservations in 3 different pools\. The number of Capacity Reservations in each pool is indicated by `AvailableInstanceCount`\.
+  Note that you can also use the `prioritized` allocation strategy instead of the `lowest-price` allocation strategy\.
 
-```
-{
-    "CapacityReservationId": "cr-111", 
-    "InstanceType": "c4.large", 
-    "InstancePlatform": "Linux/UNIX", 
-    "AvailabilityZone": "us-east-1a", 
-    "AvailableInstanceCount": 5, 
-    "InstanceMatchCriteria": "open", 
-    "State": "active"
-}
-
-{
-    "CapacityReservationId": "cr-222", 
-    "InstanceType": "c3.large", 
-    "InstancePlatform": "Linux/UNIX", 
-    "AvailabilityZone": "us-east-1a", 
-    "AvailableInstanceCount": 5, 
-    "InstanceMatchCriteria": "open", 
-    "State": "active"
-}
-
-{
-    "CapacityReservationId": "cr-333", 
-    "InstanceType": "c5.large", 
-    "InstancePlatform": "Linux/UNIX", 
-    "AvailabilityZone": "us-east-1a", 
-    "AvailableInstanceCount":5, 
-    "InstanceMatchCriteria": "open", 
-    "State": "active"
-}
-```
-
-The following fleet configuration shows only the pertinent configurations for this example\. The On\-Demand allocation strategy is `prioritized`, and the usage strategy for Capacity Reservations is `use-capacity-reservations-first`\. The total target capacity is 12, and the default target capacity type is `on-demand`\.
-
-**Note**  
-The fleet type must be `instant`\. `use-capacity-reservations-first` is not supported for other fleet types\.
-
-```
-{
-    "LaunchTemplateConfigs": [
-        {
-            "LaunchTemplateSpecification": {
-                "LaunchTemplateId": "lt-1234567890abcdefg",
-                "Version": "1"
-            }
-            "Overrides": [
-                {
-                  "InstanceType": "c4.large",
-                  "AvailabilityZone": "us-east-1a",
-                  "WeightedCapacity": 1,
-                  "Priority": 1.0
-                },
-                {
-                  "InstanceType": "c3.large",
-                  "AvailabilityZone": "us-east-1a",
-                  "WeightedCapacity": 1,
-                  "Priority": 2.0
-                },
-                {
-                  "InstanceType": "c5.large",
-                  "AvailabilityZone": "us-east-1a",
-                  "WeightedCapacity": 1,
-                  "Priority": 3.0
-                }
-              ]
-        }
-    ],
-    "TargetCapacitySpecification": {
-        "TotalTargetCapacity": 12,
-        "DefaultTargetCapacityType": "on-demand"
-    },
-    "OnDemandOptions": {
-        "AllocationStrategy": "prioritized"
-        "CapacityReservationOptions": {
-            "UsageStrategy": "use-capacity-reservations-first"
-        }
-    },
-    "Type": "instant", 
-}
-```
-
-After you create the `instant` fleet using the preceding configuration, the following 12 instances are launched to meet the target capacity:
-+ 5 c4\.large On\-Demand Instances in us\-east\-1a – c4\.large in us\-east\-1a is prioritized first, and there are 5 available unused c4\.large Capacity Reservations
-+ 5 c3\.large On\-Demand Instances in us\-east\-1a – c3\.large in us\-east\-1a is prioritized second, and there are 5 available unused c3\.large Capacity Reservations
-+ 2 c5\.large On\-Demand Instances in us\-east\-1a – c5\.large in us\-east\-1a is prioritized third, and there are 5 available unused c5\.large Capacity Reservations of which only 2 are needed to meet the target capacity
-
-After the fleet is launched, you can run [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) to see how many unused Capacity Reservations are remaining\. In this example, you should see the following response, which shows that all of the c4\.large and c3\.large Capacity Reservations were used, with 3 c5\.large Capacity Reservations remaining unused\.
-
-```
-{
-    "CapacityReservationId": "cr-111",
-    "InstanceType": "c4.large",  
-    "AvailableInstanceCount": 0
-}
-
-{
-    "CapacityReservationId": "cr-222",
-    "InstanceType": "c3.large", 
-    "AvailableInstanceCount": 0
-}
-
-{
-    "CapacityReservationId": "cr-333",
-    "InstanceType": "c5.large", 
-    "AvailableInstanceCount": 3
-}
-```
-
-## Example 6: Launch On\-Demand Instances using Capacity Reservations and the `prioritized` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations<a name="ec2-fleet-config6"></a>
-
-You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. And if the number of unused Capacity Reservations is less than the On\-Demand target capacity, the remaining On\-Demand target capacity is launched according to the chosen On\-Demand allocation strategy\. In this example, the On\-Demand allocation strategy is `prioritized`\.
-
-In this example, there are 15 available unused Capacity Reservations\. This is less than the fleet's On\-Demand target capacity of 16 On\-Demand Instances\.
-
-The account has the following 15 unused Capacity Reservations in 3 different pools\. The number of Capacity Reservations in each pool is indicated by `AvailableInstanceCount`\.
-
-```
-{
-    "CapacityReservationId": "cr-111", 
-    "InstanceType": "c4.large", 
-    "InstancePlatform": "Linux/UNIX", 
-    "AvailabilityZone": "us-east-1a", 
-    "AvailableInstanceCount": 5, 
-    "InstanceMatchCriteria": "open", 
-    "State": "active"
-}
-
-{
-    "CapacityReservationId": "cr-111", 
-    "InstanceType": "c3.large", 
-    "InstancePlatform": "Linux/UNIX", 
-    "AvailabilityZone": "us-east-1a", 
-    "AvailableInstanceCount": 5, 
-    "InstanceMatchCriteria": "open", 
-    "State": "active"
-}
-
-{
-    "CapacityReservationId": "cr-111", 
-    "InstanceType": "c5.large", 
-    "InstancePlatform": "Linux/UNIX", 
-    "AvailabilityZone": "us-east-1a", 
-    "AvailableInstanceCount":5, 
-    "InstanceMatchCriteria": "open", 
-    "State": "active"
-}
-```
-
-The following fleet configuration shows only the pertinent configurations for this example\. The On\-Demand allocation strategy is `prioritized`, and the usage strategy for Capacity Reservations is `use-capacity-reservations-first`\. The total target capacity is 16, and the default target capacity type is `on-demand`\.
-
-**Note**  
-The fleet type must be `instant`\. `use-capacity-reservations-first` is not supported for other fleet types\.
-
-```
-{
-    "LaunchTemplateConfigs": [
-        {
-            "LaunchTemplateSpecification": {
-                "LaunchTemplateId": "lt-0e8c754449b27161c",
-                "Version": "1"
-            }
-            "Overrides": [
-                {
-                  "InstanceType": "c4.large",
-                  "AvailabilityZone": "us-east-1a",
-                  "WeightedCapacity": 1,
-                  "Priority": 1.0
-                },
-                {
-                  "InstanceType": "c3.large",
-                  "AvailabilityZone": "us-east-1a",
-                  "WeightedCapacity": 1,
-                  "Priority": 2.0
-                },
-                {
-                  "InstanceType": "c5.large",
-                  "AvailabilityZone": "us-east-1a",
-                  "WeightedCapacity": 1,
-                  "Priority": 3.0
-                }
-              ]
-
-        }
-    ],
-    "TargetCapacitySpecification": {
-        "TotalTargetCapacity": 16,
-        "DefaultTargetCapacityType": "on-demand"
-    },
-    "OnDemandOptions": {
-        "AllocationStrategy": "prioritized"
-        "CapacityReservationOptions": {
-            "UsageStrategy": "use-capacity-reservations-first"
-        }
-    },
-    "Type": "instant", 
-}
-```
-
-After you create the `instant` fleet using the preceding configuration, the following 16 instances are launched to meet the target capacity:
-+ 6 c4\.large On\-Demand Instances in us\-east\-1a – c4\.large in us\-east\-1a is prioritized first, and there are 5 available unused c4\.large Capacity Reservations\. The Capacity Reservations are used first to launch 5 On\-Demand Instances plus an additional On\-Demand Instance is launched according to the On\-Demand allocation strategy, which is `prioritized` in this example\.
-+ 5 c3\.large On\-Demand Instances in us\-east\-1a – c3\.large in us\-east\-1a is prioritized second, and there are 5 available unused c3\.large Capacity Reservations
-+ 5 c5\.large On\-Demand Instances in us\-east\-1a – c5\.large in us\-east\-1a is prioritized third, and there are 5 available unused c5\.large Capacity Reservations
-
-After the fleet is launched, you can run [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) to see how many unused Capacity Reservations are remaining\. In this example, you should see the following response, which shows that all of the Capacity Reservations in all of the pools were used\.
-
-```
-{
-    "CapacityReservationId": "cr-111",
-    "InstanceType": "c4.large",  
-    "AvailableInstanceCount": 0
-}
-
-{
-    "CapacityReservationId": "cr-222",
-    "InstanceType": "c3.large", 
-    "AvailableInstanceCount": 0
-}
-
-{
-    "CapacityReservationId": "cr-333",
-    "InstanceType": "c5.large", 
-    "AvailableInstanceCount": 0
-}
-```
-
-## Example 7: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy<a name="ec2-fleet-config7"></a>
-
-You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. And if multiple instance pools have unused Capacity Reservations, the chosen On\-Demand allocation strategy is applied\. In this example, the On\-Demand allocation strategy is `lowest-price`\.
-
-In this example, there are 15 available unused Capacity Reservations\. This is more than the fleet's target On\-Demand capacity of 12 On\-Demand Instances\.
+**Capacity Reservations**
 
 The account has the following 15 unused Capacity Reservations in 3 different pools\. The number of Capacity Reservations in each pool is indicated by `AvailableInstanceCount`\.
 
@@ -394,22 +169,24 @@ The account has the following 15 unused Capacity Reservations in 3 different poo
 }
 ```
 
-The following fleet configuration shows only the pertinent configurations for this example\. The On\-Demand allocation strategy is `lowest-price`, and the usage strategy for Capacity Reservations is `use-capacity-reservations-first`\. The total target capacity is 12, and the default target capacity type is `on-demand`\.
+**Fleet configuration**
+
+The following fleet configuration shows only the pertinent configurations for this example\. The total target capacity is 12, and the default target capacity type is `on-demand`\. The On\-Demand allocation strategy is `lowest-price`\. The usage strategy for Capacity Reservations is `use-capacity-reservations-first`\. 
 
 In this example, the On\-Demand Instance price is:
-+ m5\.large – $0\.096 per hour
-+ m4\.xlarge – $0\.20 per hour
-+ m4\.2xlarge – $0\.40 per hour
++ `m5.large` – $0\.096 per hour
++ `m4.xlarge` – $0\.20 per hour
++ `m4.2xlarge` – $0\.40 per hour
 
 **Note**  
-The fleet type must be `instant`\. `use-capacity-reservations-first` is not supported for other fleet types\.
+The fleet type must be of type `instant`\. Other fleet types do not support `use-capacity-reservations-first`\.
 
 ```
 {
     "LaunchTemplateConfigs": [
         {
             "LaunchTemplateSpecification": {
-                "LaunchTemplateId": "lt-0e8c754449b27161c",
+                "LaunchTemplateId": "lt-abc1234567example",
                 "Version": "1"
             }
             "Overrides": [
@@ -447,11 +224,11 @@ The fleet type must be `instant`\. `use-capacity-reservations-first` is not supp
 ```
 
 After you create the `instant` fleet using the preceding configuration, the following 12 instances are launched to meet the target capacity:
-+ 5 m5\.large On\-Demand Instances in us\-east\-1a – m5\.large in us\-east\-1a is the lowest price, and there are 5 available unused m5\.large Capacity Reservations
-+ 5 m4\.xlarge On\-Demand Instances in us\-east\-1a – m4\.xlarge in us\-east\-1a is the next lowest price, and there are 5 available unused m4\.xlarge Capacity Reservations
-+ 2 m4\.2xlarge On\-Demand Instances in us\-east\-1a – m4\.2xlarge in us\-east\-1a is the third lowest price, and there are 5 available unused m4\.2xlarge Capacity Reservations of which only 2 are needed to meet the target capacity
++ 5 `m5.large` On\-Demand Instances in `us-east-1a` – `m5.large` in `us-east-1a` is the lowest price, and there are 5 available unused `m5.large` Capacity Reservations
++ 5 `m4.xlarge` On\-Demand Instances in us\-east\-1a – `m4.xlarge` in `us-east-1a` is the next lowest price, and there are 5 available unused `m4.xlarge` Capacity Reservations
++ 2 `m4.2xlarge` On\-Demand Instances in us\-east\-1a – `m4.2xlarge` in `us-east-1a` is the third lowest price, and there are 5 available unused `m4.2xlarge` Capacity Reservations of which only 2 are needed to meet the target capacity
 
-After the fleet is launched, you can run [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) to see how many unused Capacity Reservations are remaining\. In this example, you should see the following response, which shows that all of the m5\.large and m4\.xlarge Capacity Reservations were used, with 3 m4\.2xlarge Capacity Reservations remaining unused\.
+After the fleet is launched, you can run [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) to see how many unused Capacity Reservations are remaining\. In this example, you should see the following response, which shows that all of the `m5.large` and `m4.xlarge` Capacity Reservations were used, with 3 `m4.2xlarge` Capacity Reservations remaining unused\.
 
 ```
 {
@@ -473,11 +250,20 @@ After the fleet is launched, you can run [describe\-capacity\-reservations](http
 }
 ```
 
-## Example 8: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations<a name="ec2-fleet-config8"></a>
+## Example 6: Launch On\-Demand Instances using Capacity Reservations when the total target capacity exceeds the number of unused Capacity Reservations<a name="ec2-fleet-config6"></a>
 
-You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. And if the number of unused Capacity Reservations is less than the On\-Demand target capacity, the remaining On\-Demand target capacity is launched according to the chosen On\-Demand allocation strategy\. In this example, the On\-Demand allocation strategy is `lowest-price`\.
+You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. This example demonstrates how the fleet selects the instance pools in which to launch On\-Demand Instances when the total target capacity exceeds the number of available unused Capacity Reservations\.
 
-In this example, there are 15 available unused Capacity Reservations\. This is less than the fleet's On\-Demand target capacity of 16 On\-Demand Instances\.
+In this example, the fleet configuration is as follows:
++ Target capacity: 16 On\-Demand Instances
++ Total unused Capacity Reservations: 15 \(less than the fleet's target capacity of 16 On\-Demand Instances\)
++ Number of Capacity Reservation pools: 3 \(`m5.large`, `m4.xlarge`, and `m4.2xlarge`\)
++ Number of Capacity Reservations per pool: 5
++ On\-Demand allocation strategy: `lowest-price` \(When the number of unused Capacity Reservations is less than the On\-Demand target capacity, the fleet determines the pools in which to launch the remaining On\-Demand capacity based on the On\-Demand allocation strategy\.\)
+
+  Note that you can also use the `prioritized` allocation strategy instead of the `lowest-price` allocation strategy\.
+
+**Capacity Reservations**
 
 The account has the following 15 unused Capacity Reservations in 3 different pools\. The number of Capacity Reservations in each pool is indicated by `AvailableInstanceCount`\.
 
@@ -513,7 +299,11 @@ The account has the following 15 unused Capacity Reservations in 3 different poo
 }
 ```
 
-The following fleet configuration shows only the pertinent configurations for this example\. The On\-Demand allocation strategy is `lowest-price`, and the usage strategy for Capacity Reservations is `use-capacity-reservations-first`\. The total target capacity is 16, and the default target capacity type is `on-demand`\.
+**Fleet configuration**
+
+
+
+The following fleet configuration shows only the pertinent configurations for this example\. The total target capacity is 16, and the default target capacity type is `on-demand`\. The On\-Demand allocation strategy is `lowest-price`\. The usage strategy for Capacity Reservations is `use-capacity-reservations-first`\. 
 
 In this example, the On\-Demand Instance price is:
 + m5\.large – $0\.096 per hour
@@ -521,7 +311,7 @@ In this example, the On\-Demand Instance price is:
 + m4\.2xlarge – $0\.40 per hour
 
 **Note**  
-The fleet type must be `instant`\. `use-capacity-reservations-first` is not supported for other fleet types\.
+The fleet type must be `instant`\. Other fleet types do not support `use-capacity-reservations-first`\.
 
 ```
 {
@@ -566,9 +356,9 @@ The fleet type must be `instant`\. `use-capacity-reservations-first` is not supp
 ```
 
 After you create the `instant` fleet using the preceding configuration, the following 16 instances are launched to meet the target capacity:
-+ 6 m5\.large On\-Demand Instances in us\-east\-1a – m5\.large in us\-east\-1a is the lowest price, and there are 5 available unused m5\.large Capacity Reservations\. The Capacity Reservations are used first to launch 5 On\-Demand Instances plus an additional On\-Demand Instance is launched according to the On\-Demand allocation strategy, which is `lowest-price` in this example\.
-+ 5 m4\.xlarge On\-Demand Instances in us\-east\-1a – m4\.xlarge in us\-east\-1a is the next lowest price, and there are 5 available unused m4\.xlarge Capacity Reservations
-+ 5 m4\.2xlarge On\-Demand Instances in us\-east\-1a – m4\.2xlarge in us\-east\-1a is the third lowest price, and there are 5 available unused m4\.2xlarge Capacity Reservations
++ 6 `m5.large` On\-Demand Instances in `us-east-1a` – `m5.large` in `us-east-1a` is the lowest price, and there are 5 available unused `m5.large` Capacity Reservations\. The Capacity Reservations are used first to launch 5 On\-Demand Instances\. After the remaining `m4.xlarge` and `m4.2xlarge` Capacity Reservations are used, to meet the target capacity an additional On\-Demand Instance is launched according to the On\-Demand allocation strategy, which is `lowest-price` in this example\.
++ 5 `m4.xlarge` On\-Demand Instances in `us-east-1a` – `m4.xlarge` in `us-east-1a` is the next lowest price, and there are 5 available unused `m4.xlarge` Capacity Reservations
++ 5 `m4.2xlarge` On\-Demand Instances in `us-east-1a` – `m4.2xlarge` in `us-east-1a` is the third lowest price, and there are 5 available unused `m4.2xlarge` Capacity Reservations
 
 After the fleet is launched, you can run [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) to see how many unused Capacity Reservations are remaining\. In this example, you should see the following response, which shows that all of the Capacity Reservations in all of the pools were used\.
 
@@ -592,7 +382,113 @@ After the fleet is launched, you can run [describe\-capacity\-reservations](http
 }
 ```
 
-## Example 9: Configure Capacity Rebalancing to launch replacement Spot Instances<a name="ec2-fleet-config9"></a>
+## Example 7: Launch On\-Demand Instances using targeted Capacity Reservations<a name="ec2-fleet-config7"></a>
+
+You can configure a fleet to use `targeted` On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. This example demonstrates how to launch On\-Demand Instances into `targeted` Capacity Reservations, where the attributes of the Capacity Reservations are the same except for their Availability Zones \(`us-east-1a` and `us-east-1b`\)\. It also demonstrates how the fleet selects the instance pools in which to launch On\-Demand Instances when the total target capacity exceeds the number of available unused Capacity Reservations\.
+
+In this example, the fleet configuration is as follows:
++ Target capacity: 10 On\-Demand Instances
++ Total unused `targeted` Capacity Reservations: 6 \(less than the fleet's On\-Demand target capacity of 10 On\-Demand Instances\)
++ Number of Capacity Reservation pools: 2 \(`us-east-1a` and `us-east-1b`\)
++ Number of Capacity Reservations per pool: 3
++ On\-Demand allocation strategy: `lowest-price` \(When the number of unused Capacity Reservations is less than the On\-Demand target capacity, the fleet determines the pools in which to launch the remaining On\-Demand capacity based on the On\-Demand allocation strategy\.\)
+
+  Note that you can also use the `prioritized` allocation strategy instead of the `lowest-price` allocation strategy\.
+
+For a walkthrough of the procedures that you must perform to accomplish this example, see [Tutorial: Launch On\-Demand Instances using targeted Capacity Reservations](ec2-fleet-launch-on-demand-instances-using-targeted-capacity-reservations-walkthrough.md)\.
+
+**Capacity Reservations**
+
+The account has the following 6 unused Capacity Reservations in 2 different pools\. In this example, the pools differ by their Availability Zones\. The number of Capacity Reservations in each pool is indicated by `AvailableInstanceCount`\.
+
+```
+{
+    "CapacityReservationId": "cr-111", 
+    "InstanceType": "c5.xlarge", 
+    "InstancePlatform": "Linux/UNIX", 
+    "AvailabilityZone": "us-east-1a", 
+    "AvailableInstanceCount": 3, 
+    "InstanceMatchCriteria": "open", 
+    "State": "active"
+}
+
+{
+    "CapacityReservationId": "cr-222", 
+    "InstanceType": "c5.xlarge", 
+    "InstancePlatform": "Linux/UNIX", 
+    "AvailabilityZone": "us-east-1b", 
+    "AvailableInstanceCount": 3, 
+    "InstanceMatchCriteria": "open", 
+    "State": "active"
+}
+```
+
+**Fleet configuration**
+
+The following fleet configuration shows only the pertinent configurations for this example\. The total target capacity is 10, and the default target capacity type is `on-demand`\. The On\-Demand allocation strategy is `lowest-price`\. The usage strategy for Capacity Reservations is `use-capacity-reservations-first`\. 
+
+In this example, the On\-Demand Instance price for `c5.xlarge` in `us-east-1` is $0\.17 per hour\.
+
+**Note**  
+The fleet type must be `instant`\. Other fleet types do not support `use-capacity-reservations-first`\.
+
+```
+{
+    "LaunchTemplateConfigs": [
+        {
+            "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "my-launch-template",
+                "Version": "1"
+            },
+            "Overrides": [
+               {
+                   "InstanceType": "c5.xlarge",
+                   "AvailabilityZone": "us-east-1a"
+               },
+               {
+                    "InstanceType": "c5.xlarge",
+                    "AvailabilityZone": "us-east-1b"
+               }
+            ]
+        }
+    ],
+    "TargetCapacitySpecification": {
+        "TotalTargetCapacity": 10,
+        "DefaultTargetCapacityType": "on-demand"
+    },
+    "OnDemandOptions": {
+        "AllocationStrategy": "lowest-price",
+        "CapacityReservationOptions": {
+             "UsageStrategy": "use-capacity-reservations-first"
+         }
+    },
+    "Type": "instant"
+}
+```
+
+After you create the `instant` fleet using the preceding configuration, the following 10 instances are launched to meet the target capacity:
++ The Capacity Reservations are used first to launch 6 On\-Demand Instances as follows:
+  + 3 On\-Demand Instances are launched into the 3 `c5.xlarge` `targeted` Capacity Reservations in `us-east-1a`
+  + 3 On\-Demand Instances are launched into the 3 `c5.xlarge` `targeted` Capacity Reservations in `us-east-1b`
++ To meet the target capacity, 4 additional On\-Demand Instances are launched into regular On\-Demand capacity according to the On\-Demand allocation strategy, which is `lowest-price` in this example\. However, because the pools are the same price \(because price is per Region and not per Availability Zone\), the fleet launches the remaining 4 On\-Demand Instances into either of the pools\.
+
+After the fleet is launched, you can run [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) to see how many unused Capacity Reservations are remaining\. In this example, you should see the following response, which shows that all of the Capacity Reservations in all of the pools were used\.
+
+```
+{
+    "CapacityReservationId": "cr-111",
+    "InstanceType": "c5.xlarge",  
+    "AvailableInstanceCount": 0
+}
+
+{
+    "CapacityReservationId": "cr-222",
+    "InstanceType": "c5.xlarge", 
+    "AvailableInstanceCount": 0
+}
+```
+
+## Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances<a name="ec2-fleet-config9"></a>
 
 The following example configures the EC2 Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation for a Spot Instance in the fleet\. To configure the automatic replacement of Spot Instances, for `ReplacementStrategy`, specify `launch`\.
 
@@ -650,7 +546,7 @@ The effectiveness of the Capacity Rebalancing strategy depends on the number of 
 }
 ```
 
-## Example 10: Launch Spot Instances in a capacity\-optimized fleet<a name="ec2-fleet-config10"></a>
+## Example 9: Launch Spot Instances in a capacity\-optimized fleet<a name="ec2-fleet-config10"></a>
 
 The following example demonstrates how to configure an EC2 Fleet with a Spot allocation strategy that optimizes for capacity\. To optimize for capacity, you must set `AllocationStrategy` to `capacity-optimized`\.
 
@@ -695,7 +591,7 @@ In the following example, the three launch specifications specify three Spot cap
 }
 ```
 
-## Example 11: Launch Spot Instances in a capacity\-optimized fleet with priorities<a name="ec2-fleet-config11"></a>
+## Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities<a name="ec2-fleet-config11"></a>
 
 The following example demonstrates how to configure an EC2 Fleet with a Spot allocation strategy that optimizes for capacity while using priority on a best\-effort basis\.
 

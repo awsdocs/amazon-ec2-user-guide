@@ -10,7 +10,7 @@ Your AWS account automatically has a default security group for the default VPC 
 
 Your AWS account automatically has a default security group for the default VPC in each Region\. If you don't specify a security group when you launch an instance, the instance is automatically associated with the default security group for the VPC\.
 
-A default security group is named `default`, and it has an ID assigned by AWS\. The following table describes the default rules for a default security group\.
+A default security group is named "default", and it has an ID assigned by AWS\. The following table describes the default rules for a default security group\.
 
 
 | 
@@ -27,7 +27,7 @@ A default security group is named `default`, and it has an ID assigned by AWS\. 
 
 You can add or remove inbound and outbound rules for any default security group\.
 
-You can't delete a default security group\. If you try to delete a default security group, you see the following error: `Client.CannotDelete: the specified group: "sg-51530134" name: "default" cannot be deleted by a user`\. 
+You can't delete a default security group\. If you try to delete a default security group, you see the following error: `Client.CannotDelete: the specified group: "sg-51530134" name: "default" cannot be deleted by a user`\.
 
 ## Custom security groups<a name="creating-your-own-security-groups"></a>
 
@@ -37,7 +37,7 @@ When you create a security group, you must provide it with a name and a descript
 
 a\-z, A\-Z, 0\-9, spaces, and \.\_\-:/\(\)\#,@\[\]\+=&;\{\}\!$\*
 
-A security group name cannot start with `sg-`\. A security group name must be unique for the VPC\.
+A security group name cannot start with the following: sg\-\. A security group name must be unique for the VPC\.
 
 The following are the default rules for a security group that you create:
 + Allows no inbound traffic

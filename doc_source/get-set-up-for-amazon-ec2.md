@@ -82,9 +82,9 @@ You can create a custom security group using one of the following methods\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select a Region for the security group\. Security groups are specific to a Region, so you should select the same Region in which you created your key pair\.
+1. From the top navigation bar, select a Region for the security group\. Security groups are specific to a Region, so you should select the same Region in which you created your key pair\.
 
-1. In the navigation pane, choose **Security Groups**\.
+1. In the left navigation pane, choose **Security Groups**\.
 
 1. Choose **Create security group**\.
 
@@ -117,7 +117,7 @@ For security reasons, do not choose **Anywhere** for **Source** with a rule for 
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Security Groups**\.
+1. In the left navigation pane, choose **Security Groups**\.
 
 1. Choose **Create Security Group**\.
 
@@ -125,16 +125,16 @@ For security reasons, do not choose **Anywhere** for **Source** with a rule for 
 
 1. In the **VPC** list, select your default VPC for the Region\.
 
-1. On the **Inbound** tab, create the following rules \(choose **Add rule** for each new rule\):
+1. On the **Inbound rules** tab, create the following rules \(choose **Add rule** for each new rule\):
    + Choose **HTTP** from the **Type** list, and make sure that **Source** is set to **Anywhere** \(`0.0.0.0/0`\)\.
    + Choose **HTTPS** from the **Type** list, and make sure that **Source** is set to **Anywhere** \(`0.0.0.0/0`\)\.
    + Choose **SSH** from the **Type** list\. In the **Source** box, choose **My IP** to automatically populate the field with the public IPv4 address of your local computer\. Alternatively, choose **Custom** and specify the public IPv4 address of your computer or network in CIDR notation\. To specify an individual IP address in CIDR notation, add the routing suffix `/32`, for example, `203.0.113.25/32`\. If your company allocates addresses from a range, specify the entire range, such as `203.0.113.0/24`\.
 **Warning**  
 For security reasons, do not allow SSH access from all IP addresses to your instance\. This is acceptable for a short time in a test environment, but it is unsafe for production environments\.
 
-1. On the **Outbound** tab, keep the default rule, which allows all outbound traffic\.
+1. On the **Outbound rules** tab, keep the default rule, which allows all outbound traffic\.
 
-1. Choose **Create**\.
+1. Choose **Create security group**\.
 
 ------
 #### [ Command line ]

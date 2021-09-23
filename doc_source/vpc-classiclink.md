@@ -211,7 +211,7 @@ You can view all of your ClassicLink\-enabled VPCs in the Amazon VPC console, an
 You can enable ClassicLink DNS support for your VPC so that DNS hostnames that are addressed between linked EC2\-Classic instances and instances in the VPC resolve to private IP addresses and not public IP addresses\. For this feature to work, your VPC must be enabled for DNS hostnames and DNS resolution\.
 
 **Note**  
-If you enable ClassicLink DNS support for your VPC, your linked EC2\-Classic instance can access any private hosted zone associated with the VPC\. For more information, see [Working with Private Hosted Zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html) in the *Amazon Route 53 Developer Guide*\. 
+If you enable ClassicLink DNS support for your VPC, your linked EC2\-Classic instance can access any private hosted zone associated with the VPC\. For more information, see [Working with Private Hosted Zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html) in the *Amazon Route 53 Developer Guide*\. 
 
 **To enable ClassicLink DNS support**
 

@@ -32,6 +32,8 @@ You can connect to your instance using the user name for your user account or th
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
   + For an Ubuntu AMI, the user name is `ubuntu`\.
+  + For an Oracle AMI, the user name is `ec2-user`\.
+  + For a Bitnami AMI, the user name is `bitnami`\.
   + Otherwise, check with the AMI provider\.
 
 **Verify that your security group rules allow traffic**  
@@ -246,6 +248,8 @@ In PuTTYgen, load your private key file and select **Save Private Key** rather t
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
   + For an Ubuntu AMI, the user name is `ubuntu`\.
+  + For an Oracle AMI, the user name is `ec2-user`\.
+  + For a Bitnami AMI, the user name is `bitnami`\.
   + Otherwise, check with the AMI provider\.
 + Verify that you have an inbound security group rule to allow inbound traffic to the appropriate port\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\. 
 
@@ -261,6 +265,8 @@ The appropriate user names are as follows:
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.
 + For a SUSE AMI, the user name is `ec2-user` or `root`\.
 + For an Ubuntu AMI, the user name is `ubuntu`\.
++ For an Oracle AMI, the user name is `ec2-user`\.
++ For a Bitnami AMI, the user name is `bitnami`\.
 + Otherwise, check with the AMI provider\.
 
 For example, to use an SSH client to connect to an Amazon Linux instance, use the following command:
@@ -418,6 +424,8 @@ The appropriate user names are as follows:
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.
 + For a SUSE AMI, the user name is `ec2-user` or `root`\.
 + For an Ubuntu AMI, the user name is `ubuntu`\.
++ For an Oracle AMI, the user name is `ec2-user`\.
++ For a Bitnami AMI, the user name is `bitnami`\.
 + Otherwise, check with the AMI provider\.
 
 You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connect to your Linux instance from Windows using PuTTY](putty.md)\.

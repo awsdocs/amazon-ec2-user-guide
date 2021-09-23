@@ -10,13 +10,24 @@ For example, you have configured three launch template overrides, each with a di
 
 ## Use Capacity Reservations for On\-Demand Instances<a name="ec2-fleet-on-demand-capacity-reservations"></a>
 
-You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. You can use this setting in conjunction with the allocation strategy for On\-Demand Instances \(`lowest-price` or `prioritized`\)\.
+With On\-Demand Capacity Reservations, you can reserve compute capacity for your On\-Demand Instances in a specified Availability Zone for any duration\. You can configure an EC2 Fleet to use the Capacity Reservations first when launching On\-Demand Instances\.
 
-When unused Capacity Reservations are used to fulfil On\-Demand capacity:
-+ The fleet uses unused Capacity Reservations to fulfill On\-Demand capacity up to the target On\-Demand capacity\.
-+ If multiple instance pools have unused Capacity Reservations, the On\-Demand allocation strategy \(`lowest-price` or `prioritized`\) is applied\.
-+ If the number of unused Capacity Reservations is less than the On\-Demand target capacity, the remaining On\-Demand target capacity is launched according to the On\-Demand allocation strategy \(`lowest-price` or `prioritized`\)\.
+Capacity Reservations are configured as either `open` or `targeted`\. EC2 Fleet can launch On\-Demand Instances into either `open` or `targeted` Capacity Reservations, as follows:
++ If a Capacity Reservation is `open`, On\-Demand Instances that have matching attributes automatically run in the reserved capacity\.
++ If a Capacity Reservation is `targeted`, On\-Demand Instances must specifically target it to run in the reserved capacity\. This is useful for using up specific Capacity Reservations or for controlling when to use specific Capacity Reservations\. 
 
-You can only use unused On\-Demand Capacity Reservations for fleets of type `instant`\.
+If you use `targeted` Capacity Reservations in your EC2 Fleet, there must be enough Capacity Reservations to fulfil the target On\-Demand capacity, otherwise the launch fails\. To avoid a launch fail, rather add the `targeted` Capacity Reservations to a resource group, and then target the resource group\. The resource group doesn't need to have enough Capacity Reservations; if it runs out of Capacity Reservations before the target On\-Demand capacity is fulfilled, the fleet can launch the remaining target capacity into regular On\-Demand capacity\.
 
-For examples of how to configure a fleet to use Capacity Reservations to fulfil On\-Demand capacity, see [EC2 Fleet example configurations](ec2-fleet-examples.md)\. For more information, see [On\-Demand Capacity Reservations](ec2-capacity-reservations.md) and the [On\-Demand Capacity Reservation FAQs](http://aws.amazon.com/ec2/faqs/#On-Demand_Capacity_Reservation)\.
+**To use Capacity Reservations with EC2 Fleet**
+
+1. Configure the fleet as type `instant`\. You can't use Capacity Reservations for fleets of other types\.
+
+1. Configure the usage strategy for Capacity Reservations as `use-capacity-reservations-first`\.
+
+1. In the launch template, for **Capacity reservation**, choose either **Open** or **Target by group**\. If you choose **Target by group**, specify the Capacity Reservations resource group ID\.
+
+When the fleet attempts to fulfil the On\-Demand capacity, if it finds that multiple instance pools have unused matching Capacity Reservations, it determines the pools in which to launch the On\-Demand Instances based on the On\-Demand allocation strategy \(`lowest-price` or `prioritized`\)\.
+
+For examples of how to configure a fleet to use Capacity Reservations to fulfil On\-Demand capacity, see [EC2 Fleet example configurations](ec2-fleet-examples.md), specifically Examples 5 through 7\.
+
+For information about configuring Capacity Reservations, see [On\-Demand Capacity Reservations](ec2-capacity-reservations.md) and the [On\-Demand Capacity Reservation FAQs](http://aws.amazon.com/ec2/faqs/#On-Demand_Capacity_Reservation)\.

@@ -61,8 +61,8 @@ To connect to your instance, your security group must have inbound rules that al
 
 | Protocol type | Protocol number | Port | Source IP | 
 | --- | --- | --- | --- | 
-| TCP | 6 | 22 \(SSH\) | The public IPv4 address of your computer, or a range of IP addresses \(in CIDR block notation\) in your local network\. If your VPC is enabled for IPv6 and your instance has an IPv6 address, you can enter an IPv6 address or range\. | 
-| TCP | 6 | 3389 \(RDP\) | The public IPv4 address of your computer, or a range of IP addresses \(in CIDR block notation\) in your local network\. If your VPC is enabled for IPv6 and your instance has an IPv6 address, you can enter an IPv6 address or range\. | 
+| TCP | 6 | 22 \(SSH\) | The public IPv4 address of your computer, or a range of IP addresses in your local network\. If your VPC is enabled for IPv6 and your instance has an IPv6 address, you can enter an IPv6 address or range\. | 
+| TCP | 6 | 3389 \(RDP\) | The public IPv4 address of your computer, or a range of IP addresses in your local network\. If your VPC is enabled for IPv6 and your instance has an IPv6 address, you can enter an IPv6 address or range\. | 
 
 ## Rules to connect to instances from an instance with the same security group<a name="sg-rules-other-instances"></a>
 
@@ -73,23 +73,23 @@ The following table describes the inbound rule for a security group that enables
 
 | Protocol type | Protocol number | Ports | Source IP | 
 | --- | --- | --- | --- | 
-| \-1 \(All\) | \-1 \(All\) | \-1 \(All\) | The ID of the security group | 
+| \-1 \(All\) | \-1 \(All\) | \-1 \(All\) | The ID of the security group\. | 
 
 ## Rules for ping/ICMP<a name="sg-rules-ping"></a>
 
-The `ping` command is a type of ICMP traffic\. To ping your instance, you must add the following inbound ICMP rule\.
+The ping command is a type of ICMP traffic\. To ping your instance, you must add the following inbound ICMP rule\.
 
 
 | Protocol type | Protocol number | ICMP type | ICMP code | Source IP | 
 | --- | --- | --- | --- | --- | 
-| ICMP | 1 | 8 \(Echo\) | N/A | The public IPv4 address of your computer, or a range of IPv4 addresses \(in CIDR block notation\) in your local network | 
+| ICMP | 1 | 8 \(Echo Request\) | N/A | The public IPv4 address of your computer, or a range of IPv4 addresses in your local network\. | 
 
-To use the `ping6` command to ping the IPv6 address for your instance, you must add the following inbound ICMPv6 rule\.
+To use the ping6 command to ping the IPv6 address for your instance, you must add the following inbound ICMPv6 rule\.
 
 
 | Protocol type | Protocol number | ICMP type | ICMP code | Source IP | 
 | --- | --- | --- | --- | --- | 
-| ICMPv6 | 58 | 128 \(Echo\) | 0 | The IPv6 address of your computer, or a range of IPv6 addresses \(in CIDR block notation\) in your local network | 
+| ICMPv6 | 58 | 128 \(Echo Request\) | 0 | The IPv6 address of your computer, or a range of IPv6 addresses in your local network\. | 
 
 ## DNS server rules<a name="sg-rules-dns"></a>
 
@@ -112,7 +112,7 @@ If you're using an Amazon EFS file system with your Amazon EC2 instances, the se
 
 | Protocol type | Protocol number | Ports | Source IP | Notes | 
 | --- | --- | --- | --- | --- | 
-| TCP | 6 | 2049 \(NFS\) | The ID of the security group\. | Allows inbound NFS access from resources \(including the mount target\) associated with this security group\.  | 
+| TCP | 6 | 2049 \(NFS\) | The ID of the security group | Allows inbound NFS access from resources \(including the mount target\) associated with this security group | 
 
 To mount an Amazon EFS file system on your Amazon EC2 instance, you must connect to your instance\. Therefore, the security group associated with your instance must have rules that allow inbound SSH from your local computer or local network\.
 

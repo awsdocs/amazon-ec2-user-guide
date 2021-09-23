@@ -8,6 +8,8 @@ Each Linux instance launches with a default Linux system user account\. The defa
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.
 + For a SUSE AMI, the user name is `ec2-user` or `root`\.
 + For an Ubuntu AMI, the user name is `ubuntu`\.
++ For an Oracle AMI, the user name is `ec2-user`\.
++ For a Bitnami AMI, the user name is `bitnami`\.
 + Otherwise, check with the AMI provider\.
 
 **Note**  

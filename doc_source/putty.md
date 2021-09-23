@@ -132,6 +132,8 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
    + For a RHEL AMI, the user name is `ec2-user` or `root`\.
    + For a SUSE AMI, the user name is `ec2-user` or `root`\.
    + For an Ubuntu AMI, the user name is `ubuntu`\.
+   + For an Oracle AMI, the user name is `ec2-user`\.
+   + For a Bitnami AMI, the user name is `bitnami`\.
    + Otherwise, check with the AMI provider\.
 
 1. Specify the private key for your instance\. For **Private key**, enter the path to your private key, or choose the "**\.\.\.**" button to browse for the file\. To open the advanced site settings, for newer versions of WinSCP, choose **Advanced**\. To find the **Private key file** setting, under **SSH**, choose **Authentication**\.

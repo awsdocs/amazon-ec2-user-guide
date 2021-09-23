@@ -26,7 +26,7 @@ If you receive an error while attempting to connect to your instance, see [Troub
   There is no need to install an SSH client if users only use the Amazon EC2 console \(browser\-based client\) or the EC2 Instance Connect CLI to connect to an instance\. Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
 + **\(Optional\) Install the EC2 Instance Connect CLI on your local computer\.**
 
-  There is no need to install the EC2 Instance Connect CLI if users only use the Amazon EC2 console \(browser\-based client\) or an SSH client to connect to an instance\. For more information, see [Task 3: \(Optional\) Install the EC2 Instance Connect CLI](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\. This connection method works for instances with public IP addresses\.
+  There is no need to install the EC2 Instance Connect CLI if users only use the Amazon EC2 console \(browser\-based client\) or an SSH client to connect to an instance\. For more information, see [Task 3: \(Optional\) Install the EC2 Instance Connect CLI on your computer](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\. This connection method works for instances with public IP addresses\.
 
 ## Connect using EC2 Instance Connect<a name="connect-options"></a>
 
