@@ -1,6 +1,6 @@
 # On\-Demand Capacity Reservations<a name="ec2-capacity-reservations"></a>
 
-On\-Demand Capacity Reservations enable you to reserve compute capacity for your Amazon EC2 instances in a specific Availability Zone for any duration\. This gives you the ability to create and manage Capacity Reservations independently from the billing discounts offered by Savings Plans or regional Reserved Instances\.
+On\-Demand Capacity Reservations enable you to reserve compute capacity for your Amazon EC2 instances in a specific Availability Zone for any duration\. This gives you the ability to create and manage Capacity Reservations independently from the billing discounts offered by Savings Plans or Regional Reserved Instances\.
 
 By creating Capacity Reservations, you ensure that you always have access to EC2 capacity when you need it, for as long as you need it\. You can create Capacity Reservations at any time, without entering into a one\-year or three\-year term commitment, and the capacity is available immediately\. Billing starts as soon as the capacity is provisioned and the Capacity Reservation enters the active state\. When you no longer need it, cancel the Capacity Reservation to stop incurring charges\.
 
@@ -11,7 +11,7 @@ When you create a Capacity Reservation, you specify:
 
 Capacity Reservations can only be used by instances that match their attributes\. By default, they are automatically used by running instances that match the attributes\. If you don't have any running instances that match the attributes of the Capacity Reservation, it remains unused until you launch an instance with matching attributes\.
 
-In addition, you can use Savings Plans and regional Reserved Instances with your Capacity Reservations to benefit from billing discounts\. AWS automatically applies your discount when the attributes of a Capacity Reservation match the attributes of a Savings Plan or  regional Reserved Instance\. For more information, see [Billing discounts](capacity-reservations-pricing-billing.md#capacity-reservations-discounts)\.
+In addition, you can use Savings Plans and Regional Reserved Instances with your Capacity Reservations to benefit from billing discounts\. AWS automatically applies your discount when the attributes of a Capacity Reservation match the attributes of a Savings Plan or  Regional Reserved Instance\. For more information, see [Billing discounts](capacity-reservations-pricing-billing.md#capacity-reservations-discounts)\.
 
 **Topics**
 + [Differences between Capacity Reservations, Reserved Instances, and Savings Plans](#capacity-reservations-differences)
@@ -24,6 +24,7 @@ In addition, you can use Savings Plans and regional Reserved Instances with your
 + [Capacity Reservations in Wavelength Zones](capacity-reservations-wavelengthzones.md)
 + [Capacity Reservations on AWS Outposts](capacity-reservations-outposts.md)
 + [Work with shared Capacity Reservations](capacity-reservation-sharing.md)
++ [Capacity Reservation Fleets](cr-fleets.md)
 + [CloudWatch metrics for On\-Demand Capacity Reservations](capacity-reservation-cw-metrics.md)
 
 ## Differences between Capacity Reservations, Reserved Instances, and Savings Plans<a name="capacity-reservations-differences"></a>

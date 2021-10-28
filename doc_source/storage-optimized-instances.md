@@ -119,16 +119,16 @@ The following is a summary of network performance for storage optimized instance
 | --- | --- | --- | 
 | d2\.xlarge | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 | d2\.2xlarge \| d2\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
-| i3\.4xlarge and smaller | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| i3\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | d2\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 | i3\.8xlarge \| h1\.8xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3\.4xlarge and smaller | Up to 15 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| d3en\.2xlarge and smaller \| i3en\.3xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| d3\.8xlarge \| d3en\.4xlarge \| i3\.16xlarge \| i3\.metal \| i3en\.6xlarge \| h1\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3en\.2xlarge and smaller \| i3en\.3xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| d3\.8xlarge \| d3en\.4xlarge \| h1\.16xlarge \| i3\.16xlarge \| i3\.metal \| i3en\.6xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3en\.6xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
-| d3\.8xlarge \| d3en\.8xlarge \| i3en\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| d3en\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  i3en\.24xlarge \| i3en\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
+| d3\.8xlarge \| d3en\.8xlarge \| i3en\.12xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3en\.12xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  i3en\.24xlarge \| i3en\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
 
@@ -255,7 +255,6 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
    1. Start the instance\.
 
 ## Release notes<a name="storage-instance-release-notes"></a>
-+ You must launch storage optimized instances using an HVM AMI\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
 + Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed

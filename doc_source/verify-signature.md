@@ -220,7 +220,7 @@ This topic explains how to verify the instance identity document using the base6
 
 ------
 
-1. Extract the public key from the certificate that you received from AWS Support and save it to a file named `key`\.
+1. Extract the public key from the AWS RSA public certificate and save it to a file named `key`\.
 
    ```
    $ openssl x509 -pubkey -noout -in certificate >> key

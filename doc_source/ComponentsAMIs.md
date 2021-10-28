@@ -36,7 +36,7 @@ The following table summarizes the important differences when using the two type
 |  Modifications  |  The instance type, kernel, RAM disk, and user data can be changed while the instance is stopped\.  |  Instance attributes are fixed for the life of an instance\.  | 
 |  Charges  |  You're charged for instance usage, EBS volume usage, and storing your AMI as an EBS snapshot\.  |  You're charged for instance usage and storing your AMI in Amazon S3\.  | 
 |  AMI creation/bundling  |  Uses a single command/call  |  Requires installation and use of AMI tools  | 
-|  Stopped state  |  Can be in a stopped state\. Even when the instance is stopped and not running, the root volume is persisted in Amazon EBS  |  Cannot be in stopped state; instances are running or terminated  | 
+|  Stopped state  |  Can be in a stopped state\. Even when the instance is stopped and not running, the root volume is persisted in Amazon EBS  |  Cannot be in a stopped state; instances are running or terminated  | 
 
 \* By default, EBS root volumes have the `DeleteOnTermination` flag set to `true`\. For information about how to change this flag so that the volume persists after termination, see [Change the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
 

@@ -201,9 +201,9 @@ The first statement grants users the permission to view Systems Manager paramete
    {
       "Effect": "Allow",
       "Action": [
-      "ssm:GetParameters"
-   ],
-   "Resource": "arn:aws:ssm:us-east-2:123456123:parameter/prod-*"
+         "ssm:GetParameters"
+      ],
+     "Resource": "arn:aws:ssm:us-east-2:123456123:parameter/prod-*"
    }
    ]
 }

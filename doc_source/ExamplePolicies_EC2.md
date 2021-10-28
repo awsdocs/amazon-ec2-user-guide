@@ -1870,14 +1870,14 @@ IAM users must have permission to use the `iam:PassRole` action in order to pass
 {
   "Version": "2012-10-17",
   "Statement": [
-       {
+    {
       "Effect": "Allow",
       "Action": [
-         "ec2:AssociateIamInstanceProfile",
-         "ec2:ReplaceIamInstanceProfileAssociation",
-         "ec2:DisassociateIamInstanceProfile"
+        "ec2:AssociateIamInstanceProfile",
+        "ec2:ReplaceIamInstanceProfileAssociation",
+        "ec2:DisassociateIamInstanceProfile"
       ],
-      "Resource": "arn:aws:ec2:region:account:instance/*",
+      "Resource": "arn:aws:ec2:us-east-1:123456789012:instance/*",
       "Condition": {
         "StringEquals": {
           "ec2:ResourceTag/department":"test"
@@ -1892,7 +1892,7 @@ IAM users must have permission to use the `iam:PassRole` action in order to pass
     {
       "Effect": "Allow",
       "Action": "iam:PassRole",
-      "Resource": "*"
+      "Resource": "arn:aws:iam::123456789012:role/DevTeam*"
     }
   ]
 }

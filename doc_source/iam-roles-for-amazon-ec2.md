@@ -92,7 +92,7 @@ To enable an IAM user to launch an instance with an IAM role or to attach or rep
 For example, the following IAM policy grants users permission to launch instances with an IAM role, or to attach or replace an IAM role for an existing instance using the AWS CLI\.
 
 **Note**  
-This policy grants IAM users access to all of your roles by specifying the resource as `*` in the policy\. However, consider whether users who launch instances with your roles \(ones that exist or that you create later on\) might be granted permissions that they don't need or shouldn't have\.
+If you want the policy to grant IAM users access to all of your roles, specify the resource as `*` in the policy\. However, please consider the principle of [least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) as a best\-practice \.
 
 ```
 {
@@ -110,7 +110,7 @@ This policy grants IAM users access to all of your roles by specifying the resou
     {
       "Effect": "Allow",
       "Action": "iam:PassRole",
-      "Resource": "*"
+      "Resource": "arn:aws:iam::123456789012:role/DevTeam*"
     }
   ]
 }

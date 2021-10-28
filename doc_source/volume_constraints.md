@@ -43,13 +43,13 @@ Among other impacts, the partitioning scheme determines how many logical data bl
 MBR uses a 32\-bit data structure to store block addresses\. This means that each data block is mapped with one of 232 possible integers\. The maximum addressable size of a volume is given by the following formula:
 
 ```
-(232 - 1) × Block size
+232 × Block size
 ```
 
 The block size for MBR volumes is conventionally limited to 512 bytes\. Therefore:
 
 ```
-(232 - 1) × 512 bytes = 2 TiB - 512 bytes
+232 × 512 bytes = 2 TiB
 ```
 
 Engineering workarounds to increase this 2\-TiB limit for MBR volumes have not met with widespread industry adoption\. Consequently, Linux and Windows never detect an MBR volume as being larger than 2 TiB even if AWS shows its size to be larger\. 
@@ -59,17 +59,16 @@ Engineering workarounds to increase this 2\-TiB limit for MBR volumes have not m
 GPT uses a 64\-bit data structure to store block addresses\. This means that each data block is mapped with one of 264 possible integers\. The maximum addressable size of a volume is given by the following formula:
 
 ```
-(264 - 1) × Block size
+264 × Block size
 ```
 
 The block size for GPT volumes is commonly 4,096 bytes\. Therefore:
 
 ```
-(264 - 1) × 4,096 bytes
-   = 264 x 4,096 bytes - 1 x 4,096 bytes
-   = 264 x 212 bytes - 4,096 bytes
-   = 270 x 26 bytes - 4,096 bytes
-   = 64 ZiB - 4,096 bytes
+264 × 4,096 bytes
+   = 264 × 212 bytes
+   = 270 × 26 bytes
+   = 64 ZiB
 ```
 
 Real\-world computer systems don't support anything close to this theoretical maximum\. Implemented file\-system size is currently limited to 50 TiB for ext4 and 256 TiB for NTFS—both of which exceed the 16\-TiB limit imposed by AWS\.

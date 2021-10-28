@@ -57,14 +57,15 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Customer gateway  |  Yes  | Yes | 
 |  Dedicated Host  |  Yes  |  Yes  | 
 |  Dedicated Host Reservation  |  Yes  | Yes | 
-|  DHCP option  |  Yes  | Yes | 
+|  DHCP options  |  Yes  | Yes | 
 |  EBS snapshot  |  Yes  | Yes | 
 |  EBS volume  |  Yes  | Yes | 
 |  EC2 Fleet  |  Yes  |  Yes  | 
 |  Egress\-only internet gateway  |  Yes  | Yes | 
 |  Elastic IP address  |  Yes  | Yes | 
 |  Elastic Graphics accelerator  |  Yes  | No | 
-|  Instance  |  Yes  | Yes | 
+| Instance | Yes | Yes | 
+| Instance event window | Yes | Yes | 
 |  Instance store volume  |  N/A  | N/A | 
 |  Internet gateway  |  Yes  | Yes | 
 |  IP address pool \(BYOIP\)  |  Yes  |  Yes  | 
@@ -87,13 +88,14 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 | Route table |  Yes  | Yes | 
 |  Spot Fleet request  |  Yes  | Yes | 
 |  Spot Instance request  |  Yes  | Yes | 
-|  Security group  |  Yes  | Yes | 
+| Security group | Yes | Yes | 
 | Security group rule | Yes | No | 
-|  Subnet  |  Yes  | Yes | 
+| Subnet | Yes | Yes | 
 | Traffic Mirror filter | Yes | Yes | 
 | Traffic Mirror session | Yes | Yes | 
 | Traffic Mirror target | Yes | Yes | 
 | Transit gateway | Yes | Yes | 
+| Transit gateway multicast domain | Yes | Yes | 
 | Transit gateway route table | Yes | Yes | 
 | Transit gateway VPC attachment | Yes | Yes | 
 | Virtual private gateway | Yes | Yes | 

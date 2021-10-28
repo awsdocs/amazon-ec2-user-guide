@@ -158,6 +158,9 @@ Use the following procedure to connect to your Mac instance using an SSH client\
 
 Use the following procedure to connect to your instance using Apple Remote Desktop \(ARD\)\.
 
+**Note**  
+macOS 10\.14 and later only allows control if Screen Sharing is enabled through [System Preferences](https://support.apple.com/guide/remote-desktop/enable-remote-management-apd8b1c65bd/mac)\.
+
 **To connect to your instance using ARD**
 
 1. Verify that your local computer has an ARD client or a VNC client that supports ARD installed\. On macOS, you can leverage the built\-in Screen Sharing application\. Otherwise, search for ARD for your operating system and install it\.

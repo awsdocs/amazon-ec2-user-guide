@@ -9,6 +9,12 @@ This tutorial refers to modern web encryption simply as TLS\.
 **Important**  
 These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a new Amazon EC2 instance\. If you are trying to set up an EC2 instance running a different distribution, or an instance running an old version of Amazon Linux 2, some procedures in this tutorial might not work\. For the Amazon Linux AMI, see [Tutorial: Configure SSL/TLS with the Amazon Linux AMI](SSL-on-amazon-linux-ami.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For Red Hat Enterprise Linux, see the following: [Setting up the Apache HTTP Web Server](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deploying_different_types_of_servers/setting-apache-http-server_deploying-different-types-of-servers)\. For other distributions, see their specific documentation\.
 
+**Note**  
+Alternatively, you can use AWS Certificate Manager \(ACM\) for AWS Nitro enclaves, which is an enclave application that allows you to use public and private SSL/TLS certificates with your web applications and servers running on Amazon EC2 instances with AWS Nitro Enclaves\. Nitro Enclaves is an Amazon EC2 capability that enables creation of isolated compute environments to protect and securely process highly sensitive data, such as SSL/TLS certificates and private keys\.  
+ACM for Nitro Enclaves works with **nginx** running on your Amazon EC2 Linux instance to create private keys, to distribute certificates and private keys, and to manage certificate renewals\.  
+To use ACM for Nitro Enclaves, you must use an enclave\-enabled Linux instance\.  
+For more information, see [ What is AWS Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) and [AWS Certificate Manager for Nitro Enclaves](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html) in the *AWS Nitro Enclaves User Guide*\.
+
 **Topics**
 + [Prerequisites](#ssl_prereq)
 + [Step 1: Enable TLS on the server](#ssl_enable)
@@ -446,6 +452,9 @@ Each update to OpenSSL introduces new ciphers and removes support for old ones\.
   This typically means that your EC2 instance is not running Amazon Linux 2\. This tutorial only supports instances freshly created from an official Amazon Linux 2 AMI\.
 
 ## Certificate automation: Let's Encrypt with Certbot on Amazon Linux 2<a name="letsencrypt"></a>
+
+**Warning**  
+ Let's Encrypt cross\-signed DST Root CA X3 certificate is **expiring** on **Sept 30th, 2021**\. This can cause Let's Encrypt connections to fail with OpenSSL 1\.0\.x on CentOS/RHEL7 and Amazon Linux\. Remediation steps can be found [https://aws.amazon.com/premiumsupport/knowledge-center/ec2-expired-certificate/](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-expired-certificate/), or you can follow one of the manual workarounds found on the [https://www.openssl.org/blog/blog/2021/09/13/LetsEncryptRootCertExpire](https://www.openssl.org/blog/blog/2021/09/13/LetsEncryptRootCertExpire)\. 
 
 The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the centerpiece of an effort by the Electronic Frontier Foundation \(EFF\) to encrypt the entire internet\. In line with that goal, Let's Encrypt host certificates are designed to be created, validated, installed, and maintained with minimal human intervention\. The automated aspects of certificate management are carried out by a software agent running on your web server\. After you install and configure the agent, it communicates securely with Let's Encrypt and performs administrative tasks on Apache and the key management system\. This tutorial uses the free [Certbot](https://certbot.eff.org) agent because it allows you either to supply a customized encryption key as the basis for your certificates, or to allow the agent itself to create a key based on its defaults\. You can also configure Certbot to renew your certificates on a regular basis without human interaction, as described in [To automate Certbot](#automate_certbot)\. For more information, consult the Certbot [User Guide](https://certbot.eff.org/docs/using.html) and [man page](http://manpages.ubuntu.com/manpages/bionic/en/man1/certbot.1.html)\. 
 

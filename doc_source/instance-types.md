@@ -47,6 +47,7 @@ For the best performance, we recommend that you use the following instance types
 | D2 | d2\.xlarge \| d2\.2xlarge \| d2\.4xlarge \| d2\.8xlarge | [Storage optimized](storage-optimized-instances.md) | 
 | D3 | d3\.xlarge \| d3\.2xlarge \| d3\.4xlarge \| d3\.8xlarge | [Storage optimized](storage-optimized-instances.md) | 
 | D3en | d3en\.large \| d3en\.xlarge \| d3en\.2xlarge \| d3en\.4xlarge \| d3en\.6xlarge \| d3en\.8xlarge \| d3en\.12xlarge | [Storage optimized](storage-optimized-instances.md) | 
+| DL1 | dl1\.24xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | F1 | f1\.2xlarge \| f1\.4xlarge \| f1\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | G3 | g3s\.xlarge \| g3\.4xlarge \| g3\.8xlarge \| g3\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | G4ad | g4ad\.xlarge \| g4ad\.2xlarge \| g4ad\.4xlarge \| g4ad\.8xlarge \| g4ad\.16xlarge  | [Accelerated computing](accelerated-computing-instances.md) | 
@@ -161,7 +162,7 @@ The following components are part of the Nitro System:
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ **Virtualized**: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn,  D3, D3en, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, M6i, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, high memory \(u\-\*\), X2gd, and z1d
++ **Virtualized**: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn,  D3, D3en, DL1, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, M6i, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, high memory \(u\-\*\), X2gd, and z1d
 + **Bare metal**: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m5dn.metal`, `m5n.metal`, `m5zn.metal`, `m6g.metal`, `m6gd.metal`, `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r5dn.metal`, `r5n.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, `x2gd.metal`, and `z1d.metal`
 
 **Learn more**
@@ -209,6 +210,7 @@ The following table summarizes the networking and storage features supported by 
 | D2 | No | No | HDD | Yes | Intel 82599 VF | 
 | D3 | No | Yes | NVMe \* | Yes | ENA | 
 | D3en | No | Yes | NVMe \* | Yes | ENA | 
+| DL1 | No | Yes | NVMe \* | Yes | ENA | 
 | F1 | No | No | NVMe \* | Yes | ENA | 
 | G3 | Yes | No | No | Yes | ENA | 
 | G4ad | No | Yes | NVMe \* | Yes | ENA | 

@@ -128,6 +128,9 @@ Here are some best practices to follow when you use Spot Instances:
 + Use the two\-minute Spot Instance interruption notices to monitor the status of your Spot Instances\. For more information, see [Spot Instance interruption notices](#spot-instance-termination-notices)\.
 + While we make every effort to provide these warnings as soon as possible, it is possible that your Spot Instance is interrupted before the warnings can be made available\. Test your application to ensure that it handles an unexpected instance interruption gracefully, even if you are monitoring for rebalance recommendation signals and interruption notices\. You can do so by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
 
+**To run a controlled fault injection experiment**  
+You can use AWS Fault Injection Simulator to test how your application responds when your Spot Instance is interrupted\. For more information, see the [AWS Fault Injection Simulator User Guide](https://docs.aws.amazon.com/fis/latest/userguide)\.
+
 ## Prepare for instance hibernation<a name="prepare-for-instance-hibernation"></a>
 
 You must install a hibernation agent on your instance, unless you used an AMI that already includes the agent\. You must run the agent on instance startup, whether the agent was included in your AMI or you installed it yourself\.

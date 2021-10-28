@@ -16,7 +16,7 @@ You can connect to the serial console of your EC2 instance by using the Amazon E
 + When you connect to the serial console, you might observe a slight drop in your instance’s throughput\.
 
 ## Prerequisites<a name="sc-prerequisites"></a>
-+ Supported AWS Regions: US East \(N\. Virginia\), US East \(Ohio\), US West \(Oregon\) Europe \(Ireland\), Europe \(Frankfurt\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Asia Pacific \(Singapore\)
++ Supported in all AWS Regions except Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Osaka\), China \(Beijing\), China \(Ningxia\), Europe \(Milan\), and Middle East \(Bahrain\)\.
 + Supported instance families:
   + A1
   + C5, C5a, C5ad, C5d, C5n, C6g, C6gd
@@ -157,15 +157,15 @@ The fingerprint only appears the first time you connect to the serial console\.
 ## EC2 Serial Console fingerprints<a name="sc-fingerprints"></a>
 
 The EC2 Serial Console fingerprint is unique for each AWS Region\.
-+ us\-east\-2 – US East \(Ohio\)
-
-  ```
-  SHA256:EhwPkTzRtTY7TRSzz26XbB0/HvV9jRM7mCZN0xw/d/0
-  ```
 + us\-east\-1 – US East \(N\. Virginia\)
 
   ```
   SHA256:dXwn5ma/xadVMeBZGEru5l2gx+yI5LDiJaLUcz0FMmw
+  ```
++ us\-east\-2 – US East \(Ohio\)
+
+  ```
+  SHA256:EhwPkTzRtTY7TRSzz26XbB0/HvV9jRM7mCZN0xw/d/0
   ```
 + us\-west\-1 – US West \(N\. California\)
 

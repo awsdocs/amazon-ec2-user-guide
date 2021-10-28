@@ -11,9 +11,9 @@ For significant savings over On\-Demand Instances, use [AWS Savings Plans](http:
 **Contents**
 + [Work with On\-Demand Instances](#working-with-on-demand-instances)
 + [On\-Demand Instance limits](#ec2-on-demand-instances-limits)
+  + [Monitor On\-Demand Instance limits and usage](#monitoring-on-demand-limits)
   + [Calculate how many vCPUs you need](#vcpu-limits-calculator)
   + [Request a limit increase](#vcpu-limits-request-increase)
-  + [Monitor On\-Demand Instance limits and usage](#monitoring-on-demand-limits)
 + [Query the prices of On\-Demand Instances](#query-aws-price-list)
 
 ## Work with On\-Demand Instances<a name="working-with-on-demand-instances"></a>
@@ -36,23 +36,35 @@ If you're new to Amazon EC2, see [How to get started with Amazon EC2](concepts.m
 
 There is a limit on the number of running On\-Demand Instances per AWS account per Region\. On\-Demand Instance limits are managed in terms of the *number of virtual central processing units \(vCPUs\)* that your running On\-Demand Instances are using, regardless of the instance type\.
 
-The following table lists the On\-Demand Instance limits\. Each limit specifies the default vCPUs for one or more instance families\. For information about the different instance families, generations, and sizes, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
+There are seven On\-Demand Instance limits:
++ Running On\-Demand All Standard \(A, C, D, H, I, M, R, T, Z\) instances
++ Running On\-Demand All F instances
++ Running On\-Demand All G and VT instances
++ Running On\-Demand All High Memory instances
++ Running On\-Demand All Inf instances
++ Running On\-Demand All P instances
++ Running On\-Demand All X instances
 
-**Note**  
-New AWS accounts might start with limits that are lower than these defaults\. Amazon EC2 monitors your usage and raises your limits automatically based on your usage\.
-
-
-| Limit | Default vCPUs | 
-| --- | --- | 
-| Running On\-Demand All Standard \(A, C, D, H, I, M, R, T, Z\) instances | 1,152 | 
-| Running On\-Demand All F instances | 128 | 
-| Running On\-Demand All G instances | 128 | 
-| Running On\-Demand High Memory \(u\-\*\) instances | 448 | 
-| Running On\-Demand All Inf instances | 128 | 
-| Running On\-Demand All P instances | 128 | 
-| Running On\-Demand All X instances | 128 | 
+Each limit specifies the vCPU limit for one or more instance families\. For information about the different instance families, generations, and sizes, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
 
 You can launch any combination of instance types that meet your changing application needs, as long as the number of vCPUs does not exceed your account limit\. For example, with a Standard instance limit of 256 vCPUs, you could launch 32 `m5.2xlarge` instances \(32 x 8 vCPUs\) or 16 `c5.4xlarge` instances \(16 x 16 vCPUs\)\. For more information, see [EC2 On\-Demand Instance limits](http://aws.amazon.com/ec2/faqs/#EC2_On-Demand_Instance_limits)\.
+
+**Topics**
++ [Monitor On\-Demand Instance limits and usage](#monitoring-on-demand-limits)
++ [Calculate how many vCPUs you need](#vcpu-limits-calculator)
++ [Request a limit increase](#vcpu-limits-request-increase)
+
+### Monitor On\-Demand Instance limits and usage<a name="monitoring-on-demand-limits"></a>
+
+You can view and manage your On\-Demand Instance limits using the following:
++ The [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console
++ The Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console
++ The [get\-service\-quota](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/get-service-quota.html) AWS CLI
++ The [Service limits page](https://console.aws.amazon.com/trustedadvisor/home?#/category/service-limits) in the AWS Trusted Advisor console
+
+For more information, see [Amazon EC2 service quotas](ec2-resource-limits.md) in the *Amazon EC2 User Guide*, [Viewing service quotas](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*, and [AWS Trusted Advisor](http://aws.amazon.com/premiumsupport/technology/trusted-advisor/)\.
+
+With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Service Quotas and Amazon CloudWatch alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
 
 ### Calculate how many vCPUs you need<a name="vcpu-limits-calculator"></a>
 
@@ -93,23 +105,33 @@ You can view and use the following controls and information:
 
 1. View **Limits calculation** for the required new limit\.
 
-1. When you've finished using the calculator, choose **Close**\.
+1. When you've finished using the calculator, you can choose **Request on\-demand limit increase** or **Close**\.
 
 ### Request a limit increase<a name="vcpu-limits-request-increase"></a>
 
-You can request a limit increase for each On\-Demand Instance limit type from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) or the vCPU limits calculator in the Amazon EC2 console\. Complete the required fields on the AWS Support Center [limit increase form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances) with your use case\. For **Primary Instance Type**, select the limit type that corresponds to the **Instance limit name** in the vCPU limits calculator\. For the new limit value, use the value that appears in the **New limit** column in the vCPU limits calculator\. For more information about requesting a limit increase, see [Amazon EC2 service quotas](ec2-resource-limits.md)\.
+Even though Amazon EC2 automatically increases your On\-Demand Instance limits based on your usage, you can request a limit increase if necessary\. For example, if you intend to launch more instances than your current limit allows, you can request a limit increase\.
 
-### Monitor On\-Demand Instance limits and usage<a name="monitoring-on-demand-limits"></a>
+**To request an On\-Demand Instance limit increase**
 
-You can view and manage your On\-Demand Instance limits using the following:
-+ The [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console
-+ The Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console
-+ The [get\-service\-quota](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/get-service-quota.html) AWS CLI
-+ The [Service Limits page](https://console.aws.amazon.com/trustedadvisor/home?#/category/service-limits) in the AWS Trusted Advisor console
+1. Open the **Create case**, **Service limit increase** form in the Support Center console at [https://console\.aws\.amazon\.com/support/home\#/case/create](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-spot-instances)\.
 
-For more information, see [Amazon EC2 service quotas](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances*, [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*, and [AWS Trusted Advisor](http://aws.amazon.com/premiumsupport/technology/trusted-advisor/)\.
+   Alternatively, use one of the following:
+   + From the **Limits Calculator**, choose one or more instance types and specify the number of instances, and then choose **Request on\-demand limit increase**\.
+   + On the **Limits** page, choose a limit, and then choose **Request limit increase**\.
 
-With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Using Amazon CloudWatch Alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
+1. For **Limit type**, choose **EC2 Instances**\.
+
+1. For **Region**, select the required Region\.
+
+1. For **Primary instance type**, select the On\-Demand Instance limit for which you want to request a limit increase\.
+
+1. For **New limit value**, enter the total number of vCPUs that you want to run concurrently\. To determine the total number of vCPUs that you need, use the value that appears in the **New limit** column in the vCPU limits calculator, or see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/) to find the number of vCPUs of each instance type\.
+
+1. \(Conditional\) You must create a separate limit request for each On\-Demand Instance limit\. To request an increase for another On\-Demand Instance limit, choose **Add another request** and repeat steps 3 through 5 in this procedure\.
+
+1. For **Use case description**, enter your use case, and then choose **Submit**\.
+
+For more information about requesting a limit increase, see [Amazon EC2 service quotas](ec2-resource-limits.md)\.
 
 ## Query the prices of On\-Demand Instances<a name="query-aws-price-list"></a>
 

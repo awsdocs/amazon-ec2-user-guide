@@ -74,8 +74,8 @@ The following table describes previous\-generation EBS volume types\. If you nee
 General Purpose SSD \(`gp3`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver a consistent baseline rate of 3,000 IOPS and 125 MiB/s, included with the price of storage\. You can provision additional IOPS \(up to 16,000\) and throughput \(up to 1,000 MiB/s\) for an additional cost\.
 
 The maximum ratio of provisioned IOPS to provisioned volume size is 500 IOPS per GiB\. The maximum ratio of provisioned throughput to provisioned IOPS is \.25 MiB/s per IOPS\. The following volume configurations support provisioning either maximum IOPS or maximum throughput:
-+ 32 GiB or larger: 500 IOPS/GiB x 32 GiB = 16,000 IOPS
-+ 8 GiB or larger and 4,000 IOPS or higher: 4,000 IOPS x 0\.25 MiB/s/IOPS = 1,000 MiB/s
++ 32 GiB or larger: 500 IOPS/GiB × 32 GiB = 16,000 IOPS
++ 8 GiB or larger and 4,000 IOPS or higher: 4,000 IOPS × 0\.25 MiB/s/IOPS = 1,000 MiB/s
 
 ## General Purpose SSD volumes \(gp2\)<a name="EBSVolumeTypes_gp2"></a>
 
@@ -171,7 +171,7 @@ V  =  -----
 
 Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
 
-`io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of twovolume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
+`io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
 
 Provisioned IOPS SSD `io1` and `io2` volumes are available for all Amazon EC2 instance types\. Provisioned IOPS SSD `io2` volumes attached to R5b instances run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
@@ -199,7 +199,7 @@ Provisioned IOPS SSD volumes can range in size from 4 GiB to 16 TiB and you can 
 + `io1` volume 1,280 GiB in size or greater \(50 × 1,280 GiB = 64,000 IOPS\)
 + `io2` volume 128 GiB in size or greater \(500 × 128 GiB = 64,000 IOPS\)
 
-Provisioned IOPS SSD volumes provisioned with up to 32,000 IOPS support a maximum I/O size of 256 KiB and yield as much as 500 MiB/s of throughput\. With the I/O size at the maximum, peak throughput is reached at 2,000 IOPS\. Volumes provisioned with more than 32,000 IOPS \(up to the maximum of 64,000 IOPS\) yield a linear increase in throughput at a rate of 16 KiB per provisioned IOPS\. For example, a volume provisioned with 48,000 IOPS can support up to 750 MiB/s of throughput \(16 KiB per provisioned IOPS x 48,000 provisioned IOPS = 750 MiB/s\)\. To achieve the maximum throughput of 1,000 MiB/s, a volume must be provisioned with 64,000 IOPS \(16 KiB per provisioned IOPS x 64,000 provisioned IOPS = 1,000 MiB/s\)\. The following graph illustrates these performance characteristics:
+Provisioned IOPS SSD volumes provisioned with up to 32,000 IOPS support a maximum I/O size of 256 KiB and yield as much as 500 MiB/s of throughput\. With the I/O size at the maximum, peak throughput is reached at 2,000 IOPS\. Volumes provisioned with more than 32,000 IOPS \(up to the maximum of 64,000 IOPS\) yield a linear increase in throughput at a rate of 16 KiB per provisioned IOPS\. For example, a volume provisioned with 48,000 IOPS can support up to 750 MiB/s of throughput \(16 KiB per provisioned IOPS × 48,000 provisioned IOPS = 750 MiB/s\)\. To achieve the maximum throughput of 1,000 MiB/s, a volume must be provisioned with 64,000 IOPS \(16 KiB per provisioned IOPS × 64,000 provisioned IOPS = 1,000 MiB/s\)\. The following graph illustrates these performance characteristics:
 
 ![\[Throughput limits for io1 volumes\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/io1_throughput.png)
 
@@ -234,7 +234,7 @@ Block Express architecture increases performance and scale\. Block Express serve
 With `io2` Block Express volumes, you can provision volumes with:
 + Sub\-millisecond average latency
 + Storage capacity up to 64 TiB \(65,536 GiB\)
-+ Provisioned IOPS up to 256,000, with an IOPS:GiB ratio of 1,000:1\. Maximum IOPS can be provisioned with volumes 256 GiB in size and larger \(1,000 IOPS x 256 GiB = 256,000 IOPS\)\.
++ Provisioned IOPS up to 256,000, with an IOPS:GiB ratio of 1,000:1\. Maximum IOPS can be provisioned with volumes 256 GiB in size and larger \(1,000 IOPS × 256 GiB = 256,000 IOPS\)\.
 + Volume throughput up to 4,000 MiB/s\. Throughput scales proportionally up to 0\.256 MiB/s per provisioned IOPS\. Maximum throughput can be achieved at 16,000 IOPS or higher\. 
 
 ![\[Throughput limits for io2 Block Express volumes\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/io2_bx.png)
@@ -268,7 +268,7 @@ The following diagram shows the burst\-bucket behavior for `st1`\.
 Subject to throughput and throughput\-credit caps, the available throughput of an `st1` volume is expressed by the following formula:
 
 ```
-(Volume size) x (Credit accumulation rate per TiB) = Throughput
+(Volume size) × (Credit accumulation rate per TiB) = Throughput
 ```
 
 For a 1\-TiB `st1` volume, burst throughput is limited to 250 MiB/s, the bucket fills with credits at 40 MiB/s, and it can hold up to 1 TiB\-worth of credits\.
@@ -279,7 +279,7 @@ On volume sizes ranging from 0\.125 TiB to 16 TiB, baseline throughput varies fr
 
 ```
             40 MiB/s
-12.5 TiB x ---------- = 500 MiB/s
+12.5 TiB × ---------- = 500 MiB/s
              1 TiB
 ```
 
@@ -287,7 +287,7 @@ Burst throughput varies from 31 MiB/s to a cap of 500 MiB/s, which is reached at
 
 ```
          250 MiB/s
-2 TiB x ---------- = 500 MiB/s
+2 TiB × ---------- = 500 MiB/s
           1 TiB
 ```
 
@@ -343,7 +343,7 @@ Like `gp2`, `sc1` uses a burst\-bucket model for performance\. Volume size deter
 Subject to throughput and throughput\-credit caps, the available throughput of an `sc1` volume is expressed by the following formula:
 
 ```
-(Volume size) x (Credit accumulation rate per TiB) = Throughput
+(Volume size) × (Credit accumulation rate per TiB) = Throughput
 ```
 
 For a 1\-TiB `sc1` volume, burst throughput is limited to 80 MiB/s, the bucket fills with credits at 12 MiB/s, and it can hold up to 1 TiB\-worth of credits\.
@@ -354,7 +354,7 @@ On volume sizes ranging from 0\.125 TiB to 16 TiB, baseline throughput varies fr
 
 ```
            12 MiB/s
-16 TiB x ---------- = 192 MiB/s
+16 TiB × ---------- = 192 MiB/s
             1 TiB
 ```
 
@@ -362,7 +362,7 @@ Burst throughput varies from 10 MiB/s to a cap of 250 MiB/s, which is reached at
 
 ```
              80 MiB/s
-3.125 TiB x ----------- = 250 MiB/s
+3.125 TiB × ----------- = 250 MiB/s
               1 TiB
 ```
 

@@ -51,7 +51,7 @@ You can't use local snapshots or AMIs backed by local snapshots to launch Auto S
 
 ## Prerequisites<a name="prereqs"></a>
 
-To store snapshots on an Outpost, you must have an Outpost that is provisioned with Amazon S3 on Outposts\. For more information about Amazon S3 on Outposts, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html) in the *Amazon Simple Storage Service Developer Guide*\.
+To store snapshots on an Outpost, you must have an Outpost that is provisioned with Amazon S3 on Outposts\. For more information about Amazon S3 on Outposts, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html) in the *Amazon Simple Storage Service User Guide*\.
 
 ## Considerations<a name="considerations"></a>
 

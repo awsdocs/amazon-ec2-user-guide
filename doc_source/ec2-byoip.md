@@ -21,10 +21,6 @@ The following steps describe how to bring your own IP address range for use in A
 + You can bring a total of five IPv4 and IPv6 address ranges per Region to your AWS account\.
 + You cannot share your IP address range with other accounts using AWS Resource Access Manager \(AWS RAM\)\.
 + The addresses in the IP address range must have a clean history\. We might investigate the reputation of the IP address range and reserve the right to reject an IP address range if it contains an IP address that has a poor reputation or is associated with malicious behavior\.
-+ You must own the IP address that you use\. This means that only the following are supported:
-  + ARIN \- "Direct Allocation" and "Direct Assignment" network types
-  + RIPE \- "ALLOCATED PA", "LEGACY", "ASSIGNED PI", and "ALLOCATED\-BY\-RIR" allocation statuses
-  + APNIC – "ALLOCATED PORTABLE" and "ASSIGNED PORTABLE" allocation statuses
 
 ## Configure your BYOIP address range<a name="prepare-for-byoip"></a>
 
@@ -46,7 +42,7 @@ To configure BYOIP, complete the following tasks\. For some tasks, you run Linux
 **Topics**
 + [Create a key pair and certificate](#byoip-certificate)
 + [Create an ROA object in your RIR](#byoip-create-roa-object)
-+ [Update the RDAP record in your RIR](#ee)
++ [Update the RDAP record in your RIR](#byoip-add-certificate)
 + [Provision the address range in AWS](#byoip-provision)
 + [Advertise the address range through AWS](#byoip-advertise)
 + [Deprovision the address range](#byoip-deprovision)
@@ -265,12 +261,14 @@ This procedure follows the best practice of encrypting your private RSA key and 
 
 ### Create an ROA object in your RIR<a name="byoip-create-roa-object"></a>
 
-Create an ROA object to authorize Amazon ASNs 16509 and 14618 to advertise your address range, as well as the ASNs that are currently authorized to advertise the address range\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, consult your RIR:
+Create an ROA object to authorize the Amazon ASNs 16509 and 14618 to advertise your address range, as well as the ASNs that are currently authorized to advertise the address range\. For the AWS GovCloud \(US\) Region, authorize ASN 8987\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, consult your RIR:
 + ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
 + RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
 + APNIC — [Route Management](https://www.apnic.net/wp-content/uploads/2017/01/route-roa-management-guide.pdf)
 
-### Update the RDAP record in your RIR<a name="ee"></a>
+When you migrate advertisements from an on\-premises workload to AWS, you must create an ROA for your existing ASN before creating the ROAs for Amazon's ASNs\. Otherwise, you might see an impact to your existing routing and advertisements\.
+
+### Update the RDAP record in your RIR<a name="byoip-add-certificate"></a>
 
 Add the certificate that you previously created to the RDAP record for your RIR\. Be sure to include the `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` strings before and after the encoded portion\. All of this content must be on a single, long line\. The procedure for updating RDAP depends on your RIR:
 + For ARIN, add the certificate in the "Public Comments" section for your address range\. Do not add it to the comments section for your organization\.

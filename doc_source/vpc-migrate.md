@@ -1,62 +1,18 @@
 # Migrate from EC2\-Classic to a VPC<a name="vpc-migrate"></a>
 
-If you created your AWS account before December 4, 2013, you might have support for EC2\-Classic in some AWS Regions\. Some Amazon EC2 resources and features, such as enhanced networking and newer instance types, require a virtual private cloud \(VPC\)\. Some resources can be shared between EC2\-Classic and a VPC, while some can't\. For more information, see [Share and access resources between EC2\-Classic and a VPC](ec2-classic-platform.md#vpc-classic-shared-resources)\. We recommend that you migrate to a VPC to take advantage of VPC\-only features\.
+
+|  | 
+| --- |
+| We are retiring EC2\-Classic on August 15, 2022\. To avoid interruptions to your workloads, we recommend that you migrate from EC2\-Classic to a VPC prior to August 15, 2022\. For more information, see the blog post [EC2\-Classic Networking is Retiring \- Here's How to Prepare](http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/)\. | 
 
 To migrate from EC2\-Classic to a VPC, you must migrate or recreate your EC2\-Classic resources in a VPC\. You can migrate and recreate your resources in full, or you can perform an incremental migration over time using ClassicLink\.
 
 **Topics**
-+ [Options for getting a default VPC](#get-default-vpc)
 + [Migrate your resources to a VPC](#full-migrate)
++ [Use the AWSSupport\-MigrateEC2ClassicToVPC runbook](#migrate-using-runbook)
 + [Use ClassicLink for an incremental migration](#classiclink-migrate)
 + [Example: Migrate a simple web application](#vpc-migrate-example)
-
-## Options for getting a default VPC<a name="get-default-vpc"></a>
-
-A *default VPC* is a VPC that is configured and ready for you to use, and is only available in Regions that are VPC\-only\. For Regions that support EC2\-Classic, you can create a nondefault VPC to set up your resources\. However, you might want to use a default VPC if you prefer not to set up a VPC yourself, or if you do not have specific requirements for your VPC configuration\. For more information about default VPCs, see [Default VPC and Default Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html) in the *Amazon VPC User Guide*\.
-
-The following are options for using a default VPC when you have an AWS account that supports EC2\-Classic\.
-
-**Topics**
-+ [Switch to a VPC\-only Region](#get-default-vpc-region)
-+ [Create a new AWS account](#get-default-vpc-account)
-+ [Convert your existing AWS account to VPC\-only](#convert-ec2-classic-account)
-
-### Switch to a VPC\-only Region<a name="get-default-vpc-region"></a>
-
-Use this option if you want to use your existing account to set up your resources in a default VPC and you do not need to use a specific Region\. To find a Region that has a default VPC, see [Detect supported platforms](ec2-classic-platform.md#ec2-supported-platforms)\.
-
-### Create a new AWS account<a name="get-default-vpc-account"></a>
-
-New AWS accounts support VPC only\. Use this option if you want an account that has a default VPC in every Region\. 
-
-### Convert your existing AWS account to VPC\-only<a name="convert-ec2-classic-account"></a>
-
-Use this option if you want a default VPC in every Region in your existing account\. Before you can convert your account, you must delete all of your EC2\-Classic resources\. You can also migrate some resources to a VPC\. For more information, see [Migrate your resources to a VPC](#full-migrate)\.
-
-**To convert your EC2\-Classic account**
-
-1. Delete or migrate \(if applicable\) the resources that you have created for use in EC2\-Classic\. These include the following:
-   + Amazon EC2 instances
-   + EC2\-Classic security groups \(excluding the default security group, which you cannot delete yourself\)
-   + EC2\-Classic Elastic IP addresses
-   + Classic Load Balancers
-   + Amazon RDS resources
-   + Amazon ElastiCache resources
-   + Amazon Redshift resources
-   + AWS Elastic Beanstalk resources
-   + AWS Data Pipeline resources
-   + Amazon EMR resources
-   + AWS OpsWorks resources
-
-1. Go to the Amazon Web Services Support Center at [console\.aws\.amazon\.com/support](https://console.aws.amazon.com/support)\.
-
-1. Choose **Create case**\.
-
-1. Choose **Account and billing support**\.
-
-1. For **Type**, choose **Account**\. For **Category**, choose **Convert EC2 Classic to VPC**\.
-
-1. Fill in the other details as required, and choose **Submit**\. We will review your request and contact you to guide you through the next steps\.
++ [Using a default VPC](#get-default-vpc)
 
 ## Migrate your resources to a VPC<a name="full-migrate"></a>
 
@@ -72,6 +28,7 @@ Before you begin, you must have a VPC\. If you don't have a default VPC, you can
 + [Elastic IP addresses](#vpc-migrate-eip)
 + [AMIs and instances](#vpc-migrate-ami-instance)
 + [Amazon RDS DB instances](#vpc-migrate-rds)
++ [Classic Load Balancers](#vpc-migrate-elb)
 
 ### Security groups<a name="vpc-migrate-security-group"></a>
 
@@ -203,6 +160,14 @@ For more information about the parameters that you can configure in each step of
 
 You can move your EC2\-Classic DB instance to a VPC in the same Region, in the same account\. For more information, see [Updating the VPC for a DB Instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html#USER_VPC.VPC2VPC) in the *Amazon RDS User Guide*\.
 
+### Classic Load Balancers<a name="vpc-migrate-elb"></a>
+
+You can migrate your Classic Load Balancer in EC2\-Classic to a Classic Load Balancer in a VPC, or you can migrate your Classic Load Balancer to an Application Load Balancer or a Network Load Balancer\. For more information, see [Migrate your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/migrate-classic-load-balancer.html) in the *Elastic Load Balancing User Guide*\.
+
+## Use the AWSSupport\-MigrateEC2ClassicToVPC runbook<a name="migrate-using-runbook"></a>
+
+The [AWSSupport\-MigrateEC2ClassicToVPC](https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-awssupport-migrate-ec2-classic-to-vpc.html) runbook migrates an EC2\-Classic instance to a VPC\. For more information, see [How do I migrate an EC2\-Classic instance to a VPC?](http://aws.amazon.com/premiumsupport/knowledge-center/ssm-migrate-ec2classic-vpc/)
+
 ## Use ClassicLink for an incremental migration<a name="classiclink-migrate"></a>
 
 The ClassicLink feature makes it easier to manage an incremental migration to a VPC\. ClassicLink enables you to link an EC2\-Classic instance to a VPC in your account in the same Region, allowing your new VPC resources to communicate with the EC2\-Classic instance using private IPv4 addresses\. You can then migrate functionality one component at a time until your application is running fully in your VPC\.
@@ -294,3 +259,51 @@ By default, instances launched into a nondefault subnet are not assigned a publi
 + **Create a new load balancer**: To continue using Elastic Load Balancing to load balance the traffic to your instances, make sure you understand the various ways to configure your load balancer in VPC\. For more information, see the [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
 + **Update your DNS records**: After you've set up your load balancer in your public subnet, verify that your `www.garden.example.com` domain points to your new load balancer\. To do this, update your DNS records and your alias record set in Route 53\. For more information about using Route 53, see [Getting Started with Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started.html)\.
 + **Shut down your EC2\-Classic resources**: After you've verified that your web application is working from within the VPC architecture, you can shut down your EC2\-Classic resources to stop incurring charges for them\.
+
+## Using a default VPC<a name="get-default-vpc"></a>
+
+A *default VPC* is a VPC that is configured and ready for you to use, and is only available in Regions that are VPC\-only\. For Regions that support EC2\-Classic, you can create a nondefault VPC to set up your resources\. However, you might want to use a default VPC if you prefer not to set up a VPC yourself, or if you do not have specific requirements for your VPC configuration\. For more information about default VPCs, see [Default VPC and Default Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html) in the *Amazon VPC User Guide*\.
+
+The following are options for using a default VPC when you have an AWS account that supports EC2\-Classic\.
+
+**Topics**
++ [Switch to a VPC\-only Region](#get-default-vpc-region)
++ [Create a new AWS account](#get-default-vpc-account)
++ [Convert your existing AWS account to VPC\-only](#convert-ec2-classic-account)
+
+### Switch to a VPC\-only Region<a name="get-default-vpc-region"></a>
+
+Use this option if you want to use your existing account to set up your resources in a default VPC and you do not need to use a specific Region\. To find a Region that has a default VPC, see [Detect supported platforms](ec2-classic-platform.md#ec2-supported-platforms)\.
+
+### Create a new AWS account<a name="get-default-vpc-account"></a>
+
+New AWS accounts support VPC only\. Use this option if you want an account that has a default VPC in every Region\. 
+
+### Convert your existing AWS account to VPC\-only<a name="convert-ec2-classic-account"></a>
+
+Use this option if you want a default VPC in every Region in your existing account\. Before you can convert your account, you must delete all of your EC2\-Classic resources\. You can also migrate some resources to a VPC\. For more information, see [Migrate your resources to a VPC](#full-migrate)\.
+
+**To convert your EC2\-Classic account**
+
+1. Delete or migrate \(if applicable\) the resources that you have created for use in EC2\-Classic\. These include the following:
+   + Amazon EC2 instances
+   + EC2\-Classic security groups \(excluding the default security group, which you cannot delete yourself\)
+   + EC2\-Classic Elastic IP addresses
+   + Classic Load Balancers
+   + Amazon RDS DB instances
+   + Amazon ElastiCache clusters
+   + Amazon Redshift clusters
+   + AWS Elastic Beanstalk environments
+   + AWS Data Pipeline pipelines
+   + Amazon EMR clusters
+   + AWS OpsWorks resources
+
+1. Go to the Amazon Web Services Support Center at [console\.aws\.amazon\.com/support](https://console.aws.amazon.com/support)\.
+
+1. Choose **Create case**\.
+
+1. Choose **Account and billing support**\.
+
+1. For **Type**, choose **Account**\. For **Category**, choose **Convert EC2 Classic to VPC**\.
+
+1. Fill in the other details as required, and choose **Submit**\. We will review your request and contact you to guide you through the next steps\.

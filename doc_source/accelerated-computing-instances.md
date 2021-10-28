@@ -8,6 +8,7 @@ If you require high processing capability, you'll benefit from using accelerated
 + [GPU instances](#gpu-instances)
 + [Video transcoding instances](#video-transcoding)
 + [Instances with AWS Inferentia](#aws-inferentia-instances)
++ [Instances with Habana accelerators](#habana-instances)
 + [FPGA instances](#fpga-instances)
 + [Hardware specifications](#gpu-instance-specifications)
 + [Instance performance](#gpu-instance-performance)
@@ -94,6 +95,23 @@ Inf1 instances use AWS Inferentia machine learning inference chips\. Inferentia 
 
 For more information, see [Amazon EC2 Inf1 Instances](https://aws.amazon.com/ec2/instance-types/inf1/)\.
 
+## Instances with Habana accelerators<a name="habana-instances"></a>
+
+These instances are designed to accelerate deep learning model \(DL\) training workloads\. They use accelerators from Habana Labs, an Intel company\. These instances are optimized for DL models for applications such as image recognition, object detection and classification, and recommendation systems\.
+
+For more information, see [Machine Learning on AWS](http://aws.amazon.com/machine-learning/)\.
+
+**DL1 instances**  
+DL1 instances use Habana Gaudi accelerators\. They offer up to 400 Gbps of aggregate network bandwidth, along with 32 GB of high bandwidth memory \(HBM\) per accelerator\. DL1 instances are designed to provide high performance and cost efficiency for training deep learning models\.
+
+There are a variety of ways that you can get started:
++ Launch a DL1 instance using the [Habana Deep Learning AMI](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-habana.html)\.
++ Launch a DL1 instance using your own AMI and install the [Habana drivers and Habana SynapseAI SDK](https://github.com/HabanaAI/Setup_and_Install)\.
++ Launch a container instance using a DL1 instance and an Amazon ECS\-optimized AMI\.
++ Create an Amazon EKS cluster with nodes running DL1 instances\.
+
+For more information, see [Amazon EC2 DL1 Instances](https://aws.amazon.com/ec2/instance-types/dl1/)\.
+
 ## FPGA instances<a name="fpga-instances"></a>
 
 FPGA\-based instances provide access to large FPGAs with millions of parallel system logic cells\. You can use FPGA\-based accelerated computing instances to accelerate workloads such as genomics, financial analysis, real\-time video processing, big data analysis, and security workloads by leveraging custom hardware accelerations\. You can develop these accelerations using hardware description languages such as Verilog or VHDL, or by using higher\-level languages such as OpenCL parallel computing frameworks\. You can either develop your own hardware acceleration code or purchase hardware accelerations through the [AWS Marketplace](https://aws.amazon.com/marketplace/)\.
@@ -116,6 +134,7 @@ The following is a summary of the hardware specifications for accelerated comput
 
 | Instance type | Default vCPUs | Memory \(GiB\) | Accelerators | 
 | --- | --- | --- | --- | 
+| dl1\.24xlarge | 96 | 768 | 8 | 
 | p2\.xlarge | 4 | 61 | 1 | 
 | p2\.8xlarge | 32 | 488 | 8 | 
 | p2\.16xlarge | 64 | 732 | 16 | 
@@ -181,7 +200,7 @@ The following is a summary of network performance for accelerated computing inst
 |  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  \| vt1\.6xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge  \| vt1\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  p4d\.24xlarge  | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  dl1\.24xlarge \|  p4d\.24xlarge  | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
 
@@ -203,6 +222,7 @@ The following is a summary of features for accelerated computing instances\.
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
+| DL1 | No | Yes | NVMe \* | Yes | 
 | F1 | No | No | NVMe \* | Yes | 
 | G2 | No | No | SSD | Yes | 
 | G3 | Yes | No | No | Yes | 

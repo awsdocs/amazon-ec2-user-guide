@@ -94,6 +94,9 @@ You can use one of the following commands\. For more information about these com
 + [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\)
 + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
+**To run a controlled fault injection experiment**  
+You can use AWS Fault Injection Simulator to test how your application responds when your instance is terminated\. For more information, see the [AWS Fault Injection Simulator User Guide](https://docs.aws.amazon.com/fis/latest/userguide)\.
+
 ## Enable termination protection<a name="Using_ChangingDisableAPITermination"></a>
 
 By default, you can terminate your instance using the Amazon EC2 console, command line interface, or API\. To prevent your instance from being accidentally terminated using Amazon EC2, you can enable *termination protection* for the instance\. The `DisableApiTermination` attribute controls whether the instance can be terminated using the console, CLI, or API\. By default, termination protection is disabled for your instance\. You can set the value of this attribute when you launch the instance, while the instance is running, or while the instance is stopped \(for Amazon EBS\-backed instances\)\. 

@@ -8,6 +8,7 @@ The following AMIs support hibernation, but to hibernate an instance that was la
 + [CentOS version 8 or later](#configure-centos-for-hibernation)
 + [Fedora version 34 or later](#configure-fedora-for-hibernation)
 + [Red Hat Enterprise Linux version 8 or later](#configure-RHEL-for-hibernation)
++ [Ubuntu 20\.04 LTS \- Focal released before serial number 20210820](#configure-ubuntu2004-for-hibernation)
 + [Ubuntu 18\.04 \- Bionic released before serial number 20190722\.1](#configure-ubuntu1804-for-hibernation)
 + [Ubuntu 16\.04 \- Xenial](#configure-ubuntu1604-for-hibernation)
 
@@ -16,6 +17,7 @@ For more information, see [Update instance software on your Amazon Linux instanc
 **No additional configuration is required for the following AMIs because they're already configured to support hibernation:**
 + Amazon Linux 2 AMI released 2019\.08\.29 or later
 + Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later
++ Ubuntu 20\.04 LTS \- Focal AMI released with serial number 20210820 or later
 + Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later
 
 ## Amazon Linux 2 released before 2019\.08\.29<a name="configure-AL2-for-hibernation"></a>
@@ -190,6 +192,35 @@ For more information, see [Update instance software on your Amazon Linux instanc
 
    ```
    [ec2-user ~]$ uname -a
+   ```
+
+## Ubuntu 20\.04 LTS \- Focal released before serial number 20210820<a name="configure-ubuntu2004-for-hibernation"></a>
+
+**To configure an Ubuntu 20\.04 LTS \- Focal AMI released before serial number 20210820 to support hibernation**
+
+1. Update the linux\-aws\-kernel to `5.8.0-1038.40` or later, and grub2 to `2.04-1ubuntu26.13` or later\.
+
+   ```
+   [ec2-user ~]$ sudo apt update
+   [ec2-user ~]$ sudo apt dist-upgrade
+   ```
+
+1. Reboot the instance\.
+
+   ```
+   [ec2-user ~]$ sudo reboot
+   ```
+
+1. Confirm that the kernel version is updated to `5.8.0-1038.40` or later\.
+
+   ```
+   [ec2-user ~]$ uname -a
+   ```
+
+1. Confirm that the grub2 version is updated to `2.04-1ubuntu26.13` or later\.
+
+   ```
+   [ec2-user ~]$ dpkg –list | grep grub2-common
    ```
 
 ## Ubuntu 18\.04 \- Bionic released before serial number 20190722\.1<a name="configure-ubuntu1804-for-hibernation"></a>

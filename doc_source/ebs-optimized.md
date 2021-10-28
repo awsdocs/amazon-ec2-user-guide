@@ -116,6 +116,7 @@ You can also view this information programatically using the AWS CLI\. For more 
 | d3en\.4xlarge | 2,800 | 350 | 15,000 | 
 | d3en\.8xlarge | 5,000 | 625 | 30,000 | 
 | d3en\.12xlarge | 7,000 | 875 | 40,000 | 
+| dl1\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | f1\.2xlarge | 1,700 | 212\.5 | 12,000 | 
 | f1\.4xlarge | 3,500 | 437\.5 | 44,000 | 
 | f1\.16xlarge | 14,000 | 1,750 | 75,000 | 

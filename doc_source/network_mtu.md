@@ -22,11 +22,10 @@ To see Network MTU information for Windows instances, switch to this page in the
 ## Jumbo frames \(9001 MTU\)<a name="jumbo_frame_instances"></a>
 
 Jumbo frames allow more than 1500 bytes of data by increasing the payload size per packet, and thus increasing the percentage of the packet that is not packet overhead\. Fewer packets are needed to send the same amount of usable data\. However, traffic is limited to a maximum MTU of 1500 in the following cases:
-+ Traffic outside of a given AWS Region for EC2\-Classic
-+ Traffic outside of a single VPC
++ Traffic over an internet gateway
 + Traffic over an inter\-region VPC peering connection
 + Traffic over VPN connections
-+ Traffic over an internet gateway
++ Traffic outside of a given AWS Region for EC2\-Classic
 
 If packets are over 1500 bytes, they are fragmented, or they are dropped if the `Don't Fragment` flag is set in the IP header\.
 

@@ -31,7 +31,7 @@ The AMI boot mode parameter is optional\. An AMI can have one of the following b
   + Intel and AMD instance types: Legacy BIOS
   + Graviton instance types: UEFI
 + Intel and AMD instance types that support UEFI, in addition to Legacy BIOS:
-  + Virtualized: C5, C5a, C5ad, C5d, C5n, D3, D3en, G4, I3en, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, R5, R5a, R5ad, R5b, R5d, R5dn, R5n, T3, T3a, and z1d
+  + Virtualized: C5, C5a, C5ad, C5d, C5n, D3, D3en, G4, I3en, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6i, R5, R5a, R5ad, R5b, R5d, R5dn, R5n, T3, T3a, and z1d
 + UEFI Secure Boot is currently not supported\.
 
 ## Requirements for launching an instance with UEFI<a name="uefi-requirements"></a>

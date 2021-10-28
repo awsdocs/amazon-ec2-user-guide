@@ -138,7 +138,7 @@ If your IAM users will create or manage an EC2 Fleet, be sure to grant them the 
                  "iam:PassRole",
                  "iam:ListInstanceProfiles"
                ],
-               "Resource": "*"
+               "Resource":"arn:aws:iam::123456789012:role/DevTeam*"
            }
        ]
    }

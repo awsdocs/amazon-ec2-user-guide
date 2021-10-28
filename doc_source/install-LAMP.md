@@ -94,12 +94,11 @@ Using `0.0.0.0/0` allows all IPv4 addresses to access your instance using SSH\. 
       + **Port Range**: 80
       + **Source**: Custom
 
-1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. You can get the public DNS address for your instance using the Amazon EC2 console\. If there is no content in `/var/www/html`, you should see the Apache test page\. When you add content to the document root, your content appears at the public DNS address of your instance instead of this test page\.
+1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. You can get the public DNS address for your instance using the Amazon EC2 console\. If there is no content in `/var/www/html`, you should see the Apache test page\. When you add content to the document root, your content appears at the public DNS address of your instance instead of the test page\.
 
    Verify that the security group for the instance contains a rule to allow HTTP traffic on port 80\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
-   If you are not using Amazon Linux, you may also need to configure the firewall on your instance to allow these connections\. For more information about how to configure the firewall, see the documentation for your specific distribution\.  
-![\[Apache test page\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/apache_test_page2.4.png)
+   If you are not using Amazon Linux, you may also need to configure the firewall on your instance to allow these connections\. For more information about how to configure the firewall, see the documentation for your specific distribution\.
 
 Apache httpd serves files that are kept in a directory called the Apache document root\. The Amazon Linux Apache document root is `/var/www/html`, which by default is owned by root\.
 

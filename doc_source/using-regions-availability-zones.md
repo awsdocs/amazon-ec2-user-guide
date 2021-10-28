@@ -285,10 +285,10 @@ In addition to the preceding list, the following resources are available in the 
 The following tables list the available Local Zones by parent Regions\. For information about how to opt in, see [Opt in to Local Zones](#opt-in-local-zone)\.
 
 **US East \(N\. Virginia\) Local Zones**  
-This table lists Local Zones in US East \(N\. Virginia\):
+The following table lists Local Zones in US East \(N\. Virginia\):
 
 
-| Parent Region | Zone Name | Location | 
+| Parent Region | Zone Name | Location \(metro area\) | 
 | --- | --- | --- | 
 | US East \(N\. Virginia\) | us\-east\-1\-bos\-1a | Boston | 
 | US East \(N\. Virginia\) | us\-east\-1\-chi\-1a | Chicago | 
@@ -297,17 +297,22 @@ This table lists Local Zones in US East \(N\. Virginia\):
 | US East \(N\. Virginia\) | us\-east\-1\-mci\-1a | Kansas City | 
 | US East \(N\. Virginia\) | us\-east\-1\-mia\-1a | Miami | 
 | US East \(N\. Virginia\) | us\-east\-1\-msp\-1a | Minneapolis | 
+| US East \(N\. Virginia\) | us\-east\-1\-nyc\-1a | New York City \* | 
 | US East \(N\. Virginia\) | us\-east\-1\-phl\-1a | Philadelphia | 
 
+\*Located in New Jersey\.
+
 **US West \(Oregon\) Local Zones**  
-This table lists Local Zones in US West \(Oregon\):
+The following table lists Local Zones in US West \(Oregon\):
 
 
-| Parent Region | Zone Name | Location | 
+| Parent Region | Zone Name | Location \(metro area\) | 
 | --- | --- | --- | 
 | US West \(Oregon\) | us\-west\-2\-den\-1a | Denver | 
+| US West \(Oregon\) | us\-west\-2\-las\-1a | Las Vegas | 
 | US West \(Oregon\) | us\-west\-2\-lax\-1a | Los Angeles | 
 | US West \(Oregon\) | us\-west\-2\-lax\-1b | Los Angeles | 
+| US West \(Oregon\) | us\-west\-2\-pdx\-1a | Portland | 
 
 ### Describe your Local Zones<a name="local-zones-describe"></a>
 

@@ -1,67 +1,29 @@
 # EC2\-Classic<a name="ec2-classic-platform"></a>
 
+
+|  | 
+| --- |
+| We are retiring EC2\-Classic on August 15, 2022\. We recommend that you [migrate from EC2\-Classic to a VPC](vpc-migrate.md)\. | 
+
 With EC2\-Classic, your instances run in a single, flat network that you share with other customers\. With Amazon VPC, your instances run in a virtual private cloud \(VPC\) that's logically isolated to your AWS account\.
 
 The EC2\-Classic platform was introduced in the original release of Amazon EC2\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic, so you must launch your Amazon EC2 instances in a VPC\.
 
-If your account does not support EC2\-Classic, we create a default VPC for you\. By default, when you launch an instance, we launch it into your default VPC\. Alternatively, you can create a nondefault VPC and specify it when you launch an instance\.
-
 ## Detect supported platforms<a name="ec2-supported-platforms"></a>
 
-The Amazon EC2 console indicates which platforms you can launch instances into for the selected region, and whether you have a default VPC in that Region\.
-
-Verify that the Region you'll use is selected in the navigation bar\. On the Amazon EC2 console dashboard, look for **Supported Platforms** under **Account Attributes**\.
+The Amazon EC2 console indicates which platforms you can launch instances into for the selected region, and whether you have a default VPC in that Region\. Alternatively, you can use the [describe\-account\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-account-attributes.html) command from the AWS CLI\.
 
 ### Accounts that support EC2\-Classic<a name="both-platforms"></a>
 
-The dashboard displays the following under **Account Attributes** to indicate that the account supports both the EC2\-Classic platform and VPCs in this Region, but the Region does not have a default VPC\.
+Select the Region and locate **Account attributes** on the dashboard\. The following indicates that the account supports EC2\-Classic\.
 
-![\[The Supported Platforms indicator\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/classic_indicator.png)
-
-The output of the [describe\-account\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-account-attributes.html) command includes both the `EC2` and `VPC` values for the `supported-platforms` attribute\.
-
-```
-aws ec2 describe-account-attributes --attribute-names supported-platforms
-{
-    "AccountAttributes": [
-        {
-            "AttributeName": "supported-platforms",
-            "AttributeValues": [
-                {
-                    "AttributeValue": "EC2"
-                },
-                {
-                    "AttributeValue": "VPC"
-                }
-            ]
-        }
-    ]
-}
-```
+![\[The Supported platforms indicator\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/classic_indicator.png)
 
 ### Accounts that require a VPC<a name="vpc-only"></a>
 
-The dashboard displays the following under **Account Attributes** to indicate that the account requires a VPC to launch instances in this Region, does not support the EC2\-Classic platform in this Region, and the Region has a default VPC with the identifier `vpc-1a2b3c4d`\.
+Select the Region and locate **Account attributes** on the dashboard\. The following indicates that the account does not support EC2\-Classic\.
 
-![\[The Supported Platforms indicator\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/vpc_indicator.png)
-
-The output of the [describe\-account\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-account-attributes.html) command for the specified Region includes only the `VPC` value for the `supported-platforms` attribute\.
-
-```
-aws ec2 describe-account-attributes --attribute-names supported-platforms --region us-east-2
-{
-    "AccountAttributes": [
-        {
-            "AttributeValues": [
-                {
-                    "AttributeValue": "VPC"
-                }
-            ]
-            "AttributeName": "supported-platforms",
-        }
-    ]
-}
-```
+![\[The Supported platforms indicator\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/vpc_indicator.png)
 
 ## Instance types available in EC2\-Classic<a name="ec2-classic-instance-types"></a>
 

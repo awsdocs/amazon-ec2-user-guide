@@ -307,7 +307,7 @@ aws ec2 modify-capacity-reservation --capacity-reservation-id cr-1234567890abcde
 You can modify the following Capacity Reservation settings for a stopped instance at any time:
 + Start in any Capacity Reservation that has matching attributes \(instance type, platform, and Availability Zone\) and available capacity\.
 + Start the instance in a specific Capacity Reservation\.
-+ Start the in any Capacity Reservation that has matching attributes and available capacity in a Capacity Reservation group
++ Start in any Capacity Reservation that has matching attributes and available capacity in a Capacity Reservation group
 + Prevent the instance from starting in a Capacity Reservation\.
 
 **To modify an instance's Capacity Reservation settings using the console**
@@ -352,7 +352,7 @@ Capacity Reservations have the following possible states:
 + `expired`—The Capacity Reservation expired automatically at the date and time specified in your reservation request\. The reserved capacity is no longer available for your use\.
 + `cancelled`—The Capacity Reservation was canceled\. The reserved capacity is no longer available for your use\.
 + `pending`—The Capacity Reservation request was successful but the capacity provisioning is still pending\.
-+ `failed`—The Capacity Reservation request has failed\. A request can fail due to invalid request parameters, capacity constraints, or instance limit constraints\. You can view a failed request for 60 minutes\.
++ `failed`—The Capacity Reservation request has failed\. A request can fail due to request parameters that are not valid, capacity constraints, or instance limit constraints\. You can view a failed request for 60 minutes\.
 
 **To view your Capacity Reservations using the console**
 
@@ -375,7 +375,7 @@ aws ec2 describe-capacity-reservations
 
 You can cancel a Capacity Reservation at any time if you no longer need the reserved capacity\. When you cancel a Capacity Reservation, the capacity is released immediately, and it is no longer reserved for your use\.
 
-You can cancel empty Capacity Reservations and Capacity Reservations that have running instances\. If you cancel a Capacity Reservation that has running instances, the instances continue to run normally outside of the capacity reservation at standard On\-Demand Instance rates or at a discounted rate if you have a matching Savings Plan or regional Reserved Instance\.
+You can cancel empty Capacity Reservations and Capacity Reservations that have running instances\. If you cancel a Capacity Reservation that has running instances, the instances continue to run normally outside of the capacity reservation at standard On\-Demand Instance rates or at a discounted rate if you have a matching Savings Plan or Regional Reserved Instance\.
 
 After you cancel a Capacity Reservation, instances that target it can no longer launch\. Modify these instances so that they either target a different Capacity Reservation, launch into any open Capacity Reservation with matching attributes and sufficient capacity, or avoid launching into a Capacity Reservation\. For more information, see [Modify an instance's Capacity Reservation settings](#capacity-reservations-modify-instance)\.
 

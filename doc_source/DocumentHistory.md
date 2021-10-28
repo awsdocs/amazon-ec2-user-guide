@@ -4,6 +4,13 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) | Get a recommendation for an AWS Region or Availability Zone based on your Spot capacity requirements\. | October 27, 2021 | 
+| [Attribute\-based instance type selection for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html) | Specify the attributes that an instance must have, and Amazon EC2 will identify all the instance types with those attributes\. | October 27, 2021 | 
+| [Attribute\-based instance type selection for EC2 Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html) | Specify the attributes that an instance must have, and Amazon EC2 will identify all the instance types with those attributes\. | October 27, 2021 | 
+| [New Local Zones added](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#local-zones-available) | Add Local Zones in Las Vegas, New York City, and Portland\. | October 26, 2021 | 
+| [DL1 instances](#DocumentHistory) | New accelerated computing instances featuring Habana Gaudi accelerators and Intel Xeon Platinum processors \(Cascade Lake\)\. | October 26, 2021 | 
+| [On\-Demand Capacity Reservation Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cr-fleets.html) | You can use a Capacity Reservation Fleet to launch a group, or fleet, of Capacity Reservations\. | October 5, 2021 | 
+| [Hibernation support for Ubuntu 20\.04 LTS \- Focal](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html#hibernation-prereqs-supported-amis) | Hibernate your newly\-launched instances that were launched from the Ubuntu 20\.04 LTS \- Focal AMI\. | October 4, 2021 | 
 | [EC2 Fleet and targeted On\-Demand Capacity Reservations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-on-demand-backup.html#ec2-fleet-on-demand-capacity-reservations) | EC2 Fleet can launch On\-Demand Instances into `targeted` Capacity Reservations\. | September 22, 2021 | 
 | [T3 instances on Dedicated Hosts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html#burstable-t3) | Support for T3 instances on Amazon EC2 Dedicated Host\. | September 14, 2021 | 
 | [VT1 instances](#DocumentHistory) | New accelerated computing instances that use Xilinx Alveo U30 media accelerators and are designed for live video transcoding workloads\. | September 13, 2021 | 

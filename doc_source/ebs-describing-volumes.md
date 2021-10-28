@@ -25,7 +25,7 @@ You can view information about a volume using one of the following methods\.
 
 1. \(Optional\) Choose the **Attachment information** link to view additional details about the instance\.
 
-**To view the EBS volumes that are attached to an instance using the console**
+**To view the EBS volumes that are attached to an instance using the **new console****
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -36,6 +36,16 @@ You can view information about a volume using one of the following methods\.
 1. In the **Storage** tab, view the information provided about root and block devices\.
 
 1. \(Optional\) Choose a link in the **Volume ID** column to view additional details for the volume\.
+
+**To view the EBS volumes that are attached to an instance using the **old console****
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance\.
+
+1. In the **Description** tab, for **Block devices**, select the block device mapping and then choose the **EBS ID** to view additional details for the volume\.
 
 ------
 #### [ AWS CLI ]

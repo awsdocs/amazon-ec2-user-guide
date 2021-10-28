@@ -74,6 +74,7 @@ If you start or launch an instance in a spread placement group and there is insu
 ### General rules and limitations<a name="placement-groups-limitations-general"></a>
 
 Before you use placement groups, be aware of the following rules:
++ You can create a maximum of 500 placement groups per account in each Region\.
 + The name that you specify for a placement group must be unique within your AWS account for the Region\.
 + You can't merge placement groups\.
 + An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.

@@ -8,7 +8,7 @@ When the Capacity Reservation enters the `active` state, you are charged the equ
 
 For example, if you create a Capacity Reservation for 20 `m4.large` Linux instances and run 15 `m4.large` Linux instances in the same Availability Zone, you will be charged for 15 active instances and for 5 unused instances in the reservation\.
 
-Billing discounts for Savings Plans and regional Reserved Instances apply to Capacity Reservations\. For more information, see [Billing discounts](#capacity-reservations-discounts)\.
+Billing discounts for Savings Plans and Regional Reserved Instances apply to Capacity Reservations\. For more information, see [Billing discounts](#capacity-reservations-discounts)\.
 
 For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
@@ -24,7 +24,7 @@ The following example shows how a Capacity Reservation is billed\. The Capacity 
 
 ## Billing discounts<a name="capacity-reservations-discounts"></a>
 
-Billing discounts for Savings Plans and regional Reserved Instances apply to Capacity Reservations\. AWS automatically applies these discounts to Capacity Reservations that have matching attributes\. When a Capacity Reservation is used by an instance, the discount is applied to the instance\. Discounts are preferentially applied to instance usage before covering unused Capacity Reservations\.
+Billing discounts for Savings Plans and Regional Reserved Instances apply to Capacity Reservations\. AWS automatically applies these discounts to Capacity Reservations that have matching attributes\. When a Capacity Reservation is used by an instance, the discount is applied to the instance\. Discounts are preferentially applied to instance usage before covering unused Capacity Reservations\.
 
 Billing discounts for zonal Reserved Instances do not apply to Capacity Reservations\.
 

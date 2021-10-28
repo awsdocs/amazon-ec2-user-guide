@@ -1,19 +1,15 @@
 # Virtual private clouds<a name="using-vpc"></a>
 
-Amazon Virtual Private Cloud \(Amazon VPC\) enables you to define a virtual network in your own logically isolated area within the AWS cloud, known as a *virtual private cloud \(VPC\)*\. You can launch your Amazon EC2 resources, such as instances, into the subnets of your VPC\. Your VPC closely resembles a traditional network that you might operate in your own data center, with the benefits of using scalable infrastructure from AWS\. You can configure your VPC; you can select its IP address range, create subnets, and configure route tables, network gateways, and security settings\. You can connect instances in your VPC to the internet or to your own data center\.
+Amazon Virtual Private Cloud \(Amazon VPC\) enables you to define a virtual network in your own logically isolated area within the AWS cloud, known as a *virtual private cloud* or *VPC*\. You can create AWS resources, such as Amazon EC2 instances, into the subnets of your VPC\. Your VPC closely resembles a traditional network that you might operate in your own data center, with the benefits of using scalable infrastructure from AWS\. You can configure your VPC; you can select its IP address range, create subnets, and configure route tables, network gateways, and security settings\. You can connect instances in your VPC to the internet or to your own data center\.
 
-When you create your AWS account, we create a *default VPC* for you in each Region\. A default VPC is a VPC that is already configured and ready for you to use\. You can launch instances into your default VPC immediately\. Alternatively, you can create your own *nondefault VPC* and configure it as you need\.
+When you create your AWS account, we create a *default VPC* in each Region\. A default VPC is a VPC that is already configured and ready for you to use\. For example, there is a default subnet for each Availability Zone in each default VPC, an internet gateway attached to the VPC, and there's a route in the main route table that sends all traffic \(0\.0\.0\.0/0\) to the internet gateway\. Alternatively, you can create your own nondefault VPC and configure the VPC, subnets, and routing to meet your needs\.
 
-If you created your AWS account before 2013\-12\-04, you might have support for the EC2\-Classic platform in some regions\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic, so you must launch your resources in a VPC\. For more information, see [EC2\-Classic](ec2-classic-platform.md)\.
+Instances launched into a default subnet have access to the internet, as the VPC is configured to assign public IP addresses and DNS hostnames, and the main route table is configured with a route to an internet gateway attached to the VPC\.
 
-## Amazon VPC documentation<a name="amazon-vpc-docs"></a>
+For the subnets that you create in your VPCs, do one of the following to ensure that instances that you launch in these subnets have access to the internet:
++ Configure public subnets for your instances\. For more information, see [Enable internet access](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access) in the *Amazon VPC User Guide*\.
++ Configure a public NAT gateway\. For more information, see [Access the internet from a private subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#public-nat-internet-access) in the *Amazon VPC User Guide*\.
 
-For more information about Amazon VPC, see the following documentation\.
+## Learn more<a name="amazon-vpc-docs"></a>
 
-
-| Guide | Description | 
-| --- | --- | 
-|  [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)  |  Describes key concepts and provides instructions for using the features of Amazon VPC\.  | 
-|  [Amazon VPC Peering Guide](https://docs.aws.amazon.com/vpc/latest/peering/)  |  Describes VPC peering connections and provides instructions for using them\.  | 
-|  [Amazon VPC Transit Gateways](https://docs.aws.amazon.com/vpc/latest/tgw/)  |  Describes transit gateways and provides instructions for configuring and using them\.  | 
-|  [AWS Site\-to\-Site VPN User Guide](https://docs.aws.amazon.com/vpn/latest/s2svpn/)  |  Describes Site\-to\-Site VPN connections and provides instructions for configuring and using them\.  | 
+For more information, see [Amazon Virtual Private Cloud Documentation](https://docs.aws.amazon.com/vpc/)\.

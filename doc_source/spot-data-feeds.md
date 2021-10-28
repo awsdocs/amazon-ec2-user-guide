@@ -30,7 +30,7 @@ For example, if your bucket name is **my\-bucket\-name** and your prefix is **my
 my-bucket-name.s3.amazonaws.com/my-prefix/111122223333.2019-03-17-20.001.pwBdGTJG.gz
 ```
 
-For more information about bucket names, see [Rules for bucket naming](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html#bucketnamingrules) in the *Amazon Simple Storage Service Developer Guide*\.
+For more information about bucket names, see [Rules for bucket naming](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html#bucketnamingrules) in the *Amazon Simple Storage Service User Guide*\.
 
 The Spot Instance data feed files are tab\-delimited\. Each line in the data file corresponds to one instance hour and contains the fields listed in the following table\.
 

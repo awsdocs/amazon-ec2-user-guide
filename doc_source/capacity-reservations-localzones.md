@@ -11,7 +11,7 @@ You can't use Capacity Reservation groups in a Local Zone\.
 
 **To use a Capacity Reservation in a Local Zone**
 
-1. Enable the Local Zone for use in your AWS account\. For more information, see [ Enable Local Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#opt-in-local-zone) in the *Amazon EC2 User Guide for Linux Instances*\. 
+1. Enable the Local Zone for use in your AWS account\. For more information, see [Opt in to Local Zones](using-regions-availability-zones.md#opt-in-local-zone)\. 
 
 1. Create a Capacity Reservation in the Local Zone\. For **Availability Zone**, choose the Local Zone\. The Local Zone is represented by an AWS Region code followed by an identifier that indicates the location, for example `us-west-2-lax-1a`\. For more information, see [Create a Capacity Reservation](capacity-reservations-using.md#capacity-reservations-create)\. 
 

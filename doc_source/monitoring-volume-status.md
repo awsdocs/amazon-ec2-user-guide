@@ -23,7 +23,7 @@ Volume status is based on the volume status checks, and does not reflect the vol
 
 If the consistency of a particular volume is not a concern, and you'd prefer that the volume be made available immediately if it's impaired, you can override the default behavior by configuring the volume to automatically enable I/O\. If you enable the **Auto\-Enable IO** volume attribute \(`autoEnableIO` in the API\), the volume status check continues to pass\. In addition, you'll see an event that lets you know that the volume was determined to be potentially inconsistent, but that its I/O was automatically enabled\. This enables you to check the volume's consistency or replace it at a later time\.
 
-The I/O performance status check compares actual volume performance to the expected performance of a volume\. It alerts you if the volume is performing below expectations\. This status check is available only for Provisioned IOPS SSD \(`io1` and `io2`\) volumes that are attached to an instance\. The status check is not valid for General Purpose SSD \(`gp2` and `gp3`\), Throughput Optimized HDD \(`st1`\), Cold HDD \(`sc1`\), or Magnetic\(`standard`\) volumes\. The I/O performance status check is performed once every minute, and CloudWatch collects this data every 5 minutes\. It might take up to 5 minutes from the moment that you attach an `io1` or `io2` volume to an instance for the status check to report the I/O performance status\.
+The I/O performance status check compares actual volume performance to the expected performance of a volume\. It alerts you if the volume is performing below expectations\. This status check is available only for Provisioned IOPS SSD \(`io1` and `io2`\) and General Purpose SSD \(`gp3`\) volumes that are attached to an instance\. The status check is not valid for General Purpose SSD \(`gp2`\), Throughput Optimized HDD \(`st1`\), Cold HDD \(`sc1`\), or Magnetic\(`standard`\) volumes\. The I/O performance status check is performed once every minute, and CloudWatch collects this data every 5 minutes\. It might take up to 5 minutes from the moment that you attach an `io1` or `io2` volume to an instance for the status check to report the I/O performance status\.
 
 **Important**  
 While initializing Provisioned IOPS SSD volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on Provisioned IOPS SSD volumes while you are initializing them\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
@@ -31,7 +31,7 @@ While initializing Provisioned IOPS SSD volumes that were restored from snapshot
 The following table lists statuses for Amazon EBS volumes\.
 
 
-| Volume status | I/O enabled status | I/O performance status \(`io1` and `io2` volumes only\) | 
+| Volume status | I/O enabled status | I/O performance status \(`io1`, `io2`, and `gp3` volumes only\) | 
 | --- | --- | --- | 
 |  `ok`  |  Enabled \(I/O Enabled or I/O Auto\-Enabled\)  |  Normal \(Volume performance is as expected\)  | 
 |  `warning`  |  Enabled \(I/O Enabled or I/O Auto\-Enabled\)  |  Degraded \(Volume performance is below expectations\) Severely Degraded \(Volume performance is well below expectations\)  | 
