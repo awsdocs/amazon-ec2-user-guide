@@ -83,7 +83,7 @@ $ aws ec2 create-volume --volume-type io2 --multi-attach-enabled --size 100 --io
 
 ------
 
-You can also enable Multi\-Attach for `io2` volumes after they have been created\. 
+You can also enable Multi\-Attach for `io2` volumes after they have been created only if they are not attached to any instances\.
 
 **Note**  
 You can't enable Multi\-Attach for `io1` volumes after creation\.

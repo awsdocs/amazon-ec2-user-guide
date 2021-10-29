@@ -1,0 +1,119 @@
+# Share an AMI with specific organizations or organizational units<a name="share-amis-with-organizations-and-OUs"></a>
+
+You can share an AMI with an organization or an organizational unit \(OU\), in addition to [sharing it with specific accounts](sharingamis-explicit.md)\.
+
+An organization is an entity that you create to consolidate and centrally manage your AWS accounts\. You can organize the accounts in a hierarchical, tree\-like structure with a [root](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#root) at the top and [organizational units](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#organizationalunit) nested under the root\. Each account can be directly in the root, or placed in one of the OUs in the hierarchy\. For more information, see [AWS Organizations terminology and concepts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html) in the *AWS Organizations User Guide*\.
+
+When you share an AMI with an organization or an OU, all of the children accounts gain access to the AMI\. For example, in the following diagram, the AMI is shared with a top\-level OU \(indicated by the arrow at the number **1**\)\. All of the OUs and accounts that are nested underneath that top\-level OU \(indicated by the dotted line at number **2**\) also have access to the AMI\. The accounts in the organization and OU outside the dotted line \(indicated by the number **3**\) do not have access to the AMI because they are not children of the OU that the AMI is shared with\.
+
+![\[The AMI is shared with an OU, and all children OUs and accounts get access to the AMI.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-share-with-orgs-and-ous.png)
+
+
+
+## Considerations<a name="considerations-org-ou"></a>
++ The AMI owner can share an AMI with any organization or OU, including organizations and OUs that they’re not a member of\.
++ There is no limit to the number of organizations or OUs with which an AMI can be shared\.
++ User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the AWS accounts in the other organizations and OUs that the AMI is shared with\.
++ When specifying an AMI to share, make sure that you use the correct ARN format, otherwise you’ll get an error\. The following are examples of the correct ARN format\.
+  + Organization ARN: `OrganizationArn=arn:aws:organizations::111122223333:organization/o-123example`
+  + OU ARN: `OrganizationalUnitArn=arn:aws:organizations::111122223333:ou/o-123example/ou-1234-5example`
+
+  You'll get an error if you specify only the ID, for example, `o-123example` or `ou-1234-5example`\. 
++ You can share AMIs that are backed by unencrypted and encrypted snapshots\. However, the encrypted snapshots must be encrypted with a customer managed key\. You can’t share AMIs that are backed by snapshots that are encrypted with the default AWS managed key\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
++ If you share an AMI that is backed by encrypted snapshots, you must allow the organizations or OUs to use the customer managed keys that were used to encrypt the snapshots\. For more information, see [Allow organizations and OUs to use a KMS key](#allow-org-ou-to-use-key)\.
++ AMIs are a regional resource\. When you share an AMI, its only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
++ You are not billed when your AMI is used by other AWS accounts to launch instances\. The accounts that launch instances using the AMI are billed for the instances that they launch\. 
++ When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from their instance\.
+
+## Allow organizations and OUs to use a KMS key<a name="allow-org-ou-to-use-key"></a>
+
+If you share an AMI that is backed by encrypted snapshots, you must also allow the organizations or OUs to use the customer managed keys that were used to encrypt the snapshots\.
+
+Use the `aws:PrincipalOrgID` and `aws:PrincipalOrgPaths` keys to compare the AWS Organizations path for the principal who is making the request to the path in the policy\. That principal can be an IAM user, IAM role, federated user, or AWS account root user\. In a policy, this condition key ensures that the requester is an account member within the specified organization root or OUs in AWS Organizations\. For more example condition statements, see [aws:PrincipalOrgID](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid) and [aws:PrincipalOrgPaths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths) in the *IAM User Guide*\.
+
+For information about editing a key policy, see [Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide* and [Share a KMS key](ebs-modifying-snapshot-permissions.md#share-kms-key)\.
+
+To give an organization or OU permission to use a KMS key, add the following statement to the key policy\.
+
+```
+{
+    "Sid": "Allow access for Org Admin",
+    "Effect": "Allow",
+    "Principal": "*",
+    "Action": [
+        "kms:Describe*",
+        "kms:List*",
+        "kms:Get*"
+    ],
+    "Resource": "*",
+    "Condition": {
+        "StringEquals": {
+            "aws:PrincipalOrgID": "o-123example"
+        }
+    }
+}
+```
+
+To share a KMS key with multiple OUs, you can use a policy similar to the following example\.
+
+```
+{
+        "Sid": "Allow access for specific OUs and their descendants",
+        "Effect": "Allow",
+        "Principal": "*",
+        "Action": [
+            "kms:Describe*",
+            "kms:List*",
+            "kms:Get*"
+        ],
+        "Resource": "*",
+        "Condition": {
+            "StringEquals": {
+                "aws:PrincipalOrgID": "o-123example"
+            },
+            "ForAnyValue:StringLike": {
+                "aws:PrincipalOrgPaths": [
+                    "o-123example/r-ab12/ou-ab12-33333333/*",
+                    "o-123example/r-ab12/ou-ab12-22222222/*"
+                ]
+            }
+        }
+}
+```
+
+## Share an AMI \(AWS CLI\)<a name="share-amis-org-ou-aws-cli"></a>
+
+Use the [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command \(AWS CLI\) to share an AMI as shown in the following examples\.
+
+**To share an AMI with an organization or an OU using the AWS CLI**  
+The following command grants launch permissions for the specified AMI to the specified organization\. Note that you must specify the ARN, not the ID\.
+
+```
+aws ec2 modify-image-attribute \
+    --image-id ami-0abcdef1234567890 \
+    --launch-permission "Add=[{OrganizationArn=arn:aws:organizations::111122223333:organization/o-123example}]"
+```
+
+**Note**  
+You do not need to share the Amazon EBS snapshots that an AMI references in order to share the AMI\. Only the AMI itself needs to be shared, and the system automatically provides the instance with access to the referenced Amazon EBS snapshots for the launch\. However, you do need to share the KMS keys used to encrypt snapshots that the AMI references\. For more information, see [Allow organizations and OUs to use a KMS key](#allow-org-ou-to-use-key)\.
+
+**To stop sharing an AMI with an organization or OU**  
+The following command removes launch permissions for the specified AMI from the specified organization\. Note that you must specify the ARN\.
+
+```
+aws ec2 modify-image-attribute \
+    --image-id ami-0abcdef1234567890 \
+    --launch-permission "Remove=[{OrganizationArn=arn:aws:organizations::111122223333:organization/o-123example}]"
+```
+
+**To stop sharing an AMI with all organizations, OUs, and AWS accounts**  
+The following command removes all public and explicit launch permissions from the specified AMI\. Note that the owner of the AMI always has launch permissions and is therefore unaffected by this command\.
+
+```
+aws ec2 reset-image-attribute \
+    --image-id ami-0abcdef1234567890 \
+    --attribute launchPermission
+```
+
+**Note**  
+You can't stop sharing an AMI with a specific account if it's in an organization or OU with which an AMI is shared\. If you try to stop sharing the AMI by removing launch permissions for the account, Amazon EC2 returns a success message\. However, the AMI continues to be shared with the account\.

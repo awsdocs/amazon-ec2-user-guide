@@ -33,6 +33,18 @@ Bare metal instances, such as `c6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 C6g Instances](https://aws.amazon.com/ec2/instance-types/c6)\.
 
+**C6i instances**
+
+These instances are ideal for running advanced, compute\-intensive workloads, such as the following:
++ High\-performance computing \(HPC\)
++ Batch processing
++ Ad serving
++ Video encoding
++ Distributed analytics
++ Highly scalable multiplayer gaming
+
+For more information, see [Amazon EC2 C6i Instances](http://aws.amazon.com/ec2/instance-types/c6i)\.
+
 **Topics**
 + [Hardware specifications](#compute-instances-hardware)
 + [Instance performance](#compute-performance)
@@ -120,6 +132,15 @@ The following is a summary of the hardware specifications for compute optimized 
 | c6gn\.8xlarge | 32 | 64 | 
 | c6gn\.12xlarge | 48 | 96 | 
 | c6gn\.16xlarge | 64 | 128 | 
+| c6i\.large | 2 | 4 | 
+| c6i\.xlarge | 4 | 8 | 
+| c6i\.2xlarge | 8 | 16 | 
+| c6i\.4xlarge | 16 | 32 | 
+| c6i\.8xlarge | 32 | 64 | 
+| c6i\.12xlarge | 48 | 96 | 
+| c6i\.16xlarge | 64 | 128 | 
+| c6i\.24xlarge | 96 | 192 | 
+| c6i\.32xlarge | 128 | 256 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -146,10 +167,14 @@ The following is a summary of network performance for compute optimized instance
 | c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 | c5\.9xlarge \| c5a\.8xlarge \| c5ad\.8xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.12xlarge \| c5a\.12xlarge \| c5ad\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge \| c6gd\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  c6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  c6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  c6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5a\.16xlarge \| c5a\.24xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge \| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller  \| c6gn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.9xlarge \| c6gn\.8xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge  \| c6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  c6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.9xlarge \| c6gn\.8xlarge  \| c6i\.32xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c6gn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
@@ -193,6 +218,10 @@ The following is a summary of network performance for compute optimized instance
 | c6gn\.xlarge | 6\.3 | 25 | 
 | c6gn\.2xlarge | 12\.5 | 25 | 
 | c6gn\.4xlarge | 15 | 25 | 
+| c6i\.large | \.781 | 12\.5 | 
+| c6i\.xlarge | 1\.562 | 12\.5 | 
+| c6i\.2xlarge | 3\.125 | 12\.5 | 
+| c6i\.4xlarge | 6\.25 | 12\.5 | 
 
 ## SSD I/O performance<a name="compute-ssd-perf"></a>
 
@@ -252,6 +281,7 @@ The following is a summary of features for compute optimized instances:
 | C6g | Yes | Yes | No | Yes | 
 | C6gd | No | Yes | NVMe \* | Yes | 
 | C6gn | Yes | Yes | No | Yes | 
+| C6i | Yes | Yes | No | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -288,6 +318,11 @@ For more information, see the following:
   + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
   + Debian 10 or later \(64\-bit Arm\)
++ To get the best performance from your C6i instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\.
+  + Amazon Linux 2 with kernel 4\.14\.186
+  + Ubuntu 20\.04 with kernel 5\.4\.0\-1025\-aws
+  + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
+  + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.3\.18\-24\.15\.1
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
 + To get the best performance from your C6gn instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\.
   + Amazon Linux 2 with kernel 4\.14\.186

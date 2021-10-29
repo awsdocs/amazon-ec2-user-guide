@@ -100,7 +100,7 @@ Use the `*` wildcard to match zero or more characters\. Use the `?` wildcard to 
 Wildcard search is supported with attribute searches on API filters only\. It is not supported with keyword searches and attribute searches on client filters only\. 
 
 **Combining searches**  
-In general, multiple filters with the same attribute are automatically joined with `OR`\. For example, searching for `Instance State : Running` and `Instance State : Stopped` returns all instances that are either running OR stopped\. To join search with `AND`, search across different attributes\. For example, searching for `Instance State : Running` and `Instance Type : c4.large` returns only instances that are of type `c4.large` AND that are in the stopped state\.
+In general, multiple filters with the same attribute are automatically joined with `OR`\. For example, searching for `Instance State : Running` and `Instance State : Stopped` returns all instances that are either running OR stopped\. To join search with `AND`, search across different attributes\. For example, searching for `Instance State : Running` and `Instance Type : c4.large` returns only instances that are of type `c4.large` AND that are in the running state\.
 
 #### Old console<a name="console-filters-old"></a>
 

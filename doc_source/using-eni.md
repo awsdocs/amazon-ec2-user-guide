@@ -168,6 +168,15 @@ The following table lists the maximum number of network interfaces per instance 
 | c6gn\.8xlarge | 8 | 30 | 30 | 
 | c6gn\.12xlarge | 8 | 30 | 30 | 
 | c6gn\.16xlarge | 15 | 50 | 50 | 
+| c6i\.large | 3 | 10 | 10 | 
+| c6i\.xlarge | 4 | 15 | 15 | 
+| c6i\.2xlarge | 4 | 15 | 15 | 
+| c6i\.4xlarge | 8 | 30 | 30 | 
+| c6i\.8xlarge | 8 | 30 | 30 | 
+| c6i\.12xlarge | 8 | 30 | 30 | 
+| c6i\.16xlarge | 15 | 50 | 50 | 
+| c6i\.24xlarge | 15 | 50 | 50 | 
+| c6i\.32xlarge | 15 | 50 | 50 | 
 | cc2\.8xlarge |  8  |  30  | IPv6 not supported | 
 | cr1\.8xlarge |  8  |  30  | IPv6 not supported | 
 | d2\.xlarge |  4  |  15  | 15 | 

@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Share AMIs with organizations and OUs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/share-amis-with-organizations-and-OUs.html) | You can now share AMIs with the following AWS resources: organizations and organizational units \(OUs\)\. | October 29, 2021 | 
+| [C6i instances](#DocumentHistory) | New compute optimized instances featuring Intel Xeon Scalable processors \(Ice Lake\)\. | October 28, 2021 | 
 | [Spot placement score](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html) | Get a recommendation for an AWS Region or Availability Zone based on your Spot capacity requirements\. | October 27, 2021 | 
 | [Attribute\-based instance type selection for Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html) | Specify the attributes that an instance must have, and Amazon EC2 will identify all the instance types with those attributes\. | October 27, 2021 | 
 | [Attribute\-based instance type selection for EC2 Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html) | Specify the attributes that an instance must have, and Amazon EC2 will identify all the instance types with those attributes\. | October 27, 2021 | 

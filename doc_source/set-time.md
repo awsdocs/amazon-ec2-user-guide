@@ -245,7 +245,27 @@ Amazon Linux instances are set to the UTC \(Coordinated Universal Time\) time zo
 **Important**  
 This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
 
-**To change the time zone on an AML instance**
+**To change the time zone on an Amazon Linux 2 instance**
+
+1. View the system's current time zone setting\.
+
+   ```
+   [ec2-user ~]$ timedatectl
+   ```
+
+1. List the available time zones\.
+
+   ```
+   [ec2-user ~]$ timedatectl list-timezones
+   ```
+
+1. Set the chosen time zone\.
+
+   ```
+   [ec2-user ~]$ sudo timedatectl set-timezone America/Vancouver
+   ```
+
+**To change the time zone on an Amazon Linux instance**
 
 1. Identify the time zone to use on the instance\. The `/usr/share/zoneinfo` directory contains a hierarchy of time zone data files\. Browse the directory structure at that location to find a file for your time zone\.
 
@@ -295,30 +315,4 @@ Do not change the `UTC=true` entry to another value\. This entry is for the hard
    ```
    [ec2-user ~]$ date
    Sun Aug 16 05:45:16 PDT 2020
-   ```
-
-### Change the time zone on Amazon Linux 2<a name="change_time_zone2"></a>
-
-View the system's current time zone setting:
-
-1. 
-
-   ```
-   [ec2-user ~]$ timedatectl
-   ```
-
-   
-
-1. List the available time zones:
-
-   ```
-   [ec2-user ~]$ timedatectl list-timezones
-   ```
-
-   
-
-1. To set the chosen time zone:
-
-   ```
-   [ec2-user ~]$ sudo timedatectl set-timezone America/Vancouver
    ```

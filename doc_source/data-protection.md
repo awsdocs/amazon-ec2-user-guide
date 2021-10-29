@@ -40,7 +40,7 @@ All cross\-Region traffic that uses Amazon VPC and Transit Gateway peering is au
 AWS provides secure and private connectivity between EC2 instances of all types\. In addition, some instance types use the offload capabilities of the underlying Nitro System hardware to automatically encrypt in\-transit traffic between instances, using AEAD algorithms with 256\-bit encryption\. There is no impact on network performance\. To support this additional in\-transit traffic encryption between instances, the following requirements must be met:
 + The instances use the following instance types:
   + General purpose: M5dn \| M5n \| M5zn \| M6i
-  + Compute optimized: C5a \| C5ad \| C5n \| C6gn
+  + Compute optimized: C5a \| C5ad \| C5n \| C6gn \| C6i
   + Memory optimized: R5dn \| R5n \| high memory \(u\-\*\), virtualized only
   + Storage optimized: D3 \| D3en \| I3en
   + Accelerated computing: DL1 \| G4ad \| G4dn \| Inf1 \| P3dn \| P4d \| VT1

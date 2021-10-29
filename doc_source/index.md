@@ -32,6 +32,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Shared AMIs](sharing-amis.md)
       + [Find shared AMIs](usingsharedamis-finding.md)
       + [Make an AMI public](sharingamis-intro.md)
+      + [Share an AMI with specific organizations or organizational units](share-amis-with-organizations-and-OUs.md)
       + [Share an AMI with specific AWS accounts](sharingamis-explicit.md)
       + [Use bookmarks](using-bookmarks.md)
       + [Guidelines for shared Linux AMIs](building-shared-amis.md)
