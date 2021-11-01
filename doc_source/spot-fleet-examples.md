@@ -334,7 +334,7 @@ The following example uses the `diversified` allocation strategy\. The launch sp
 }
 ```
 
-A best practice to increase the chance that a spot request can be fulfilled by EC2 capacity in the event of an outage in one of the Availability Zones is to diversify across zones\. For this scenario, include each Availability Zone available to you in the launch specification\. And, instead of using the same subnet each time, use three unique subnets \(each mapping to a different zone\)\.
+A best practice to increase the chance that a spot request can be fulfilled by EC2 capacity in the event of an outage in one of the Availability Zones is to diversify across zones\. For this scenario, include each Availability Zone available to you in the launch specification\. And, instead of using the same subnet each time, use three unique subnets \(each mapping to a different zone\)\. 
 
 **Availability Zone**
 
@@ -464,7 +464,7 @@ For more information, see [Spot Fleet instance weighting](spot-instance-weightin
 
 To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. If there is capacity, the On\-Demand request is always fulfilled\. The balance of the target capacity is fulfilled as Spot if there is capacity and availability\.
 
-The following example specifies the desired target capacity as 10, of which 5 must be On\-Demand capacity\. Spot capacity is not specified; it is implied in the balance of the target capacity minus the On\-Demand capacity\. Amazon EC2 launches 5 capacity units as On\-Demand, and 5 capacity units \(10\-5=5\) as Spot if there is available Amazon EC2 capacity and availability\.
+The following example specifies the desired target capacity as 10, of which 5 must be On\-Demand capacity\. Spot capacity is not specified; it is implied in the balance of the target capacity minus the On\-Demand capacity\. Amazon EC2 launches 5 capacity units as On\-Demand, and 5 capacity units \(10\-5=5\) as Spot if there is available Amazon EC2 capacity and availability\. 
 
 For more information, see [On\-Demand in Spot Fleet](on-demand-in-spot.md)\.
 
@@ -503,7 +503,7 @@ For more information, see [On\-Demand in Spot Fleet](on-demand-in-spot.md)\.
 The following example configures the Spot Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation for a Spot Instance in the fleet\. To configure the automatic replacement of Spot Instances, for `ReplacementStrategy`, specify `launch`\.
 
 **Note**  
-When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\.
+When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\. 
 
 The effectiveness of the Capacity Rebalancing strategy depends on the number of Spot capacity pools specified in the Spot Fleet request\. We recommend that you configure the fleet with a diversified set of instance types and Availability Zones, and for `AllocationStrategy`, specify `capacityOptimized`\. For more information about what you should consider when configuring a Spot Fleet for Capacity Rebalancing, see [Capacity Rebalancing](spot-fleet-capacity-rebalance.md)\.
 
