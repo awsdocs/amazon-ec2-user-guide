@@ -578,11 +578,11 @@ In the following example, the three launch specifications specify three Spot cap
                       },
                        {
                            "InstanceType": "m4.2xlarge",
-                           "AvailabilityZone": us-west-2b
+                           "AvailabilityZone": "us-west-2b"
                        }, 
                        {
                            "InstanceType": "c5.2xlarge",
-                           "AvailabilityZone": us-west-2b
+                           "AvailabilityZone": "us-west-2b"
                        }
                  ] 
            }
@@ -615,18 +615,18 @@ In the following example, the three launch specifications specify three Spot cap
                  "Overrides": [
                         {
                            "InstanceType": "r4.2xlarge",    
-                           "Priority": 1
+                           "Priority": 1,
                            "AvailabilityZone": "us-west-2a"
                       },
                        {
                            "InstanceType": "m4.2xlarge",
-                           "Priority": 2
-                           "AvailabilityZone": us-west-2b
+                           "Priority": 2,
+                           "AvailabilityZone": "us-west-2b"
                        }, 
                        {
                            "InstanceType": "c5.2xlarge",
-                           "Priority": 3
-                           "AvailabilityZone": us-west-2b
+                           "Priority": 3,
+                           "AvailabilityZone": "us-west-2b"
                        }
                   ] 
              }
