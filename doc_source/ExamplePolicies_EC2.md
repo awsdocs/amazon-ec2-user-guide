@@ -2,6 +2,8 @@
 
 The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example policies for working in the Amazon EC2 console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Identity and Access Management for Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/security-iam.html)\.
 
+In the following examples, replace each *user input placeholder* with your own information\.
+
 **Topics**
 + [Read\-only access](#iam-example-read-only)
 + [Restrict access to a specific Region](#iam-example-region)
@@ -140,14 +142,14 @@ The third statement allows users to terminate all instances in the US East \(N\.
         "ec2:StartInstances"
       ],
       "Resource": [
-        "arn:aws:ec2:us-east-1:123456789012:instance/i-1234567890abcdef0",
-        "arn:aws:ec2:us-east-1:123456789012:instance/i-0598c7d356eba48d7"
+        "arn:aws:ec2:us-east-1:account-id:instance/i-1234567890abcdef0",
+        "arn:aws:ec2:us-east-1:account-id:instance/i-0598c7d356eba48d7"
       ]
     },
     {
       "Effect": "Allow",
       "Action": "ec2:TerminateInstances",
-      "Resource": "arn:aws:ec2:us-east-1:123456789012:instance/*",
+      "Resource": "arn:aws:ec2:us-east-1:account-id:instance/*",
       "Condition": {
          "StringEquals": {
             "ec2:ResourceTag/purpose": "test"
@@ -182,7 +184,7 @@ The following policy allows users to attach volumes with the tag "`volume_user`=
         "ec2:AttachVolume",
         "ec2:DetachVolume"
       ],
-      "Resource": "arn:aws:ec2:us-east-1:123456789012:instance/*",
+      "Resource": "arn:aws:ec2:us-east-1:account-id:instance/*",
       "Condition": {
         "StringEquals": {
           "ec2:ResourceTag/department": "dev"
@@ -195,7 +197,7 @@ The following policy allows users to attach volumes with the tag "`volume_user`=
         "ec2:AttachVolume",
         "ec2:DetachVolume"
       ],
-      "Resource": "arn:aws:ec2:us-east-1:123456789012:volume/*",
+      "Resource": "arn:aws:ec2:us-east-1:account-id:volume/*",
       "Condition": {
         "StringEquals": {
           "ec2:ResourceTag/volume_user": "${aws:username}"
@@ -219,7 +221,7 @@ The following policy allows users to use the [CreateVolume](https://docs.aws.ama
       "Action": [
          "ec2:CreateVolume"
       ],
-      "Resource": "arn:aws:ec2:us-east-1:123456789012:volume/*",
+      "Resource": "arn:aws:ec2:us-east-1:account-id:volume/*",
       "Condition":{
          "NumericLessThan": {
              "ec2:VolumeSize" : "20"
@@ -247,7 +249,7 @@ For resource\-creating actions that apply tags, users must also have permissions
       "Sid": "AllowCreateTaggedVolumes",
       "Effect": "Allow",
       "Action": "ec2:CreateVolume",
-      "Resource": "arn:aws:ec2:us-east-1:123456789012:volume/*",
+      "Resource": "arn:aws:ec2:us-east-1:account-id:volume/*",
       "Condition": {
         "StringEquals": {
           "aws:RequestTag/costcenter": "115",
@@ -263,7 +265,7 @@ For resource\-creating actions that apply tags, users must also have permissions
        "Action": [
          "ec2:CreateTags"
        ],
-       "Resource": "arn:aws:ec2:us-east-1:123456789012:volume/*",
+       "Resource": "arn:aws:ec2:us-east-1:account-id:volume/*",
        "Condition": {
          "StringEquals": {
              "ec2:CreateAction" : "CreateVolume"
@@ -290,7 +292,7 @@ The following policy allows users to create a volume without having to specify t
       "Action": [
          "ec2:CreateTags"
       ],
-      "Resource": "arn:aws:ec2:us-east-1:1234567890:volume/*",
+      "Resource": "arn:aws:ec2:us-east-1:account-id:volume/*",
       "Condition": {
          "StringEquals": {
              "aws:RequestTag/purpose": "test",
@@ -333,7 +335,7 @@ The following policy allows customers to use the [CreateSnapshot](https://docs.a
       {
          "Effect":"Allow",
          "Action":"ec2:CreateSnapshot",
-         "Resource":"arn:aws:ec2:us-east-1:123456789012:volume/*",
+         "Resource":"arn:aws:ec2:us-east-1:account-id:volume/*",
          "Condition":{
             "NumericLessThan":{
                "ec2:VolumeSize":"20"
@@ -391,7 +393,7 @@ For resource\-creating actions that apply tags, customers must also have permiss
       {
          "Effect":"Allow",
          "Action":"ec2:CreateSnapshot",
-         "Resource":"arn:aws:ec2:us-east-1:123456789012:volume/*"
+         "Resource":"arn:aws:ec2:us-east-1:account-id:volume/*"
       },
       {
          "Sid":"AllowCreateTaggedSnapshots",
@@ -540,7 +542,7 @@ The following policy allows snapshots to be created only if the source volume is
            {
          "Effect":"Allow",
          "Action":"ec2:CreateSnapshot",
-         "Resource":"arn:aws:ec2:us-east-1:123456789012:volume/*",
+         "Resource":"arn:aws:ec2:us-east-1:account-id:volume/*",
          "Condition":{
             "StringEquals":{
                "ec2:ResourceTag/User":"${aws:username}"
@@ -581,7 +583,7 @@ The following policy for `CreateSnapshots` allows snapshots to be created only i
       {
          "Effect":"Allow",
          "Action":"ec2:CreateSnapshots",
-         "Resource":"arn:aws:ec2:us-east-1:123456789012:volume/*",
+         "Resource":"arn:aws:ec2:us-east-1:account-id:volume/*",
          "Condition":{
             "StringEquals":{
                "ec2:ResourceTag/User":"${aws:username}"
@@ -729,7 +731,7 @@ The following example policy allows principals to copy snapshots only if the new
             "Sid": "AllowCopySnapshotWithTags",
             "Effect": "Allow",
             "Action": "ec2:CopySnapshot",
-            "Resource": "arn:aws:ec2:*:123456789012:snapshot/*",
+            "Resource": "arn:aws:ec2:*:account-id:snapshot/*",
             "Condition": {
                 "StringEquals": {
                     "aws:RequestTag/purpose": "production"
@@ -750,7 +752,7 @@ The following policy allows modification of a snapshot only if the snapshot is t
    "Statement": [
            {
          "Effect":"Allow",
-         "Action":"ec2: ModifySnapshotAttribute",
+         "Action":"ec2:ModifySnapshotAttribute",
          "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
          "Condition":{
             "StringEquals":{
@@ -794,12 +796,12 @@ The following policy allows users to launch instances using only the specified A
       "Resource": [
         "arn:aws:ec2:region::image/ami-9e1670f7",
         "arn:aws:ec2:region::image/ami-45cf5c3c",
-        "arn:aws:ec2:region:account:instance/*",
-        "arn:aws:ec2:region:account:volume/*",
-        "arn:aws:ec2:region:account:key-pair/*",
-        "arn:aws:ec2:region:account:security-group/*",
-        "arn:aws:ec2:region:account:subnet/*",
-        "arn:aws:ec2:region:account:network-interface/*"
+        "arn:aws:ec2:region:account-id:instance/*",
+        "arn:aws:ec2:region:account-id:volume/*",
+        "arn:aws:ec2:region:account-id:key-pair/*",
+        "arn:aws:ec2:region:account-id:security-group/*",
+        "arn:aws:ec2:region:account-id:subnet/*",
+        "arn:aws:ec2:region:account-id:network-interface/*"
       ]
     }
    ]
@@ -828,12 +830,12 @@ Alternatively, the following policy allows users to launch instances from all AM
       "Effect": "Allow",
       "Action": "ec2:RunInstances",
       "Resource": [ 
-         "arn:aws:ec2:region:account:instance/*",
-         "arn:aws:ec2:region:account:subnet/*",
-         "arn:aws:ec2:region:account:volume/*",
-         "arn:aws:ec2:region:account:network-interface/*",
-         "arn:aws:ec2:region:account:key-pair/*",
-         "arn:aws:ec2:region:account:security-group/*"
+         "arn:aws:ec2:region:account-id:instance/*",
+         "arn:aws:ec2:region:account-id:subnet/*",
+         "arn:aws:ec2:region:account-id:volume/*",
+         "arn:aws:ec2:region:account-id:network-interface/*",
+         "arn:aws:ec2:region:account-id:key-pair/*",
+         "arn:aws:ec2:region:account-id:security-group/*"
          ]
       }
    ]
@@ -852,7 +854,7 @@ The following policy allows users to launch instances using only the `t2.micro` 
       "Effect": "Allow",
       "Action": "ec2:RunInstances",
       "Resource": [
-         "arn:aws:ec2:region:account:instance/*"
+         "arn:aws:ec2:region:account-id:instance/*"
       ],
       "Condition": {
          "StringEquals": {
@@ -865,11 +867,11 @@ The following policy allows users to launch instances using only the `t2.micro` 
       "Action": "ec2:RunInstances",
       "Resource": [
          "arn:aws:ec2:region::image/ami-*",
-         "arn:aws:ec2:region:account:subnet/*",
-         "arn:aws:ec2:region:account:network-interface/*",
-         "arn:aws:ec2:region:account:volume/*",
-         "arn:aws:ec2:region:account:key-pair/*",
-         "arn:aws:ec2:region:account:security-group/*"
+         "arn:aws:ec2:region:account-id:subnet/*",
+         "arn:aws:ec2:region:account-id:network-interface/*",
+         "arn:aws:ec2:region:account-id:volume/*",
+         "arn:aws:ec2:region:account-id:key-pair/*",
+         "arn:aws:ec2:region:account-id:security-group/*"
          ]
       }
    ]
@@ -886,7 +888,7 @@ Alternatively, you can create a policy that denies users permissions to launch a
       "Effect": "Deny",
       "Action": "ec2:RunInstances",
       "Resource": [
-         "arn:aws:ec2:region:account:instance/*"
+         "arn:aws:ec2:region:account-id:instance/*"
       ],
       "Condition": {
          "StringNotEquals": {
@@ -899,12 +901,12 @@ Alternatively, you can create a policy that denies users permissions to launch a
       "Action": "ec2:RunInstances",
       "Resource": [
          "arn:aws:ec2:region::image/ami-*",
-         "arn:aws:ec2:region:account:network-interface/*",
-         "arn:aws:ec2:region:account:instance/*",
-         "arn:aws:ec2:region:account:subnet/*",
-         "arn:aws:ec2:region:account:volume/*",
-         "arn:aws:ec2:region:account:key-pair/*",
-         "arn:aws:ec2:region:account:security-group/*"
+         "arn:aws:ec2:region:account-id:network-interface/*",
+         "arn:aws:ec2:region:account-id:instance/*",
+         "arn:aws:ec2:region:account-id:subnet/*",
+         "arn:aws:ec2:region:account-id:volume/*",
+         "arn:aws:ec2:region:account-id:key-pair/*",
+         "arn:aws:ec2:region:account-id:security-group/*"
          ]
       }
    ]
@@ -923,13 +925,13 @@ The following policy allows users to launch instances using only the specified s
       "Effect": "Allow",
       "Action": "ec2:RunInstances",
       "Resource": [
-        "arn:aws:ec2:region:account:subnet/subnet-12345678",
-        "arn:aws:ec2:region:account:network-interface/*",
-        "arn:aws:ec2:region:account:instance/*",
-        "arn:aws:ec2:region:account:volume/*",
+        "arn:aws:ec2:region:account-id:subnet/subnet-12345678",
+        "arn:aws:ec2:region:account-id:network-interface/*",
+        "arn:aws:ec2:region:account-id:instance/*",
+        "arn:aws:ec2:region:account-id:volume/*",
         "arn:aws:ec2:region::image/ami-*",
-        "arn:aws:ec2:region:account:key-pair/*",
-        "arn:aws:ec2:region:account:security-group/*"
+        "arn:aws:ec2:region:account-id:key-pair/*",
+        "arn:aws:ec2:region:account-id:security-group/*"
       ]
     }
    ]
@@ -946,11 +948,11 @@ Alternatively, you could create a policy that denies users permissions to launch
       "Effect": "Deny",
       "Action": "ec2:RunInstances",
       "Resource": [
-         "arn:aws:ec2:region:account:network-interface/*"
+         "arn:aws:ec2:region:account-id:network-interface/*"
       ],
       "Condition": {
          "ArnNotEquals": {
-            "ec2:Subnet": "arn:aws:ec2:region:account:subnet/subnet-12345678"
+            "ec2:Subnet": "arn:aws:ec2:region:account-id:subnet/subnet-12345678"
          }
       }
    },
@@ -959,12 +961,12 @@ Alternatively, you could create a policy that denies users permissions to launch
       "Action": "ec2:RunInstances",
       "Resource": [
          "arn:aws:ec2:region::image/ami-*",
-         "arn:aws:ec2:region:account:network-interface/*",
-         "arn:aws:ec2:region:account:instance/*",
-         "arn:aws:ec2:region:account:subnet/*",
-         "arn:aws:ec2:region:account:volume/*",
-         "arn:aws:ec2:region:account:key-pair/*",
-         "arn:aws:ec2:region:account:security-group/*"
+         "arn:aws:ec2:region:account-id:network-interface/*",
+         "arn:aws:ec2:region:account-id:instance/*",
+         "arn:aws:ec2:region:account-id:subnet/*",
+         "arn:aws:ec2:region:account-id:volume/*",
+         "arn:aws:ec2:region:account-id:key-pair/*",
+         "arn:aws:ec2:region:account-id:security-group/*"
          ]
       }
    ]
@@ -1031,7 +1033,7 @@ For more information, see [Grant permission to tag resources during creation](su
       "Action": [
          "ec2:CreateTags"
       ],
-      "Resource": "arn:aws:ec2:us-east-1:123456789012:instance/*",
+      "Resource": "arn:aws:ec2:us-east-1:account-id:instance/*",
       "Condition": {
          "StringEquals": {
              "ec2:CreateAction" : "RunInstances"
@@ -1057,10 +1059,10 @@ The following policy includes the `aws:RequestTag` condition key that requires u
       ],
       "Resource": [
          "arn:aws:ec2:region::image/*",
-         "arn:aws:ec2:region:account:subnet/*",
-         "arn:aws:ec2:region:account:network-interface/*",
-         "arn:aws:ec2:region:account:security-group/*",
-         "arn:aws:ec2:region:account:key-pair/*"
+         "arn:aws:ec2:region:account-id:subnet/*",
+         "arn:aws:ec2:region:account-id:network-interface/*",
+         "arn:aws:ec2:region:account-id:security-group/*",
+         "arn:aws:ec2:region:account-id:key-pair/*"
       ]
     },
     {
@@ -1069,8 +1071,8 @@ The following policy includes the `aws:RequestTag` condition key that requires u
          "ec2:RunInstances"
       ],
       "Resource": [
-          "arn:aws:ec2:region:account:volume/*",
-          "arn:aws:ec2:region:account:instance/*"
+          "arn:aws:ec2:region:account-id:volume/*",
+          "arn:aws:ec2:region:account-id:instance/*"
       ],
       "Condition": {
          "StringEquals": {
@@ -1087,7 +1089,7 @@ The following policy includes the `aws:RequestTag` condition key that requires u
       "Action": [
          "ec2:CreateTags"
       ],
-      "Resource": "arn:aws:ec2:region:account:*/*",
+      "Resource": "arn:aws:ec2:region:account-id:*/*",
       "Condition": {
          "StringEquals": {
              "ec2:CreateAction" : "RunInstances"
@@ -1113,10 +1115,10 @@ The following policy uses the `ForAnyValue` modifier on the `aws:TagKeys` condit
       ],
       "Resource": [
          "arn:aws:ec2:region::image/*",
-         "arn:aws:ec2:region:account:subnet/*",
-         "arn:aws:ec2:region:account:network-interface/*",
-         "arn:aws:ec2:region:account:security-group/*",
-         "arn:aws:ec2:region:account:key-pair/*"
+         "arn:aws:ec2:region:account-id:subnet/*",
+         "arn:aws:ec2:region:account-id:network-interface/*",
+         "arn:aws:ec2:region:account-id:security-group/*",
+         "arn:aws:ec2:region:account-id:key-pair/*"
       ]
     },
     {
@@ -1125,8 +1127,8 @@ The following policy uses the `ForAnyValue` modifier on the `aws:TagKeys` condit
           "ec2:RunInstances"
       ],
       "Resource": [
-          "arn:aws:ec2:region:account:volume/*",
-          "arn:aws:ec2:region:account:instance/*"
+          "arn:aws:ec2:region:account-id:volume/*",
+          "arn:aws:ec2:region:account-id:instance/*"
       ],
       "Condition": {
           "ForAnyValue:StringEquals": {
@@ -1139,7 +1141,7 @@ The following policy uses the `ForAnyValue` modifier on the `aws:TagKeys` condit
       "Action": [
           "ec2:CreateTags"
       ],
-      "Resource": "arn:aws:ec2:region:account:*/*",
+      "Resource": "arn:aws:ec2:region:account-id:*/*",
       "Condition": {
           "StringEquals": {
               "ec2:CreateAction" : "RunInstances"
@@ -1170,7 +1172,7 @@ In the following policy, users do not have to specify tags in the request, but i
       "Action": [
          "ec2:CreateTags"
       ],
-      "Resource": "arn:aws:ec2:region:account:*/*",
+      "Resource": "arn:aws:ec2:region:account-id:*/*",
       "Condition": {
          "StringEquals": {
              "aws:RequestTag/purpose": "test",
@@ -1273,7 +1275,7 @@ In the following example, users can launch instances, but only if they use a spe
       "Resource": "*",
       "Condition": {
          "ArnLike": {
-             "ec2:LaunchTemplate": "arn:aws:ec2:region:account:launch-template/lt-09477bcd97b0d310e" 
+             "ec2:LaunchTemplate": "arn:aws:ec2:region:account-id:launch-template/lt-09477bcd97b0d310e" 
           },
           "Bool": {
              "ec2:IsLaunchTemplateResource": "true"
@@ -1285,7 +1287,7 @@ In the following example, users can launch instances, but only if they use a spe
       "Action": [
          "ec2:CreateTags"
       ],
-      "Resource": "arn:aws:ec2:region:account:instance/*",
+      "Resource": "arn:aws:ec2:region:account-id:instance/*",
       "Condition": {
          "StringEquals": {
              "ec2:CreateAction" : "RunInstances"
@@ -1312,7 +1314,7 @@ The `ec2:ElasticGpuType` condition key uses the `ForAnyValue` modifier to indica
                 "ec2:RunInstances"
             ],
             "Resource": [
-                "arn:aws:ec2:*:account:elastic-gpu/*"
+                "arn:aws:ec2:*:account-id:elastic-gpu/*"
             ],
             "Condition": {
                 "StringEquals": {
@@ -1331,12 +1333,12 @@ The `ec2:ElasticGpuType` condition key uses the `ForAnyValue` modifier to indica
             "Action": "ec2:RunInstances",
             "Resource": [
                 "arn:aws:ec2:*::image/ami-*",
-                "arn:aws:ec2:*:account:network-interface/*",
-                "arn:aws:ec2:*:account:instance/*",
-                "arn:aws:ec2:*:account:subnet/*",
-                "arn:aws:ec2:*:account:volume/*",
-                "arn:aws:ec2:*:account:key-pair/*",
-                "arn:aws:ec2:*:account:security-group/*"
+                "arn:aws:ec2:*:account-id:network-interface/*",
+                "arn:aws:ec2:*:account-id:instance/*",
+                "arn:aws:ec2:*:account-id:subnet/*",
+                "arn:aws:ec2:*:account-id:volume/*",
+                "arn:aws:ec2:*:account-id:key-pair/*",
+                "arn:aws:ec2:*:account-id:security-group/*"
             ]
         }
     ]
@@ -1357,7 +1359,7 @@ In the following example, users can launch instances, but only if they use a spe
       "Resource": "*",
       "Condition": {
          "ArnLike": {
-             "ec2:LaunchTemplate": "arn:aws:ec2:region:account:launch-template/lt-09477bcd97b0d310e" 
+             "ec2:LaunchTemplate": "arn:aws:ec2:region:account-id:launch-template/lt-09477bcd97b0d310e" 
           }
        }
     }
@@ -1377,7 +1379,7 @@ In this example, users can launch instances only if they use a launch template\.
       "Resource": "*",
       "Condition": {
          "ArnLike": {
-             "ec2:LaunchTemplate": "arn:aws:ec2:region:account:launch-template/*" 
+             "ec2:LaunchTemplate": "arn:aws:ec2:region:account-id:launch-template/*" 
           },
           "Bool": {
              "ec2:IsLaunchTemplateResource": "true"
@@ -1397,22 +1399,22 @@ The following example policy allows user to launch instances, but only if they u
         {
       "Effect": "Allow",
       "Action": "ec2:RunInstances",
-      "NotResource": ["arn:aws:ec2:region:account:subnet/*",
-                      "arn:aws:ec2:region:account:network-interface/*" ],
+      "NotResource": ["arn:aws:ec2:region:account-id:subnet/*",
+                      "arn:aws:ec2:region:account-id:network-interface/*" ],
       "Condition": {
          "ArnLike": {
-             "ec2:LaunchTemplate": "arn:aws:ec2:region:account:launch-template/*" 
+             "ec2:LaunchTemplate": "arn:aws:ec2:region:account-id:launch-template/*" 
           }
        }
     },
    {
       "Effect": "Allow",
       "Action": "ec2:RunInstances",
-      "Resource": ["arn:aws:ec2:region:account:subnet/*",
-                   "arn:aws:ec2:region:account:network-interface/*" ],
+      "Resource": ["arn:aws:ec2:region:account-id:subnet/*",
+                   "arn:aws:ec2:region:account-id:network-interface/*" ],
       "Condition": {
          "ArnLike": {
-             "ec2:LaunchTemplate": "arn:aws:ec2:region:account:launch-template/*" 
+             "ec2:LaunchTemplate": "arn:aws:ec2:region:account-id:launch-template/*" 
           },
           "Bool": {
              "ec2:IsLaunchTemplateResource": "true"
@@ -1432,10 +1434,10 @@ The following example allows users to launch instances only if they use a launch
         {
       "Effect": "Allow",
       "Action": "ec2:RunInstances",
-      "NotResource": "arn:aws:ec2:region:account:launch-template/*",
+      "NotResource": "arn:aws:ec2:region:account-id:launch-template/*",
       "Condition": {
          "ArnLike": {
-             "ec2:LaunchTemplate": "arn:aws:ec2:region:account:launch-template/*" 
+             "ec2:LaunchTemplate": "arn:aws:ec2:region:account-id:launch-template/*" 
           },
          "Bool": {
              "ec2:IsLaunchTemplateResource": "true"
@@ -1445,7 +1447,7 @@ The following example allows users to launch instances only if they use a launch
     {
       "Effect": "Allow",
       "Action": "ec2:RunInstances",
-      "Resource": "arn:aws:ec2:region:account:launch-template/*",
+      "Resource": "arn:aws:ec2:region:account-id:launch-template/*",
       "Condition": {
        "StringEquals": {
            "ec2:ResourceTag/Purpose": "Webservers" 
@@ -1772,7 +1774,7 @@ The following policy allows users to use the `CreateTags` action to apply tags t
             "Action": [
                 "ec2:CreateTags"
             ],
-            "Resource": "arn:aws:ec2:region:account:instance/*",
+            "Resource": "arn:aws:ec2:region:account-id:instance/*",
             "Condition": {
                 "StringEquals": {
                     "aws:RequestTag/environment": "production"
@@ -1799,7 +1801,7 @@ The following policy allows users to tag any taggable resource that already has 
             "Action": [
                 "ec2:CreateTags"
             ],
-            "Resource": "arn:aws:ec2:region:account:*/*",
+            "Resource": "arn:aws:ec2:region:account-id:*/*",
             "Condition": {
                 "StringEquals": {
                     "aws:RequestTag/anycompany:environment-type": ["test","prod"],
@@ -1823,7 +1825,7 @@ If you delete a resource, all tags associated with the resource are also deleted
        {
       "Effect": "Allow",
       "Action": "ec2:DeleteTags",
-      "Resource": "arn:aws:ec2:us-east-1:123456789012:volume/*",
+      "Resource": "arn:aws:ec2:us-east-1:account-id:volume/*",
       "Condition": {
         "ForAllValues:StringEquals": {
           "aws:TagKeys": ["environment","cost-center"]
@@ -1845,7 +1847,7 @@ This policy allows users to delete only the `environment=prod` tag on any resour
       "Action": [
         "ec2:DeleteTags"
       ],
-      "Resource": "arn:aws:ec2:region:account:*/*",
+      "Resource": "arn:aws:ec2:region:account-id:*/*",
       "Condition": {
         "StringEquals": {
           "aws:RequestTag/environment": "prod",
@@ -1877,7 +1879,7 @@ IAM users must have permission to use the `iam:PassRole` action in order to pass
         "ec2:ReplaceIamInstanceProfileAssociation",
         "ec2:DisassociateIamInstanceProfile"
       ],
-      "Resource": "arn:aws:ec2:us-east-1:123456789012:instance/*",
+      "Resource": "arn:aws:ec2:us-east-1:account-id:instance/*",
       "Condition": {
         "StringEquals": {
           "ec2:ResourceTag/department":"test"
@@ -1892,7 +1894,7 @@ IAM users must have permission to use the `iam:PassRole` action in order to pass
     {
       "Effect": "Allow",
       "Action": "iam:PassRole",
-      "Resource": "arn:aws:iam::123456789012:role/DevTeam*"
+      "Resource": "arn:aws:iam::account-id:role/DevTeam*"
     }
   ]
 }
@@ -1920,7 +1922,7 @@ The following policy allows users to attach or replace an IAM role for any insta
         {
             "Effect": "Allow",
             "Action": "iam:PassRole",
-            "Resource": "arn:aws:iam::account:role/TestRole-*"
+            "Resource": "arn:aws:iam::account-id:role/TestRole-*"
         }
     ]
 }
@@ -1942,11 +1944,11 @@ The following policy allows users to add, remove, and replace routes for route t
                 "ec2:ReplaceRoute"
             ],
             "Resource": [
-                "arn:aws:ec2:region:account:route-table/*"
+                "arn:aws:ec2:region:account-id:route-table/*"
             ],
             "Condition": {
                 "StringEquals": {
-                    "ec2:Vpc": "arn:aws:ec2:region:account:vpc/vpc-ec43eb89"
+                    "ec2:Vpc": "arn:aws:ec2:region:account-id:vpc/vpc-ec43eb89"
                 }
             }
         }
@@ -1977,7 +1979,7 @@ The `ec2:SourceInstanceARN` key is an AWS\-wide condition key, therefore it can 
             ],
             "Condition": {
                 "ArnEquals": {
-                    "ec2:SourceInstanceARN": "arn:aws:ec2:region:account:instance/i-093452212644b0dd6"
+                    "ec2:SourceInstanceARN": "arn:aws:ec2:region:account-id:instance/i-093452212644b0dd6"
                 }
             }
         }
@@ -1999,7 +2001,7 @@ The following policy allows users to create a launch template version and modify
         "ec2:ModifyLaunchTemplate"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:ec2:region:account:launch-template/lt-09477bcd97b0d3abc"
+      "Resource": "arn:aws:ec2:region:account-id:launch-template/lt-09477bcd97b0d3abc"
     }
   ]
 }
@@ -2017,7 +2019,7 @@ The following policy allows users to delete any launch template and launch templ
         "ec2:DeleteLaunchTemplateVersions"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:ec2:region:account:launch-template/*",
+      "Resource": "arn:aws:ec2:region:account-id:launch-template/*",
       "Condition": {
         "StringEquals": {
           "ec2:ResourceTag/Purpose": "Testing"

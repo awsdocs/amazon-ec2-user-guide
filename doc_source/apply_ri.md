@@ -1,18 +1,24 @@
 # How Reserved Instances are applied<a name="apply_ri"></a>
 
-If you purchase a Reserved Instance and you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have an eligible running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Use your Reserved Instances](using-reserved-instances.md)\.
+Reserved Instances are not physical instances, but rather a billing discount that is applied to the running On\-Demand Instances in your account\. The On\-Demand Instances must match certain specifications of the Reserved Instances in order to benefit from the billing discount\.
 
-Reserved Instances apply to usage in the same manner, irrespective of the offering type \(Standard or Convertible\), and are automatically applied to running On\-Demand Instances with matching attributes\.
+If you purchase a Reserved Instance and you already have a running On\-Demand Instance that matches the specifications of the Reserved Instance, the billing discount is applied immediately and automatically\. You do not have to restart your instances\. If you do not have an eligible running On\-Demand Instance, launch an On\-Demand Instance with the same specifications as your Reserved Instance\. For more information, see [Use your Reserved Instances](using-reserved-instances.md)\.
+
+The offering class \(Standard or Convertible\) of the Reserved Instance does not affect how the billing discount is applied\.
 
 ## How zonal Reserved Instances are applied<a name="apply-zonal-ri"></a>
 
-Reserved Instances assigned to a specific Availability Zone provide the Reserved Instance discount to matching instance usage in that Availability Zone\. For example, if you purchase two `c4.xlarge` default tenancy Linux/Unix Standard Reserved Instances in Availability Zone us\-east\-1a, then up to two `c4.xlarge` default tenancy Linux/Unix instances running in the Availability Zone us\-east\-1a can benefit from the Reserved Instance discount\. The attributes \(tenancy, platform, Availability Zone, instance type, and instance size\) of the running instances must match that of the Reserved Instances\.
+A Reserved Instance that is purchased to reserve capacity in a specific Availability Zone is called a zonal Reserved Instance\.
++ The Reserved Instance discount applies to matching instance usage in that Availability Zone\.
++ The attributes \(tenancy, platform, Availability Zone, instance type, and instance size\) of the running instances must match that of the Reserved Instances\.
+
+For example, if you purchase two `c4.xlarge` default tenancy Linux/Unix Standard Reserved Instances for Availability Zone us\-east\-1a, then up to two `c4.xlarge` default tenancy Linux/Unix instances running in the Availability Zone us\-east\-1a can benefit from the Reserved Instance discount\.
 
 ## How regional Reserved Instances are applied<a name="apply-regional-ri"></a>
 
-Regional Reserved Instances are purchased for a Region and provide Availability Zone flexibility\. The Reserved Instance discount applies to instance usage in any Availability Zone in that Region\. 
-
-Regional Reserved Instances also provide instance size flexibility where the Reserved Instance discount applies to instance usage within the instance family, regardless of size\.
+A Reserved Instance that is purchased for a Region is called a regional Reserved Instance, and provides Availability Zone flexibility\.
++ The Reserved Instance discount applies to instance usage in any Availability Zone in that Region\.
++ The Reserved Instance discount applies to instance usage within the instance family, regardless of size—this is known as instance size flexibility\.
 
 **Limitations for instance size flexibility**
 
@@ -28,7 +34,7 @@ Instance size flexibility is determined by the normalization factor of the insta
 
 Instance size flexibility is applied from the smallest to the largest instance size within the instance family based on the normalization factor\. 
 
-The following table lists the different sizes within an instance family, and the corresponding normalization factor per hour\. This scale is used to apply the discounted rate of Reserved Instances to the normalized usage of the instance family\.
+The following table lists the different sizes within an instance family, and the corresponding normalization factor\. This scale is used to apply the discounted rate of Reserved Instances to the normalized usage of the instance family\.
 
 
 | Instance size | Normalization factor | 

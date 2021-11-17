@@ -41,18 +41,19 @@ The following table lists statuses for Amazon EBS volumes\.
 You can view and work with status checks using the following methods\.
 
 ------
-#### [ Console ]
+#### [ New console and Old console ]
 
 **To view status checks**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Volumes**\. The **Volume Status** column displays the operational status of each volume\.
+1. In the navigation pane, choose **Volumes**\.
 
-1. To view the status details of a volume, select the volume and choose **Status Checks**\.  
-![\[Viewing EBS volume status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/AutoEnableSetting_statustab_gwt.png)
+   The **Volume status** column displays the operational status of each volume\.
 
-1. If you have a volume with a failed status check \(status is **impaired**\), see [Work with an impaired volume](#work_volumes_impaired)\.
+1. To view the status details of a specific volume, select it in the grid and choose the **Status checks** tab\.
+
+1. If you have a volume with a failed status check \(status is `impaired`\), see [Work with an impaired volume](#work_volumes_impaired)\.
 
 Alternatively, you can choose **Events** in the navigator to view all the events for your instances and volumes\. For more information, see [EBS volume events](#monitoring-vol-events)\.
 
@@ -103,7 +104,7 @@ For `io1`, `io2`, and `gp3` volumes only\. Volume performance is severely impact
 You can view events for your volumes using the following methods\. 
 
 ------
-#### [ Console ]
+#### [ New console and Old console ]
 
 **To view events for your volumes**
 
@@ -113,8 +114,7 @@ You can view events for your volumes using the following methods\.
 
 1. You can filter by volume to view only volume status\. You can also filter on specific status types\.
 
-1. Select a volume to view its specific event\.  
-![\[Viewing volume events\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ViewVolEvents-gwt.png)
+1. Select a volume to view its specific event\.
 
 ------
 #### [ AWS CLI ]
@@ -151,7 +151,18 @@ The simplest option is to enable I/O and then perform a data consistency check o
 1. Enable I/O on the volume\. Use one of the following methods\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+   1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+   1. In the navigation pane, choose **Events**\.
+
+   1. Select the volume on which to enable I/O operations\. 
+
+   1. Choose **Actions**, **Enable I/O**\.
+
+------
+#### [ Old console ]
 
    1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -197,7 +208,18 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
 1. Enable I/O on the volume\. Use one of the following methods\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+   1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+   1. In the navigation pane, choose **Events**\.
+
+   1. Select the volume that you detached in the previous step\.
+
+   1. Choose **Actions**, **Enable I/O**\.
+
+------
+#### [ Old console ]
 
    1. In the navigation pane, choose **Volumes**\. 
 
@@ -237,10 +259,35 @@ If you have a recent snapshot that backs up the data on the volume, you can crea
 
 When Amazon EBS determines that a volume's data is potentially inconsistent, it disables I/O to the volume from any attached EC2 instances by default\. This causes the volume status check to fail, and creates a volume status event that indicates the cause of the failure\. If the consistency of a particular volume is not a concern, and you prefer that the volume be made available immediately if it's **impaired**, you can override the default behavior by configuring the volume to automatically enable I/O\. If you enable the **Auto\-Enabled IO** volume attribute \(`autoEnableIO` in the API\), I/O between the volume and the instance is automatically re\-enabled and the volume's status check will pass\. In addition, you'll see an event that lets you know that the volume was in a potentially inconsistent state, but that its I/O was automatically enabled\. When this event occurs, you should check the volume's consistency and replace it if necessary\. For more information, see [EBS volume events](#monitoring-vol-events)\.
 
-You can view and modify the **Auto\-Enabled IO** attribute of a volume using the following methods\.
+You can view and modify the **Auto\-Enabled IO** attribute of a volume using one of the following methods\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To view the Auto\-Enabled IO attribute of a volume**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Volumes**\. 
+
+1. Select the volume and choose the **Status checks** tab\.
+
+   The **Auto\-enabled I/O** field displays the current setting \(**Enabled** or **Disabled**\) for the selected volume\.
+
+**To modify the Auto\-Enabled IO attribute of a volume**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Volumes**\. 
+
+1. Select the volume and choose **Actions**, **Manage auto\-enabled I/O**\.
+
+1. To automatically enable I/O for an impaired volume, select the **Auto\-enable I/O for impaired volumes** check box\. To disable the feature, clear the check box\.
+
+1. Choose **Update**\.
+
+------
+#### [ Old console ]
 
 **To view the Auto\-Enabled IO attribute of a volume**
 

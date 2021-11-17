@@ -64,9 +64,31 @@ When you enable fast snapshot restore for a snapshot, your account is billed for
 
 When you delete a snapshot that you own, fast snapshot restore is automatically disabled for that snapshot in your account\. If you enabled fast snapshot restore for a snapshot that is shared with you, and the snapshot owner deletes or unshares it, fast snapshot restore is automatically disabled for the shared snapshot in your account\.
 
-If you enabled fast snapshot restore for a snapshot that is shared with you, and it's encrypted using a custom CMK, fast snapshot restore is not automatically disabled for the snapshot when the snapshot owner revokes your access to the custom CMK\. You must manually disable fast snapshot restore for that snapshot\.
+If you enabled fast snapshot restore for a snapshot that is shared with you, and it has been encrypted using a custom CMK, fast snapshot restore is not automatically disabled for the snapshot when the snapshot owner revokes your access to the custom CMK\. You must manually disable fast snapshot restore for that snapshot\.
 
-Use the following procedure to enable or disable fast snapshot restore for a snapshot that you own or for a snapshot that is shared with you\. 
+Use one of the following methods to enable or disable fast snapshot restore for a snapshot that you own or for a snapshot that is shared with you\. 
+
+------
+#### [ New console ]
+
+**To enable or disable fast snapshot restore**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Snapshots**\.
+
+1. Select the snapshot, and choose **Actions**, **Manage fast snapshot restore**\.
+
+1. The **Fast snapshot restore settings** section lists all of the Availability Zones, Local Zones, and Wavelength Zones in which you can enable fast snapshot restore for the selected snapshot\. The **Current status** volume indicates whether fast snapshot restore is current enabled or disabled for each zone\.
+
+   To enable fast snapshot restore in a zone where it is currently disabled, select the zone, choose **Enable**, and then to confirm, choose **Enable**\.
+
+   To disable fast snapshot restore in a zone where it is currently enabled, select the zone, and then choose **Disable**\.
+
+1. After you have made the required changes, choose **Close**\.
+
+------
+#### [ Old console ]
 
 **To enable or disable fast snapshot restore**
 
@@ -82,17 +104,38 @@ Use the following procedure to enable or disable fast snapshot restore for a sna
 
 1. To track the state of fast snapshot restore as it is enabled, see **Fast Snapshot Restore** on the **Description** tab\.
 
-**Note**  
-After you enable fast snapshot restore for a snapshot, it enters the `optimizing` state\. Snapshots that are in the `optimizing` state provide some performance benefits when using them to restore volumes\. They start to provide the full performance benefits of fast snapshot restore only after they enter the `enabled` state\.
+------
+#### [ AWS CLI ]
 
 **To manage fast snapshot restore using the AWS CLI**
 + [enable\-fast\-snapshot\-restores](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-fast-snapshot-restores.html)
 + [disable\-fast\-snapshot\-restores](https://docs.aws.amazon.com/cli/latest/reference/ec2/disable-fast-snapshot-restores.html)
 + [describe\-fast\-snapshot\-restores](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fast-snapshot-restores.html)
 
+------
+
+**Note**  
+After you enable fast snapsohot restore for a snapshot, it enters the `optimizing` state\. Snapshots that are in the `optimizing` state provide some performance benefits when using them to restore volumes\. They start to provide the full performance benefits of fast snapshot restore only after they enter the `enabled` state\.
+
 ## View snapshots with fast snapshot restore enabled<a name="view-fsr-enabled-snapshots"></a>
 
-Use the following procedure to view the state of fast snapshot restore for a snapshot that you own or for a snapshot that is shared with you\.
+Use one of the following methods to view the state of fast snapshot restore for a snapshot that you own or for a snapshot that is shared with you\.
+
+------
+#### [ New console ]
+
+**To view the state of fast snapshot restore using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Snapshots**\.
+
+1. Select the snapshot\.
+
+1. On the **Details** tab, **Fast snapshot restore**, indicates the state of fast snapshot restore\.
+
+------
+#### [ Old console ]
 
 **To view the state of fast snapshot restore using the console**
 
@@ -103,6 +146,9 @@ Use the following procedure to view the state of fast snapshot restore for a sna
 1. Select the snapshot\.
 
 1. On the **Description** tab, see **Fast Snapshot Restore**, which indicates the state of fast snapshot restore\. For example, it might show a state of "2 Availability Zones optimizing" or "2 Availability Zones enabled"\.
+
+------
+#### [ AWS CLI ]
 
 **To view snapshots with fast snapshot restore enabled using the AWS CLI**  
 Use the [describe\-fast\-snapshot\-restores](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fast-snapshot-restores.html) command to describe the snapshots that are enabled for fast snapshot restore\.
@@ -139,6 +185,8 @@ The following is example output\.
     ]
 }
 ```
+
+------
 
 ## View volumes restored using fast snapshot restore<a name="view-fast-restored-volumes"></a>
 

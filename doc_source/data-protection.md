@@ -41,9 +41,9 @@ AWS provides secure and private connectivity between EC2 instances of all types\
 + The instances use the following instance types:
   + General purpose: M5dn \| M5n \| M5zn \| M6i
   + Compute optimized: C5a \| C5ad \| C5n \| C6gn \| C6i
-  + Memory optimized: R5dn \| R5n \| high memory \(u\-\*\), virtualized only
+  + Memory optimized: R5dn \| R5n \| high memory \(u\-\*\), virtualized only 
   + Storage optimized: D3 \| D3en \| I3en
-  + Accelerated computing: DL1 \| G4ad \| G4dn \| Inf1 \| P3dn \| P4d \| VT1
+  + Accelerated computing: DL1 \| G4ad \| G4dn \| G5 \| Inf1 \| P3dn \| P4d \| VT1
 + The instances are in the same Region\.
 + The instances are in the same VPC or peered VPCs, and the traffic does not pass through a virtual network device or service, such as a load balancer or a transit gateway\.
 

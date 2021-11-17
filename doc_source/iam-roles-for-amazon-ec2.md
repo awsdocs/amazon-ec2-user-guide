@@ -168,7 +168,14 @@ Alternatively, you can use the AWS CLI to create an IAM role\. The following exa
 1. Create the `s3access` role and specify the trust policy that you created using the [create\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html) command\.
 
    ```
-   aws iam create-role --role-name s3access --assume-role-policy-document file://ec2-role-trust-policy.json
+   aws iam create-role \
+       --role-name s3access \
+       --assume-role-policy-document file://ec2-role-trust-policy.json
+   ```
+
+   Example response
+
+   ```
    {
        "Role": {
            "AssumeRolePolicyDocument": {
@@ -210,13 +217,21 @@ Alternatively, you can use the AWS CLI to create an IAM role\. The following exa
 1. Attach the access policy to the role using the [put\-role\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/put-role-policy.html) command\.
 
    ```
-   aws iam put-role-policy --role-name s3access --policy-name S3-Permissions --policy-document file://ec2-role-access-policy.json
+   aws iam put-role-policy \
+       --role-name s3access \
+       --policy-name S3-Permissions \
+       --policy-document file://ec2-role-access-policy.json
    ```
 
 1. Create an instance profile named `s3access-profile` using the [create\-instance\-profile](https://docs.aws.amazon.com/cli/latest/reference/iam/create-instance-profile.html) command\.
 
    ```
    aws iam create-instance-profile --instance-profile-name s3access-profile
+   ```
+
+   Example response
+
+   ```
    {
        "InstanceProfile": {
            "InstanceProfileId": "AIPAJTLBPJLEGREXAMPLE",
@@ -232,7 +247,9 @@ Alternatively, you can use the AWS CLI to create an IAM role\. The following exa
 1. Add the `s3access` role to the `s3access-profile` instance profile\.
 
    ```
-   aws iam add-role-to-instance-profile --instance-profile-name s3access-profile --role-name s3access
+   aws iam add-role-to-instance-profile \
+       --instance-profile-name s3access-profile \
+       --role-name s3access
    ```
 
 Alternatively, you can use the following AWS Tools for Windows PowerShell commands:
@@ -289,7 +306,7 @@ Alternatively, you can use the AWS CLI to associate a role with an instance duri
 1. Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch an instance using the instance profile\. The following example shows how to launch an instance with the instance profile\. 
 
    ```
-   AWS ec2 run-instances \
+   aws ec2 run-instances \
        --image-id ami-11aa22bb \
        --iam-instance-profile Name="s3access-profile" \
        --key-name my-key-pair \
@@ -351,7 +368,11 @@ To attach an IAM role to an instance that has no role, the instance can be in th
    aws ec2 associate-iam-instance-profile \
        --instance-id i-1234567890abcdef0 \
        --iam-instance-profile Name="TestRole-1"
-   
+   ```
+
+   Example response
+
+   ```
    {
        "IamInstanceProfileAssociation": {
            "InstanceId": "i-1234567890abcdef0", 
@@ -415,7 +436,11 @@ To replace the IAM role on an instance that already has an attached IAM role, th
    aws ec2 replace-iam-instance-profile-association \
        --association-id iip-assoc-0044d817db6c0a4ba \
        --iam-instance-profile Name="TestRole-2"
-   
+   ```
+
+   Example response
+
+   ```
    {
        "IamInstanceProfileAssociation": {
            "InstanceId": "i-087711ddaf98f9489", 
@@ -475,7 +500,11 @@ You can detach an IAM role from a running or stopped instance\.
 
    ```
    aws ec2 describe-iam-instance-profile-associations
-   
+   ```
+
+   Example response
+
+   ```
    {
        "IamInstanceProfileAssociations": [
            {
@@ -495,7 +524,11 @@ You can detach an IAM role from a running or stopped instance\.
 
    ```
    aws ec2 disassociate-iam-instance-profile --association-id iip-assoc-0044d817db6c0a4ba
-   
+   ```
+
+   Example response
+
+   ```
    {
        "IamInstanceProfileAssociation": {
            "InstanceId": "i-087711ddaf98f9489", 

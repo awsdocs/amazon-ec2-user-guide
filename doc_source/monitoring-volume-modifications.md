@@ -15,7 +15,24 @@ Volume modification changes take effect as follows:
 To monitor the progress of a volume modification, use one of the following methods\.
 
 ------
-#### [ Amazon EC2 console ]
+#### [ New console ]
+
+**To monitor progress of a modification using the Amazon EC2 console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Volumes**\.
+
+1. Select the volume\.
+
+1. The **Volume state** column and the **Volume state** field in the **Details** tab contain information in the following format: *volume\-state* \- *modification\-state* \(*progress*%\)\.
+
+   The possible volume states are `creating`, `available`, `in-use`, `deleting`, `deleted`, and `error`\.
+
+   The possible code states are `modifying`, `optimizing`, and `completed`\.
+
+------
+#### [ Old console ]
 
 **To monitor progress of a modification using the Amazon EC2 console**
 

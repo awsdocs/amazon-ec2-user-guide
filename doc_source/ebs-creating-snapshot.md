@@ -47,7 +47,28 @@ The following considerations apply to creating snapshots:
 To create a snapshot from the specified volume, use one of the following methods\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To create a snapshot using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Snapshots**, **Create snapshot**\.
+
+1. For **Resource type**, choose **Volume**\.
+
+1. For **Volume ID**, select the volume from which to create the snapshot\.
+
+   The **Encryption** field indicates the selected volume's encryption status\. If the selected volume is encrypted, the snapshot is automatically encrypted using the same KMS key\. If the selected volume is unencrypted, the snapshot is not encrypted\.
+
+1. \(Optional\) For **Description**, enter a brief description for the snapshot\.
+
+1. \(Optional\) To assign custom tags to the snapshot, in the **Tags** section, choose **Add tag**, and then enter the key\-value pair\. You can add up to 50 tags\.
+
+1. Choose **Create snapshot**\.
+
+------
+#### [ Old console ]
 
 **To create a snapshot using the console**
 
@@ -83,7 +104,34 @@ You can use one of the following commands\. For more information about these com
 To create a snapshot from the volumes of an instance, use one of the following methods\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To create multi\-volume snapshots using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation panel, choose **Snapshots**, **Create snapshot**\.
+
+1. For **Resource type**, choose **Instance**\.
+
+1. For **Instance ID**, choose the instance from which to create the snapshots\. Multi\-volume snapshots support up to 40 EBS volumes for each instance\.
+
+   The **Attached volumes** section lists all of the volumes that are attached to the selected instance, along with their encryption statuses\. Snapshots get the same encryption status as their source volume\.
+
+1. For **Description**, enter a brief description for the snapshots\. This description is applied to all of the snapshots\.
+
+1. To create snapshots from all of the instance's volumes, including its root volume, for **Root volume**, choose **Include**\. To create snapshots from the instance's data volumes only, for **Root volume**, choose **Exclude**\.
+
+1. \(Optional\) To automatically copy tags from the source volumes to the corresponding snapshots, for **Copy tags from source volume**, select **Enable**\. This sets snapshot metadata—such as access policies, attachment information, and cost allocation—to match the source volume\.
+
+1. \(Optional\) To assign custom tags to the snapshots, in the **Tags** section, choose **Add tag**, and then enter the key\-value pair\. You can add up to 50 tags\.
+
+1. Choose **Create snapshot**\.
+
+   During snapshot creation, the snapshots are managed together\. If one of the snapshots in the volume set fails, the other snapshots are moved to error status for the volume set\. You can monitor the progress of your snapshots using [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)\. After the snapshot creation process completes, CloudWatch generates an event that contains the status and all of the relevant snapshot details for the affected instance\.
+
+------
+#### [ Old console ]
 
 **To create multi\-volume snapshots using the console**
 

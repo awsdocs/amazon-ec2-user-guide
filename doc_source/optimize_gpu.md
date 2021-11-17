@@ -10,9 +10,7 @@ There are several GPU setting optimizations that you can perform to achieve the 
    [ec2-user ~]$ sudo nvidia-persistenced
    ```
 
-1. G2, G3, and P2 instances: Disable the autoboost feature for all GPUs on the instance\.
-**Note**  
-GPUs on G4dn, P3, P3dn, and P4d instances do not support autoboost\.
+1. \[G2, G3, and P2 instances only\] Disable the autoboost feature for all GPUs on the instance\.
 
    ```
    [ec2-user ~]$ sudo nvidia-smi --auto-boost-default=0
@@ -30,6 +28,11 @@ GPUs on G4dn, P3, P3dn, and P4d instances do not support autoboost\.
 
      ```
      [ec2-user ~]$ sudo nvidia-smi -ac 5001,1590
+     ```
+   + G5 instances:
+
+     ```
+     [ec2-user ~]$ sudo nvidia-smi-ac 6250,1710
      ```
    + P2 instances:
 

@@ -500,10 +500,10 @@ For more information, see [On\-Demand in Spot Fleet](on-demand-in-spot.md)\.
 
 ## Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances<a name="fleet-config8"></a>
 
-The following example configures the Spot Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation for a Spot Instance in the fleet\. To configure the automatic replacement of Spot Instances, for `ReplacementStrategy`, specify `launch`\.
+The following example configures the Spot Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation for a Spot Instance in the fleet\. To configure the automatic replacement of Spot Instances, for `ReplacementStrategy`, specify `launch-before-terminate`\. To configure the time delay from the launch of the new replacement Spot Instances to the automatic deletion of the old Spot Instances, for `termination-delay`, specify a value in seconds\. For more information, see [Configuration options](spot-fleet-capacity-rebalance.md#spot-fleet-capacity-rebalance-config-options)\.
 
 **Note**  
-When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\. 
+We recommend using `launch-before-terminate` only if you can predict how long your instance shutdown procedures will take to complete\. This ensures that the old instances are terminated only after the shutdown procedures are completed\. You are charged for all instances while they are running\.
 
 The effectiveness of the Capacity Rebalancing strategy depends on the number of Spot capacity pools specified in the Spot Fleet request\. We recommend that you configure the fleet with a diversified set of instance types and Availability Zones, and for `AllocationStrategy`, specify `capacityOptimized`\. For more information about what you should consider when configuring a Spot Fleet for Capacity Rebalancing, see [Capacity Rebalancing](spot-fleet-capacity-rebalance.md)\.
 
@@ -546,7 +546,8 @@ The effectiveness of the Capacity Rebalancing strategy depends on the number of 
         "TargetCapacity": 5,
         "SpotMaintenanceStrategies": {
             "CapacityRebalance": {
-                "ReplacementStrategy": "launch"
+                "ReplacementStrategy": "launch-before-terminate",
+                "TerminationDelay": "720"
             }
         }
     }

@@ -229,8 +229,8 @@ The following is a summary of network performance for general purpose instances 
 |  m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge  | High | [Intel 82599 VF](sriov-networking.md) | 
 |  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller \| m6g\.4xlarge and smaller \| m6gd\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | m4\.10xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
-|  m5\.8xlarge \| m5\.12xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge \| m5d\.12xlarge \| mac1\.metal  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5a\.16xlarge \| m5ad\.16xlarge  \| m6g\.8xlarge \| m6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5\.8xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge \| m5d\.12xlarge \| mac1\.metal  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| m5\.12xlarge \| m5a\.16xlarge \| m5ad\.16xlarge  \| m6g\.8xlarge \| m6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  m6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 

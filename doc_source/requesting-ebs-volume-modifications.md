@@ -24,7 +24,28 @@ You can only increase volume size\. You can increase or decrease volume performa
 To modify an EBS volume, use one of the following methods\.
 
 ------
-#### [ Console ]<a name="console-modify-size"></a>
+#### [ New console ]<a name="console-modify-size"></a>
+
+**To modify an EBS volume using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Volumes**\.
+
+1. Select the volume to modify and choose **Actions**, **Modify volume**\.
+
+1. The **Modify volume** screen displays the volume ID and the volume's current configuration, including type, size, IOPS, and throughput\. Set new configuration values as follows:
+   + To modify the type, choose a value for **Volume type**\.
+   + To modify the size, enter a new value for **Size**\.
+   + \(`gp3`, `io1`, and `io2` only\) To modify the IOPS, enter a new value for **IOPS**\.
+   + \(`gp3` only\) To modify the throughput, enter a new value for **Throughput**\.
+
+1. After you have finished changing the volume settings, choose **Modify**\. When prompted for confirmation, choose **Modify**\.
+
+1. Modifying volume size has no practical effect until you also extend the volume's file system to make use of the new storage capacity\. For more information, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
+
+------
+#### [ Old console ]<a name="console-modify-size"></a>
 
 **To modify an EBS volume using the console**
 

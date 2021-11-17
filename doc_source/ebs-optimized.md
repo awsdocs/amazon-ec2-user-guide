@@ -145,6 +145,14 @@ You can also view this information programatically using the AWS CLI\. For more 
 | g4dn\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | g4dn\.16xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | g4dn\.metal | 19,000 | 2,375 | 80,000 | 
+| g5\.xlarge \* | 3,500 | 437\.5 | 15,000 | 
+| g5\.2xlarge \* | 3,500 | 437\.5 | 15,000 | 
+| g5\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| g5\.8xlarge | 16,000 | 2,000 | 65,000 | 
+| g5\.12xlarge | 16,000 | 2,000 | 65,000 | 
+| g5\.16xlarge | 16,000 | 2,000 | 65,000 | 
+| g5\.24xlarge | 19,000 | 2,375 | 80,000 | 
+| g5\.48xlarge | 19,000 | 2,375 | 80,000 | 
 | h1\.2xlarge | 1,750 | 218\.75 | 12,000 | 
 | h1\.4xlarge | 3,500 | 437\.5 | 20,000 | 
 | h1\.8xlarge | 7,000 | 875 | 40,000 | 
@@ -464,6 +472,8 @@ You can also view this information programatically using the AWS CLI\. For more 
 | g4ad\.4xlarge | 1,580 | 197\.5 | 6,700 | 
 | g4dn\.xlarge | 950 | 118\.75 | 3,000 | 
 | g4dn\.2xlarge | 1,150 | 143\.75 | 6,000 | 
+| g5\.xlarge | 700 | 87\.5 | 3,000 | 
+| g5\.2xlarge | 850 | 106\.25 | 3,500 | 
 | i3en\.large | 577 | 72\.1 | 3,000 | 
 | i3en\.xlarge | 1,154 | 144\.2 | 6,000 | 
 | i3en\.2xlarge | 2,307 | 288\.39 | 12,000 | 

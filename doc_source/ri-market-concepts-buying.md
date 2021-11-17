@@ -1,4 +1,4 @@
-# Buying Reserved Instances<a name="ri-market-concepts-buying"></a>
+# Buy Reserved Instances<a name="ri-market-concepts-buying"></a>
 
 To purchase a Reserved Instance, search for *Reserved Instance offerings* from AWS and third\-party sellers, adjusting your search parameters until you find the exact match that you're looking for\.
 

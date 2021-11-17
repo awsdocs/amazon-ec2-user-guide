@@ -1,6 +1,6 @@
 # Replace an Amazon EBS volume<a name="ebs-restoring-volume"></a>
 
-Amazon EBS snapshots are the preferred backup tool on Amazon EC2 because of their speed, convenience, and cost\. When creating a volume from a snapshot, you recreate its state at a specific point in the past with all data intact\. By attaching a volume created from a snapshot to an instance, you can duplicate data across Regions, create test environments, replace a damaged or corrupted production volume in its entirety, or retrieve specific files and directories and transfer them to another attached volume\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
+Amazon EBS snapshots are the preferred backup tool on Amazon EC2 because of their speed, convenience, and cost\. When creating a volume from a snapshot, you recreate its state at a specific point in time with the data saved up to that specific point intact\. By attaching a volume created from a snapshot to an instance, you can duplicate data across Regions, create test environments, replace a damaged or corrupted production volume in its entirety, or retrieve specific files and directories and transfer them to another attached volume\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
 The procedure for replacing a volume differs depending on whether the volume is the root volume or a data volume\.
 
@@ -35,7 +35,7 @@ When you replace the root volume for an instance, you can choose to restore the 
 You can replace the root volume for an instance using one of the following methods\. If you use the Amazon EC2 console, note that replacing the root volume is only available in the new console\.
 
 ------
-#### [ Amazon EC2 console ]
+#### [ New console ]
 
 **To replace the root volume**
 
@@ -91,10 +91,10 @@ After you start a root volume replacement task, the task enters the following st
 + `failing-detached` — the replacement task is in the process of failing\. The instance might have no root volume attached\.
 + `failed-detached` — the replacement task has failed and the instance has no root volume attached\.
 
-You can view the root volume replacement tasks for an instance using one of the following methods\.
+You can view the root volume replacement tasks for an instance using one of the following methods\. If you use the console, note that this functionality is only available in the new console\.
 
 ------
-#### [ Amazon EC2 console ]
+#### [ New console ]
 
 **To view the root volume replacement tasks**
 
@@ -161,7 +161,28 @@ Note that EBS volumes can only be attached to EC2 instances in the same Availabi
 Use the following method\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To replace a data volume**
+
+1. Create a volume from the snapshot and write down the ID of the new volume\. For more information, see [Create a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
+
+1. On the Instances page, select the instance on which to replace the volume and write down the instance ID\.
+
+   With the instance still selected, choose the **Storage** tab\. In the **Block devices** section, find the volume to replace and write down the device name for the volume, for example `/dev/sda1`\.
+
+   Choose the volume ID\.
+
+1. On the Volumes screen, select the volume and choose **Actions**, **Detach volume**, **Detach**\.
+
+1. Select the new volume that you created in step 1 and choose **Actions**, **Attach volume**\.
+
+   For **Instance** and **Device name**, enter the instance ID and device name that you wrote down in Step 2, and then choose **Attach volume**\.
+
+1. Connect to your instance and mount the volume\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
+
+------
+#### [ Old console ]
 
 **To replace a data volume**
 

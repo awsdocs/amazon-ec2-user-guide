@@ -41,7 +41,7 @@ For more information, see [Amazon EC2 I3 Instances](https://aws.amazon.com/ec2/i
 + [Hardware specifications](#storage-instances-hardware)
 + [Instance performance](#storage-performance)
 + [Network performance](#storage-network-performance)
-+ [SSD I/O performance](#i2-instances-diskperf)
++ [SSD I/O performance](#storage-instances-diskperf)
 + [Instance features](#storage-instances-features)
 + [Support for vCPUs](#d2-instances-cpu-support)
 + [Release notes](#storage-instance-release-notes)
@@ -141,12 +141,16 @@ The following is a summary of network performance for storage optimized instance
 | d3en\.large | 3 | 25 | 
 | d3en\.xlarge | 6 | 25 | 
 | d3en\.2xlarge | 12\.5 | 25 | 
+| i3\.large | \.75 | 10 | 
+| i3\.xlarge | 1\.25 | 10 | 
+| i3\.2xlarge | 2\.5 | 10 | 
+| i3\.4xlarge | 5 | 10 | 
 | i3en\.large | 2\.1 | 25 | 
 | i3en\.xlarge | 4\.2 | 25 | 
 | i3en\.2xlarge | 8\.4 | 25 | 
 | i3en\.3xlarge | 12\.5 | 25 | 
 
-## SSD I/O performance<a name="i2-instances-diskperf"></a>
+## SSD I/O performance<a name="storage-instances-diskperf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
@@ -157,17 +161,17 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | i3\.xlarge \* |  206,250  |  70,000  | 
 | i3\.2xlarge |  412,500  |  180,000  | 
 | i3\.4xlarge |  825,000  |  360,000  | 
-| i3\.8xlarge |  1\.65 million  |  720,000  | 
-| i3\.16xlarge |  3\.3 million  |  1\.4 million  | 
-| i3\.metal |  3\.3 million  |  1\.4 million  | 
+| i3\.8xlarge |  1,650,000  |  720,000  | 
+| i3\.16xlarge |  3,300,000  |  1,400,000  | 
+| i3\.metal |  3,300,000  |  1,400,000  | 
 | i3en\.large \* | 42,500 | 32,500 | 
 | i3en\.xlarge \* | 85,000 | 65,000 | 
 | i3en\.2xlarge \* | 170,000 | 130,000 | 
 | i3en\.3xlarge | 250,000 | 200,000 | 
 | i3en\.6xlarge | 500,000 | 400,000 | 
-| i3en\.12xlarge | 1 million | 800,000 | 
-| i3en\.24xlarge | 2 million | 1\.6 million | 
-| i3en\.metal | 2 million | 1\.6 million | 
+| i3en\.12xlarge | 1,000,000 | 800,000 | 
+| i3en\.24xlarge | 2,000,000 | 1,600,000 | 
+| i3en\.metal | 2,000,000 | 1,600,000 | 
 
 \* For these instances, you can get up to the specified performance\.
 

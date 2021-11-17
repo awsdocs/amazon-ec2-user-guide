@@ -118,16 +118,51 @@ If you select **No reboot**, we can't guarantee the file system integrity of the
 1. The new running instance contains all of the customizations that you applied in previous steps\.
 
 ------
-
-### To create an AMI from an instance using the command line<a name="create-ami-cli"></a>
+#### [ AWS CLI ]
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\)
 + [New\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
+------
+
 ## Create a Linux AMI from a snapshot<a name="creating-launching-ami-from-snapshot"></a>
 
 If you have a snapshot of the root device volume of an instance, you can create an AMI from this snapshot using the AWS Management Console or the command line\.
+
+------
+#### [ New console ]
+
+**To create an AMI from a snapshot using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Snapshots**\.
+
+1. Select the snapshot from which to create the AMI and choose **Actions**, **Create image**\.
+
+1. For **Image name**, enter a descriptive name for the image\.
+
+1. For **Description**, enter a brief description for the image\.
+
+1. For **Architecture**, choose the image architecture\. Choose **i386** for 32\-bit, **x86\_64** for 64\-bit, **ARM64** for 64\-bit ARM, or **x86\_64** for 64\-bit macOS\.
+
+1. For **Root device name**, enter the device name to use for the root device volume\. For more information, see [Device names on Linux instances](device_naming.md)\.
+
+1. For **Virtualization type**, choose the virtualization type to be used by instances launched from this AMI\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
+
+1. \(For paravirtual virtualization only\) For **Kernel ID**, select the operating system kernel for the image\. If you're using a snapshot of the root device volume of an instance, select the same kernel ID as the original instance\. If you're unsure, use the default kernel\.
+
+1. \(For paravirtual virtualization only\) For **RAM disk ID**, select the RAM disk for the image\. If you select a specific kernel, you may need to select a specific RAM disk with the drivers to support it\.
+
+1. \(Optional\) In the **Block device mappings** section, customize the root volume and add additional data volumes\. 
+
+   For each volume, you can specify the size, type, performance characteristics, the behavior of delete on termination, and encryption status\. For the root volume, the size cannot be smaller than the size of the snapshot\.
+
+1. Choose **Create image**\.
+
+------
+#### [ Old console ]
 
 **To create an AMI from a snapshot using the console**
 
@@ -144,11 +179,16 @@ If you have a snapshot of the root device volume of an instance, you can create 
    + \(PV virtualization type only\) **Kernel ID** and **RAM disk ID**: Choose the AKI and ARI from the lists\. If you choose the default AKI or don't choose an AKI, you must specify an AKI every time you launch an instance using this AMI\. In addition, your instance may fail the health checks if the default AKI is incompatible with the instance\.
    + \(Optional\) **Block Device Mappings**: Add volumes or expand the default size of the root volume for the AMI\. For more information about resizing the file system on your instance for a larger volume, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
 
+------
+#### [ AWS CLI ]
+
 **To create an AMI from a snapshot using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 + [Register\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 ## Launch an instance from an AMI you created<a name="launching-instance-from-images-page"></a>
 

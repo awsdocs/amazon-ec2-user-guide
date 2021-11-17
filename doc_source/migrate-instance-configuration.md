@@ -1,6 +1,6 @@
-# Migrate to a new instance configuration<a name="migrate-instance-configuration"></a>
+# Migrate to a new instance configuration \(to change the instance type\)<a name="migrate-instance-configuration"></a>
 
-If the current configuration of your instance is incompatible with the new instance type that you want, then you can't resize the instance to that instance type\. Instead, you can migrate your application to a new instance with a configuration that is compatible with the new instance type that you want\.
+If the current configuration of your instance is incompatible with the new instance type that you want, then you can't change to that instance type\. Instead, you can migrate your application to a new instance with a configuration that is compatible with the new instance type that you want\.
 
 If you want to move from an instance launched from a PV AMI to an instance type that is HVM only, the general process is as follows:
 

@@ -82,7 +82,7 @@ Each IAM policy statement applies to the resources that you specify using their 
 An ARN has the following general syntax:
 
 ```
-arn:aws:[service]:[region]:[account]:resourceType/resourcePath
+arn:aws:[service]:[region]:[account-id]:resourceType/resourcePath
 ```
 
 *service*  
@@ -91,7 +91,7 @@ The service \(for example, `ec2`\)\.
 *region*  
 The Region for the resource \(for example, `us-east-1`\)\.
 
-*account*  
+*account\-id*  
 The AWS account ID, with no hyphens \(for example, `123456789012`\)\.
 
 *resourceType*  

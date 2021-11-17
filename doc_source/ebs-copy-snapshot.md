@@ -77,7 +77,32 @@ The following tables describe the encryption outcome for each possible combinati
 To copy a snapshot, use one of the following methods\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To copy a snapshot using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Snapshots**\.
+
+1. Select the snapshot to copy, and then choose **Actions**, **Copy snapshot**\.
+
+1. For **Description**, enter a brief description for the snapshot copy\.
+
+   By default, the description includes information about the source snapshot so that you can identify a copy from the original\. You can change this description as needed\.
+
+1. For **Destination Region**, select the Region in which to create the snapshot copy\.
+
+1. Specify the encryption status for the snapshot copy\.
+
+   If the source snapshot is encrypted, or if your account is enabled for [encryption by default](EBSEncryption.md#encryption-by-default), then the snapshot copy is automatically encrypted and you can't change its encryption status\.
+
+   If the source snapshot is unencrypted and your account is not enabled for encryption by default, encryption is optional\. To encrypt the snapshot copy, for **Encryption**, select **Encrypt this snapshot**\. Then, for **KMS key**, select the KMS key to use to encrypt the snapshot in the destination Region\.
+
+1. Choose **Copy snapshot**\.
+
+------
+#### [ Old console ]
 
 **To copy a snapshot using the console**
 

@@ -6,12 +6,16 @@ When you deregister an AMI, it doesn't affect any instances that you've already 
 
 The procedure that you'll use to clean up your AMI depends on whether it is backed by Amazon EBS or instance store\. For more information, see [Determine the root device type of your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
 
-**Note**  
-An AMI must be owned by your account in order to deregister it\.
-
 **Topics**
++ [Considerations](#deregister-ami-considerations)
 + [Clean up your Amazon EBS\-backed AMI](#clean-up-ebs-ami)
 + [Clean up your instance store\-backed AMI](#clean-up-s3-ami)
+
+## Considerations<a name="deregister-ami-considerations"></a>
+
+The following considerations apply to deregistering AMIs:
++ You can't deregister an AMI that is not owned by your account\.
++ You can't deregister an AMI that is managed by the AWS Backup service using Amazon EC2\. Instead, use AWS Backup to delete the corresponding recovery points in the backup vault\.
 
 ## Clean up your Amazon EBS\-backed AMI<a name="clean-up-ebs-ami"></a>
 

@@ -188,213 +188,181 @@ You can configure your fleet to replace unhealthy Spot Instances\. After setting
 
 ## Generate an EC2 Fleet JSON configuration file<a name="ec2-fleet-cli-skeleton"></a>
 
-To create an EC2 Fleet, you need only specify the launch template, total target capacity, and whether the default purchasing option is On\-Demand or Spot\. If you do not specify a parameter, the fleet uses the default value\. To view the full list of fleet configuration parameters, you can generate a JSON file as follows\.
+To view the full list of EC2 Fleet configuration parameters, you can generate a JSON file\. For a description of each parameter, see [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) in the AWS CLI Command Reference\.
 
 **To generate a JSON file with all possible EC2 Fleet parameters using the command line**
-+ Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command and the `--generate-cli-skeleton` parameter to generate an EC2 Fleet JSON file:
++ Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command and the `--generate-cli-skeleton` parameter to generate an EC2 Fleet JSON file, and direct the output to a file to save it\.
 
   ```
   aws ec2 create-fleet \
-      --generate-cli-skeleton
+      --generate-cli-skeleton input > ec2createfleet.json
   ```
 
-  The following EC2 Fleet parameters are available:
+  Example output
 
   ```
   {
-      "DryRun": true, 
-      "ClientToken": "", 
+      "DryRun": true,
+      "ClientToken": "",
       "SpotOptions": {
-          "AllocationStrategy": "lowest-price", 
-          "InstanceInterruptionBehavior": "hibernate", 
+          "AllocationStrategy": "capacity-optimized",
+          "MaintenanceStrategies": {
+              "CapacityRebalance": {
+                  "ReplacementStrategy": "launch"
+              }
+          },
+          "InstanceInterruptionBehavior": "hibernate",
           "InstancePoolsToUseCount": 0,
-          "SingleInstanceType": true, 
-          "SingleAvailabilityZone": true, 
-          "MaxTotalPrice": 0,
-          "MinTargetCapacity": 0
-      }, 
+          "SingleInstanceType": true,
+          "SingleAvailabilityZone": true,
+          "MinTargetCapacity": 0,
+          "MaxTotalPrice": ""
+      },
       "OnDemandOptions": {
           "AllocationStrategy": "prioritized",
-          "SingleInstanceType": true, 
-          "SingleAvailabilityZone": true, 
-          "MaxTotalPrice": 0,
-          "MinTargetCapacity": 0
-      }, 
-      "ExcessCapacityTerminationPolicy": "termination", 
+          "CapacityReservationOptions": {
+              "UsageStrategy": "use-capacity-reservations-first"
+          },
+          "SingleInstanceType": true,
+          "SingleAvailabilityZone": true,
+          "MinTargetCapacity": 0,
+          "MaxTotalPrice": ""
+      },
+      "ExcessCapacityTerminationPolicy": "termination",
       "LaunchTemplateConfigs": [
           {
               "LaunchTemplateSpecification": {
-                  "LaunchTemplateId": "", 
-                  "LaunchTemplateName": "", 
+                  "LaunchTemplateId": "",
+                  "LaunchTemplateName": "",
                   "Version": ""
-              }, 
+              },
               "Overrides": [
                   {
-                      "InstanceType": "t2.micro", 
-                      "MaxPrice": "", 
-                      "SubnetId": "", 
-                      "AvailabilityZone": "", 
-                      "WeightedCapacity": null, 
-                      "Priority": null,
+                      "InstanceType": "r5.metal",
+                      "MaxPrice": "",
+                      "SubnetId": "",
+                      "AvailabilityZone": "",
+                      "WeightedCapacity": 0.0,
+                      "Priority": 0.0,
                       "Placement": {
-                          "AvailabilityZone": "", 
-                          "Affinity": "", 
-                          "GroupName": "", 
-                          "PartitionNumber": 0, 
-                          "HostId": "", 
-                          "Tenancy": "dedicated", 
-                          "SpreadDomain": ""
+                          "AvailabilityZone": "",
+                          "Affinity": "",
+                          "GroupName": "",
+                          "PartitionNumber": 0,
+                          "HostId": "",
+                          "Tenancy": "dedicated",
+                          "SpreadDomain": "",
+                          "HostResourceGroupArn": ""
+                      },
+                      "InstanceRequirements": {
+                          "VCpuCount": {
+                              "Min": 0,
+                              "Max": 0
+                          },
+                          "MemoryMiB": {
+                              "Min": 0,
+                              "Max": 0
+                          },
+                          "CpuManufacturers": [
+                              "amd"
+                          ],
+                          "MemoryGiBPerVCpu": {
+                              "Min": 0.0,
+                              "Max": 0.0
+                          },
+                          "ExcludedInstanceTypes": [
+                              ""
+                          ],
+                          "InstanceGenerations": [
+                              "previous"
+                          ],
+                          "SpotMaxPricePercentageOverLowestPrice": 0,
+                          "OnDemandMaxPricePercentageOverLowestPrice": 0,
+                          "BareMetal": "included",
+                          "BurstablePerformance": "required",
+                          "RequireHibernateSupport": true,
+                          "NetworkInterfaceCount": {
+                              "Min": 0,
+                              "Max": 0
+                          },
+                          "LocalStorage": "excluded",
+                          "LocalStorageTypes": [
+                              "ssd"
+                          ],
+                          "TotalLocalStorageGB": {
+                              "Min": 0.0,
+                              "Max": 0.0
+                          },
+                          "BaselineEbsBandwidthMbps": {
+                              "Min": 0,
+                              "Max": 0
+                          },
+                          "AcceleratorTypes": [
+                              "inference"
+                          ],
+                          "AcceleratorCount": {
+                              "Min": 0,
+                              "Max": 0
+                          },
+                          "AcceleratorManufacturers": [
+                              "amd"
+                          ],
+                          "AcceleratorNames": [
+                              "a100"
+                          ],
+                          "AcceleratorTotalMemoryMiB": {
+                              "Min": 0,
+                              "Max": 0
+                          }
+                      }
                   }
               ]
           }
-      ], 
+      ],
       "TargetCapacitySpecification": {
-          "TotalTargetCapacity": 0, 
-          "OnDemandTargetCapacity": 0, 
-          "SpotTargetCapacity": 0, 
-          "DefaultTargetCapacityType": "spot"
-      }, 
-      "TerminateInstancesWithExpiration": true, 
-      "Type": "maintain", 
-      "ValidFrom": "1970-01-01T00:00:00", 
-      "ValidUntil": "1970-01-01T00:00:00", 
-      "ReplaceUnhealthyInstances": true, 
+          "TotalTargetCapacity": 0,
+          "OnDemandTargetCapacity": 0,
+          "SpotTargetCapacity": 0,
+          "DefaultTargetCapacityType": "on-demand",
+          "TargetCapacityUnitType": "memory-mib"
+      },
+      "TerminateInstancesWithExpiration": true,
+      "Type": "instant",
+      "ValidFrom": "1970-01-01T00:00:00",
+      "ValidUntil": "1970-01-01T00:00:00",
+      "ReplaceUnhealthyInstances": true,
       "TagSpecifications": [
           {
-              "ResourceType": "fleet", 
+              "ResourceType": "fleet",
               "Tags": [
                   {
-                      "Key": "", 
+                      "Key": "",
                       "Value": ""
                   }
               ]
           }
-      ]
+      ],
+      "Context": ""
   }
   ```
 
-### EC2 Fleet JSON configuration file reference<a name="ec2-fleet-json-reference"></a>
-
-**Note**  
-Use lowercase for all parameter values; otherwise, you get an error when Amazon EC2 uses the JSON file to launch the EC2 Fleet\.
-
-**AllocationStrategy \(for SpotOptions\)**  
-\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot capacity pools specified by the EC2 Fleet\. Valid values are `lowest-price`, `diversified`, `capacity-optimized`, `capacity-optimized-prioritized`\. The default is `lowest-price`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation strategies for Spot Instances](ec2-fleet-allocation-strategy.md)\.
-
-**InstanceInterruptionBehavior**  
-\(Optional\) The behavior when a Spot Instance is interrupted\. Valid values are `hibernate`, `stop`, and `terminate`\. By default, the Spot service terminates Spot Instances when they are interrupted\. If the fleet type is `maintain`, you can specify that the Spot service hibernates or stops Spot Instances when they are interrupted\.
-
-**InstancePoolsToUseCount**  
-The number of Spot capacity pools across which to allocate your target Spot capacity\. Valid only when Spot **AllocationStrategy** is set to `lowest-price`\. EC2 Fleet selects the cheapest Spot capacity pools and evenly allocates your target Spot capacity across the number of Spot capacity pools that you specify\.
-
-**SingleInstanceType**  
-Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet\.
-
-**SingleAvailabilityZone**  
-Indicates that the fleet launches all Spot Instances into a single Availability Zone\.
-
-**MaxTotalPrice**  
-The maximum amount per hour for Spot Instances that you're willing to pay\.
-
-**MinTargetCapacity**  
-The minimum target capacity for Spot Instances in the fleet\. If the minimum target capacity is not reached, the fleet launches no instances\.
-
-**AllocationStrategy \(for OnDemandOptions\)**  
-The order of the launch template overrides to use in fulfilling On\-Demand capacity\. If you specify `lowest-price`, EC2 Fleet uses price to determine the order, launching the lowest price first\. If you specify prioritized, EC2 Fleet uses the priority that you assigned to each launch template override, launching the highest priority first\. If you do not specify a value, EC2 Fleet defaults to `lowest-price`\.
-
-**SingleInstanceType**  
-Indicates that the fleet uses a single instance type to launch all On\-Demand Instances in the fleet\.
-
-**SingleAvailabilityZone**  
-Indicates that the fleet launches all On\-Demand Instances into a single Availability Zone\.
-
-**MaxTotalPrice**  
-The maximum amount per hour for On\-Demand Instances that you're willing to pay\.
-
-**MinTargetCapacity**  
-The minimum target capacity for On\-Demand Instances in the fleet\. If the minimum target capacity is not reached, the fleet launches no instances\.
-
-**ExcessCapacityTerminationPolicy**  
-\(Optional\) Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet\. Valid values are `no-termination` and `termination`\.
-
-**LaunchTemplateId**  
-The ID of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For information about creating launch templates, see [Launch an instance from a launch template](ec2-launch-templates.md)\.
-
-**LaunchTemplateName**  
-The name of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For more information, see [Launch an instance from a launch template](ec2-launch-templates.md)\.
-
-**Version**  
-The launch template version number, `$Latest`, or `$Default`\. You must specify a value, otherwise the request fails\. If the value is `$Latest`, Amazon EC2 uses the latest version of the launch template\. If the value is `$Default`, Amazon EC2 uses the default version of the launch template\. For more information, see [Modify a launch template \(manage launch template versions\)](ec2-launch-templates.md#manage-launch-template-versions)\.
-
-**InstanceType**  
-\(Optional\) The instance type\. If entered, this value overrides the launch template\. The instance types must have the minimum hardware specifications that you need \(vCPUs, memory, or storage\)\.
-
-**MaxPrice**  
-\(Optional\) The maximum price per unit hour that you are willing to pay for a Spot Instance\. If entered, this value overrides the launch template\. You can use the default maximum price \(the On\-Demand price\) or specify the maximum price that you are willing to pay\. Your Spot Instances are not launched if your maximum price is lower than the Spot price for the instance types that you specified\.
-
-**SubnetId**  
-\(Optional\) The ID of the subnet in which to launch the instances\. If entered, this value overrides the launch template\.  
-To create a new VPC, go the Amazon VPC console\. When you are done, return to the JSON file and enter the new subnet ID\.
-
-**AvailabilityZone**  
-\(Optional\) The Availability Zone in which to launch the instances\. The default is to let AWS choose the zones for your instances\. If you prefer, you can specify specific zones\. If entered, this value overrides the launch template\.   
-Specify one or more Availability Zones\. If you have more than one subnet in a zone, specify the appropriate subnet\. To add subnets, go to the Amazon VPC console\. When you are done, return to the JSON file and enter the new subnet ID\.
-
-**WeightedCapacity**  
-\(Optional\) The number of units provided by the specified instance type\. If entered, this value overrides the launch template\.
-
-**Priority**  
-The priority for the launch template override\. The highest priority is launched first\.  
-If the On\-Demand **AllocationStrategy** is set to `prioritized`, EC2 Fleet uses priority to determine which launch template override to use first in fulfilling On\-Demand capacity\.  
-If the Spot **AllocationStrategy** is set to `capacity-optimized-prioritized`, EC2 Fleet uses priority on a best\-effort basis to determine which launch template override to use first in fulfilling Spot capacity, but optimizes for capacity first\.  
-Valid values are whole numbers starting at `0`\. The lower the number, the higher the priority\. If no number is set, the launch template override has the lowest priority\. You can set the same priority for different launch template overrides\.
-
-**TotalTargetCapacity**  
-The number of instances to launch\. You can choose instances or performance characteristics that are important to your application workload, such as vCPUs, memory, or storage\. If the request type is `maintain`, you can specify a target capacity of 0 and add capacity later\.
-
-**OnDemandTargetCapacity**  
-\(Optional\) The number of On\-Demand Instances to launch\. This number must be less than the `TotalTargetCapacity`\.
-
-**SpotTargetCapacity**  
-\(Optional\) The number of Spot Instances to launch\. This number must be less than the `TotalTargetCapacity`\.
-
-**DefaultTargetCapacityType**  
-If the value for `TotalTargetCapacity` is higher than the combined values for `OnDemandTargetCapacity` and `SpotTargetCapacity`, the difference is launched as the instance purchasing option specified here\. Valid values are `on-demand` or `spot`\.
-
-**TerminateInstancesWithExpiration**  
-\(Optional\) By default, Amazon EC2 terminates your instances when the EC2 Fleet request expires\. The default value is `true`\. To keep them running after your request expires, do not enter a value for this parameter\.
-
-**Type**  
-\(Optional\) The type of request\. Valid values are `instant`, `request`, and `maintain`\. The default value is `maintain`\.  
-+ `instant` – The EC2 Fleet submits a synchronous one\-time request for your desired capacity, and returns errors for any instances that could not be launched\.
-+ `request` – The EC2 Fleet submits an asynchronous one\-time request for your desired capacity, but does submit Spot requests in alternative Spot capacity pools if Spot capacity is unavailable, and does not maintain Spot capacity if Spot Instances are interrupted\.
-+ `maintain` – The EC2 Fleet submits an asynchronous request for your desired capacity, and continues to maintain your desired Spot capacity by replenishing interrupted Spot Instances\.
-For more information, see [EC2 Fleet request types](ec2-fleet-request-type.md)\.
-
-**ValidFrom**  
-\(Optional\) To create a request that is valid only during a specific time period, enter a start date\.
-
-**ValidUntil**  
-\(Optional\) To create a request that is valid only during a specific time period, enter an end date\.
-
-**ReplaceUnhealthyInstances**  
-\(Optional\) To replace unhealthy instances in an EC2 Fleet that is configured to `maintain` the fleet, enter `true`\. Otherwise, leave this parameter empty\.
-
-**TagSpecifications**  
-\(Optional\) The key\-value pair for tagging the EC2 Fleet request on creation\. The value for `ResourceType` must be `fleet`, otherwise the fleet request fails\. To tag instances at launch, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template)\. For information about tagging after launch, see [Tag your resources](Using_Tags.md#tag-resources)\.
-
 ## Create an EC2 Fleet<a name="create-ec2-fleet"></a>
 
-When you create an EC2 Fleet, you must specify a launch template that includes information about the instances to launch, such as the instance type, Availability Zone, and the maximum price you are willing to pay\.
+To create an EC2 Fleet, you need only specify the following parameters:
++ `LaunchTemplateId` or `LaunchTemplateName` – Specifies the launch template to use \(which contains the parameters for the instances to launch, such as the instance type, Availability Zone, and the maximum price you're willing to pay\)
++ `TotalTargetCapacity` – Specifies the total target capacity for the fleet
++ `DefaultTargetCapacityType` – Specifies whether the default purchasing option is On\-Demand or Spot
 
-You can create an EC2 Fleet that includes multiple launch specifications that override the launch template\. The launch specifications can vary by instance type, Availability Zone, subnet, and maximum price, and can include a different weighted capacity\.
+You can specify multiple launch specifications that override the launch template\. The launch specifications can vary by instance type, Availability Zone, subnet, and maximum price, and can include a different weighted capacity\. Alternatively, you can specify the attributes that an instance must have, and Amazon EC2 will identify all the instance types with those attributes\. For more information, see [Attribute\-based instance type selection for EC2 Fleet](ec2-fleet-attribute-based-instance-type-selection.md)\.
 
-When you create an EC2 Fleet, use a JSON file to specify information about the instances to launch\. For more information, see [EC2 Fleet JSON configuration file reference](#ec2-fleet-json-reference)\.
+If you do not specify a parameter, the fleet uses the default value for the parameter\.
+
+Specify the fleet parameters in a JSON file\. For more information, see [Generate an EC2 Fleet JSON configuration file](#ec2-fleet-cli-skeleton)\.
 
 EC2 Fleets can only be created using the AWS CLI\.
 
 **To create an EC2 Fleet \(AWS CLI\)**
-+ Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet\.
++ Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet and specify the JSON file that contains the fleet configuration parameters\.
 
 ```
 aws ec2 create-fleet \

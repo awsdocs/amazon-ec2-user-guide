@@ -45,6 +45,7 @@ The following table summarizes the supported NVIDIA drivers for each GPU instanc
 | G2 | No | Yes | No | 
 | G3 | Yes | Yes | No | 
 | G4dn | Yes | Yes | Yes | 
+| G5 | Yes | Yes | Yes | 
 | P2 | Yes | No | No | 
 | P3 | Yes | Yes † | No | 
 | P4d | Yes | No | No | 
@@ -91,6 +92,7 @@ Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate
 | G2 | GRID | GRID Series | GRID K520 | 
 | G3 | Tesla | M\-Class | M60 | 
 | G4dn † | Tesla | T\-Series | T4 | 
+| G5 | Tesla | A\-Series | A10 | 
 | P2 | Tesla | K\-Series | K80 | 
 | P3 | Tesla | V\-Series | V100 | 
 | P4d | Tesla | A\-Series | A100 | 
@@ -139,6 +141,11 @@ These downloads are available to AWS customers only\. By downloading, you agree 
 1. Reconnect to your instance after it has rebooted\.
 
 1. Install the gcc compiler and the kernel headers package for the version of the kernel you are currently running\.
+   + For CentOS 8 and RHEL 8
+
+     ```
+     [ec2-user ~]$ sudo dnf install -y make gcc elfutils-libelf-devel libglvnd-devel kernel-devel-$(uname -r)
+     ```
    + For Amazon Linux, CentOS, and Red Hat Enterprise Linux:
 
      ```
@@ -195,6 +202,8 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    ```
 
    Starting with GRID version 11\.0, you can use the driver packages under `latest` for both G3 and G4dn instances\. We will not add versions later than 11\.0 to `g4/latest`, but will keep version 11\.0 and the earlier versions specific to G4dn under `g4/latest`\.
+
+   With G5 instances, you can use GRID 13\.1 and later or GRID 12\.4 or later\.
 
 1. Add permissions to run the driver installation utility using the following command\.
 

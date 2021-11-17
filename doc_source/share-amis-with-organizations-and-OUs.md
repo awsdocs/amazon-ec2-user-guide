@@ -14,11 +14,16 @@ When you share an AMI with an organization or an OU, all of the children account
 + The AMI owner can share an AMI with any organization or OU, including organizations and OUs that they’re not a member of\.
 + There is no limit to the number of organizations or OUs with which an AMI can be shared\.
 + User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the AWS accounts in the other organizations and OUs that the AMI is shared with\.
-+ When specifying an AMI to share, make sure that you use the correct ARN format, otherwise you’ll get an error\. The following are examples of the correct ARN format\.
-  + Organization ARN: `OrganizationArn=arn:aws:organizations::111122223333:organization/o-123example`
-  + OU ARN: `OrganizationalUnitArn=arn:aws:organizations::111122223333:ou/o-123example/ou-1234-5example`
++ When specifying an organization or OU in a command, make sure to use the correct ARN format\. You'll get an error if you specify only the ID, for example, if you specify only `o-123example` or `ou-1234-5example`\. The following are the correct ARN formats:
+  + Organization ARN: `OrganizationArn=arn:aws:organizations::account-number:organization/organization-ID`
+  + OU ARN: `OrganizationalUnitArn=arn:aws:organizations::account-number:ou/organization-ID/OU-ID`
 
-  You'll get an error if you specify only the ID, for example, `o-123example` or `ou-1234-5example`\. 
+  Where:
+  + *`account-number`* is the 12\-digit management account number, for example, `123456789012`\. If you don't know the management account number, you can describe the organization or the organizational unit to get the ARN, which includes the management account number\. For more information, see [Get the ARN](#get-org-ou-ARN)\.
+  + *`organization-ID`* is the organization ID, for example, `o-123example`\.
+  + *`OU-ID`* is the organizational unit ID, for example, `ou-1234-5example`\.
+
+  For more information about the ARN format, see [Amazon Resource Names \(ARNs\)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *AWS General Reference*\.
 + You can share AMIs that are backed by unencrypted and encrypted snapshots\. However, the encrypted snapshots must be encrypted with a customer managed key\. You can’t share AMIs that are backed by snapshots that are encrypted with the default AWS managed key\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 + If you share an AMI that is backed by encrypted snapshots, you must allow the organizations or OUs to use the customer managed keys that were used to encrypt the snapshots\. For more information, see [Allow organizations and OUs to use a KMS key](#allow-org-ou-to-use-key)\.
 + AMIs are a regional resource\. When you share an AMI, its only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
@@ -83,31 +88,44 @@ To share a KMS key with multiple OUs, you can use a policy similar to the follow
 
 ## Share an AMI \(AWS CLI\)<a name="share-amis-org-ou-aws-cli"></a>
 
-Use the [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command \(AWS CLI\) to share an AMI as shown in the following examples\.
+Use the [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command \(AWS CLI\) to share an AMI\.
 
-**To share an AMI with an organization or an OU using the AWS CLI**  
-The following command grants launch permissions for the specified AMI to the specified organization\. Note that you must specify the ARN, not the ID\.
+**To share an AMI with an organization using the AWS CLI**  
+The [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command grants launch permissions for the specified AMI to the specified organization\. Note that you must specify the full ARN, not just the ID\.
 
 ```
 aws ec2 modify-image-attribute \
     --image-id ami-0abcdef1234567890 \
-    --launch-permission "Add=[{OrganizationArn=arn:aws:organizations::111122223333:organization/o-123example}]"
+    --launch-permission "Add=[{OrganizationArn=arn:aws:organizations::123456789012:organization/o-123example}]"
+```
+
+**To share an AMI with an OU using the AWS CLI**  
+The [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command grants launch permissions for the specified AMI to the specified OU\. Note that you must specify the full ARN, not just the ID\.
+
+```
+aws ec2 modify-image-attribute \
+    --image-id ami-0abcdef1234567890 \
+    --launch-permission "Add=[{OrganizationalUnitArn=arn:aws:organizations::123456789012:ou/o-123example/ou-1234-5example}]"
 ```
 
 **Note**  
 You do not need to share the Amazon EBS snapshots that an AMI references in order to share the AMI\. Only the AMI itself needs to be shared, and the system automatically provides the instance with access to the referenced Amazon EBS snapshots for the launch\. However, you do need to share the KMS keys used to encrypt snapshots that the AMI references\. For more information, see [Allow organizations and OUs to use a KMS key](#allow-org-ou-to-use-key)\.
 
+## Stop sharing an AMI<a name="stop-sharing-amis-org-ou-awc-cli"></a>
+
+Use the [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) or [reset\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/reset-image-attribute.html) commands \(AWS CLI\) to stop sharing an AMI\.
+
 **To stop sharing an AMI with an organization or OU**  
-The following command removes launch permissions for the specified AMI from the specified organization\. Note that you must specify the ARN\.
+The [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command removes launch permissions for the specified AMI from the specified organization\. Note that you must specify the ARN\.
 
 ```
 aws ec2 modify-image-attribute \
     --image-id ami-0abcdef1234567890 \
-    --launch-permission "Remove=[{OrganizationArn=arn:aws:organizations::111122223333:organization/o-123example}]"
+    --launch-permission "Remove=[{OrganizationArn=arn:aws:organizations::123456789012:organization/o-123example}]"
 ```
 
 **To stop sharing an AMI with all organizations, OUs, and AWS accounts**  
-The following command removes all public and explicit launch permissions from the specified AMI\. Note that the owner of the AMI always has launch permissions and is therefore unaffected by this command\.
+The [reset\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/reset-image-attribute.html) command removes all public and explicit launch permissions from the specified AMI\. Note that the owner of the AMI always has launch permissions and is therefore unaffected by this command\.
 
 ```
 aws ec2 reset-image-attribute \
@@ -117,3 +135,76 @@ aws ec2 reset-image-attribute \
 
 **Note**  
 You can't stop sharing an AMI with a specific account if it's in an organization or OU with which an AMI is shared\. If you try to stop sharing the AMI by removing launch permissions for the account, Amazon EC2 returns a success message\. However, the AMI continues to be shared with the account\.
+
+## Describe launch permissions<a name="decribe-ami-launch-permissions"></a>
+
+You can check with which organizations and OUs you've shared your AMI by using the [describe\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html) command \(AWS CLI\) and the `launchPermission` attribute\.
+
+**To describe the launch permissions of an AMI**  
+The [describe\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html) command describes the `launchPermission` attribute for the specified AMI, and returns the organizations and OUs with which you've shared the AMI\.
+
+```
+aws ec2 describe-image-attribute \
+    --image-id ami-0abcdef1234567890 \
+    --attribute launchPermission
+```
+
+Example response
+
+```
+{
+    "ImageId": "ami-0abcdef1234567890",
+    "LaunchPermissions": [
+        {
+            "OrganizationalUnitArn": "arn:aws:organizations::111122223333:ou/o-123example/ou-1234-5example"
+        }
+    ]
+}
+```
+
+## Get the ARN<a name="get-org-ou-ARN"></a>
+
+The organization and the organizational unit ARNs contain the 12\-digit management account number\. If you don't know the management account number, you can describe the organization and the organizational unit to get the ARN for each\. In the following examples, `123456789012` is the management account number\.
+
+Before you can get the ARNs, you must have the permission to describe organizations and organizational units\. The following policy provides the necessary permission\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "organizations:Describe*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+**To get the ARN of an organization**  
+Use the [describe\-organization](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-organization.html) command and the `--query` parameter set to `'Organization.Arn'` to return only the organization ARN\.
+
+```
+aws organizations describe-organization --query 'Organization.Arn'
+```
+
+Example response
+
+```
+"arn:aws:organizations::123456789012:organization/o-123example"
+```
+
+**To get the ARN of an organizational unit**  
+Use the [describe\-organizational\-unit](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-organizational-unit.html) command, specify the OU ID, and set the `--query` parameter to `'OrganizationalUnit.Arn'` to return only the organizational unit ARN\.
+
+```
+aws organizations describe-organizational-unit --organizational-unit-id ou-1234-5example --query 'OrganizationalUnit.Arn'
+```
+
+Example response
+
+```
+"arn:aws:organizations::123456789012:ou/o-123example/ou-1234-5example"
+```

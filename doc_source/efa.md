@@ -49,10 +49,10 @@ EFA supports the following interfaces and libraries:
 
 The following instance types support EFAs:
 + General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6i.32xlarge` 
-+ Compute optimized: `c5n.18xlarge` \| `c5n.metal`  \| `c6gn.16xlarge`  \| `c6i.32xlarge` 
++ Compute optimized: `c5n.18xlarge` \| `c5n.metal`  \| `c6gn.16xlarge` \| `c6i.32xlarge` 
 + Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` 
 + Storage optimized: `i3en.24xlarge` \| `i3en.metal` 
-+ Accelerated computing: `dl1.24xlarge` \|  `g4dn.metal` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
++ Accelerated computing: `dl1.24xlarge` \|  `g4dn.8xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
 
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` option and the appropriate Region code\.
 

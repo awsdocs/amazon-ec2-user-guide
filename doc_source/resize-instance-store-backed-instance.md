@@ -1,6 +1,10 @@
-# Migrate an instance store\-backed instance<a name="resize-instance-store-backed-instance"></a>
+# Migrate an instance store\-backed instance \(to change the instance type\)<a name="resize-instance-store-backed-instance"></a>
 
-You can't change the instance type of an instance store\-back instance\. Instead, you must migrate your application to a new instance that is configured with the instance type that you need\. To migrate your application to a new instance, you must create an image from your original instance, and then launch a new instance from this image with the instance type that you need\. To ensure that your users can continue to use the applications that you're hosting on your instance uninterrupted, you must take any Elastic IP address that you've associated with your original instance and associate it with the new instance\. Then you can terminate the original instance\.
+You can't change the instance type of an instance store\-back instance\. Instead, you must migrate your application to a new instance that is configured with the instance type that you need\.
+
+To migrate your application to a new instance, you must create an image from your original instance, and then launch a new instance from this image with the instance type that you need\.
+
+To ensure that your users can continue to use the applications that you're hosting on your instance uninterrupted, you must take any Elastic IP address that you've associated with your original instance and associate it with the new instance\. Then you can terminate the original instance\.
 
 ------
 #### [ New console ]

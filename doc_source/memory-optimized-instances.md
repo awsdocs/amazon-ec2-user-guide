@@ -233,7 +233,7 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.8xlarge and smaller \| r5b\.4xlarge and smaller \| r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8large and smaller \| x2gd\.4xlarge and smaller \|  z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.8xlarge and smaller \| r5b\.4xlarge and smaller \| r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8xlarge and smaller \| x2gd\.4xlarge and smaller \|  z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5b\.8xlarge \| r5b\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge \| r6gd\.8xlarge  \| x2gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5b\.16xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  \| x2gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -250,6 +250,10 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
 | --- | --- | --- | 
+| r4\.large | \.75 | 10 | 
+| r4\.xlarge | 1\.25 | 10 | 
+| r4\.2xlarge | 2\.5 | 10 | 
+| r4\.4xlarge | 5 | 10 | 
 | r5\.large | \.75 | 10 | 
 | r5\.xlarge | 1\.25 | 10 | 
 | r5\.2xlarge | 2\.5 | 10 | 
@@ -290,6 +294,10 @@ The following is a summary of network performance for memory optimized instances
 | r6gd\.xlarge | 1\.25 | 10 | 
 | r6gd\.2xlarge | 2\.5 | 10 | 
 | r6gd\.4xlarge | 5 | 10 | 
+| x1e\.xlarge | \.625 | 10 | 
+| x1e\.2xlarge | 1\.25 | 10 | 
+| x1e\.4xlarge | 2\.5 | 10 | 
+| x1e\.8xlarge | 5 | 10 | 
 | x2gd\.medium | \.5 | 10 | 
 | x2gd\.large | \.75 | 10 | 
 | x2gd\.xlarge | 1\.25 | 10 | 

@@ -15,14 +15,18 @@ The owner of an AMI determines its availability by specifying launch permissions
 | Launch permission | Description | 
 | --- | --- | 
 | public | The owner grants launch permissions to all AWS accounts\. | 
-| explicit | The owner grants launch permissions to specific AWS accounts\. | 
+| explicit | The owner grants launch permissions to specific AWS accounts, organizations, or organizational units \(OUs\)\. | 
 | implicit | The owner has implicit launch permissions for an AMI\. | 
 
 Amazon and the Amazon EC2 community provide a large selection of public AMIs\. For more information, see [Shared AMIs](sharing-amis.md)\. Developers can charge for their AMIs\. For more information, see [Paid AMIs](paid-amis.md)\.
 
 ## Storage for the root device<a name="storage-for-the-root-device"></a>
 
-All AMIs are categorized as either *backed by Amazon EBS* or *backed by instance store*\. The former means that the root device for an instance launched from the AMI is an Amazon Elastic Block Store \(Amazon EBS\) volume created from an Amazon EBS snapshot\. The latter means that the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3\. For more information, see [Amazon EC2 instance root device volume](RootDeviceStorage.md)\.
+All AMIs are categorized as either *backed by Amazon EBS* or *backed by instance store*\.
++ Amazon EBS\-backed AMI – The root device for an instance launched from the AMI is an Amazon Elastic Block Store \(Amazon EBS\) volume created from an Amazon EBS snapshot\. 
++ Amazon instance store\-backed AMI – The root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3\.
+
+For more information, see [Amazon EC2 instance root device volume](RootDeviceStorage.md)\.
 
 The following table summarizes the important differences when using the two types of AMIs\.
 
@@ -48,7 +52,7 @@ The following table summarizes the important differences when using the two type
 
 1. Open the Amazon EC2 console\.
 
-1. In the navigation pane, click **AMIs**, and select the AMI\.
+1. In the navigation pane, choose **AMIs**, and select the AMI\.
 
 1. Check the value of **Root Device Type** in the **Details** tab as follows:
    + If the value is `ebs`, this is an Amazon EBS\-backed AMI\.
@@ -62,13 +66,15 @@ You can use one of the following commands\. For more information about these com
 
 ### Stopped state<a name="ec2-bootfromebs-stopped-state"></a>
 
-You can stop an Amazon EBS\-backed instance, but not an Amazon EC2 instance store\-backed instance\. Stopping causes the instance to stop running \(its status goes from `running` to `stopping` to `stopped`\)\. A stopped instance persists in Amazon EBS, which allows it to be restarted\. Stopping is different from terminating; you can't restart a terminated instance\. Because Amazon EC2 instance store\-backed instances can't be stopped, they're either running or terminated\. For more information about what happens and what you can do while an instance is stopped, see [Stop and start your instance](Stop_Start.md)\.
+You can stop an instance that has an EBS volume for its root device, but you can't stop an instance that has an instance store volume for its root device\.
+
+Stopping causes the instance to stop running \(its status goes from `running` to `stopping` to `stopped`\)\. A stopped instance persists in Amazon EBS, which allows it to be restarted\. Stopping is different from terminating; you can't restart a terminated instance\. Because instances with an instance store volume for the root device can't be stopped, they're either running or terminated\. For more information about what happens and what you can do while an instance is stopped, see [Stop and start your instance](Stop_Start.md)\.
 
 ### Default data storage and persistence<a name="ec2-bootfromebs-default-data-storage-and-persistence"></a>
 
-Instances that use an instance store volume for the root device automatically have instance store available \(the root volume contains the root partition and you can store additional data\)\. You can add persistent storage to your instance by attaching one or more EBS volumes\. Any data on an instance store volume is deleted when the instance fails or terminates\. For more information, see [Instance store lifetime](InstanceStorage.md#instance-store-lifetime)\.
+Instances that have an instance store volume for the root device automatically have instance store available \(the root volume contains the root partition and you can store additional data\)\. You can add persistent storage to your instance by attaching one or more EBS volumes\. Any data on an instance store volume is deleted when the instance fails or terminates\. For more information, see [Instance store lifetime](InstanceStorage.md#instance-store-lifetime)\.
 
-Instances that use Amazon EBS for the root device automatically have an EBS volume attached\. The volume appears in your list of volumes like any other\. With most instance types, Amazon EBS\-backed instances don't have instance store volumes by default\. You can add instance store volumes or additional EBS volumes using a block device mapping\. For more information, see [Block device mappings](block-device-mapping-concepts.md)\.
+Instances that have Amazon EBS for the root device automatically have an EBS volume attached\. The volume appears in your list of volumes like any other\. With most instance types, instances that have an EBS volume for the root device don't have instance store volumes by default\. You can add instance store volumes or additional EBS volumes using a block device mapping\. For more information, see [Block device mappings](block-device-mapping-concepts.md)\.
 
 ### Boot times<a name="ec2-bootfromebs-boot-times"></a>
 
@@ -84,6 +90,6 @@ AMI creation is much easier for AMIs backed by Amazon EBS\. The `CreateImage` AP
 
 With AMIs backed by instance store, you're charged for instance usage and storing your AMI in Amazon S3\. With AMIs backed by Amazon EBS, you're charged for instance usage, EBS volume storage and usage, and storing your AMI as an EBS snapshot\.
 
-With Amazon EC2 instance store\-backed AMIs, each time you customize an AMI and create a new one, all of the parts are stored in Amazon S3 for each AMI\. So, the storage footprint for each customized AMI is the full size of the AMI\. For Amazon EBS\-backed AMIs, each time you customize an AMI and create a new one, only the changes are stored\. So the storage footprint for subsequent AMIs you customize after the first is much smaller, resulting in lower AMI storage charges\. 
+With Amazon EC2 instance store\-backed AMIs, each time you customize an AMI and create a new one, all of the parts are stored in Amazon S3 for each AMI\. So, the storage footprint for each customized AMI is the full size of the AMI\. For Amazon EBS\-backed AMIs, each time you customize an AMI and create a new one, only the changes are stored\. So, the storage footprint for subsequent AMIs that you customize after the first is much smaller, resulting in lower AMI storage charges\. 
 
-When an Amazon EBS\-backed instance is stopped, you're not charged for instance usage; however, you're still charged for volume storage\. As soon as you start your instance, we charge a minimum of one minute for usage\. After one minute, we charge only for the seconds used\. For example, if you run an instance for 20 seconds and then stop it, we charge for a full one minute\. If you run an instance for 3 minutes and 40 seconds, we charge for exactly 3 minutes and 40 seconds of usage\. We charge you for each second, with a one\-minute minimum, that you keep the instance running, even if the instance remains idle and you don't connect to it\.
+When an instance with an EBS volume for its root device is stopped, you're not charged for instance usage; however, you're still charged for volume storage\. As soon as you start your instance, we charge a minimum of one minute for usage\. After one minute, we charge only for the seconds used\. For example, if you run an instance for 20 seconds and then stop it, we charge for a full one minute\. If you run an instance for 3 minutes and 40 seconds, we charge for exactly 3 minutes and 40 seconds of usage\. We charge you for each second, with a one\-minute minimum, that you keep the instance running, even if the instance remains idle and you don't connect to it\.

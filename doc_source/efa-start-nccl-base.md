@@ -859,6 +859,7 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    + `FI_EFA_USE_DEVICE_RDMA=1`—uses the device's RDMA functionality for one\-sided and two\-sided transfer\.
    + `NCCL_DEBUG=INFO`—enables detailed debugging output\. You can also specify `VERSION` to print only the NCCL version at the start of the test, or `WARN` to receive only error messages\.
    + `NCCL_ALGO=ring`—enables ring algorithm for collective operations\.
+   + `NCCL_PROTO=simple`—instructs NCCL to use a simple protocol for communication\. Currently, the EFA provider does not support LL protocols\. Enabling them could lead to data corruption\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
 
@@ -870,6 +871,7 @@ Run a test to ensure that your temporary instance is properly configured for EFA
        -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
        -x NCCL_DEBUG=INFO \
        -x NCCL_ALGO=ring \
+       -x NCCL_PROTO=simple \
        --hostfile my-hosts -n 8 -N 8 \
        --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
        $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100

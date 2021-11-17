@@ -17,6 +17,7 @@ You can connect to the serial console of your EC2 instance by using the Amazon E
 
 ## Prerequisites<a name="sc-prerequisites"></a>
 + Supported in all AWS Regions except Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Osaka\), China \(Beijing\), China \(Ningxia\), Europe \(Milan\), and Middle East \(Bahrain\)\.
++ Not supported in Local Zones, Wavelength Zones, or AWS Outposts\.
 + Supported instance families:
   + A1
   + C5, C5a, C5ad, C5d, C5n, C6g, C6gd
@@ -24,6 +25,7 @@ You can connect to the serial console of your EC2 instance by using the Amazon E
   + R5, R5a, R5ad, R5d, R5dn, R5n, R6, R6gd
   + T3, T3a, T4g
   + Z1d
++ Not supported on bare metal instances\.
 + Configure access to the EC2 Serial Console, as follows:
   + [Manage account access to the EC2 Serial Console](configure-access-to-serial-console.md#serial-console-account-access)\.
   + [Configure IAM policies for EC2 Serial Console access](configure-access-to-serial-console.md#serial-console-iam)\. All IAM users who will use the serial console must have the required permissions\.

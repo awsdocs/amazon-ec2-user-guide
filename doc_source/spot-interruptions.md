@@ -65,29 +65,26 @@ While a Spot Instance is stopped, you are charged only for the EBS volumes, whic
 You can specify the interruption behavior so that Amazon EC2 hibernates Spot Instances when they are interrupted if the following prerequisites are met\.
 + **Spot Instance request type** – must be `persistent`\. You can't specify a launch group in the Spot Instance request\.
 + **EC2 Fleet or Spot Fleet request type** – must be `maintain`
-+ **Supported instance families** – C3, C4, C5, M4, M5, R3, R4
-+ **Instance RAM size** – must be less than 100 GB
-+ **Supported operating systems** \(You must install the hibernation agent on a supported operating system\. Alternatively, use a supported AMI, which already includes the agent\.\):
++ **Supported Linux operating systems** \(You must install the hibernation agent on a supported operating system\. Alternatively, use a supported AMI, which already includes the agent\.\):
   + Amazon Linux 2
   + Amazon Linux AMI
   + Ubuntu with an AWS\-tuned Ubuntu kernel \(`linux-aws`\) greater than 4\.4\.0\-1041
-  + Windows Server 2008 R2 and later
-+ **Supported AMIs** \(the following supported AMIs include the hibernation agent\):
++ **Supported Linux AMIs** \(the following supported AMIs include the hibernation agent\):
   + Amazon Linux 2
   + Amazon Linux AMI 2017\.09\.1 or later
   + Ubuntu Xenial 16\.04 20171121 or later
-  + Windows Server 2008 R2 AMI 2017\.11\.19 or later
-  + Windows Server 2012 or Windows Server 2012 R2 AMI 2017\.11\.19 or later
-  + Windows Server 2016 AMI 2017\.11\.19 or later
-  + Windows Server 2019
+
+  For information about the supported Windows AMIs, see [Supported Windows AMIs](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/spot-interruptions.html#hibernate-spot-instances) in the *Amazon EC2 User Guide for Windows Instances*\.
++ **Supported instance families** – C3, C4, C5, M4, M5, R3, R4
++ **Instance RAM size** – must be less than 100 GB
 + **Root volume type** – must be an EBS volume, not an instance store volume, and it must be large enough to store the instance memory \(RAM\) during hibernation
 + **Start the hibernation agent** – We recommend that you use user data to start the agent on instance startup\. Alternatively, you could start the agent manually\.
 
 **Recommendation**
 + We strongly recommend that you use an encrypted Amazon EBS volume as the root volume, because instance memory is stored on the root volume during hibernation\. This ensures that the contents of memory \(RAM\) are encrypted when the data is at rest on the volume and when data is moving between the instance and volume\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:
-  + EBS “single\-step” encryption: In a single run\-instances API call, you can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI\. For more information, see [Use encryption with EBS\-backed AMIs](AMIEncryption.md)\.
-  + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. For more information, see [Encryption by default](EBSEncryption.md#encryption-by-default)\.
-  + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an unencrypted image during copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copy an AMI](CopyingAMIs.md#ami-copy-steps)\. 
+  + **EBS encryption by default** – You can enable EBS encryption by default to ensure that all new EBS volumes created in your AWS account are encrypted\. This way, you can enable hibernation for your instances without specifying encryption intent at instance launch\. For more information, see [Encryption by default](EBSEncryption.md#encryption-by-default)\.
+  + **EBS “single\-step” encryption** – You can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI and also enable hibernation at the same time\. For more information, see [Use encryption with EBS\-backed AMIs](AMIEncryption.md)\.
+  + **Encrypted AMI** – You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an unencrypted image during copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copy an AMI](CopyingAMIs.md#ami-copy-steps)\. 
 
 When a Spot Instance is hibernated by the Spot service, the EBS volumes are preserved and instance memory \(RAM\) is preserved on the root volume\. The private IP addresses of the instance are also preserved\. Instance storage volumes and public IP addresses, other than Elastic IP addresses, are not preserved\. While the instance is hibernating, you are charged only for the EBS volumes\. With EC2 Fleet and Spot Fleet, if you have many hibernated instances, you can exceed the limit on the number of EBS volumes for your account\.
 
@@ -129,7 +126,7 @@ Here are some best practices to follow when you use Spot Instances:
 + While we make every effort to provide these warnings as soon as possible, it is possible that your Spot Instance is interrupted before the warnings can be made available\. Test your application to ensure that it handles an unexpected instance interruption gracefully, even if you are monitoring for rebalance recommendation signals and interruption notices\. You can do so by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
 
 **To run a controlled fault injection experiment**  
-You can use AWS Fault Injection Simulator to test how your application responds when your Spot Instance is interrupted\. For more information, see the [AWS Fault Injection Simulator User Guide](https://docs.aws.amazon.com/fis/latest/userguide)\.
+You can use AWS Fault Injection Simulator to test how your application responds when your Spot Instance is interrupted\. For more information, see the [Tutorial: Test Spot Instance interruptions using AWS FIS](https://docs.aws.amazon.com/fis/latest/userguide/fis-tutorial-spot-interruptions.html) in the *AWS Fault Injection Simulator User Guide*\.
 
 ## Prepare for instance hibernation<a name="prepare-for-instance-hibernation"></a>
 

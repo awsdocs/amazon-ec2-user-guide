@@ -9,7 +9,30 @@ You can get additional information about your EBS volumes, such as how much disk
 You can view information about a volume using one of the following methods\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To view information about a volume using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Volumes**\. 
+
+1. To reduce the list, you can filter your volumes using tags and volume attributes\. Choose the filter field, select a tag or volume attribute, and then select the filter value\.
+
+1. To view more information about a volume, choose its ID\.
+
+**To view the EBS volumes that are attached to an instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance\.
+
+1. On the **Storage** tab, the **Block devices** section lists the volumes that are attached to the instance\. To view information about a specific volume, choose its ID in the **Volume ID** column\.
+
+------
+#### [ Old console ]
 
 **To view information about an EBS volume using the console**
 
@@ -33,9 +56,7 @@ You can view information about a volume using one of the following methods\.
 
 1. Select the instance\.
 
-1. In the **Storage** tab, view the information provided about root and block devices\.
-
-1. \(Optional\) Choose a link in the **Volume ID** column to view additional details for the volume\.
+1. In the **Description** tab, view the information provided for **Block devices**\. To view information about a specific volume, choose a link next to Block devices and then choose the volume ID\.
 
 **To view the EBS volumes that are attached to an instance using the **old console****
 

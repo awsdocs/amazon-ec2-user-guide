@@ -1,6 +1,6 @@
 # Delete an Amazon EBS volume<a name="ebs-deleting-volume"></a>
 
-After you no longer need an Amazon EBS volume, you can delete it\. After deletion, its data is gone and the volume can't be attached to any instance\. However, before deletion, you can store a snapshot of the volume, which you can use to re\-create the volume later\. 
+You can delete an Amazon EBS volume that you no longer need\. After deletion, its data is gone and the volume can't be attached to any instance\. So before deletion, you can store a snapshot of the volume, which you can use to re\-create the volume later\. 
 
 **Note**  
 You can't delete a volume if it's attached to an instance\. To delete a volume, you must first detach it\. For more information, see [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.  
@@ -11,7 +11,22 @@ If a volume is detached from an instance, it’s in the `available` state\. You 
 You can delete an EBS volume using one of the following methods\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To delete an EBS volume using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Volumes**\. 
+
+1. Select the volume to delete and choose **Actions**, **Delete volume**\.
+**Note**  
+If **Delete volume** is greyed out, the volume is attached to an instance\. You must detach the volume from the instance before it can be deleted\.
+
+1. In the confirmation dialog box, choose **Delete**\.
+
+------
+#### [ Old console ]
 
 **To delete an EBS volume using the console**
 

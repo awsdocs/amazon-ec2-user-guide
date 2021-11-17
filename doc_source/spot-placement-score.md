@@ -16,6 +16,7 @@ You can use the Spot placement score feature for the following:
 + [Costs](#sps-costs)
 + [How Spot placement score works](#how-sps-works)
 + [Limitations](#sps-limitations)
++ [Required IAM permission](#sps-iam-permission)
 + [Calculate a Spot placement score](#work-with-spot-placement-score)
 + [Example configurations](#sps-example-configs)
 
@@ -39,13 +40,11 @@ First, you specify your desired target Spot capacity and your compute requiremen
 
 1. **Specify the target Spot capacity, and optionally the target capacity unit\.**
 
-   You can specify your desired target Spot capacity in terms of the number of instances or vCPUs, or in terms of the amount of memory in MiB\.
+   You can specify your desired target Spot capacity in terms of the number of instances or vCPUs, or in terms of the amount of memory in MiB\. To specify the target capacity in number of vCPUs or amount of memory, you must specify the target capacity unit as `vcpu` or `memory-mib`\. Otherwise, it defaults to number of instances\.
 
    By specifying your target capacity in terms of the number of vCPUs or the amount of memory, you can use these units when counting the total capacity\. For example, if you want to use a mix of instances of different sizes, you can specify the target capacity as a total number of vCPUs\. The Spot placement score feature then considers each instance type in the request by its number of vCPUs, and counts the total number of vCPUs rather than the total number of instances when totaling up the target capacity\.
 
    For example, say you specify a total target capacity of 30 vCPUs, and your instance type list consists of c5\.xlarge \(4 vCPUs\), m5\.2xlarge \(8 vCPUs\), and r5\.large \(2 vCPUs\)\. To achieve a total of 30 vCPUs, you could get a mix of 2 c5\.xlarge \(2\*4 vCPUs\), 2 m5\.2xlarge \(2\*8 vCPUs\), and 3 r5\.large \(3\*2 vCPUs\)\.
-
-   To specify the target capacity in number of vCPUs or amount of memory, you must specify the target capacity unit as `vcpu` or `memory-mib`\. Otherwise, it defaults to number of instances\.
 
 1. **Specify instance types or instance attributes\.**
 
@@ -89,7 +88,28 @@ If you specified your target capacity in terms of the number of vCPUs or the amo
 ## Limitations<a name="sps-limitations"></a>
 + **Target capacity limit** – Your Spot placement score target capacity limit is based on your recent Spot usage, while accounting for potential usage growth\. If you have no recent Spot usage, we provide you with a low default limit aligned with your Spot request limit\.
 + **Request configurations limit** – We can limit the number of new request configurations within a 24\-hour period if we detect patterns not associated with the intended use of the Spot placement score feature\. If you reach the limit, you can retry the request configurations that you've already used, but you can't specify new request configurations until the next 24\-hour period\.
-+ **Minimum number of instance types** – You must specify at least three different instant types in your Spot placement configuration\. If you specify instance attributes for attribute\-based instance type selection, they must resolve to at least three different instance types\. Instance types are considered different if they have a different name\. For example, m5\.8xlarge, m5a\.8xlarge, and m5\.12xlarge are all considered different\.
++ **Minimum number of instance types** – If you specify instance types, you must specify at least three different instance types, otherwise Amazon EC2 will return a low Spot placement score\. Similarly, if you specify instance attributes, they must resolve to at least three different instance types\. Instance types are considered different if they have a different name\. For example, m5\.8xlarge, m5a\.8xlarge, and m5\.12xlarge are all considered different\.
+
+## Required IAM permission<a name="sps-iam-permission"></a>
+
+By default, IAM identities \(users, roles, or groups\) don't have permission to use the Spot placement score feature\. To allow IAM identities to use the Spot placement score feature, you must create an IAM policy that grants permission to use the `ec2:GetSpotPlacementScores` EC2 API action\. You then attach the policy to the IAM identities that require this permission\.
+
+The following is an example IAM policy that grants permission to use the `ec2:GetSpotPlacementScores` EC2 API action\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "ec2:GetSpotPlacementScores",
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+For information about editing an IAM policy, see [Editing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-edit.html) in the *IAM User Guide*\.
 
 ## Calculate a Spot placement score<a name="work-with-spot-placement-score"></a>
 

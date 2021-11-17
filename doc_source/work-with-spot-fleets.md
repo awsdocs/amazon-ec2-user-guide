@@ -36,7 +36,7 @@ The following illustration represents the transitions between the request states
 
 Spot Fleet checks the health status of the Spot Instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\.
 
-Spot Fleet determines the health status of an instance by using the status checks provided by Amazon EC2\. An instance is determined as `unhealthy` when the the status of either the instance status check or the system status check is `impaired` for three consecutive health checks\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
+Spot Fleet determines the health status of an instance by using the status checks provided by Amazon EC2\. An instance is determined as `unhealthy` when the status of either the instance status check or the system status check is `impaired` for three consecutive health checks\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
 
 You can configure your fleet to replace unhealthy Spot Instances\. After enabling health check replacement, a Spot Instance is replaced when it is reported as `unhealthy`\. The fleet could go below its target capacity for up to a few minutes while an unhealthy Spot Instance is being replaced\.
 
@@ -390,10 +390,7 @@ You can create a Spot Fleet by using parameters that you define\.
 
    1. \(Optional\) By default, the Spot service terminates Spot Instances when they are interrupted\. To maintain the target capacity, select **Maintain target capacity**\. You can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\. To do so, choose the corresponding option from **Interruption behavior**\.
 
-   1. \(Optional\) To allow Spot Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for an existing Spot Instance in the fleet, select **Capacity rebalance**\. For more information, see [Capacity Rebalancing](spot-fleet-capacity-rebalance.md)\.
-**Note**  
-When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\.  
-The instance marked for rebalance is at an elevated risk of interruption, and you will receive a two\-minute Spot Instance interruption notice before Amazon EC2 interrupts it\.
+   1. \(Optional\) To allow Spot Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for an existing Spot Instance in the fleet, select **Capacity rebalance**, and then choose an instance replacement strategy\. If you choose **Launch before terminate**, specify the delay \(in seconds\) before Spot Fleet terminates the old instances\. For more information, see [Capacity Rebalancing](spot-fleet-capacity-rebalance.md)\.
 
    1. \(Optional\) To control the amount you pay per hour for all the Spot Instances in your fleet, select **Set maximum cost for Spot Instances** and then enter the maximum total amount you're willing to pay per hour\. When the maximum total amount is reached, Spot Fleet stops launching Spot Instances even if it hasn’t met the target capacity\. For more information, see [Control spending](spot-fleet-control-spending.md)\.
 
@@ -409,7 +406,7 @@ The instance marked for rebalance is at an elevated risk of interruption, and yo
 
       If you have more than one subnet in an Availability Zone, choose the appropriate subnet from **Subnet**\. To add subnets, choose **Create new subnet** to go to the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
 
-1. For **Instance type requirements**, you can either specify instance attributes and let let Amazon EC2 identify the optimal instance types with these attributes, or you can specify a list of instances\. For more information, see [Attribute\-based instance type selection for Spot Fleet](spot-fleet-attribute-based-instance-type-selection.md)\.
+1. For **Instance type requirements**, you can either specify instance attributes and let Amazon EC2 identify the optimal instance types with these attributes, or you can specify a list of instances\. For more information, see [Attribute\-based instance type selection for Spot Fleet](spot-fleet-attribute-based-instance-type-selection.md)\.
 
    1. If you choose **Specify instance attributes that match your compute requirements**, specify your instance attributes as follows:
 
