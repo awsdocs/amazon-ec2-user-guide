@@ -34,7 +34,6 @@ The following considerations apply to Mac instances:
 + If you attach a network interface to a running Mac instance, you must reboot the instance to make the network interface available\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
-+ You cannot use Mac instances with Amazon EC2 Auto Scaling\.
 + Automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
 + When you stop or terminate a Mac instance, a scrubbing workflow is performed on the Dedicated Host\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
 + 
