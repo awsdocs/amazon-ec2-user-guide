@@ -19,6 +19,20 @@ You can launch an instance using the following methods\.
 |  \[AWS CloudFormation\] Use a AWS CloudFormation template to specify an instance\.  |  [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) in the *AWS CloudFormation User Guide*  | 
 | \[AWS SDK\] Use a language\-specific AWS SDK to launch an instance\. |  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/ec2-2016-11-15/RunInstances) [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/ec2-2016-11-15/RunInstances) [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/ec2-2016-11-15/RunInstances) [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/ec2-2016-11-15/RunInstances) [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/ec2-2016-11-15/RunInstances) [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/ec2-2016-11-15/RunInstances) [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/ec2-2016-11-15/RunInstances) [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/ec2-2016-11-15/RunInstances)  | 
 
+**Note**  
+To launch an EC2 instance into an IPv6\-only subnet, you must use [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
+
+**Note**  
+When launching an IPv6\-only instance, it is possible that DHCPv6 may not immediately provide the instance with the IPv6 DNS name server\. During this initial delay, the instance may not be able to resolve public domains\.   
+For instances running on Amazon Linux 2, if you want to immediately update the /etc/resolv\.conf file with the IPv6 DNS name server, run the following [cloud\-init directive](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html#amazon-linux-cloud-init.html) at launch:  
+
+```
+#cloud-config
+bootcmd:
+- /usr/bin/sed -i -E 's,^nameserver\s+[\.[:digit:]]+$,nameserver fd00:ec2::253,' /etc/resolv.conf
+```
+Another option is to change the configuration file and re\-image your AMI so that the file has the IPv6 DNS name server address immediately on booting\.
+
 When you launch your instance, you can launch your instance in a subnet that is associated with one of the following resources:
 + An Availability Zone \- This option is the default\.
 + A Local Zone \- To launch an instance in a Local Zone, you must opt in to the Local Zone, and then create a subnet in the zone\. For more information, see [Local Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-local-zones)

@@ -32,7 +32,7 @@ There are several GPU setting optimizations that you can perform to achieve the 
    + G5 instances:
 
      ```
-     [ec2-user ~]$ sudo nvidia-smi-ac 6250,1710
+     [ec2-user ~]$ sudo nvidia-smi -ac 6250,1710
      ```
    + P2 instances:
 

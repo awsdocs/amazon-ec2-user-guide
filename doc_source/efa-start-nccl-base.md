@@ -178,8 +178,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 1. \(`p4d.24xlarge` instances only\) Start the Nvidia Fabric Manager service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
 
    ```
-   $ sudo systemctl start nvidia-fabricmanager \
-   && sudo systemctl enable nvidia-fabricmanager
+   $ sudo systemctl enable nvidia-fabricmanager && sudo systemctl start nvidia-fabricmanager
    ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.

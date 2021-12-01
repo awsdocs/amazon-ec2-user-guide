@@ -4,6 +4,12 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Im4gn and Is4gen instances](#DocumentHistory) | New storage optimized instances\. | November 30, 2021 | 
+| [Recycle Bin for Amazon EBS snapshots](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html) | Recycle Bin for Amazon EBS snapshots is a snapshot recovery feature that enables you to restore accidentally deleted snapshots\. | November 29, 2021 | 
+| [M6a instances](#DocumentHistory) | New general purpose instances powered by AMD 3rd Generation EPYC processors\. | November 29, 2021 | 
+| [G5g instances](#DocumentHistory) | New accelerated computing instances featuring AWS Graviton2 processors based on 64\-bit Arm architecture\. | November 29, 2021 | 
+| [Amazon EBS Snapshots Archive](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-archive.html) | Amazon EBS Snapshots Archive is a new storage tier that you can use for low\-cost, long\-term storage of your rarely\-accessed snapshots\. | November 29, 2021 | 
+| [R6i instances](#DocumentHistory) | New memory optimized instances\. | November 22, 2021 | 
 | [G5 instances](#DocumentHistory) | New accelerated computing instances featuring up to 8 NVIDIA A10G GPUs and second generation AMD EPY processors\. | November 11, 2021 | 
 | [Spot Fleet launch\-before\-terminate](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-capacity-rebalance.html) | Spot Fleet can terminate the Spot Instances that receive a rebalance notification after new replacement Spot Instances are launched\. | November 4, 2021 | 
 | [EC2 Fleet launch\-before\-terminate](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-capacity-rebalance.html) | EC2 Fleet can terminate the Spot Instances that receive a rebalance notification after new replacement Spot Instances are launched\. | November 4, 2021 | 

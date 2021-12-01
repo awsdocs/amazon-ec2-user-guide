@@ -40,9 +40,9 @@ You can use one of the following methods to clean up your Amazon EBS\-backed AMI
 
    1. In the navigation pane, choose **AMIs**\.
 
-   1. Select the AMI to deregister, and take note of its ID — this can help you find the snapshots to delete in the next step\.
+   1. Select the AMI to deregister, and take note of its ID—this can help you find the snapshots to delete in the next step\.
 
-   1. Choose **Actions**, and then **Deregister**\. When prompted for confirmation, choose **Continue**\.
+   1. Choose **Actions**, **Deregister AMI**\. When prompted for confirmation, choose **Deregister AMI**\.
 **Note**  
 It might take a few minutes before the console removes the AMI from the list\. Choose **Refresh** to refresh the status\.
 
@@ -54,7 +54,7 @@ It might take a few minutes before the console removes the AMI from the list\. C
 
    1. Select a snapshot to delete \(look for the AMI ID from the prior step in the **Description** column\)\.
 
-   1. Choose **Actions**, and then choose **Delete**\. When prompted for confirmation, choose **Yes, Delete**\.
+   1. Choose **Actions**, **Delete snapshot**\. When prompted for confirmation, choose **Delete**\.
 
 1. 
 
@@ -63,10 +63,7 @@ If you are finished with an instance that you launched from the AMI, you can ter
 
    1. In the navigation pane, choose **Instances** then select the instance to terminate\.
 
-   1. Choose **Actions**, then **Instance state**, and then **Terminate instance**\. When prompted for confirmation, choose **Terminate**\.
-
-**Note**  
-You may need to scroll down for some of the Actions menu items\.
+   1. Choose **Instance state**, **Terminate instance**\. When prompted for confirmation, choose **Terminate**\.
 
 ------
 #### [ Old console ]
@@ -83,7 +80,7 @@ You may need to scroll down for some of the Actions menu items\.
 
    1. Select the AMI to deregister, and take note of its ID — this can help you find the snapshots to delete in the next step\.
 
-   1. Choose **Actions**, and then **Deregister**\. When prompted for confirmation, choose **Continue**\.
+   1. Choose **Actions**, **Deregister**\. When prompted for confirmation, choose **Continue**\.
 **Note**  
 It may take a few minutes before the console removes the AMI from the list\. Choose **Refresh** to refresh the status\.
 
@@ -95,7 +92,7 @@ It may take a few minutes before the console removes the AMI from the list\. Cho
 
    1. Select a snapshot to delete \(look for the AMI ID from the prior step in the **Description** column\)\.
 
-   1. Choose **Actions**, and then choose **Delete**\. When prompted for confirmation, choose **Yes, Delete**\.
+   1. Choose **Actions**, **Delete**\. When prompted for confirmation, choose **Yes, Delete**\.
 
 1. 
 
@@ -104,7 +101,7 @@ If you are finished with an instance that you launched from the AMI, you can ter
 
    1. In the navigation pane, choose **Instances** then select the instance to terminate\.
 
-   1. Choose **Actions**, then **Instance State**, and then **Terminate**\. When prompted for confirmation, choose **Yes, Terminate**\.
+   1. Choose **Actions**, **Instance State**, **Terminate**\. When prompted for confirmation, choose **Yes, Terminate**\.
 
 ------
 #### [ AWS CLI ]

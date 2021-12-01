@@ -112,6 +112,7 @@ You can also view this information programatically using the AWS CLI\. For more 
 | c6i\.16xlarge | 20,000 | 2,500 | 80,000 | 
 | c6i\.24xlarge | 30,000 | 3,750 | 120,000 | 
 | c6i\.32xlarge | 40,000 | 5,000 | 160,000 | 
+| c6i\.metal | 40,000 | 5,000 | 160,000 | 
 | d2\.xlarge | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
@@ -153,6 +154,11 @@ You can also view this information programatically using the AWS CLI\. For more 
 | g5\.16xlarge | 16,000 | 2,000 | 65,000 | 
 | g5\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | g5\.48xlarge | 19,000 | 2,375 | 80,000 | 
+| g5g\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| g5g\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| g5g\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| g5g\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| g5g\.16xlarge | 19,000 | 2,375 | 80,000 | 
 | h1\.2xlarge | 1,750 | 218\.75 | 12,000 | 
 | h1\.4xlarge | 3,500 | 437\.5 | 20,000 | 
 | h1\.8xlarge | 7,000 | 875 | 40,000 | 
@@ -172,10 +178,22 @@ You can also view this information programatically using the AWS CLI\. For more 
 | i3en\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | i3en\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | i3en\.metal | 19,000 | 2,375 | 80,000 | 
+| im4gn\.large \* | 9,500 | 1,187\.5 | 40,000 | 
+| im4gn\.xlarge \* | 9,500 | 1,187\.5 | 40,000 | 
+| im4gn\.2xlarge \* | 9,500 | 1,187\.5 | 40,000 | 
+| im4gn\.4xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| im4gn\.8xlarge | 19,000 | 2,375 | 80,000 | 
+| im4gn\.16xlarge | 38,000 | 4,750 | 160,000 | 
 | inf1\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
 | inf1\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
 | inf1\.6xlarge | 4,750 | 593\.75 | 20,000 | 
 | inf1\.24xlarge | 19,000 | 2,375 | 80,000 | 
+| is4gen\.medium \* | 9,500 | 1,187\.5 | 40,000 | 
+| is4gen\.large \* | 9,500 | 1,187\.5 | 40,000 | 
+| is4gen\.xlarge \* | 9,500 | 1,187\.5 | 40,000 | 
+| is4gen\.2xlarge \* | 9,500 | 1,187\.5 | 40,000 | 
+| is4gen\.4xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| is4gen\.8xlarge | 19,000 | 2,375 | 80,000 | 
 | m4\.large | 450 | 56\.25 | 3,600 | 
 | m4\.xlarge | 750 | 93\.75 | 6,000 | 
 | m4\.2xlarge | 1,000 | 125 | 8,000 | 
@@ -241,6 +259,16 @@ You can also view this information programatically using the AWS CLI\. For more 
 | m5zn\.6xlarge | 9,500 | 1187\.5 | 40,000 | 
 | m5zn\.12xlarge | 19,000 | 2,375 | 80,000 | 
 | m5zn\.metal | 19,000 | 2,375 | 80,000 | 
+| m6a\.large \* | 6,666\.666664 | 833\.333333 | 26,667 | 
+| m6a\.xlarge \* | 6,666\.666664 | 833\.333333 | 26,667 | 
+| m6a\.2xlarge \* | 6,666\.666664 | 833\.333333 | 26,667 | 
+| m6a\.4xlarge \* | 6,666\.666664 | 833\.333333 | 26,667 | 
+| m6a\.8xlarge | 6,666\.666664 | 833\.333333 | 26,667 | 
+| m6a\.12xlarge | 10,000 | 1,250 | 40,000 | 
+| m6a\.16xlarge | 13,300 | 1,662\.5 | 53,333 | 
+| m6a\.24xlarge | 20,000 | 2,500 | 80,000 | 
+| m6a\.32xlarge | 26,666\.666664 | 3,333\.333333 | 100,000 | 
+| m6a\.48xlarge | 40,000 | 5,000 | 160,000 | 
 | m6g\.medium \* | 4,750 | 593\.75 | 20,000 | 
 | m6g\.large \* | 4,750 | 593\.75 | 20,000 | 
 | m6g\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
@@ -268,6 +296,7 @@ You can also view this information programatically using the AWS CLI\. For more 
 | m6i\.16xlarge | 20,000 | 2,500 | 80,000 | 
 | m6i\.24xlarge | 30,000 | 3,750 | 120,000 | 
 | m6i\.32xlarge | 40,000 | 5,000 | 160,000 | 
+| m6i\.metal | 40,000 | 5,000 | 160,000 | 
 | mac1\.metal | 8,000 | 1,000 | 55,000 | 
 | p2\.xlarge | 750 | 93\.75 | 6,000 | 
 | p2\.8xlarge | 5,000 | 625 | 32,500 | 
@@ -362,6 +391,16 @@ You can also view this information programatically using the AWS CLI\. For more 
 | r6gd\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
 | r6gd\.16xlarge | 19,000 | 2,375 | 80,000 | 
 | r6gd\.metal | 19,000 | 2,375 | 80,000 | 
+| r6i\.large \* | 10,000 | 1,250 | 40,000 | 
+| r6i\.xlarge \* | 10,000 | 1,250 | 40,000 | 
+| r6i\.2xlarge \* | 10,000 | 1,250 | 40,000 | 
+| r6i\.4xlarge \* | 10,000 | 1,250 | 40,000 | 
+| r6i\.8xlarge | 10,000 | 1,250 | 40,000 | 
+| r6i\.12xlarge | 15,000 | 1,875 | 60,000 | 
+| r6i\.16xlarge | 20,000 | 2,500 | 80,000 | 
+| r6i\.24xlarge | 30,000 | 3,750 | 120,000 | 
+| r6i\.32xlarge | 40,000 | 5,000 | 160,000 | 
+| r6i\.metal | 40,000 | 5,000 | 160,000 | 
 | t3\.nano \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.micro \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.small \* | 2,085 | 260\.57 | 11,800 | 
@@ -474,12 +513,21 @@ You can also view this information programatically using the AWS CLI\. For more 
 | g4dn\.2xlarge | 1,150 | 143\.75 | 6,000 | 
 | g5\.xlarge | 700 | 87\.5 | 3,000 | 
 | g5\.2xlarge | 850 | 106\.25 | 3,500 | 
+| g5g\.xlarge | 1,188 | 148\.5 | 6,000 | 
+| g5g\.2xlarge | 2,375 | 296\.875 | 12,000 | 
 | i3en\.large | 577 | 72\.1 | 3,000 | 
 | i3en\.xlarge | 1,154 | 144\.2 | 6,000 | 
 | i3en\.2xlarge | 2,307 | 288\.39 | 12,000 | 
 | i3en\.3xlarge | 3,800 | 475 | 15,000 | 
+| im4gn\.large | 1,235 | 154\.375 | 5,000 | 
+| im4gn\.xlarge | 1,900 | 237\.5 | 10,000 | 
+| im4gn\.2xlarge | 4,750 | 593\.75 | 20,000 | 
 | inf1\.xlarge | 1,190 | 148\.75 | 4,000 | 
 | inf1\.2xlarge | 1,190 | 148\.75 | 6,000 | 
+| is4gen\.medium | 760 | 95 | 2,500 | 
+| is4gen\.large | 1,235 | 154\.375 | 5,000 | 
+| is4gen\.xlarge | 1,900 | 237\.5 | 10,000 | 
+| is4gen\.2xlarge | 4,750 | 593\.75 | 20,000 | 
 | m5\.large | 650 | 81\.25 | 3,600 | 
 | m5\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | m5\.2xlarge | 2,300 | 287\.5 | 12,000 | 
@@ -500,6 +548,10 @@ You can also view this information programatically using the AWS CLI\. For more 
 | m5n\.2xlarge | 2,300 | 287\.5 | 12,000 | 
 | m5zn\.large | 800 | 100 | 3,333 | 
 | m5zn\.xlarge | 1,580 | 195\.5 | 6,667 | 
+| m6a\.large | 531 | 66\.375 | 3,600 | 
+| m6a\.xlarge | 1,061 | 132\.625 | 6,000 | 
+| m6a\.2xlarge | 2,122 | 265\.25 | 8,333 | 
+| m6a\.4xlarge | 4,245 | 530\.625 | 16,000 | 
 | m6g\.medium | 315 | 39\.375 | 2,500 | 
 | m6g\.large | 630 | 78\.75 | 3,600 | 
 | m6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
@@ -541,6 +593,10 @@ You can also view this information programatically using the AWS CLI\. For more 
 | r6gd\.large \* | 630 | 78\.75 | 3,600 | 
 | r6gd\.xlarge \* | 1,188 | 148\.5 | 6,000 | 
 | r6gd\.2xlarge \* | 2,375 | 296\.875 | 12,000 | 
+| r6i\.large | 650 | 81\.25 | 3,600 | 
+| r6i\.xlarge | 1,250 | 156\.25 | 6,000 | 
+| r6i\.2xlarge | 2,500 | 312\.5 | 12,000 | 
+| r6i\.4xlarge | 5,000 | 625 | 20,000 | 
 | t3\.nano | 43 | 5\.43 | 250 | 
 | t3\.micro | 87 | 10\.86 | 500 | 
 | t3\.small | 174 | 21\.71 | 1,000 | 

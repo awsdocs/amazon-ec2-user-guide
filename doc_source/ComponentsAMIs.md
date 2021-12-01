@@ -48,15 +48,33 @@ The following table summarizes the important differences when using the two type
 
 ### Determine the root device type of your AMI<a name="display-ami-root-device-type"></a>
 
+------
+#### [ New console ]
+
 **To determine the root device type of an AMI using the console**
 
-1. Open the Amazon EC2 console\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **AMIs**, and select the AMI\.
 
-1. Check the value of **Root Device Type** in the **Details** tab as follows:
-   + If the value is `ebs`, this is an Amazon EBS\-backed AMI\.
-   + If the value is `instance store`, this is an instance store\-backed AMI\.
+1. On the **Details** tab, check the value of **Root device type** as follows:
+   + `ebs` – This is an EBS\-backed AMI\.
+   + `instance store` – This is an an instance store\-backed AMI\.
+
+------
+#### [ Old console ]
+
+**To determine the root device type of an AMI using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **AMIs**, and select the AMI\.
+
+1. On the **Details** tab, check the value of **Root Device Type** as follows:
+   + `ebs` – This is an EBS\-backed AMI\.
+   + `instance store` – This is an an instance store\-backed AMI\.
+
+------
 
 **To determine the root device type of an AMI using the command line**
 

@@ -16,7 +16,7 @@ This IPv4 address is a link\-local address and it is valid only from the instanc
 http://[fd00:ec2::254]/latest/meta-data/
 ```
 
-This IPv6 address is a unique local address\. It is routable within the private network only\. It is not routable on the Internet\. For more information, see [Unique local address](https://en.wikipedia.org/wiki/Unique_local_address) on Wikipedia\.
+The IP addresses are link\-local address and are valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
 
 **Note**  
 The examples in this section use the IPv4 address of the instance metadata service: `169.254.169.254`\. If you are retrieving instance metadata for EC2 instances over the IPv6 address, ensure that you enable and use the IPv6 address instead: `fd00:ec2::254`\. The IPv6 address of the instance metadata service is compatible with IMDSv2 commands\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.

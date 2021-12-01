@@ -48,6 +48,8 @@ These instances are well suited for general\-purpose workloads such as the follo
 + Small and midsize databases
 + Caching fleets
 
+Bare metal instances, such as `m6i.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+
 For more information, see [Amazon EC2 M6i Instances](http://aws.amazon.com/ec2/instance-types/m6i)\.
 
 **Mac1 instances**  
@@ -147,6 +149,16 @@ The following is a summary of the hardware specifications for general purpose in
 | m5zn\.6xlarge | 24 | 96 | 
 | m5zn\.12xlarge | 48 | 192 | 
 | m5zn\.metal | 48 | 192 | 
+| m6a\.large | 2 | 8 | 
+| m6a\.xlarge | 4 | 16 | 
+| m6a\.2xlarge | 8 | 32 | 
+| m6a\.4xlarge | 16 | 64 | 
+| m6a\.8xlarge | 32 | 128 | 
+| m6a\.12xlarge | 48 | 192 | 
+| m6a\.16xlarge | 64 | 256 | 
+| m6a\.24xlarge | 96 | 256 | 
+| m6a\.32xlarge | 128 | 256 | 
+| m6a\.48xlarge | 192 | 256 | 
 | m6g\.medium | 1 | 4 | 
 | m6g\.large | 2 | 8 | 
 | m6g\.xlarge | 4 | 16 | 
@@ -174,6 +186,7 @@ The following is a summary of the hardware specifications for general purpose in
 | m6i\.16xlarge | 64 | 256 | 
 | m6i\.24xlarge | 96 | 384 | 
 | m6i\.32xlarge | 128 | 512 | 
+| m6i\.metal | 128 | 512 | 
 | mac1\.metal | 12 | 32 | 
 | t2\.nano | 1 | 0\.5 | 
 | t2\.micro | 1 | 1 | 
@@ -231,14 +244,14 @@ The following is a summary of network performance for general purpose instances 
 | m4\.10xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 |  m5\.8xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge \| m5d\.12xlarge \| mac1\.metal  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | m5\.12xlarge \| m5a\.16xlarge \| m5ad\.16xlarge  \| m6g\.8xlarge \| m6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  m6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m6a\.4xlarge and smaller \|  m6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  m6a\.8xlarge \|  m6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m6a\.12xlarge \|  m6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5\.16xlarge \| m5a\.24xlarge \| m5ad\.24xlarge \| m5d\.16xlarge  \| m6g\.12xlarge \| m6gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.4xlarge and smaller \| m5n\.4xlarge and smaller \| m5zn\.3xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  \| m6g\.16xlarge \| m6g\.metal \| m6gd\.16xlarge \| m6gd\.metal \| m6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.12xlarge \| m5n\.12xlarge \| m5zn\.6xlarge \| m6i\.32xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  \| m6a\.16xlarge  \| m6g\.16xlarge \| m6g\.metal \| m6gd\.16xlarge \| m6gd\.metal \| m6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m6a\.24xlarge \|  m6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.12xlarge \| m5n\.12xlarge \| m5zn\.6xlarge  \| m6a\.32xlarge \| m6a\.48xlarge \| m6i\.32xlarge \| m6i\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.16xlarge \| m5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.24xlarge \| m5dn\.metal \| m5n\.24xlarge \| m5n\.metal \| m5zn\.12xlarge \| m5zn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
@@ -275,6 +288,10 @@ The following is a summary of network performance for general purpose instances 
 | m5zn\.xlarge | 5 | 25 | 
 | m5zn\.2xlarge | 10 | 25 | 
 | m5zn\.3xlarge | 15 | 25 | 
+| m6a\.large | \.781 | 12\.5 | 
+| m6a\.xlarge | 1\.562 | 12\.5 | 
+| m6a\.2xlarge | 3\.125 | 12\.5 | 
+| m6a\.4xlarge | 6\.25 | 12\.5 | 
 | m6g\.medium | \.5 | 10 | 
 | m6g\.large | \.75 | 10 | 
 | m6g\.xlarge | 1\.25 | 10 | 
@@ -377,6 +394,7 @@ The following is a summary of features for general purpose instances:
 | M5dn | No | Yes | NVMe \* | Yes | 
 | M5n | Yes | Yes | No | Yes | 
 | M5zn | Yes | Yes | No | Yes | 
+| M6a | Yes | Yes | No | Yes | 
 | M6g | Yes | Yes | No | Yes | 
 | M6gd | No | Yes | NVMe \* | Yes | 
 | M6i | Yes | Yes | No | Yes | 

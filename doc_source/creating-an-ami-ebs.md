@@ -31,13 +31,17 @@ You can create an AMI using the AWS Management Console or the command line\. The
 ![\[Workflow for creating an AMI from an instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/running-instance.png)
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To create an AMI from an instance using the console**
 
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, under **Images**, choose **AMIs**\.
+
 1. Select an appropriate EBS\-backed AMI to serve as a starting point for your new AMI, and configure it as needed before launch\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
 
-1. Choose **Launch** to launch an instance of the EBS\-backed AMI that you've selected\. Accept the default values as you step through the wizard\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. Choose **Launch instance from image** \(new console\) or **Launch** \(old console\) to launch an instance of the EBS\-backed AMI that you've selected\. Accept the default values as you step through the wizard\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 1. While the instance is running, connect to it\. You can perform any of the following actions on your instance to customize it for your needs:
    + Install software and applications
@@ -54,9 +58,9 @@ If this option is disabled, your instance isn't an Amazon EBS\-backed instance\.
 1. On the **Create image** page, specify the following information, and then choose **Create image**\.
    + **Image name** – A unique name for the image\.
    + **Image description** – An optional description of the image, up to 255 characters\.
-   + **No reboot** – This option is not selected by default\. Amazon EC2 shuts down the instance, takes snapshots of any attached volumes, creates and registers the AMI, and then reboots the instance\. Select **No reboot** to avoid having your instance shut down\.
+   + **No reboot** – This option is not selected by default\. Amazon EC2 shuts down the instance, takes snapshots of any attached volumes, creates and registers the AMI, and then reboots the instance\. Select **Enable** to avoid having your instance shut down\.
 **Warning**  
-If you select **No reboot**, the AMI will be crash consistent \(all the volumes are snapshotted at the same time\), but *not* application consistent \(all the operating system buffers are not flushed to disk before the snapshots are created\)\.
+If you select **Enable**, the AMI will be crash consistent \(all the volumes are snapshotted at the same time\), but *not* application consistent \(all the operating system buffers are not flushed to disk before the snapshots are created\)\.
    + **Instance volumes** – The fields in this section enable you to modify the root volume, and add additional Amazon EBS and instance store volumes\.
      + The root volume is defined in the first row\. To change the size of the root volume, for **Size**, enter the required value\.
      + If you select **Delete on termination**, when you terminate the instance created from this AMI, the EBS volume is deleted\. If you clear **Delete on termination**, when you terminate the instance, the EBS volume is not deleted\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
@@ -67,47 +71,6 @@ If you select **No reboot**, the AMI will be crash consistent \(all the volumes 
      + To tag the AMI and the snapshots with *different* tags, choose **Tag image and snapshots separately**\. Different tags are applied to the AMI and the snapshots that are created\. However, all the snapshots get the same tags; you can't tag each snapshot with a different tag\.
 
      To add a tag, choose **Add tag**, and enter the key and value for the tag\. Repeat for each tag\.
-
-1. To view the status of your AMI while it is being created, in the navigation pane, choose **AMIs**\. Initially, the status is `pending` but should change to `available` after a few minutes\.
-
-   \(Optional\) To view the snapshot that was created for the new AMI, choose **Snapshots**\. When you launch an instance from this AMI, we use this snapshot to create its root device volume\.
-
-1. Launch an instance from your new AMI\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
-
-1. The new running instance contains all of the customizations that you applied in previous steps\.
-
-------
-#### [ Old console ]
-
-**To create an AMI from an instance using the console**
-
-1. Select an appropriate EBS\-backed AMI to serve as a starting point for your new AMI, and configure it as needed before launch\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
-
-1. Choose **Launch** to launch an instance of the EBS\-backed AMI that you've selected\. Accept the default values as you step through the wizard\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
-
-1. While the instance is running, connect to it\. You can perform any of the following actions on your instance to customize it for your needs:
-   + Install software and applications
-   + Copy data
-   + Reduce start time by deleting temporary files, defragmenting your hard drive, and zeroing out free space
-   + Attach additional EBS volumes
-
-1. \(Optional\) Create snapshots of all the volumes attached to your instance\. For more information about creating snapshots, see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\.
-
-1. In the navigation pane, choose **Instances**, select your instance, and then choose **Actions**, **Image**, **Create Image**\.
-**Tip**  
-If this option is disabled, your instance isn't an Amazon EBS\-backed instance\.
-
-1. In the **Create Image** dialog box, specify the following information, and then choose **Create Image**\.
-   + **Image name** – A unique name for the image\.
-   + **Image description** – An optional description of the image, up to 255 characters\.
-   + **No reboot** – This option is not selected by default\. Amazon EC2 shuts down the instance, takes snapshots of any attached volumes, creates and registers the AMI, and then reboots the instance\. Select **No reboot** to avoid having your instance shut down\.
-**Warning**  
-If you select **No reboot**, we can't guarantee the file system integrity of the created image\.
-   + **Instance Volumes** – The fields in this section enable you to modify the root volume, and add additional Amazon EBS and instance store volumes\. For information about each field, pause on the **i** icon next to each field to display field tooltips\. Some important points are listed below\.
-     + To change the size of the root volume, locate **Root** in the **Volume Type** column, and for **Size \(GiB\)**, type the required value\.
-     + If you select **Delete on Termination**, when you terminate the instance created from this AMI, the EBS volume is deleted\. If you clear **Delete on Termination**, when you terminate the instance, the EBS volume is not deleted\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
-     + To add an EBS volume, choose **Add New Volume** \(which adds a new row\)\. For **Volume Type**, choose **EBS**, and fill in the fields in the row\. When you launch an instance from your new AMI, additional volumes are automatically attached to the instance\. Empty volumes must be formatted and mounted\. Volumes based on a snapshot must be mounted\.
-     + To add an instance store volume, see [Add instance store volumes to an AMI](add-instance-store-volumes.md#adding-instance-storage-ami)\. When you launch an instance from your new AMI, additional volumes are automatically initialized and mounted\. These volumes do not contain data from the instance store volumes of the running instance on which you based your AMI\.
 
 1. To view the status of your AMI while it is being created, in the navigation pane, choose **AMIs**\. Initially, the status is `pending` but should change to `available` after a few minutes\.
 
@@ -139,7 +102,7 @@ If you have a snapshot of the root device volume of an instance, you can create 
 
 1. In the navigation pane, choose **Snapshots**\.
 
-1. Select the snapshot from which to create the AMI and choose **Actions**, **Create image**\.
+1. Select the snapshot from which to create the AMI and choose **Actions**, **Create image from snapshot**\.
 
 1. For **Image name**, enter a descriptive name for the image\.
 

@@ -32,6 +32,11 @@ The following tables list the instance types that support specifying CPU options
 | g4dn\.8xlarge | 32 | 16 | 2 | 1 to 16 | 1, 2 | 
 | g4dn\.12xlarge | 48 | 24 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 | g4dn\.16xlarge | 64 | 32 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
+| g5g\.xlarge | 4 | 4 | 1 | 1 to 4 | 1 | 
+| g5g\.2xlarge | 8 | 8 | 1 | 1 to 8 | 1 | 
+| g5g\.4xlarge | 16 | 16 | 1 | 1 to 16 | 1 | 
+| g5g\.8xlarge | 32 | 32 | 1 | 1 to 32 | 1 | 
+| g5g\.16xlarge | 64 | 64 | 1 | 1 to 64 | 1 | 
 | inf1\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
 | inf1\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
 | inf1\.6xlarge | 24 | 12 | 2 | 2, 4, 6, 8, 10, 12 | 1, 2 | 
@@ -195,6 +200,16 @@ The following tables list the instance types that support specifying CPU options
 | m5zn\.3xlarge | 12 | 6 | 2 | 2, 4, 6 | 1, 2 | 
 | m5zn\.6xlarge | 24 | 12 | 2 | 2, 4, 6, 8, 10, 12 | 1, 2 | 
 | m5zn\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
+| m6a\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| m6a\.xlarge | 4 | 2 | 2 | 1, 2 | 1, 2 | 
+| m6a\.2xlarge | 8 | 4 | 2 | 1 to 4 | 1, 2 | 
+| m6a\.4xlarge | 16 | 8 | 2 | 1 to 8 | 1, 2 | 
+| m6a\.8xlarge | 32 | 16 | 2 | 1, 2, 3, 4, 5, 6, 7, 8, 16  | 1, 2 | 
+| m6a\.12xlarge | 48 | 24 | 2 | 1, 2, 3, 4, 5, 6, 7, 8, 16, 24  | 1, 2 | 
+| m6a\.16xlarge | 64 | 32 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 32 | 1, 2 | 
+| m6a\.24xlarge | 96 | 48 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 32, 48 | 1, 2 | 
+| m6a\.32xlarge | 128 | 64 | 2 | 4, 8, 12, 16, 20, 24, 28, 32, 64 | 1, 2 | 
+| m6a\.48xlarge | 192 | 96 | 2 | 4, 8, 12, 16, 20, 24, 28, 32, 64, 96 | 1, 2 | 
 | m6g\.medium | 1 | 1 | 1 | 1 | 1 | 
 | m6g\.large | 2 | 2 | 1 | 1, 2 | 1 | 
 | m6g\.xlarge | 4 | 4 | 1 | 1 to 4 | 1 | 
@@ -325,6 +340,15 @@ The following tables list the instance types that support specifying CPU options
 | r6gd\.8xlarge | 32 | 32 | 1 | 1 to 32 | 1 | 
 | r6gd\.12xlarge | 48 | 48 | 1 | 1 to 48 | 1 | 
 | r6gd\.16xlarge | 64 | 64 | 1 | 1 to 64 | 1 | 
+| r6i\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| r6i\.xlarge | 4 | 2 | 2 | 1, 2 | 1, 2 | 
+| r6i\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| r6i\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| r6i\.8xlarge | 32 | 16 | 2 | 2, 4, 6, 8, 10, 12, 14, 16 | 1, 2 | 
+| r6i\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
+| r6i\.16xlarge | 64 | 32 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
+| r6i\.24xlarge | 96 | 48 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
+| r6i\.32xlarge | 128 | 64 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64 | 1, 2 | 
 | u\-6tb1\.56xlarge | 224 | 224 | 1 | 1 to 224 | 1 | 
 | u\-6tb1\.112xlarge | 448 | 224 | 2 | 1 to 224 | 1, 2 | 
 | u\-9tb1\.112xlarge | 448 | 224 | 2 | 1 to 224 | 1, 2 | 
@@ -389,3 +413,15 @@ The following tables list the instance types that support specifying CPU options
 | i3en\.6xlarge | 24 | 12 | 2 | 2, 4, 6, 8, 10, 12 | 1, 2 | 
 | i3en\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 | i3en\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
+| im4gn\.large | 2 | 2 | 1 | 1, 2 | 1 | 
+| im4gn\.xlarge | 4 | 4 | 1 | 1 to 4  | 1 | 
+| im4gn\.2xlarge | 8 | 8 | 1 | 1 to 8 | 1 | 
+| im4gn\.4xlarge | 16 | 16 | 1 | 1 to 16 | 1 | 
+| im4gn\.8xlarge | 32 | 32 | 1 | 1 to 32 | 1 | 
+| im4gn\.16xlarge | 64 | 64 | 1 | 1 to 64 | 1 | 
+| is4gen\.medium | 1 | 1 | 1 | 1 | 1 | 
+| is4gen\.large | 2 | 2 | 1 | 1, 2 | 1 | 
+| is4gen\.xlarge | 4 | 4 | 1 | 1 to 4 | 1 | 
+| is4gen\.2xlarge | 8 | 8 | 1 | 1 to 8 | 1 | 
+| is4gen\.4xlarge | 16 | 16 | 1 | 1 to 16 | 1 | 
+| is4gen\.8xlarge | 32 | 32 | 1 | 1 to 32 | 1 | 

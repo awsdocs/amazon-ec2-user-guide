@@ -36,7 +36,7 @@ In a VPC, all subnets have a modifiable attribute that determines whether networ
 
 When you create a network interface, it inherits the public IPv4 addressing attribute from the subnet\. If you later modify the public IPv4 addressing attribute of the subnet, the network interface keeps the setting that was in effect when it was created\. If you launch an instance and specify an existing network interface as the primary network interface, the public IPv4 address attribute is determined by this network interface\.
 
-For more information, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
+For more information, see [Public IPv4 addresses](using-instance-addressing.md#concepts-public-addresses)\.
 
 **Elastic IP addresses for network interface**  
 If you have an Elastic IP address, you can associate it with one of the private IPv4 addresses for the network interface\. You can associate one Elastic IP address with each private IPv4 address\.
@@ -177,6 +177,7 @@ The following table lists the maximum number of network interfaces per instance 
 | c6i\.16xlarge | 15 | 50 | 50 | 
 | c6i\.24xlarge | 15 | 50 | 50 | 
 | c6i\.32xlarge | 15 | 50 | 50 | 
+| c6i\.metal | 15 | 50 | 50 | 
 | cc2\.8xlarge |  8  |  30  | IPv6 not supported | 
 | cr1\.8xlarge |  8  |  30  | IPv6 not supported | 
 | d2\.xlarge |  4  |  15  | 15 | 
@@ -224,6 +225,11 @@ The following table lists the maximum number of network interfaces per instance 
 | g5\.16xlarge | 8 | 30 | 30 | 
 | g5\.24xlarge | 15 | 50 | 50 | 
 | g5\.48xlarge | 15 | 50 | 50 | 
+| g5g\.xlarge | 4 | 15 | 15 | 
+| g5g\.2xlarge | 4 | 15 | 15 | 
+| g5g\.4xlarge | 8 | 30 | 30 | 
+| g5g\.8xlarge | 8 | 30 | 30 | 
+| g5g\.16xlarge | 15 | 50 | 50 | 
 | h1\.2xlarge | 4 | 15 | 15 | 
 | h1\.4xlarge | 8 | 30 | 30 | 
 | h1\.8xlarge | 8 | 30 | 30 | 
@@ -248,10 +254,22 @@ The following table lists the maximum number of network interfaces per instance 
 | i3en\.12xlarge | 8 | 30 | 30 | 
 | i3en\.24xlarge | 15 | 50 | 50 | 
 | i3en\.metal | 15 | 50 | 50 | 
+| im4gn\.large | 3 | 10 | 10 | 
+| im4gn\.xlarge | 4 | 15 | 15 | 
+| im4gn\.2xlarge | 4 | 15 | 15 | 
+| im4gn\.4xlarge | 8 | 30 | 30 | 
+| im4gn\.8xlarge | 8 | 30 | 30 | 
+| im4gn\.16xlarge | 15 | 50 | 50 | 
 | inf1\.xlarge | 4 | 10 | 10 | 
 | inf1\.2xlarge | 4 | 10 | 10 | 
 | inf1\.6xlarge | 8 | 30 | 30 | 
 | inf1\.24xlarge | 15 | 30 | 30 | 
+| is4gen\.medium | 2 | 4 | 4 | 
+| is4gen\.large | 3 | 10 | 10 | 
+| is4gen\.xlarge | 4 | 15 | 15 | 
+| is4gen\.2xlarge | 4 | 15 | 15 | 
+| is4gen\.4xlarge | 8 | 30 | 30 | 
+| is4gen\.8xlarge | 8 | 30 | 30 | 
 | m1\.small |  2  |  4  | IPv6 not supported | 
 | m1\.medium |  2  |  6  | IPv6 not supported | 
 | m1\.large |  3  |  10  | IPv6 not supported | 
@@ -328,6 +346,16 @@ The following table lists the maximum number of network interfaces per instance 
 | m5zn\.6xlarge | 8 | 30 | 30 | 
 | m5zn\.12xlarge | 15 | 50 | 50 | 
 | m5zn\.metal | 15 | 50 | 50 | 
+| m6a\.large | 3 | 10 | 10 | 
+| m6a\.xlarge | 4 | 15 | 15 | 
+| m6a\.2xlarge | 4 | 15 | 15 | 
+| m6a\.4xlarge | 8 | 30 | 30 | 
+| m6a\.8xlarge | 8 | 30 | 30 | 
+| m6a\.12xlarge | 8 | 30 | 30 | 
+| m6a\.16xlarge | 15 | 50 | 50 | 
+| m6a\.24xlarge | 15 | 50 | 50 | 
+| m6a\.32xlarge | 15 | 50 | 50 | 
+| m6a\.48xlarge | 15 | 50 | 50 | 
 | m6g\.medium | 2 | 4 | 4 | 
 | m6g\.large | 3 | 10 | 10 | 
 | m6g\.xlarge | 4 | 15 | 15 | 
@@ -355,6 +383,7 @@ The following table lists the maximum number of network interfaces per instance 
 | m6i\.16xlarge | 15 | 50 | 50 | 
 | m6i\.24xlarge | 15 | 50 | 50 | 
 | m6i\.32xlarge | 15 | 50 | 50 | 
+| m6i\.metal | 15 | 50 | 50 | 
 | mac1\.metal | 8 | 30 | 30 | 
 | p2\.xlarge | 4 | 15 | 15 | 
 | p2\.8xlarge | 8 | 30 | 30 | 
@@ -454,6 +483,16 @@ The following table lists the maximum number of network interfaces per instance 
 | r6gd\.12xlarge | 8 | 30 | 30 | 
 | r6gd\.16xlarge | 15 | 50 | 50 | 
 | r6gd\.metal | 15 | 50 | 50 | 
+| r6i\.large | 3 | 10 | 10 | 
+| r6i\.xlarge | 4 | 15 | 15 | 
+| r6i\.2xlarge | 4 | 15 | 15 | 
+| r6i\.4xlarge | 8 | 30 | 30 | 
+| r6i\.8xlarge | 8 | 30 | 30 | 
+| r6i\.12xlarge | 8 | 30 | 30 | 
+| r6i\.16xlarge | 15 | 50 | 50 | 
+| r6i\.24xlarge | 15 | 50 | 50 | 
+| r6i\.32xlarge | 15 | 50 | 50 | 
+| r6i\.metal | 15 | 50 | 50 | 
 | t1\.micro |  2  |  2  | IPv6 not supported | 
 | t2\.nano |  2  |  2  | 2 | 
 | t2\.micro |  2  |  2  | 2 | 
@@ -572,7 +611,7 @@ You can create a network interface in a subnet\. You can't move the network inte
 
 1. \(Optional\) For **Description**, enter a descriptive name\.
 
-1. For **Subnet**, select a subnet\.
+1. For **Subnet**, select a subnet\. The options available in the subsequent steps change depending on the type of subnet you select \(IPv4\-only, IPv6\-only, or dual\-stack \(IPv4 and IPv6\)\)\.
 
 1. For **Private IPv4 address**, do one of the following:
    + Choose **Auto\-assign** to allow Amazon EC2 to select an IPv4 address from the subnet\.
@@ -672,7 +711,10 @@ You can use one of the following commands\. For more information about these com
 
 You can attach a network interface to any instance in the same Availability Zone as the network interface, using either the **Instances** or **Network Interfaces** page of the Amazon EC2 console\. Alternatively, you can specify existing network interfaces when you [launch instances](launching-instance.md)\.
 
-If the public IPv4 address on your instance is released, it does not receive a new one if there is more than one network interface attached to the instance\. For more information about the behavior of public IPv4 addresses, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
+**Important**  
+For EC2 instances in an IPv6\-only subnet, if you attach a secondary network interface to the instance, the private DNS hostname of the second network interface will resolve to the first IPv6 address on the instance's first network interface\. For more information about EC2 instance private DNS hostnames, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.
+
+If the public IPv4 address on your instance is released, it does not receive a new one if there is more than one network interface attached to the instance\. For more information about the behavior of public IPv4 addresses, see [Public IPv4 addresses](using-instance-addressing.md#concepts-public-addresses)\.
 
 ------
 #### [ Instances page ]

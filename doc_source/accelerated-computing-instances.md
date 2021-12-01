@@ -29,6 +29,11 @@ GPU\-based instances provide access to NVIDIA GPUs with thousands of compute cor
 G5 instances use NVIDIA A10G GPUs and provide high performance for graphics\-intensive applications such as remote workstations, video rendering, and cloud gaming, and deep learning models for applications such as natural language processing, computer vision, and recommendation engines\. These instances feature up to 8 NVIDIA A10G GPUs, second generation AMD EPY processors, up to 100 Gbps of network bandwidth, and up to 7\.6 TB of local NVMe SSD storage\.
 
 For more information, see [Amazon EC2 G5 Instances](http://aws.amazon.com/ec2/instance-types/g5/)\.
+
+**G5g instances**  
+G5g instances use NVIDIA T4G GPUs and provide high performance for graphics\-intensive applications such as game streaming and rendering that leverage industry\-standard APIs, such as OpenGL and Vulkan\. These instances are also suitable for running deep learning models for applications such as natural language processing and computer vision\. These instances feature up to 2 NVIDIA T4G Tensor Core GPUs, AWS Graviton2 processors, and up to 25 Gbps of network bandwidth\.
+
+For more information, see [Amazon EC2 G5g Instances](http://aws.amazon.com/ec2/instance-types/g5g/)\.
 <a name="g4-instances"></a>
 **G4ad and G4dn instances**  
 G4ad instances use AMD Radeon Pro V520 GPUs and 2nd generation AMD EPYC processors, and are well\-suited for graphics applications such as remote graphics workstations, game streaming, and rendering that leverage industry\-standard APIs such as OpenGL, DirectX, and Vulkan\. They provide up to 4 AMD Radeon Pro V520 GPUs, 64 vCPUs, 25 Gbps networking, and 2\.4 TB local NVMe\-based SSD storage\.
@@ -170,6 +175,11 @@ The following is a summary of the hardware specifications for accelerated comput
 | g5\.16xlarge | 64 | 256 | 1 | 
 | g5\.24xlarge | 96 | 384 | 4 | 
 | g5\.48xlarge | 192 | 768 | 8 | 
+| g5g\.xlarge | 4 | 8 | 1 | 
+| g5g\.2xlarge | 8 | 16 | 1 | 
+| g5g\.4xlarge | 16 | 32 | 1 | 
+| g5g\.8xlarge | 32 | 64 | 1 | 
+| g5g\.16xlarge | 64 | 128 | 2 | 
 | inf1\.xlarge | 4 | 8 | 1 | 
 | inf1\.2xlarge | 8 | 16 | 1 | 
 | inf1\.6xlarge | 24 | 48 | 4 | 
@@ -207,11 +217,12 @@ The following is a summary of network performance for accelerated computing inst
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge and smaller \| g5\.2xlarge and smaller \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge and smaller \| g5\.2xlarge and smaller \| g5g\.4xlarge and smaller \|  p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| g5g\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g4ad\.8xlarge | 15 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.4xlarge and smaller \| g5\.4xlarge  \| inf1\.2xlarge and smaller  \| vt1\.3xlarge  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| g5\.8xlarge \| g5\.16xlarge \| inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  \| vt1\.6xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| g5\.8xlarge \| g5\.16xlarge \| g5g\.16xlarge \|  inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  \| vt1\.6xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g5\.12xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g5\.24xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.metal \| g5\.48xlarge \| inf1\.24xlarge \| p3dn\.24xlarge  \| vt1\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -235,6 +246,9 @@ The following is a summary of network performance for accelerated computing inst
 | g5\.xlarge | 2\.5 | 10 | 
 | g5\.2xlarge | 5 | 10 | 
 | g5\.4xlarge | 10 | 25 | 
+| g5g\.xlarge | 1\.25 | 10 | 
+| g5g\.2xlarge | 2\.5 | 10 | 
+| g5g\.4xlarge | 5 | 10 | 
 | p3\.2xlarge | 2\.5 | 10 | 
 | vt1\.3xlarge | 12\.5 | 25 | 
 
@@ -281,6 +295,7 @@ The following is a summary of features for accelerated computing instances\.
 | G4ad | No | Yes | NVMe \* | Yes | 
 | G4dn | No | Yes | NVMe \* | Yes | 
 | G5 | No | Yes | NVMe \* | Yes | 
+| G5g | Yes | Yes | No | Yes | 
 | Inf1 | Yes | No | No | Yes | 
 | P2 | Yes | No | No | Yes | 
 | P3 |  24xlarge: No All other sizes: Yes  |  24xlarge: Yes All other sizes: No  | 24xlarge: NVMe \* | Yes | 
