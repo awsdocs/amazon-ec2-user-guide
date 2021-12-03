@@ -206,6 +206,8 @@ The VM image for Microsoft Hyper\-V is compressed into a zip file\. You must ext
 
 1. For the DVD drive, choose **Image file** and then browse to and select the `seed.iso` file\.
 
+1. In the **BIOS** section, select **IDE** in the Startup order\.  Click **Move Up** until the IDE boots before the CD\.
+
 1. Apply the changes and start the VM\.
 
 ------
