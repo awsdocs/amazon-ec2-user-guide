@@ -102,10 +102,10 @@ To generate the `seed.iso` boot image, you need two configuration files:
    $ hdiutil makehybrid -o seed.iso -hfs -joliet -iso -default-volume-name cidata seedconfig/
    ```
 
-   For Windows, use a tool such as **AnyBurn** (GUI) or **magiciso** (CLI) and run the following command\.
+   For Windows, use a tool such as **AnyBurn** (GUI) or **mkisofs** (CLI) and run the following command\.
 
    ```
-   > miso.exe seed.iso -l cidata -a seedconfig\*
+   > mkisofs -output seed.iso -volid cidata -joliet -rock user-data meta-data
    ```
 
 ## Step 2: Download the Amazon Linux 2 VM image<a name="amazon-linux-2-virtual-machine-download"></a>
