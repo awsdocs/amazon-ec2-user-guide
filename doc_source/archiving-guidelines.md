@@ -274,7 +274,7 @@ To determine the reduction in storage and storage costs in the standard tier, us
    $ aws ebs list-changed-blocks --first-snapshot-id snapshot_to_archive --second-snapshot-id snapshot_created_after
    ```
 
-   For example, the following command shows the block indexes of that blocks that are different between snapshot `snap-09c9114207084f0d9` \(the snapshot that you want to archive\) and snapshot `snap-024f49fe8dd853fa8` \(the snapshot created after the snapshot that you want to archive\)\.
+   For example, the following command shows the block indexes of the blocks that are different between snapshot `snap-09c9114207084f0d9` \(the snapshot that you want to archive\) and snapshot `snap-024f49fe8dd853fa8` \(the snapshot created after the snapshot that you want to archive\)\.
 
    ```
    $ aws ebs list-changed-blocks --first-snapshot-id snap-09c9114207084f0d9 --second-snapshot-id snap-024f49fe8dd853fa8
