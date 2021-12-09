@@ -153,10 +153,10 @@ To determine the reduction in storage and storage costs in the standard tier, us
                "VolumeId": "vol-0f3e2c292c52b85c3", 
                "State": "completed", 
                "VolumeSize": 8, 
-               StartTime": "2021-11-14T08:57:39.300Z",
+               "StartTime": "2021-11-14T08:57:39.300Z",
                "Progress": "100%", 
                "OwnerId": "123456789012", 
-               "SnapshotId": "snap-024f49fe8dd853fa8"
+               "SnapshotId": "snap-08ca60083f86816b0"
            }, 
            {
                "Description": "", 
@@ -180,7 +180,7 @@ To determine the reduction in storage and storage costs in the standard tier, us
                "StartTime": "2021-11-16T07:50:08.042Z", 
                "Progress": "100%", 
                "OwnerId": "123456789012", 
-               "SnapshotId": "snap-08ca60083f86816b0"
+               "SnapshotId": "snap-024f49fe8dd853fa8"
            }
        ]
    }
