@@ -62,7 +62,7 @@ The following is the command output\. The `TieringStartTime` response parameter 
 
 ## Restore an archived snapshot<a name="restore-archived-snapshot"></a>
 
-Before you can use an archived snapshot, you must first restore it to the standard tier\. The restored snapshot has the same snapshot ID, encryption status, IAM permissions, owner information, and resource tags that it had before it was archived\. After it is restored, you can use itin the same way that you use any other snapshot in your account\. The restored snapshot is always a full snapshot\.
+Before you can use an archived snapshot, you must first restore it to the standard tier\. The restored snapshot has the same snapshot ID, encryption status, IAM permissions, owner information, and resource tags that it had before it was archived\. After it is restored, you can use it in the same way that you use any other snapshot in your account\. The restored snapshot is always a full snapshot\.
 
 When you restore a snapshot, you can choose to restore it **permanently** or **temporarily**\.
 
