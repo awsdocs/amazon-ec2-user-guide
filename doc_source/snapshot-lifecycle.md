@@ -60,7 +60,7 @@ For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 Amazon Data Lifecycle Manager applies the following tags to all snapshots and AMIs created by a policy, to distinguish them from snapshots and AMIs created by any other means:
 + `aws:dlm:lifecycle-policy-id`
 + `aws:dlm:lifecycle-schedule-name`
-+ `aws:dlm:expirationTime`
++ `aws:dlm:expirationTime` — For policies with age\-based retention schedules only\.
 + `dlm:managed`
 
 You can also specify custom tags to be applied to snapshots and AMIs on creation\. You can't use a '\\' or '=' character in a tag key\.
@@ -148,3 +148,14 @@ The following considerations apply to EBS\-backed AMI policies and AMI deprecati
 + If you manually cancel deprecation for an AMI that was previously deprecated by an AMI policy, Amazon Data Lifecycle Manager will not override the cancellation\.
 + If an AMI is created by multiple conflicting schedules, and one or more of those schedules do not have an AMI deprecation rule, Amazon Data Lifecycle Manager will not deprecate that AMI\.
 + If an AMI is created by multiple conflicting schedules, and all of those schedules have an AMI deprecation rule, Amazon Data Lifecycle Manager will use the deprecation rule with the latest deprecation date\.
+
+The following considerations apply to snapshots policies and snapshot archiving:
++ If you manually archive a snapshot that was created by a policy, and that snapshot is in the archive tier when the policy’s retention threshold is reached, Amazon Data Lifecycle Manager will not delete the snapshot\. Amazon Data Lifecycle Manager does not manage snapshots while they are stored in the archive tier\. If you no longer need snapshots that are stored in the archive tier, you must manually delete them\.
+
+The following considerations apply to snapshot policies and Recycle Bin:
++ If Amazon Data Lifecycle Manager deletes a snapshot and sends it to the Recycle Bin when the policy's retention threshold is reached, and you manually restore the snapshot from the Recycle Bin, you must manually delete that snapshot when it is no longer needed\. Amazon Data Lifecycle Manager will not automatically delete the snapshot\.
++ If you manually delete a snapshot that was created by a policy, and that snapshot is in the Recycle Bin when the policy’s retention threshold is reached, Amazon Data Lifecycle Manager will not delete the snapshot\. Amazon Data Lifecycle Manager does not manage the snapshots while they are stored in the Recycle Bin\.
+
+  If the snapshot is restored from the Recycle Bin before the policy's retention threshold is reached, Amazon Data Lifecycle Manager will delete the snapshot when the policy's retention threshold is reached\.
+
+  If the snapshot is restored from the Recycle Bin after the policy's retention threshold is reached, Amazon Data Lifecycle Manager will no longer delete the snapshot\. You must manually delete the snapshot when it is no longer needed\.

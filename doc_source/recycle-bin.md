@@ -14,7 +14,7 @@ Using Recycle Bin ensures business continuity by protecting your business\-criti
 + [Pricing](#recycle-bin-pricing)
 + [Required permissions](recycle-bin-perms.md)
 + [Work with retention rules](recycle-bin-working-with-rules.md)
-+ [Work with resources in the Recycle Bin](recycle-bin-work-with-resources.md)
++ [Work with snapshots in the Recycle Bin](recycle-bin-snapshots.md)
 + [Monitoring Recycle Bin using AWS CloudTrail](recycle-bin-ct.md)
 
 ## How does it work?<a name="recycle-bin-concepts"></a>

@@ -1,11 +1,6 @@
 # Host recovery<a name="dedicated-hosts-recovery"></a>
 
-Host recovery automatically restarts your instances on to a new replacement host if failures are detected on your Dedicated Host\. Host recovery reduces the need for manual intervention and lowers the operational burden if there is an unexpected Dedicated Host failure\.
-
-Additionally, built\-in integration with AWS License Manager automates the tracking and management of your licenses if a host recovery occurs\. 
-
-**Note**  
-AWS License Manager integration is supported only in Regions in which AWS License Manager is available\. 
+Dedicated Host auto recovery restarts your instances on to a new replacement host when certain problematic conditions are detected on your Dedicated Host\. Host recovery reduces the need for manual intervention and lowers the operational burden if there is an unexpected Dedicated Host failure concerning system power or network connectivity events\. Other Dedicated Host issues will require manual intervention to recover from\. 
 
 **Topics**
 + [Host recovery basics](#dedicated-hosts-recovery-basics)
@@ -18,23 +13,31 @@ AWS License Manager integration is supported only in Regions in which AWS Licens
 
 ## Host recovery basics<a name="dedicated-hosts-recovery-basics"></a>
 
-Host recovery uses host\-level health checks to assess Dedicated Host availability and to detect underlying system failures\. Examples of problems that can cause host\-level health checks to fail include:
+Dedicated Hosts and the host resource groups recovery process use host\-level health checks to assess Dedicated Host availability and to detect underlying system failures\. The type of Dedicated Host failure determines if Dedicated Host auto recovery is possible\. Examples of problems that can cause host\-level health checks to fail include:
 + Loss of network connectivity
 + Loss of system power
 + Hardware or software issues on the physical host
 
-When a system failure is detected on your Dedicated Host, host recovery is initiated and Amazon EC2 **automatically allocates a replacement Dedicated Host**\. The replacement Dedicated Host receives a new host ID, but retains the same attributes as the original Dedicated Host, including:
+### Dedicated Host auto recovery<a name="dedicated-hosts-recovery-basics-auto-recovery"></a>
+
+When a system power or network connectivity failure is detected on your Dedicated Host, Dedicated Host auto recovery is initiated and Amazon EC2 **automatically allocates a replacement Dedicated Host**\. The replacement Dedicated Host receives a new host ID, but retains the same attributes as the original Dedicated Host, including:
 + Availability Zone
 + Instance type
 + Tags
 + Auto placement settings
++ Reservation
 
-After the replacement Dedicated Host is allocated, the **instances are recovered on to the replacement Dedicated Host**\. The recovered instances retain the same attributes as the original instances, including:
+When the replacement Dedicated Host is allocated, the **instances are recovered on to the replacement Dedicated Host**\. The recovered instances retain the same attributes as the original instances, including:
 + Instance ID
 + Private IP addresses
 + Elastic IP addresses
 + EBS volume attachments
 + All instance metadata
+
+Additionally, the built\-in integration with AWS License Manager automates the tracking and management of your licenses\.
+
+**Note**  
+AWS License Manager integration is supported only in Regions in which AWS License Manager is available\. 
 
 If instances have a host affinity relationship with the impaired Dedicated Host, the recovered instances establish host affinity with the replacement Dedicated Host\.
 
@@ -42,17 +45,24 @@ When all of the instances have been recovered on to the replacement Dedicated Ho
 
 When host recovery is initiated, the AWS account owner is notified by email and by an AWS Personal Health Dashboard event\. A second notification is sent after the host recovery has been successfully completed\. 
 
+If you are using AWS License Manager to track your licenses, AWS License Manager allocates new licenses for the replacement Dedicated Host based on the license configuration limits\. If the license configuration has hard limits that will be breached as a result of the host recovery, the recovery process is not allowed and you are notified of the host recovery failure through an Amazon SNS notification \(if notification settings have been configured for AWS License Manager\)\. If the license configuration has soft limits that will be breached as a result of the host recovery, the recovery is allowed to continue and you are notified of the limit breach through an Amazon SNS notification\. For more information, see [Using License Configurations](https://docs.aws.amazon.com/license-manager/latest/userguide/license-configurations.html) and [Settings in License Manager](https://docs.aws.amazon.com/license-manager/latest/userguide/settings.html) in the *AWS License Manager User Guide*\.
+
+### Scenarios without Dedicated Host auto recovery<a name="dedicated-hosts-recovery-basics-non-auto"></a>
+
+**Dedicated Host auto recovery does not occur when hardware or software issues impact the physical host** and manual intervention is required\. You will receive a retirement notification in the AWS Personal Health Dashboard, an Amazon CloudWatch event, and the AWS account owner email address receives a message regarding the Dedicated Host failure\.
+
 **Stopped instances are not recovered** on to the replacement Dedicated Host\. If you attempt to start a stopped instance that targets the impaired Dedicated Host, the instance start fails\. We recommend that you modify the stopped instance to either target a different Dedicated Host, or to launch on any available Dedicated Host with matching configurations and auto\-placement enabled\.
 
 **Instances with instance storage are not recovered** on to the replacement Dedicated Host\. As a remedial measure, the impaired Dedicated Host is marked for retirement and you receive a retirement notification after the host recovery is complete\. Follow the remedial steps described in the retirement notification within the specified time period to manually recover the remaining instances on the impaired Dedicated Host\.
-
-If you are using AWS License Manager to track your licenses, AWS License Manager allocates new licenses for the replacement Dedicated Host based on the license configuration limits\. If the license configuration has hard limits that will be breached as a result of the host recovery, the recovery process is not allowed and you are notified of the host recovery failure through an Amazon SNS notification\. If the license configuration has soft limits that will be breached as a result of the host recovery, the recovery is allowed to continue and you are notified of the limit breach through an Amazon SNS notification\. For more information, see [Using License Configurations](https://docs.aws.amazon.com/license-manager/latest/userguide/license-configurations.html) in the *AWS License Manager User Guide*\.
 
 ## Supported instance types<a name="dedicated-hosts-recovery-instances"></a>
 
 Host recovery is supported for the following instance families: A1, C3, C4, C5, C5n, C6g, Inf1, M3, M4, M5, M5n, M6g, P3, R3, R4, R5, R5n, R6g, X1, X1e, X2gd,  u\-6tb1, u\-9tb1, u\-12tb1, u\-18tb1, and u\-24tb1\.
 
 To recover instances that are not supported, see [Manually recover unsupported instances](#dedicated-hosts-recovery-unsupported)\.
+
+**Note**  
+Dedicated Host auto recovery of supported metal [instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html) will take longer to detect and recover from than non\-metal instance types\.
 
 ## Configure host recovery<a name="dedicated-hosts-recovery-working"></a>
 

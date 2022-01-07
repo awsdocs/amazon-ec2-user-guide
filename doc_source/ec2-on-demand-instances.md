@@ -36,14 +36,15 @@ If you're new to Amazon EC2, see [How to get started with Amazon EC2](concepts.m
 
 There is a limit on the number of running On\-Demand Instances per AWS account per Region\. On\-Demand Instance limits are managed in terms of the *number of virtual central processing units \(vCPUs\)* that your running On\-Demand Instances are using, regardless of the instance type\.
 
-There are seven On\-Demand Instance limits:
-+ Running On\-Demand All Standard \(A, C, D, H, I, M, R, T, Z\) instances
-+ Running On\-Demand All F instances
-+ Running On\-Demand All G and VT instances
-+ Running On\-Demand All High Memory instances
-+ Running On\-Demand All Inf instances
-+ Running On\-Demand All P instances
-+ Running On\-Demand All X instances
+There are eight On\-Demand Instance limits:
++ Running On\-Demand Standard \(A, C, D, H, I, M, R, T, Z\) instances
++ Running On\-Demand DL instances
++ Running On\-Demand F instances
++ Running On\-Demand G and VT instances
++ Running On\-Demand High Memory instances
++ Running On\-Demand Inf instances
++ Running On\-Demand P instances
++ Running On\-Demand X instances
 
 Each limit specifies the vCPU limit for one or more instance families\. For information about the different instance families, generations, and sizes, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
 

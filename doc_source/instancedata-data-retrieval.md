@@ -74,6 +74,7 @@ For requests made using Instance Metadata Service Version 2, the following HTTP 
 + [Show the formats in which public key 0 is available](#instance-metadata-ex-4)
 + [Get public key 0 \(in the OpenSSH key format\)](#instance-metadata-ex-5)
 + [Get the subnet ID for an instance](#instance-metadata-ex-6)
++ [Get the instance tags for an instance](#instance-metadata-ex-7)
 
 ### Get the available versions of the instance metadata<a name="instance-metadata-ex-1"></a>
 
@@ -396,6 +397,53 @@ subnet-be9b61d7
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/02:29:96:8f:6a:2d/subnet-id
 subnet-be9b61d7
+```
+
+------
+
+### Get the instance tags for an instance<a name="instance-metadata-ex-7"></a>
+
+In the following examples, the sample instance has [tags on instance metadata enabled](Using_Tags.md#allow-access-to-tags-in-IMDS) and the instance tags `Name=MyInstance` and `Environment=Dev`\.
+
+This example gets all the instance tag keys for an instance\.
+
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/tags/instance
+Name
+Environment
+```
+
+------
+#### [ IMDSv1 ]
+
+```
+[ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/tags/instance
+Name
+Environment
+```
+
+------
+
+The following example gets the value of the `Name` key that was obtained in the preceding example\. The IMDSv2 request uses the stored token that was created in the preceding example command, assuming it has not expired\.
+
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/tags/instance/Name
+MyInstance
+```
+
+------
+#### [ IMDSv1 ]
+
+```
+[ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/tags/instance/Name
+MyInstance
 ```
 
 ------

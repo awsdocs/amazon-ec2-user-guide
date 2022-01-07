@@ -216,7 +216,7 @@ Block Express architecture increases performance and scale\. Block Express serve
 
 `io2` Block Express volumes are suited for workloads that benefit from a single volume that provides sub\-millisecond latency, and supports higher IOPS, higher throughput, and larger capacity than `io2` volumes\.
 
-`io2` Block Express volumes support the same features as `io2` volumes, including Multi\-Attach, Elastic Volume operations, and encryption\.
+`io2` Block Express volumes support the same features as `io2` volumes, including Multi\-Attach and encryption\.
 
 **Topics**
 + [Considerations](#io2-bx-considerations)
@@ -228,6 +228,7 @@ Block Express architecture increases performance and scale\. Block Express serve
 + `io2` Block Express volumes are currently supported with R5b instances only\.
 + `io2` Block Express volumes are currently available in all Regions where R5b instances are available, including `us-east-1`, `us-east-2`, `us-west-2`, `ap-southeast-1`, `ap-northeast-1`, and `eu-central-1`\. R5b instance availability might vary by Availability Zone\. For more information about R5b availability, see [Find an Amazon EC2 instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-discovery.html)\.
 + `io2` Block Express volumes do not support fast snapshot restore\. We recommend that you initialize these volumes to ensure that they deliver full performance\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
++ `io2` Block Express volumes do not support Elastic Volume operations\.
 
 #### Performance<a name="io2-bx-perf"></a>
 

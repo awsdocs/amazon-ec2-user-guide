@@ -290,7 +290,9 @@ Use one of the following methods to add the required policies to the IAM role\.
 
 1. Choose **Add inline policy** and then select the **JSON** tab\.
 
-1. Replace the existing policy with the following, and specify the ARNs of the KMS keys\.
+1. Replace the existing policy with the following, and specify the ARN of the KMS key that was used to encrypt the source volumes and that was shared with you by the source account in Step 2\.
+**Note**  
+If you are copying from multiple source accounts, then you must specify the corresponding KMS key ARN from each source account\.
 
    ```
    {
@@ -304,7 +306,6 @@ Use one of the following methods to add the required policies to the IAM role\.
    	                "kms:ListGrants"
    	            ],
    	            "Resource": [
-   	                "arn:aws:kms:region:source_account_id:key/shared_cmk_id",
    	                "arn:aws:kms:region:source_account_id:key/shared_cmk_id"
    	            ],
    	            "Condition": {
@@ -323,7 +324,6 @@ Use one of the following methods to add the required policies to the IAM role\.
    	                "kms:DescribeKey"
    	            ],
    	            "Resource": [
-   	                "arn:aws:kms:region:source_account_id:key/shared_cmk_id",
    	                "arn:aws:kms:region:source_account_id:key/shared_cmk_id"
    	            ]
    	        }
@@ -338,7 +338,12 @@ Use one of the following methods to add the required policies to the IAM role\.
 ------
 #### [ Command line ]
 
-Using your preferred text editor, create a new JSON file named `policyDetails.json`\. Add the following policy and specify the ARNs of the KMS keys that the role needs permissions to use\. In the following example, the policy grants the IAM role permission to use KMS key `1234abcd-12ab-34cd-56ef-1234567890ab`, which was shared by source account `111111111111`, and KMS key `4567dcba-23ab-34cd-56ef-0987654321yz`, which exists in target account `222222222222`\.
+Using your preferred text editor, create a new JSON file named `policyDetails.json`\. Add the following policy and specify the ARN of the KMS key that was used to encrypt the source volumes and that was shared with you by the source account in Step 2\.
+
+**Note**  
+If you are copying from multiple source accounts, then you must specify the corresponding KMS key ARN from each source account\.
+
+In the following example, the policy grants the IAM role permission to use KMS key `1234abcd-12ab-34cd-56ef-1234567890ab`, which was shared by source account `111111111111`, and KMS key `4567dcba-23ab-34cd-56ef-0987654321yz`, which exists in target account `222222222222`\.
 
 ```
  {
@@ -352,8 +357,8 @@ Using your preferred text editor, create a new JSON file named `policyDetails.js
                 "kms:ListGrants"
             ],
             "Resource": [
-                "arn:aws:kms:sa-east-1:111111111111:key/1234abcd-12ab-34cd-56ef-1234567890ab",
-                "arn:aws:kms:eu-west-2:222222222222:key/4567dcba-23ab-34cd-56ef-0987654321yz"
+                "arn:aws:kms:us-east-1:111111111111:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+                "arn:aws:kms:us-east-1:222222222222:key/4567dcba-23ab-34cd-56ef-0987654321yz"		
             ],
             "Condition": {
                 "Bool": {
@@ -371,8 +376,8 @@ Using your preferred text editor, create a new JSON file named `policyDetails.js
                 "kms:DescribeKey"
             ],
             "Resource": [
-                "arn:aws:kms:sa-east-1:111111111111:key/1234abcd-12ab-34cd-56ef-1234567890ab",
-                "arn:aws:kms:eu-west-2:222222222222:key/4567dcba-23ab-34cd-56ef-0987654321yz"
+                "arn:aws:kms:us-east-1:111111111111:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+                "arn:aws:kms:us-east-1:222222222222:key/4567dcba-23ab-34cd-56ef-0987654321yz"
             ]
         }
     ]

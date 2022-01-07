@@ -11,24 +11,28 @@ When you share an AMI with an organization or an OU, all of the children account
 
 
 ## Considerations<a name="considerations-org-ou"></a>
-+ The AMI owner can share an AMI with any organization or OU, including organizations and OUs that they’re not a member of\.
-+ There is no limit to the number of organizations or OUs with which an AMI can be shared\.
-+ User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the AWS accounts in the other organizations and OUs that the AMI is shared with\.
-+ When specifying an organization or OU in a command, make sure to use the correct ARN format\. You'll get an error if you specify only the ID, for example, if you specify only `o-123example` or `ou-1234-5example`\. The following are the correct ARN formats:
-  + Organization ARN: `OrganizationArn=arn:aws:organizations::account-number:organization/organization-ID`
-  + OU ARN: `OrganizationalUnitArn=arn:aws:organizations::account-number:ou/organization-ID/OU-ID`
++ **No sharing limits** – The AMI owner can share an AMI with any organization or OU, including organizations and OUs that they’re not a member of\.
+
+  There is no limit to the number of organizations or OUs with which an AMI can be shared\.
++ **Tags** – User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the AWS accounts in the other organizations and OUs that the AMI is shared with\.
++ **ARN format** – When specifying an organization or OU in a command, make sure to use the correct ARN format\. You'll get an error if you specify only the ID, for example, if you specify only `o-123example` or `ou-1234-5example`\.
+
+  Correct ARN formats:
+  + Organization ARN: `arn:aws:organizations::account-id:organization/organization-id`
+  + OU ARN: `arn:aws:organizations::account-id:ou/organization-id/ou-id`
 
   Where:
-  + *`account-number`* is the 12\-digit management account number, for example, `123456789012`\. If you don't know the management account number, you can describe the organization or the organizational unit to get the ARN, which includes the management account number\. For more information, see [Get the ARN](#get-org-ou-ARN)\.
-  + *`organization-ID`* is the organization ID, for example, `o-123example`\.
-  + *`OU-ID`* is the organizational unit ID, for example, `ou-1234-5example`\.
+  + *`account-id`* is the 12\-digit management account number, for example, `123456789012`\. If you don't know the management account number, you can describe the organization or the organizational unit to get the ARN, which includes the management account number\. For more information, see [Get the ARN](#get-org-ou-ARN)\.
+  + *`organization-id`* is the organization ID, for example, `o-123example`\.
+  + *`ou-id`* is the organizational unit ID, for example, `ou-1234-5example`\.
 
   For more information about the ARN format, see [Amazon Resource Names \(ARNs\)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *AWS General Reference*\.
-+ You can share AMIs that are backed by unencrypted and encrypted snapshots\. However, the encrypted snapshots must be encrypted with a customer managed key\. You can’t share AMIs that are backed by snapshots that are encrypted with the default AWS managed key\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
-+ If you share an AMI that is backed by encrypted snapshots, you must allow the organizations or OUs to use the customer managed keys that were used to encrypt the snapshots\. For more information, see [Allow organizations and OUs to use a KMS key](#allow-org-ou-to-use-key)\.
-+ AMIs are a regional resource\. When you share an AMI, its only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
-+ You are not billed when your AMI is used by other AWS accounts to launch instances\. The accounts that launch instances using the AMI are billed for the instances that they launch\. 
-+ When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from their instance\.
++ **Encryption and keys** – You can share AMIs that are backed by unencrypted and encrypted snapshots\.
+  + The encrypted snapshots must be encrypted with a customer managed key\. You can’t share AMIs that are backed by snapshots that are encrypted with the default AWS managed key\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
+  + If you share an AMI that is backed by encrypted snapshots, you must allow the organizations or OUs to use the customer managed keys that were used to encrypt the snapshots\. For more information, see [Allow organizations and OUs to use a KMS key](#allow-org-ou-to-use-key)\.
++ **Regional resource** – AMIs are a regional resource\. When you share an AMI, it is only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
++ **Billing** – You are not billed when your AMI is used by other AWS accounts to launch instances\. The accounts that launch instances using the AMI are billed for the instances that they launch\. 
++ **AMI use** – When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from their instance\.
 
 ## Allow organizations and OUs to use a KMS key<a name="allow-org-ou-to-use-key"></a>
 

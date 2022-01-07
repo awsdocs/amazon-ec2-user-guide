@@ -264,7 +264,7 @@ $ aws ec2 describe-snapshot-tier-status --filters "Name=snapshot-id, Values=snap
 The output includes the following response parameters:
 + `Status` — The status of the snapshot\. Always `completed` for archived snapshots\. Only snapshots that are in the `completed` state can be archived\.
 + `LastTieringStartTime` — The date and time that the archival process started, in UTC time format \(YYYY\-MM\-DDTHH:MM:SSZ\)\.
-+ `LastTieringOperationState` — The current state of the archival process\. Possible states include: `archival-in-progress` \| `archival-complete` \| `archival-failed` \| `temporary-restore-in-progress` \| `temporary-restore-complete` \| `temporary-restore-failed` \| `permanent-restore-in-progress` \| `permanent-restore-complete` \| `permanent-restore-failed`
++ `LastTieringOperationState` — The current state of the archival process\. Possible states include: `archival-in-progress` \| `archival-completed` \| `archival-failed` \| `permanent-restore-in-progress` \| `permanent-restore-completed` \| `permanent-restore-failed` \| `temporary-restore-in-progress` \| `temporary-restore-completed` \| `temporary-restore-failed`
 + `LastTieringProgress` — The progress of the snapshot archival process, as a percentage\.
 + `StorageTier` — The storage tier for the snapshot\. Always `archive` for archived snapshots, and `standard` for snapshots stored on the standard tier, including temporarily restored snapshots\.
 + `ArchivalCompleteTime` — The date and time that the archival process completed, in UTC time format \(YYYY\-MM\-DDTHH:MM:SSZ\)\.

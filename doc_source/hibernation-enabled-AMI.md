@@ -220,7 +220,7 @@ For more information, see [Update instance software on your Amazon Linux instanc
 1. Confirm that the grub2 version is updated to `2.04-1ubuntu26.13` or later\.
 
    ```
-   [ec2-user ~]$ dpkg –list | grep grub2-common
+   [ec2-user ~]$ dpkg --list | grep grub2-common
    ```
 
 ## Ubuntu 18\.04 \- Bionic released before serial number 20190722\.1<a name="configure-ubuntu1804-for-hibernation"></a>

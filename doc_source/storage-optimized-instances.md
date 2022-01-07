@@ -39,20 +39,24 @@ For more information, see [Amazon EC2 I3 Instances](https://aws.amazon.com/ec2/i
 
 **Im4gn instances**
 
-These instances are well suited for workload that require high random I/O performance at a low latency, such as the following:
+These instances are well suited for workloads that require high random I/O performance at a low latency, such as the following:
 + Relational databases
 + NoSQL databases
 + Search
-+ Distributed file systems<a name="is4gen-instances"></a>
++ Distributed file systems
+
+For more information, see [Amazon EC2 Im4gn and Is4gen Instances](https://aws.amazon.com/ec2/instance-types/i4g)\.<a name="is4gen-instances"></a>
 
 **Is4gen instances**
 
-These instances are well suited for workload that require high random I/O performance at a low latency, such as the following:
+These instances are well suited for workloads that require high random I/O performance at a low latency, such as the following:
 + NoSQL databases
 + Indexing
 + Streaming
 + Caching
 + Warm storage
+
+For more information, see [Amazon EC2 Im4gn and Is4gen Instances](https://aws.amazon.com/ec2/instance-types/i4g)\.
 
 **Topics**
 + [Hardware specifications](#storage-instances-hardware)
@@ -188,40 +192,38 @@ The following is a summary of network performance for storage optimized instance
 
 ## SSD I/O performance<a name="storage-instances-diskperf"></a>
 
-If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
+If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| i3\.large \* |  100,125  |  35,000  | 
-| i3\.xlarge \* |  206,250  |  70,000  | 
-| i3\.2xlarge |  412,500  |  180,000  | 
-| i3\.4xlarge |  825,000  |  360,000  | 
-| i3\.8xlarge |  1,650,000  |  720,000  | 
-| i3\.16xlarge |  3,300,000  |  1,400,000  | 
-| i3\.metal |  3,300,000  |  1,400,000  | 
-| i3en\.large \* | 42,500 | 32,500 | 
-| i3en\.xlarge \* | 85,000 | 65,000 | 
-| i3en\.2xlarge \* | 170,000 | 130,000 | 
+| i3\.large | 100,125 | 35,000 | 
+| i3\.xlarge | 206,250 | 70,000 | 
+| i3\.2xlarge | 412,500 | 180,000 | 
+| i3\.4xlarge | 825,000 | 360,000 | 
+| i3\.8xlarge | 1,650,000 | 720,000 | 
+| i3\.16xlarge | 3,300,000 | 1,400,000 | 
+| i3\.metal | 3,300,000 | 1,400,000 | 
+| i3en\.large | 42,500 | 32,500 | 
+| i3en\.xlarge | 85,000 | 65,000 | 
+| i3en\.2xlarge | 170,000 | 130,000 | 
 | i3en\.3xlarge | 250,000 | 200,000 | 
 | i3en\.6xlarge | 500,000 | 400,000 | 
 | i3en\.12xlarge | 1,000,000 | 800,000 | 
 | i3en\.24xlarge | 2,000,000 | 1,600,000 | 
 | i3en\.metal | 2,000,000 | 1,600,000 | 
-| im4gn\.large \* | 31,250 | 25,000 | 
-| im4gn\.xlarge \* | 62,000 | 50,000 | 
-| im4gn\.2xlarge \* | 125,000 | 100,000 | 
+| im4gn\.large | 31,250 | 25,000 | 
+| im4gn\.xlarge | 62,000 | 50,000 | 
+| im4gn\.2xlarge | 125,000 | 100,000 | 
 | im4gn\.4xlarge | 250,000 | 200,000 | 
 | im4gn\.8xlarge | 500,000 | 400,000 | 
 | im4gn\.16xlarge | 1,000,000 | 800,000 | 
-| is4gen\.medium \* | 31,250 | 25,000 | 
-| is4gen\.large \* | 62,000 | 50,000 | 
-| is4gen\.xlarge \* | 125,000 | 100,000 | 
+| is4gen\.medium | 31,250 | 25,000 | 
+| is4gen\.large | 62,000 | 50,000 | 
+| is4gen\.xlarge | 125,000 | 100,000 | 
 | is4gen\.2xlarge | 250,000 | 200,000 | 
 | is4gen\.4xlarge | 500,000 | 400,000 | 
 | is4gen\.8xlarge | 1,000,000 | 800,000 | 
-
-\* For these instances, you can get up to the specified performance\.
 
 As you fill your SSD\-based instance store volumes, the I/O performance that you get decreases\. This is due to the extra work that the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 

@@ -245,6 +245,7 @@ CloudWatch prevents you from adding a recovery action to an alarm that is on an 
 
 When the `StatusCheckFailed_System` alarm is triggered, and the recover action is initiated, you are notified by the Amazon SNS topic that you chose when you created the alarm and associated the recover action\. During instance recovery, the instance is migrated during an instance reboot, and any data that is in\-memory is lost\. When the process is complete, information is published to the SNS topic you've configured for the alarm\. Anyone who is subscribed to this SNS topic receives an email notification that includes the status of the recovery attempt and any further instructions\. You notice an instance reboot on the recovered instance\.
 
+**Note**  
 The recover action can be used only with `StatusCheckFailed_System`, not with `StatusCheckFailed_Instance`\.
 
 The following problems can cause system status checks to fail:

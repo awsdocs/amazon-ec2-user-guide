@@ -2,10 +2,11 @@
 
 There is a limit on the number of running and requested Spot Instances per AWS account per Region\. Spot Instance limits are managed in terms of the *number of virtual central processing units \(vCPUs\)* that your running Spot Instances are either using or will use pending the fulfillment of open Spot Instance requests\. If you terminate your Spot Instances but do not cancel the Spot Instance requests, the requests count against your Spot Instance vCPU limit until Amazon EC2 detects the Spot Instance terminations and closes the requests\.
 
-There are six Spot Instance limits:
+There are seven Spot Instance limits:
 + All Standard \(A, C, D, H, I, M, R, T, Z\) Spot Instance Requests
++ All DL Spot Instance Requests
 + All F Spot Instance Requests
-+ All G Spot Instance Requests
++ All G and VT Spot Instance Requests
 + All Inf Spot Instance Requests
 + All P Spot Instance Requests
 + All X Spot Instance Requests

@@ -172,7 +172,7 @@ The following is example data for this event\.
         "arn:aws:ec2:us-east-1:123456789012:fleet/fleet-8becf5fe-bb9e-415d-8f54-3fa5a8628b91"
     ],
     "detail": {
-        "description": "r3.8xlarge, ami-032930428bf1abbff, Linux/UNIX, us-east-1a, Spot bid price is less than Spot market price $0.5291",
+        "description": "c4.xlarge, ami-0947d2ba12ee1ff75, Linux/UNIX, us-east-1a, Spot price in either SpotFleetRequestConfigData or SpotFleetLaunchSpecification or LaunchTemplate or LaunchTemplateOverrides is less than Spot market price $0.0619",
         "sub-type": "launchSpecUnusable"
     }
 }

@@ -48,7 +48,7 @@ EFA supports the following interfaces and libraries:
 ## Supported instance types<a name="efa-instance-types"></a>
 
 The following instance types support EFAs:
-+ General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal`  \| `m6a.48xlarge` \| `m6i.32xlarge` \| `m6i.metal` 
++ General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.48xlarge` \| `m6i.32xlarge` \| `m6i.metal` 
 + Compute optimized: `c5n.18xlarge` \| `c5n.9xlarge` \| `c5n.metal`  \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal` 
 + Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6i.32xlarge` \| `r6i.metal` 
 + Storage optimized: `i3en.24xlarge` \| `i3en.12xlarge` \| `i3en.metal`  \| `im4gn.16xlarge` 

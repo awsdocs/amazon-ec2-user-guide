@@ -17,6 +17,9 @@ The following diagram summarizes the process of creating an AMI from an instance
 
 First, launch an instance from an AMI that's similar to the AMI that you'd like to create\. You can connect to your instance and customize it\. When the instance is set up the way you want it, you can bundle it\. It takes several minutes for the bundling process to complete\. After the process completes, you have a bundle, which consists of an image manifest \(`image.manifest.xml`\) and files \(`image.part.`*xx*\) that contain a template for the root volume\. Next you upload the bundle to your Amazon S3 bucket and then register your AMI\.
 
+**Note**  
+To upload objects to an S3 bucket for your instance store\-backed Linux AMI, ACLs must be enabled for the bucket\. Otherwise, Amazon EC2 will not be able to set ACLs on the objects to upload\. If your destination bucket uses the bucket owner enforced setting for S3 Object Ownership, this won’t work because ACLs are disabled\. For more information, see [Controlling ownership of uploaded objects using S3 Object Ownership](https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html)\.
+
 When you launch an instance using the new AMI, we create the root volume for the instance using the bundle that you uploaded to Amazon S3\. The storage space used by the bundle in Amazon S3 incurs charges to your account until you delete it\. For more information, see [Deregister your Linux AMI](deregister-ami.md)\.
 
 If you add instance store volumes to your instance in addition to the root device volume, the block device mapping for the new AMI contains information for these volumes, and the block device mappings for instances that you launch from the new AMI automatically contain information for these volumes\. For more information, see [Block device mappings](block-device-mapping-concepts.md)\.
@@ -26,7 +29,9 @@ If you add instance store volumes to your instance in addition to the root devic
 Before you can create an AMI, you must complete the following tasks:
 + Install the AMI tools\. For more information, see [Set up the AMI tools](set-up-ami-tools.md)\.
 + Install the AWS CLI\. For more information, see [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html)\.
-+ Ensure that you have an Amazon S3 bucket for the bundle\. To create an Amazon S3 bucket, open the Amazon S3 console and click **Create Bucket**\. Alternatively, you can use the AWS CLI [mb](https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command\.
++ Ensure that you have an S3 bucket for the bundle, and that your bucket has ACLs enabled\. 
+
+  To create an S3 bucket, open the Amazon S3 console and click **Create Bucket**\. Alternatively, you can use the AWS CLI [mb](https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command\.
 + Ensure that you have your AWS account ID\. For more information, see [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) in the *AWS General Reference*\.
 + Ensure that you have your access key ID and secret access key\. For more information, see [Access Keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) in the *AWS General Reference*\.
 + Ensure that you have an X\.509 certificate and corresponding private key\.

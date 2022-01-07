@@ -1,0 +1,13 @@
+# Prepare for interruptions<a name="prepare-for-interruptions"></a>
+
+Demand for Spot Instances can vary significantly from moment to moment, and the availability of Spot Instances can also vary significantly depending on how many unused EC2 instances are available\. It is always possible that your Spot Instance might be interrupted\. Therefore, you must ensure that your application is prepared for a Spot Instance interruption\.
+
+We recommend that you follow these best practices so that you're prepared for a Spot Instance interruption\.
++ When you create your Spot request, specify the default maximum price, which is the On\-Demand price\. 
++ Ensure that your instance is ready to go as soon as the request is fulfilled by using an Amazon Machine Image \(AMI\) that contains the required software configuration\. You can also use user data to run commands at startup\.
++ Store important data regularly in a place that isn't affected if the Spot Instance terminates\. For example, you can use Amazon S3, Amazon EBS, or DynamoDB\.
++ Divide the work into small tasks \(using a Grid, Hadoop, or queue\-based architecture\) or use checkpoints so that you can save your work frequently\.
++ Amazon EC2 emits a rebalance recommendation signal to the Spot Instance when the instance is at an elevated risk of interruption\. You can rely on the rebalance recommendation to proactively manage Spot Instance interruptions without having to wait for the two\-minute Spot Instance interruption notice\. For more information, see [EC2 instance rebalance recommendations](rebalance-recommendations.md)\.
++ Use the two\-minute Spot Instance interruption notices to monitor the status of your Spot Instances\. For more information, see [Spot Instance interruption notices](spot-instance-termination-notices.md)\.
++ While we make every effort to provide these warnings as soon as possible, it is possible that your Spot Instance is interrupted before the warnings can be made available\. Test your application to ensure that it handles an unexpected instance interruption gracefully, even if you are monitoring for rebalance recommendation signals and interruption notices\. You can do this by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
++ Run a controlled fault injection experiment with AWS Fault Injection Simulator to test how your application responds when your Spot Instance is interrupted\. For more information, see the [Tutorial: Test Spot Instance interruptions using AWS FIS](https://docs.aws.amazon.com/fis/latest/userguide/fis-tutorial-spot-interruptions.html) in the *AWS Fault Injection Simulator User Guide*\.

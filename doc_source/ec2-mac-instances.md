@@ -328,9 +328,9 @@ After you increase the size of the volume, you must increase the size of your AP
     [ec2-user ~]$ diskutil list external physical
    /dev/disk0 (external, physical):
       #:                       TYPE NAME                    SIZE       IDENTIFIER
-      0:      GUID_partition_scheme                        *322.1 GB   disk0
-      1:                        EFI ⁨EFI⁩                     209.7 MB   disk0s1
-      2:                 Apple_APFS ⁨Container disk2⁩         321.9 GB   disk0s2
+      0:                 GUID_partition_scheme            *322.1 GB     disk0
+      1:                 EFI EFI                           209.7 MB     disk0s1
+      2:                 Apple_APFS Container disk2        321.9 GB     disk0s2
    ```
 
 1. Copy and paste the following command\.

@@ -33,7 +33,7 @@ If you archive **Snap C**, your standard tier storage will decrease by 4 GiB bec
 
 ## Archiving full snapshots for compliance reasons<a name="guidelines-full-snapshot"></a>
 
-You might need to create full backups of volumes on a monthly, quarterly, or yearly basis for compliance reasons\. For these backups, you might need standalone snapshots without backward or forward references to other snapshots in the snapshot lineage\. Snapshots archived with EBS Snapshots Archive are full snapshots, and they do not have any references to other snapshots in the lineage\. Additionally, you will likely need to retain these snapshots for compliance snapshots for several years\. EBS Snapshots Archive makes it cost\-effective to archive these full snapshots snapshots for long\-term retention\.
+You might need to create full backups of volumes on a monthly, quarterly, or yearly basis for compliance reasons\. For these backups, you might need standalone snapshots without backward or forward references to other snapshots in the snapshot lineage\. Snapshots archived with EBS Snapshots Archive are full snapshots, and they do not have any references to other snapshots in the lineage\. Additionally, you will likely need to retain these snapshots for compliance snapshots for several years\. EBS Snapshots Archive makes it cost\-effective to archive these full snapshots for long\-term retention\.
 
 ## Determining the reduction in standard tier storage costs<a name="archive-guidelines"></a>
 
@@ -190,11 +190,11 @@ To determine the reduction in storage and storage costs in the standard tier, us
 
    For example, the snapshots returned in the previous step arranged by creation time, from earliest to newest, is as follows:
 
-   1. `snap-08ca60083f86816b0` \(earliest \- created before the snapshot that you want to archive\)
+   1. `snap-08ca60083f86816b0` \(earliest – created before the snapshot that you want to archive\)
 
    1. `snap-09c9114207084f0d9` \(the snapshot to archive\)
 
-   1. `snap-024f49fe8dd853fa8` \(newest \- created after the snapshot that you that want to archive\)
+   1. `snap-024f49fe8dd853fa8` \(newest – created after the snapshot that you that want to archive\)
 
 1. Identify the snapshots that were created immediately before and after the snapshot that you want to archive\. In this case, you want to archive snapshot `snap-09c9114207084f0d9`, which was the second incremental snapshot created in the set of three snapshots\. Snapshot `snap-08ca60083f86816b0` was created immediately before, and snapshot `snap-024f49fe8dd853fa8` was created immediately after\.
 

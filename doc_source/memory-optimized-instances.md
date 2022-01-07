@@ -60,7 +60,7 @@ These instances are well suited for the following:
 
 For more information, see [Amazon EC2 X1e Instances](https://aws.amazon.com/ec2/instance-types/x1e)\.
 
-**X2gd instances**
+**X2gd, instances**
 
 These instances are well suited for the following:
 + In\-memory databases, such as Redis and Memcached\.
@@ -68,7 +68,7 @@ These instances are well suited for the following:
 + Electronic design automation \(EDA\) workloads, such as physical verification and layout tools\.
 + Memory\-intensive workloads, such as real\-time analytics and real\-time caching servers\.
 
-For more information, see [Amazon EC2 X2 Instances](https://aws.amazon.com/ec2/instance-types/x2)\.
+For more information, see [Amazon EC2 X2g Instances](https://aws.amazon.com/ec2/instance-types/x2g/)\.
 
 **z1d instances**
 
@@ -338,32 +338,32 @@ The following is a summary of network performance for memory optimized instances
 
 ## SSD I/O performance<a name="instances-ssd-perf"></a>
 
-If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
+If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| r5ad\.large \* | 30,000 | 15,000 | 
-| r5ad\.xlarge \* | 59,000 | 29,000 | 
-| r5ad\.2xlarge \*  | 117,000 | 57,000 | 
-| r5ad\.4xlarge \* | 234,000 | 114,000 | 
+| r5ad\.large | 30,000 | 15,000 | 
+| r5ad\.xlarge | 59,000 | 29,000 | 
+| r5ad\.2xlarge  | 117,000 | 57,000 | 
+| r5ad\.4xlarge | 234,000 | 114,000 | 
 | r5ad\.8xlarge | 466,666 | 233,333 | 
 | r5ad\.12xlarge | 700,000 | 340,000 | 
 | r5ad\.16xlarge | 933,333 | 466,666 | 
 | r5ad\.24xlarge | 1,400,000 | 680,000 | 
-| r5d\.large \* | 30,000 | 15,000 | 
-| r5d\.xlarge \* | 59,000 | 29,000 | 
-| r5d\.2xlarge \* | 117,000 | 57,000 | 
-| r5d\.4xlarge \* | 234,000 | 114,000 | 
+| r5d\.large | 30,000 | 15,000 | 
+| r5d\.xlarge | 59,000 | 29,000 | 
+| r5d\.2xlarge | 117,000 | 57,000 | 
+| r5d\.4xlarge | 234,000 | 114,000 | 
 | r5d\.8xlarge | 466,666 | 233,333 | 
 | r5d\.12xlarge | 700,000 | 340,000 | 
 | r5d\.16xlarge  | 933,333 | 466,666 | 
 | r5d\.24xlarge | 1,400,000 | 680,000 | 
 | r5d\.metal | 1,400,000 | 680,000 | 
-| r5dn\.large \* | 30,000 | 15,000 | 
-| r5dn\.xlarge \* | 59,000 | 29,000 | 
-| r5dn\.2xlarge \* | 117,000 | 57,000 | 
-| r5dn\.4xlarge \* | 234,000 | 114,000 | 
+| r5dn\.large | 30,000 | 15,000 | 
+| r5dn\.xlarge | 59,000 | 29,000 | 
+| r5dn\.2xlarge | 117,000 | 57,000 | 
+| r5dn\.4xlarge | 234,000 | 114,000 | 
 | r5dn\.8xlarge | 466,666 | 233,333 | 
 | r5dn\.12xlarge | 700,000 | 340,000 | 
 | r5dn\.16xlarge | 933,333 | 466,666 | 
@@ -387,15 +387,13 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | x2gd\.12xlarge | 645,000 | 270,000 | 
 | x2gd\.16xlarge | 860,000 | 360,000 | 
 | x2gd\.metal | 860,000 | 360,000 | 
-| z1d\.large \* | 30,000 | 15,000 | 
-| z1d\.xlarge \* | 59,000 | 29,000 | 
-| z1d\.2xlarge \* | 117,000 | 57,000 | 
-| z1d\.3xlarge \* | 175,000 | 75,000 | 
+| z1d\.large | 30,000 | 15,000 | 
+| z1d\.xlarge | 59,000 | 29,000 | 
+| z1d\.2xlarge | 117,000 | 57,000 | 
+| z1d\.3xlarge | 175,000 | 75,000 | 
 | z1d\.6xlarge | 350,000 | 170,000 | 
 | z1d\.12xlarge | 700,000 | 340,000 | 
 | z1d\.metal | 700,000 | 340,000 | 
-
-\* For these instances, you can get up to the specified performance\.
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 

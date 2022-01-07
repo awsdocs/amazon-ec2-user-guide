@@ -13,6 +13,7 @@ Tag keys and their values are returned by many different API calls\. Denying acc
 + [Tag your resources for billing](#tag-resources-for-billing)
 + [Work with tags using the console](#Using_Tags_Console)
 + [Work with tags using the command line](#Using_Tags_CLI)
++ [Work with instance tags in instance metadata](#work-with-tags-in-IMDS)
 + [Add tags to a resource using CloudFormation](#cloudformation-add-tag-specifications)
 
 ## Tag basics<a name="tag-basics"></a>
@@ -34,7 +35,7 @@ After you delete a resource, its tags might remain visible in the console, API, 
 
 ## Tag your resources<a name="tag-resources"></a>
 
-You can tag most Amazon EC2 resources that already exist in your account\. The [table](#tag-ec2-resources-table) below lists the resources that support tagging\.
+You can tag most Amazon EC2 resources that already exist in your account\. The following [table](#tag-ec2-resources-table) lists the resources that support tagging\.
 
 If you're using the Amazon EC2 console, you can apply tags to resources by using the **Tags** tab on the relevant resource screen, or you can use the **Tags** screen\. Some resource screens enable you to specify tags for a resource when you create the resource; for example, a tag with a key of `Name` and a value that you specify\. In most cases, the console applies the tags immediately after the resource is created \(rather than during resource creation\)\. The console may organize resources according to the `Name` tag, but this tag doesn't have any semantic meaning to the Amazon EC2 service\.
 
@@ -107,7 +108,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 | VPC peering connection | Yes | Yes | 
 | VPN connection | Yes | Yes | 
 
-You can tag instances and volumes on creation using the Amazon EC2 Launch Instances wizard in the Amazon EC2 console\. You can tag your EBS volumes on creation using the Volumes screen, or EBS snapshots using the Snapshots screen\. Alternatively, use the resource\-creating Amazon EC2 APIs \(for example, [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\) to apply tags when creating your resource\.
+You can tag instances, volumes, and network interfaces on creation using the Amazon EC2 Launch Instances wizard in the Amazon EC2 console\. You can tag your EBS volumes on creation using the Volumes screen, or EBS snapshots using the Snapshots screen\. Alternatively, use the resource\-creating Amazon EC2 APIs \(for example, [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\) to apply tags when creating your resource\.
 
 You can apply tag\-based resource\-level permissions in your IAM policies to the Amazon EC2 API actions that support tagging on creation to implement granular control over the users and groups that can tag resources on creation\. Your resources are properly secured from creation—tags are applied immediately to your resources, therefore any tag\-based resource\-level permissions controlling the use of resources are immediately effective\. Your resources can be tracked and reported on more accurately\. You can enforce the use of tagging on new resources, and control which tag keys and values are set on your resources\. 
 
@@ -122,9 +123,10 @@ The following basic restrictions apply to tags:
 + For each resource, each tag key must be unique, and each tag key can have only one value\.
 + Maximum key length – 128 Unicode characters in UTF\-8
 + Maximum value length – 256 Unicode characters in UTF\-8
-+ Although EC2 allows for any character in its tags, other services are more restrictive\. The allowed characters across services are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\.
++ Although EC2 allows for any character in its tags, other services are more restrictive\. The allowed characters across services are: letters, numbers, and spaces representable in UTF\-8, and the following characters: `+ - = . _ : / @`\.
 + Tag keys and values are case\-sensitive\.
 + The `aws:` prefix is reserved for AWS use\. If a tag has a tag key with this prefix, then you can't edit or delete the tag's key or value\. Tags with the `aws:` prefix do not count against your tags per resource limit\.
++ If you enable tags in instance metadata, you can’t use spaces, `/`, or the reserved names `.`, `..`, or `_index`\. The instance name is a tag with the reserved key of `Name`, and its value must adhere to these restrictions if tags in instance metadata is enabled\. For more information, see [Work with instance tags in instance metadata](#work-with-tags-in-IMDS)\.
 
 You can't terminate, stop, or delete a resource based solely on its tags; you must specify the resource identifier\. For example, to delete snapshots that you tagged with a tag key called `DeleteMe`, you must use the `DeleteSnapshots` action with the resource identifiers of the snapshots, such as `snap-1234567890abcdef0`\. 
 
@@ -432,6 +434,84 @@ The following command describes all EC2 resources with the tag **Stack=Test**\.
 aws ec2 describe-tags \
     --filters Name=key,Values=Stack Name=value,Values=Test
 ```
+
+## Work with instance tags in instance metadata<a name="work-with-tags-in-IMDS"></a>
+
+You can access an instance's tags from the instance metadata\. By accessing tags from the instance metadata, you no longer need to use the `DescribeInstance` or `DescribeTag` API calls to retrieve tag information, which reduces your API transactions per second, and lets your tag retrievals scale with the number of instances that you control\. Furthermore, local processes that are running on an instance can view the instance's tag information directly from the instance metadata\.
+
+By default, tags are not available from the instance metadata; you must explicitly allow access\. You can allow access at instance launch, or after launch on a running or stopped instance\. You can also allow access to tags by specifying this in a launch template\. Instances that are launched by using the template allow access to tags in the instance metadata\.
+
+If you add or remove an instance tag, the instance metadata is updated while the instance is running for [instances built on the Nitro System](instance-types.md#ec2-nitro-instances), without needing to reboot, or stop and then start the instance\. For all other instances, to update the tags in the instance metadata, you must either reboot, or stop and then start the instance\.
+
+**Topics**
++ [Allow access to tags in instance metadata](#allow-access-to-tags-in-IMDS)
++ [Turn off access to tags in instance metadata](#turn-off-access-to-tags-in-IMDS)
++ [Retrieve tags from instance metadata](#retrieve-tags-from-IMDS)
+
+### Allow access to tags in instance metadata<a name="allow-access-to-tags-in-IMDS"></a>
+
+By default, there is no access to instance tags in the instance metadata\. For each instance, you must explicitly allow access by using one of the following methods\.
+
+**To allow access to tags in instance metadata using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigation pane, choose **Instances**\.
+
+1. Select an instance, and then choose** Actions**, **Instance settings**, **Allow tags in instance metadata**\.
+
+1. To allow access to tags in instance metadata, select the **Allow** check box\.
+
+1. Choose **Save**\.
+
+**To allow access to tags in instance metadata at launch using the AWS CLI**  
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and set `InstanceMetadataTags` to `enabled`\. 
+
+```
+aws ec2 run-instances \
+    --image-id ami-0abcdef1234567890 \
+    --instance-type c3.large \
+    ...
+    --metadata-options "InstanceMetadataTags=enabled"
+```
+
+**To allow access to tags in instance metadata on a running or stopped instance using the AWS CLI**  
+Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) command and set `--instance-metadata-tags` to `enabled`\. 
+
+```
+aws ec2 modify-instance-metadata-options \
+    --instance-id i-123456789example \
+    --instance-metadata-tags enabled
+```
+
+### Turn off access to tags in instance metadata<a name="turn-off-access-to-tags-in-IMDS"></a>
+
+To turn off access to instance tags in the instance metadata, use one of the following methods\. You don't need to turn off access to instance tags on instance metadata at launch because it's turned off by default\.
+
+**To turn off access to tags in instance metadata using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigation pane, choose **Instances**\.
+
+1. Select an instance, and then choose** Actions**, **Instance settings**, **Allow tags in instance metadata**\.
+
+1. To turn off access to tags in instance metadata, clear the **Allow** check box\.
+
+1. Choose **Save**\.
+
+**To turn off access to tags in instance metadata using the AWS CLI**  
+Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) command and set `--instance-metadata-tags` to `disabled`\. 
+
+```
+aws ec2 modify-instance-metadata-options \
+    --instance-id i-123456789example \
+    --instance-metadata-tags disabled
+```
+
+### Retrieve tags from instance metadata<a name="retrieve-tags-from-IMDS"></a>
+
+If instance tags are allowed in the instance metadata, the `tags/instance` category is accessible from the instance metadata\. For examples on how to retrieve tags from the instance metadata, see [Get the instance tags for an instance](instancedata-data-retrieval.md#instance-metadata-ex-7)\.
 
 ## Add tags to a resource using CloudFormation<a name="cloudformation-add-tag-specifications"></a>
 

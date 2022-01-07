@@ -338,7 +338,8 @@ After you have installed the required software components, you create an AMI tha
 Launch your EFA\-enabled instances into a cluster placement group using the EFA\-enabled AMI that you created in **Step 7**, and the EFA\-enabled security group that you created in **Step 1**\.
 
 **Note**  
-It is not an absolute requirement to launch your EFA\-enabled instances into a cluster placement group\. However, we do recommend running your EFA\-enabled instances in a cluster placement group as it launches the instances into a low\-latency group in a single Availability Zone\.
+It is not an absolute requirement to launch your EFA\-enabled instances into a cluster placementgroup\. However, we do recommend running your EFA\-enabled instances in a cluster placement group as it launches the instances into a low\-latency group in a single Availability Zone\.
+To ensure that capacity is available as you scale your cluster’s instances, you can create a Capacity Reservation for your cluster placement group\. For more information, see [Capacity Reservations in cluster placement groups](cr-cpg.md)\.
 
 **To launch your EFA\-enabled instances into a cluster placement group**
 

@@ -332,7 +332,7 @@ The listing below is an example of a JSON object emitted by EBS after a successf
     "source": "arn:aws:ec2:eu-west-1::snapshot/snap-76543210",
     "startTime": "yyyy-mm-ddThh:mm:ssZ",
     "endTime": "yyyy-mm-ddThh:mm:ssZ",
-    "Incremental": "True"
+    "Incremental": "true"
   }
 }
 ```
@@ -559,17 +559,19 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. Choose **Events**, **Create rule**, **Select event source**, and **Amazon EBS Snapshots**\.
+1. In the navigation panel, expand **Events** and choose **Rules**, and then choose **Create rule**\.
 
-1. For **Specific Event\(s\)**, choose **createSnapshot** and for **Specific Result\(s\)**, choose **succeeded**\.
+1. Select **Event Pattern\.**\. For **Service Name**, choose **EC2**, and for **Event Type**, choose **EBS Snapshot Notification**\.
 
-1. For **Rule target**, find and choose the sample function that you previously created\.
+1. Select **Specific event\(s\)** and then choose **createSnapshot**\.
 
-1. Choose **Target**, **Add Target**\.
+1. Select **Specific result\(s\)** and then choose **succeeded**\.
 
-1. For **Lambda function**, select the Lambda function that you previously created and choose **Configure details**\.
+1. In the **Targets** section, choose **Add target**, and then for **Function**, choose the Lambda function that you created previously\.
 
-1. On the **Configure rule details** page, type values for **Name** and **Description**\. Select the **State** check box to activate the function \(setting it to **Enabled**\)\. 
+1. Choose **Configure details**\.
+
+1. On the **Configure rule details** page, enter values for **Name** and **Description**\. Select the **State** check box to activate the function\.
 
 1. Choose **Create rule**\.
 

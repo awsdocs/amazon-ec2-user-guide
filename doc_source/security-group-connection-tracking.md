@@ -2,7 +2,7 @@
 
 Your security groups use connection tracking to track information about traffic to and from the instance\. Rules are applied based on the connection state of the traffic to determine if the traffic is allowed or denied\. With this approach, security groups are stateful\. This means that responses to inbound traffic are allowed to flow out of the instance regardless of outbound security group rules, and vice versa\.
 
-As an example, suppose that you initiate an ICMP ping command to your instances from your home computer, and your inbound security group rules allow ICMP traffic\. Information about the connection \(including the port information\) is tracked\. Response traffic from the instance for the ping command is not tracked as a new request, but rather as an established connection, and is allowed to flow out of the instance, even if your outbound security group rules restrict outbound ICMP traffic\.
+As an example, suppose that you initiate a command such as netcat or similar to your instances from your home computer, and your inbound security group rules allow ICMP traffic\. Information about the connection \(including the port information\) is tracked\. Response traffic from the instance for the command is not tracked as a new request, but rather as an established connection, and is allowed to flow out of the instance, even if your outbound security group rules restrict outbound ICMP traffic\.
 
 For protocols other than TCP, UDP, or ICMP, only the IP address and protocol number is tracked\. If your instance sends traffic to another host \(host B\), and host B initiates the same type of traffic to your instance in a separate request within 600 seconds of the original request or response, your instance accepts it regardless of inbound security group rules\. Your instance accepts it because it’s regarded as response traffic\.
 
@@ -44,4 +44,12 @@ Amazon EC2 defines the maximum number of connections that can be tracked per ins
 
 To determine whether packets were dropped because the network traffic for your instance exceeded the maximum number of connections that can be tracked, use the `conntrack_allowance_exceeded` network performance metric\. For more information, see [Monitor network performance for your EC2 instance](monitoring-network-performance-ena.md)\.
 
-Connections made through the following are automatically tracked, even if the security group configuration does not require tracking: NAT gateways, Network Load Balancers, Gateway Load Balancers, and transit gateway attachments\. With Elastic Load Balancing, if you exceed the maximum number of connections that can be tracked per instance, we recommend that you scale either the number of instances registered with the load balancer or the size of the instances registered with the load balancer\.
+Connections made through the following are automatically tracked, even if the security group configuration does not require tracking:
++ Gateway Load Balancers
++ Global Accelerator accelerators
++ NAT gateways
++ Network Firewall firewall endpoints
++ Network Load Balancers
++ Transit gateway attachments
+
+With Elastic Load Balancing, if you exceed the maximum number of connections that can be tracked per instance, we recommend that you scale either the number of instances registered with the load balancer or the size of the instances registered with the load balancer\.

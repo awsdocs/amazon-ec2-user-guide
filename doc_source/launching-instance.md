@@ -16,6 +16,7 @@ When you launch an instance that's not within the [AWS Free Tier](https://aws.am
 + [Step 5: Add Tags](#step-5-add-tags)
 + [Step 6: Configure Security Group](#step-6-configure-security-group)
 + [Step 7: Review Instance Launch and Select Key Pair](#step-7-review-instance-launch)
++ [Launch an instance using the new launch instance wizard – beta](ec2-launch-instance-wizard.md)
 
 ## Initiate instance launch<a name="initiate-instance-launch"></a>
 

@@ -11,7 +11,7 @@ You can share your AMIs with other AWS accounts\. To allow all AWS accounts to u
 + AMIs with encrypted volumes cannot be made public\.
 + To avoid exposing sensitive data when you share an AMI, read the security considerations in [Guidelines for shared Linux AMIs](building-shared-amis.md) and follow the recommended actions\. 
 + If an AMI has a product code, or contains a snapshot of an encrypted volume, you can't make it public; you can share the AMI only with specific AWS accounts\.
-+ AMIs are a regional resource\. When you share an AMI, its only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
++ AMIs are a regional resource\. When you share an AMI, it is only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
 + You are not billed when your AMI is used by other AWS accounts to launch instances\. The accounts that launch instances using the AMI are billed for the instances that they launch\. 
 + When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from their instance\.
 

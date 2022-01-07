@@ -254,26 +254,24 @@ The following is a summary of network performance for accelerated computing inst
 
 ## SSD I/O performance<a name="accelerated-computing-ssd-perf"></a>
 
-If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
+If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| g4ad\.xlarge \* | 10,417 | 8,333 | 
-| g4ad\.2xlarge \* | 20,833 | 16,667 | 
-| g4ad\.4xlarge \* | 41,667 | 33,333 | 
+| g4ad\.xlarge | 10,417 | 8,333 | 
+| g4ad\.2xlarge | 20,833 | 16,667 | 
+| g4ad\.4xlarge | 41,667 | 33,333 | 
 | g4ad\.8xlarge | 83,333 | 66,667 | 
 | g4ad\.16xlarge | 166,667 | 133,333 | 
-| g5\.xlarge \* | 40,625 | 20,313 | 
-| g5\.2xlarge \* | 40,625 | 20,313 | 
-| g5\.4xlarge \* | 125,000 | 62,500 | 
+| g5\.xlarge | 40,625 | 20,313 | 
+| g5\.2xlarge | 40,625 | 20,313 | 
+| g5\.4xlarge | 125,000 | 62,500 | 
 | g5\.8xlarge | 250,000 | 125,000 | 
 | g5\.12xlarge | 312,500 | 156,250 | 
 | g5\.16xlarge | 250,000 | 125,000 | 
 | g5\.24xlarge | 312,500 | 156,250 | 
 | g5\.48xlarge | 625,000 | 312,500 | 
-
-\* For these instances, you can get up to the specified performance\.
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 

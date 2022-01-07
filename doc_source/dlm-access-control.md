@@ -4,18 +4,48 @@ An IAM user must have the following permissions to use Amazon Data Lifecycle Man
 
 ```
 {
-    "Version": "2012-10-17",
-    "Statement": [
-    {
-        "Effect": "Allow",
-        "Action": ["iam:PassRole", "iam:ListRoles"],
-        "Resource": "arn:aws:iam::123456789012:role/AWSDataLifecycleManagerDefaultRole"
-    },
-    {
-        "Effect": "Allow", 
-        "Action": "dlm:*",
-        "Resource": "*"
-    }]
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:CreateSnapshot",
+				"ec2:CreateSnapshots",
+				"ec2:DeleteSnapshot",
+				"ec2:DescribeInstances",
+				"ec2:DescribeVolumes",
+				"ec2:DescribeSnapshots",
+				"ec2:EnableFastSnapshotRestores",
+				"ec2:DescribeFastSnapshotRestores",
+				"ec2:DisableFastSnapshotRestores",
+				"ec2:CopySnapshot",
+				"ec2:ModifySnapshotAttribute",
+				"ec2:DescribeSnapshotAttribute"
+			],
+			"Resource": "*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:CreateTags"
+			],
+			"Resource": "arn:aws:ec2:*::snapshot/*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"events:PutRule",
+				"events:DeleteRule",
+				"events:DescribeRule",
+				"events:EnableRule",
+				"events:DisableRule",
+				"events:ListTargetsByRule",
+				"events:PutTargets",
+				"events:RemoveTargets"
+			],
+			"Resource": "arn:aws:events:*:*:rule/AwsDataLifecycleRule.managed-cwe.*"
+		}
+	]
 }
 ```
 

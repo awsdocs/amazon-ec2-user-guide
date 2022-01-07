@@ -21,8 +21,8 @@ Each instance type provides higher or lower minimum performance from a shared re
 + [Storage optimized instances](storage-optimized-instances.md)
 + [Linux accelerated computing instances](accelerated-computing-instances.md)
 + [Find an Amazon EC2 instance type](instance-discovery.md)
-+ [Change the instance type](ec2-instance-resize.md)
 + [Get recommendations for an instance type](ec2-instance-recommendations.md)
++ [Change the instance type](ec2-instance-resize.md)
 
 ## Available instance types<a name="AvailableInstanceTypes"></a>
 
@@ -294,7 +294,7 @@ The following table summarizes the networking and storage features supported by 
 
 ## Instance limits<a name="instance-type-limits"></a>
 
-There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\.
+There is a limit on the total number of instances that you can launch in a Region, and there are additional limits on some instance types\.
 
 For more information about the default limits, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)
 

@@ -42,12 +42,16 @@ The following table summarizes the supported NVIDIA drivers for each GPU instanc
 | G3 | Yes | Yes | No | 
 | G4dn | Yes | Yes | Yes | 
 | G5 | Yes | Yes | Yes | 
-| G5g | Yes | No | No | 
+| G5g | Yes ¹ | No | No | 
 | P2 | Yes | No | No | 
-| P3 | Yes | Yes † | No | 
-| P4d | Yes | No | No | 
+| P3 | Yes | Yes ² | No | 
+| P4d | Yes ³ | No | No | 
 
-† Using Marketplace AMIs only
+¹ This Tesla driver also supports optimized graphics applications specific to the ARM64 platform
+
+² Using Marketplace AMIs only
+
+³ For P4d instances, use driver version 460
 
 ## Installation options<a name="nvidia-installation-options"></a>
 
@@ -83,15 +87,17 @@ Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate
 | G2 | GRID | GRID Series | GRID K520 | 
 | G3 | Tesla | M\-Class | M60 | 
 | G4dn | Tesla | T\-Series | T4 | 
-| G5 † | Tesla | A\-Series | A10 | 
-| G5g ‡ | Tesla | T\-Series | NVIDIA T4g | 
+| G5 ¹ | Tesla | A\-Series | A10 | 
+| G5g ² | Tesla | T\-Series | NVIDIA T4G | 
 | P2 | Tesla | K\-Series | K80 | 
 | P3 | Tesla | V\-Series | V100 | 
-| P4d | Tesla | A\-Series | A100 | 
+| P4d ³ | Tesla | A\-Series | A100 | 
 
-† G5 instances require driver version 470\.00 or later\.
+¹ G5 instances require driver version 470\.00 or later
 
-‡ G5g instances require driver version 470\.82\.01 or later\. The operating systems is Linux aarch64\.
+² G5g instances require driver version 470\.82\.01 or later\. The operating systems is Linux aarch64
+
+³ P4d instances require driver version 460
 
 **To install the NVIDIA driver on Linux**  
 For more information about installing and configuring the driver, see the [NVIDIA Driver Installation Quickstart Guide](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)\. 
@@ -105,7 +111,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
 + IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
 + G5 instances require GRID 13\.1 or later \(or GRID 12\.4 or later\)\.
 
-#### Amazon Linux<a name="nvidia-grid-amazon-linux"></a>
+#### Amazon Linux and Amazon Linux 2<a name="nvidia-grid-amazon-linux"></a>
 
 **To install the NVIDIA GRID driver on your instance**
 
@@ -153,6 +159,12 @@ These downloads are available to AWS customers only\. By downloading, you agree 
 
    ```
    [ec2-user ~]$ sudo /bin/sh ./NVIDIA-Linux-x86_64*.run
+   ```
+**Note**  
+If you are using Amazon Linux 2 with kernel version 5\.1\.0, use the following command to install the GRID driver\.  
+
+   ```
+   [ec2-user ~]$ sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64*.run
    ```
 
    When prompted, accept the license agreement and specify the installation options as required \(you can accept the default options\)\.
@@ -539,7 +551,7 @@ These drivers are available to AWS customers only\. By downloading them, you agr
 + Install the AWS CLI on your Linux instance and configure default credentials\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
 + IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
 
-#### Amazon Linux<a name="nvidia-gaming-amazon-linux"></a>
+#### Amazon Linux and Amazon Linux 2<a name="nvidia-gaming-amazon-linux"></a>
 
 **To install the NVIDIA gaming driver on your instance**
 
@@ -587,6 +599,12 @@ These drivers are available to AWS customers only\. By downloading them, you agr
 
    ```
    [ec2-user ~]$ sudo ./NVIDIA-Linux-x86_64*.run
+   ```
+**Note**  
+If you are using Amazon Linux 2 with kernel version 5\.1\.0, use the following command to install the NVIDIA gaming drivers\.  
+
+   ```
+   [ec2-user ~]$ sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64*.run
    ```
 
    When prompted, accept the license agreement and specify the installation options as required \(you can accept the default options\)\.

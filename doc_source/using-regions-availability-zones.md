@@ -56,6 +56,7 @@ For information about available Wavelength Zones, see [Available Wavelength Zone
 | us\-west\-2 | US West \(Oregon\) | Not required | 
 | af\-south\-1 | Africa \(Cape Town\) | Required | 
 | ap\-east\-1 | Asia Pacific \(Hong Kong\) | Required | 
+| ap\-southeast\-3 | Asia Pacific \(Jakarta\) | Required | 
 | ap\-south\-1 | Asia Pacific \(Mumbai\) | Not required | 
 | ap\-northeast\-3 | Asia Pacific \(Osaka\) | Not required | 
 | ap\-northeast\-2 | Asia Pacific \(Seoul\) | Not required | 
