@@ -101,9 +101,10 @@ For this example, suppose that you have an instance built on the [Nitro System](
      ```
      [ec2-user ~]$ sudo yum install xfsprogs
      ```
-   + \[ext4 file system\] To extend the file system on each volume, use the resize2fs command\.
+   + \[ext4 file system\] To extend the file system on each volume, use the e2fsck and resize2fs commands\.
 
      ```
+     [ec2-user ~]$ sudo e2fsck -f /dev/nvme0n1p1
      [ec2-user ~]$ sudo resize2fs /dev/nvme0n1p1
      [ec2-user ~]$ sudo resize2fs /dev/nvme1n1
      ```
