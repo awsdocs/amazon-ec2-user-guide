@@ -67,7 +67,7 @@ When you permanently restore a snapshot, the snapshot is restored from the archi
 **Deleting snapshots**  
 
 
-If you delete a snapshot while it is being archived, you are billed for the snapshot data that has already been moved to the archive tier\. This data is subject to the minimum archive period of 90 days and billed accordingly upon deletion\. For example, if you archive a 100 GiB snapshot, and you delete the snapshot after only 40 GiB has been archived, you are billed for $1.5 the minimum archive period of 90 days for the 40 GiB that has been archived \(40 GiB \* $0\.0125 per GiB\-month \* 3 months\)\.
+If you delete a snapshot while it is being archived, you are billed for the snapshot data that has already been moved to the archive tier\. This data is subject to the minimum archive period of 90 days and billed accordingly upon deletion\. For example, if you archive a 100 GiB snapshot, and you delete the snapshot after only 40 GiB has been archived, you are billed $1.50 the minimum archive period of 90 days for the 40 GiB that has already been archived \($0\.0125 per GB-month \* 40 GB \* (90 days \* 24 hours\) \/ (24 hours\/day \* 30-day month\)\.
 
 If you delete a snapshot while it is being restored from the archive tier, you are billed for the snapshot restore for the full size of the snapshot \(snapshot size \* $0\.03\)\. For example, if you restore a 100 GiB snapshot from the archive tier, and you delete the snapshot at any point before the snapshot restore completes, you are billed $3 \(100 GiB snapshot size \* $0\.03\)\.
 
