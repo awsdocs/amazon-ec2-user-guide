@@ -1063,7 +1063,7 @@ After you install an NVIDIA graphics driver on your instance, you can install a 
 1. Run the install script as follows to install the CUDA toolkit and add the CUDA version number to the toolkit path\.
 
    ```
-   [ec2-user ~]$ sudo downloaded_installer_file --silent --override --toolkit --samples --toolkitpath=/usr/local/cuda-version --samplespath=/usr/local/cuda --no-opengl-lib
+   [ec2-user ~]$ sudo downloaded_installer_file --silent --override --toolkit --samples --toolkitpath=/usr/local/cuda-version --samplespath=/usr/local/cuda --no-opengl-libs
    ```
 
 1. \(Optional\) Set the default CUDA version as follows\.
