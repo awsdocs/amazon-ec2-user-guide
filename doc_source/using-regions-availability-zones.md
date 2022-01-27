@@ -291,6 +291,7 @@ The following table lists Local Zones in US East \(N\. Virginia\):
 
 | Parent Region | Zone Name | Location \(metro area\) | 
 | --- | --- | --- | 
+| US East \(N\. Virginia\) | us\-east\-1\-atl\-1a | Atlanta | 
 | US East \(N\. Virginia\) | us\-east\-1\-bos\-1a | Boston | 
 | US East \(N\. Virginia\) | us\-east\-1\-chi\-1a | Chicago | 
 | US East \(N\. Virginia\) | us\-east\-1\-dfw\-1a | Dallas | 
@@ -313,7 +314,9 @@ The following table lists Local Zones in US West \(Oregon\):
 | US West \(Oregon\) | us\-west\-2\-las\-1a | Las Vegas | 
 | US West \(Oregon\) | us\-west\-2\-lax\-1a | Los Angeles | 
 | US West \(Oregon\) | us\-west\-2\-lax\-1b | Los Angeles | 
+| US West \(Oregon\) | us\-west\-2\-phx\-1a | Phoenix | 
 | US West \(Oregon\) | us\-west\-2\-pdx\-1a | Portland | 
+| US West \(Oregon\) | us\-west\-2\-sea\-1a | Seattle | 
 
 ### Describe your Local Zones<a name="local-zones-describe"></a>
 

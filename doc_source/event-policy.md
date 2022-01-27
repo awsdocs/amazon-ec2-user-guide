@@ -26,6 +26,9 @@ In the source account, create an EBS snapshot policy that will create the snapsh
 
 When you create the policy, ensure that you enable cross\-account sharing and that you specify the target AWS accounts with which to share the snapshots\. These are the accounts with which the snapshots are to be shared\. If you are sharing encrypted snapshots, then you must give the selected target accounts permission to use the KMS key used to encrypt the source volume\. For more information, see [Step 2: Share the customer managed key \(*Source account*\)](#share-cmk)\.
 
+**Note**  
+You can only share snapshots that are unencrypted or that are encrypted using a customer managed key\. You can't share snapshots that are encrypted with the default EBS encryption KMS key\. If you share encrypted snapshots, then you must also share the KMS key that was used to encrypt the source volume with the target accounts\. For more information, see [ Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide*\.
+
 For more information about creating an EBS snapshot policy, see [Automate snapshot lifecycles](snapshot-ami-policy.md)\.
 
 Use one of the following methods to create the EBS snapshot policy\.
@@ -294,41 +297,45 @@ Use one of the following methods to add the required policies to the IAM role\.
 **Note**  
 If you are copying from multiple source accounts, then you must specify the corresponding KMS key ARN from each source account\.
 
+   In the following example, the policy grants the IAM role permission to use KMS key `1234abcd-12ab-34cd-56ef-1234567890ab`, which was shared by source account `111111111111`, and KMS key `4567dcba-23ab-34cd-56ef-0987654321yz`, which exists in target account `222222222222`\.
+
    ```
-   {
-   	    "Version": "2012-10-17",
-   	    "Statement": [
-   	        {
-   	            "Effect": "Allow",
-   	            "Action": [
-   	                "kms:RevokeGrant",
-   	                "kms:CreateGrant",
-   	                "kms:ListGrants"
-   	            ],
-   	            "Resource": [
-   	                "arn:aws:kms:region:source_account_id:key/shared_cmk_id"
-   	            ],
-   	            "Condition": {
-   	                "Bool": {
-   	                    "kms:GrantIsForAWSResource": "true"
-   	                }
-   	            }
-   	        },
-   	        {
-   	            "Effect": "Allow",
-   	            "Action": [
-   	                "kms:Encrypt",
-   	                "kms:Decrypt",
-   	                "kms:ReEncrypt*",
-   	                "kms:GenerateDataKey*",
-   	                "kms:DescribeKey"
-   	            ],
-   	            "Resource": [
-   	                "arn:aws:kms:region:source_account_id:key/shared_cmk_id"
-   	            ]
-   	        }
-   	    ]
-   	}
+    {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": [
+                   "kms:RevokeGrant",
+                   "kms:CreateGrant",
+                   "kms:ListGrants"
+               ],
+               "Resource": [
+                   "arn:aws:kms:us-east-1:111111111111:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+                   "arn:aws:kms:us-east-1:222222222222:key/4567dcba-23ab-34cd-56ef-0987654321yz"		
+               ],
+               "Condition": {
+                   "Bool": {
+                       "kms:GrantIsForAWSResource": "true"
+                   }
+               }
+           },
+           {
+               "Effect": "Allow",
+               "Action": [
+                   "kms:Encrypt",
+                   "kms:Decrypt",
+                   "kms:ReEncrypt*",
+                   "kms:GenerateDataKey*",
+                   "kms:DescribeKey"
+               ],
+               "Resource": [
+                   "arn:aws:kms:us-east-1:111111111111:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+                   "arn:aws:kms:us-east-1:222222222222:key/4567dcba-23ab-34cd-56ef-0987654321yz"
+               ]
+           }
+       ]
+   }
    ```
 
 1. Choose **Review policy**

@@ -1,18 +1,20 @@
 # Processor state control for your EC2 instance<a name="processor_state_control"></a>
 
-C\-states control the sleep levels that a core can enter when it is idle\. C\-states are numbered starting with C0 \(the shallowest state where the core is totally awake and executing instructions\) and go to C6 \(the deepest idle state where a core is powered off\)\. P\-states control the desired performance \(in CPU frequency\) from a core\. P\-states are numbered starting from P0 \(the highest performance setting where the core is allowed to use Intel Turbo Boost Technology to increase frequency if possible\), and they go from P1 \(the P\-state that requests the maximum baseline frequency\) to P15 \(the lowest possible frequency\)\.
+C\-states control the sleep levels that a core can enter when it is idle\. C\-states are numbered starting with C0 \(the shallowest state where the core is totally awake and executing instructions\) and go to C6 \(the deepest idle state where a core is powered off\)\.
+
+P\-states control the desired performance \(in CPU frequency\) from a core\. P\-states are numbered starting from P0 \(the highest performance setting where the core is allowed to use Intel Turbo Boost Technology to increase frequency if possible\), and they go from P1 \(the P\-state that requests the maximum baseline frequency\) to P15 \(the lowest possible frequency\)\.
 
 The following instance types provide the ability for an operating system to control processor C\-states and P\-states:
-+ General purpose: `m4.10xlarge` \| `m4.16xlarge` \| `m5.metal` \| `m5d.metal`
-+ Compute optimized: `c4.8xlarge` \| `c5.metal` \| `c5n.metal`
-+ Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `r5.metal` \| `r5d.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `u-18tb1.metal` \| `u-24tb1.metal` `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.metal`
++ General purpose: `m4.10xlarge` \| `m4.16xlarge` \| `m5.metal` \| `m5d.metal` \| `m6i.metal`
++ Compute optimized: `c4.8xlarge` \| `c5.metal` \| `c5n.metal``c6i.metal`
++ Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `r5.metal` \| `r5d.metal` \| `r6i.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `u-18tb1.metal` \| `u-24tb1.metal` `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.metal`
 + Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `i3en.metal` \| `h1.8xlarge` \| `h1.16xlarge`
 + Accelerated computing: `f1.16xlarge` \| `g3.16xlarge` \| `g4dn.metal` \| `p2.16xlarge` \| `p3.16xlarge`
 
 The following instance types provide the ability for an operating system to control processor C\-states:
-+ General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` \| `m5n.12xlarge` \| `m5n.24xlarge` \| `m5dn.12xlarge` \| `m5dn.24xlarge`
-+ Compute optimized: `c5.9xlarge` \| `c5.12xlarge` \| `c5.18xlarge` \| `c5.24xlarge` \| `c5a.24xlarge` \| `c5ad.24xlarge` \| `c5d.9xlarge` \| `c5d.12xlarge` \| `c5d.18xlarge` \| `c5d.24xlarge` \| `c5n.9xlarge` \| `c5n.18xlarge`
-+ Memory optimized: `r5.12xlarge` \| `r5.24xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `r5n.12xlarge` \| `r5n.24xlarge` \| `r5dn.12xlarge` \| `r5dn.24xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge`
++ General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` \| `m5n.12xlarge` \| `m5n.24xlarge` \| `m5dn.12xlarge` \| `m5dn.24xlarge` \| `m6i.16xlarge` \| `m6i.32xlarge`
++ Compute optimized: `c5.9xlarge` \| `c5.12xlarge` \| `c5.18xlarge` \| `c5.24xlarge` \| `c5a.24xlarge` \| `c5ad.24xlarge` \| `c5d.9xlarge` \| `c5d.12xlarge` \| `c5d.18xlarge` \| `c5d.24xlarge` \| `c5n.9xlarge` \| `c5n.18xlarge` \| `c6i.16xlarge` \| `c6i.32xlarge`
++ Memory optimized: `r5.12xlarge` \| `r5.24xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `r5n.12xlarge` \| `r5n.24xlarge` \| `r5dn.12xlarge` \| `r5dn.24xlarge` \| `r6i.16xlarge` \| `r6i.32xlarge` \| `u-6tb1.56xlarge` \| `u-6tb1.112xlarge` \| `u-9tb1.112xlarge` \| `u-12tb1.112xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge`
 + Storage optimized: `d3en.12xlarge` \| `i3en.12xlarge` \| `i3en.24xlarge`
 + Accelerated computing: `inf1.24xlarge` \| `p3dn.24xlarge`
 
@@ -23,7 +25,9 @@ You might want to change the C\-state or P\-state settings to increase processor
 The following sections describe the different processor state configurations and how to monitor the effects of your configuration\. These procedures were written for, and apply to Amazon Linux; however, they may also work for other Linux distributions with a Linux kernel version of 3\.9 or newer\. For more information about other Linux distributions and processor state control, see your system\-specific documentation\.
 
 **Note**  
-The examples on this page use the turbostat utility \(which is available on Amazon Linux by default\) to display processor frequency and C\-state information, and the stress command \(which can be installed by running sudo yum install \-y stress\) to simulate a workload\.  
+The examples on this page use the following:  
+The turbostat utility to display processor frequency and C\-state information\. The turbostat utility is available on Amazon Linux by default\.
+The stress command to simulate a workload\. To install stress, first enable the EPEL repository by running sudo amazon\-linux\-extras install epel, and then run sudo yum install \-y stress\.
 If the output does not display the C\-state information, include the \-\-debug option in the command \(sudo turbostat \-\-debug stress *<options>*\)\.
 
 **Topics**

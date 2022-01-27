@@ -49,6 +49,11 @@ aws ec2 run-instances
 ```
 
 ------
+#### [ AWS CloudFormation ]
+
+To specify the metadata options for an instance using AWS CloudFormation, see the [AWS::EC2::LaunchTemplate MetadataOptions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-metadataoptions.html) property in the *AWS CloudFormation User Guide*\. 
+
+------
 
 **To enforce the use of IMDSv2 on all new instances**  
 To ensure that IAM users can only launch instances that require the use of IMDSv2 when requesting instance metadata, you can specify that the condition to require IMDSv2 must be met before an instance can be launched\. For the example IAM policy, see [Work with instance metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
@@ -86,6 +91,11 @@ aws ec2 run-instances
     ... 
     --metadata-options "HttpEndpoint=disabled"
 ```
+
+------
+#### [ AWS CloudFormation ]
+
+To specify the metadata options for an instance using AWS CloudFormation, see the [AWS::EC2::LaunchTemplate MetadataOptions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-metadataoptions.html) property in the *AWS CloudFormation User Guide*\. 
 
 ------
 

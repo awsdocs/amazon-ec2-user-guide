@@ -170,9 +170,51 @@ Many condition keys are specific to a resource, and some API actions use multipl
 
 All Amazon EC2 actions support the `aws:RequestedRegion` and `ec2:Region` condition keys\. For more information, see [Example: Restrict access to a specific Region](ExamplePolicies_EC2.md#iam-example-region)\.
 
-The `ec2:SourceInstanceARN` key can be used for conditions that specify the ARN of the instance from which a request is made\. This condition key is available AWS\-wide and is not service\-specific\. For policy examples, see [Amazon EC2: Attach or detach volumes to an EC2 instance](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [Example: Allow a specific instance to view resources in other AWS services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
+### `ec2:SourceInstanceARN` condition key<a name="SourceInstanceARN"></a>
+
+The `ec2:SourceInstanceARN` condition key can be used for conditions that specify the ARN of the instance from which a request is made\. This condition key is available AWS\-wide and is not service\-specific\. For policy examples, see [Amazon EC2: Attach or detach volumes to an EC2 instance](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [Example: Allow a specific instance to view resources in other AWS services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
 
 For example policy statements for Amazon EC2, see [Example policies for working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\.
+
+### `ec2:Attribute` condition key<a name="attribute-key"></a>
+
+The `ec2:Attribute` condition key can be used for conditions that filter access by an attribute of a resource\. The condition key supports only properties that are of a primitive data type, such as a string or integer, or complex objects that have only a `Value` property, such as the **Description** object of the [ ModifyImageAttribute](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AttributeValue.html) API action\.
+
+For example, the following policy uses the `ec2:Attribute/Description` condition key to filter access by the complex **Description** object of the **ModifyImageAttribute** API action\. The condition key allows only requests that modify an image's description to either `Production` or `Development`\. 
+
+```
+{
+  "Statement":[{
+    "Effect":"allow",
+    "Action":"ModifyImageAttribute",
+    "Resource":"arn:aws:ec2:us-east-1::image/ami-*",
+    "Condition": {
+      "StringEquals": {
+      "ec2:Attribute/Description": ["Production", "Development"]
+          }
+        }
+     }
+  ]
+}
+```
+
+The following example policy uses the `ec2:Attribute` condition key to filter access by the primitive **Attribute** property of the ** ModifyImageAttribute** API action\. The condition key denies all requests that attempt to modify an image's description\.
+
+```
+{
+  "Statement":[{
+    "Effect":"deny",
+    "Action":"ModifyImageAttribute",
+    "Resource":"arn:aws:ec2:us-east-1::image/ami-*",
+    "Condition": {
+      "StringEquals": {
+        "ec2:Attribute": "Description"
+        }
+      }
+    }
+  ]
+}
+```
 
 ## Check that users have the required permissions<a name="check-required-permissions"></a>
 

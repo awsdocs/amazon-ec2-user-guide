@@ -45,6 +45,19 @@ These instances are ideal for running advanced, compute\-intensive workloads, su
 
 For more information, see [Amazon EC2 C6i Instances](http://aws.amazon.com/ec2/instance-types/c6i)\.
 
+**Hpc6a instances**
+
+These instances are ideal for running high performance computing \(HPC\) workloads, such as the following:
++ Molecular dynamics
++ Computational chemistry
++ Computational fluid dynamics
++ Weather forecasting
++ Materials simulation
++ Crash simulations
++ Astrophysics
+
+For more information, see [Amazon EC2 Hpc6a Instances](http://aws.amazon.com/ec2/instance-types/hpc6a)\.
+
 **Topics**
 + [Hardware specifications](#compute-instances-hardware)
 + [Instance performance](#compute-performance)
@@ -142,6 +155,7 @@ The following is a summary of the hardware specifications for compute optimized 
 | c6i\.24xlarge | 96 | 192 | 
 | c6i\.32xlarge | 128 | 256 | 
 | c6i\.metal | 128 | 256 | 
+| hpc6a\.48xlarge | 96 | 384 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -177,7 +191,7 @@ The following is a summary of network performance for compute optimized instance
 |  c6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.9xlarge \| c6gn\.8xlarge \| c6i\.32xlarge \| c6i\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c6gn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
+| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  \| hpc6a\.48xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
 
@@ -281,6 +295,7 @@ The following is a summary of features for compute optimized instances:
 | C6gd | No | Yes | NVMe \* | Yes | 
 | C6gn | Yes | Yes | No | Yes | 
 | C6i | Yes | Yes | No | Yes | 
+| Hpc6a | Yes | Yes | No | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 

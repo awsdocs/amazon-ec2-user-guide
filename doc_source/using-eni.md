@@ -195,7 +195,7 @@ The following table lists the maximum number of network interfaces per instance 
 | d3en\.6large | 4 | 15 | 15 | 
 | d3en\.8xlarge | 4 | 20 | 20 | 
 | d3en\.12xlarge | 3 | 30 | 30 | 
-| dl1\.24xlarge | 4x15 | 50 | 50 | 
+| dl1\.24xlarge | 15 per network card \(15, 30, 45, or 60\) | 50 | 50 | 
 | f1\.2xlarge |  4  | 15  |  15  | 
 | f1\.4xlarge |  8  | 30  |  30  | 
 | f1\.16xlarge | 8 | 50 | 50 | 
@@ -235,6 +235,7 @@ The following table lists the maximum number of network interfaces per instance 
 | h1\.8xlarge | 8 | 30 | 30 | 
 | h1\.16xlarge | 15 | 50 | 50 | 
 | hs1\.8xlarge |  8  |  30  | IPv6 not supported | 
+| hpc6a\.48xlarge | 2 | 50 | 50 | 
 | i2\.xlarge |  4  |  15  | 15 | 
 | i2\.2xlarge |  4  |  15  | 15 | 
 | i2\.4xlarge |  8  |  30  | 30 | 
@@ -392,7 +393,7 @@ The following table lists the maximum number of network interfaces per instance 
 | p3\.8xlarge | 8 | 30 | 30 | 
 | p3\.16xlarge | 8 | 30 | 30 | 
 | p3dn\.24xlarge | 15 | 50 | 50 | 
-| p4d\.24xlarge | 4x15 | 50 | 50 | 
+| p4d\.24xlarge | 15 per network card \(15, 30, 45, or 60\) | 50 | 50 | 
 | r3\.large | 3 | 10 | 10 | 
 | r3\.xlarge | 4 | 15 | 15 | 
 | r3\.2xlarge | 4 | 15 | 15 | 
@@ -551,6 +552,12 @@ The following table lists the maximum number of network interfaces per instance 
 | x2gd\.12xlarge | 8 | 30 | 30 | 
 | x2gd\.16xlarge | 15 | 50 | 50 | 
 | x2gd\.metal | 15 | 50 | 50 | 
+| x2iezn\.2xlarge | 4 | 15 | 15 | 
+| x2iezn\.4xlarge | 8 | 30 | 30 | 
+| x2iezn\.6xlarge | 8 | 30 | 30 | 
+| x2iezn\.8xlarge | 8 | 30 | 30 | 
+| x2iezn\.12xlarge | 15 | 50 | 50 | 
+| x2iezn\.metal | 15 | 50 | 50 | 
 | z1d\.large | 3 | 10 | 10 | 
 | z1d\.xlarge | 4 | 15 | 15 | 
 | z1d\.2xlarge | 4 | 15 | 15 | 

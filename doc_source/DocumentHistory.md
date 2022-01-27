@@ -4,6 +4,11 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [X2iezn instances](#DocumentHistory) | New memory optimized instances featuring Intel Xeon Platinum processors \(Cascade Lake\)\. | January 26, 2022 | 
+| [ED25519 keys](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) | ED25519 keys are now supported for EC2 Instance Connect and EC2 Serial Console\. | January 20, 2022 | 
+| [New Local Zones added](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#local-zones-available) | Add Local Zones in Atlanta, Phoenix, and Seattle\. | January 11, 2022 | 
+| [Additional RHEL platforms for Capacity Reservations](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) | Additional Red Hat Enterprise Linux platforms for On\-Demand Capacity Reservations\. | January 11, 2022 | 
+| [Hpc6a instances](#DocumentHistory) | New compute optimized instances featuring AMD EPYC processors\. | January 10, 2022 | 
 | [Instance tags in instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS) | You can access an instance's tags from the instance metadata\. | January 6, 2022 | 
 | [Capacity Reservations in cluster placement groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cr-cpg.html) | You can create Capacity Reservations in cluster placement groups\. | January 6, 2022 | 
 | [Im4gn and Is4gen instances](#DocumentHistory) | New storage optimized instances\. | November 30, 2021 | 
@@ -84,14 +89,14 @@ The following table describes important additions to the Amazon EC2 documentatio
 | [Hibernation support for M5a and R5a](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites) | Hibernate your newly\-launched instances running on M5a and R5a instance types\. | August 28, 2020 | 
 | [Provisioned IOPS SSD \(`io2`\) volumes for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#EBSVolumeTypes_piops) | Provisioned IOPS SSD \(`io2`\) volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent\. | August 24, 2020 | 
 | [Instance metadata provides instance location and placement information](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) | New instance metadata fields under the `placement` category: Region, placement group name, partition number, host ID, and Availability Zone ID\. | August 24, 2020 | 
-| [C5ad instances](#DocumentHistory) | New compute optimized instances featuring second\-generation AMD EYPC processors\. | August 13, 2020 | 
+| [C5ad instances](#DocumentHistory) | New compute optimized instances featuring second\-generation AMD EPYC processors\. | August 13, 2020 | 
 | [Wavelength Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-wavelength-zones) | A Wavelength Zone is an isolated zone in the carrier location where the Wavelength infrastructure is deployed\. | August 6, 2020 | 
 | [Capacity Reservation groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-using.html#create-cr-group) | You can use AWS Resource Groups to create logical collections of Capacity Reservations, and then target instance launches into those groups\. | July 29, 2020 | 
 | [C6gd, M6gd, and R6gd instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | July 27, 2020 | 
 | [Fast snapshot restore](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html) | You can enable fast snapshot restore for snaphots that are shared with you\. | July 21, 2020 | 
 | [C6g and R6g instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | June 10, 2020 | 
 | [Bare metal instances for G4dn](#DocumentHistory) | New instances that provide your applications with direct access to the physical resources of the host server\. | June 5, 2020 | 
-| [C5a instances](#DocumentHistory) | New compute optimized instances featuring second\-generation AMD EYPC processors\. | June 4, 2020 | 
+| [C5a instances](#DocumentHistory) | New compute optimized instances featuring second\-generation AMD EPYC processors\. | June 4, 2020 | 
 | [Bring your own IPv6 addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html) | You can bring part or all of your IPv6 address range from your on\-premises network to your AWS account\. | May 21, 2020 | 
 | [M6g instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | May 11, 2020 | 
 | [Launch instances using a Systems Manager parameter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html#using-systems-manager-parameter-to-find-AMI) | You can specify a AWS Systems Manager parameter instead of an AMI when you launch an instance\. | May 5, 2020 | 
@@ -126,8 +131,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 | [Windows to Linux Replatforming Assistant for Microsoft SQL Server Databases](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/replatform-sql-server.html) | Move existing Microsoft SQL Server workloads from a Windows to a Linux operating system\. | May 8, 2019 | 
 | [I3en instances](#DocumentHistory) | New I3en instances can utilize up to 100 Gbps of network bandwidth\. | May 8, 2019 | 
 | [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa-start.html) | You can attach an Elastic Fabric Adapter to your instances to accelerate High Performance Computing \(HPC\) applications\. | April 29, 2019 | 
-| [T3a instances](#DocumentHistory) | New instances featuring AMD EYPC processors\. | April 24, 2019 | 
-| [M5ad and R5ad instances](#DocumentHistory) | New instances featuring AMD EYPC processors\. | March 27, 2019 | 
+| [T3a instances](#DocumentHistory) | New instances featuring AMD EPYC processors\. | April 24, 2019 | 
+| [M5ad and R5ad instances](#DocumentHistory) | New instances featuring AMD EPYC processors\. | March 27, 2019 | 
 | [Resource tagging](#DocumentHistory) | You can assign custom tags to your Dedicated Host Reservations to categorize them in different ways\. | March 14, 2019 | 
 | [Bare metal instances for M5, M5d, R5, R5d, and z1d](#DocumentHistory) | New instances that provide your applications with direct access to the physical resources of the host server\. | February 13, 2019 | 
 
@@ -146,7 +151,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 | Instances featuring Arm\-based Processors | 2016\-11\-15 | New A1 instances deliver significant cost savings and are ideally suited for scale\-out and Arm\-based workloads\. | 26 November 2018 | 
 | Spot console recommends a fleet of instances | 2016\-11\-15 |  The Spot console recommends a fleet of instances based on Spot best practice \(instance diversification\) to meet the minimum hardware specifications \(vCPUs, memory, and storage\) for your application need\. For more information, see [Create a Spot Fleet request](work-with-spot-fleets.md#create-spot-fleet)\.  | 20 November 2018 | 
 | New EC2 Fleet request type: instant | 2016\-11\-15 | EC2 Fleet now supports a new request type, instant, that you can use to synchronously provision capacity across instance types and purchase models\. The instant request returns the launched instances in the API response, and takes no further action, enabling you to control if and when instances are launched\. For more information, see [EC2 Fleet request types](ec2-fleet-request-type.md)\. | 14 November 2018 | 
-| Instances featuring AMD EYPC processors | 2016\-11\-15 | New general purpose \(M5a\) and memory optimized instances \(R5a\) offer lower\-priced options for microservices, small to medium databases, virtual desktops, development and test environments, business applications, and more\. | 6 November 2018 | 
+| Instances featuring AMD EPYC processors | 2016\-11\-15 | New general purpose \(M5a\) and memory optimized instances \(R5a\) offer lower\-priced options for microservices, small to medium databases, virtual desktops, development and test environments, business applications, and more\. | 6 November 2018 | 
 | Spot savings information | 2016\-11\-15 | You can view the savings made from using Spot Instances for a single Spot Fleet or for all Spot Instances\. For more information, see [Savings from purchasing Spot Instances](spot-savings.md)\.  | 5 November 2018 | 
 | Console support for optimizing CPU options | 2016\-11\-15 | When you launch an instance, you can optimize the CPU options to suit specific workloads or business needs using the Amazon EC2 console\. For more information, see [Optimize CPU options](instance-optimize-cpu.md)\. | 31 October 2018 | 
 | Console support for creating a launch template from an instance | 2016\-11\-15 | You can create a launch template using an instance as the basis for a new launch template using the Amazon EC2 console\. For more information, see [Create a launch template](ec2-launch-templates.md#create-launch-template)\. | 30 October 2018 | 

@@ -161,7 +161,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    [ec2-user ~]$ sudo /bin/sh ./NVIDIA-Linux-x86_64*.run
    ```
 **Note**  
-If you are using Amazon Linux 2 with kernel version 5\.1\.0, use the following command to install the GRID driver\.  
+If you are using Amazon Linux 2 with kernel version 5\.10, use the following command to install the GRID driver\.  
 
    ```
    [ec2-user ~]$ sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64*.run
@@ -601,7 +601,7 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    [ec2-user ~]$ sudo ./NVIDIA-Linux-x86_64*.run
    ```
 **Note**  
-If you are using Amazon Linux 2 with kernel version 5\.1\.0, use the following command to install the NVIDIA gaming drivers\.  
+If you are using Amazon Linux 2 with kernel version 5\.10, use the following command to install the NVIDIA gaming drivers\.  
 
    ```
    [ec2-user ~]$ sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64*.run

@@ -489,6 +489,8 @@ Create a IAM policy that includes the following:
                 "ec2:RequestSpotFleet"
             ],
             "Resource": "*"
+        }
+    ]
 }
 ```
 

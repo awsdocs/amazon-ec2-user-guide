@@ -41,4 +41,9 @@ Alternatively, request an increase using Service Quotas\. For more information, 
 
 ## Restriction on email sent using port 25<a name="port-25-throttle"></a>
 
-On all instances, Amazon EC2 restricts traffic on port 25 by default\. You can request that this restriction be removed\. For more information, see [How do I remove the restriction on port 25 from my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-port-25-throttle/) in the AWS Knowledge Center\.
+On all instances, Amazon EC2 restricts outbound traffic to public IP addresses over port 25 by default\. You can request that this restriction be removed\. For more information, see [How do I remove the restriction on port 25 from my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-port-25-throttle/) in the AWS Knowledge Center\.
+
+**Note**  
+This restriction does not apply to outbound traffic sent over port 25 to:  
+IP addresses in the primary CIDR block of the VPC in which the originating network interface exists\.
+IP addresses in the CIDRs defined in [ RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918), [RFC 6598](https://datatracker.ietf.org/doc/html/rfc6598), and [ RFC 4193](https://datatracker.ietf.org/doc/html/rfc4193)\.

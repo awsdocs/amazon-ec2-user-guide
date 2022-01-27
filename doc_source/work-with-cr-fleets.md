@@ -133,7 +133,7 @@ You can view configuration and capacity information for a Capacity Reservation F
 You can view a Capacity Reservation Fleet using the command line only\.
 
 **To view a Capacity Reservation Fleet**  
-Use the [ describe\-capacity\-reservation\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservation-fleet.html) AWS CLI command\.
+Use the [ describe\-capacity\-reservation\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservation-fleets.html) AWS CLI command\.
 
 ```
 $ aws ec2 describe-capacity-reservation-fleets \

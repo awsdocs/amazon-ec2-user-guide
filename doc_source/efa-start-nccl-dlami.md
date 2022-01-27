@@ -6,7 +6,7 @@ The following steps help you to get started with one of the following AWS Deep L
 + Deep Learning AMI \(Ubuntu 18\.04\) Version 25\.0 and later
 + Deep Learning AMI \(Ubuntu 16\.04\) Version 25\.0 and later
 
-For more information, see the [ *AWS Deep Learning AMI User Guide*](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html)\.
+For more information, see the [https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html)\.
 
 **Note**  
 Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.

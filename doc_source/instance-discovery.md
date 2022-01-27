@@ -41,7 +41,7 @@ You can use AWS CLI commands for Amazon EC2 to find an instance type that meet y
 1. Use the [describe\-instance\-types](https://docs.aws.amazon.com/goto/aws-cli/ec2-2016-11-15/DescribeInstanceTypes) command to filter instance types based on instance attributes\. For example, you can use the following command to display only instance types with 48 vCPUs\.
 
    ```
-   aws ec2 describe-instance-types --filters "Name=vcpu-info.default-vcpus,Values=48"
+   aws ec2 describe-instance-types --filters "Name=vcpu-info.default-vcpus,Values=48" --query "InstanceTypes[*].[InstanceType]" --output text | sort
    ```
 
 1. Use the [describe\-instance\-type\-offerings](https://docs.aws.amazon.com/goto/aws-cli/ec2-2016-11-15/DescribeInstanceTypeOfferings) command to filter instance types offered by location \(Region or Availability Zone\)\. For example, you can use the following command to display the instance types offered in the specified Availability Zone\. 

@@ -4,6 +4,8 @@ Recycle Bin for Amazon EBS snapshots is a snapshot recovery feature that enables
 
 You can restore a snapshot from the Recycle Bin at any time before its retention period expires\. After you restore a snapshot from the Recycle Bin, the snapshot is removed from the Recycle Bin and you can use it in the same way you use any other snapshot in your account\. If the retention period expires and the snapshot is not restored, the snapshot is permanently deleted from the Recycle Bin and is no longer available for recovery\.
 
+Snapshots in the Recycle Bin are billed at the same rate as regular snapshots in your account\. There are no additional charges for using Recycle Bin and retention rules\. For more information, see [Amazon EBS pricing](http://aws.amazon.com/ebs/pricing/)\.
+
 For more information, see [Recycle Bin for Amazon EBS snapshots](recycle-bin.md)\.
 
 **Topics**

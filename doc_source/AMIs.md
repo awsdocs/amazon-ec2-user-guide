@@ -23,7 +23,7 @@ An AMI includes the following:
 + [Use encryption with EBS\-backed AMIs](AMIEncryption.md)
 + [Understand AMI billing information](ami-billing-info.md)
 + [Amazon Linux](amazon-linux-ami-basics.md)
-+ [Enabling Your Own Linux Kernels](UserProvidedKernels.md)
++ [User provided kernels](UserProvidedKernels.md)
 + [Configure the Amazon Linux 2 MATE desktop connection](amazon-linux-ami-mate.md)
 
 ## Use an AMI<a name="ami-using"></a>

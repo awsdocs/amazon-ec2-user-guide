@@ -147,7 +147,7 @@ The following are example CloudTrail log entries\.
     "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
     "clientProvidedHostHeader": "rbin.us-west-2.amazonaws.com"
   }
-},
+}
 ```
 
 ------
@@ -204,7 +204,7 @@ The following are example CloudTrail log entries\.
     "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
     "clientProvidedHostHeader": "rbin.us-west-2.amazonaws.com"
   }
-},
+}
 ```
 
 ------
@@ -262,7 +262,7 @@ The following are example CloudTrail log entries\.
     "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
     "clientProvidedHostHeader": "rbin.us-west-2.amazonaws.com"
   }
-},
+}
 ```
 
 ------
@@ -322,57 +322,57 @@ The following are example CloudTrail log entries\.
 
 ```
 {
-      "eventVersion": "1.08",
-      "userIdentity": {
-        "type": "AssumedRole",
-        "principalId": "123456789012:cheluyao-Isengard",
-        "arn": "arn:aws:iam::123456789012:root",
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "123456789012:cheluyao-Isengard",
+    "arn": "arn:aws:iam::123456789012:root",
+    "accountId": "123456789012",
+    "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "123456789012",
+        "arn": "arn:aws:iam::123456789012:role/Admin",
         "accountId": "123456789012",
-        "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
-        "sessionContext": {
-          "sessionIssuer": {
-            "type": "Role",
-            "principalId": "123456789012",
-            "arn": "arn:aws:iam::123456789012:role/Admin",
-            "accountId": "123456789012",
-            "userName": "Admin"
-          },
-          "webIdFederationData": {},
-          "attributes": {
-            "mfaAuthenticated": "false",
-            "creationDate": "2021-10-22T21:38:34Z"
-          }
-        }
+        "userName": "Admin"
       },
-      "eventTime": "2021-10-22T21:43:15Z",
-      "eventSource": "rbin.amazonaws.com",
-      "eventName": "TagResource",
-      "awsRegion": "us-west-2",
-      "sourceIPAddress": "123.123.123.123",
-      "userAgent": "aws-cli/1.20.26 Python/3.6.14 Linux/4.9.273-0.1.ac.226.84.332.metal1.x86_64 botocore/1.21.26",
-      "requestParameters": {
-        "resourceArn": "arn:aws:rbin:us-west-2:123456789012:rule/ABCDEF01234",
-        "tags": [
-          {
-            "key": "purpose",
-            "value": "production"
-          }
-        ]
-      },
-      "responseElements": null,
-      "requestID": "examplee-7962-49ec-8633-795efexample",
-      "eventID": "example4-6826-4c0a-bdec-0bab1example",
-      "readOnly": false,
-      "eventType": "AwsApiCall",
-      "managementEvent": true,
-      "eventCategory": "Management",
-      "recipientAccountId": "123456789012",
-      "tlsDetails": {
-        "tlsVersion": "TLSv1.2",
-        "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
-        "clientProvidedHostHeader": "beta.us-west-2.api.rbs.aws.dev"
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-10-22T21:38:34Z"
       }
     }
+  },
+  "eventTime": "2021-10-22T21:43:15Z",
+  "eventSource": "rbin.amazonaws.com",
+  "eventName": "TagResource",
+  "awsRegion": "us-west-2",
+  "sourceIPAddress": "123.123.123.123",
+  "userAgent": "aws-cli/1.20.26 Python/3.6.14 Linux/4.9.273-0.1.ac.226.84.332.metal1.x86_64 botocore/1.21.26",
+  "requestParameters": {
+    "resourceArn": "arn:aws:rbin:us-west-2:123456789012:rule/ABCDEF01234",
+    "tags": [
+      {
+        "key": "purpose",
+        "value": "production"
+      }
+    ]
+  },
+  "responseElements": null,
+  "requestID": "examplee-7962-49ec-8633-795efexample",
+  "eventID": "example4-6826-4c0a-bdec-0bab1example",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "123456789012",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "clientProvidedHostHeader": "beta.us-west-2.api.rbs.aws.dev"
+  }
+}
 ```
 
 ------
@@ -380,54 +380,54 @@ The following are example CloudTrail log entries\.
 
 ```
 {
-      "eventVersion": "1.08",
-      "userIdentity": {
-        "type": "AssumedRole",
-        "principalId": "123456789012:cheluyao-Isengard",
-        "arn": "arn:aws:iam::123456789012:root",
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "123456789012:cheluyao-Isengard",
+    "arn": "arn:aws:iam::123456789012:root",
+    "accountId": "123456789012",
+    "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "123456789012",
+        "arn": "arn:aws:iam::123456789012:role/Admin",
         "accountId": "123456789012",
-        "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
-        "sessionContext": {
-          "sessionIssuer": {
-            "type": "Role",
-            "principalId": "123456789012",
-            "arn": "arn:aws:iam::123456789012:role/Admin",
-            "accountId": "123456789012",
-            "userName": "Admin"
-          },
-          "webIdFederationData": {},
-          "attributes": {
-            "mfaAuthenticated": "false",
-            "creationDate": "2021-10-22T21:38:34Z"
-          }
-        }
+        "userName": "Admin"
       },
-      "eventTime": "2021-10-22T21:44:16Z",
-      "eventSource": "rbin.amazonaws.com",
-      "eventName": "UntagResource",
-      "awsRegion": "us-west-2",
-      "sourceIPAddress": "123.123.123.123",
-      "userAgent": "aws-cli/1.20.26 Python/3.6.14 Linux/4.9.273-0.1.ac.226.84.332.metal1.x86_64 botocore/1.21.26",
-      "requestParameters": {
-        "resourceArn": "arn:aws:rbin:us-west-2:123456789012:rule/ABCDEF01234",
-        "tagKeys": [
-          "purpose"
-        ]
-      },
-      "responseElements": null,
-      "requestID": "example7-6c1e-4f09-9e46-bb957example",
-      "eventID": "example6-75ff-4c94-a1cd-4d5f5example",
-      "readOnly": false,
-      "eventType": "AwsApiCall",
-      "managementEvent": true,
-      "eventCategory": "Management",
-      "recipientAccountId": "123456789012",
-      "tlsDetails": {
-        "tlsVersion": "TLSv1.2",
-        "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
-        "clientProvidedHostHeader": "beta.us-west-2.api.rbs.aws.dev"
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-10-22T21:38:34Z"
       }
     }
+  },
+  "eventTime": "2021-10-22T21:44:16Z",
+  "eventSource": "rbin.amazonaws.com",
+  "eventName": "UntagResource",
+  "awsRegion": "us-west-2",
+  "sourceIPAddress": "123.123.123.123",
+  "userAgent": "aws-cli/1.20.26 Python/3.6.14 Linux/4.9.273-0.1.ac.226.84.332.metal1.x86_64 botocore/1.21.26",
+  "requestParameters": {
+    "resourceArn": "arn:aws:rbin:us-west-2:123456789012:rule/ABCDEF01234",
+    "tagKeys": [
+      "purpose"
+    ]
+  },
+  "responseElements": null,
+  "requestID": "example7-6c1e-4f09-9e46-bb957example",
+  "eventID": "example6-75ff-4c94-a1cd-4d5f5example",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "123456789012",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "clientProvidedHostHeader": "beta.us-west-2.api.rbs.aws.dev"
+  }
+}
 ```
 
 ------
@@ -435,51 +435,51 @@ The following are example CloudTrail log entries\.
 
 ```
 {
-      "eventVersion": "1.08",
-      "userIdentity": {
-        "type": "AssumedRole",
-        "principalId": "123456789012:cheluyao-Isengard",
-        "arn": "arn:aws:iam::123456789012:root",
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "123456789012:cheluyao-Isengard",
+    "arn": "arn:aws:iam::123456789012:root",
+    "accountId": "123456789012",
+    "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "123456789012",
+        "arn": "arn:aws:iam::123456789012:role/Admin",
         "accountId": "123456789012",
-        "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
-        "sessionContext": {
-          "sessionIssuer": {
-            "type": "Role",
-            "principalId": "123456789012",
-            "arn": "arn:aws:iam::123456789012:role/Admin",
-            "accountId": "123456789012",
-            "userName": "Admin"
-          },
-          "webIdFederationData": {},
-          "attributes": {
-            "mfaAuthenticated": "false",
-            "creationDate": "2021-10-22T21:38:34Z"
-          }
-        }
+        "userName": "Admin"
       },
-      "eventTime": "2021-10-22T21:42:31Z",
-      "eventSource": "rbin.amazonaws.com",
-      "eventName": "ListTagsForResource",
-      "awsRegion": "us-west-2",
-      "sourceIPAddress": "123.123.123.123",
-      "userAgent": "aws-cli/1.20.26 Python/3.6.14 Linux/4.9.273-0.1.ac.226.84.332.metal1.x86_64 botocore/1.21.26",
-      "requestParameters": {
-        "resourceArn": "arn:aws:rbin:us-west-2:123456789012:rule/ABCDEF01234"
-      },
-      "responseElements": null,
-      "requestID": "example8-10c7-43d4-b147-3d9d9example",
-      "eventID": "example2-24fc-4da7-a479-c9748example",
-      "readOnly": true,
-      "eventType": "AwsApiCall",
-      "managementEvent": true,
-      "eventCategory": "Management",
-      "recipientAccountId": "123456789012",
-      "tlsDetails": {
-        "tlsVersion": "TLSv1.2",
-        "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
-        "clientProvidedHostHeader": "beta.us-west-2.api.rbs.aws.dev"
+      "webIdFederationData": {},
+      "attributes": {
+        "mfaAuthenticated": "false",
+        "creationDate": "2021-10-22T21:38:34Z"
       }
     }
+  },
+  "eventTime": "2021-10-22T21:42:31Z",
+  "eventSource": "rbin.amazonaws.com",
+  "eventName": "ListTagsForResource",
+  "awsRegion": "us-west-2",
+  "sourceIPAddress": "123.123.123.123",
+  "userAgent": "aws-cli/1.20.26 Python/3.6.14 Linux/4.9.273-0.1.ac.226.84.332.metal1.x86_64 botocore/1.21.26",
+  "requestParameters": {
+    "resourceArn": "arn:aws:rbin:us-west-2:123456789012:rule/ABCDEF01234"
+  },
+  "responseElements": null,
+  "requestID": "example8-10c7-43d4-b147-3d9d9example",
+  "eventID": "example2-24fc-4da7-a479-c9748example",
+  "readOnly": true,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "eventCategory": "Management",
+  "recipientAccountId": "123456789012",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "clientProvidedHostHeader": "beta.us-west-2.api.rbs.aws.dev"
+  }
+}
 ```
 
 ------

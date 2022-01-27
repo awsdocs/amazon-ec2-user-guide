@@ -18,13 +18,7 @@ You can connect to the serial console of your EC2 instance by using the Amazon E
 ## Prerequisites<a name="sc-prerequisites"></a>
 + Supported in all AWS Regions except Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Osaka\), China \(Beijing\), China \(Ningxia\), Europe \(Milan\), and Middle East \(Bahrain\)\.
 + Not supported in Local Zones, Wavelength Zones, or AWS Outposts\.
-+ Supported instance families:
-  + A1
-  + C5, C5a, C5ad, C5d, C5n, C6g, C6gd
-  + M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd
-  + R5, R5a, R5ad, R5d, R5dn, R5n, R6, R6gd
-  + T3, T3a, T4g
-  + Z1d
++ Supported for all virtualized instances built on the [Nitro System](instance-types.md#ec2-nitro-instances): A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn, C6i, D3, D3en, DL1, G4, G4ad, G5, G5g, Hpc6a, I3en, Im4gn, Inf1, Is4gen, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6a, M6g, M6gd, M6i, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd, R6i, T3, T3a, T4g, high memory \(u\-\*\), VT1,  X2gd, and z1d
 + Not supported on bare metal instances\.
 + Configure access to the EC2 Serial Console, as follows:
   + [Manage account access to the EC2 Serial Console](configure-access-to-serial-console.md#serial-console-account-access)\.
@@ -94,7 +88,7 @@ You can use your own SSH key and connect to your instance from the SSH client of
    $ aws ec2-instance-connect send-serial-console-ssh-public-key \
        --instance-id i-001234a4bf70dec41EXAMPLE \
        --serial-port 0 \
-       --ssh-public-key file://my_rsa_key.pub \
+       --ssh-public-key file://my_key.pub \
        --region us-east-1
    ```
 
@@ -113,7 +107,7 @@ You can use your own SSH key and connect to your instance from the SSH client of
    The format of the public DNS name of the serial console service is `serial-console.ec2-instance-connect.region.aws`\. In the following example, the serial console service is in the *us\-east\-1* Region\.
 
    ```
-   $ ssh -i my_rsa_key i-001234a4bf70dec41EXAMPLE.port0@serial-console.ec2-instance-connect.us-east-1.aws
+   $ ssh -i my_key i-001234a4bf70dec41EXAMPLE.port0@serial-console.ec2-instance-connect.us-east-1.aws
    ```
 
    **For AWS GovCloud \(US\) Regions only:**
@@ -121,7 +115,7 @@ You can use your own SSH key and connect to your instance from the SSH client of
    The format of the public DNS name of the serial console service in the AWS GovCloud \(US\) Regions is `serial-console.ec2-instance-connect.GovCloud-region.amazonaws.com`\. In the following example, the serial console service is in the *us\-gov\-east\-1* Region\.
 
    ```
-   $ ssh -i my_rsa_key i-001234a4bf70dec41EXAMPLE.port0@serial-console.ec2-instance-connect.us-gov-east-1.amazonaws.com
+   $ ssh -i my_key i-001234a4bf70dec41EXAMPLE.port0@serial-console.ec2-instance-connect.us-gov-east-1.amazonaws.com
    ```
 
 1. 

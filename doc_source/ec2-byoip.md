@@ -294,7 +294,7 @@ When you provision an address range for use with AWS, you are confirming that yo
    Replace the account number, address range, and expiry date with your own values to create a message resembling the following:
 
    ```
-   1|aws|0123456789AB|198.51.100.0/24|20211231|SHA256|RSAPSS
+   text_message="1|aws|0123456789AB|198.51.100.0/24|20211231|SHA256|RSAPSS"
    ```
 
    This is not to be confused with an ROA message, which has a similar appearance\.
@@ -308,7 +308,7 @@ When you provision an address range for use with AWS, you are confirming that yo
 We recommend that you copy and paste this command\. Except for the message content, do not modify or replace any of the values\.
 
    ```
-   $ echo -n "1|aws|123456789012|198.51.100.0/24|20211231|SHA256|RSAPSS" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private-key.pem -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n"
+   signed_message=$( echo -n $text_message | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private-key.pem -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
    ```
 
 1. 
@@ -318,7 +318,7 @@ We recommend that you copy and paste this command\. Except for the message conte
    Use the AWS CLI [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command to provision the address range\. The `--cidr-authorization-context` option uses the message and signature strings that you created previously\.
 
    ```
-   aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="message",Signature="signature"
+   aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message"
    ```
 
    Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\.

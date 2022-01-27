@@ -26,7 +26,7 @@ Must be an HVM AMI that supports hibernation:
 | CentOS version 8 AMI\* \([Additional configuration](hibernation-enabled-AMI.md#configure-centos-for-hibernation) is required\)  | Not supported | Supported | 
 | Fedora version 34 or later AMI\* \([Additional configuration](hibernation-enabled-AMI.md#configure-fedora-for-hibernation) is required\)  | Not supported | Supported | 
 | Red Hat Enterprise Linux \(RHEL\) 8 AMI\* \([Additional configuration](hibernation-enabled-AMI.md#configure-RHEL-for-hibernation) is required\)  | Not supported | Supported | 
-|  Ubuntu 20\.04 LTS – Focal AMI released with serial number 20210820 or later †  | Supported | Supported | 
+|  Ubuntu 20\.04 LTS \- Focal AMI released with serial number 20210820 or later †  | Supported | Supported | 
 | Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later † | Supported | Supported | 
 | Ubuntu 16\.04 LTS \- Xenial AMI † \([Additional configuration](hibernation-enabled-AMI.md#configure-ubuntu1604-for-hibernation) is required\) | Supported | Supported | 
 
@@ -45,28 +45,23 @@ For information about the supported Windows AMIs, see [Supported Windows AMIs](h
 + Nitro: C5, C5d, M5, M5a, M5ad, M5d, R5, R5a, R5ad, R5d, T3, T3a
 
 **To see the available instance types that support hibernation in a specific Region**  
-The available instance types vary by Region\. To see the available instance types that support hibernation in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` parameter\. Include the `--filters` parameter to see only the instance types that support hibernation\.
+The available instance types vary by Region\. To see the available instance types that support hibernation in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` parameter\. Include the `--filters` parameter to scope the results to the instance types that support hibernation and the `--query` parameter to scope the output to the value of `InstanceType`\.
 
 ```
-$ aws ec2 describe-instance-types \
---region us-east-2 \
---filters Name=hibernation-supported,Values=true \
---query "InstanceTypes[*].[InstanceType]" \
---output table
+aws ec2 describe-instance-types --filters Name=hibernation-supported,Values=true --query "InstanceTypes[*].[InstanceType]" --output text | sort
 ```
 
 Example output
 
 ```
------------------------
-|DescribeInstanceTypes|
-+---------------------+
-|  r5a.xlarge         |
-|  c4.4xlarge         |
-|  m5ad.large         |
-|  c5.4xlarge         |
-|  m4.4xlarge         |
-|  t3.2xlarge         |
+c3.2xlarge
+c3.4xlarge
+c3.8xlarge
+c3.large
+c3.xlarge
+c4.2xlarge
+c4.4xlarge
+c4.8xlarge
 ...
 ```
 

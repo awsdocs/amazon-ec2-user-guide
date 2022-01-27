@@ -81,7 +81,7 @@ You can view and use the following controls and information:
 + **Instance type** – The instance types that you add to the vCPU limits calculator\.
 + **Instance count** – The number of instances that you require for the selected instance type\.
 + **vCPU count** – The number of vCPUs that corresponds to the **Instance count**\.
-+ **Current limit** – Your current limit for the limit type to which the instance type belongs\. The limit applies to all instance types of the same limit type\. For example, in the preceding screenshot, the current limit for `m5.2xlarge` and `c5.4xlarge` is 1,920 vCPUs, which is the limit for all the instance types that belong to the All Standard instances limit\.
++ **Current limit** – Your current limit for the limit type to which the instance type belongs\. The limit applies to all instance types of the same limit type\. For example, in the preceding screenshot, the current limit for `m5.2xlarge` and `c5.4xlarge` is 2,016 vCPUs, which is the limit for all the instance types that belong to the All Standard instances limit\.
 + **New limit** – The new limit, in number of vCPUs, which is calculated by adding **vCPU count** and **Current limit**\.
 + **X** – Choose the **X** to remove the row\.
 + **Add instance type** – Choose **Add instance type** to add another instance type to the calculator\.

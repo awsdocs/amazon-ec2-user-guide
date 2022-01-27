@@ -70,4 +70,4 @@ You can use the following AWS generated cost allocation tags for cost tracking a
 + Key: `aws:recycle-bin:resource-in-bin`
 + Value: `true`
 
-For more information, see [ AWS\-Generated Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+For more information, see [AWS\-Generated Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html) in the *AWS Billing and Cost Management User Guide*\.

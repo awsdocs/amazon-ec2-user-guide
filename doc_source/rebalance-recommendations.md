@@ -4,6 +4,8 @@ An EC2 Instance *rebalance recommendation* is a signal that notifies you when a 
 
 It is not always possible for Amazon EC2 to send the rebalance recommendation signal before the two\-minute Spot Instance interruption notice\. Therefore, the rebalance recommendation signal can arrive along with the two\-minute interruption notice\.
 
+Rebalance recommendations are made available as a CloudWatch event and as an item in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\. Events are emitted on a best effort basis\.
+
 **Note**  
 Rebalance recommendations are only supported for Spot Instances that are launched after November 5, 2020 00:00 UTC\.
 

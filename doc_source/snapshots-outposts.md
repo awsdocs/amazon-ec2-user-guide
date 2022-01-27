@@ -6,7 +6,7 @@ By default, snapshots of EBS volumes on an Outpost are stored in Amazon S3 in th
 
 This topic provides information about working with Amazon EBS local snapshots on Outposts\. For more information about Amazon EBS snapshots and about working with snapshots in an AWS Region, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
-For more information about AWS Outposts, see [ AWS Outposts Features](http://aws.amazon.com/outposts/features/) and the [AWS Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html)\. For pricing information, see [AWS Outposts pricing](http://aws.amazon.com/outposts/pricing/)\.
+For more information about AWS Outposts, see [AWS Outposts Features](http://aws.amazon.com/outposts/features/) and the [AWS Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html)\. For pricing information, see [AWS Outposts pricing](http://aws.amazon.com/outposts/pricing/)\.
 
 **Topics**
 + [Frequently asked questions](#faq)

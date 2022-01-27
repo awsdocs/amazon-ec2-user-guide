@@ -326,7 +326,7 @@ The following policy allows user to enable and disable VPCs for ClassicLink that
       "Resource": "arn:aws:ec2:region:account:vpc/*",
       "Condition": {
         "StringEquals": {
-          "ec2:ResourceTag/purpose":"classiclink"
+          "aws:ResourceTag/purpose":"classiclink"
         }
       }
     }
@@ -399,7 +399,7 @@ The following grants users permission to unlink any linked EC2\-Classic instance
       ],
       "Condition": {
          "StringEquals": {
-            "ec2:ResourceTag/unlink":"true"
+            "aws:ResourceTag/unlink":"true"
          }
       }
    },

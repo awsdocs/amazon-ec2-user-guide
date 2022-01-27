@@ -110,7 +110,7 @@ Request unused EC2 instances, which can reduce your Amazon EC2 costs significant
 
 For a complete list of charges and prices for Amazon EC2, see [Amazon EC2 pricing](https://aws.amazon.com/ec2/pricing)\.
 
-To calculate the cost of a sample provisioned environment, see [Cloud Economics Center](https://aws.amazon.com/economics/)\.
+When calculating the cost of a provisioned environment, remember to include incidental costs such as snapshot storage for EBS volumes\. To calculate the cost of a sample provisioned environment, see [Cloud Economics Center](https://aws.amazon.com/economics/)\.
 
 To see your bill, go to the **Billing and Cost Management Dashboard** in the [AWS Billing and Cost Management console](https://console.aws.amazon.com/billing/)\. Your bill contains links to usage reports that provide details about your bill\. To learn more about AWS account billing, see [AWS Billing and Cost Management User Guide](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
 

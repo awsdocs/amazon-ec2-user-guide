@@ -89,9 +89,11 @@ You must ensure that you do not exceed the number of concurrent snapshot copies 
 
       1. To add the accounts with which to share the snapshots, choose **Add account**, enter the 12\-digit AWS account ID, and choose **Add**\.
 
-      1. To automatically unshare shared snapshots after a specific period, select **Unshare automatically**\. If you choose to automatically unshare shared snapshots, the period after which to automatically unshare the snapshots cannot be longer than the period for which the policy retains its snapshots\. For example, if the policy's retention configuration retains snapshots for a period of 5 days, you can configure the policy to automatically unshare shared snapshots after periods up to 4 days\. This applies to policies with age\-based and count\-based snapshot retention configurations\.
+      1. To automatically unshare shared snapshots after a specific period, select**Unshare automatically**\. If you choose to automatically unshare shared snapshots, the period after which to automatically unshare the snapshots cannot be longer than the period for which the policy retains its snapshots\. For example, if the policy's retention configuration retains snapshots for a period of 5 days, you can configure the policy to automatically unshare shared snapshots after periods up to 4 days\. This applies to policies with age\-based and count\-based snapshot retention configurations\.
 
          If you do not enable automatic unsharing, the snapshot is shared until it is deleted\.
+**Note**  
+You can only share snapshots that are unencrypted or that are encrypted using a customer managed key\. You can't share snapshots that are encrypted with the default EBS encryption KMS key\. If you share encrypted snapshots, then you must also share the KMS key that was used to encrypt the source volume with the target accounts\. For more information, see [ Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide*\.
 
    1. To add additional schedules, choose **Add another schedule**, which is located at the top of the screen\. For each additional schedule, complete the fields as described previously in this topic\.
 

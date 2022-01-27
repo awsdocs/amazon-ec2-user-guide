@@ -11,7 +11,7 @@ You can specify that Amazon EC2 stops your Spot Instances when they are interrup
 + While a Spot Instance is stopped, you can modify some of its instance attributes, but not the instance type\. If you detach or delete an EBS volume, it is not attached when the Spot Instance is started\. If you detach the root volume and Amazon EC2 attempts to start the Spot Instance, the instance will fail to start and Amazon EC2 will terminate the stopped instance\.
 + You can terminate a Spot Instance while it is stopped\.
 + If you cancel a Spot Instance request, an EC2 Fleet, or a Spot Fleet, Amazon EC2 terminates any associated Spot Instances that are stopped\.
-+ While a Spot Instance is stopped, you are charged only for the EBS volumes, which are preserved\. With EC2 Fleet and Spot Fleet, if you have many stopped instances, you can exceed the limit on the number of EBS volumes for your account\.
++ While an interrupted Spot Instance is stopped, you are charged only for the EBS volumes, which are preserved\. With EC2 Fleet and Spot Fleet, if you have many stopped instances, you can exceed the limit on the number of EBS volumes for your account\. For more information about how you're charged when a Spot Instance is interrupted, see [Billing for interrupted Spot Instances](billing-for-interrupted-spot-instances.md)\.
 + Make sure that you are familiar with the implications of stopping an instance\. For information about what happens when an instance is stopped, see [Differences between reboot, stop, hibernate, and terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
 ## Prerequisites<a name="spot-instance-stop-prerequisites"></a>

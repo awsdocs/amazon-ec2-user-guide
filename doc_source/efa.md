@@ -49,52 +49,36 @@ EFA supports the following interfaces and libraries:
 
 The following instance types support EFAs:
 + General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.48xlarge` \| `m6i.32xlarge` \| `m6i.metal` 
-+ Compute optimized: `c5n.18xlarge` \| `c5n.9xlarge` \| `c5n.metal`  \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal` 
-+ Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6i.32xlarge` \| `r6i.metal` 
++ Compute optimized: `c5n.18xlarge` \| `c5n.9xlarge` \| `c5n.metal`  \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal`  \| `hpc6a.48xlarge`
++ Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal`
 + Storage optimized: `i3en.24xlarge` \| `i3en.12xlarge` \| `i3en.metal`  \| `im4gn.16xlarge` 
 + Accelerated computing: `dl1.24xlarge` \|  `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
 
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` option and the appropriate Region code\.
 
 ```
-$ aws ec2 describe-instance-types \
---region us-east-2 \
---filters Name=network-info.efa-supported,Values=true \
---query "InstanceTypes[*].[InstanceType]" \
---output table
+aws ec2 describe-instance-types 
+--region us-east-2 
+--filters Name=network-info.efa-supported,Values=true 
+--query "InstanceTypes[*].[InstanceType]" 
+--output text | sort
 ```
 
-The following is example output\.
+The following is example output for `us-east-1`\.
 
 ```
-|  i3en.12xlarge      |
-|  i3en.24xlarge      |
-|  c6i.32xlarge       |
-|  g4dn.metal         |
-|  c6gn.16xlarge      |
-|  m6i.metal          |
-|  g4dn.12xlarge      |
-|  p4d.24xlarge       |
-|  c5n.9xlarge        |
-|  r5dn.metal         |
-|  r6i.metal          |
-|  m5zn.metal         |
-|  c5n.18xlarge       |
-|  m5zn.12xlarge      |
-|  r5n.24xlarge       |
-|  m5n.metal          |
-|  m5dn.metal         |
-|  c5n.metal          |
-|  m5n.24xlarge       |
-|  m5dn.24xlarge      |
-|  m6i.32xlarge       |
-|  c6i.metal          |
-|  g4dn.8xlarge       |
-|  r5dn.24xlarge      |
-|  i3en.metal         |
-|  r5n.metal          |
-|  inf1.24xlarge      |
-|  r6i.32xlarge       |
+c5n.18xlarge
+c5n.9xlarge
+c5n.metal
+c6gn.16xlarge
+c6i.32xlarge
+c6i.metal
+dl1.24xlarge
+g4dn.12xlarge
+g4dn.8xlarge
+g4dn.metal
+g5.48xlarge
+...
 ```
 
 ## Supported AMIs<a name="efa-amis"></a>

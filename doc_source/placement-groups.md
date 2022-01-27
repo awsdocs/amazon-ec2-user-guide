@@ -82,7 +82,7 @@ Before you use placement groups, be aware of the following rules:
 + The name that you specify for a placement group must be unique within your AWS account for the Region\.
 + You can't merge placement groups\.
 + An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.
-+ [On\-Demand Capacity Reservation](ec2-capacity-reservations.md#capacity-reservations-limits) and [zonal Reserved Instances](reserved-instances-scope.md) provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
++ [Zonal Reserved Instances](reserved-instances-scope.md) provide a capacity reservation for Amazon EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group, but it does not explicitly reserve capacity in a placement group\.
 + You cannot launch Dedicated Hosts in placement groups\.
 
 ### Cluster placement group rules and limitations<a name="placement-groups-limitations-cluster"></a>
@@ -98,6 +98,7 @@ The following rules apply to cluster placement groups:
   + Traffic to and from Amazon S3 buckets within the same Region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
 + You can launch multiple instance types into a cluster placement group\. However, this reduces the likelihood that the required capacity will be available for your launch to succeed\. We recommend using the same instance type for all instances in a cluster placement group\.
 + Network traffic to the internet and over an AWS Direct Connect connection to on\-premises resources is limited to 5 Gbps\.
++ You can create On\-Demand Capacity Reservations in a cluster placement group to explicitly reserve capacity in that placement group\. For more information, see [Work with Capacity Reservations in cluster placement groups](cr-cpg.md#work-with-crs-cpgs)\.
 
 ### Partition placement group rules and limitations<a name="placement-groups-limitations-partition"></a>
 
@@ -105,12 +106,14 @@ The following rules apply to partition placement groups:
 + A partition placement group supports a maximum of seven partitions per Availability Zone\. The number of instances that you can launch in a partition placement group is limited only by your account limits\.
 + When instances are launched into a partition placement group, Amazon EC2 tries to evenly distribute the instances across all partitions\. Amazon EC2 doesn’t guarantee an even distribution of instances across all partitions\.
 + A partition placement group with Dedicated Instances can have a maximum of two partitions\.
++ On\-Demand Capacity Reservations provide a capacity reservation for Amazon EC2 instances in a specific Availability Zone\. The Capacity Reservation can be used by instances in a partition placement group, but it does not explicitly reserve capacity in the partition placement group\.
 
 ### Spread placement group rules and limitations<a name="placement-groups-limitations-spread"></a>
 
 The following rules apply to spread placement groups:
 + A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a Region with three Availability Zones, you can run a total of 21 instances in the group \(seven per zone\)\. If you try to start an eighth instance in the same Availability Zone and in the same spread placement group, the instance will not launch\. If you need to have more than seven instances in an Availability Zone, then the recommendation is to use multiple spread placement groups\. Using multiple spread placement groups does not provide guarantees about the spread of instances between groups, but it does ensure the spread for each group, thus limiting impact from certain classes of failures\.
 + Spread placement groups are not supported for Dedicated Instances\.
++ On\-Demand Capacity Reservations provide a capacity reservation for Amazon EC2 instances in a specific Availability Zone\. The Capacity Reservation can be used by instances in a spread placement group, but it does not explicitly reserve capacity in the spread placement group\.
 
 ## Working with placement groups<a name="working-with-placement-groups"></a>
 

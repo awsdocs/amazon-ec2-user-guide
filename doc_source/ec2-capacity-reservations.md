@@ -54,8 +54,14 @@ You must create the Capacity Reservation with the correct platform to ensure tha
 + Linux with SQL Server Standard
 + Linux with SQL Server Web
 + Linux with SQL Server Enterprise
-+ Red Hat Enterprise Linux
 + SUSE Linux
++ Red Hat Enterprise Linux
++ RHEL with SQL Server Standard
++ RHEL with SQL Server Enterprise
++ RHEL with SQL Server Web
++ RHEL with HA
++ RHEL with HA and SQL Server Standard
++ RHEL with HA and SQL Server Enterprise
 
 When you purchase a Capacity Reservation, you must specify the *platform* that represents the operating system for your instance\.
 + For SUSE Linux and RHEL distributions, excluding BYOL, you must choose the specific platform\. For example, the **SUSE Linux** or **Red Hat Enterprise Linux** platform\.
