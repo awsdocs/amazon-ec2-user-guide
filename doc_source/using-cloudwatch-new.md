@@ -7,7 +7,7 @@ The following describes the data interval and charge for basic and detailed moni
 
 | Monitoring type | Description | Charges | 
 | --- | --- | --- | 
-| Basic monitoring | Data is available automatically in 5\-minute periods\. | No charge | 
+| Basic monitoring | Data is available automatically in 5\-minute periods\. | No charge. | 
 | Detailed monitoring | Data is available in 1\-minute periods\. To get this level of data, you must specifically enable it for the instance\. For the instances where you've enabled detailed monitoring, you can also get aggregated data across groups of similar instances\. | You are charged per metric that is sent to CloudWatch\. You are not charged for data storage\. For more information, see Paid tier and Example 1 \- EC2 Detailed Monitoring on the [Amazon CloudWatch pricing page](http://aws.amazon.com/cloudwatch/pricing/)\. | 
 
 **Topics**
