@@ -441,7 +441,7 @@ You can access an instance's tags from the instance metadata\. By accessing tags
 
 By default, tags are not available from the instance metadata; you must explicitly allow access\. You can allow access at instance launch, or after launch on a running or stopped instance\. You can also allow access to tags by specifying this in a launch template\. Instances that are launched by using the template allow access to tags in the instance metadata\.
 
-If you add or remove an instance tag, the instance metadata is updated while the instance is running for [instances built on the Nitro System](instance-types.md#ec2-nitro-instances), without needing to reboot, or stop and then start the instance\. For all other instances, to update the tags in the instance metadata, you must either reboot, or stop and then start the instance\.
+If you add or remove an instance tag, the instance metadata is updated while the instance is running for [instances built on the Nitro System](instance-types.md#ec2-nitro-instances), without needing to stop and then start the instance\. For all other instances, to update the tags in the instance metadata, you must stop and then start the instance\.
 
 **Topics**
 + [Allow access to tags in instance metadata](#allow-access-to-tags-in-IMDS)
