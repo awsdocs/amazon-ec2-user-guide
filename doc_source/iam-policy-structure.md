@@ -184,16 +184,21 @@ For example, the following policy uses the `ec2:Attribute/Description` condition
 
 ```
 {
-  "Statement":[{
-    "Effect":"allow",
-    "Action":"ModifyImageAttribute",
-    "Resource":"arn:aws:ec2:us-east-1::image/ami-*",
-    "Condition": {
-      "StringEquals": {
-      "ec2:Attribute/Description": ["Production", "Development"]
-          }
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "ec2:ModifyImageAttribute",
+      "Resource": "arn:aws:ec2:us-east-1::image/ami-*",
+      "Condition": {
+        "StringEquals": {
+          "ec2:Attribute/Description": [
+            "Production",
+            "Development"
+          ]
         }
-     }
+      }
+    }
   ]
 }
 ```
@@ -202,13 +207,15 @@ The following example policy uses the `ec2:Attribute` condition key to filter ac
 
 ```
 {
-  "Statement":[{
-    "Effect":"deny",
-    "Action":"ModifyImageAttribute",
-    "Resource":"arn:aws:ec2:us-east-1::image/ami-*",
-    "Condition": {
-      "StringEquals": {
-        "ec2:Attribute": "Description"
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Deny",
+      "Action": "ec2:ModifyImageAttribute",
+      "Resource": "arn:aws:ec2:us-east-1::image/ami-*",
+      "Condition": {
+        "StringEquals": {
+          "ec2:Attribute": "Description"
         }
       }
     }

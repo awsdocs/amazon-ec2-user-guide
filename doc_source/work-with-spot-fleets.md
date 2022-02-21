@@ -14,7 +14,7 @@ A Spot Fleet request remains active until it expires or you cancel it\. When you
 + [Spot Fleet permissions](#spot-fleet-prerequisites)
 + [Create a Spot Fleet request](#create-spot-fleet)
 + [Tag a Spot Fleet](#tag-spot-fleet)
-+ [Monitor your Spot Fleet](#manage-spot-fleet)
++ [Describe your Spot Fleet](#manage-spot-fleet)
 + [Modify a Spot Fleet request](#modify-spot-fleet)
 + [Cancel a Spot Fleet request](#cancel-spot-fleet)
 
@@ -793,11 +793,11 @@ aws ec2 describe-spot-fleet-requests \
 }
 ```
 
-## Monitor your Spot Fleet<a name="manage-spot-fleet"></a>
+## Describe your Spot Fleet<a name="manage-spot-fleet"></a>
 
 The Spot Fleet launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\. The Spot Instances run until they are interrupted or you terminate them\.
 
-**To monitor your Spot Fleet \(console\)**
+**To describe your Spot Fleet \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -809,7 +809,7 @@ The Spot Fleet launches Spot Instances when your maximum price exceeds the Spot 
 
 1. To view the history for the Spot Fleet, choose **History**\.
 
-**To monitor your Spot Fleet \(AWS CLI\)**  
+**To describe your Spot Fleet \(AWS CLI\)**  
 Use the [describe\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-requests.html) command to describe your Spot Fleet requests\.
 
 ```

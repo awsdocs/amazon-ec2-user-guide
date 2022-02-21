@@ -2,50 +2,42 @@
 
 An IAM user must have the following permissions to use Amazon Data Lifecycle Manager\.
 
+**Note**  
+The `ec2:DescribeAvailabilityZones`, `ec2:DescribeRegions`, `kms:ListAliases`, and `kms:DescribeKey` permissions are required for console users only\. If console access is not required, you can remove the permissions\.
+
 ```
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Action": [
-				"ec2:CreateSnapshot",
-				"ec2:CreateSnapshots",
-				"ec2:DeleteSnapshot",
-				"ec2:DescribeInstances",
-				"ec2:DescribeVolumes",
-				"ec2:DescribeSnapshots",
-				"ec2:EnableFastSnapshotRestores",
-				"ec2:DescribeFastSnapshotRestores",
-				"ec2:DisableFastSnapshotRestores",
-				"ec2:CopySnapshot",
-				"ec2:ModifySnapshotAttribute",
-				"ec2:DescribeSnapshotAttribute"
-			],
-			"Resource": "*"
-		},
-		{
-			"Effect": "Allow",
-			"Action": [
-				"ec2:CreateTags"
-			],
-			"Resource": "arn:aws:ec2:*::snapshot/*"
-		},
-		{
-			"Effect": "Allow",
-			"Action": [
-				"events:PutRule",
-				"events:DeleteRule",
-				"events:DescribeRule",
-				"events:EnableRule",
-				"events:DisableRule",
-				"events:ListTargetsByRule",
-				"events:PutTargets",
-				"events:RemoveTargets"
-			],
-			"Resource": "arn:aws:events:*:*:rule/AwsDataLifecycleRule.managed-cwe.*"
-		}
-	]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "dlm:*",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": [
+                "arn:aws:iam::accound_id:role/service-role/AWSDataLifecycleManagerDefaultRole",
+                "arn:aws:iam::accound_id:role/service-role/AWSDataLifecycleManagerDefaultRoleForAMIManagement"
+                ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:ListRoles",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeRegions",
+                "kms:ListAliases",
+                "kms:DescribeKey"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
 

@@ -12,6 +12,17 @@ For data protection purposes, we recommend that you protect AWS account credenti
 
 We strongly recommend that you never put confidential or sensitive information, such as your customers' email addresses, into tags or free\-form fields such as a **Name** field\. This includes when you work with Amazon EC2 or other AWS services using the console, API, AWS CLI, or AWS SDKs\. Any data that you enter into tags or free\-form fields used for names may be used for billing or diagnostic logs\. If you provide a URL to an external server, we strongly recommend that you do not include credentials information in the URL to validate your request to that server\.
 
+**Topics**
++ [Amazon EBS data security](#ebs-data-security)
++ [Encryption at rest](#encryption-rest)
++ [Encryption in transit](#encryption-transit)
+
+## Amazon EBS data security<a name="ebs-data-security"></a>
+
+Amazon EBS volumes are presented to you as raw, unformatted block devices\. These devices are logical devices that are created on the EBS infrastructure and the Amazon EBS service ensures that the devices are logically empty \(that is, the raw blocks are zeroed or they contain cryptographically pseudorandom data\) prior to any use or re\-use by a customer\.
+
+If you have procedures that require that all data be erased using a specific method, either after or before use \(or both\), such as those detailed in **DoD 5220\.22\-M** \(National Industrial Security Program Operating Manual\) or **NIST 800\-88** \(Guidelines for Media Sanitization\), you have the ability to do so on Amazon EBS\. That block\-level activity will be reflected down to the underlying storage media within the Amazon EBS service\.
+
 ## Encryption at rest<a name="encryption-rest"></a>
 
 **EBS volumes**  
@@ -22,11 +33,14 @@ The data on NVMe instance store volumes is encrypted using an XTS\-AES\-256 ciph
 
 The data on HDD instance store volumes on H1, D3, and D3en instances is encrypted using XTS\-AES\-256 and one\-time keys\.
 
+When you stop, hibernate, or terminate an instance, every block of storage in the instance store volume is reset\. Therefore, your data cannot be accessed through the instance store of another instance\.
+
 **Memory**
 
 Memory encryption is enabled on the following instances:
 + Instances with AWS Graviton 2 processors, such as M6g instances\. These processors support always\-on memory encryption\. The encryption keys are securely generated within the host system, do not leave the host system, and are destroyed when the host is rebooted or powered down\.
 + Instances with Intel Xeon Scalable processors \(Ice Lake\), such as M6i instances\. These processors support always\-on memory encryption using Intel Total Memory Encryption \(TME\)\. 
++ Instances with 3rd generation AMD EPYC processors \(Milan\), such as M6a instances\. These processors support always\-on memory encryption using AMD Transparent Single Key Memory Encryption \(TSME\)\.
 
 ## Encryption in transit<a name="encryption-transit"></a>
 
@@ -40,7 +54,7 @@ All cross\-Region traffic that uses Amazon VPC and Transit Gateway peering is au
 AWS provides secure and private connectivity between EC2 instances of all types\. In addition, some instance types use the offload capabilities of the underlying Nitro System hardware to automatically encrypt in\-transit traffic between instances, using AEAD algorithms with 256\-bit encryption\. There is no impact on network performance\. To support this additional in\-transit traffic encryption between instances, the following requirements must be met:
 + The instances use the following instance types:
   + General purpose: M5dn \| M5n \| M5zn \| M6a \| M6i
-  + Compute optimized: C5a \| C5ad \| C5n \| C6gn \| C6i \| Hpc6a
+  + Compute optimized: C5a \| C5ad \| C5n \| C6a \|  C6gn \|  C6i \| Hpc6a
   + Memory optimized: R5dn \| R5n \| R6i \| high memory \(u\-\*\), virtualized only \| X2iezn
   + Storage optimized: D3 \| D3en \| I3en \| Im4gn \| Is4gen
   + Accelerated computing: DL1 \| G4ad \| G4dn \| G5 \| Inf1 \| P3dn \| P4d \| VT1

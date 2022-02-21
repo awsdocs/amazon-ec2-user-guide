@@ -8,7 +8,7 @@ When Amazon EC2 hibernates a Spot Instance, the following occurs:
 + The EBS volumes and private IP addresses of the instance are preserved\.
 + Instance store volumes and public IP addresses, other than Elastic IP addresses, are not preserved\. 
 
-For information about hibernating On\-Demand Instances, see [Hibernate your On\-Demand or Reserved Linux instance](Hibernate.md)\.
+For information about hibernating On\-Demand Instances, see [Hibernate your On\-Demand Linux instance](Hibernate.md)\.
 
 ## Considerations<a name="hibernate-interrupted-spot-instances-considerations"></a>
 + Only Amazon EC2 can resume a hibernated Spot Instance\.

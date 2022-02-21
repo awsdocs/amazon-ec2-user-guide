@@ -1,16 +1,61 @@
 # Recover snapshots from the Recycle Bin<a name="recycle-bin-working-with-snaps"></a>
 
-Recycle Bin for Amazon EBS snapshots is a snapshot recovery feature that enables you to restore accidentally deleted snapshots\. When using Recycle Bin, if your snapshots are deleted, they are retained in the Recycle Bin for a time period that you specify\.
+Recycle Bin is a data recovery feature that enables you to restore accidentally deleted Amazon EBS snapshots and EBS\-backed AMIs\. When using Recycle Bin, if your resources are deleted, they are retained in the Recycle Bin for a time period that you specify before being permanently deleted\.
 
-You can restore a snapshot from the Recycle Bin at any time before its retention period expires\. After you restore a snapshot from the Recycle Bin, the snapshot is removed from the Recycle Bin and you can use it in the same way you use any other snapshot in your account\. If the retention period expires and the snapshot is not restored, the snapshot is permanently deleted from the Recycle Bin and is no longer available for recovery\.
+You can restore a resource from the Recycle Bin at any time before its retention period expires\. After you restore a resource from the Recycle Bin, the resource is removed from the Recycle Bin and you can use it in the same way that you use any other resource of that type in your account\. If the retention period expires and the resource is not restored, the resource is permanently deleted from the Recycle Bin and it is no longer available for recovery\.
 
 Snapshots in the Recycle Bin are billed at the same rate as regular snapshots in your account\. There are no additional charges for using Recycle Bin and retention rules\. For more information, see [Amazon EBS pricing](http://aws.amazon.com/ebs/pricing/)\.
 
-For more information, see [Recycle Bin for Amazon EBS snapshots](recycle-bin.md)\.
+For more information, see [Recycle Bin](recycle-bin.md)\.
 
 **Topics**
++ [Permissions for working with snapshots in the Recycle Bin](#snap-perms)
 + [View snapshots in the Recycle Bin](#recycle-bin-view-snaps)
 + [Restore snapshots from the Recycle Bin](#recycle-bin-restore-snaps)
+
+## Permissions for working with snapshots in the Recycle Bin<a name="snap-perms"></a>
+
+By default, IAM users don't have permission to work with snapshots that are in the Recycle Bin\. To allow IAM users to work with these resources, you must create IAM policies that grant permission to use specific resources and API actions\. You then attach those policies to the IAM users or the groups that require those permissions\.
+
+To view and recover snapshots that are in the Recycle Bin, IAM users must have the following permissions:
++ `ec2:ListSnapshotsInRecycleBin`
++ `ec2:RestoreSnapshotFromRecycleBin`
+
+To manage tags for snapshots in the Recycle Bin, IAM users need the following additional permissions\.
++ `ec2:CreateTags`
++ `ec2:DeleteTags`
+
+To use the Recycle Bin console, IAM users need the `ec2:DescribeTags` permission\.
+
+The following is an example IAM policy\. It includes the `ec2:DescribeTags` permission for console users, and it includes the `ec2:CreateTags` and `ec2:CreateTags` permissions for managing tags\. If the permissions are not needed, you can remove them from the policy\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+            "ec2:ListSnapshotsInRecycleBin", 
+            "ec2:RestoreSnapshotFromRecycleBin"
+        ],
+        "Resource": "*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+            "ec2:CreateTags",
+            "ec2:DeleteTags",
+            "ec2:DescribeTags"
+        ],
+        "Resource": "arn:aws:ec2:Region:account-id:snapshot/*"
+      },
+    
+    ]
+}
+```
+
+For more information about the permissions needed to use Recycle Bin, see [Permissions for working with Recycle Bin and retention rules](recycle-bin-perms.md#rule-perms)\.
 
 ## View snapshots in the Recycle Bin<a name="recycle-bin-view-snaps"></a>
 
@@ -71,8 +116,6 @@ Example output:
 ## Restore snapshots from the Recycle Bin<a name="recycle-bin-restore-snaps"></a>
 
 You can't use a snapshot in any way while it is in the Recycle Bin\. To use the snapshot, you must first restore it\. When you restore a snapshot from the Recycle Bin, the snapshot is immediately available for use, and it is removed from the Recycle Bin\. You can use a restored snapshot in the same way that you use any other snapshot in your account\.
-
-
 
 You can restore a snapshot from the Recycle Bin using one of the following methods\.
 

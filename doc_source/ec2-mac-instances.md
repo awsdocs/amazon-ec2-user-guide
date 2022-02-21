@@ -2,6 +2,9 @@
 
 Mac1 instances natively support the macOS operating system\. They are built on Mac mini hardware and powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. These instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
 
+**Note**  
+The **unit of billing** is the **dedicated host**\. The instances running on top of that host have no additional charge\.
+
 For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac) and [Pricing](https://aws.amazon.com/mac/#Pricing)\.
 
 **Topics**
@@ -29,6 +32,7 @@ The following considerations apply to Mac instances:
   + macOS Catalina \(version 10\.15\)
   + macOS Mojave \(version 10\.14\)
   + macOS Big Sur \(version 11\)
+  + macOS Monterey \(version 12\)
 + If you attach an EBS volume to a running Mac instance, you must reboot the instance to make the volume available\.
 + If you resized an existing EBS volume on a running Mac instance, you must reboot the instance to make the new size available\.
 + If you attach a network interface to a running Mac instance, you must reboot the instance to make the network interface available\.

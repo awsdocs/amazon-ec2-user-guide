@@ -1,31 +1,54 @@
-# Tutorial: Host a WordPress blog on Amazon Linux 2<a name="hosting-wordpress"></a>
+# Tutorial: Host a WordPress blog on Amazon Linux 2022<a name="hosting-wordpress-aml-2022"></a>
 
-The following procedures will help you install, configure, and secure a WordPress blog on your Amazon Linux instance\. This tutorial is a good introduction to using Amazon EC2 in that you have full control over a web server that hosts your WordPress blog, which is not typical with a traditional hosting service\.
+The following procedures will help you install, configure, and secure a WordPress blog on your Amazon Linux 2022 instance\. This tutorial is a good introduction to using Amazon EC2 in that you have full control over a web server that hosts your WordPress blog, which is not typical with a traditional hosting service\.
 
 You are responsible for updating the software packages and maintaining security patches for your server\. For a more automated WordPress installation that does not require direct interaction with the web server configuration, the AWS CloudFormation service provides a WordPress template that can also get you started quickly\. For more information, see [Get started](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/GettingStarted.Walkthrough.html) in the *AWS CloudFormation User Guide*\. If you'd prefer to host your WordPress blog on a Windows instance, see [Deploy a WordPress blog on your Amazon EC2 Windows instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2Win_CreateWordPressBlog.html) in the *Amazon EC2 User Guide for Windows Instances*\. If you need a high\-availability solution with a decoupled database, see [Deploying a high\-availability WordPress website](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/php-hawordpress-tutorial.html) in the *AWS Elastic Beanstalk Developer Guide*\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux\. For more information about other distributions, see their specific documentation\. Many steps in this tutorial do not work on Ubuntu instances\. For help installing WordPress on an Ubuntu instance, see [WordPress](https://help.ubuntu.com/community/WordPress) in the Ubuntu documentation\. You can also use [CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-wordpress-launch-instance.html) to accomplish this task on Amazon Linux, macOS, or Unix systems\.
+These procedures are intended for use with Amazon Linux 2022\. For more information about other distributions, see their specific documentation\. Many steps in this tutorial do not work on Ubuntu instances\. For help installing WordPress on an Ubuntu instance, see [WordPress](https://help.ubuntu.com/community/WordPress) in the Ubuntu documentation\. You can also use [CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-wordpress-launch-instance.html) to accomplish this task on Amazon Linux, macOS, or Unix systems\.
 
 **Topics**
-+ [Prerequisites](#hosting-wordpress-prereqs)
-+ [Install WordPress](#install-wordpress)
-+ [Next steps](#wordpress-next-steps)
-+ [Help\! My public DNS name changed and now my blog is broken](#wordpress-troubleshooting)
++ [Prerequisites](#hosting-wordpress-prereqs-20222)
++ [Install WordPress](#install-wordpress-2022)
++ [Next steps](#wordpress-next-steps-2022)
++ [Help\! My public DNS name changed and now my blog is broken](#wordpress-troubleshooting-2022)
 
-## Prerequisites<a name="hosting-wordpress-prereqs"></a>
+## Prerequisites<a name="hosting-wordpress-prereqs-20222"></a>
 
-This tutorial assumes that you have launched an Amazon Linux instance with a functional web server with PHP and database \(either MySQL or MariaDB\) support by following all of the steps in [Tutorial: Install a LAMP web server on the Amazon Linux AMI](install-LAMP.md) for Amazon Linux AMI or [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) for Amazon Linux 2\. This tutorial also has steps for configuring a security group to allow `HTTP` and `HTTPS` traffic, as well as several steps to ensure that file permissions are set properly for your web server\. For information about adding rules to your security group, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
-
-We strongly recommend that you associate an Elastic IP address \(EIP\) to the instance you are using to host a WordPress blog\. This prevents the public DNS address for your instance from changing and breaking your installation\. If you own a domain name and you want to use it for your blog, you can update the DNS record for the domain name to point to your EIP address \(for help with this, contact your domain name registrar\)\. You can have one EIP address associated with a running instance at no charge\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
+We strongly recommend that you associate an Elastic IP address \(EIP\) to the instance you are using to host a WordPress blog\. This prevents the public DNS address for your instance from changing and breaking your installation\. If you own a domain name and you want to use it for your blog, you can update the DNS record for the domain name to point to your EIP address \(for help with this, contact your domain name registrar\)\. You can have one EIP address associated with a running instance at no charge\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. The [Tutorial: Install a LAMP web server on the Amazon Linux AMI](install-LAMP.md) tutorial has steps for configuring a security group to allow `HTTP` and `HTTPS` traffic, as well as several steps to ensure that file permissions are set properly for your web server\. For information about adding rules to your security group, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
 If you don't already have a domain name for your blog, you can register a domain name with Route 53 and associate your instance's EIP address with your domain name\. For more information, see [Registering domain names using Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html) in the *Amazon Route 53 Developer Guide*\.
 
-## Install WordPress<a name="install-wordpress"></a>
+## Install WordPress<a name="install-wordpress-2022"></a>
 
-Connect to your instance, and download the WordPress installation package\.
+[Connect to your instance](EC2_GetStarted.md#ec2-connect-to-instance-linux), and download the WordPress installation package\.
 
-**To download and unzip the WordPress installation package**
+1. Download and install these packages using the following command\.
+
+   ```
+   dnf install wget php-mysqlnd httpd mysql php-fpm php-mysqli php-json php php-devel -y
+   ```
+
+1. You may notice a warning displayed with similar verbiage in the output \(the versions may vary over time\):
+
+   ```
+   WARNING:
+     A newer release of "Amazon Linux" is available.
+   
+     Available Versions:
+        
+   dnf update --releasever=2022.0.20220202
+   
+       Release notes:
+        https://aws.amazon.com
+   
+     Version 2022.0.20220204:
+       Run the following command to update to 2022.0.20220204:
+   
+         dnf update --releasever=2022.0.20220204 ... etc
+   ```
+
+   As a best\-practice we recommend keeping the OS as up\-to\-date as possible, but you may want to iterate through each version to ensure there are no conflicts in your environment\. **If installation of the preceding packages noted in step 1 fail, you may need to update to one of the newer releases listed, and retry**\.
 
 1. Download the latest WordPress installation package with the wget command\. The following command should always download the latest release\.
 
@@ -37,33 +60,27 @@ Connect to your instance, and download the WordPress installation package\.
 
    ```
    [ec2-user ~]$ tar -xzf latest.tar.gz
-   ```<a name="create_user_and_database"></a>
+   ```<a name="create_user_and_database_2022"></a>
 
 **To create a database user and database for your WordPress installation**
 
 Your WordPress installation needs to store information, such as blog posts and user comments, in a database\. This procedure helps you create your blog's database and a user that is authorized to read and save information to it\. 
 
-1. Start the database server\.
-   + Amazon Linux 2
+1. Start the database and web server\.
 
-     ```
-     [ec2-user ~]$ sudo systemctl start mariadb
-     ```
-   + Amazon Linux AMI
-
-     ```
-     [ec2-user ~]$ sudo service mysqld start
-     ```
+   ```
+   [ec2-user ~]$ sudo systemctl start mariadb httpd
+   ```
 
 1. Log in to the database server as the `root` user\. Enter your database `root` password when prompted; this may be different than your `root` system password, or it might even be empty if you have not secured your database server\.
 
-   If you have not secured your database server yet, it is important that you do so\. For more information, see [To secure the MariaDB server](ec2-lamp-amazon-linux-2.md#securing-maria-db) \(Amazon Linux 2\) or [To secure the database server](install-LAMP.md#SecuringMySQLProcedure) \(Amazon Linux AMI\)\.
+   If you have not secured your database server yet, it is important that you do so\. For more information, see [To secure the MariaDB server](ec2-lamp-amazon-linux-2.md#securing-maria-db) \(Amazon Linux 2022\) or [To secure the database server](install-LAMP.md#SecuringMySQLProcedure) \(Amazon Linux 2022 AMI\)\.
 
    ```
    [ec2-user ~]$ mysql -u root -p
    ```
 
-1. <a name="create_database_user"></a>Create a user and password for your MySQL database\. Your WordPress installation uses these values to communicate with your MySQL database\. Enter the following command, substituting a unique user name and password\.
+1. <a name="create_database_user_2022"></a>Create a user and password for your MySQL database\. Your WordPress installation uses these values to communicate with your MySQL database\. Enter the following command, substituting a unique user name and password\.
 
    ```
    CREATE USER 'wordpress-user'@'localhost' IDENTIFIED BY 'your_strong_password';
@@ -71,7 +88,7 @@ Your WordPress installation needs to store information, such as blog posts and u
 
    Make sure that you create a strong password for your user\. Do not use the single quote character \( ' \) in your password, because this will break the preceding command\. For more information about creating a secure password, go to [http://www\.pctools\.com/guides/password/](http://www.pctools.com/guides/password/)\. Do not reuse an existing password, and make sure to store this password in a safe place\.
 
-1. <a name="create_database"></a>Create your database\. Give your database a descriptive, meaningful name, such as `wordpress-db`\.
+1. <a name="create_database_2022"></a>Create your database\. Give your database a descriptive, meaningful name, such as `wordpress-db`\.
 **Note**  
 The punctuation marks surrounding the database name in the command below are called backticks\. The backtick \(```\) key is usually located above the `Tab` key on a standard keyboard\. Backticks are not always required, but they allow you to use otherwise illegal characters, such as hyphens, in database names\.
 
@@ -113,19 +130,19 @@ The WordPress installation folder contains a sample configuration file called `w
    [ec2-user ~]$ nano wordpress/wp-config.php
    ```
 
-   1. Find the line that defines `DB_NAME` and change `database_name_here` to the database name that you created in [Step 4](#create_database) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
+   1. Find the line that defines `DB_NAME` and change `database_name_here` to the database name that you created in [Step 4](#create_database_2022) of [To create a database user and database for your WordPress installation](#create_user_and_database_2022)\.
 
       ```
       define('DB_NAME', 'wordpress-db');
       ```
 
-   1. Find the line that defines `DB_USER` and change `username_here` to the database user that you created in [Step 3](#create_database_user) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
+   1. Find the line that defines `DB_USER` and change `username_here` to the database user that you created in [Step 3](#create_database_user_2022) of [To create a database user and database for your WordPress installation](#create_user_and_database_2022)\.
 
       ```
       define('DB_USER', 'wordpress-user');
       ```
 
-   1. Find the line that defines `DB_PASSWORD` and change `password_here` to the strong password that you created in [Step 3](#create_database_user) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
+   1. Find the line that defines `DB_PASSWORD` and change `password_here` to the strong password that you created in [Step 3](#create_database_user_2022) of [To create a database user and database for your WordPress installation](#create_user_and_database_2022)\.
 
       ```
       define('DB_PASSWORD', 'your_strong_password');
@@ -219,19 +236,19 @@ There are multiple `AllowOverride` lines in this file; be sure you change the li
 
 1. Save the file and exit your text editor\.
 
-**To install the PHP graphics drawing library on Amazon Linux 2**  
+**To install the PHP graphics drawing library on Amazon Linux 2022**  
 The GD library for PHP enables you to modify images\. Install this library if you need to crop the header image for your blog\. The version of phpMyAdmin that you install might require a specific minimum version of this library \(for example, version 7\.2\)\.
 
-Use the following command to install the PHP graphics drawing library on Amazon Linux 2\. For example, if you installed php7\.2 from amazon\-linux\-extras as part of installing the LAMP stack, this command installs version 7\.2 of the PHP graphics drawing library\.
+Use the following command to install the PHP graphics drawing library on Amazon Linux 2022\. For example, if you installed php7\.2 from amazon\-linux\-extras as part of installing the LAMP stack, this command installs version 7\.2 of the PHP graphics drawing library\.
 
 ```
-[ec2-user ~]$ sudo yum install php-gd
+[ec2-user ~]$ sudo dnf install php-gd
 ```
 
 To verify the installed version, use the following command:
 
 ```
-[ec2-user ~]$ sudo yum list installed | grep php-gd
+[ec2-user ~]$ sudo dnf list installed | grep php-gd
 ```
 
 The following is example output:
@@ -246,7 +263,7 @@ The GD library for PHP enables you to modify images\. Install this library if yo
 To verify which versions are available, use the following command:
 
 ```
-[ec2-user ~]$ yum list | grep php-gd
+[ec2-user ~]$ dnf list | grep php-gd
 ```
 
 The following is an example line from the output for the PHP graphics drawing library \(version 7\.2\):
@@ -258,7 +275,7 @@ php72-gd.x86_64                   7.2.30-1.22.amzn1         amzn-updates
 Use the following command to install a specific version of the PHP graphics drawing library \(for example, version 7\.2\) on the Amazon Linux AMI:
 
 ```
-[ec2-user ~]$ sudo yum install php72-gd
+[ec2-user ~]$ sudo dnf install php72-gd
 ```
 
 **To fix file permissions for the Apache web server**
@@ -291,20 +308,15 @@ Some of the available features in WordPress require write access to the Apache d
    ```
 
 1. Restart the Apache web server to pick up the new group and permissions\.
-   + Amazon Linux 2
+   + Amazon Linux 2022
 
      ```
      [ec2-user ~]$ sudo systemctl restart httpd
      ```
-   + Amazon Linux AMI
 
-     ```
-     [ec2-user ~]$ sudo service httpd restart
-     ```
+**To run the WordPress installation script with Amazon Linux 2022**
 
-**To run the WordPress installation script with Amazon Linux 2**
-
-You are ready to install WordPress\. The commands that you use depend on the operating system\. The commands in this procedure are for use with Amazon Linux 2\. Use the procedure that follows this one with Amazon Linux AMI\.
+You are ready to install WordPress\. The commands that you use depend on the operating system\. The commands in this procedure are for use with Amazon Linux 2022\. Use the procedure that follows this one with Amazon Linux 2022 AMI\.
 
 1. Use the systemctl command to ensure that the `httpd` and database services start at every system boot\.
 
@@ -338,7 +350,7 @@ You are ready to install WordPress\. The commands that you use depend on the ope
 
 1. In a web browser, type the URL of your WordPress blog \(either the public DNS address for your instance, or that address followed by the `blog` folder\)\. You should see the WordPress installation script\. Provide the information required by the WordPress installation\. Choose **Install WordPress** to complete the installation\. For more information, see [Step 5: Run the Install Script](https://wordpress.org/support/article/how-to-install-wordpress/#step-5-run-the-install-script) on the WordPress website\.
 
-**To run the WordPress installation script with Amazon Linux AMI**
+**To run the WordPress installation script with Amazon Linux 2022 AMI**
 
 1. Use the chkconfig command to ensure that the `httpd` and database services start at every system boot\.
 
@@ -372,7 +384,7 @@ You are ready to install WordPress\. The commands that you use depend on the ope
 
 1. In a web browser, type the URL of your WordPress blog \(either the public DNS address for your instance, or that address followed by the `blog` folder\)\. You should see the WordPress installation script\. Provide the information required by the WordPress installation\. Choose **Install WordPress** to complete the installation\. For more information, see [Step 5: Run the Install Script](https://wordpress.org/support/article/how-to-install-wordpress/#step-5-run-the-install-script) on the WordPress website\.
 
-## Next steps<a name="wordpress-next-steps"></a>
+## Next steps<a name="wordpress-next-steps-2022"></a>
 
 After you have tested your WordPress blog, consider updating its configuration\.
 
@@ -393,7 +405,7 @@ If you expect your blog to drive traffic from users located around the world, co
 **Learn more about WordPress**  
 For information about WordPress, see the WordPress Codex help documentation at [http://codex\.wordpress\.org/](http://codex.wordpress.org/)\. For more information about troubleshooting your installation, go to [https://wordpress\.org/support/article/how\-to\-install\-wordpress/\#common\-installation\-problems](https://wordpress.org/support/article/how-to-install-wordpress/#common-installation-problems)\. For information about making your WordPress blog more secure, go to [https://wordpress\.org/support/article/hardening\-wordpress/](https://wordpress.org/support/article/hardening-wordpress/)\. For information about keeping your WordPress blog up\-to\-date, go to [https://wordpress\.org/support/article/updating\-wordpress/](https://wordpress.org/support/article/updating-wordpress/)\.
 
-## Help\! My public DNS name changed and now my blog is broken<a name="wordpress-troubleshooting"></a>
+## Help\! My public DNS name changed and now my blog is broken<a name="wordpress-troubleshooting-2022"></a>
 
 Your WordPress installation is automatically configured using the public DNS address for your EC2 instance\. If you stop and restart the instance, the public DNS address changes \(unless it is associated with an Elastic IP address\) and your blog will not work anymore because it references resources at an address that no longer exists \(or is assigned to another EC2 instance\)\. A more detailed description of the problem and several possible solutions are outlined in [https://wordpress\.org/support/article/changing\-the\-site\-url/](https://wordpress.org/support/article/changing-the-site-url/)\.
 

@@ -123,10 +123,11 @@ The following basic restrictions apply to tags:
 + For each resource, each tag key must be unique, and each tag key can have only one value\.
 + Maximum key length – 128 Unicode characters in UTF\-8
 + Maximum value length – 256 Unicode characters in UTF\-8
-+ Although EC2 allows for any character in its tags, other services are more restrictive\. The allowed characters across services are: letters, numbers, and spaces representable in UTF\-8, and the following characters: `+ - = . _ : / @`\.
++ Allowed characters
+  + Although EC2 allows for any character in its tags, other services are more restrictive\. The allowed characters across services are: letters, numbers, and spaces representable in UTF\-8, and the following characters: `+ - = . _ : / @`\.
+  + If you enable instance tags in instance metadata, instance tag *keys* can only use letters \(`a-z`, `A-Z`\), numbers \(`0-9`\), and the following characters: `-_+=,.@:`\. Instance tag *keys* can't use spaces, `/`, or the reserved names `.`, `..`, or `_index`\. For more information, see [Work with instance tags in instance metadata](#work-with-tags-in-IMDS)\.
 + Tag keys and values are case\-sensitive\.
 + The `aws:` prefix is reserved for AWS use\. If a tag has a tag key with this prefix, then you can't edit or delete the tag's key or value\. Tags with the `aws:` prefix do not count against your tags per resource limit\.
-+ If you enable tags in instance metadata, you can’t use spaces, `/`, or the reserved names `.`, `..`, or `_index`\. The instance name is a tag with the reserved key of `Name`, and its value must adhere to these restrictions if tags in instance metadata is enabled\. For more information, see [Work with instance tags in instance metadata](#work-with-tags-in-IMDS)\.
 
 You can't terminate, stop, or delete a resource based solely on its tags; you must specify the resource identifier\. For example, to delete snapshots that you tagged with a tag key called `DeleteMe`, you must use the `DeleteSnapshots` action with the resource identifiers of the snapshots, such as `snap-1234567890abcdef0`\. 
 
@@ -437,7 +438,7 @@ aws ec2 describe-tags \
 
 ## Work with instance tags in instance metadata<a name="work-with-tags-in-IMDS"></a>
 
-You can access an instance's tags from the instance metadata\. By accessing tags from the instance metadata, you no longer need to use the `DescribeInstance` or `DescribeTag` API calls to retrieve tag information, which reduces your API transactions per second, and lets your tag retrievals scale with the number of instances that you control\. Furthermore, local processes that are running on an instance can view the instance's tag information directly from the instance metadata\.
+You can access an instance's tags from the instance metadata\. By accessing tags from the instance metadata, you no longer need to use the `DescribeInstances` or `DescribeTags` API calls to retrieve tag information, which reduces your API transactions per second, and lets your tag retrievals scale with the number of instances that you control\. Furthermore, local processes that are running on an instance can view the instance's tag information directly from the instance metadata\.
 
 By default, tags are not available from the instance metadata; you must explicitly allow access\. You can allow access at instance launch, or after launch on a running or stopped instance\. You can also allow access to tags by specifying this in a launch template\. Instances that are launched by using the template allow access to tags in the instance metadata\.
 

@@ -119,6 +119,16 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5n\.9xlarge | 36 | 96 | 
 | c5n\.18xlarge | 72 | 192 | 
 | c5n\.metal | 72 | 192 | 
+| c6a\.large | 2 | 4 | 
+| c6a\.xlarge | 4 | 8 | 
+| c6a\.2xlarge | 8 | 16 | 
+| c6a\.4xlarge | 16 | 32 | 
+| c6a\.8xlarge | 32 | 64 | 
+| c6a\.12xlarge | 48 | 96 | 
+| c6a\.16xlarge | 64 | 128 | 
+| c6a\.24xlarge | 96 | 192 | 
+| c6a\.32xlarge | 128 | 256 | 
+| c6a\.48xlarge | 192 | 384 | 
 | c6g\.medium | 1 | 2 | 
 | c6g\.large | 2 | 4 | 
 | c6g\.xlarge | 4 | 8 | 
@@ -182,14 +192,14 @@ The following is a summary of network performance for compute optimized instance
 | c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 | c5\.9xlarge \| c5a\.8xlarge \| c5ad\.8xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.12xlarge \| c5a\.12xlarge \| c5ad\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge \| c6gd\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  c6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  c6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  c6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  c6a\.4xlarge and smaller \|  c6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c6a\.8xlarge \|  c6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6a\.12xlarge c6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5a\.16xlarge \| c5a\.24xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge \| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller  \| c6gn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge \| c6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  c6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.9xlarge \| c6gn\.8xlarge \| c6i\.32xlarge \| c6i\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6a\.16xlarge   \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge \| c6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6a\.24xlarge \|  c6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.9xlarge  \| c6a\.32xlarge \| c6a\.48xlarge  \| c6gn\.8xlarge \| c6i\.32xlarge \| c6i\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c6gn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  \| hpc6a\.48xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
@@ -218,6 +228,10 @@ The following is a summary of network performance for compute optimized instance
 | c5n\.xlarge | 5 | 25 | 
 | c5n\.2xlarge | 10 | 25 | 
 | c5n\.4xlarge | 15 | 25 | 
+| c6a\.large | \.781 | 12 | 
+| c6a\.xlarge | 1\.562 | 12 | 
+| c6a\.2xlarge | 3\.125 | 12 | 
+| c6a\.4xlarge | 6\.25 | 12 | 
 | c6g\.medium | \.5 | 10 | 
 | c6g\.large | \.75 | 10 | 
 | c6g\.xlarge | 1\.25 | 10 | 
@@ -291,6 +305,7 @@ The following is a summary of features for compute optimized instances:
 | C5ad | No | Yes | NVMe \* | Yes | 
 | C5d | No | Yes | NVMe \* | Yes | 
 | C5n | Yes | Yes | No | Yes | 
+| C6a | Yes | Yes | No | Yes | 
 | C6g | Yes | Yes | No | Yes | 
 | C6gd | No | Yes | NVMe \* | Yes | 
 | C6gn | Yes | Yes | No | Yes | 

@@ -387,7 +387,10 @@ When you launch an instance, you are [prompted for a key pair](launching-instanc
 
 1. In the navigation pane, choose **Instances**, and then select your instance\.
 
-1. On the **Details** tab, under **Instance details**, the **Key pair name** field displays the name of the key pair that you specified when you launched the instance\. The value of the **Key pair name** does not change even if you change the public key on the instance, or add key pairs\.
+1. On the **Details** tab, under **Instance details**, the **Key pair name** field displays the name of the key pair that you specified when you launched the instance\.
+
+**Note**  
+The value of the **Key pair name** does not change even if you change the public key on the instance, or add key pairs\.
 
 ## Verify your key pair's fingerprint<a name="verify-key-pair-fingerprints"></a>
 

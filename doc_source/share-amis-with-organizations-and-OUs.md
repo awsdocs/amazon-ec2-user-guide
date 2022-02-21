@@ -52,7 +52,11 @@ To give an organization or OU permission to use a KMS key, add the following sta
     "Action": [
         "kms:Describe*",
         "kms:List*",
-        "kms:Get*"
+        "kms:Get*",
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*"
     ],
     "Resource": "*",
     "Condition": {
@@ -73,7 +77,11 @@ To share a KMS key with multiple OUs, you can use a policy similar to the follow
         "Action": [
             "kms:Describe*",
             "kms:List*",
-            "kms:Get*"
+            "kms:Get*",
+            "kms:Encrypt",
+            "kms:Decrypt",
+            "kms:ReEncrypt*",
+            "kms:GenerateDataKey*"
         ],
         "Resource": "*",
         "Condition": {

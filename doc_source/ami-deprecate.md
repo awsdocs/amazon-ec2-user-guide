@@ -26,11 +26,30 @@ When you deprecate an AMI, the AMI is not deleted\. The AMI owner continues to p
 
 ## Limitations<a name="limitations"></a>
 + To deprecate an AMI, you must be the owner of the AMI\.
-+ You can’t use the EC2 console to deprecate an AMI or to cancel the deprecation of an AMI\.
 
 ## Deprecate an AMI<a name="deprecate-ami"></a>
 
 You can deprecate an AMI on a specific date and time\. You must be the AMI owner to perform this procedure\.
+
+------
+#### [ Console ]
+
+**To deprecate an AMI on a specific date \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigator, choose **AMIs**\.
+
+1. From the filter bar, choose **Owned by me**\.
+
+1. Select the AMI, and then choose **Actions**, **Manage AMI Deprecation**\. You can select multiple AMIs to set the same deprecation date of several AMIs at once\.
+
+1. Select the **Enable** check box, and then enter the deprecation date and time\.
+
+1. Choose **Save**\.
+
+------
+#### [ AWS CLI ]
 
 **To deprecate an AMI on a specific date \(AWS CLI\)**  
 Use the [enable\-image\-deprecation](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-image-deprecation.html) command\. Specify the ID of the AMI and the date and time on which to deprecate the AMI\. If you specify a value for seconds, Amazon EC2 rounds the seconds to the nearest minute\.
@@ -45,12 +64,39 @@ Expected output
 
 ```
 {
-  "RequestID": "59dbff89-35bd-4eac-99ed-be587EXAMPLE",
   "Return": "true"
 }
 ```
 
+------
+
 ## Describe deprecated AMIs<a name="describe-deprecate-ami"></a>
+
+You can view the deprecation date and time of an AMI, and filter all the AMIs by deprecation date\. You can also use the AWS CLI to decribe all the AMIs that have been deprecated, where the deprecation date is in the past\.
+
+------
+#### [ Console ]
+
+**To view the deprecation date of an AMI \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigator, choose **AMIs**, and then select the AMI\.
+
+1. Check the **Deprecation time** field \(if you selected the check box next to the AMI, it's located on the **Details** tab\)\. The field shows the deprecation date and time of the AMI\. If the field is empty, the AMI is not deprecated\.
+
+**To filter AMIs by deprecation date \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigator, choose **AMIs**\.
+
+1. From the filter bar, choose **Owned by me** or **Private images** \(private images include AMIs that are shared with you as well as owned by you\)\.
+
+1. In the Search bar, enter **Deprecation time** \(as you enter the letters, the **Deprecation time** filter appears\), and then choose an operator and a date and time\.
+
+------
+#### [ AWS CLI ]
 
 When you describe all AMIs using the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, the results are different depending on whether you are an AMI user or the AMI owner\.
 + If you are an AMI user: 
@@ -130,9 +176,29 @@ The `DeprecationTime` field displays the date on which the AMI is set to be depr
 }
 ```
 
+------
+
 ## Cancel the deprecation of an AMI<a name="cancel-deprecate-ami"></a>
 
-You can cancel the deprecation an AMI, which removes the `DeprecationTime` field from the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) output\. You must be the AMI owner to perform this procedure\.
+You can cancel the deprecation of an AMI, which removes the date and time from the **Deprecation time** field \(console\) or the `DeprecationTime` field from the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) output \(AWS CLI\)\. You must be the AMI owner to perform this procedure\.
+
+------
+#### [ Console ]
+
+**To cancel the deprecation of an AMI \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigator, choose **AMIs**\.
+
+1. From the filter bar, choose **Owned by me**\.
+
+1. Select the AMI, and then choose **Actions**, **Manage AMI Deprecation**\. You can select multiple AMIs to cancel the deprecation of several AMIs at once\.
+
+1. Clear the **Enable** check box, and then choose **Save**\.
+
+------
+#### [ AWS CLI ]
 
 **To cancel the deprecation of an AMI \(AWS CLI\)**  
 Use the [disable\-image\-deprecation](https://docs.aws.amazon.com/cli/latest/reference/ec2/disable-image-deprecation.html) command and specify the ID of the AMI\.
@@ -146,7 +212,8 @@ Expected output
 
 ```
 {
-  "RequestID": "11aabb229-4eac-35bd-99ed-be587EXAMPLE",
   "Return": "true"
 }
 ```
+
+------

@@ -102,4 +102,4 @@ You cannot enable hibernation on an existing instance \(running or stopped\)\. F
 
 ## Purchasing options<a name="hibernation-prereqs-purchasing-options"></a>
 
-This feature is available for On\-Demand Instances and Reserved Instances\. It is not available for Spot Instances\. For information about hibernating a Spot Instance, see [Hibernate interrupted Spot Instances](hibernate-spot-instances.md)\.
+This feature is available for On\-Demand Instances, including those that have a Reserved Instance billing discount applied to them\. It is not available for Spot Instances\. For information about hibernating a Spot Instance, see [Hibernate interrupted Spot Instances](hibernate-spot-instances.md)\.

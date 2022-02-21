@@ -7,6 +7,7 @@ Some resources can be tagged with values that you define, to help you organize a
 The following topics describe resources and tags, and how you can work with them\.
 
 **Topics**
++ [Recycle Bin](recycle-bin.md)
 + [Resource locations](resources.md)
 + [Resource IDs](resource-ids.md)
 + [List and filter your resources](Using_Filtering.md)

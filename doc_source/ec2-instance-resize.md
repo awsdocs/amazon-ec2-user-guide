@@ -23,8 +23,9 @@ Consider the following when changing the instance type of an existing instance:
 + You must stop your Amazon EBS\-backed instance before you can change its instance type\. Ensure that you plan for downtime while your instance is stopped\. Stopping the instance and changing its instance type might take a few minutes, and restarting your instance might take a variable amount of time depending on your application's startup scripts\. For more information, see [Stop and start your instance](Stop_Start.md)\.
 + When you stop and start an instance, we move the instance to new hardware\. If your instance has a public IPv4 address, we release the address and give your instance a new public IPv4 address\. If you require a public IPv4 address that does not change, use an [Elastic IP address](elastic-ip-addresses-eip.md)\.
 + You can't change the instance type if [hibernation](Hibernate.md) is enabled for the instance\.
++ You can't change the instance type of a [Spot Instance](spot-requests.md#stopping-a-spot-instance)\.
 + If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. To prevent this, you can suspend the scaling processes for the group while you're changing the instance type\. For more information, see [Suspending and resuming a process for an Auto Scaling group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
-+ When you change the instance type of an instance with NVMe instance store volumes, the updated instance might have additional instance store volumes because Otherwise, the updated instance has the same number of instance store volumes that you specified when you launched the original instance\.
++ When you change the instance type of an instance with NVMe instance store volumes, the updated instance might have additional instance store volumes, because all NVMe instance store volumes are available even if they are not specified in the AMI or instance block device mapping\. Otherwise, the updated instance has the same number of instance store volumes that you specified when you launched the original instance\.
 
 ## Change the instance type of an existing EBS\-backed instance<a name="change-instance-type-of-ebs-backed-instance"></a>
 
@@ -55,7 +56,7 @@ Use the following instructions to change the instance type of an EBS\-backed ins
 
    1. Choose **Apply** to accept the new settings\.
 
-1. To start the instance, select the instance and choose **Instance state**, **Start instance**\. It can take a few minutes for the instance to enter the `running` state\. If you instance won't start, see [Troubleshoot changing the instance type](troubleshoot-change-instance-type.md)\.
+1. To start the instance, select the instance and choose **Instance state**, **Start instance**\. It can take a few minutes for the instance to enter the `running` state\. If your instance won't start, see [Troubleshoot changing the instance type](troubleshoot-change-instance-type.md)\.
 
 ------
 #### [ Old console ]
@@ -86,7 +87,7 @@ Use the following instructions to change the instance type of an EBS\-backed ins
 
 1. To restart the stopped instance, select the instance and choose **Actions**, **Instance State**, **Start**\.
 
-1. In the confirmation dialog box, choose **Yes, Start**\. It can take a few minutes for the instance to enter the `running` state\. If you instance won't start, see [Troubleshoot changing the instance type](troubleshoot-change-instance-type.md)\.
+1. In the confirmation dialog box, choose **Yes, Start**\. It can take a few minutes for the instance to enter the `running` state\. If your instance won't start, see [Troubleshoot changing the instance type](troubleshoot-change-instance-type.md)\.
 
 ------
 

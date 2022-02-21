@@ -10,7 +10,6 @@ With Amazon EBS, you pay only for what you use\. For more information about Amaz
 + [Features of Amazon EBS](#ebs-features)
 + [Amazon EBS volumes](ebs-volumes.md)
 + [Amazon EBS snapshots](EBSSnapshots.md)
-+ [Recycle Bin for Amazon EBS snapshots](recycle-bin.md)
 + [Amazon Data Lifecycle Manager](snapshot-lifecycle.md)
 + [Amazon EBS data services](ebs-data-services.md)
 + [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)

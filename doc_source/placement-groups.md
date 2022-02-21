@@ -562,8 +562,9 @@ Before you move or remove the instance, the instance must be in the `stopped` st
 
 If you need to replace a placement group or no longer need one, you can delete it\. You can delete a placement group using one of the following methods\.
 
-**Requirement**  
-Before you can delete a placement group, it must contain no instances\. You can [terminate](terminating-instances.md#terminating-instances-console) all instances that you launched into the placement group, [move](#move-instance-to-placement-group) them to another placement group, or [remove](#remove-instance-from-placement-group) them from the placement group\.
+**Before you can delete a placement group**
++ \(*All placement groups*\) Ensure that it has no instances\. You must [terminate](terminating-instances.md#terminating-instances-console) all instances that you launched into the placement group, [ move](#move-instance-to-placement-group) them to another placement group, or [remove](#remove-instance-from-placement-group) them from the placement group\.
++ \(*Cluster placement groups only*\) Ensure that it has no `active` Capacity Reservations\. You must [ cancel](capacity-reservations-using.md#capacity-reservations-release) all Capacity Reservations that you created in the cluster placement group\.
 
 ------
 #### [ Console ]

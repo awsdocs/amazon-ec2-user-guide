@@ -20,8 +20,8 @@ This AWS resource is referred to as a *network interface* in the AWS Management 
 + [Network cards](#network-cards)
 + [IP addresses per network interface per instance type](#AvailableIpPerENI)
 + [Work with network interfaces](#working-with-enis)
-+ [Scenarios for network interfaces](scenarios-enis.md)
 + [Best practices for configuring network interfaces](best-practices-for-configuring-network-interfaces.md)
++ [Scenarios for network interfaces](scenarios-enis.md)
 + [Requester\-managed network interfaces](requester-managed-eni.md)
 
 ## Network interface basics<a name="eni-basics"></a>
@@ -142,6 +142,16 @@ The following table lists the maximum number of network interfaces per instance 
 | c5n\.9xlarge | 8 | 30 | 30 | 
 | c5n\.18xlarge | 15 | 50 | 50 | 
 | c5n\.metal | 15 | 50 | 50 | 
+| c6a\.large | 3 | 10 | 10 | 
+| c6a\.xlarge | 4 | 15 | 15 | 
+| c6a\.2xlarge | 4 | 15 | 15 | 
+| c6a\.4xlarge | 8 | 30 | 30 | 
+| c6a\.8xlarge | 8 | 30 | 30 | 
+| c6a\.12xlarge | 8 | 30 | 30 | 
+| c6a\.16xlarge | 15 | 50 | 50 | 
+| c6a\.24xlarge | 15 | 50 | 50 | 
+| c6a\.32xlarge | 15 | 50 | 50 | 
+| c6a\.48xlarge | 15 | 50 | 50 | 
 | c6g\.medium | 2 | 4 | 4 | 
 | c6g\.large | 3 | 10 | 10 | 
 | c6g\.xlarge | 4 | 15 | 15 | 
@@ -523,6 +533,7 @@ The following table lists the maximum number of network interfaces per instance 
 | t4g\.large | 3 | 12 | 12 | 
 | t4g\.xlarge | 4 | 15 | 15 | 
 | t4g\.2xlarge | 4 | 15 | 15 | 
+| u\-3tb1\.56xlarge | 8 | 30 | 30 | 
 | u\-6tb1\.56xlarge | 15 | 50 | 50 | 
 | u\-6tb1\.112xlarge | 15 | 50 | 50 | 
 | u\-6tb1\.metal | 15 | 50 | 50 | 

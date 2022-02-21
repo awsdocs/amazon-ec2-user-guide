@@ -372,6 +372,8 @@ If you are connecting from Windows, perform the following steps on your local co
 
 1. From the **Permission Entry** window, grant **Read** permissions and select **OK**\.
 
+1. Click **Apply** to ensure all settings are saved\.
+
 1. Select **OK** to close the **Advanced Security Settings** window\.
 
 1. Select **OK** to close the **Properties** window\.

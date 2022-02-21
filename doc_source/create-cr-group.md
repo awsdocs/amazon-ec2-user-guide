@@ -1,6 +1,8 @@
 # Work with Capacity Reservation groups<a name="create-cr-group"></a>
 
-You can use AWS Resource Groups to create logical collections of Capacity Reservations, called *resource groups*\. A resource group is a logical grouping of AWS resources that are all in the same AWS Region\. You can include multiple Capacity Reservations that have different attributes \(instance type, platform, and Availability Zone\) in a single resource group\.
+You can use AWS Resource Groups to create logical collections of Capacity Reservations, called *resource groups*\. A resource group is a logical grouping of AWS resources that are all in the same AWS Region\. For more information about resource groups, see [What are resource groups?](https://docs.aws.amazon.com/ARG/latest/userguide/) in the *AWS Resource Groups User Guide*\.
+
+You can include multiple Capacity Reservations that have different attributes \(instance type, platform, and Availability Zone\) in a single resource group\.
 
 When you create resource groups for your Capacity Reservations, you can target instances to a group of Capacity Reservations instead of an individual Capacity Reservation\. Instances that target a group of Capacity Reservations match with any Capacity Reservation in the group that has matching attributes \(instance type, platform, and Availability Zone\) and available capacity\. If the group does not have a Capacity Reservation with matching attributes and available capacity, the instances run using On\-Demand capacity\. If a matching Capacity Reservation is added to the targeted group at a later stage, the instance is automatically matched with and moved into its reserved capacity\.
 

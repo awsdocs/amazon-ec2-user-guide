@@ -27,7 +27,7 @@ To use attribute\-based instance type selection in your fleet configuration, you
 + [Types of instance attributes](#ef-abs-instance-attribute-types)
 + [Where to configure attribute\-based instance type selection](#ef-abs-where-to-configure)
 + [How EC2 Fleet uses attribute\-based instance type selection when provisioning a fleet](#how-ef-uses-abs)
-+ [Understand price protection](#ec2fleet-abs-price-protection)
++ [Price protection](#ec2fleet-abs-price-protection)
 
 ### Types of instance attributes<a name="ef-abs-instance-attribute-types"></a>
 
@@ -63,13 +63,24 @@ EC2 Fleet provisions a fleet in the following way:
   + For On\-Demand Instances, attribute\-based instance type selection supports the `lowest-price` allocation strategy\.
 + If there is no capacity for the instance types with the specified instance attributes, no instances can be launched, and the fleet returns an error\.
 
-### Understand price protection<a name="ec2fleet-abs-price-protection"></a>
+### Price protection<a name="ec2fleet-abs-price-protection"></a>
 
 Price protection is a feature that prevents your EC2 Fleet from using instance types that you would consider too expensive even if they happen to fit the attributes that you specified\. When you create a fleet with attribute\-based instance type selection, price protection is enabled by default, with separate thresholds for On\-Demand Instances and Spot Instances\. When Amazon EC2 selects instance types with your attributes, it excludes instance types priced above your threshold\. The thresholds represent the maximum you'll pay, expressed as a percentage above the least expensive M, C, or R instance type with your specified attributes\.
 
 If you don't specify a threshold, the following thresholds are used by default:
 + For On\-Demand Instances, the price protection threshold is set at 20 percent\.
 + For Spot Instances, the price protection threshold is set at 100 percent\.
+
+**To specify the price protection threshold**
+
+While creating the EC2 Fleet, configure the fleet for attribute\-based instance type selection, and then do the following:
++ To specify the On\-Demand Instance price protection threshold, in the JSON configuration file, in the `InstanceRequirements` structure, for `OnDemandMaxPricePercentageOverLowestPrice`, enter the price protection threshold as a percentage\.
++ To specify the Spot Instance price protection threshold, in the JSON configuration file, in the `InstanceRequirements` structure, for `SpotMaxPricePercentageOverLowestPrice`, enter the price protection threshold as a percentage\.
+
+For more information about creating the fleet, see [Create an EC2 Fleet with attribute\-based instance type selection](#abs-create-ec2-fleet)\.
+
+**Note**  
+When creating the EC2 Fleet, if you set `TargetCapacityUnitType` to `vcpu` or `memory-mib`, the price protection threshold is applied based on the per\-vCPU or per\-memory price instead of the per\-instance price\.
 
 ## Considerations<a name="ec2fleet-abs-considerations"></a>
 + You can specify either instance types or instance attributes in an EC2 Fleet, but not both at the same time\.

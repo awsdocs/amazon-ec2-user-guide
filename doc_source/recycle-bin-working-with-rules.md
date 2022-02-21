@@ -1,22 +1,23 @@
 # Work with retention rules<a name="recycle-bin-working-with-rules"></a>
 
-To enable and use Recycle Bin, you must create *retention rules* in the AWS Regions in which you want to protect snapshots\. Retention rules specify the following:
-+ The snapshots that you want to retain in the Recycle Bin when they are deleted\.
-+ The retention period for which to retain snapshots in the Recycle Bin after deletion\.
+To enable and use Recycle Bin, you must create *retention rules* in the AWS Regions in which you want to protect your resources\. Retention rules specify the following:
++ The resource type that you want to protect\.
++ The resources that you want to retain in the Recycle Bin when they are deleted\.
++ The retention period for which to retain resources in the Recycle Bin before they are permanently deleted\.
 
 With Recycle Bin, you can create two types of retention rules:
-+ **Tag\-level retention rules** — These retention rules use resource tags to identify the snapshots that are to be retained in the Recycle Bin\. For each retention rule, you specify one or more tag key and value pairs\. Snapshots that are tagged with at least one of the tag key and value pairs that are specified in the retention rule are automatically retained in the Recycle Bin upon deletion\. Use this type of retention rule if you want to protect specific snapshots in your account based on their tags\.
-+ **Region\-level retention rules** — These retention rules do not have any resource tags specified\. They apply to all of the snapshots in the Region in which they are created, even if the snapshots are not tagged\. Use this type of retention rule if you want to protect all of your snapshots in a specific Region\.
++ **Tag\-level retention rules** — A tag\-level retention rule uses resource tags to identify the resources that are to be retained in the Recycle Bin\. For each retention rule, you specify one or more tag key and value pairs\. Resources of the specified type that are tagged with at least one of the tag key and value pairs that are specified in the retention rule are automatically retained in the Recycle Bin upon deletion\. Use this type of retention rule if you want to protect specific resources in your account based on their tags\.
++ **Region\-level retention rules** — A Region\-level retention rule does not have any resource tags specified\. It applies to all of the resources of the specified type in the Region in which the rule is created, even if the resources are not tagged\. Use this type of retention rule if you want to protect all resources of a specific type in a specific Region\.
 
-After you create a retention rule, snapshots that match its criteria are automatically retained in the Recycle Bin for the specified period when they are deleted\.
+After you create a retention rule, resources that match its criteria are automatically retained in the Recycle Bin for the specified retention period after they are deleted\.
 
 **Topics**
 + [Create a retention rule](#recycle-bin-create-rule)
 + [View Recycle Bin retention rules](#recycle-bin-view-rule)
 + [Update retention rules](#recycle-bin-update-rule)
 + [Tag retention rules](#recycle-bin-tag-resource)
-+ [View retention rules tags](#recycle-bin-view-resource-tag)
-+ [Remove tags from a retention rules](#recycle-bin-untag-resource)
++ [View retention rule tags](#recycle-bin-view-resource-tag)
++ [Remove tags from retention rules](#recycle-bin-untag-resource)
 + [Delete Recycle Bin retention rules](#recycle-bin-delete-rule)
 
 ## Create a retention rule<a name="recycle-bin-create-rule"></a>
@@ -24,10 +25,11 @@ After you create a retention rule, snapshots that match its criteria are automat
 To create a retention rule, you must specify:
 + An optional name for the retention rule\. The name can be up to 255 characters long\.
 + An optional description for the rule\. The description can be up to 255 characters long\.
-+ Resource tags that identify the snapshots that are to be retained in the Recycle Bin\. You can specify up to 50 tags for each rule\. However, you can add the same tag key and value pair to up to 5 retention rules only\.
-
-  To create a tag\-level retention rule, specify at least one tag key and value pair\. To create an Region\-level retention rule, do not specify any tag key and value pairs\.
-+ The period for which the snapshots are to be retained in the Recycle Bin\. The period can be up to 1 year \(365 days\)\.
++ The resource type that is to be protected by the retention rule\.
++ Resource tags that identify the resources that are to be retained in the Recycle Bin\. You can specify up to 50 tags for each rule\. However, you can add the same tag key and value pair to up to 5 retention rules only\.
+  + To create a tag\-level retention rule, specify at least one tag key and value pair\.
+  + To create an Region\-level retention rule, do not specify any tag key and value pairs\.
++ The period for which the resources are to be retained in the Recycle Bin after deletion\. The period can be up to 1 year \(365 days\)\.
 + Optional retention rule tags to help identify and organize your retention rules\. You can assign up to 50 tags to each rule\.
 
 Retention rules function only in the Regions in which they are created\. If you intend to use Recycle Bin in other Regions, you must create additional retention rules in those Regions\.
@@ -41,7 +43,7 @@ You can create a Recycle Bin retention rule using one of the following methods\.
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Retention rules** and then choose **Create retention rule**\.
+1. In the navigation panel, choose **Retention rules**, and then choose **Create retention rule**\.
 
 1. In the **Rule details** section, do the following:
 
@@ -51,13 +53,13 @@ You can create a Recycle Bin retention rule using one of the following methods\.
 
 1. In the **Rule settings** section, do the following:
 
-   1. For **Resource type**, select **EBS snapshots**\.
+   1. For **Resource type**, select choose the type of resource for the retention rule to protect\. The retention rule will retain only resources of this type in the Recycle Bin\.
 
    1. Do one of the following:
-      + To create a Region\-level retention rule that matches all deleted snapshots in the Region, select **Apply to all resources**\. The retention rule will retain all deleted snapshots in the Recycle Bin upon deletion, even if the snapshots do not have any tags\.
-      + To create a tag\-level retention rule, for **Resource tags to match**, enter the tag key and value pairs to use to identify snapshots that are to be retained in the Recycle Bin\. Only snapshots that have at least one of the specified tag key and value pairs will be retained by the retention rule\.
+      + To create a Region\-level retention rule that matches all deleted resources of the specified type in the Region, select **Apply to all resources**\. The retention rule will retain all deleted resources of the specified in the Recycle Bin upon deletion, even if the resources do not have any tags\.
+      + To create a tag\-level retention rule, for **Resource tags to match**, enter the tag key and value pairs to use to identify resource of the specified type that are to be retained in the Recycle Bin\. Only resources of the specified type that have at least one of the specified tag key and value pairs will be retained by the retention rule\.
 
-   1. For **Retention period**, enter the number of days for which the retention rule is to retain snapshots in the Recycle Bin\.
+   1. For **Retention period**, enter the number of days for which the retention rule is to retain resources in the Recycle Bin\.
 
 1. \(*Optional*\) In the **Tags** section, do the following:
 
@@ -69,12 +71,12 @@ You can create a Recycle Bin retention rule using one of the following methods\.
 #### [ AWS CLI ]
 
 **To create a retention rule**  
-Use the [create\-rule](https://docs.aws.amazon.com/cli/latest/reference/rbin/create-rule.html) AWS CLI command\. For `--retention-period`, specify the number of days to retain deleted snapshots in the Recycle Bin\. For `--resource-type`, specify `EBS_SNAPSHOT`\. To create a tag\-level retention rule, for `--resource-tags`, specify the tags to use to identify the snapshots that are to be retained\. To create a Region\-level retention rule, omit `--resource-tags`\.
+Use the [create\-rule](https://docs.aws.amazon.com/cli/latest/reference/rbin/create-rule.html) AWS CLI command\. For `--retention-period`, specify the number of days to retain deleted snapshots in the Recycle Bin\. For `--resource-type`, specify `EBS_SNAPSHOT` for snapshots or `EC2_IMAGE` for AMIs\. To create a tag\-level retention rule, for `--resource-tags`, specify the tags to use to identify the snapshots that are to be retained\. To create a Region\-level retention rule, omit `--resource-tags`\.
 
 ```
 $ aws rbin create-rule \
 --retention-period RetentionPeriodValue=number_of_days,RetentionPeriodUnit=DAYS \
---resource-type EBS_SNAPSHOT \
+--resource-type EBS_SNAPSHOT|EC2_IMAGE \
 --description "rule_description" \
 --resource-tags ResourceTagKey=tag_key,ResourceTagValue=tag_value
 ```
@@ -121,7 +123,14 @@ You can view Recycle Bin retention rules using one of the following methods\.
 #### [ AWS CLI ]
 
 **To view all of your retention rules**  
-Use the [list\-rules](https://docs.aws.amazon.com/cli/latest/reference/rbin/list-rules.html) AWS CLI command, and for `--resource-type`, specify `EBS_SNAPSHOT`\.
+Use the [list\-rules](https://docs.aws.amazon.com/cli/latest/reference/rbin/list-rules.html) AWS CLI command, and for `--resource-type`, specify `EBS_SNAPSHOT` for snapshots or `EC2_IMAGE` for AMIs\.
+
+```
+$ aws rbin list-rules --resource-type EBS_SNAPSHOT|EC2_IMAGE
+```
+
+**Example**  
+The following example command provides lists all retention rules that retain snapshots\.
 
 ```
 $ aws rbin list-rules --resource-type EBS_SNAPSHOT
@@ -145,9 +154,9 @@ $ aws rbin get-rule --identifier pwxIkFcvge4
 
 ## Update retention rules<a name="recycle-bin-update-rule"></a>
 
-You can update a retention rule at any time after creation\. You can modify all of a retention rule's parameters, including its description, retention period, and resource tags\.
+You can update a retention rule at any time after creation\. You can modify all of a retention rule's parameters, including its description, resource type, resource tags, and retention period\.
 
-After you update a retention rule, the changes only apply to new snapshots that it retains\. The changes do not affect snapshots that it previously sent to the Recycle Bin\. For example, if you update a retention rule's retention period, only new snapshots that it retains from that point are retained for the new retention period\. Snapshots that it sent to the Recycle Bin before the update are still retained for the previous \(old\) retention period\.
+After you update a retention rule, the changes only apply to new resources that it retains\. The changes do not affect resources that it previously sent to the Recycle Bin\. For example, if you update a retention rule's retention period, only snapshots that are deleted after the update are retained for the new retention period\. Snapshots that it sent to the Recycle Bin before the update are still retained for the previous \(old\) retention period\.
 
 You can update a retention rule using one of the following methods\.
 
@@ -164,7 +173,7 @@ You can update a retention rule using one of the following methods\.
 
 1. In the **Rule details** section, update **Retention rule name** and **Retention rule description** as needed\.
 
-1. In the **Rule settings** section, update the **Resource tags to match** and **Retention period** as needed\.
+1. In the **Rule settings** section, update the **Resource type**, **Resource tags to match**, and **Retention period** as needed\.
 
 1. In the **Tags** section, add or remove retention rule tags as needed\.
 
@@ -174,13 +183,13 @@ You can update a retention rule using one of the following methods\.
 #### [ AWS CLI ]
 
 **To update a retention rule**  
-Use the [update\-rule](https://docs.aws.amazon.com/cli/latest/reference/rbin/update-rule.html) AWS CLI command\. For `--identifier`, specify the ID of the retention rule to update\.
+Use the [update\-rule](https://docs.aws.amazon.com/cli/latest/reference/rbin/update-rule.html) AWS CLI command\. For `--identifier`, specify the ID of the retention rule to update For `--resource-types`, specify `EBS_SNAPSHOT` for snapshots or `EC2_IMAGE` for AMIs\.
 
 ```
 $ aws rbin update-rule \
 --identifier rule_ID \
 --retention-period RetentionPeriodValue=number_of_days,RetentionPeriodUnit=DAYS \
---resource-type EBS_SNAPSHOT \
+--resource-type EBS_SNAPSHOT|EC2_IMAGE \
 --description "rule_description"
 ```
 
@@ -199,7 +208,7 @@ $ aws rbin update-rule \
 
 ## Tag retention rules<a name="recycle-bin-tag-resource"></a>
 
-You can assign custom tags to your retention rules to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific retention rule based on the custom tags that you assigned\.
+You can assign custom tags to your retention rules to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to efficiently find a specific retention rule based on the custom tags that you assigned\.
 
 You can assign a tag to a retention rule using one of the following methods\.
 
@@ -241,7 +250,7 @@ $ aws rbin tag-resource \
 
 ------
 
-## View retention rules tags<a name="recycle-bin-view-resource-tag"></a>
+## View retention rule tags<a name="recycle-bin-view-resource-tag"></a>
 
 You can view the tags assigned to a retention rule using one of the following methods\.
 
@@ -254,7 +263,7 @@ You can view the tags assigned to a retention rule using one of the following me
 
 1. In the navigation panel, choose **Retention rules**\.
 
-1. Select the retention rule for which to view the tags and choose the **Tags** tab\.
+1. Select the retention rule for which to view the tags, and choose the **Tags** tab\.
 
 ------
 #### [ AWS CLI ]
@@ -277,7 +286,7 @@ $ aws rbin list-tags-for-resource \
 
 ------
 
-## Remove tags from a retention rules<a name="recycle-bin-untag-resource"></a>
+## Remove tags from retention rules<a name="recycle-bin-untag-resource"></a>
 
 You can remove tags from a retention rule using one of the following methods\.
 
@@ -321,7 +330,7 @@ $ aws rbin untag-resource \
 
 ## Delete Recycle Bin retention rules<a name="recycle-bin-delete-rule"></a>
 
-You can delete a retention rule at any time\. When you delete a retention rule, it no longer retains new snapshots after they have been deleted\. Snapshots that were sent to the Recycle Bin before the retention rule was deleted continue to be retained in the Recycle Bin according to the retention period defined in the retention rule\. When the period expires, the snapshot is permanently deleted from the Recycle Bin\.
+You can delete a retention rule at any time\. When you delete a retention rule, it no longer retains new resources after they have been deleted\. Resources that were sent to the Recycle Bin before the retention rule was deleted continue to be retained in the Recycle Bin according to the retention period defined in the retention rule\. When the period expires, the resource is permanently deleted from the Recycle Bin\.
 
 You can delete a retention rule using one of the following methods\.
 
@@ -334,7 +343,7 @@ You can delete a retention rule using one of the following methods\.
 
 1. In the navigation panel, choose **Retention rules**\.
 
-1. In the grid, select the retention rule to delete and choose **Actions**, **Delete retention rule**\.
+1. In the grid, select the retention rule to delete, and choose **Actions**, **Delete retention rule**\.
 
 1. When prompted, enter the confirmation message and choose **Delete retention rule**\.
 

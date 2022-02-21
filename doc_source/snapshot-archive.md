@@ -30,7 +30,7 @@ Some typical use cases include:
 + It can take up to 72 hours to restore an archived snapshot from the archive tier to the standard tier, depending on the size of the snapshot\.
 + Archived snapshots are always full snapshots\. A full snapshot contains all the blocks written to the volume at the time the snapshot was created\. The full snapshot will likely be larger than the incremental snapshot from which it was created\. However, if you have only one incremental snapshot of a volume on the standard tier, the size of the full snapshot in the archive tier will be the same size as the snapshot in standard tier\. This is because the first snapshot taken of a volume is always a full snapshot\.
 + When a snapshot is archived, the data of the snapshot that is referenced by other snapshots in the snapshot lineage are retained in the standard tier\. Data and storage costs associated with the referenced data that is retained on the standard tier are allocated to the next snapshot in the lineage\. This ensures that subsequent snapshots in the lineage are not affected by the archival\.
-+ If you delete an archived snapshot that matches a Recycle Bin retention rule, the archived snapshot is retained in the Recycle Bin for the retention period defined in the retention rule\. To use the snapshot, you must first recover it from the Recycle Bin and then restore it from the archive tier\. For more information, see [Recycle Bin for Amazon EBS snapshots](recycle-bin.md) and [Pricing and billing](#snapshot-archive-pricing)\.
++ If you delete an archived snapshot that matches a Recycle Bin retention rule, the archived snapshot is retained in the Recycle Bin for the retention period defined in the retention rule\. To use the snapshot, you must first recover it from the Recycle Bin and then restore it from the archive tier\. For more information, see [Recycle Bin](recycle-bin.md) and [Pricing and billing](#snapshot-archive-pricing)\.
 
 **Limitations**
 + You can archive snapshots that are in the `completed` state only\.
@@ -78,7 +78,7 @@ If you delete a snapshot that matches a retention rule while the snapshot is bei
 
 If you delete a snapshot that matches a retention rule while the snapshot is being restored, the restored snapshot is retained in the Recycle Bin for the remainder of the retention period, and billed at the standard snapshot rate\. To use the restored snapshot, you must first recover it from the Recycle Bin\.
 
-For more information, see [Recycle Bin for Amazon EBS snapshots](recycle-bin.md)\.
+For more information, see [Recycle Bin](recycle-bin.md)\.
 
 **Cost tracking**  
 Archived snapshots appear in the AWS Cost and Usage Report with their same resource ID and Amazon Resource Name \(ARN\)\. For more information, see the [AWS Cost and Usage Report User Guide](https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html)\.

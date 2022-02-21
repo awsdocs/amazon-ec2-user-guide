@@ -45,13 +45,11 @@ The following table summarizes the supported NVIDIA drivers for each GPU instanc
 | G5g | Yes ¹ | No | No | 
 | P2 | Yes | No | No | 
 | P3 | Yes | Yes ² | No | 
-| P4d | Yes ³ | No | No | 
+| P4d | Yes | No | No | 
 
 ¹ This Tesla driver also supports optimized graphics applications specific to the ARM64 platform
 
 ² Using Marketplace AMIs only
-
-³ For P4d instances, use driver version 460
 
 ## Installation options<a name="nvidia-installation-options"></a>
 
@@ -91,13 +89,11 @@ Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate
 | G5g ² | Tesla | T\-Series | NVIDIA T4G | 
 | P2 | Tesla | K\-Series | K80 | 
 | P3 | Tesla | V\-Series | V100 | 
-| P4d ³ | Tesla | A\-Series | A100 | 
+| P4d | Tesla | A\-Series | A100 | 
 
 ¹ G5 instances require driver version 470\.00 or later
 
 ² G5g instances require driver version 470\.82\.01 or later\. The operating systems is Linux aarch64
-
-³ P4d instances require driver version 460
 
 **To install the NVIDIA driver on Linux**  
 For more information about installing and configuring the driver, see the [NVIDIA Driver Installation Quickstart Guide](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)\. 

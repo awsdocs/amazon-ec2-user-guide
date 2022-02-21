@@ -15,6 +15,7 @@ Keep the following in mind when creating Capacity Reservations in cluster placem
 + After you create a Capacity Reservation in a placement group, you can't modify it to reserve capacity outside of the placement group\.
 + You can increase your reserved capacity in a placement group by modifying an existing Capacity Reservation in the placement group, or by creating additional Capacity Reservations in the placement group\. However, you increase your chances of getting an insufficient capacity error\.
 + You can't share Capacity Reservations that have been created in a cluster placement group\.
++ You can't delete a cluster placement group that has `active` Capacity Reservations\. You must cancel all Capacity Reservations in the cluster placement group before you can delete it\.
 
 ## Work with Capacity Reservations in cluster placement groups<a name="work-with-crs-cpgs"></a>
 

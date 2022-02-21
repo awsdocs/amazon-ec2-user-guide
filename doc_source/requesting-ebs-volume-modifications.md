@@ -21,6 +21,9 @@ Use the following process when modifying a volume:
 
 You can only increase volume size\. You can increase or decrease volume performance\. If you are not changing the volume type, then volume size and performance modifications must be within the limits of the current volume type\. If you are changing the volume type, then volume size and performance modifications must be within the limits of the target volume type\.
 
+**Note**  
+You can't cancel or undo a volume modification request after it has been submitted\.
+
 To modify an EBS volume, use one of the following methods\.
 
 ------

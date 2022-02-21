@@ -59,8 +59,6 @@ The `AWS/EC2` namespace includes the following metrics for T3 Dedicated Hosts\.
 
 The `AWS/EC2` namespace includes the following Amazon EBS metrics for the Nitro\-based instances\. For the list of Nitro\-based instance types, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
-Metric values for Nitro\-based instances will always be integers \(whole numbers\), whereas values for Xen\-based instances support decimals\. Therefore, low instance CPU utilization on Nitro\-based instances may appear to be rounded down to 0\.
-
 
 | Metric | Description | 
 | --- | --- | 

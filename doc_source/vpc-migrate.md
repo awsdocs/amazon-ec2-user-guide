@@ -5,14 +5,12 @@
 | --- |
 | We are retiring EC2\-Classic on August 15, 2022\. To avoid interruptions to your workloads, we recommend that you migrate from EC2\-Classic to a VPC prior to August 15, 2022\. For more information, see the blog post [EC2\-Classic Networking is Retiring \- Here's How to Prepare](http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/)\. | 
 
-To migrate from EC2\-Classic to a VPC, you must migrate or recreate your EC2\-Classic resources in a VPC\. You can migrate and recreate your resources in full, or you can perform an incremental migration over time using ClassicLink\.
+To migrate from EC2\-Classic to a VPC, you must migrate or recreate your EC2\-Classic resources in a VPC\.
 
 **Topics**
 + [Migrate your resources to a VPC](#full-migrate)
 + [Use the AWSSupport\-MigrateEC2ClassicToVPC runbook](#migrate-using-runbook)
-+ [Use ClassicLink for an incremental migration](#classiclink-migrate)
 + [Example: Migrate a simple web application](#vpc-migrate-example)
-+ [Using a default VPC](#get-default-vpc)
 
 ## Migrate your resources to a VPC<a name="full-migrate"></a>
 
@@ -56,16 +54,24 @@ If you've defined a rule in your EC2\-Classic security group that references ano
 
 ### Elastic IP addresses<a name="vpc-migrate-eip"></a>
 
-You can migrate an Elastic IP address that is allocated for use in EC2\-Classic for use with a VPC\. You cannot migrate an Elastic IP address to another Region or AWS account\. For more information, see [Migrate an Elastic IP Address from EC2\-Classic](ec2-classic-platform.md#migrating-eip)\.
+You can migrate an Elastic IP address that is allocated for use in EC2\-Classic for use with a VPC\. You cannot migrate an Elastic IP address to another Region or AWS account\. You cannot migrate an Elastic IP address that has been allocated to your account for less than 24 hours\.
+
+When you migrate an Elastic IP address, it counts against your Elastic IP address limit for VPCs\. You cannot migrate an Elastic IP address if it results in your exceeding your limit\. To migrate an Elastic IP address, it must not be associated with an instance\. For more information about disassociating an Elastic IP address from an instance, see [Disassociate an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
+
+After you've performed the command to move or restore your Elastic IP address, the process of migrating the Elastic IP address can take a few minutes\. Use the [describe\-moving\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) command to check whether your Elastic IP address is still moving, or has completed moving\. After the moved is complete, you can view the allocation ID for the Elastic IP address on the **Elastic IPs** page\. If the Elastic IP address is in a moving state for longer than 5 minutes, contact [AWS Support](https://aws.amazon.com/premiumsupport/)\.
 
 **To identify an Elastic IP address that is allocated for use in EC2\-Classic**  
-In the Amazon EC2 console, choose **Elastic IPs** in the navigation pane\. In the **Scope** column, the value is **standard**\.
+Open the Amazon EC2 console\. Choose **Elastic IPs** in the navigation pane and the select the checkbox for the Elastic IP address\. On the **Summary** page, check whether **Scope** is **EC2\-Classic** or **VPC**\.
 
-Alternatively, use the following `describe-addresses` command\.
+**To move an Elastic IP address using the Amazon EC2 console**
 
-```
-aws ec2 describe-addresses --filters Name=domain,Values=standard
-```
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\.
+
+1. Select the Elastic IP address, and choose **Actions**, **Move to VPC scope**\.
+
+1. In the confirmation dialog box, choose **Move Elastic IP**\.
 
 ### AMIs and instances<a name="vpc-migrate-ami-instance"></a>
 
@@ -168,72 +174,6 @@ You can migrate your Classic Load Balancer in EC2\-Classic to a Classic Load Bal
 
 The [AWSSupport\-MigrateEC2ClassicToVPC](https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-awssupport-migrate-ec2-classic-to-vpc.html) runbook migrates an EC2\-Classic instance to a VPC\. For more information, see [How do I migrate an EC2\-Classic instance to a VPC?](http://aws.amazon.com/premiumsupport/knowledge-center/ssm-migrate-ec2classic-vpc/)
 
-## Use ClassicLink for an incremental migration<a name="classiclink-migrate"></a>
-
-The ClassicLink feature makes it easier to manage an incremental migration to a VPC\. ClassicLink enables you to link an EC2\-Classic instance to a VPC in your account in the same Region, allowing your new VPC resources to communicate with the EC2\-Classic instance using private IPv4 addresses\. You can then migrate functionality one component at a time until your application is running fully in your VPC\.
-
-Use this option if you cannot afford downtime during the migration, for example, if you have a multi\-tier application with processes that cannot be interrupted\.
-
-For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
-
-**Topics**
-+ [Step 1: Prepare your migration sequence](#classiclink-migrate-preparation)
-+ [Step 2: Enable your VPC for ClassicLink](#classiclink-migrate-enable-vpc)
-+ [Step 3: Link your EC2\-Classic instances to your VPC](#classiclink-migrate-attach-instance)
-+ [Step 4: Complete the VPC migration](#classiclink-migrate-terminate-instances)
-
-### Step 1: Prepare your migration sequence<a name="classiclink-migrate-preparation"></a>
-
-To use ClassicLink effectively, you must first identify the components of your application that must be migrated to the VPC, and then confirm the order in which to migrate that functionality\. 
-
-For example, you have an application that relies on a presentation web server, a backend database server, and authentication logic for transactions\. You may decide to start the migration process with the authentication logic, then the database server, and finally, the web server\.
-
-Then, you can start migrating or recreating your resources\. For more information, see [Migrate your resources to a VPC](#full-migrate)\.
-
-### Step 2: Enable your VPC for ClassicLink<a name="classiclink-migrate-enable-vpc"></a>
-
-After you've configured your new VPC instances and made the functionality of your application available in the VPC, you can use ClassicLink to enable private IP communication between your new VPC instances and your EC2\-Classic instances\. First, you must enable your VPC for ClassicLink\.
-
-**To enable a VPC for ClassicLink**
-
-1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
-
-1. In the navigation pane, choose **Your VPCs**\.
-
-1. Select a VPC\.
-
-1. Choose **Actions**, **Enable ClassicLink**\.
-
-1. When prompted for confirmation, choose **Enable ClassicLink**\.
-
-### Step 3: Link your EC2\-Classic instances to your VPC<a name="classiclink-migrate-attach-instance"></a>
-
-After you've enabled ClassicLink in your VPC, you can link your EC2\-Classic instances to the VPC\. The instance must be in the `running` state\.
-
-**To link an instance to a VPC**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select one or more running EC2\-Classic instances\.
-
-1. Choose **Actions**, **ClassicLink**, **Link to VPC**\.
-
-1. Choose a VPC\. The console displays only VPCs that are enabled for ClassicLink\.
-
-1. Select one or more security groups to associate with your instances\. The console displays security groups only for VPCs enabled for ClassicLink\.
-
-1. Choose **Link**\.
-
-### Step 4: Complete the VPC migration<a name="classiclink-migrate-terminate-instances"></a>
-
-Depending on the size of your application and the functionality that must be migrated, repeat the preceding steps until you've moved all of the components of your application from EC2\-Classic into your VPC\. 
-
-After you've enabled internal communication between the EC2\-Classic and VPC instances, you must update your application to point to your migrated service in your VPC, instead of your service in the EC2\-Classic platform\. The exact steps for this depend on your application’s design\. Generally, this includes updating your destination IP addresses to point to the IP addresses of your VPC instances instead of your EC2\-Classic instances\.
-
-After you've completed this step and you've tested that the application is functioning from your VPC, you can terminate your EC2\-Classic instances, and disable ClassicLink for your VPC\. You can also clean up any EC2\-Classic resources that you no longer need to avoid incurring charges for them\. For example, you can release Elastic IP addresses and delete the volumes that were associated with your EC2\-Classic instances\.
-
 ## Example: Migrate a simple web application<a name="vpc-migrate-example"></a>
 
 In this example, you use AWS to host your gardening website\. To manage your website, you have three running instances in EC2\-Classic\. Instances A and B host your public\-facing web application, and you use Elastic Load Balancing to load balance the traffic between these instances\. You've assigned Elastic IP addresses to instances A and B so that you have static IP addresses for configuration and administration tasks on those instances\. Instance C holds your MySQL database for your website\. You've registered the domain name `www.garden.example.com`, and you've used Route 53 to create a hosted zone with an alias record set that's associated with the DNS name of your load balancer\.
@@ -255,55 +195,7 @@ Create the security groups that are referenced by other security groups first\.
 + **Configure your web servers**: Your web servers will have the same configuration settings as your instances in EC2\-Classic\. For example, if you configured your web servers to use the database in EC2\-Classic, update your web servers' configuration settings to point to your new database instance\.
 **Note**  
 By default, instances launched into a nondefault subnet are not assigned a public IP address, unless you specify otherwise at launch\. Your new database server might not have a public IP address\. In this case, you can update your web servers' configuration file to use your new database server's private DNS name\. Instances in the same VPC can communicate with each other via private IP address\.
-+ **Migrate your Elastic IP addresses**: Disassociate your Elastic IP addresses from your web servers in EC2\-Classic, and then migrate them to a VPC\. After you've migrated them, you can associate them with your new web servers in your VPC\. For more information, see [Migrate an Elastic IP Address from EC2\-Classic](ec2-classic-platform.md#migrating-eip)\.
++ **Migrate your Elastic IP addresses**: Disassociate your Elastic IP addresses from your web servers in EC2\-Classic, and then migrate them to a VPC\. After you've migrated them, you can associate them with your new web servers in your VPC\. For more information, see [Elastic IP addresses](#vpc-migrate-eip)\.
 + **Create a new load balancer**: To continue using Elastic Load Balancing to load balance the traffic to your instances, make sure you understand the various ways to configure your load balancer in VPC\. For more information, see the [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
 + **Update your DNS records**: After you've set up your load balancer in your public subnet, verify that your `www.garden.example.com` domain points to your new load balancer\. To do this, update your DNS records and your alias record set in Route 53\. For more information about using Route 53, see [Getting Started with Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started.html)\.
 + **Shut down your EC2\-Classic resources**: After you've verified that your web application is working from within the VPC architecture, you can shut down your EC2\-Classic resources to stop incurring charges for them\.
-
-## Using a default VPC<a name="get-default-vpc"></a>
-
-A *default VPC* is a VPC that is configured and ready for you to use, and is only available in Regions that are VPC\-only\. For Regions that support EC2\-Classic, you can create a nondefault VPC to set up your resources\. However, you might want to use a default VPC if you prefer not to set up a VPC yourself, or if you do not have specific requirements for your VPC configuration\. For more information about default VPCs, see [Default VPC and Default Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html) in the *Amazon VPC User Guide*\.
-
-The following are options for using a default VPC when you have an AWS account that supports EC2\-Classic\.
-
-**Topics**
-+ [Switch to a VPC\-only Region](#get-default-vpc-region)
-+ [Create a new AWS account](#get-default-vpc-account)
-+ [Convert your existing AWS account to VPC\-only](#convert-ec2-classic-account)
-
-### Switch to a VPC\-only Region<a name="get-default-vpc-region"></a>
-
-Use this option if you want to use your existing account to set up your resources in a default VPC and you do not need to use a specific Region\. To find a Region that has a default VPC, see [Detect supported platforms](ec2-classic-platform.md#ec2-supported-platforms)\.
-
-### Create a new AWS account<a name="get-default-vpc-account"></a>
-
-New AWS accounts support VPC only\. Use this option if you want an account that has a default VPC in every Region\. 
-
-### Convert your existing AWS account to VPC\-only<a name="convert-ec2-classic-account"></a>
-
-Use this option if you want a default VPC in every Region in your existing account\. Before you can convert your account, you must delete all of your EC2\-Classic resources\. You can also migrate some resources to a VPC\. For more information, see [Migrate your resources to a VPC](#full-migrate)\.
-
-**To convert your EC2\-Classic account**
-
-1. Delete or migrate \(if applicable\) the resources that you have created for use in EC2\-Classic\. These include the following:
-   + Amazon EC2 instances
-   + EC2\-Classic security groups \(excluding the default security group, which you cannot delete yourself\)
-   + EC2\-Classic Elastic IP addresses
-   + Classic Load Balancers
-   + Amazon RDS DB instances
-   + Amazon ElastiCache clusters
-   + Amazon Redshift clusters
-   + AWS Elastic Beanstalk environments
-   + AWS Data Pipeline pipelines
-   + Amazon EMR clusters
-   + AWS OpsWorks resources
-
-1. Go to the Amazon Web Services Support Center at [console\.aws\.amazon\.com/support](https://console.aws.amazon.com/support)\.
-
-1. Choose **Create case**\.
-
-1. Choose **Account and billing support**\.
-
-1. For **Type**, choose **Account**\. For **Category**, choose **Convert EC2 Classic to VPC**\.
-
-1. Fill in the other details as required, and choose **Submit**\. We will review your request and contact you to guide you through the next steps\.

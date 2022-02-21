@@ -19,11 +19,22 @@ Examples of problems that cause system status checks to fail include:
 
 ## Requirements<a name="instance-recovery-requirements"></a>
 
-The recover action is supported only on instances with the following characteristics:
-+ Uses one of the following instance types: A1, C3, C4, C5, C5a, C5n, C6g, C6gn, Inf1, C6i, M3, M4, M5, M5a, M5n, M5zn, M6g, M6i, P3, R3, R4, R5, R5a, R5b, R5n, R6g, R6i, T2, T3, T3a, T4g, high memory \(virtualized only\), X1, X1e
-+ Runs in a virtual private cloud \(VPC\)
-+ Uses `default` or `dedicated` instance tenancy
-+ Has only EBS volumes \(do not configure instance store volumes\)
+The recover action is supported by an instance if it has the following characteristics:
++ The instance uses `default` or `dedicated` instance tenancy\.
++ The instance does not have instance store volumes\.
++ The instance uses one of the following instance types: 
+  + General purpose: A1 \| M3 \| M4 \| M5 \| M5a \| M5n \| M5zn \| M6a  \| M6g \| M6i \| T1 \| T2 \| T3 \| T3a \| T4g
+  + Compute optimized: C3 \| C4 \| C5 \| C5a \| C5n \| C6a \|  C6g \| C6gn \|  C6i 
+  + Memory optimized: R3 \| R4 \| R5 \| R5a \| R5b \| R5n \| R6g \| R6i \| high memory \(u\-\*\), virtualized only \| X1 \| X1e
+  + Accelerated computing: G3 \| G5g \| Inf1 \|  P2 \| P3 \| VT1
+
+**To view the instance types that support the recover action**  
+Use the following [ describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command\.
+
+```
+aws ec2 describe-instance-types --filters Name=auto-recovery-supported,Values=true  
+--query "InstanceTypes[*].[InstanceType]" --output text | sort
+```
 
 ## Create an Amazon CloudWatch alarm to recover an instance<a name="recover-alarm"></a>
 

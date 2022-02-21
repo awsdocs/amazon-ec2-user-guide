@@ -1,6 +1,10 @@
 # Specify CPU options for your instance<a name="instance-specify-cpu-options"></a>
 
-You can specify CPU options during instance launch\. The following examples are for an `r4.4xlarge` instance type, which has the following [default values](cpu-options-supported-instances-values.md#cpu-options-mem-optimized):
+You can specify CPU options during instance launch\.
+
+The following examples describe how to specify the CPU options when using the launch instance wizard and the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command\. You can also use a [launch template](ec2-launch-templates.md) to specify the CPU options\. However, if you use the Amazon EC2 console, the launch template screen currently does not provide a field for specifying the CPU options, but you can specify the CPU options by using the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) AWS CLI command\. For EC2 Fleet or Spot Fleet, you must specify the CPU options in a launch template\.
+
+The following examples are for an `r4.4xlarge` instance type, which has the following [default values](cpu-options-supported-instances-values.md#cpu-options-mem-optimized):
 + Default CPU cores: 8
 + Default threads per core: 2
 + Default vCPUs: 16 \(8 \* 2\)
@@ -27,7 +31,11 @@ To disable multithreading, specify one thread per core\.
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify a value of `1` for `ThreadsPerCore` for the `--cpu-options` parameter\. For `CoreCount`, specify the number of CPU cores\. In this example, to specify the default CPU core count for an `r4.4xlarge` instance, specify a value of `8`\.
 
 ```
-aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=8,ThreadsPerCore=1" --key-name MyKeyPair
+aws ec2 run-instances \
+    --image-id ami-1a2b3c4d \
+    --instance-type r4.4xlarge \
+    --cpu-options "CoreCount=8,ThreadsPerCore=1" \
+    --key-name MyKeyPair
 ```
 
 ## Specify a custom number of vCPUs<a name="cpu-options-customer-number-of-vCPUs"></a>
@@ -54,11 +62,19 @@ The following example launches an `r4.4xlarge` instance with six vCPUs\.
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify the number of CPU cores and number of threads in the `--cpu-options` parameter\. You can specify three CPU cores and two threads per core to get six vCPUs\.
 
 ```
-aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=3,ThreadsPerCore=2" --key-name MyKeyPair
+aws ec2 run-instances \
+    --image-id ami-1a2b3c4d \
+    --instance-type r4.4xlarge \
+    --cpu-options "CoreCount=3,ThreadsPerCore=2" \
+    --key-name MyKeyPair
 ```
 
 Alternatively, specify six CPU cores and one thread per core \(disable multithreading\) to get six vCPUs:
 
 ```
-aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=6,ThreadsPerCore=1" --key-name MyKeyPair
+aws ec2 run-instances \
+    --image-id ami-1a2b3c4d \
+    --instance-type r4.4xlarge \
+    --cpu-options "CoreCount=6,ThreadsPerCore=1" \
+    --key-name MyKeyPair
 ```

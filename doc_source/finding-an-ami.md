@@ -10,6 +10,10 @@ Before you can launch an instance, you must select an AMI to use\. As you select
 
 If you need to find a Windows AMI, see [Find a Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/finding-an-ami.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
+If you need to find a Ubuntu AMI, see their [EC2 AMI Locator](https://cloud-images.ubuntu.com/locator/ec2/)\.
+
+If you need to find an RedHat AMI, see the RHEL [knowledgebase article](https://access.redhat.com/solutions/15356)\.
+
 **Topics**
 + [Find a Linux AMI using the Amazon EC2 console](#finding-an-ami-console)
 + [Find an AMI using the AWS CLI](#finding-an-ami-aws-cli)

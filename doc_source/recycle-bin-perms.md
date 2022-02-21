@@ -1,14 +1,14 @@
-# Required permissions<a name="recycle-bin-perms"></a>
+# Required IAM permissions<a name="recycle-bin-perms"></a>
 
-By default, IAM users don't have permission to work with Recycle Bin, retention rules, or with snapshots that are in the Recycle Bin\. To allow IAM users to work with these resources, you must create IAM policies that grant permission to use specific resources and API actions\. You then attach those policies to the IAM users or the groups that require those permissions\.
+By default, AWS Identity and Access Management \(IAM\) users don't have permission to work with Recycle Bin, retention rules, or with resources that are in the Recycle Bin\. To allow IAM users to work with these resources, you must create IAM policies that grant permission to use specific resources and API actions\. You then attach those policies to the IAM users or the groups that require those permissions\.
 
 **Topics**
-+ [Permissions for working with Recycle Bin](#rule-perms)
-+ [Permissions for working with snapshots in the Recycle Bin](#snap-perms)
++ [Permissions for working with Recycle Bin and retention rules](#rule-perms)
++ [Permissions for working with resources in the Recycle Bin](#resource-perms)
 
-## Permissions for working with Recycle Bin<a name="rule-perms"></a>
+## Permissions for working with Recycle Bin and retention rules<a name="rule-perms"></a>
 
-IAM users must have the following permissions to work with Recycle Bin\.
+To work with Recycle Bin and retention rules, IAM users need the following permissions\.
 + `rbin:CreateRule`
 + `rbin:UpdateRule`
 + `rbin:GetRule`
@@ -18,10 +18,9 @@ IAM users must have the following permissions to work with Recycle Bin\.
 + `rbin:UntagResource`
 + `rbin:ListTagsForResource`
 
-**Note**  
-Console users additionally require the `tag:GetResources` permission\. The example policy below includes this permission\. If it is not needed, you can remove the permission from the policy\.
+To use the Recycle Bin console, IAM users need the `tag:GetResources` permission\.
 
-The following is an example IAM policy\.
+The following is an example IAM policy\. It includes the `tag:GetResources` permission for console users\. If the permission is not needed, you can remove it from the policy\.
 
 ```
 {
@@ -44,41 +43,8 @@ The following is an example IAM policy\.
 }
 ```
 
-## Permissions for working with snapshots in the Recycle Bin<a name="snap-perms"></a>
+## Permissions for working with resources in the Recycle Bin<a name="resource-perms"></a>
 
-IAM users must have the following permissions to work with snapshots that are in the Recycle Bin\.
-+ `ec2:ListSnapshotsInRecycleBin`
-+ `ec2:RestoreSnapshotFromRecycleBin`
-+ `ec2:CreateTags`
-+ `ec2:DeleteTags`
-
-**Note**  
-Console users additionally require the `ec2:DescribeTags` permission\. The example policy below includes this permission\. If it is not needed, you can remove the permission from the policy\.
-
-The following is an example IAM policy\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Effect": "Allow",
-        "Action": [
-            "ec2:ListSnapshotsInRecycleBin", 
-            "ec2:RestoreSnapshotFromRecycleBin"
-        ],
-        "Resource": "*"
-      },
-      {
-        "Effect": "Allow",
-        "Action": [
-            "ec2:CreateTags",
-            "ec2:DeleteTags",
-            "ec2:DescribeTags"
-        ],
-        "Resource": "arn:aws:ec2:Region:account-id:snapshot/*"
-      },
-    
-    ]
-}
-```
+For more information about the IAM permissions needed to work with resources in the Recycle Bin, see the following:
++ [Permissions for working with snapshots in the Recycle Bin](recycle-bin-working-with-snaps.md#snap-perms)
++ [Permissions for working with AMIs in the Recycle Bin](recycle-bin-working-with-amis.md#ami-perms)

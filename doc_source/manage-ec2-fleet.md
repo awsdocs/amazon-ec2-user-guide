@@ -2,9 +2,11 @@
 
 To start using an EC2 Fleet, you create a request that includes the total target capacity, On\-Demand capacity, Spot capacity, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. The fleet request must include a launch template that defines the information that the fleet needs to launch an instance, such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\. You can specify launch specification overrides for the instance type, subnet, Availability Zone, and maximum price you're willing to pay, and you can assign weighted capacity to each launch specification override\.
 
+The EC2 Fleet launches On\-Demand Instances when there is available capacity, and launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\.
+
 If your fleet includes Spot Instances, Amazon EC2 can attempt to maintain your fleet target capacity as Spot prices change\.
 
-An EC2 Fleet request of type `maintain` or `request` remains active until it expires or you delete it\. When you delete a fleet of type `maintain` or `request`, you can specify whether deletion terminates the instances in that fleet\.
+An EC2 Fleet request of type `maintain` or `request` remains active until it expires or you delete it\. When you delete a fleet of type `maintain` or `request`, you can specify whether deletion terminates the instances in that fleet\. Otherwise, the On\-Demand Instances run until you terminate them, and the Spot Instances run until they are interrupted or you terminate them\.
 
 **Topics**
 + [EC2 Fleet request states](#EC2-fleet-states)
@@ -13,7 +15,7 @@ An EC2 Fleet request of type `maintain` or `request` remains active until it exp
 + [Generate an EC2 Fleet JSON configuration file](#ec2-fleet-cli-skeleton)
 + [Create an EC2 Fleet](#create-ec2-fleet)
 + [Tag an EC2 Fleet](#tag-ec2-fleet)
-+ [Monitor your EC2 Fleet](#monitor-ec2-fleet)
++ [Describe your EC2 Fleet](#monitor-ec2-fleet)
 + [Modify an EC2 Fleet](#modify-ec2-fleet)
 + [Delete an EC2 Fleet](#delete-fleet)
 
@@ -365,8 +367,7 @@ EC2 Fleets can only be created using the AWS CLI\.
 + Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet and specify the JSON file that contains the fleet configuration parameters\.
 
 ```
-aws ec2 create-fleet \
-    --cli-input-json file://file_name.json
+aws ec2 create-fleet --cli-input-json file://file_name.json
 ```
 
 For example configuration files, see [EC2 Fleet example configurations](ec2-fleet-examples.md)\.
@@ -420,10 +421,7 @@ The following is example output for a fleet of type `instant` that launched the 
       "InstanceIds": [
         "i-5678901234abcdef0",
         "i-5432109876abcdef9" 
-      ],
-      "InstanceType": "c4.large",
-      "Platform": null
-    },
+      ]
   ]
 }
 ```
@@ -447,9 +445,7 @@ The following is example output for a fleet of type `instant` that launched part
       },
       "Lifecycle": "on-demand",
       "ErrorCode": "InsufficientInstanceCapacity",
-      "ErrorMessage": "",
-      "InstanceType": "c4.xlarge",
-      "Platform": null
+      "ErrorMessage": ""
     },
   ],
   "Instances": [
@@ -468,10 +464,7 @@ The following is example output for a fleet of type `instant` that launched part
       "InstanceIds": [
         "i-1234567890abcdef0",
         "i-9876543210abcdef9" 
-      ],
-      "InstanceType": "c5.large",
-      "Platform": null
-    },
+      ]
   ]
 }
 ```
@@ -495,9 +488,7 @@ The following is example output for a fleet of type `instant` that launched no i
       },
       "Lifecycle": "on-demand",
       "ErrorCode": "InsufficientCapacity",
-      "ErrorMessage": "",
-      "InstanceType": "c4.xlarge",
-      "Platform": null
+      "ErrorMessage": ""
     },
     {
       "LaunchTemplateAndOverrides": {
@@ -512,9 +503,7 @@ The following is example output for a fleet of type `instant` that launched no i
       },
       "Lifecycle": "on-demand",
       "ErrorCode": "InsufficientCapacity",
-      "ErrorMessage": "",
-      "InstanceType": "c5.large",
-      "Platform": null
+      "ErrorMessage": ""
     },
   ],
   "Instances": []
@@ -589,65 +578,73 @@ aws ec2 create-tags \
     --tags Key=purpose,Value=test
 ```
 
-## Monitor your EC2 Fleet<a name="monitor-ec2-fleet"></a>
+## Describe your EC2 Fleet<a name="monitor-ec2-fleet"></a>
 
-The EC2 Fleet launches On\-Demand Instances when there is available capacity, and launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\. The On\-Demand Instances run until you terminate them, and the Spot Instances run until they are interrupted or you terminate them\.
+You can describe your EC2 Fleet configuration, the instances in your EC2 Fleet, and the event history of your EC2 Fleet\.
 
-The returned list of running instances is refreshed periodically and might be out of date\.
-
-**To monitor your EC2 Fleet \(AWS CLI\)**  
+**To describe your EC2 Fleets \(AWS CLI\)**  
 Use the [describe\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleets.html) command to describe your EC2 Fleets\.
 
 ```
 aws ec2 describe-fleets
 ```
 
-The following is example output\.
+**Important**  
+If a fleet is of type `instant`, you must specify the fleet ID, otherwise it does not appear in the response\. Include `--fleet-ids` as follows:  
+
+```
+aws ec2 describe-fleets --fleet-ids fleet-8a22eee4-f489-ab02-06b8-832a7EXAMPLE
+```
+
+Example output
 
 ```
 {
     "Fleets": [
         {
-            "Type": "maintain", 
-            "FulfilledCapacity": 2.0, 
+            "ActivityStatus": "fulfilled",
+            "CreateTime": "2022-02-09T03:35:52+00:00",
+            "FleetId": "fleet-364457cd-3a7a-4ed9-83d0-7b63e51bb1b7",
+            "FleetState": "active",
+            "ExcessCapacityTerminationPolicy": "termination",
+            "FulfilledCapacity": 2.0,
+            "FulfilledOnDemandCapacity": 0.0,
             "LaunchTemplateConfigs": [
                 {
                     "LaunchTemplateSpecification": {
-                        "Version": "2", 
-                        "LaunchTemplateId": "lt-07b3bc7625cdab851"
+                        "LaunchTemplateName": "my-launch-template",
+                        "Version": "$Latest"
                     }
                 }
-            ], 
-            "TerminateInstancesWithExpiration": false, 
+            ],
             "TargetCapacitySpecification": {
-                "OnDemandTargetCapacity": 0, 
-                "SpotTargetCapacity": 2, 
-                "TotalTargetCapacity": 2, 
+                "TotalTargetCapacity": 2,
+                "OnDemandTargetCapacity": 0,
+                "SpotTargetCapacity": 2,
                 "DefaultTargetCapacityType": "spot"
-            }, 
-            "FulfilledOnDemandCapacity": 0.0, 
-            "ActivityStatus": "fulfilled", 
-            "FleetId": "fleet-76e13e99-01ef-4bd6-ba9b-9208de883e7f", 
-            "ReplaceUnhealthyInstances": false, 
+            },
+            "TerminateInstancesWithExpiration": false,
+            "Type": "maintain",
+            "ReplaceUnhealthyInstances": false,
             "SpotOptions": {
-                "InstanceInterruptionBehavior": "terminate",
-                "InstancePoolsToUseCount": 1, 
-                "AllocationStrategy": "lowest-price"
-            }, 
-            "FleetState": "active", 
-            "ExcessCapacityTerminationPolicy": "termination", 
-            "CreateTime": "2018-04-10T16:46:03.000Z"
+                "AllocationStrategy": "capacity-optimized",
+                "InstanceInterruptionBehavior": "terminate"
+            },
+            "OnDemandOptions": {
+                "AllocationStrategy": "lowestPrice"
+            }
         }
     ]
 }
 ```
 
-Use the [describe\-fleet\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleet-instances.html) command to describe the instances for the specified EC2 Fleet\.
+Use the [describe\-fleet\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleet-instances.html) command to describe the instances for the specified EC2 Fleet\. The returned list of running instances is refreshed periodically and might be out of date\.
 
 ```
-aws ec2 describe-fleet-instances \
-    --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE
+aws ec2 describe-fleet-instances  --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE
 ```
+
+Example output
 
 ```
 {
@@ -669,15 +666,58 @@ aws ec2 describe-fleet-instances \
 }
 ```
 
-Use the [describe\-fleet\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-request-history.html) command to describe the history for the specified EC2 Fleet for the specified time\. 
+Use the [describe\-fleet\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleet-history.html) command to describe the history for the specified EC2 Fleet for the specified time\. 
 
 ```
-aws ec2 describe-fleet-history --fleet-request-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --start-time 2018-04-10T00:00:00Z
+aws ec2 describe-fleet-history --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --start-time 2018-04-10T00:00:00Z
 ```
+
+Example output
 
 ```
 {
-    "HistoryRecords": [], 
+    "HistoryRecords": [
+        {
+            "EventInformation": {
+                "EventSubType": "submitted"
+            },
+            "EventType": "fleetRequestChange",
+            "Timestamp": "2020-09-01T18:26:05.000Z"
+        },
+        {
+            "EventInformation": {
+                "EventSubType": "active"
+            },
+            "EventType": "fleetRequestChange",
+            "Timestamp": "2020-09-01T18:26:15.000Z"
+        },
+        {
+            "EventInformation": {
+                "EventDescription": "t2.small, ami-07c8bc5c1ce9598c3, ...",
+                "EventSubType": "progress"
+            },
+            "EventType": "fleetRequestChange",
+            "Timestamp": "2020-09-01T18:26:17.000Z"
+        },
+        {
+            "EventInformation": {
+                "EventDescription": "{\"instanceType\":\"t2.small\", ...}",
+                "EventSubType": "launched",
+                "InstanceId": "i-083a1c446e66085d2"
+            },
+            "EventType": "instanceChange",
+            "Timestamp": "2020-09-01T18:26:17.000Z"
+        },
+        {
+            "EventInformation": {
+                "EventDescription": "{\"instanceType\":\"t2.small\", ...}",
+                "EventSubType": "launched",
+                "InstanceId": "i-090db02406cc3c2d6"
+            },
+            "EventType": "instanceChange",
+            "Timestamp": "2020-09-01T18:26:17.000Z"
+        }
+    ], 
     "FleetId": "fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE", 
     "LastEvaluatedTime": "1970-01-01T00:00:00.000Z", 
     "StartTime": "2018-04-09T23:53:20.000Z"

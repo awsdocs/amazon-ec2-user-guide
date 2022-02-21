@@ -36,10 +36,6 @@ This policy is attached to the service\-linked role named **AWSServiceRoleForEC2
 
 This policy is attached to the service\-linked role named **AWSServiceRoleForEC2Spot** to allow Amazon EC2 to launch and manage Spot Instances on your behalf\. For more information, see [Service\-linked role for Spot Instance requests](spot-requests.md#service-linked-roles-spot-instance-requests)\.
 
-## AWS managed policy: EC2FastLaunchServiceRolePolicy<a name="security-iam-awsmanpol-EC2FastLaunchServiceRolePolicy"></a>
-
-This policy is attached to the service\-linked role named **AWSServiceRoleForEC2FastLaunch** to allow Amazon EC2 to create and manage a set of pre\-provisioned snapshots that reduce the time it takes to launch instances from your Windows faster launching\-enabled AMI\. For more information, see the service\-linked role section in [Configure your AMI for faster launching](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-ami-version-history.html#win-ami-config-fast-launch)\.
-
 ## Amazon EC2 updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
 
 View details about updates to AWS managed policies for Amazon EC2 since this service began tracking these changes\.
@@ -47,5 +43,4 @@ View details about updates to AWS managed policies for Amazon EC2 since this ser
 
 | Change | Description | Date | 
 | --- | --- | --- | 
-|  [EC2FastLaunchServiceRolePolicy](#security-iam-awsmanpol-EC2FastLaunchServiceRolePolicy) – New policy  | Amazon EC2 added the Windows faster launching feature to enable Windows AMIs to launch instances faster by creating a set of pre\-provisioned snapshots\. | November 26, 2021 | 
 | Amazon EC2 started tracking changes | Amazon EC2 started tracking changes to its AWS managed policies | March 1, 2021 | 

@@ -96,14 +96,17 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 |  instance\-stopped\-by\-price  |  disabled  |  stopped  | 
 |  instance\-stopped\-by\-user  |  disabled  |  stopped  | 
 |  instance\-stopped\-no\-capacity  |  disabled  |  stopped  | 
-|  instance\-terminated\-by\-price  |  closed \(one\-time\), open\(persistent\)  |  terminated  | 
+|  instance\-terminated\-by\-price  |  closed \(one\-time\), open \(persistent\)  |  terminated  | 
 |  instance\-terminated\-by\-schedule  |  closed  |  terminated  | 
 |  instance\-terminated\-by\-service  |  cancelled  |  terminated  | 
 |  instance\-terminated\-by\-user  |  closed or cancelled \*  |  terminated  | 
+|  instance\-terminated\-no\-capacity  |  closed \(one\-time\), open \(persistent\)  |  running †  | 
 |  instance\-terminated\-no\-capacity  |  closed \(one\-time\), open \(persistent\)  |  terminated  | 
 |  instance\-terminated\-launch\-group\-constraint  |  closed \(one\-time\), open \(persistent\)  |  terminated  | 
 
 \* The request state is `closed` if you terminate the instance but do not cancel the request\. The request state is `cancelled` if you terminate the instance and cancel the request\. Even if you terminate a Spot Instance before you cancel its request, there might be a delay before Amazon EC2 detects that your Spot Instance was terminated\. In this case, the request state can either be `closed` or `cancelled`\.
+
+† When Amazon EC2 interrupts a Spot Instance if it needs the capacity back *and* the instance is configured to *terminate* on interruption, the status is immediately set to `instance-terminated-no-capacity` \(it is not set to `marked-for-termination`\)\. However, the instance remains in the `running` state for 2 minutes to reflect the 2\-minute period when the instance receives the Spot Instance interruption notice\. After 2 minutes, the instance state is set to `terminated`\.
 
 **Persistent requests**  
 When your Spot Instances are terminated \(either by you or Amazon EC2\), if the Spot request is a persistent request, it returns to the `pending-evaluation` state and then Amazon EC2 can launch a new Spot Instance when the constraints are met\.
