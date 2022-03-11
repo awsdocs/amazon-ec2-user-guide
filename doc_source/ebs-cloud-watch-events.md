@@ -8,8 +8,9 @@ For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloud
 
 **Topics**
 + [EBS volume events](#volume-events)
-+ [EBS snapshot events](#snapshot-events)
 + [EBS volume modification events](#volume-modification-events)
++ [EBS snapshot events](#snapshot-events)
++ [EBS Snapshots Archive events](#snapshot-archive-events)
 + [EBS fast snapshot restore events](#fast-snapshot-restore-events)
 + [Using AWS Lambda to handle CloudWatch events](#using_lambda)
 
@@ -179,6 +180,31 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
     "cause": "arn:aws:kms:us-east-1:0123456789ab:key/01234567-0123-0123-0123-0123456789ab is pending deletion.",
     "request-id": ""
   }
+}
+```
+
+## EBS volume modification events<a name="volume-modification-events"></a>
+
+Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is modified\. However it is not saved, logged, or archived\.
+
+```
+{
+   "version": "0",
+   "id": "01234567-0123-0123-0123-012345678901",
+   "detail-type": "EBS Volume Notification",
+   "source": "aws.ec2",
+   "account": "012345678901",
+   "time": "yyyy-mm-ddThh:mm:ssZ",
+   "region": "us-east-1",
+   "resources": [
+      "arn:aws:ec2:us-east-1:012345678901:volume/vol-03a55cf56513fa1b6"
+   ],
+   "detail": {
+      "result": "optimizing",
+      "cause": "",
+      "event": "modifyVolume",
+      "request-id": "01234567-0123-0123-0123-0123456789ab"
+   }
 }
 ```
 
@@ -396,30 +422,9 @@ The following is an example of a JSON object emitted by EBS after a completed `s
 }
 ```
 
-## EBS volume modification events<a name="volume-modification-events"></a>
+## EBS Snapshots Archive events<a name="snapshot-archive-events"></a>
 
-Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is modified\. However it is not saved, logged, or archived\.
-
-```
-{
-   "version": "0",
-   "id": "01234567-0123-0123-0123-012345678901",
-   "detail-type": "EBS Volume Notification",
-   "source": "aws.ec2",
-   "account": "012345678901",
-   "time": "yyyy-mm-ddThh:mm:ssZ",
-   "region": "us-east-1",
-   "resources": [
-      "arn:aws:ec2:us-east-1:012345678901:volume/vol-03a55cf56513fa1b6"
-   ],
-   "detail": {
-      "result": "optimizing",
-      "cause": "",
-      "event": "modifyVolume",
-      "request-id": "01234567-0123-0123-0123-0123456789ab"
-   }
-}
-```
+Amazon EBS emits events related to snapshot archiving actions\. For more information, see [Monitor snapshot archiving](monitor-snapshot-archiving.md)\.
 
 ## EBS fast snapshot restore events<a name="fast-snapshot-restore-events"></a>
 

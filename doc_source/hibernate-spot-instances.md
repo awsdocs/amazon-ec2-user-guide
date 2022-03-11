@@ -11,7 +11,8 @@ When Amazon EC2 hibernates a Spot Instance, the following occurs:
 For information about hibernating On\-Demand Instances, see [Hibernate your On\-Demand Linux instance](Hibernate.md)\.
 
 ## Considerations<a name="hibernate-interrupted-spot-instances-considerations"></a>
-+ Only Amazon EC2 can resume a hibernated Spot Instance\.
++ Only Amazon EC2 can hibernate a Spot Instance\. You can't manually hibernate a Spot Instance\.
++ Only Amazon EC2 can resume a hibernated Spot Instance\. You can't manually resume a hibernated Spot Instance\.
 + Amazon EC2 resumes the instance when capacity becomes available with a Spot price that is less than your specified maximum price\.
 + When Amazon EC2 hibernates a Spot Instance, hibernation begins immediately\. You receive an interruption notice, but you do not have two minutes before the Spot Instance is interrupted\.
 + While the instance is in the process of hibernating, instance health checks might fail\.

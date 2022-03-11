@@ -33,7 +33,7 @@ If you archive **Snap C**, your standard tier storage will decrease by 4 GiB bec
 
 ## Archiving full snapshots for compliance reasons<a name="guidelines-full-snapshot"></a>
 
-You might need to create full backups of volumes on a monthly, quarterly, or yearly basis for compliance reasons\. For these backups, you might need standalone snapshots without backward or forward references to other snapshots in the snapshot lineage\. Snapshots archived with EBS Snapshots Archive are full snapshots, and they do not have any references to other snapshots in the lineage\. Additionally, you will likely need to retain these snapshots for compliance snapshots for several years\. EBS Snapshots Archive makes it cost\-effective to archive these full snapshots for long\-term retention\.
+You might need to create full backups of volumes on a monthly, quarterly, or yearly basis for compliance reasons\. For these backups, you might need standalone snapshots without backward or forward references to other snapshots in the snapshot lineage\. Snapshots archived with EBS Snapshots Archive are full snapshots, and they do not have any references to other snapshots in the lineage\. Additionally, you will likely need to retain these snapshots for compliance reasons for several years\. EBS Snapshots Archive makes it cost\-effective to archive these full snapshots for long\-term retention\.
 
 ## Determining the reduction in standard tier storage costs<a name="archive-guidelines"></a>
 

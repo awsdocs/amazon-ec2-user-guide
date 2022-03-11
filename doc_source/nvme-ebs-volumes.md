@@ -9,6 +9,7 @@ The EBS performance guarantees stated in [Amazon EBS Product Details](http://aws
 + [Identify the EBS device](#identify-nvme-ebs-device)
 + [Work with NVMe EBS volumes](#using-nvme-ebs-volumes)
 + [I/O operation timeout](#timeout-nvme-ebs-volumes)
++ [`Abort` command](#abort-command)
 
 ## Install or upgrade the NVMe driver<a name="install-nvme-driver"></a>
 
@@ -167,3 +168,15 @@ If I/O latency exceeds the value of this timeout parameter, the Linux NVMe drive
 For an experience similar to EBS volumes attached to Xen instances, we recommend setting `nvme_core.io_timeout` to the highest value possible\. For current kernels, the maximum is 4294967295, while for earlier kernels the maximum is 255\. Depending on the version of Linux, the timeout might already be set to the supported maximum value\. For example, the timeout is set to 4294967295 by default for Amazon Linux AMI 2017\.09\.01 and later\.
 
 You can verify the maximum value for your Linux distribution by writing a value higher than the suggested maximum to `/sys/module/nvme_core/parameters/io_timeout` and checking for the Numerical result out of range error when attempting to save the file\.
+
+## `Abort` command<a name="abort-command"></a>
+
+The `Abort` command is an NVMe Admin command that is issued to abort a specific command that was previously submitted to the controller\. This command is typically issued by the device driver to storage devices that have exceeded the I/O operation timeout threshold\. Amazon EC2 instance types that support the `Abort` command by default will abort a specific command that was previously submitted to the controller of the attached Amazon EBS device to which an `Abort` command is issued\.
+
+The following instance types support the `Abort` command for all attached Amazon EBS volumes by default: `R5b`, `R6i`, `M6i`, `M6a`, `C6gn`, `C6i`, `X2gd`, `X2iezn`, `Im4gn`, `Is4gen`\.
+
+Other instance types take no action when `Abort` commands are issued to attached Amazon EBS volumes\.
+
+Amazon EBS devices with NVMe device version `1.4` or higher support the `Abort` command\.
+
+For more information, see section **5\.1 Abort command** of the [ NVM Express Base Specification](https://nvmexpress.org/wp-content/uploads/NVM-Express-1_4-2019.06.10-Ratified.pdf)\.

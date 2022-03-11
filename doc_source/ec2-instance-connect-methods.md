@@ -2,12 +2,11 @@
 
 The following instructions explain how to connect to your Linux instance using EC2 Instance Connect\.
 
-If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md) and [ How do I troubleshoot issues connecting to my EC2 instance using EC2 Instance Connect?](http://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-connect-troubleshooting/)\.
-
 **Topics**
 + [Limitations](#ic-limitations)
 + [Prerequisites](#ic-prerequisites)
 + [Connect using EC2 Instance Connect](#connect-options)
++ [Troubleshoot](#ic-troubleshoot)
 
 ## Limitations<a name="ic-limitations"></a>
 + Supported Linux distributions:
@@ -131,3 +130,9 @@ You can use your own SSH key and connect to your instance from the SSH client of
    ```
    $ ssh -o "IdentitiesOnly=yes" -i my_key ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
    ```
+
+## Troubleshoot<a name="ic-troubleshoot"></a>
+
+If you receive an error while attempting to connect to your instance, see the following:
++ [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)
++ [How do I troubleshoot issues connecting to my EC2 instance using EC2 Instance Connect?](http://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-connect-troubleshooting/)

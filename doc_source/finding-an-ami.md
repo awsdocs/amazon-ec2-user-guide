@@ -24,7 +24,7 @@ If you need to find an RedHat AMI, see the RHEL [knowledgebase article](https://
 
 You can find Linux AMIs using the Amazon EC2 console\. You can select from the list of AMIs when you use the launch wizard to launch an instance, or you can search through all available AMIs using the **Images** page\. AMI IDs are unique to each AWS Region\.
 
-**To find a Linux AMI using the launch wizard**
+**To find a Linux AMI using the launch instance wizard**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -32,7 +32,7 @@ You can find Linux AMIs using the Amazon EC2 console\. You can select from the l
 
 1. From the console dashboard, choose **Launch instance**\.
 
-1. On the **Quick Start** tab, select from one of the commonly used AMIs in the list\. If you don't see the AMI that you need, select the **My AMIs**, **AWS Marketplace**, or **Community AMIs** tab to find additional AMIs\. For more information, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
+1. On the **Quick Start** tab, select from one of the commonly used AMIs in the list\. If you don't see the AMI that you need, choose the **My AMIs**, **AWS Marketplace**, or **Community AMIs** tab to find additional AMIs\. For more information, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
 
 **To find a Linux AMI using the AMIs page**
 
@@ -42,7 +42,7 @@ You can find Linux AMIs using the Amazon EC2 console\. You can select from the l
 
 1. In the navigation pane, choose **AMIs**\.
 
-1. \(Optional\) Use the **Filter** options to scope the list of displayed AMIs to see only the AMIs that interest you\. For example, to list all Linux AMIs provided by AWS, select **Public images**\. Choose the Search bar and select **Owner** from the menu, then select **Amazon images**\. Choose the Search bar again to select **Platform** and then the operating system from the list provided\.
+1. \(Optional\) Use the Filter and Search options to scope the list of displayed AMIs to see only the AMIs that interest you\. For example, to list all Linux AMIs provided by AWS, choose **Public images**\. Then use the Search options to further scope the list of displayed AMIs\. Choose the Search bar and, from the menu, choose **Owner alias**, then the **=** operator, and then the value **amazon**\. Choose the Search bar again to choose **Platform**, then the **=** operator, and then the operating system from the list provided\.
 
 1. \(Optional\) Choose the **Preferences** icon \(new console\) or **Show/Hide Columns** icon \(old console\) to select which image attributes to display, such as the root device type\. Alternatively, you can select an AMI from the list and view its properties on the **Details** tab\.
 
@@ -71,7 +71,7 @@ Omitting the `--owners` flag from the describe\-images command will return all i
 
 ## Find the latest Amazon Linux AMI using Systems Manager<a name="finding-an-ami-parameter-store"></a>
 
-Amazon EC2 provides AWS Systems Manager public parameters for AWS\-maintained public AMIs that you can use when launching instances\. For example, the EC2\-provided parameter `/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2` is available in all Regions and always points to the latest version of the Amazon Linux 2 AMI in a given Region\.
+Amazon EC2 provides AWS Systems Manager public parameters for public AMIs maintained by AWS that you can use when launching instances\. For example, the EC2\-provided parameter `/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2` is available in all Regions and always points to the latest version of the Amazon Linux 2 AMI in a given Region\.
 
 The Amazon EC2 AMI public parameters are available from the following path:
 

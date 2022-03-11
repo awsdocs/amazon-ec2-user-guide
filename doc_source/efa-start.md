@@ -22,9 +22,9 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Security Groups** and then choose **Create Security Group**\.
+1. In the navigation pane, choose **Security Groups** and then choose **Create security group**\.
 
-1. In the **Create Security Group** window, do the following:
+1. In the **Create security group** window, do the following:
 
    1. For **Security group name**, enter a descriptive name for the security group, such as `EFA-enabled security group`\.
 
@@ -32,29 +32,29 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
    1. For **VPC**, select the VPC into which you intend to launch your EFA\-enabled instances\.
 
-   1. Choose **Create**\.
+   1. Choose **Create security group**\.
 
-1. Select the security group that you created, and on the **Description** tab, copy the **Group ID**\.
+1. Select the security group that you created, and on the **Details** tab, copy the **Security group ID**\.
 
-1. On the **Inbound** tab, do the following:
+1. With the security group still selected, choose **Actions**, **Edit inbound rules**, and then do the following:
 
-   1. Choose **Edit**\.
-
-   1. For **Type**, choose **All traffic**\.
-
-   1. For **Source**, choose **Custom** and paste the security group ID that you copied into the field\.
-
-   1. Choose **Save**\.
-
-1. On the **Outbound** tab, do the following:
-
-   1. Choose **Edit**\.
+   1. Choose **Add rule**\.
 
    1. For **Type**, choose **All traffic**\.
 
-   1. For **Destination**, choose **Custom** and paste the security group ID that you copied into the field\.
+   1. For **Source type**, choose **Custom** and paste the security group ID that you copied into the field\.
 
-   1. Choose **Save**\.
+   1. Choose **Save rules**\.
+
+1. With the security group still selected, choose **Actions**, **Edit outbound rules**, and then do the following:
+
+   1. Choose **Add rule**\.
+
+   1. For **Type**, choose **All traffic**\.
+
+   1. For **Destination type**, choose **Custom** and paste the security group ID that you copied into the field\.
+
+   1. Choose **Save rules**\.
 
 ## Step 2: Launch a temporary instance<a name="efa-start-tempinstance"></a>
 
@@ -72,7 +72,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Configure Instance Details** page, do the following:
 
-   1. For **Subnet**, choose the subnet in which to launch the instance\.
+   1. For **Subnet**, choose the subnet in which to launch the instance\. If you do not select a subnet, you can't enable the instance for EFA\.
 
    1. For **Elastic Fabric Adapter**, choose **Enable**\.
 
@@ -99,7 +99,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Connect to the instance you launched\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
-   + Amazon Linux 2, RHEL 7/8, and CentOS 7/8
+   + Amazon Linux 2, RHEL 7/8, and CentOS 7
 
      ```
      $ sudo yum update -y
@@ -122,7 +122,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.14.1.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.15.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -150,7 +150,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.14.1.tar.gz.sig && gpg --verify ./aws-efa-installer-1.14.1.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.15.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.15.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -168,7 +168,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.14.1.tar.gz && cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.15.0.tar.gz && cd aws-efa-installer
    ```
 
 1. Install the EFA software\. Do one of the following depending on your use case\.
@@ -249,44 +249,34 @@ Ensure that the user performing the following steps has sudo permissions\.
 
 **To install Intel MPI**
 
-1. To download the Intel MPI installation files, see the [ Intel Developer Zone website](https://software.intel.com/en-us/mpi-library/choose-download/linux)\.
+1. To download the Intel MPI installation script, do the following
 
-   You must register before you can download the installation files\. After you have registered, do the following:
+   1. Visit the [ Intel website](https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#mpi)\.
 
-   1. For **Product**, choose **Intel MPI Library for Linux**\.
+   1. In the **Intel MPI Library** section of the webpage, choose the link for the **Intel MPI Library for Linux** **Offline** installer\.
 
-   1. For **Version**, choose **2019 Update 5**, and then choose **Full Product**\.
-
-1. The installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
+1. Run the instanllation script that you downloaded in the previous step\.
 
    ```
-   $ tar -xf file_name.tgz
+   $ sudo bash installation_script_name.sh
    ```
 
-   ```
-   $ cd directory_name
-   ```
+1. In the installer, choose **Accept & install**\.
 
-1. Open `silent.cfg` using your preferred text editor\. In line 10, change `ACCEPT_EULA=decline` to `ACCEPT_EULA=accept`\. Save the changes and close the file\.
+1. Read the Intel Improvement Program, choose the appropriate option, and then choose **Begin Installation**\.
 
-1. Run the installation script\.
-
-   ```
-   $ sudo ./install.sh -s silent.cfg
-   ```
-
-   Intel MPI is installed in the `/opt/intel/impi/` directory by default\.
+1. When the installation completes, choose **Close**\.
 
 1. Add the Intel MPI environment variables to the corresponding shell startup scripts to ensure that they are set each time that the instance starts\. Do one of the following depending on your shell\.
    + For **bash**, add the following environment variable to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
 
      ```
-     source /opt/intel/compilers_and_libraries/linux/mpi/intel64/bin/mpivars.sh
+     source /opt/intel/oneapi/mpi/latest/env/vars.sh
      ```
    + For **csh and tcsh**, add the following environment variable to `/home/username/.cshrc`\.
 
      ```
-     source /opt/intel/compilers_and_libraries/linux/mpi/intel64/bin/mpivars.csh
+     source /opt/intel/oneapi/mpi/latest/env/vars.csh
      ```
 
 1. Log out of the instance and then log back in\.

@@ -2,6 +2,13 @@
 
 The following procedure shows you how to use Amazon Data Lifecycle Manager to automate Amazon EBS snapshot lifecycles\.
 
+**Topics**
++ [Create a snapshot lifecycle policy](#create-snap-policy)
++ [Considerations for snapshot lifecycle policies](#snapshot-considerations)
++ [Additional resources](#snapshot-additional-resources)
+
+## Create a snapshot lifecycle policy<a name="create-snap-policy"></a>
+
 Use one of the following procedures to create a snapshot lifecycle policy\.
 
 ------
@@ -320,3 +327,47 @@ The following is an example of the `policyDetails.json` file\.
 ```
 
 ------
+
+## Considerations for snapshot lifecycle policies<a name="snapshot-considerations"></a>
+
+The following considerations apply when **creating snapshot lifecycle policies**:
++ The first snapshot creation operation starts within one hour after the specified start time\. Subsequent snapshot creation operations start within one hour of their scheduled time\.
++ You can create multiple policies to back up a volume or instance\. For example, if a volume has two tags, where tag *A* is the target for policy *A* to create a snapshot every 12 hours, and tag *B* is the target for policy *B* to create a snapshot every 24 hours, Amazon Data Lifecycle Manager creates snapshots according to the schedules for both policies\. Alternatively, you can achieve the same result by creating a single policy that has multiple schedules\. For example, you can create a single policy that targets only tag *A*, and specify two schedules — one for every 12 hours and one for every 24 hours\.
++ Target resource tags are case sensitive\.
++ If you create a policy that targets instances, and new volumes are attached to a target instance after the policy has been created, the newly\-added volumes are included in the backup at the next policy run\. All volumes attached to the instance at the time of the policy run are included\.
++ If you create a policy with a custom cron\-based schedule that is configured to create only one snapshot, the policy will not automatically delete that snapshot when the retention threshold is reached\. You must manually delete the snapshot if it is no longer needed\.
+
+The following considerations apply to **deleting resources created by snapshot lifecycle policies**:
++ If you delete a snapshot that was created by a policy with a count\-based retention schedule, the policy no longer manages the snapshots that it created before the deleted snapshot\. You must manually delete those earlier snapshots if they are no longer needed\.
++ If you delete a snapshot that was created by a policy with an age\-based retention schedule, the policy continues to delete snapshots on the defined schedule, up to, but not including, the last snapshot\. You must manually delete the last snapshot if it is no longer needed\.
+
+The following considerations apply to snapshot lifecycle policies and ** [fast snapshot restore](ebs-fast-snapshot-restore.md)**:
++ A snapshot that is enabled for fast snapshot restore remains enabled even if you delete or disable the policy, disable fast snapshot restore for the policy, or disable fast snapshot restore for the Availability Zone\. You must disable fast snapshot restore for these snapshots manually\.
++ If you enable fast snapshot restore for a policy and you exceed the maximum number of snapshots that can be enabled for fast snapshot restore, Amazon Data Lifecycle Manager creates snapshots as scheduled but does not enable them for fast snapshot restore\. After a snapshot that is enabled for fast snapshot restore is deleted, the next snapshot that Amazon Data Lifecycle Manager creates is enabled for fast snapshot restore\.
++ When fast snapshot restore is enabled for a snapshot, it takes 60 minutes per TiB to optimize the snapshot\. We recommend that you configure your schedules so that each snapshot is fully optimized before Amazon Data Lifecycle Manager creates the next snapshot\.
++ You are billed for each minute that fast snapshot restore is enabled for a snapshot in a particular Availability Zone\. Charges are pro\-rated with a minimum of one hour\. For more information, see [Pricing and Billing](ebs-fast-snapshot-restore.md#fsr-pricing)\.
+**Note**  
+Depending on the configuration of your lifecycle policies, you could have multiple snapshots enabled for fast snapshot restore in multiple Availability Zones simultaneously\.
+
+The following considerations apply to snapshot lifecycle policies and ** [Multi\-Attach](ebs-volumes-multi.md) enabled volumes**:
++ When creating a lifecycle policy that targets instances that have the same Multi\-Attach enabled volume, Amazon Data Lifecycle Manager initiates a snapshot of the volume for each attached instance\. Use the *timestamp* tag to identify the set of time\-consistent snapshots that are created from the attached instances\.
+
+The following considerations apply to **sharing snapshots across accounts**:
++ You can only share snapshots that are unencrypted or that are encrypted using a customer managed key\.
++ You can't share snapshots that are encrypted with the default EBS encryption KMS key\.
++ If you share encrypted snapshots, you must also share the KMS key that was used to encrypt the source volume with the target accounts\. For more information, see [Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide*\.
+
+The following considerations apply to snapshots policies and ** [snapshot archiving](snapshot-archive.md)**:
++ If you manually archive a snapshot that was created by a policy, and that snapshot is in the archive tier when the policy’s retention threshold is reached, Amazon Data Lifecycle Manager will not delete the snapshot\. Amazon Data Lifecycle Manager does not manage snapshots while they are stored in the archive tier\. If you no longer need snapshots that are stored in the archive tier, you must manually delete them\.
+
+The following considerations apply to snapshot policies and **[Recycle Bin](recycle-bin.md)**:
++ If Amazon Data Lifecycle Manager deletes a snapshot and sends it to the Recycle Bin when the policy's retention threshold is reached, and you manually restore the snapshot from the Recycle Bin, you must manually delete that snapshot when it is no longer needed\. Amazon Data Lifecycle Manager will no longer manage the snapshot\.
++ If you manually delete a snapshot that was created by a policy, and that snapshot is in the Recycle Bin when the policy’s retention threshold is reached, Amazon Data Lifecycle Manager will not delete the snapshot\. Amazon Data Lifecycle Manager does not manage the snapshots while they are stored in the Recycle Bin\.
+
+  If the snapshot is restored from the Recycle Bin before the policy's retention threshold is reached, Amazon Data Lifecycle Manager will delete the snapshot when the policy's retention threshold is reached\.
+
+  If the snapshot is restored from the Recycle Bin after the policy's retention threshold is reached, Amazon Data Lifecycle Manager will no longer delete the snapshot\. You must manually delete the snapshot when it is no longer needed\.
+
+## Additional resources<a name="snapshot-additional-resources"></a>
+
+For more information, see the [ Automating Amazon EBS snapshot and AMI management using Amazon Data Lifecycle Manager](https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/) AWS storage blog\.

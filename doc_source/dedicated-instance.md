@@ -79,7 +79,9 @@ There are no performance, security, or physical differences between Dedicated In
 | Host and instance affinity | Allows you to consistently deploy your instances onto the same host over time | Not supported | 
 | Targeted instance placement | Provides control over how instances are placed on the host | Not supported | 
 | Automatic instance recovery | Supported | Supported | 
-| Bring Your Own License \(BYOL\) | Supported | Not supported | 
+| Bring Your Own License \(BYOL\) | Supported | Partial support \* | 
+
+\* Microsoft SQL Server with License Mobility through Software Assurance, and Windows Virtual Desktop Access \(VDA\) licenses can use be used with Dedicated Instance\.
 
 For more information about Dedicated Hosts, see [Dedicated Hosts](dedicated-hosts-overview.md)\.
 

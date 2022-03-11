@@ -43,13 +43,13 @@ If instances have a host affinity relationship with the impaired Dedicated Host,
 
 When all of the instances have been recovered on to the replacement Dedicated Host, **the impaired Dedicated Host is released**, and the replacement Dedicated Host becomes available for use\.
 
-When host recovery is initiated, the AWS account owner is notified by email and by an AWS Personal Health Dashboard event\. A second notification is sent after the host recovery has been successfully completed\. 
+When host recovery is initiated, the AWS account owner is notified by email and by an AWS Health Dashboard event\. A second notification is sent after the host recovery has been successfully completed\. 
 
 If you are using AWS License Manager to track your licenses, AWS License Manager allocates new licenses for the replacement Dedicated Host based on the license configuration limits\. If the license configuration has hard limits that will be breached as a result of the host recovery, the recovery process is not allowed and you are notified of the host recovery failure through an Amazon SNS notification \(if notification settings have been configured for AWS License Manager\)\. If the license configuration has soft limits that will be breached as a result of the host recovery, the recovery is allowed to continue and you are notified of the limit breach through an Amazon SNS notification\. For more information, see [Using License Configurations](https://docs.aws.amazon.com/license-manager/latest/userguide/license-configurations.html) and [Settings in License Manager](https://docs.aws.amazon.com/license-manager/latest/userguide/settings.html) in the *AWS License Manager User Guide*\.
 
 ### Scenarios without Dedicated Host auto recovery<a name="dedicated-hosts-recovery-basics-non-auto"></a>
 
-**Dedicated Host auto recovery does not occur when hardware or software issues impact the physical host** and manual intervention is required\. You will receive a retirement notification in the AWS Personal Health Dashboard, an Amazon CloudWatch event, and the AWS account owner email address receives a message regarding the Dedicated Host failure\.
+**Dedicated Host auto recovery does not occur when hardware or software issues impact the physical host** and manual intervention is required\. You will receive a retirement notification in the AWS Health Dashboard, an Amazon CloudWatch event, and the AWS account owner email address receives a message regarding the Dedicated Host failure\.
 
 **Stopped instances are not recovered** on to the replacement Dedicated Host\. If you attempt to start a stopped instance that targets the impaired Dedicated Host, the instance start fails\. We recommend that you modify the stopped instance to either target a different Dedicated Host, or to launch on any available Dedicated Host with matching configurations and auto\-placement enabled\.
 

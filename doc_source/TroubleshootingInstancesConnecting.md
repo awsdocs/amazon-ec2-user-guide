@@ -188,6 +188,8 @@ If you try to connect to your instance and get the error message, `unable to loa
 **If the private key file is incorrectly configured, follow these steps to resolve the error**
 
 1. Create a new key pair\. For more information, see [Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
+**Note**  
+Alternatively, you can create a new key pair using a third\-party tool\. For more information, see [Create a key pair using a third\-party tool and import the public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
 1. Add the new key pair to your instance\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 

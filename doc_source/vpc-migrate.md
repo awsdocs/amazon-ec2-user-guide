@@ -30,7 +30,7 @@ Before you begin, you must have a VPC\. If you don't have a default VPC, you can
 
 ### Security groups<a name="vpc-migrate-security-group"></a>
 
-If you want your instances in your VPC to have the same security group rules as your EC2\-Classic instances, you can use the Amazon EC2 console to copy your existing EC2\-Classic security group rules to a new VPC security group\. 
+If you want your instances in your VPC to have the same security group rules as your EC2\-Classic instances, you can use the Amazon EC2 console to copy your existing EC2\-Classic security group rules \(including default ones\) to a new VPC security group\. Default security groups cannot be deleted and will be removed on your behalf when EC2\-Classic is retired\.
 
 You can only copy security group rules to a new security group in the same AWS account in the same Region\. If you are using a different Region or a different AWS account, you must create a new security group and manually add the rules yourself\. For more information, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
 
@@ -61,7 +61,7 @@ When you migrate an Elastic IP address, it counts against your Elastic IP addres
 After you've performed the command to move or restore your Elastic IP address, the process of migrating the Elastic IP address can take a few minutes\. Use the [describe\-moving\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) command to check whether your Elastic IP address is still moving, or has completed moving\. After the moved is complete, you can view the allocation ID for the Elastic IP address on the **Elastic IPs** page\. If the Elastic IP address is in a moving state for longer than 5 minutes, contact [AWS Support](https://aws.amazon.com/premiumsupport/)\.
 
 **To identify an Elastic IP address that is allocated for use in EC2\-Classic**  
-Open the Amazon EC2 console\. Choose **Elastic IPs** in the navigation pane and the select the checkbox for the Elastic IP address\. On the **Summary** page, check whether **Scope** is **EC2\-Classic** or **VPC**\.
+Open the Amazon EC2 console\. Choose **Elastic IPs** in the navigation pane and the select the check box for the Elastic IP address\. On the **Summary** page, check whether **Scope** is **EC2\-Classic** or **VPC**\.
 
 **To move an Elastic IP address using the Amazon EC2 console**
 

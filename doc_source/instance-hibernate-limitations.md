@@ -1,7 +1,7 @@
 # Limitations<a name="instance-hibernate-limitations"></a>
 + When you hibernate an instance, the data on any instance store volumes is lost\.
 + You can't hibernate an instance that has more than 150 GB of RAM\.
-+ If you create a snapshot or AMI from an instance that is hibernated or has hibernation enabled, you might not be able to connect to the instance\.
++ If you create a snapshot or AMI from an instance that is hibernated or has hibernation enabled, you might not be able to connect to a new instance that is launched from the AMI or from an AMI that was created from the snapshot\.
 + You can't change the instance type or size of an instance when hibernation is enabled\.
 + You can't hibernate an instance that is in an Auto Scaling group or used by Amazon ECS\. If your instance is in an Auto Scaling group and you try to hibernate it, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and might terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + You can't hibernate an instance that is configured to boot in UEFI mode\.

@@ -36,7 +36,7 @@ There are various elements that make up a statement:
 + **Resource**: The resource that's affected by the action\. Some Amazon EC2 API actions allow you to include specific resources in your policy that can be created or modified by the action\. You specify a resource using an Amazon Resource Name \(ARN\) or using the wildcard \(\*\) to indicate that the statement applies to all resources\. For more information, see [Supported resource\-level permissions for Amazon EC2 API actions](#ec2-supported-iam-actions-resources)\. 
 + **Condition**: Conditions are optional\. They can be used to control when your policy is in effect\. For more information about specifying conditions for Amazon EC2, see [Condition keys for Amazon EC2](#amazon-ec2-keys)\.
 
-For more information about example IAM policy statements for Amazon EC2, see [Example policies for working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\. 
+For more information about policy requirements, see the [IAM JSON policy reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html) in the *IAM User Guide*\. For example IAM policy statements for Amazon EC2, see [Example policies for working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\. 
 
 ## Actions for Amazon EC2<a name="UsingWithEC2_Actions"></a>
 

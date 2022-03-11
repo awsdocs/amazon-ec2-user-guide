@@ -375,10 +375,10 @@ You can also view this information programatically using the AWS CLI\. For more 
 | r5dn\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | r5dn\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | r5dn\.metal | 19,000 | 2,375 | 80,000 | 
-| r5n\.large \* | 4,750 | 593\.75 | 15,000 | 
-| r5n\.xlarge \* | 4,750 | 593\.75 | 15,000 | 
-| r5n\.2xlarge \* | 4,750 | 593\.75 | 15,000 | 
-| r5n\.4xlarge | 4,750 | 593\.75 | 15,000 | 
+| r5n\.large \* | 4,750 | 593\.75 | 18,750 | 
+| r5n\.xlarge \* | 4,750 | 593\.75 | 18,750 | 
+| r5n\.2xlarge \* | 4,750 | 593\.75 | 18,750 | 
+| r5n\.4xlarge | 4,750 | 593\.75 | 18,750 | 
 | r5n\.8xlarge | 6,800 | 850 | 30,000 | 
 | r5n\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | r5n\.16xlarge | 13,600 | 1,700 | 60,000 | 
@@ -463,6 +463,16 @@ You can also view this information programatically using the AWS CLI\. For more 
 | x2gd\.12xlarge | 14,250 | 1,781\.25 | 60,000 | 
 | x2gd\.16xlarge | 19,000 | 2,375 | 80,000 | 
 | x2gd\.metal | 19,000 | 2,375 | 80,000 | 
+| x2idn\.16xlarge | 40,000 | 5,000 | 130,000 | 
+| x2idn\.24xlarge | 60,000 | 7,500 | 195,000 | 
+| x2idn\.32xlarge | 80,000 | 10,000 | 260,000 | 
+| x2iedn\.xlarge \* | 20,000 | 2,500 | 65,000 | 
+| x2iedn\.2xlarge \* | 20,000 | 2,500 | 65,000 | 
+| x2iedn\.4xlarge \* | 20,000 | 2,500 | 65,000 | 
+| x2iedn\.8xlarge | 20,000 | 2,500 | 65,000 | 
+| x2iedn\.16xlarge | 40,000 | 5,000 | 130,000 | 
+| x2iedn\.24xlarge | 60,000 | 7,500 | 195,000 | 
+| x2iedn\.32xlarge | 80,000 | 10,000 | 260,000 | 
 | x2iezn\.2xlarge | 3,170 | 396\.25 | 13,333 | 
 | x2iezn\.4xlarge | 4,750 | 593\.75 | 20,000 | 
 | x2iezn\.6xlarge | 9,500 | 1,187\.5 | 40,000 | 
@@ -634,14 +644,17 @@ You can also view this information programatically using the AWS CLI\. For more 
 | t3a\.large | 695 | 86\.86 | 4,000 | 
 | t3a\.xlarge | 695 | 86\.86 | 4,000 | 
 | t3a\.2xlarge | 695 | 86\.86 | 4,000 | 
-| t4g\.nano | 32 | 4 | 250 | 
-| t4g\.micro | 64 | 8 | 500 | 
-| t4g\.small | 128 | 16 | 1,000 | 
-| t4g\.medium | 256 | 32 | 2,000 | 
-| t4g\.large | 512 | 64 | 4,000 | 
+| t4g\.nano | 43 | 5\.38 | 250 | 
+| t4g\.micro | 87 | 10\.88 | 500 | 
+| t4g\.small | 174 | 21\.75 | 1,000 | 
+| t4g\.medium | 347 | 43\.38 | 2,000 | 
+| t4g\.large | 695 | 86\.88 | 4,000 | 
 | t4g\.xlarge | 1,024 | 128 | 4,000 | 
 | t4g\.2xlarge | 2,048 | 256 | 4,000 | 
 | vt1\.3xlarge | 2,375 | 296\.875 | 10,000 | 
+| x2iedn\.xlarge | 2,500 | 312\.5 | 8,125 | 
+| x2iedn\.2xlarge | 5,000 | 625 | 16,250 | 
+| x2iedn\.4xlarge | 10,000 | 1,250 | 32,500 | 
 | x2gd\.medium | 315 | 39\.375 | 2,500 | 
 | x2gd\.large | 630 | 78\.75 | 3,600 | 
 | x2gd\.xlarge | 1,188 | 148\.5 | 6,000 | 

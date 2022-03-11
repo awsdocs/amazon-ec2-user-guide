@@ -9,6 +9,8 @@ Automating cross\-account snapshot copies involves two accounts:
 **Topics**
 + [Create cross\-account snapshot copy policies](#create-cac-policy)
 + [Specify snapshot description filters](#snapshot-descr-filters)
++ [Considerations for cross\-account snapshot copy policies](#event-policy-considerations)
++ [Additional resources](#event-additional-resources)
 
 ## Create cross\-account snapshot copy policies<a name="create-cac-policy"></a>
 
@@ -412,3 +414,14 @@ The snapshot filter description must be specified using a regular expression\. I
 + `.*`—This filter matches all snapshot descriptions\. If you use this expression the policy will copy all snapshots that are shared by one of the specified source accounts\.
 + `Created for policy: policy-0123456789abcdef0.*`—This filter matches only snapshots that are created by a policy with an ID of `policy-0123456789abcdef0`\. If you use an expression like this, only snapshots that are shared with your account by one of the specified source accounts, and that have been created by a policy with the specified ID are copied by the policy\.
 + `.*production.*`—This filter matches any snapshot that has the word `production` anywhere in its description\. If you use this expression the policy will copy all snapshots that are shared by one of the specified source accounts and that have the specified text in their description\.
+
+## Considerations for cross\-account snapshot copy policies<a name="event-policy-considerations"></a>
+
+The following considerations apply to cross\-account copy event policies:
++ You can only copy snapshots that are unencrypted or that are encrypted using a customer managed key\.
++ You can create a cross\-account copy event policy to copy snapshots that are shared outside of Amazon Data Lifecycle Manager\.
++ If you want to encrypt snapshots in the target account, then the IAM role selected for the cross\-account copy event policy must have permission to use the required KMS key\.
+
+## Additional resources<a name="event-additional-resources"></a>
+
+For more information, see the [ Automating copying encrypted Amazon EBS snapshots across AWS accounts](https://aws.amazon.com/blogs/storage/automating-copying-encrypted-amazon-ebs-snapshots-across-aws-accounts/) AWS storage blog\.

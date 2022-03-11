@@ -85,7 +85,7 @@ Archived snapshots appear in the AWS Cost and Usage Report with their same resou
 
 You can use the following usage types to identify the associated costs:
 + `SnapshotArchiveStorage` — fee for monthly data storage
-+ `SnapshotArchiveRetrieval` — on\-time fee for snapshot restores
++ `SnapshotArchiveRetrieval` — one\-time fee for snapshot restores
 + `SnapshotArchiveEarlyDelete` — fee for deleting or permanently restoring a snapshot before the minimum archive period \(90 days\)
 
 ## Quotas<a name="archive-quotas"></a>

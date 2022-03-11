@@ -51,7 +51,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Copy an AMI](CopyingAMIs.md)
       + [Store and restore an AMI using S3](ami-store-restore.md)
       + [Deprecate an AMI](ami-deprecate.md)
-      + [Deregister your Linux AMI](deregister-ami.md)
+      + [Deregister your AMI](deregister-ami.md)
       + [Recover AMIs from the Recycle Bin](recycle-bin-working-with-amis.md)
       + [Automate the EBS-backed AMI lifecycle](automating-amis.md)
    + [Use encryption with EBS-backed AMIs](AMIEncryption.md)

@@ -70,7 +70,7 @@ These instances are well suited for the following:
 
 For more information, see [Amazon EC2 X2g Instances](https://aws.amazon.com/ec2/instance-types/x2g/)\.
 
-**X2iezn instances**
+**X2idn, X2iedn, and X2iezn instances**
 
 These instances are well suited for the following:
 + In\-memory databases, such as Redis and Memcached\.
@@ -227,6 +227,16 @@ The following is a summary of the hardware specifications for memory optimized i
 | x2gd\.12xlarge | 48 | 768 | 
 | x2gd\.16xlarge | 64 | 1,024 | 
 | x2gd\.metal | 64 | 1,024 | 
+| x2idn\.16xlarge | 64 | 1,024 | 
+| x2idn\.24xlarge | 96 | 1,536 | 
+| x2idn\.32xlarge | 128 | 2,048 | 
+| x2iedn\.xlarge | 4 | 128 | 
+| x2iedn\.2xlarge | 8 | 256 | 
+| x2iedn\.4xlarge | 16 | 512 | 
+| x2iedn\.8xlarge | 32 | 1,024 | 
+| x2iedn\.16xlarge | 64 | 2,048 | 
+| x2iedn\.24xlarge | 96 | 3,072 | 
+| x2iedn\.32xlarge | 128 | 4,096 | 
 | x2iezn\.2xlarge | 8 | 256 | 
 | x2iezn\.4xlarge | 16 | 512 | 
 | x2iezn\.6xlarge | 24 | 768 | 
@@ -277,12 +287,12 @@ The following is a summary of network performance for memory optimized instances
 |  r6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5b\.16xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  \| x2gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller \| x2iezn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  r6i\.16xlarge \| x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \|  x2gd\.metal \|  z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller \| x2iedn\.4xlarge and smaller \| x2iezn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  r6i\.16xlarge \| x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \|  x2gd\.metal \|  x2iedn\.8xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.12xlarge \| r5n\.12xlarge \| r6i\.32xlarge \| r6i\.metal \| u\-3tb1\.56xlarge \| x2iezn\.6xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.16xlarge \| r5n\.16xlarge \| x2iezn\.8xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal \| x2iezn\.12xlarge \| x2iezn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.12xlarge \| r5n\.12xlarge \| r6i\.32xlarge \| r6i\.metal \| u\-3tb1\.56xlarge \| x2idn\.16xlarge \| x2iedn\.16xlarge \| x2iezn\.6xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.16xlarge \| r5n\.16xlarge \| x2idn\.24xlarge \| x2iedn\.24xlarge \| x2iezn\.8xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal \| x2idn\.32xlarge \| x2iedn\.32xlarge \| x2iezn\.12xlarge \| x2iezn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 \* Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
 
@@ -343,6 +353,9 @@ The following is a summary of network performance for memory optimized instances
 | x1e\.2xlarge | 1\.25 | 10 | 
 | x1e\.4xlarge | 2\.5 | 10 | 
 | x1e\.8xlarge | 5 | 10 | 
+| x2iedn\.xlarge | 3\.125 | 25 | 
+| x2ed\.2xlarge | 6\.25 | 25 | 
+| x2iedn\.4xlarge | 12\.5 | 25 | 
 | x2gd\.medium | \.5 | 10 | 
 | x2gd\.large | \.75 | 10 | 
 | x2gd\.xlarge | 1\.25 | 10 | 
@@ -406,6 +419,16 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | x2gd\.12xlarge | 645,000 | 270,000 | 
 | x2gd\.16xlarge | 860,000 | 360,000 | 
 | x2gd\.metal | 860,000 | 360,000 | 
+| x2idn\.16xlarge | 430,000 | 180,000 | 
+| x2idn\.24xlarge | 645,000 | 270,000 | 
+| x2idn\.32xlarge | 860,000 | 360,000 | 
+| x2iedn\.xlarge | 26,875 | 11,250 | 
+| x2iedn\.2xlarge | 53,750 | 22,500 | 
+| x2iedn\.4xlarge | 107,500 | 45,000 | 
+| x2iedn\.8xlarge | 215,000 | 90,000 | 
+| x2iedn\.16xlarge | 430,000 | 180,000 | 
+| x2iedn\.24xlarge | 645,000 | 270,000 | 
+| x2iedn\.32xlarge | 860,000 | 360,000 | 
 | z1d\.large | 30,000 | 15,000 | 
 | z1d\.xlarge | 59,000 | 29,000 | 
 | z1d\.2xlarge | 117,000 | 57,000 | 
@@ -441,6 +464,8 @@ The following is a summary of features for memory optimized instances\.
 | High memory | Yes | Yes | No | Virtualized: Yes Bare metal: No  | 
 | X1 | No | No | SSD | Yes | 
 | X2gd | No | Yes | NVME \* | Yes | 
+| X2idn | No | Yes | NVME \* | Yes | 
+| X2iedn | No | Yes | NVME \* | Yes | 
 | X2iezn | Yes | Yes | No | Yes | 
 | X1e | No | No | SSD \* | Yes | 
 | z1d | No | Yes | NVME \* | Yes | 
@@ -478,6 +503,7 @@ The following AMIs support launching memory optimized instances:
 + R6g and R6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\) are the first instances to be powered by an eight\-socket platform with the latest generation Intel Xeon Platinum 8176M \(Skylake\) processors that are optimized for mission\-critical enterprise workloads\. High Memory instances with 18 TB and 24 TB of memory \(`u-18tb1.metal` and `u-24tb1.metal`\) are the first instances powered by an 8\-socket platform with 2nd Generation Intel Xeon Scalable 8280L \(Cascade Lake\) processors\.
 + X1e and X1 instances feature up to 128 vCPUs and are powered by four Intel Xeon E7\-8880 v3 processors that feature high\-memory bandwidth and larger L3 caches to boost the performance of in\-memory applications\.
++ X2idn and X2iedn instances feature Intel Xeon Scalable processors \(Ice Lake\)\. They are certified by SAP for running Business Suite on HANA, SAP S/4HANA, Data Mart Solutions on HANA, Business Warehouse on HANA, SAP BW/4HANA, and SAP NetWeaver workloads with anyDB in production environments\. For more information, see [Certified and Supported SAP HANA Hardware](https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:23)\.
 + X2iezn instances feature a custom Intel Xeon Scalable processor \(Cascade Lake\)\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed

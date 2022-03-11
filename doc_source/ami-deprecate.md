@@ -34,7 +34,7 @@ You can deprecate an AMI on a specific date and time\. You must be the AMI owner
 ------
 #### [ Console ]
 
-**To deprecate an AMI on a specific date \(console\)**
+**To deprecate an AMI on a specific date**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -51,7 +51,7 @@ You can deprecate an AMI on a specific date and time\. You must be the AMI owner
 ------
 #### [ AWS CLI ]
 
-**To deprecate an AMI on a specific date \(AWS CLI\)**  
+**To deprecate an AMI on a specific date**  
 Use the [enable\-image\-deprecation](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-image-deprecation.html) command\. Specify the ID of the AMI and the date and time on which to deprecate the AMI\. If you specify a value for seconds, Amazon EC2 rounds the seconds to the nearest minute\.
 
 ```
@@ -70,14 +70,60 @@ Expected output
 
 ------
 
-## Describe deprecated AMIs<a name="describe-deprecate-ami"></a>
+### Last launched time<a name="ami-last-launched-time"></a>
 
-You can view the deprecation date and time of an AMI, and filter all the AMIs by deprecation date\. You can also use the AWS CLI to decribe all the AMIs that have been deprecated, where the deprecation date is in the past\.
+`LastLaunchedTime` is a timestamp that indicates when your AMI was last used to launch an instance\. AMIs that have not been used recently might be good candidates for deprecation or [deregistering](deregister-ami.md)\.
+
+**Note**  
+When the AMI is used, there is a 24\-hour delay before that usage is reported\. 
+`lastLaunchedTime` data is available starting April 2017\. 
 
 ------
 #### [ Console ]
 
-**To view the deprecation date of an AMI \(console\)**
+**To view the last launched time of an AMI**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigator, choose **AMIs**\.
+
+1. From the filter bar, choose **Owned by me**\.
+
+1. Select the AMI, and then check the **Last launched time** field \(if you selected the check box next to the AMI, it's located on the **Details** tab\)\. The field shows the date and time when the AMI was last used to launch an instance\.
+
+------
+#### [ AWS CLI ]
+
+**To view the last launched time of an AMI**  
+Run the [describe\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html) command and specify `--attribute lastLaunchedTime`\. You must be the AMI owner to run this command\.
+
+```
+aws ec2 describe-image-attribute \
+    --image-id ami-1234567890example \
+    --attribute lastLaunchedTime
+```
+
+Example output
+
+```
+{
+    "LastLaunchedTime": {
+        "Value": "2022-02-10T02:03:18Z"
+    },
+    "ImageId": "ami-1234567890example",
+}
+```
+
+------
+
+## Describe deprecated AMIs<a name="describe-deprecate-ami"></a>
+
+You can view the deprecation date and time of an AMI, and filter all the AMIs by deprecation date\. You can also use the AWS CLI to describe all the AMIs that have been deprecated, where the deprecation date is in the past\.
+
+------
+#### [ Console ]
+
+**To view the deprecation date of an AMI**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -85,7 +131,7 @@ You can view the deprecation date and time of an AMI, and filter all the AMIs by
 
 1. Check the **Deprecation time** field \(if you selected the check box next to the AMI, it's located on the **Details** tab\)\. The field shows the deprecation date and time of the AMI\. If the field is empty, the AMI is not deprecated\.
 
-**To filter AMIs by deprecation date \(console\)**
+**To filter AMIs by deprecation date**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -111,7 +157,7 @@ If an AMI is deprecated, the `DeprecationTime` field appears in the results\.
 **Note**  
 A deprecated AMI is an AMI whose deprecation date is in the past\. If you have set the deprecation date to a date in the future, the AMI is not yet deprecated\.
 
-**To include all deprecated AMIs when describing all AMIs \(AWS CLI\)**  
+**To include all deprecated AMIs when describing all AMIs**  
 Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command and specify the `--include-deprecated` parameter with a value of `true` to include all deprecated AMIs that are not owned by you in the results\.
 
 ```
@@ -121,7 +167,7 @@ aws ec2 describe-images \
     --include-deprecated true
 ```
 
-**To describe the deprecation date of an AMI \(AWS CLI\)**  
+**To describe the deprecation date of an AMI**  
 Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command and specify the ID of the AMI\.
 
 Note that if you specify `--include-deprecated false` together with the AMI ID, the deprecated AMI will be returned in the results\.
@@ -185,7 +231,7 @@ You can cancel the deprecation of an AMI, which removes the date and time from t
 ------
 #### [ Console ]
 
-**To cancel the deprecation of an AMI \(console\)**
+**To cancel the deprecation of an AMI**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -200,7 +246,7 @@ You can cancel the deprecation of an AMI, which removes the date and time from t
 ------
 #### [ AWS CLI ]
 
-**To cancel the deprecation of an AMI \(AWS CLI\)**  
+**To cancel the deprecation of an AMI**  
 Use the [disable\-image\-deprecation](https://docs.aws.amazon.com/cli/latest/reference/ec2/disable-image-deprecation.html) command and specify the ID of the AMI\.
 
 ```

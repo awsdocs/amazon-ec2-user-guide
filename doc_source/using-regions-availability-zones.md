@@ -261,7 +261,7 @@ A Local Zone is an extension of an AWS Region in geographic proximity to your us
 
 The code for a Local Zone is its Region code followed by an identifier that indicates its physical location\. For example, `us-west-2-lax-1` in Los Angeles\. For more information, see [Available Local Zones](#local-zones-available)\.
 
-The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and two of its Local Zones\. The VPC spans the Availability Zones and one of the Local Zones\. Each zone has one subnet\.
+The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and two of its Local Zones\. The VPC spans the Availability Zones and one of the Local Zones\. Each zone in the VPC has one subnet\.
 
 ![\[A VPC with Availability Zones and Local Zones.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/region-with-lzs.png)
 
@@ -399,7 +399,7 @@ A Wavelength Zone is an isolated zone in the carrier location where the Waveleng
 
 The code for a Wavelength Zone is its Region code followed by an identifier that indicates the physical location\. For example, `us-east-1-wl1-bos-wlz-1` in Boston\.
 
-The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and a Wavelength Zone\. The VPC spans the Availability Zones and the Wavelength Zone\. Each zone has one subnet, and each subnet has an instance\.
+The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and a Wavelength Zone\. The VPC spans the Availability Zones and the Wavelength Zone\. Each zone in the VPC has one subnet, and each subnet has an instance\.
 
 ![\[A VPC with Availability Zones and a Wavelength Zone.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/region-with-wavelength-zones.png)
 

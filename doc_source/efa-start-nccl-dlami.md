@@ -29,9 +29,9 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Security Groups** and then choose **Create Security Group**\.
+1. In the navigation pane, choose **Security Groups** and then choose **Create security group**\.
 
-1. In the **Create Security Group** window, do the following:
+1. In the **Create security group** window, do the following:
 
    1. For **Security group name**, enter a descriptive name for the security group, such as `EFA-enabled security group`\.
 
@@ -39,29 +39,29 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
    1. For **VPC**, select the VPC into which you intend to launch your EFA\-enabled instances\.
 
-   1. Choose **Create**\.
+   1. Choose **Create security group**\.
 
-1. Select the security group that you created, and on the **Description** tab, copy the **Group ID**\.
+1. Select the security group that you created, and on the **Details** tab, copy the **Security group ID**\.
 
-1. On the **Inbound** tab, do the following:
+1. With the security group still selected, choose **Actions**, **Edit inbound rules**, and then do the following:
 
-   1. Choose **Edit**\.
-
-   1. For **Type**, choose **All traffic**\.
-
-   1. For **Source**, choose **Custom** and paste the security group ID that you copied into the field\.
-
-   1. Choose **Save**\.
-
-1. On the **Outbound** tab, do the following:
-
-   1. Choose **Edit**\.
+   1. Choose **Add rule**\.
 
    1. For **Type**, choose **All traffic**\.
 
-   1. For **Destination**, choose **Custom** and paste the security group ID that you copied into the field\.
+   1. For **Source type**, choose **Custom** and paste the security group ID that you copied into the field\.
 
-   1. Choose **Save**\.
+   1. Choose **Save rules**\.
+
+1. With the security group still selected, choose **Actions**, **Edit outbound rules**, and then do the following:
+
+   1. Choose **Add rule**\.
+
+   1. For **Type**, choose **All traffic**\.
+
+   1. For **Destination type**, choose **Custom** and paste the security group ID that you copied into the field\.
+
+   1. Choose **Save rules**\.
 
 ## Step 2: Launch a temporary instance<a name="nccl-start-dlami-temp"></a>
 
@@ -79,7 +79,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Configure Instance Details** page, do the following:
 
-   1. For **Subnet**, choose the subnet in which to launch the instance\.
+   1. For **Subnet**, choose the subnet in which to launch the instance\. If you do not select a subnet, you can't enable the instance for EFA\.
 
    1. For **Elastic Fabric Adapter**, choose **Enable**\.
 

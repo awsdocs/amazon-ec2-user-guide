@@ -25,7 +25,7 @@ The EC2 instance guest OS hostname \(of type IPBN or RBN\) depends on the subnet
 
 ### IP address\-based naming<a name="instance-naming-ipbn"></a>
 
-When you launch an EC2 instance with IP address\-based naming \(IPBN\), the guest OS hostname is configured to use the private IPv4 address
+When you launch an EC2 instance with IP address\-based naming \(IPBN\), the guest OS hostname is configured to use the private IPv4 address\.
 + Format for an instance in us\-east\-1: `private-ipv4-address.ec2.internal`
 + Example: `ip-10-24-34-0.ec2.internal`
 + Format for an instance in any other AWS Region: `private-ipv4-address.region.compute.internal`

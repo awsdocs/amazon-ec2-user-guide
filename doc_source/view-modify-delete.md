@@ -84,6 +84,13 @@ The following is example output\. It includes the information that you specified
 
 ## Modify lifecycle policies<a name="modify"></a>
 
+**Considerations for modifying policies**
++ If you modify an AMI or snapshot policy by removing its target tags, the volumes or instances with those tags are no longer managed by the policy\.
++ If you modify a schedule name, the snapshots or AMIs created under the old schedule name are no longer managed by the policy\.
++ If you modify an age\-based retention schedule to use a new time interval, the new interval is used only for new snapshots or AMIs created after the change\. The new schedule does not affect the retention schedule of snapshots or AMIs created before the change\.
++ You cannot change the retention schedule of a policy from count\-based to age\-based after creation\. To make this change, you must create a new policy\.
++ If you disable a policy with an age\-based retention schedule, the snapshots or AMIs that are set to expire while the policy is disabled are retained indefinitely\. You must delete the snapshots or deregister the AMIs manually\. When you enable the policy again, Amazon Data Lifecycle Manager resumes deleting snapshots or deregistering AMIs as their retention periods expire\.
+
 Use one of the following procedures to modify a lifecycle policy\.
 
 ------

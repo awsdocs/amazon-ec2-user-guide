@@ -4,19 +4,21 @@ Because your instance metadata is available from your running instance, you do n
 
 Instance metadata is divided into categories\. For a description of each instance metadata category, see [Instance metadata categories](instancedata-data-categories.md)\.
 
-To view all categories of instance metadata from within a running instance, use the following IPv4 or IPv6 URIs:
+To view all categories of instance metadata from within a running instance, use the following IPv4 or IPv6 URIs\.
+
+**IPv4**
 
 ```
 http://169.254.169.254/latest/meta-data/
 ```
 
-This IPv4 address is a link\-local address and it is valid only from the instance\. For more information, see [ Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
+**IPv6**
 
 ```
 http://[fd00:ec2::254]/latest/meta-data/
 ```
 
-The IP addresses are link\-local address and are valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
+The IP addresses are link\-local addresses and are valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
 
 **Note**  
 The examples in this section use the IPv4 address of the instance metadata service: `169.254.169.254`\. If you are retrieving instance metadata for EC2 instances over the IPv6 address, ensure that you enable and use the IPv6 address instead: `fd00:ec2::254`\. The IPv6 address of the instance metadata service is compatible with IMDSv2 commands\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
@@ -42,7 +44,9 @@ You can use a tool such as cURL, as shown in the following example\.
 
 ------
 
-Note that you are not billed for HTTP requests used to retrieve instance metadata and user data\.
+## Costs<a name="imds-costs"></a>
+
+You are not billed for HTTP requests used to retrieve instance metadata and user data\.
 
 ## Considerations<a name="imds-considerations"></a>
 
@@ -102,8 +106,7 @@ This example gets the available versions of the instance metadata\. These versio
 2014-11-05
 2015-10-20
 2016-04-19
-2016-06-30
-2016-09-02
+...
 latest
 ```
 
@@ -128,8 +131,7 @@ latest
 2014-11-05
 2015-10-20
 2016-04-19
-2016-06-30
-2016-09-02
+...
 latest
 ```
 
