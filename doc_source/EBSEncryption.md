@@ -25,7 +25,7 @@ When you create an encrypted EBS volume and attach it to a supported instance ty
 + All snapshots created from the volume
 + All volumes created from those snapshots
 
-EBS encrypts your volume with a data key using the industry\-standard AES\-256 algorithm\. Your data key is stored on disk with your encrypted data, but not before EBS encrypts it with your KMS key\. Your data key never appears on disk in plaintext\. The same data key is shared by snapshots of the volume and any subsequent volumes created from those snapshots\. For more information, see [Data keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) in the *AWS Key Management Service Developer Guide*\.
+EBS encrypts your volume with a data key using the industry\-standard AES\-256 algorithm\. Your data key is stored on disk with your encrypted data, but not before EBS encrypts it with your KMS key\. Your data key never appears on disk in plaintext\.The same data key is shared by snapshots of the volume and any subsequent volumes created from those snapshots if the volumes are encrypted using the same KMS key as the snapshot\. For more information, see [Data keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) in the *AWS Key Management Service Developer Guide*\.
 
 Amazon EC2 works with AWS KMS to encrypt and decrypt your EBS volumes in slightly different ways depending on whether the snapshot from which you create an encrypted volume is encrypted or unencrypted\.
 
@@ -35,7 +35,7 @@ When you create an encrypted volume from an encrypted snapshot that you own, Ama
 
 1. Amazon EC2 sends a [GenerateDataKeyWithoutPlaintext](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyWithoutPlaintext.html) request to AWS KMS, specifying the KMS key that you chose for volume encryption\.
 
-1. AWS KMS generates a new data key, encrypts it under the KMS key that you chose for volume encryption, and sends the encrypted data key to Amazon EBS to be stored with the volume metadata\.
+1. If the volume is encrypted using the same KMS key as the snapshot, AWS KMS uses the same data key as the snapshot and encrypts it under that same KMS key\. If the volume is encrypted using a different KMS key, AWS KMS generates a new data key and encrypts it under the KMS key that you specified\. The encrypted data key is sent to Amazon EBS to be stored with the volume metadata\.
 
 1. When you attach the encrypted volume to an instance, Amazon EC2 sends a [CreateGrant](https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html) request to AWS KMS so that it can decrypt the data key\.
 

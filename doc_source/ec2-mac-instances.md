@@ -38,7 +38,7 @@ The following considerations apply to Mac instances:
 + If you attach a network interface to a running Mac instance, you must reboot the instance to make the network interface available\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
-+ You cannot use Mac instances with Amazon EC2 Auto Scaling\.
++ [Mac instances now support Amazon EC2 Auto Scaling\.](http://aws.amazon.com/blogs/compute/implementing-autoscaling-for-ec2-mac-instances/) 
 + Automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
 + When you stop or terminate a Mac instance, a scrubbing workflow is performed on the Dedicated Host\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
 + 
@@ -137,6 +137,9 @@ The following is example output for an instance that is running and has passed s
 ```
 
 ## Connect to your instance using SSH<a name="mac-instance-ssh"></a>
+
+**Important**  
+Multiple users can access the OS simultaneously, however please review the appropriate [macOS SLA](https://www.apple.com/legal/sla/) with your counsel to confirm workload compliance\. Typically there is a 1:1 user:GUI session due to the built\-in Screen Sharing service on port 5900\. Using SSH within macOS supports multiple sessions up until the "Max Sessions" limit in sshd\_config file\.
 
 Amazon EC2 Mac instances do not allow remote root SSH by default\. Password authentication is disabled to prevent brute\-force password attacks\. The ec2\-user account is configured to log in remotely using SSH\. The ec2\-user account also has sudo privileges\. After you connect to your instance, you can add other users\.
 

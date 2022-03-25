@@ -261,7 +261,7 @@ A Local Zone is an extension of an AWS Region in geographic proximity to your us
 
 The code for a Local Zone is its Region code followed by an identifier that indicates its physical location\. For example, `us-west-2-lax-1` in Los Angeles\. For more information, see [Available Local Zones](#local-zones-available)\.
 
-The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and two of its Local Zones\. The VPC spans the Availability Zones and one of the Local Zones\. Each zone in the VPC has one subnet\.
+The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and two of its Local Zones\. The VPC spans the Availability Zones and one of the Local Zones\. Each zone in the VPC has one subnet, and each subnet has an instance\.
 
 ![\[A VPC with Availability Zones and Local Zones.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/region-with-lzs.png)
 
@@ -485,23 +485,27 @@ For information about how to launch an instance in a Wavelength Zone, see [Get s
 
 AWS Outposts is a fully managed service that extends AWS infrastructure, services, APIs, and tools to customer premises\. By providing local access to AWS managed infrastructure, AWS Outposts enables customers to build and run applications on premises using the same programming interfaces as in AWS Regions, while using local compute and storage resources for lower latency and local data processing needs\.
 
-An Outpost is a pool of AWS compute and storage capacity deployed at a customer site\. AWS operates, monitors, and manages this capacity as part of an AWS Region\. You can create subnets on your Outpost and specify them when you create AWS resources such as EC2 instances, EBS volumes, ECS clusters, and RDS instances\. Instances in Outpost subnets communicate with other instances in the AWS Region using private IP addresses, all within the same VPC\.
+An Outpost is a pool of AWS compute and storage capacity deployed at a customer site\. AWS operates, monitors, and manages this capacity as part of an AWS Region\. You can create subnets on your Outpost and specify them when you create AWS resources\. Instances in Outpost subnets communicate with other instances in the AWS Region using private IP addresses, all within the same VPC\.
 
-To begin using AWS Outposts, you must create an Outpost and order Outpost capacity\. For more information about Outposts configurations, see [our catalog](http://aws.amazon.com/outposts/pricing/)\. After your Outpost equipment is installed, the compute and storage capacity is available for you when you launch Amazon EC2 instances and create Amazon EBS volumes on your Outpost\.
+The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and an Outpost\. The VPC spans the Availability Zones and the Outpost\. The Outpost is in an on\-premises customer data center\. Each zone in the VPC has one subnet, and each subnet has an instance\.
+
+![\[A VPC with Availability Zones and an Outpost.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/region-with-outpost.png)
+
+To begin using AWS Outposts, you must create an Outpost and order Outpost capacity\. For more information about Outposts configurations, see [our catalog](http://aws.amazon.com/outposts/pricing/)\. After your Outpost equipment is installed, the compute and storage capacity is available for you when you launch Amazon EC2 instances on your Outpost\.
 
 ### Launch instances on an Outpost<a name="outposts-instances"></a>
 
-You can launch EC2 instances in the Outpost subnet that you created\. Security groups control inbound and outbound traffic for instances in an Outpost subnet, as they do for instances in an Availability Zone subnet\. To connect to an EC2 instance in an Outpost subnet, you can specify a key pair when you launch the instance, as you do for instances in an Availability Zone subnet\.
+You can launch EC2 instances in the Outpost subnet that you created\. Security groups control inbound and outbound traffic for instances with elastic network interfaces in an Outpost subnet, as they do for instances in an Availability Zone subnet\. To connect to an EC2 instance in an Outpost subnet, you can specify a key pair when you launch the instance, as you do for instances in an Availability Zone subnet\.
 
-The root volume must be 30 GB or smaller\. You can specify data volumes in the block device mapping of the AMI or the instance to provide additional storage\. To trim unused blocks from the boot volume, see [How to Build Sparse EBS Volumes](http://aws.amazon.com/blogs/apn/how-to-build-sparse-ebs-volumes-for-fun-and-easy-snapshotting/) in the AWS Partner Network Blog\.
+The root volume for an instance on an Outpost rack must be 30 GB or smaller\. You can specify data volumes in the block device mapping of the AMI or the instance to provide additional storage\. To trim unused blocks from the boot volume, see [How to Build Sparse EBS Volumes](http://aws.amazon.com/blogs/apn/how-to-build-sparse-ebs-volumes-for-fun-and-easy-snapshotting/) in the AWS Partner Network Blog\.
 
 We recommend that you increase the NVMe timeout for the root volume\. For more information, see [I/O operation timeout](nvme-ebs-volumes.md#timeout-nvme-ebs-volumes)\.
 
 For information about how to create an Outpost, see [Get started with AWS Outposts](https://docs.aws.amazon.com/outposts/latest/userguide/get-started-outposts.html) in the *AWS Outposts User Guide*\.
 
-### Create a volume on an Outpost<a name="outposts-volumes"></a>
+### Create a volume on an Outpost rack<a name="outposts-volumes"></a>
 
-You can create EBS volumes in the Outpost subnet that you created\. When you create the volume, specify the Amazon Resource Name \(ARN\) of the Outpost\.
+AWS Outposts offers rack and server form factors\. If your capacity is on an Outpost rack, you can create EBS volumes in the Outpost subnet that you created\. When you create the volume, specify the Amazon Resource Name \(ARN\) of the Outpost\.
 
 The following [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) command creates an empty 50 GB volume on the specified Outpost\.
 

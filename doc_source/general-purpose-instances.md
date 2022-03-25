@@ -75,7 +75,6 @@ For more information, see [Amazon EC2 T2 Instances](http://aws.amazon.com/ec2/in
 + [Instance features](#general-purpose-features)
 + [Release notes](#general-purpose-instances-release-notes)
 + [Burstable performance instances](burstable-performance-instances.md)
-+ [Amazon EC2 Mac instances](ec2-mac-instances.md)
 
 ## Hardware specifications<a name="general-purpose-hardware"></a>
 

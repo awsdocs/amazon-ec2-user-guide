@@ -85,9 +85,9 @@ If this option is disabled, your instance isn't an Amazon EBS\-backed instance\.
    1. On the **Create image** page, specify the following information, and then choose **Create image**\.
       + **Image name** – A unique name for the image\.
       + **Image description** – An optional description of the image, up to 255 characters\.
-      + **No reboot** – This option is not selected by default, so that when you choose **Create image**, Amazon EC2 shuts down the instance, takes snapshots of any attached volumes, creates and registers the AMI, and then reboots the instance\. If you're confident that your instance is in a consistent state appropriate for image creation, select **Enable** to avoid having your instance shut down\.
+      + **No reboot** – By default, when Amazon EC2 creates the new AMI, it reboots the instance so that it can take snapshots of the attached volumes while data is at rest, in order to ensure a consistent state\. For the **No reboot** setting, you can select the **Enable** check box to prevent Amazon EC2 from shutting down and rebooting the instance\.
 **Warning**  
-If you select **Enable**, the AMI will be crash consistent \(all the volumes are snapshotted at the same time\), but *not* application consistent \(all the operating system buffers are not flushed to disk before the snapshots are created\)\.
+If you choose to enable **No reboot**, we can't guarantee the file system integrity of the created image\.
       + **Instance volumes** – The fields in this section enable you to modify the root volume, and add additional Amazon EBS and instance store volumes\.
         + The root volume is defined in the first row\. To change the size of the root volume, for **Size**, enter the required value\.
         + If you select **Delete on termination**, when you terminate the instance created from this AMI, the EBS volume is deleted\. If you clear **Delete on termination**, when you terminate the instance, the EBS volume is not deleted\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.

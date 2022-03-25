@@ -98,7 +98,7 @@ If you plan to use the launch template in the launch instance wizard or with the
    + **Snapshot**: The ID of the snapshot from which to create the volume\.
    + **Size \(GiB\)**: For Amazon EBS volumes, the storage size\.
    + **Volume type**: For Amazon EBS volumes, the volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
-   + **IOPS**: For the Provisioned IOPS SSD volume type, the number of I/O operations per second \(IOPS\) that the volume can support\.
+   + **IOPS**: For Provisioned IOPS SSD \(`io1` and `io2`\) and General Purpose SSD \(`gp3`\) volume types, the number of I/O operations per second \(IOPS\) that the volume can support\. This is required for io1, io2, and gp3 volumes\. It is not supported for gp2, st1, sc1, or standard volumes\. If you omit this paramater for the launch template, you must specify a value for it when you launch an instance from the launch template\.
    + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
    + **Encrypted**: If the instance type supports EBS encryption, you can enable encryption for the volume\. If you have enabled encryption by default in this Region, encryption is enabled for you\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
    + **Key**: The customer managed key to use for EBS encryption\. You can specify the ARN of any customer managed key that you created using the customer managed key\. If you specify a customer managed key, you must also use **Encrypted** to enable encryption\.

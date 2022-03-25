@@ -337,9 +337,9 @@ The following considerations apply when **creating snapshot lifecycle policies**
 + If you create a policy that targets instances, and new volumes are attached to a target instance after the policy has been created, the newly\-added volumes are included in the backup at the next policy run\. All volumes attached to the instance at the time of the policy run are included\.
 + If you create a policy with a custom cron\-based schedule that is configured to create only one snapshot, the policy will not automatically delete that snapshot when the retention threshold is reached\. You must manually delete the snapshot if it is no longer needed\.
 
-The following considerations apply to **deleting resources created by snapshot lifecycle policies**:
-+ If you delete a snapshot that was created by a policy with a count\-based retention schedule, the policy no longer manages the snapshots that it created before the deleted snapshot\. You must manually delete those earlier snapshots if they are no longer needed\.
-+ If you delete a snapshot that was created by a policy with an age\-based retention schedule, the policy continues to delete snapshots on the defined schedule, up to, but not including, the last snapshot\. You must manually delete the last snapshot if it is no longer needed\.
+The following considerations apply to **deleting volumes targeted by snapshot lifecycle policies**:
++ If you delete a volume targeted by a policy with a count\-based retention schedule, the policy no longer manages the snapshots that it previously created from the deleted volume\. You must manually delete those earlier snapshots if they are no longer needed\.
++ If you delete a volume targeted by a policy with an age\-based retention schedule, the policy continues to delete the snapshots that were previously created from the deleted volume on the defined schedule, up to, but not including, the last snapshot\. You must manually delete the last snapshot if it is no longer needed\.
 
 The following considerations apply to snapshot lifecycle policies and ** [fast snapshot restore](ebs-fast-snapshot-restore.md)**:
 + A snapshot that is enabled for fast snapshot restore remains enabled even if you delete or disable the policy, disable fast snapshot restore for the policy, or disable fast snapshot restore for the Availability Zone\. You must disable fast snapshot restore for these snapshots manually\.

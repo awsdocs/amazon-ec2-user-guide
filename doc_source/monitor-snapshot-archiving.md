@@ -57,7 +57,7 @@ The following events are available:
     }
   }
   ```
-+ `permanentRestoreSnapshot` — Emitted when a snapshot permanent restore action succeeds or fails\.
++ `permanentRestoreSnapshot` — Emitted when a permanent restore action succeeds or fails\.
 
   The following is an example of an event that is emitted when a permanent restore action succeeds\.
 
@@ -78,7 +78,7 @@ The following events are available:
       "result": "succeeded",
       "cause": "",
       "request-id": "1234567890",
-      "snapshot_id": "arn:aws:ec2:us-east-1::snapshot/snap-01234567890abcdef"
+      "snapshot_id": "arn:aws:ec2:us-east-1::snapshot/snap-01234567890abcdef",
       "startTime": "2021-05-25T13:12:22Z",
       "endTime": "2021-10-45T15:30:00Z"
     }
@@ -111,7 +111,7 @@ The following events are available:
     }
   }
   ```
-+ `temporaryRestoreSnapshot` — Emitted when a snapshot temporary restore action succeeds or fails\.
++ `temporaryRestoreSnapshot` — Emitted when a temporary restore action succeeds or fails\.
 
   The following is an example of an event that is emitted when a temporary restore action succeeds\.
 

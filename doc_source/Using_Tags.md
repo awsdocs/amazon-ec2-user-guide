@@ -124,8 +124,8 @@ The following basic restrictions apply to tags:
 + Maximum key length – 128 Unicode characters in UTF\-8
 + Maximum value length – 256 Unicode characters in UTF\-8
 + Allowed characters
-  + Although EC2 allows for any character in its tags, other services are more restrictive\. The allowed characters across services are: letters, numbers, and spaces representable in UTF\-8, and the following characters: `+ - = . _ : / @`\.
-  + If you enable instance tags in instance metadata, instance tag *keys* can only use letters \(`a-z`, `A-Z`\), numbers \(`0-9`\), and the following characters: `-_+=,.@:`\. Instance tag *keys* can't use spaces, `/`, or the reserved names `.`, `..`, or `_index`\. For more information, see [Work with instance tags in instance metadata](#work-with-tags-in-IMDS)\.
+  + Although EC2 allows for any character in its tags, other services are more restrictive\. The allowed characters across services are: letters \(`a-z`, `A-Z`\), numbers \(`0-9`\), and spaces representable in UTF\-8, and the following characters: `+ - = . _ : / @`\.
+  + If you enable instance tags in instance metadata, instance tag *keys* can only use letters \(`a-z`, `A-Z`\), numbers \(`0-9`\), and the following characters: `+ - = . , _ : @`\. Instance tag *keys* can't contain spaces or `/`, and can't comprise only `.` \(one period\), `..` \(two periods\), or `_index`\. For more information, see [Work with instance tags in instance metadata](#work-with-tags-in-IMDS)\.
 + Tag keys and values are case\-sensitive\.
 + The `aws:` prefix is reserved for AWS use\. If a tag has a tag key with this prefix, then you can't edit or delete the tag's key or value\. Tags with the `aws:` prefix do not count against your tags per resource limit\.
 
@@ -317,7 +317,11 @@ You can add tags to many EC2 resource when you create them, using the tag specif
 
 The following examples demonstrate how to apply tags when you create resources\.
 
-The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\. Linux, macOS, or Unix and Windows PowerShell use single quotes \('\) to enclose the JSON data structure\. Omit the single quotes when using the commands with the Windows command line\. For more information, see [Specifying parameter values for the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
+**Note**  
+The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\.  
+Linux, macOS, or Unix and Windows PowerShell – Use single quotes \('\) to enclose the JSON data structure\.
+Windows – Omit the single quotes when using the commands with the Windows command line\.
+For more information, see [Specifying parameter values for the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
 
 **Example: Launch an instance and apply tags to the instance and volume**  
 The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command launches an instance and applies a tag with the key **webserver** and the value **production** to the instance\. The command also applies a tag with the key **cost\-center** and the value **cc123** to any EBS volume that's created \(in this case, the root volume\)\.  

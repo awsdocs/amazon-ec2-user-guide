@@ -5,7 +5,7 @@ The following procedures will help you install, configure, and secure a WordPres
 You are responsible for updating the software packages and maintaining security patches for your server\. For a more automated WordPress installation that does not require direct interaction with the web server configuration, the AWS CloudFormation service provides a WordPress template that can also get you started quickly\. For more information, see [Get started](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/GettingStarted.Walkthrough.html) in the *AWS CloudFormation User Guide*\. If you'd prefer to host your WordPress blog on a Windows instance, see [Deploy a WordPress blog on your Amazon EC2 Windows instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2Win_CreateWordPressBlog.html) in the *Amazon EC2 User Guide for Windows Instances*\. If you need a high\-availability solution with a decoupled database, see [Deploying a high\-availability WordPress website](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/php-hawordpress-tutorial.html) in the *AWS Elastic Beanstalk Developer Guide*\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux 2022\. For more information about other distributions, see their specific documentation\. Many steps in this tutorial do not work on Ubuntu instances\. For help installing WordPress on an Ubuntu instance, see [WordPress](https://help.ubuntu.com/community/WordPress) in the Ubuntu documentation\. You can also use [CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-wordpress-launch-instance.html) to accomplish this task on Amazon Linux, macOS, or Unix systems\.
+These procedures are intended for use with Amazon Linux 2022, which is still in Preview phase\. You may access the official AMIs in the AWS Management Console by using the search filters 'Amazon Linux 2022' and 'Owner: Amazon images' on the Community AMI page, or click directly from the [Amazon Linux 2022](https://aws.amazon.com/linux/amazon-linux-2022/) news post\. For more information about other distributions, see their specific documentation\. Many steps in this tutorial do not work on Ubuntu instances\. For help installing WordPress on an Ubuntu instance, see [WordPress](https://help.ubuntu.com/community/WordPress) in the Ubuntu documentation\. You can also use [CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-wordpress-launch-instance.html) to accomplish this task on Amazon Linux, macOS, or Unix systems\.
 
 **Topics**
 + [Prerequisites](#hosting-wordpress-prereqs-20222)
@@ -301,11 +301,13 @@ Some of the available features in WordPress require write access to the Apache d
    [ec2-user ~]$ find /var/www -type d -exec sudo chmod 2775 {} \;
    ```
 
-1. Recursively change the file permissions of `/var/www` and its subdirectories to add group write permissions\.
+1. Recursively change the file permissions of `/var/www` and its subdirectories\.
 
    ```
-   [ec2-user ~]$ find /var/www -type f -exec sudo chmod 0664 {} \;
+   [ec2-user ~]$ find /var/www -type f -exec sudo chmod 0644 {} \;
    ```
+**Note**  
+ If you intend to also use WordPress as an FTP server, you'll need more permissive Group settings here\. Please review the recommended [steps and security settings in WordPress](https://wordpress.org/support/article/changing-file-permissions/) to accomplish this\. 
 
 1. Restart the Apache web server to pick up the new group and permissions\.
    + Amazon Linux 2022

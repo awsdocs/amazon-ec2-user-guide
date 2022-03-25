@@ -30,7 +30,7 @@ For this example, suppose that you have an instance built on the [Nitro System](
 
 1. [Connect to your instance](AccessingInstances.md)\.
 
-1. To verify the file system for each volume, use the df \-hT command\.
+1. To verify the file system and type for each volume, use the df \-hT command\.
 
    ```
    [ec2-user ~]$ df -hT

@@ -82,7 +82,11 @@ For requests made using Instance Metadata Service Version 2, the following HTTP 
 
 ### Get the available versions of the instance metadata<a name="instance-metadata-ex-1"></a>
 
-This example gets the available versions of the instance metadata\. These versions do not necessarily correlate with an Amazon EC2 API version\. The earlier versions are available to you in case you have scripts that rely on the structure and information present in a previous version\. 
+This example gets the available versions of the instance metadata\. Each version refers to an instance metadata build when new instance metadata categories were released\. The instance metadata build versions do not correlate with the Amazon EC2 API versions\. The earlier versions are available to you in case you have scripts that rely on the structure and information present in a previous version\.
+
+**Note**  
+To avoid having to update your code every time Amazon EC2 releases a new instance metadata build, we recommend that you use `latest` in the path, and not the version number\. For example, use `latest` as follows:  
+`curl http://169.254.169.254/latest/meta-data/ami-id`
 
 ------
 #### [ IMDSv2 ]

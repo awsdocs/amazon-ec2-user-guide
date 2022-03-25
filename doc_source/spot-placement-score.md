@@ -1,6 +1,6 @@
 # Spot placement score<a name="spot-placement-score"></a>
 
-The Spot placement score feature can recommend an AWS Region or Availability Zone based on your Spot capacity requirements\. Spot capacity fluctuates, and you can't be sure that you'll always get the capacity that you need\. A Spot placement score indicates how likely it is that a Spot request will succeed in a Region or Availability Zone\. 
+The Spot placement score feature can recommend an AWS Region or Availability Zone based on your Spot capacity requirements\. Spot capacity fluctuates, and you can't be sure that you'll always get the capacity that you need\. A Spot placement score indicates how likely it is that a Spot request will succeed in a Region or Availability Zone\.
 
 **Note**  
 A Spot placement score does not provide any guarantees in terms of available capacity or risk of interruption\. A Spot placement score serves only as a recommendation\.
@@ -11,6 +11,7 @@ You can use the Spot placement score feature for the following:
 + To relocate and scale Spot compute capacity in a different Region, as needed, in response to increased capacity needs or decreased available capacity in the current Region\.
 + To identify the most optimal Availability Zone in which to run single\-Availability Zone workloads\.
 + To simulate future Spot capacity needs so that you can pick an optimal Region for the expansion of your Spot\-based workloads\.
++ To find an optimal combination of instance types to fulfill your Spot capacity needs\.
 
 **Topics**
 + [Costs](#sps-costs)
@@ -311,7 +312,7 @@ You can calculate a Spot placement score by using the Amazon EC2 console or the 
    Example output if `SingleAvailabilityZone` is set to `false` or omitted \(if omitted, it defaults to `false`\) – a scored list of Regions is returned
 
    ```
-   "Recommendation": [
+   "SpotPlacementScores": [
        {
            "Region": "us-east-1",
            "Score": 7
@@ -326,7 +327,7 @@ You can calculate a Spot placement score by using the Amazon EC2 console or the 
    Example output if `SingleAvailabilityZone` is set to `true` – a scored list of Availability Zones is returned
 
    ```
-   "Recommendation": [
+   "SpotPlacementScores": [
        {
            "Region": "us-east-1",
            "AvailabilityZoneId": "use1-az1"

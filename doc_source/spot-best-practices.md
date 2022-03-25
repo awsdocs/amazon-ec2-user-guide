@@ -17,6 +17,7 @@ Regardless of whether you're an experienced Spot user or new to Spot Instances, 
 + [Use the capacity optimized allocation strategy](#use-capacity-optimized-allocation-strategy)
 + [Use proactive capacity rebalancing](#use-capacity-rebalancing)
 + [Use integrated AWS services to manage your Spot Instances](#use-integrated-aws-services)
++ [Which is the best Spot request method to use?](#which-spot-request-method-to-use)
 
 ## Prepare individual instances for interruptions<a name="prep-instances-for-interruptions"></a>
 
@@ -57,3 +58,18 @@ For more information, see [Capacity Rebalancing](spot-fleet-capacity-rebalance.m
 ## Use integrated AWS services to manage your Spot Instances<a name="use-integrated-aws-services"></a>
 
 Other AWS services integrate with Spot to reduce overall compute costs without the need to manage the individual instances or fleets\. We recommend that you consider the following solutions for your applicable workloads: Amazon EMR, Amazon ECS, AWS Batch, Amazon EKS, SageMaker, AWS Elastic Beanstalk, and Amazon GameLift\. To learn more about Spot best practices with these services, see the [Amazon EC2 Spot Instances Workshops Website](https://ec2spotworkshops.com/)\.
+
+## Which is the best Spot request method to use?<a name="which-spot-request-method-to-use"></a>
+
+Use the following table to determine which API to use when requesting Spot Instances\.
+
+
+****  
+
+| API | When to use? | Use case | Should I use this API? | 
+| --- | --- | --- | --- | 
+|  [CreateAutoScalingGroup](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CreateAutoScalingGroup.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html)  |  Create an Auto Scaling group that manages the lifecycle of your instances while maintaining the desired number of instances\. Supports horizontal scaling \(adding more instances\) between specified minimum and maximum limits\.  | Yes | 
+| [CreateFleet](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet.html) |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html)  |  Create a fleet of both On\-Demand Instances and Spot Instances in a single request, with multiple launch specifications that vary by instance type, AMI, Availability Zone, or subnet\. The Spot Instance allocation strategy defaults to `lowest-price` per unit, but you can change it to `capacity-optimized` or `diversified`\.  |  Yes \- in `instant` mode if you don’t need auto scaling  | 
+| [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html)  |  Launch a specified number of instances using an AMI and one instance type\.  |  No \- because RunInstances does not allow mixed instance types in a single request  | 
+| [RequestSpotFleet](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotFleet.html) |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html)  |  DO NOT USE\. RequestSpotFleet is legacy API with no planned investment\.   | No | 
+| [RequestSpotInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotInstances.html) |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-best-practices.html)  |  DO NOT USE\. RequestSpotInstances is legacy API with no planned investment\.   | No | 

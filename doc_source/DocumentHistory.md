@@ -4,6 +4,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Instance metadata category: autoscaling/target\-lifecycle\-state](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) | When using Auto Scaling groups, you can access an instance's target lifecycle state from the instance metadata\. | March 24, 2022 | 
 | [X2idn and X2iedn instances](#DocumentHistory) | New memory optimized instances featuring Intel Xeon Scalable processors \(Ice Lake\)\. | March 10, 2022 | 
 | [AMI last launched time](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html#ami-last-launched-time) | The `lastLaunchedTime` indicates when your AMI was last used to launch an instance\. | February 28, 2022 | 
 | [C6a instances](#DocumentHistory) | New compute optimized instances featuring 3rd generation AMD EPYC processors \(Milan\)\. | February 14, 2022 | 

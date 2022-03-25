@@ -260,9 +260,9 @@ The following considerations apply when **creating AMI lifecycle policies**:
 + New volumes that are attached to a target instance after the policy has been created are automatically included in the backup at the next policy run\. All volumes attached to the instance at the time of the policy run are included\.
 + If you create a policy with a custom cron\-based schedule that is configured to create only one AMI, the policy will not automatically deregister that AMI when the retention threshold is reached\. You must manually deregister the AMI if it is no longer needed\.
 
-The following considerations apply to **deregistering AMIs created by AMI lifecycle policies**:
-+ If you deregister an AMI that was created by a policy with a count\-based retention schedule, the policy no longer manages the AMIs that it created before the deregistered AMI\. You must manually deregister those earlier AMIs if they are no longer needed\.
-+ If you deregister an AMI that was created by a policy with an age\-based retention schedule, the policy continues to deregister AMIs on the defined schedule, up to, but not including, the last AMI\. You must manually deregister the last AMI if it is no longer needed\.
+The following considerations apply to **terminating instances targeted by a policy:**
++ If you terminate an instance that was targeted by a policy with a count\-based retention schedule, the policy no longer manages the AMIs that it previously created from the terminated instance\. You must manually deregister those earlier AMIs if they are no longer needed\.
++ If you terminate an instance that was targeted by a policy with an age\-based retention schedule, the policy continues to deregister AMIs that were previously created from the terminated instance on the defined schedule, up to, but not including, the last AMI\. You must manually deregister the last AMI if it is no longer needed\.
 
 The following considerations apply to AMI policies and **AMI deprecation:**
 + If you increase the AMI deprecation count for a schedule with count\-based retention, the change is applied to all AMIs \(existing and new\) created by the schedule\.
