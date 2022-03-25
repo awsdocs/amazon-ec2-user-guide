@@ -57,7 +57,7 @@ The following events are available:
     }
   }
   ```
-+ `restoreSnapshot` — Emitted when a snapshot restore action succeeds or fails\.
++ `permanentRestoreSnapshot` — Emitted when a snapshot permanent restore action succeeds or fails\.
 
   The following is an example of an event that is emitted when a permanent restore action succeeds\.
 
@@ -74,7 +74,7 @@ The following events are available:
       "arn:aws:ec2:us-east-1::snapshot/snap-01234567890abcdef"
     ],
     "detail": {
-      "event": "restoreSnapshot",
+      "event": "permanentRestoreSnapshot",
       "result": "succeeded",
       "cause": "",
       "request-id": "1234567890",
@@ -100,7 +100,7 @@ The following events are available:
       "arn:aws:ec2:us-east-1::snapshot/snap-01234567890abcdef"
     ],
     "detail": {
-      "event": "restoreSnapshot",
+      "event": "permanentRestoreSnapshot",
       "result": "failed",
       "cause": "Source snapshot ID is not valid",
       "request-id": "1234567890",
@@ -111,6 +111,7 @@ The following events are available:
     }
   }
   ```
++ `temporaryRestoreSnapshot` — Emitted when a snapshot temporary restore action succeeds or fails\.
 
   The following is an example of an event that is emitted when a temporary restore action succeeds\.
 
@@ -127,7 +128,7 @@ The following events are available:
       "arn:aws:ec2:us-east-1::snapshot/snap-01234567890abcdef"
     ],
     "detail": {
-      "event": "restoreSnapshot",
+      "event": "temporaryRestoreSnapshot",
       "result": "succeeded",
       "cause": "",
       "request-id": "1234567890",
@@ -155,7 +156,7 @@ The following events are available:
       "arn:aws:ec2:us-east-1::snapshot/snap-01234567890abcdef"
     ],
     "detail": {
-      "event": "restoreSnapshot",
+      "event": "temporaryRestoreSnapshot",
       "result": "failed",
       "cause": "Source snapshot ID is not valid",
       "request-id": "1234567890",
