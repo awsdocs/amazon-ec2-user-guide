@@ -241,7 +241,7 @@ $ aws cloudwatch put-metric-alarm \
 
 Use the `SnapshotsCopiedRegionFailed` metric to identify when your policies fail to copy snapshots to other Regions\.
 
-For example, if your policy copies snapshots across Regions daily, you can create an alarm that sends an SMS to your engineering team when the `sum` of `SnapshotCrossRegionCopyFailed` is greater than `0` over a `1` hour period\. This can useful for verifying whether subsequent snapshots in the lineage were successfully copied by the policy\.
+For example, if your policy copies snapshots across Regions daily, you can create an alarm that sends an SMS to your engineering team when the `sum` of `SnapshotCrossRegionCopyFailed` is greater than `0` over a `1` hour period\. This can be useful for verifying whether subsequent snapshots in the lineage were successfully copied by the policy\.
 
 You can use the following command to create this alarm:
 
