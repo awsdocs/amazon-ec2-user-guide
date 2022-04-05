@@ -106,7 +106,7 @@ These downloads are available to AWS customers only\. By downloading, in order t
 + Install the AWS CLI on your Linux instance and configure default credentials\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
 + IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
 + G5 instances require GRID 13\.1 or later \(or GRID 12\.4 or later\)\.
-+ AWS provided DNS resolution is required for Grid licensing to work\.
++ Local DNS resolution is required for GRID licensing to work\.
 
 #### Amazon Linux and Amazon Linux 2<a name="nvidia-grid-amazon-linux"></a>
 
