@@ -251,11 +251,11 @@ Ensure that the user performing the following steps has sudo permissions\.
 
 1. To download the Intel MPI installation script, do the following
 
-   1. Visit the [ Intel website](https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#mpi)\.
+   1. Visit the [Intel website](https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#mpi)\.
 
    1. In the **Intel MPI Library** section of the webpage, choose the link for the **Intel MPI Library for Linux** **Offline** installer\.
 
-1. Run the instanllation script that you downloaded in the previous step\.
+1. Run the installation script that you downloaded in the previous step\.
 
    ```
    $ sudo bash installation_script_name.sh
