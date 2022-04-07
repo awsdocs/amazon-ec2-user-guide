@@ -38,7 +38,7 @@ Instance size flexibility does not apply to the following Reserved Instances:
 + Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\)
 + Reserved Instances with dedicated tenancy
 + Reserved Instances for Windows Server, Windows Server with SQL Standard, Windows Server with SQL Server Enterprise, Windows Server with SQL Server Web, RHEL, and SUSE Linux Enterprise Server
-+ Reserved Instances for G4dn instances
++ Reserved Instances for G4ad, G4dn, G5, and G5g instances
 
 ### Instance size flexibility determined by normalization factor<a name="ri-normalization-factor"></a>
 

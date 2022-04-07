@@ -160,7 +160,7 @@ You can use this opportunity to [upgrade to a current generation instance type](
 
 1. Review your instance details, then choose **Launch** to specify a key pair and launch your instance\.
 
-For more information about the parameters that you can configure in each step of the wizard, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+For more information about the parameters that you can configure in each step of the wizard, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
 ### Amazon RDS DB instances<a name="vpc-migrate-rds"></a>
 

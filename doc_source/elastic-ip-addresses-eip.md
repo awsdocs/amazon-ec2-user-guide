@@ -344,6 +344,9 @@ Use the [Unregister\-EC2Address](https://docs.aws.amazon.com/powershell/latest/r
 
 If you no longer need an Elastic IP address, we recommend that you release it using one of the following methods\. The address to release must not be currently associated with an AWS resource, such as an EC2 instance, NAT gateway, or Network Load Balancer\.
 
+**Note**  
+If you contacted AWS support to set up reverse DNS for an Elastic IP \(EIP\) address, you can remove the reverse DNS, but you can’t release the Elastic IP address because it’s been locked by AWS support\. To unlock the Elastic IP address, contact [AWS Support](https://console.aws.amazon.com/support/home#/)\. Once the Elastic IP address is unlocked, you can release the Elastic IP address\.
+
 ------
 #### [ New console ]
 

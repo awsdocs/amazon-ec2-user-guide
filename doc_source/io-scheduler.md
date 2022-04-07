@@ -41,7 +41,7 @@ To set the I/O scheduler for the device, use the following command\.
 $  echo cfq|deadline|noop > /sys/block/nvme0n1/queue/scheduler
 ```
 
-For example, to set the I/O scheduler for an *xvda* device from `noop` to `cfq` , use the following command\. 
+For example, to set the I/O scheduler for an *xvda* device from `noop` to `cfq`, use the following command\. 
 
 ```
 $  echo cfq > /sys/block/xvda/queue/scheduler

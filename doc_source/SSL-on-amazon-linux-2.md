@@ -38,7 +38,10 @@ Before you begin this tutorial, complete the following steps:
 
 ## Step 1: Enable TLS on the server<a name="ssl_enable"></a>
 
-This procedure takes you through the process of setting up TLS on Amazon Linux 2 with a self\-signed digital certificate\.
+**Option: Complete this tutorial using automation**  
+To complete this tutorial using AWS Systems Manager Automation instead of the following tasks, run the [automation document](https://console.aws.amazon.com/systems-manager/documents/AWSDocs-Configure-SSL-TLS-AL2/)\.
+
+This procedure takes you through the process of setting up TLS on Amazon Linux 2 with a self\-signed digital certificate\. 
 
 **Note**  
 A self\-signed certificate is acceptable for testing but not production\. If you expose your self\-signed certificate to the internet, visitors to your site are greeted by security warnings\. 

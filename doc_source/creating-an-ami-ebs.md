@@ -64,7 +64,7 @@ You can create an AMI using the AWS Management Console or the command line\.
 
 1. Launch an instance from the AMI\.
 
-   Choose **Launch instance from image** \(new console\) or **Launch** \(old console\) to launch an instance of the EBS\-backed AMI that you've selected\. Accept the default values as you step through the wizard\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+   Choose **Launch instance from image** \(new console\) or **Launch** \(old console\) to launch an instance of the EBS\-backed AMI that you've selected\. Accept the default values as you step through the wizard\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
 1. Customize the instance\.
 
@@ -105,7 +105,7 @@ If you choose to enable **No reboot**, we can't guarantee the file system integr
 
 1. Launch an instance from your new AMI\.
 
-   For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+   For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
    The new running instance contains all of the customizations that you applied in the previous steps\.
 
@@ -196,4 +196,4 @@ You can launch an instance from an AMI that you created from an instance or snap
 
 1. Choose **Actions**, **Launch**\.
 
-1. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.

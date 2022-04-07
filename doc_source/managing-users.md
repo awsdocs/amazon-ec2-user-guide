@@ -32,7 +32,7 @@ First create the user account, and then add the SSH public key that allows the u
 
 **To create a user account**
 
-1. [Create a new key pair](ec2-key-pairs.md#having-ec2-create-your-key-pair)\. You must provide the `.pem` file to the user for whom you are creating the user account\. They must use this file to connect to the instance\.
+1. [Create a new key pair](create-key-pairs.md#having-ec2-create-your-key-pair)\. You must provide the `.pem` file to the user for whom you are creating the user account\. They must use this file to connect to the instance\.
 
 1. Retrieve the public key from the key pair that you created in the previous step\.
 

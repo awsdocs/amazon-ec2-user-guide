@@ -22,7 +22,7 @@ Keep the following in mind when creating Capacity Reservations in cluster placem
 To start using Capacity Reservations with cluster placement groups, perform the following steps\.
 
 **Note**  
-If you want to create a Capacity Reservation in an existing cluster placement group, skip Step 1\. Then for Steps 2 and 3, specify the ARN of the existing cluster placement group\. For more information about how to find the ARN of your existing cluster placement group, see [Describe a placement group](placement-groups.md#describe-placement-group)\.
+If you want to create a Capacity Reservation in an existing cluster placement group, skip Step 1\. Then for Steps 2 and 3, specify the ARN of the existing cluster placement group\. For more information about how to find the ARN of your existing cluster placement group, see [describe\-placement\-groups](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-placement-groups.html)\.
 
 **Topics**
 + [Step 1: \(*Conditional*\) Create a cluster placement group for use with a Capacity Reservation](#create-cpg)
@@ -31,7 +31,7 @@ If you want to create a Capacity Reservation in an existing cluster placement gr
 
 ### Step 1: \(*Conditional*\) Create a cluster placement group for use with a Capacity Reservation<a name="create-cpg"></a>
 
-Perform this step only if you need to create a new cluster placement group\. To use an existing cluster placement group, skip this step and then for Steps 2 and 3, use the ARN of that cluster placement group\. For more information about how to find the ARN of your existing cluster placement group, see [Describe a placement group](placement-groups.md#describe-placement-group)\.
+Perform this step only if you need to create a new cluster placement group\. To use an existing cluster placement group, skip this step and then for Steps 2 and 3, use the ARN of that cluster placement group\. For more information about how to find the ARN of your existing cluster placement group, see [describe\-placement\-groups](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-placement-groups.html)\.
 
 You can create the cluster placement group using one of the following methods\.
 

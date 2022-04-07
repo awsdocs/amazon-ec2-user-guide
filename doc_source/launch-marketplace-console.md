@@ -16,7 +16,7 @@ You are not charged for using the product until you have launched an instance wi
 
 1. On the **Choose an Instance Type** page, select the hardware configuration and size of the instance to launch\. When you're done, choose **Next: Configure Instance Details**\.
 
-1. On the next pages of the wizard, you can configure your instance, add storage, and add tags\. For more information about the different options you can configure, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\. Choose **Next** until you reach the **Configure Security Group** page\. 
+1. On the next pages of the wizard, you can configure your instance, add storage, and add tags\. For more information about the different options you can configure, see [Launch an instance using the old launch instance wizard](launching-instance.md)\. Choose **Next** until you reach the **Configure Security Group** page\. 
 
    The wizard creates a new security group according to the vendor's specifications for the product\. The security group may include rules that allow all IPv4 addresses \(`0.0.0.0/0`\) access on SSH \(port 22\) on Linux or RDP \(port 3389\) on Windows\. We recommend that you adjust these rules to allow only a specific address or range of addresses to access your instance over those ports\.
 

@@ -8,12 +8,15 @@ You can share your AMIs with other AWS accounts\. To allow all AWS accounts to u
 + [Share an AMI with all AWS accounts \(AWS CLI\)](#sharingamis-cli)
 
 ## Considerations<a name="considerations-for-sharing-public-AMIs"></a>
-+ AMIs with encrypted volumes cannot be made public\.
-+ To avoid exposing sensitive data when you share an AMI, read the security considerations in [Guidelines for shared Linux AMIs](building-shared-amis.md) and follow the recommended actions\. 
-+ If an AMI has a product code, or contains a snapshot of an encrypted volume, you can't make it public; you can share the AMI only with specific AWS accounts\.
-+ AMIs are a regional resource\. When you share an AMI, it is only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
-+ You are not billed when your AMI is used by other AWS accounts to launch instances\. The accounts that launch instances using the AMI are billed for the instances that they launch\. 
-+ When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from their instance\.
++ **AMIs that can't be made public** – If your AMI has one of the folowing, you can't make it public \(but you can [share the AMI with specific AWS accounts](sharingamis-explicit.md)\):
+  + AMIs that have encrypted volumes
+  + AMIs that have a snapshot of an encrypted volume
+  + AMIs that have a product code
++ **Avoid exposing sensitive data** – To avoid exposing sensitive data when you share an AMI, read the security considerations in [Guidelines for shared Linux AMIs](building-shared-amis.md) and follow the recommended actions\.
++ **Regional resource** – AMIs are a regional resource\. When you share an AMI, it is only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
++ **AMI use** – When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from their instance\.
++ **Automatic deprecation** – We have released a new feature where, by default, the deprecation date of all public AMIs is set to two years from the AMI creation date\. Initially, all public AMIs that are older than two years will only be deprecated June 30, 2022\. You can set the deprecation date to earlier than two years\. To cancel the deprecation date, or to move the deprecation date further into the future, you must make the AMI private by [sharing it with specific AWS accounts](sharingamis-explicit.md) only\. Note that the deprecation date for public AMIs will be backfilled over the next month, starting March 31, 2022\.
++ **Billing** – You are not billed when your AMI is used by other AWS accounts to launch instances\. The accounts that launch instances using the AMI are billed for the instances that they launch\.
 
 ## Share an AMI with all AWS accounts \(console\)<a name="sharingamis-intro-console"></a>
 

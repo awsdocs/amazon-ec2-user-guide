@@ -95,4 +95,4 @@ You can view the savings made from using Spot Instances for a single Spot Fleet 
 
 ### View billing<a name="spot-pricing-view-billing"></a>
 
-Your bill provides details about your service usage\. For more information, see [Viewing your bill](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/getting-viewing-bill.html) in the *AWS Billing and Cost Management User Guide*\.
+Your bill provides details about your service usage\. For more information, see [Viewing your bill](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/getting-viewing-bill.html) in the *AWS Billing User Guide*\.

@@ -1,11 +1,6 @@
-# Launch an instance using the new launch instance wizard – beta<a name="ec2-launch-instance-wizard"></a>
+# Launch an instance using the new launch instance wizard<a name="ec2-launch-instance-wizard"></a>
 
-
-|  | 
-| --- |
-| This is prerelease documentation for the new launch instance wizard, which is in beta release\. The documentation and the feature are both subject to change\. For beta terms and conditions, see the Betas and Previews section in the [AWS Service Terms](https://aws.amazon.com/service-terms/)\.  | 
-
-You can launch an instance using the launch instance wizard\. The launch instance wizard specifies the launch parameters that are required for launching an instance\. Where the launch instance wizard provides a default value, you can accept the default or specify your own value\. If you accept the default values, then it's possible to launch an instance by selecting only a key pair\.
+You can launch an instance using the new launch instance wizard\. The launch instance wizard specifies the launch parameters that are required for launching an instance\. Where the launch instance wizard provides a default value, you can accept the default or specify your own value\. If you accept the default values, then it's possible to launch an instance by selecting only a key pair\.
 
 Before you launch your instance, be sure that you are set up\. For more information, see [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)\.
 
@@ -16,6 +11,7 @@ When you launch an instance that's not within the [AWS Free Tier](https://aws.am
 + [About the new launch instance wizard](#about-liw)
 + [Quickly launch an instance](#liw-quickly-launch-instance)
 + [Launch an instance using defined parameters](#liw-launch-instance-with-defined-parameters)
++ [Launch an instance using the old launch instance wizard](launching-instance.md)
 
 ## About the new launch instance wizard<a name="about-liw"></a>
 
@@ -27,15 +23,15 @@ Welcome to the new and improved launch experience—a quicker and easier way to 
   Quickly get up and running with our new one\-page design\. See all of your settings in one location\. No need to navigate back and forth between steps to ensure your configuration is correct\. Use the **Summary** panel for an overview and to easily navigate the page\.
 + **Improved AMI selector**
 
-  New users – Use the **Quick Start** AMI selector to select an operating system so that you can quickly launch an instance\.
+  New users – Use the **Quick Start** Amazon Machine Image \(AMI\) selector to select an operating system so that you can quickly launch an instance\.
 
   Experienced users – The AMI selector displays your recently used AMIs and the AMIs that you own, making it easier to select the AMIs that you care about\. You can still browse the full catalog to find new AMIs\.
 
 **Work in progress**
 
 We’re working continuously to improve the experience\. Here’s what we’re currently working on:
-+ **Missing features**
-  + Missing features to be added in the future: Domain join, CPU options, EFS file system integration, and AMI selection by using an Amazon EC2 Systems Manager parameter\.
++ **Missing feature**
+  + Domain join is a missing feature that will be added in the future\.
 + **Defaults and dependency assistance**
   + **Default values** will be provided for all fields\.
   + **Additional logic** will be added to help you set up your instance configuration correctly \(for example, we’ll disable parameters that are not available with your current settings\)\.
@@ -45,10 +41,10 @@ We’re working continuously to improve the experience\. Here’s what we’re c
 
 There will be many more improvements to the launch experience in the months ahead\.
 
-We're in the process of rolling out the new launch instance wizard to several AWS Regions\. If it's not available in your currently selected Region, you can select a different Region to check if it's available there\.
+We're in the process of rolling out the new launch instance wizard\. If it's not available in your currently selected Region, you can select a different Region to check if it's available there\.
 
 **Please send feedback**  
-We’d appreciate your feedback on this early release\. We’ll use your feedback to continue improving the experience over the next few months\. You can send us feedback directly from the EC2 console, or use the **Provide feedback** link at the bottom of this page\.
+We’d appreciate your feedback on the new launch instance wizard\. We’ll use your feedback to continue improving the experience over the next few months\. You can send us feedback directly from the EC2 console, or use the **Provide feedback** link at the bottom of this page\.
 
 ## Quickly launch an instance<a name="liw-quickly-launch-instance"></a>
 
@@ -60,13 +56,13 @@ To set up an instance quickly for testing purposes, follow these steps\. You'll 
 
 1. In the navigation bar at the top of the screen, the current AWS Region is displayed \(for example, US East \(Ohio\)\)\. Select a Region in which to launch the instance\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
 
-1. From the Amazon EC2 console dashboard, choose **Launch instance**\.
+1. From the Amazon EC2 console dashboard, choose **Launch instance**\. 
 
-1. To use the new launch instance wizard, choose **Try it now\!** at the top right of the screen\. If **Try it now\!** is not visible, the new launch instance wizard is not yet available in the currently selected Region\.
+   If you see the old launch wizard, the new launch instance wizard is not yet the default view in the currently selected Region\. To open the new launch instance wizard, choose **Try it now\!** at the top right of the screen\.
 
 1. \(Optional\) Under **Name and tags**, for **Name**, enter a descriptive name for your instance\.
 
-1. Under **Application and OS Images \(Amazon machine Image\)**, choose **Quick Start**, and then choose the operating system \(OS\) for your instance\.
+1. Under **Application and OS Images \(Amazon Machine Image\)**, choose **Quick Start**, and then choose the operating system \(OS\) for your instance\.
 
 1. Under **Key pair \(login\)**, for **Key pair name**, choose an existing key pair or create a new one\.
 
@@ -95,7 +91,7 @@ Except for the key pair, the launch instance wizard provides default values for 
 
 1. From the Amazon EC2 console dashboard, choose **Launch instance**\.
 
-1. To use the new launch instance wizard, choose **Try it now\!** at the top right of the screen\. If **Try it now\!** is not visible, the new launch instance wizard is not yet available in the currently selected Region\.
+   If you see the old launch wizard, the new launch instance wizard is not yet the default view in the currently selected Region\. To open the new launch instance wizard, choose **Try it now\!** at the top right of the screen\.
 
 ### Name and tags<a name="liw-name-and-tags"></a>
 
@@ -206,7 +202,7 @@ The AMI you selected includes one or more volumes of storage, including the root
 You can use the **Simple** or **Advanced** view\. With the **Simple** view, you specify the size and type of volume\. To specify all volume parameters, choose the **Advanced** view \(at top right of the card\)\.
 
 By using the **Advanced** view, you can configure each volume as follows:
-+ **Volume type**: Select Amazon EBS or instance store volumes to associate with your instance\. The volume types available in the list depend on the instance type that you've chosen\. For more information, see [Amazon EC2 instance store](InstanceStorage.md) and [Amazon EBS volumes](ebs-volumes.md)\.
++ **Storage type**: Select Amazon EBS or instance store volumes to associate with your instance\. The volume types available in the list depend on the instance type that you've chosen\. For more information, see [Amazon EC2 instance store](InstanceStorage.md) and [Amazon EBS volumes](ebs-volumes.md)\.
 + **Device name**: Select from the list of available device names for the volume\. 
 + **Snapshot**: Select the snapshot from which to restore the volume\. You can search for available shared and public snapshots by entering text into the **Snapshot** field\.
 + **Size \(GiB\)**: For EBS volumes, you can specify a storage size\. If you have selected an AMI and instance that are eligible for the free tier, keep in mind that to stay within the free tier, you must stay under 30 GiB of total storage\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
@@ -214,7 +210,7 @@ By using the **Advanced** view, you can configure each volume as follows:
 + **IOPS**: If you have selected a Provisioned IOPS SSD volume type, then you can enter the number of I/O operations per second \(IOPS\) that the volume can support\.
 + **Delete on termination**: For Amazon EBS volumes, choose **Yes** to delete the volume when the instance is terminated, or choose **No** to keep the volume\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
 + **Encrypted**: If the instance type supports EBS encryption, you can choose **Yes** to enable encryption for the volume\. If you have enabled encryption by default in this Region, encryption is enabled for you\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
-+ **Key**: If you selected **Yes** for **Encrypted**, then you must select a customer managed key to use to encrypt the volume\. If you have enabled encryption by default in this Region, the default customer managed key is selected for you\. You can select a different key or specify the ARN of any customer managed key that you created\.
++ **KMS key**: If you selected **Yes** for **Encrypted**, then you must select a customer managed key to use to encrypt the volume\. If you have enabled encryption by default in this Region, the default customer managed key is selected for you\. You can select a different key or specify the ARN of any customer managed key that you created\.
 
 ### Advanced details<a name="liw-advanced-details"></a>
 
@@ -235,9 +231,12 @@ For **Advanced details**, expand the section to view the fields and specify any 
 + **RAM disk ID**: \(Only valid for paravirtual \(PV\) AMIs\) Select a RAM disk for the instance\. If you have selected a kernel, you might need to select a specific RAM disk with the drivers to support it\.
 + **Kernel ID**: \(Only valid for paravirtual \(PV\) AMIs\) Select a kernel for the instance\.
 + **Nitro Enclave**: Allows you to create isolated execution environments, called enclaves, from Amazon EC2 instances\. Select **Enable** to enable the instance for AWS Nitro Enclaves\. For more information, see [What is AWS Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) in the *AWS Nitro Enclaves User Guide*\.
++ **License configurations**: You can launch instances against the specified license configuration to track your license usage\. For more information, see [Create a license configuration](https://docs.aws.amazon.com/license-manager/latest/userguide/create-license-configuration.html) in the *AWS License Manager User Guide*\.
 + **Metadata accessible**: You can enable or disable access to the instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
++ **Metadata transport**: Enable the instance to reach the link local IMDSv2 IPv6 address \(`fd00:ec2::254`\) to retrieve instance metadata\. This option is only available if you are launching [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) into an [IPv6\-only subnet](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-basics)\. For more information about retrieving instance metadata, see [Retrieve instance metadata](instancedata-data-retrieval.md)\.
 + **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
 + **Metadata response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
++ **Allow tags in metadata**: If you select **Enable**, the instance will allow access to all of its tags from its metadata\. If no value is specified, then by default, access to the tags in instance metadata is disabled\. For more information, see [Allow access to tags in instance metadata](Using_Tags.md#allow-access-to-tags-in-IMDS)\.
 + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. For more information, see [Run commands on your Linux instance at launch](user-data.md)\.
 
 ### Summary<a name="liw-summary"></a>
@@ -246,9 +245,12 @@ Use the **Summary** panel to specify the number of instances to launch, to revie
 + **Number of instances**: Enter the number of instances to launch\. All of the instances will launch with the same configuration\.
 **Tip**  
 To ensure faster instance launches, break up large requests into smaller batches\. For example, create five separate launch requests for 100 instances each instead of one launch request for 500 instances\.
++ \(Optional\) If you specify more than 1 instance, to help ensure that you maintain the correct number of instances to handle demand on your application, you can choose **consider EC2 Auto Scaling** to create a launch template and an Auto Scaling group\. Auto Scaling scales the number of instances in the group according to your specifications\. For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/ec2/userguide/)\.
+**Note**  
+If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as unhealthy, the instance is automatically scheduled for replacement where it is terminated and another is launched, and you lose your data on the original instance\. An instance is marked as unhealthy if you stop or reboot the instance, or if another event marks the instance as unhealthy\. For more information, see [Health checks for Auto Scaling instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\. 
 + Review the details of your instance, and make any necessary changes\. You can navigate directly to a section by choosing its link in the **Summary** panel\.
 + When you're ready to launch your instance, choose **Launch instance**\.
 
   If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshoot instance launch issues](troubleshooting-launch.md)\.
 
-  \(Optional\) You can create a billing alert for the instance\. \(If you're not sure, you can always add one later\.\) On the confirmation screen, Under **Next Steps**, choose **Create billing alerts** and follow the directions\.
+  \(Optional\) You can create a billing alert for the instance\. \(If you're not sure, you can always add one later\.\) On the confirmation screen, under **Next Steps**, choose **Create billing alerts** and follow the directions\.

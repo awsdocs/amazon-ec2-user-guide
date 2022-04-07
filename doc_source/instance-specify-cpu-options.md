@@ -17,7 +17,7 @@ To disable multithreading, specify one thread per core\.
 
 **To disable multithreading during instance launch \(console\)**
 
-1. Follow the [Launch an instance using the Launch Instance Wizard](launching-instance.md) procedure\.
+1. Follow the [Launch an instance using the old launch instance wizard](launching-instance.md) procedure\.
 
 1. On the **Configure Instance Details** page, for **CPU options**, choose **Specify CPU options**\.
 
@@ -25,7 +25,7 @@ To disable multithreading, specify one thread per core\.
 
 1. To disable multithreading, for **Threads per core**, choose **1**\.
 
-1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
 **To disable multithreading during instance launch \(AWS CLI\)**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify a value of `1` for `ThreadsPerCore` for the `--cpu-options` parameter\. For `CoreCount`, specify the number of CPU cores\. In this example, to specify the default CPU core count for an `r4.4xlarge` instance, specify a value of `8`\.
@@ -46,7 +46,7 @@ You can customize the number of CPU cores and threads per core for the instance\
 
 The following example launches an `r4.4xlarge` instance with six vCPUs\.
 
-1. Follow the [Launch an instance using the Launch Instance Wizard](launching-instance.md) procedure\.
+1. Follow the [Launch an instance using the old launch instance wizard](launching-instance.md) procedure\.
 
 1. On the **Configure Instance Details** page, for **CPU options**, choose **Specify CPU options**\.
 
@@ -54,7 +54,7 @@ The following example launches an `r4.4xlarge` instance with six vCPUs\.
    + For **Core count**, choose **3**\.
    + For **Threads per core**, choose **2**\.
 
-1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
 **To specify a custom number of vCPUs during instance launch \(AWS CLI\)**  
 The following example launches an `r4.4xlarge` instance with six vCPUs\.

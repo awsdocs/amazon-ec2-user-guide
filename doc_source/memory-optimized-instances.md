@@ -76,6 +76,8 @@ These instances are well suited for the following:
 + Electronic design automation \(EDA\) workloads, such as physical verification and layout tools\.
 + Memory\-intensive workloads, such as real\-time analytics and real\-time caching servers\.
 
+X2idn and X2iedn instances support `io2` Block Express volumes\. All `io2` volumes attached to X2idn and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+
 For more information, see [Amazon EC2 X2i Instances](https://aws.amazon.com/ec2/instance-types/x2i/)\.
 
 **z1d instances**
@@ -461,7 +463,7 @@ The following is a summary of features for memory optimized instances\.
 | R6i | Yes | Yes | No | Yes | 
 | High memory | Yes | Yes | No | Virtualized: Yes Bare metal: No  | 
 | X1 | No | No | SSD | Yes | 
-| X2gd | No | Yes | NVME \* | Yes | 
+| X2gd | No \*\* | Yes | NVME \* | Yes | 
 | X2idn | No \*\* | Yes | NVME \* | Yes | 
 | X2iedn | No \*\* | Yes | NVME \* | Yes | 
 | X2iezn | Yes | Yes | No | Yes | 

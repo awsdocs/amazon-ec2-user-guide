@@ -90,7 +90,7 @@ You can use your own SSH key and connect to your instance from the SSH client of
 + Requirements for key pairs
   + Supported types: RSA \(OpenSSH and SSH2\) and ED25519
   + Supported lengths: 2048 and 4096
-  + For more information, see [Create a key pair using a third\-party tool and import the public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
+  + For more information, see [Create a key pair using a third\-party tool and import the public key to Amazon EC2](create-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 + When connecting to an instance that only has private IP addresses, the local computer from which you are initiating the SSH session must have connectivity to the EC2 Instance Connect service endpoint \(to push your SSH public key to the instance\) as well as network connectivity to the instance's private IP address to establish the SSH session\. The EC2 Instance Connect service endpoint is reachable over the internet or over an AWS Direct Connect public virtual interface\. To connect to the instance's private IP address, you can leverage services such as [AWS Direct Connect](http://aws.amazon.com/directconnect/), [AWS Site\-to\-Site VPN](http://aws.amazon.com/vpn/), or [VPC peering](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html)\.
 
 **To connect to your instance using your own key and any SSH client**

@@ -1,25 +1,15 @@
 # Placement groups<a name="placement-groups"></a>
 
 When you launch a new EC2 instance, the EC2 service attempts to place the instance in such a way that all of your instances are spread out across underlying hardware to minimize correlated failures\. You can use *placement groups* to influence the placement of a group of *interdependent* instances to meet the needs of your workload\. Depending on the type of workload, you can create a placement group using one of the following placement strategies:
-+ *Cluster* – packs instances close together inside an Availability Zone\. This strategy enables workloads to achieve the low\-latency network performance necessary for tightly\-coupled node\-to\-node communication that is typical of HPC applications\. For more information, see [Cluster placement groups](#placement-groups-cluster)\.
-+ *Partition* – spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions\. This strategy is typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka\. For more information, see [Partition placement groups](#placement-groups-partition)\.
-+ *Spread* – strictly places a small group of instances across distinct underlying hardware to reduce correlated failures\. For more information, see [Spread placement groups](#placement-groups-spread)\.
++ *Cluster* – packs instances close together inside an Availability Zone\. This strategy enables workloads to achieve the low\-latency network performance necessary for tightly\-coupled node\-to\-node communication that is typical of HPC applications\.
++ *Partition* – spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions\. This strategy is typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka\.
++ *Spread* – strictly places a small group of instances across distinct underlying hardware to reduce correlated failures\.
 
 There is no charge for creating a placement group\.
 
-**Topics**
-+ [Placement group strategies](#placement-groups-strategies)
-+ [Placement group rules and limitations](#concepts-placement-groups)
-+ [Working with placement groups](#working-with-placement-groups)
-
-## Placement group strategies<a name="placement-groups-strategies"></a>
+## Placement group strategies<a name="placement-group-strategies"></a>
 
 You can create a placement group using one of the following placement strategies:
-
-**Topics**
-+ [Cluster placement groups](#placement-groups-cluster)
-+ [Partition placement groups](#placement-groups-partition)
-+ [Spread placement groups](#placement-groups-spread)
 
 ### Cluster placement groups<a name="placement-groups-cluster"></a>
 
@@ -32,12 +22,12 @@ The following image shows instances that are placed into a cluster placement gro
 Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both\. They are also recommended when the majority of the network traffic is between the instances in the group\. To provide the lowest latency and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
 
 We recommend that you launch your instances in the following way:
-+ Either use a single launch request to launch the number of instances that you need in the placement group, or create a Capacity Reservation in the placement group to reserve capacity for your entire workload\. For more information, see [Work with Capacity Reservations in cluster placement groups](cr-cpg.md#work-with-crs-cpgs)\.
++ Use a single launch request to launch the number of instances that you need in the placement group\.
 + Use the same instance type for all instances in the placement group\. 
 
 If you try to add more instances to the placement group later, or if you try to launch more than one instance type in the placement group, you increase your chances of getting an insufficient capacity error\.
 
-If you stop an instance in a placement group and then start it again, it still runs in the placement group\. However, if you are not using a Capacity Reservation for your cluster placement group, the instance start fails if there is insufficient capacity\.
+If you stop an instance in a placement group and then start it again, it still runs in the placement group\. However, the start fails if there isn't enough capacity for the instance\.
 
 If you receive a capacity error when launching an instance in a placement group that already has running instances, stop and start all of the instances in the placement group, and try the launch again\. Starting the instances may migrate them to hardware that has capacity for all of the requested instances\.
 
@@ -73,8 +63,6 @@ If you start or launch an instance in a spread placement group and there is insu
 
 ## Placement group rules and limitations<a name="concepts-placement-groups"></a>
 
-
-
 ### General rules and limitations<a name="placement-groups-limitations-general"></a>
 
 Before you use placement groups, be aware of the following rules:
@@ -82,7 +70,7 @@ Before you use placement groups, be aware of the following rules:
 + The name that you specify for a placement group must be unique within your AWS account for the Region\.
 + You can't merge placement groups\.
 + An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.
-+ [Zonal Reserved Instances](reserved-instances-scope.md) provide a capacity reservation for Amazon EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group, but it does not explicitly reserve capacity in a placement group\.
++ [On\-Demand Capacity Reservation](ec2-capacity-reservations.md#capacity-reservations-limits) and [zonal Reserved Instances](reserved-instances-scope.md) provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
 + You cannot launch Dedicated Hosts in placement groups\.
 
 ### Cluster placement group rules and limitations<a name="placement-groups-limitations-cluster"></a>
@@ -98,7 +86,6 @@ The following rules apply to cluster placement groups:
   + Traffic to and from Amazon S3 buckets within the same Region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
 + You can launch multiple instance types into a cluster placement group\. However, this reduces the likelihood that the required capacity will be available for your launch to succeed\. We recommend using the same instance type for all instances in a cluster placement group\.
 + Network traffic to the internet and over an AWS Direct Connect connection to on\-premises resources is limited to 5 Gbps\.
-+ You can create On\-Demand Capacity Reservations in a cluster placement group to explicitly reserve capacity in that placement group\. For more information, see [Work with Capacity Reservations in cluster placement groups](cr-cpg.md#work-with-crs-cpgs)\.
 
 ### Partition placement group rules and limitations<a name="placement-groups-limitations-partition"></a>
 
@@ -106,23 +93,20 @@ The following rules apply to partition placement groups:
 + A partition placement group supports a maximum of seven partitions per Availability Zone\. The number of instances that you can launch in a partition placement group is limited only by your account limits\.
 + When instances are launched into a partition placement group, Amazon EC2 tries to evenly distribute the instances across all partitions\. Amazon EC2 doesn’t guarantee an even distribution of instances across all partitions\.
 + A partition placement group with Dedicated Instances can have a maximum of two partitions\.
-+ On\-Demand Capacity Reservations provide a capacity reservation for Amazon EC2 instances in a specific Availability Zone\. The Capacity Reservation can be used by instances in a partition placement group, but it does not explicitly reserve capacity in the partition placement group\.
 
 ### Spread placement group rules and limitations<a name="placement-groups-limitations-spread"></a>
 
 The following rules apply to spread placement groups:
-+ A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a Region with three Availability Zones, you can run a total of 21 instances in the group \(seven per zone\)\. If you try to start an eighth instance in the same Availability Zone and in the same spread placement group, the instance will not launch\. If you need to have more than seven instances in an Availability Zone, then the recommendation is to use multiple spread placement groups\. Using multiple spread placement groups does not provide guarantees about the spread of instances between groups, but it does ensure the spread for each group, thus limiting impact from certain classes of failures\.
++ A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a Region with three Availability Zones, you can run a total of 21 instances in the group \(seven per zone\)\. If you try to start an eighth instance in the same Availability Zone and in the same spread placement group, the instance will not launch\. If you need to have more than seven instances in an Availability Zone, then the recommendation is to use multiple spread placement groups\. Using multiple spread placement groups does not provide guarantees about the spread of instances between groups, but it does ensure the spread for each group, thus limiting impact from certain classes of failures\. 
 + Spread placement groups are not supported for Dedicated Instances\.
-+ On\-Demand Capacity Reservations provide a capacity reservation for Amazon EC2 instances in a specific Availability Zone\. The Capacity Reservation can be used by instances in a spread placement group, but it does not explicitly reserve capacity in the spread placement group\.
 
-## Working with placement groups<a name="working-with-placement-groups"></a>
+## Working with placement groups<a name="using-placement-groups"></a>
 
 **Topics**
 + [Create a placement group](#create-placement-group)
 + [Tag a placement group](#tag-placement-group)
 + [Launch instances in a placement group](#launch-instance-placement-group)
 + [Describe instances in a placement group](#describe-instance-placement)
-+ [Describe a placement group](#describe-placement-group)
 + [Change the placement group for an instance](#change-instance-placement-group)
 + [Delete a placement group](#delete-placement-group)
 
@@ -134,7 +118,7 @@ You can create a placement group using one of the following methods\.
 You can tag a placement group on creation using the command line tools only\.
 
 ------
-#### [ Console ]
+#### [ New console ]
 
 **To create a placement group using the console**
 
@@ -147,6 +131,21 @@ You can tag a placement group on creation using the command line tools only\.
 1. Choose the placement strategy for the group\. If you choose **Partition**, choose the number of partitions within the group\.
 
 1. Choose **Create group**\.
+
+------
+#### [ Old console ]
+
+**To create a placement group using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Placement Groups**, **Create Placement Group**\.
+
+1. Specify a name for the group\.
+
+1. Choose the placement strategy for the group\. If you choose **Partition**, specify the number of partitions within the group\.
+
+1. Choose **Create**\.
 
 ------
 #### [ AWS CLI ]
@@ -182,7 +181,7 @@ When you tag a placement group, the instances that are launched into the placeme
 You can view, add, and delete tags using the *new* console and the command line tools\.
 
 ------
-#### [ Console ]
+#### [ New console ]
 
 **To view, add, or delete a tag for an existing placement group**
 
@@ -206,46 +205,46 @@ Use the [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/de
 
 ```
 aws ec2 describe-tags \
-       --filters Name=resource-type,Values=placement-group
+    --filters Name=resource-type,Values=placement-group
 ```
 
 ```
 {
-       "Tags": [
-           {
-               "Key": "Environment",
-               "ResourceId": "pg-0123456789EXAMPLE",
-               "ResourceType": "placement-group",
-               "Value": "Production"
-           },
-           {
-               "Key": "Environment",
-               "ResourceId": "pg-9876543210EXAMPLE",
-               "ResourceType": "placement-group",
-               "Value": "Production"
-           }
-       ]
-   }
+    "Tags": [
+        {
+            "Key": "Environment",
+            "ResourceId": "pg-0123456789EXAMPLE",
+            "ResourceType": "placement-group",
+            "Value": "Production"
+        },
+        {
+            "Key": "Environment",
+            "ResourceId": "pg-9876543210EXAMPLE",
+            "ResourceType": "placement-group",
+            "Value": "Production"
+        }
+    ]
+}
 ```
 
 You can also use the [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html) command to view the tags for a placement group by specifying its ID\. In the following example, you describe the tags for `pg-0123456789EXAMPLE`\.
 
 ```
 aws ec2 describe-tags \
-       --filters Name=resource-id,Values=pg-0123456789EXAMPLE
+    --filters Name=resource-id,Values=pg-0123456789EXAMPLE
 ```
 
 ```
 {
-       "Tags": [
-           {
-               "Key": "Environment",
-               "ResourceId": "pg-0123456789EXAMPLE",
-               "ResourceType": "placement-group",
-               "Value": "Production"
-           }
-       ]
-   }
+    "Tags": [
+        {
+            "Key": "Environment",
+            "ResourceId": "pg-0123456789EXAMPLE",
+            "ResourceType": "placement-group",
+            "Value": "Production"
+        }
+    ]
+}
 ```
 
 You can also view the tags of a placement group by describing the placement group\.
@@ -254,26 +253,26 @@ Use the [describe\-placement\-groups](https://docs.aws.amazon.com/cli/latest/ref
 
 ```
 aws ec2 describe-placement-groups \
-       --group-name my-cluster
+    --group-name my-cluster
 ```
 
 ```
 {
-       "PlacementGroups": [
-           {
-               "GroupName": "my-cluster",
-               "State": "available",
-               "Strategy": "cluster",
-               "GroupId": "pg-0123456789EXAMPLE",
-               "Tags": [
-                   {
-                       "Key": "Environment",
-                       "Value": "Production"
-                   }
-               ]
-           }
-       ]
-   }
+    "PlacementGroups": [
+        {
+            "GroupName": "my-cluster",
+            "State": "available",
+            "Strategy": "cluster",
+            "GroupId": "pg-0123456789EXAMPLE",
+            "Tags": [
+                {
+                    "Key": "Environment",
+                    "Value": "Production"
+                }
+            ]
+        }
+    ]
+}
 ```
 
 **To tag an existing placement group using the AWS CLI**  
@@ -281,8 +280,8 @@ You can use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/
 
 ```
 aws ec2 create-tags \
-       --resources pg-0123456789EXAMPLE \
-       --tags Key=Cost-Center,Value=CC-123
+    --resources pg-0123456789EXAMPLE \
+    --tags Key=Cost-Center,Value=CC-123
 ```
 
 **To delete a tag from a placement group using the AWS CLI**  
@@ -395,11 +394,11 @@ The response contains the placement information, which includes the placement gr
 
 ```
 "Placement": {
-        "AvailabilityZone": "us-east-1c",
-        "GroupName": "HDFS-Group-A",
-        "PartitionNumber": 3,
-        "Tenancy": "default"
-   }
+     "AvailabilityZone": "us-east-1c",
+     "GroupName": "HDFS-Group-A",
+     "PartitionNumber": 3,
+     "Tenancy": "default"
+}
 ```
 
 **To filter instances for a specific partition placement group and partition number using the AWS CLI**  
@@ -413,80 +412,30 @@ The response lists all the instances that are in the specified partition within 
 
 ```
 "Instances": [
-                   {   
-                       "InstanceId": "i-0a1bc23d4567e8f90",
-                       "InstanceType": "r4.large",
-                       },
-                     
-                       "Placement": {
-                           "AvailabilityZone": "us-east-1c",
-                           "GroupName": "HDFS-Group-A",
-                           "PartitionNumber": 7,
-                           "Tenancy": "default"
-                       }
-   
-                   {   
-                       "InstanceId": "i-0a9b876cd5d4ef321",
-                       "InstanceType": "r4.large",
-                       },
-   
-                       "Placement": {
-                           "AvailabilityZone": "us-east-1c",
-                           "GroupName": "HDFS-Group-A",
-                           "PartitionNumber": 7,
-                           "Tenancy": "default"
-                       }
-                 ],
-```
+                {   
+                    "InstanceId": "i-0a1bc23d4567e8f90",
+                    "InstanceType": "r4.large",
+                    },
+                  
+                    "Placement": {
+                        "AvailabilityZone": "us-east-1c",
+                        "GroupName": "HDFS-Group-A",
+                        "PartitionNumber": 7,
+                        "Tenancy": "default"
+                    }
 
-------
+                {   
+                    "InstanceId": "i-0a9b876cd5d4ef321",
+                    "InstanceType": "r4.large",
+                    },
 
-### Describe a placement group<a name="describe-placement-group"></a>
-
-You can view information about your placement groups using one of the following methods\.
-
-------
-#### [ Console ]
-
-**To view information about your placement groups using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Placement Groups**\. 
-
-1. The grid lists all of your placement groups in the selected Region\.
-
-------
-#### [ AWS CLI ]
-
-**To view information about all of your placement groups using the AWS CLI**  
-Use the [describe\-placement\-groups](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-placement-groups.html) command\.
-
-```
-$ aws ec2 describe-placement-groups
-```
-
-**To view information about a specific placement group using the AWS CLI**  
-Use the [describe\-placement\-groups](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-placement-groups.html) command and specify the `--group-names` parameter\.
-
-```
-$ aws ec2 describe-placement-groups --group-names placement_group_name
-```
-
-**Example output**  
-The following is example output for a cluster placement group\.
-
-```
-{
-    "PlacementGroups": [
-        {
-            "GroupName": "MyClusterPG",
-            "GroupArn": "arn:aws:ec2:us-east-1:123456789012:placement-group/MyClusterPG",
-            "State": "available",
-            "Strategy": "cluster"
-        }
-    ]
-}
+                    "Placement": {
+                        "AvailabilityZone": "us-east-1c",
+                        "GroupName": "HDFS-Group-A",
+                        "PartitionNumber": 7,
+                        "Tenancy": "default"
+                    }
+              ],
 ```
 
 ------
@@ -562,12 +511,11 @@ Before you move or remove the instance, the instance must be in the `stopped` st
 
 If you need to replace a placement group or no longer need one, you can delete it\. You can delete a placement group using one of the following methods\.
 
-**Before you can delete a placement group**
-+ \(*All placement groups*\) Ensure that it has no instances\. You must [terminate](terminating-instances.md#terminating-instances-console) all instances that you launched into the placement group, [ move](#move-instance-to-placement-group) them to another placement group, or [remove](#remove-instance-from-placement-group) them from the placement group\.
-+ \(*Cluster placement groups only*\) Ensure that it has no `active` Capacity Reservations\. You must [ cancel](capacity-reservations-using.md#capacity-reservations-release) all Capacity Reservations that you created in the cluster placement group\.
+**Requirement**  
+Before you can delete a placement group, it must contain no instances\. You can [terminate](terminating-instances.md#terminating-instances-console) all instances that you launched into the placement group, [move](#move-instance-to-placement-group) them to another placement group, or [remove](#remove-instance-from-placement-group) them from the placement group\.
 
 ------
-#### [ Console ]
+#### [ New console ]
 
 **To delete a placement group using the console**
 
@@ -578,6 +526,19 @@ If you need to replace a placement group or no longer need one, you can delete i
 1. Select the placement group and choose **Actions**, **Delete**\.
 
 1. When prompted for confirmation, enter **Delete** and then choose **Delete**\.
+
+------
+#### [ Old console ]
+
+**To delete a placement group using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Placement Groups**\.
+
+1. Select the placement group and choose **Actions**, **Delete Placement Group**\.
+
+1. When prompted for confirmation, choose **Delete**\.
 
 ------
 #### [ AWS CLI ]

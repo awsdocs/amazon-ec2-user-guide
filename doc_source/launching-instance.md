@@ -1,6 +1,8 @@
-# Launch an instance using the Launch Instance Wizard<a name="launching-instance"></a>
+# Launch an instance using the old launch instance wizard<a name="launching-instance"></a>
 
-You can launch an instance using the launch instance wizard\. The launch instance wizard specifies all the launch parameters required for launching an instance\. Where the launch instance wizard provides a default value, you can accept the default or specify your own value\. At the very least, you need to select an AMI and a key pair to launch an instance\.
+You can launch an instance using the old launch instance wizard\. The launch instance wizard specifies all the launch parameters required for launching an instance\. Where the launch instance wizard provides a default value, you can accept the default or specify your own value\. At the very least, you need to select an AMI and a key pair to launch an instance\.
+
+For the instructions to use the *new* launch instance wizard, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\.
 
 Before you launch your instance, be sure that you are set up\. For more information, see [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)\.
 
@@ -16,7 +18,6 @@ When you launch an instance that's not within the [AWS Free Tier](https://aws.am
 + [Step 5: Add Tags](#step-5-add-tags)
 + [Step 6: Configure Security Group](#step-6-configure-security-group)
 + [Step 7: Review Instance Launch and Select Key Pair](#step-7-review-instance-launch)
-+ [Launch an instance using the new launch instance wizard – beta](ec2-launch-instance-wizard.md)
 
 ## Initiate instance launch<a name="initiate-instance-launch"></a>
 
@@ -83,7 +84,7 @@ On the **Configure Instance Details** page, change the following settings as nec
 To ensure faster instance launches, break up large requests into smaller batches\. For example, create five separate launch requests for 100 instances each instead of one launch request for 500 instances\.
 + \(Optional\) To help ensure that you maintain the correct number of instances to handle demand on your application, you can choose **Launch into Auto Scaling Group** to create a launch configuration and an Auto Scaling group\. Auto Scaling scales the number of instances in the group according to your specifications\. For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/ec2/userguide/)\.
 **Note**  
-If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as unhealthy, the instance is automatically scheduled for replacement where it is terminated and another is launched, and you lose your data on the original instance\. An instance is marked as unhealthy if you stop or reboot the instance, or if another event marks the instance as unhealthy\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\. 
+If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as unhealthy, the instance is automatically scheduled for replacement where it is terminated and another is launched, and you lose your data on the original instance\. An instance is marked as unhealthy if you stop or reboot the instance, or if another event marks the instance as unhealthy\. For more information, see [Health checks for Auto Scaling instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\. 
 + **Purchasing option**: Choose **Request Spot instances** to launch a Spot Instance\. This adds and removes options from this page\. Set your maximum price, and optionally update the request type, interruption behavior, and request validity\. For more information, see [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
 + **Network**: Select the VPC, or to create a new VPC, choose **Create new VPC** to go the Amazon VPC console\. When you have finished, return to the wizard and choose **Refresh** to load your VPC in the list\.
 + **Subnet**: You can launch an instance in a subnet associated with an Availability Zone, Local Zone, Wavelength Zone or Outpost\.
@@ -125,7 +126,7 @@ If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as
 + **RAM disk ID**: \(Only valid for paravirtual \(PV\) AMIs\) Select **Use default** unless you want to use a specific RAM disk\. If you have selected a kernel, you may need to select a specific RAM disk with the drivers to support it\.
 + **Enclave**: Select **Enable** to enable the instance for AWS Nitro Enclaves\. For more information, see [ What is AWS Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) in the *AWS Nitro Enclaves User Guide*\.
 + **Metadata accessible**: You can enable or disable access to the instance metadata\. For more information, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
-+ **Metadata transport**: You can enable or disable the access method to the instance metadata service that's available for this EC2 instance based on the IP address type \(IPv4, IPv6, or IPv4 and IPv6\) of the instance\. For more information, see [Retrieve instance metadata](instancedata-data-retrieval.md)\.
++ **Metadata transport**: Enable the instance to reach the link local IMDSv2 IPv6 address \(`fd00:ec2::254`\) to retrieve instance metadata\. This option is only available if you are launching [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) into an [IPv6\-only subnet](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-basics)\. For more information about retrieving instance metadata, see [Retrieve instance metadata](instancedata-data-retrieval.md)\.
 + **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
 + **Metadata token response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
 + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. To attach a file, select the **As file** option and browse for the file to attach\.

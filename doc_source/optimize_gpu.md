@@ -1,6 +1,6 @@
 # Optimize GPU settings<a name="optimize_gpu"></a>
 
-There are several GPU setting optimizations that you can perform to achieve the best performance on NVIDIA GPU instances\. With some of these instance types, the NVIDIA driver uses an autoboost feature, which varies the GPU clock speeds\. By disabling autoboost and setting the GPU clock speeds to their maximum frequency, you can consistently achieve the maximum performance with your GPU instances\. The following procedure helps you to configure the GPU settings to be persistent, disable the autoboost feature if needed, and set the GPU clock speeds to their maximum frequency\.
+There are several GPU setting optimizations that you can perform to achieve the best performance on [NVIDIA GPU instances](accelerated-computing-instances.md#gpu-instances)\. With some of these instance types, the NVIDIA driver uses an autoboost feature, which varies the GPU clock speeds\. By disabling autoboost and setting the GPU clock speeds to their maximum frequency, you can consistently achieve the maximum performance with your GPU instances\.  The followingprocedure helps you to configure the GPU settings to be persistent, disable the autoboost feature if needed, and set the GPU clock speeds to their maximum frequency\.
 
 **To optimize GPU settings**
 

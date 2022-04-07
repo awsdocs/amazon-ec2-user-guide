@@ -9,7 +9,7 @@ You can launch an instance using the following methods\.
 
 | Method | Documentation | 
 | --- | --- | 
-|  \[Amazon EC2 console\] Use the launch instance wizard to specify the launch parameters\.  |  [Launch an instance using the Launch Instance Wizard](launching-instance.md)  | 
+|  \[Amazon EC2 console\] Use the launch instance wizard to specify the launch parameters\.  |  [Launch an instance using the old launch instance wizard](launching-instance.md)  | 
 |  \[Amazon EC2 console\] Create a launch template and launch the instance from the launch template\.  |  [Launch an instance from a launch template](ec2-launch-templates.md)  | 
 | \[Amazon EC2 console\] Use an existing instance as the base\. |  [Launch an instance using parameters from an existing instance](launch-more-like-this.md)  | 
 |  \[Amazon EC2 console\] Use an AMI that you purchased from the AWS Marketplace\.  |  [Launch an AWS Marketplace instance](launch-marketplace-console.md)  | 

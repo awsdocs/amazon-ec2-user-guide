@@ -44,6 +44,8 @@ You can use a tool such as cURL, as shown in the following example\.
 
 ------
 
+For the command to retrieve instance metadata from a Windows instance, see [Retrieve instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instancedata-data-retrieval.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+
 ## Costs<a name="imds-costs"></a>
 
 You are not billed for HTTP requests used to retrieve instance metadata and user data\.
@@ -70,6 +72,8 @@ For requests made using Instance Metadata Service Version 2, the following HTTP 
 + `403 - Forbidden` – The request is not allowed or the instance metadata service is turned off\.
 
 ## Examples of retrieving instance metadata<a name="instancedata-meta-data-retrieval-examples"></a>
+
+The following examples provide commands that you can use on a Linux instance\. For the commands to retrieve instance metadata from a Windows instance, see [Retrieve instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instancedata-data-retrieval.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Topics**
 + [Get the available versions of the instance metadata](#instance-metadata-ex-1)

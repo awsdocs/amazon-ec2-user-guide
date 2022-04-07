@@ -56,7 +56,7 @@ These instances are ideal for running high performance computing \(HPC\) workloa
 + Crash simulations
 + Astrophysics
 
-For more information, see [Amazon EC2 Hpc6a Instances](http://aws.amazon.com/ec2/instance-types/hpc6a)\.
+For more information, see [Amazon EC2 Hpc6a Instances](http://aws.amazon.com/ec2/instance-types/hpc6)\.
 
 **Topics**
 + [Hardware specifications](#compute-instances-hardware)

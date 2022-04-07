@@ -23,7 +23,7 @@ You can launch your instances as `unlimited` or `standard` using the Amazon EC2 
 
 **To launch a burstable performance instance as Unlimited or Standard \(console\)**
 
-1. Follow the [Launch an instance using the Launch Instance Wizard](launching-instance.md) procedure\.
+1. Follow the [Launch an instance using the old launch instance wizard](launching-instance.md) procedure\.
 
 1. On the **Choose an Instance Type** page, select an instance type, and choose **Next: Configure Instance Details**\.
 
@@ -33,7 +33,7 @@ You can launch your instances as `unlimited` or `standard` using the Amazon EC2 
 
    1. To launch a T2 instance as `unlimited`, select **Unlimited**\.
 
-1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
 **To launch a burstable performance instance as Unlimited or Standard \(AWS CLI\)**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch your instances\. Specify the credit specification using the `--credit-specification CpuCredits=` parameter\. Valid credit specifications are `unlimited` and `standard`\.

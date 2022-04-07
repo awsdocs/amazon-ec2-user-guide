@@ -254,7 +254,7 @@ The following problems can cause system status checks to fail:
 + Software issues on the physical host
 + Hardware issues on the physical host that impact network reachability
 
-The recover action is supported only on instances that meet certain characteristics\. For more information, see [Requirements](ec2-instance-recover.md#instance-recovery-requirements)\.
+The recover action is supported only on instances that meet certain characteristics\. For more information, see [Recover your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html)\.
 
 If your instance has a public IP address, it retains the public IP address after recovery\.
 

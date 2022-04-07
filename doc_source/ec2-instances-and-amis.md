@@ -47,7 +47,7 @@ To prevent accidental termination, you can disable instance termination\. If you
 For more information, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 
 **Note**  
-Some AWS resources, such as Amazon EBS volumes and Elastic IP addresses, incur charges regardless of the instance's state\. For more information, see [Avoiding Unexpected Charges](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html) in the *AWS Billing and Cost Management User Guide*\. For more information about Amazon EBS costs, see [Amazon EBS pricing](http://aws.amazon.com/ebs/pricing/)\.
+Some AWS resources, such as Amazon EBS volumes and Elastic IP addresses, incur charges regardless of the instance's state\. For more information, see [Avoiding Unexpected Charges](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html) in the *AWS Billing User Guide*\. For more information about Amazon EBS costs, see [Amazon EBS pricing](http://aws.amazon.com/ebs/pricing/)\.
 
 ## AMIs<a name="amis"></a>
 

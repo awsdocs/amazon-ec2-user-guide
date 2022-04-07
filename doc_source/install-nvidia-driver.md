@@ -106,7 +106,7 @@ These downloads are available to AWS customers only\. By downloading, in order t
 + Install the AWS CLI on your Linux instance and configure default credentials\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
 + IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
 + G5 instances require GRID 13\.1 or later \(or GRID 12\.4 or later\)\.
-+ AWS provided DNS resolution is required for Grid licensing to work\.
++ G3 requires AWS provided DNS resolution for Grid licensing to work\.
 
 #### Amazon Linux and Amazon Linux 2<a name="nvidia-grid-amazon-linux"></a>
 
@@ -547,7 +547,7 @@ These drivers are available to AWS customers only\. By downloading them, you agr
 **Prerequisites**
 + Install the AWS CLI on your Linux instance and configure default credentials\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
 + IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
-+ AWS provided DNS resolution is required for Grid licensing to work\.
++ G3 requires AWS provided DNS resolution for Grid licensing to work\.
 
 #### Amazon Linux and Amazon Linux 2<a name="nvidia-gaming-amazon-linux"></a>
 
@@ -587,16 +587,22 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    [ec2-user ~]$ aws s3 ls --recursive s3://nvidia-gaming/linux/
    ```
 
-1. Add permissions to run the driver installation utility using the following command\.
+1. Extract the gaming driver installation utility from the downloaded `.zip` archive\.
 
    ```
-   [ec2-user ~]$ chmod +x NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ unzip vGPUSW-*vGaming-Linux-Guest-Drivers.zip -d nvidia-drivers
+   ```
+
+1. Add permissions to run the driver installation utility using the following command:
+
+   ```
+   [ec2-user ~]$ chmod +x nvidia-drivers/Linux/NVIDIA-Linux-x86_64*-grid.run
    ```
 
 1. Run the installer using the following command:
 
    ```
-   [ec2-user ~]$ sudo ./NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ sudo ./nvidia-drivers/Linux/NVIDIA-Linux-x86_64*.run
    ```
 **Note**  
 If you are using Amazon Linux 2 with kernel version 5\.10, use the following command to install the NVIDIA gaming drivers\.  
@@ -663,7 +669,7 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
 1. Install the gcc compiler and the kernel headers package for the version of the kernel you are currently running\.
 
    ```
-   [ec2-user ~]$ sudo yum install -y gcc kernel-devel-$(uname -r)
+   [ec2-user ~]$ sudo yum install -y unzip gcc kernel-devel-$(uname -r)
    ```
 
 1. Disable the `nouveau` open source driver for NVIDIA graphics cards\.
@@ -704,16 +710,22 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
    [ec2-user ~]$ aws s3 ls --recursive s3://nvidia-gaming/linux/
    ```
 
-1. Add permissions to run the driver installation utility using the following command\.
+1. Extract the gaming driver installation utility from the downloaded `.zip` archive\.
 
    ```
-   [ec2-user ~]$ chmod +x NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ unzip vGPUSW-*vGaming-Linux-Guest-Drivers.zip -d nvidia-drivers
+   ```
+
+1. Add permissions to run the driver installation utility using the following command:
+
+   ```
+   [ec2-user ~]$ chmod +x nvidia-drivers/Linux/NVIDIA-Linux-x86_64*-grid.run
    ```
 
 1. Run the installer using the following command:
 
    ```
-   [ec2-user ~]$ sudo ./NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ sudo ./nvidia-drivers/Linux/NVIDIA-Linux-x86_64*.run
    ```
 
    When prompted, accept the license agreement and specify the installation options as required \(you can accept the default options\)\.
@@ -774,7 +786,7 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
 1. Install the gcc compiler and the kernel headers package for the version of the kernel you are currently running\.
 
    ```
-   [ec2-user ~]$ sudo yum install -y gcc kernel-devel-$(uname -r)
+   [ec2-user ~]$ sudo yum install -y unzip gcc kernel-devel-$(uname -r)
    ```
 
 1. Download the gaming driver installation utility using the following command:
@@ -789,16 +801,22 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
    [ec2-user ~]$ aws s3 ls --recursive s3://nvidia-gaming/linux/
    ```
 
-1. Add permissions to run the driver installation utility using the following command\.
+1. Extract the gaming driver installation utility from the downloaded `.zip` archive\.
 
    ```
-   [ec2-user ~]$ chmod +x NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ unzip vGPUSW-*vGaming-Linux-Guest-Drivers.zip -d nvidia-drivers
+   ```
+
+1. Add permissions to run the driver installation utility using the following command:
+
+   ```
+   [ec2-user ~]$ chmod +x nvidia-drivers/Linux/NVIDIA-Linux-x86_64*-grid.run
    ```
 
 1. Run the installer using the following command:
 
    ```
-   [ec2-user ~]$ sudo ./NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ sudo ./nvidia-drivers/Linux/NVIDIA-Linux-x86_64*.run
    ```
 
    When prompted, accept the license agreement and specify the installation options as required \(you can accept the default options\)\.
@@ -859,7 +877,7 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
 1. Install the gcc compiler and the kernel headers package for the version of the kernel you are currently running\.
 
    ```
-   [ec2-user ~]$ sudo dnf install -y gcc make elfutils-libelf-devel libglvnd-devel kernel-devel-$(uname -r)
+   [ec2-user ~]$ sudo dnf install -y unzip gcc make elfutils-libelf-devel libglvnd-devel kernel-devel-$(uname -r)
    ```
 
 1. Download the gaming driver installation utility using the following command:
@@ -874,16 +892,22 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
    [ec2-user ~]$ aws s3 ls --recursive s3://nvidia-gaming/linux/
    ```
 
-1. Add permissions to run the driver installation utility using the following command\.
+1. Extract the gaming driver installation utility from the downloaded `.zip` archive\.
 
    ```
-   [ec2-user ~]$ chmod +x NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ unzip vGPUSW-*vGaming-Linux-Guest-Drivers.zip -d nvidia-drivers
+   ```
+
+1. Add permissions to run the driver installation utility using the following command:
+
+   ```
+   [ec2-user ~]$ chmod +x nvidia-drivers/Linux/NVIDIA-Linux-x86_64*-grid.run
    ```
 
 1. Run the installer using the following command:
 
    ```
-   [ec2-user ~]$ sudo ./NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ sudo ./nvidia-drivers/Linux/NVIDIA-Linux-x86_64*.run
    ```
 
    When prompted, accept the license agreement and specify the installation options as required \(you can accept the default options\)\.
@@ -950,7 +974,7 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
 1. Install the gcc compiler and the kernel headers package for the version of the kernel you are currently running\.
 
    ```
-   $ sudo apt-get install -y gcc make linux-headers-$(uname -r)
+   $ sudo apt-get install -y unzip gcc make linux-headers-$(uname -r)
    ```
 
 1. Disable the `nouveau` open source driver for NVIDIA graphics cards\.
@@ -991,10 +1015,10 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
    [ec2-user ~]$ aws s3 ls --recursive s3://nvidia-gaming/linux/
    ```
 
-1. Extract the downloaded .zip file.
+1. Extract the gaming driver installation utility from the downloaded `.zip` archive\.
 
    ```
-   [ec2-user ~]$ unzip GRID-*vGaming-Linux-Guest-Drivers.zip -d nvidia-drivers
+   [ec2-user ~]$ unzip vGPUSW-*vGaming-Linux-Guest-Drivers.zip -d nvidia-drivers
    ```
 
 1. Add permissions to run the driver installation utility using the following command:

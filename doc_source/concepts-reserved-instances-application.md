@@ -42,7 +42,7 @@ You can find out about the charges and fees to your account by viewing the [AWS 
 
 You can view the charges online, or you can download a CSV file\.
 
-You can also track your Reserved Instance utilization using the AWS Cost and Usage Report\. For more information, see [Reserved Instances ](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage-ri.html) under Cost and Usage Report in the *AWS Billing and Cost Management User Guide*\.
+You can also track your Reserved Instance utilization using the AWS Cost and Usage Report\. For more information, see [Reserved Instances ](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage-ri.html) under Cost and Usage Report in the *AWS Billing User Guide*\.
 
 ## Reserved Instances and consolidated billing<a name="concepts-reserved-instances-billing"></a>
 
