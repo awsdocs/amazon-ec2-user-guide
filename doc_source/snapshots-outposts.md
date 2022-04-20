@@ -6,7 +6,7 @@ By default, snapshots of EBS volumes on an Outpost are stored in Amazon S3 in th
 
 This topic provides information about working with Amazon EBS local snapshots on Outposts\. For more information about Amazon EBS snapshots and about working with snapshots in an AWS Region, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
-For more information about AWS Outposts, see [ AWS Outposts Features](http://aws.amazon.com/outposts/features/) and the [AWS Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html)\. For pricing information, see [AWS Outposts pricing](http://aws.amazon.com/outposts/pricing/)\.
+For more information about AWS Outposts, see [AWS Outposts Features](http://aws.amazon.com/outposts/features/) and the [AWS Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html)\. For pricing information, see [AWS Outposts pricing](http://aws.amazon.com/outposts/pricing/)\.
 
 **Topics**
 + [Frequently asked questions](#faq)
@@ -42,16 +42,19 @@ Amazon S3 storage capacity becomes available within 72 hours after deleting loca
 **8\. How can I ensure that I do not run out of Amazon S3 capacity on my Outpost?**  
 We recommend that you use Amazon CloudWatch alarms to monitor your Amazon S3 storage capacity, and delete snapshots and volumes that you no longer need to avoid running out of storage capacity\. If you are using Amazon Data Lifecycle Manager to automate the lifecycle of local snapshots, ensure that your snapshot retention policies do not retain snapshots for longer than is needed\.
 
-**9\. Can I use local snapshots and AMIs backed by local snapshots with Spot Instances and Spot Fleet?**  
+**9\. What happens if I run out of local Amazon S3 capacity on my Outposts?**  
+If you run out of local Amazon S3 capacity on your Outposts, Amazon Data Lifecycle Manager will not be able to successfully create local snapshots on the Outposts\. Amazon Data Lifecycle Manager will attempt to create the local snapshots on the Outposts, but the snapshots immediately transition to the `error` state and they are eventually deleted by Amazon Data Lifecycle Manager\. We recommend that you use the `SnapshotsCreateFailed` Amazon CloudWatch metric to monitor your snapshot lifecycle policies for snapshot creation failures\. For more information, see [Monitor your policies using Amazon CloudWatch](monitor-dlm-cw-metrics.md)\.
+
+**10\. Can I use local snapshots and AMIs backed by local snapshots with Spot Instances and Spot Fleet?**  
 No, you can't use local snapshots or AMIs backed by local snapshots to launch Spot Instances or a Spot Fleet\.
 
-**10\. Can I use local snapshots and AMIs backed by local snapshots with Amazon EC2 Auto Scaling?**  
+**11\. Can I use local snapshots and AMIs backed by local snapshots with Amazon EC2 Auto Scaling?**  
 Yes, you can use local snapshots and AMIs backed by local snapshots to launch Auto Scaling groups in a subnet that is on the same Outpost as the snapshots\. The Amazon EC2 Auto Scaling group service\-linked role must have permission to use the KMS key used to encrypt the snapshots\.  
 You can't use local snapshots or AMIs backed by local snapshots to launch Auto Scaling groups in an AWS Region\.
 
 ## Prerequisites<a name="prereqs"></a>
 
-To store snapshots on an Outpost, you must have an Outpost that is provisioned with Amazon S3 on Outposts\. For more information about Amazon S3 on Outposts, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html) in the *Amazon Simple Storage Service Developer Guide*\.
+To store snapshots on an Outpost, you must have an Outpost that is provisioned with Amazon S3 on Outposts\. For more information about Amazon S3 on Outposts, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html) in the *Amazon Simple Storage Service User Guide*\.
 
 ## Considerations<a name="considerations"></a>
 

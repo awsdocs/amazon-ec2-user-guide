@@ -119,3 +119,7 @@ The following procedure steps you through using SCP to transfer a file using the
      ```
      scp -i /path/my-key-pair.pem ec2-user@\[my-instance-IPv6-address\]:path/my-file.txt path/my-file2.txt
      ```
+
+## Troubleshoot<a name="AccessingInstancesLinux-troubleshoot"></a>
+
+If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.

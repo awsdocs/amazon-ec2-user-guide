@@ -1,6 +1,6 @@
 # Bring your own IP addresses \(BYOIP\) in Amazon EC2<a name="ec2-byoip"></a>
 
-You can bring part or all of your publicly routable IPv4 or IPv6 address range from your on\-premises network to your AWS account\. You continue to own the address range, but AWS advertises it on the internet by default\. After you bring the address range to AWS, it appears in your AWS account as an address pool\.
+You can bring part or all of your publicly routable IPv4 or IPv6 address range from your on\-premises network to your AWS account\. You continue to control the address range, but by default, AWS advertises it on the internet\. After you bring the address range to AWS, it appears in your AWS account as an address pool\.
 
 BYOIP is not available in all Regions and for all resources\. For a list of supported Regions and resources, see the [FAQ for Bring Your Own IP](https://aws.amazon.com/vpc/faqs/#Bring_Your_Own_IP)\.
 
@@ -8,58 +8,67 @@ BYOIP is not available in all Regions and for all resources\. For a list of supp
 The following steps describe how to bring your own IP address range for use in Amazon EC2 only\. For steps to bring your own IP address range for use in AWS Global Accelerator, see [Bring your own IP addresses \(BYOIP\)](https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html) in the *AWS Global Accelerator Developer Guide*\.
 
 **Topics**
++ [BYOIP definitions](#byoip-definitions)
 + [Requirements and quotas](#byoip-requirements)
-+ [Configure your BYOIP address range](#prepare-for-byoip)
++ [Onboarding prerequisites for your BYOIP address range](#prepare-for-byoip)
++ [Onboard your BYOIP](#byoip-onboard)
 + [Work with your address range](#byoip-working-with)
++ [Validate your BYOIP](#byoip-validation)
 + [Learn more](#byoip-learn-more)
+
+## BYOIP definitions<a name="byoip-definitions"></a>
++ **X\.509 Self\-sign certificate** — A certificate standard most commonly used to encrypt and authenticate data within a network\. It is a certificate used by AWS to validate control over IP space from an RDAP record\. For more information about X\.509 certificates, see [RFC 3280](https://datatracker.ietf.org/doc/html/rfc3280)\.
++ **Registry Data Access Protocol \(RDAP\)** — A querying resource for registration data\. It is updated by customers and used by AWS to verify control of an address space in the Regional Internet Registries \(RIR\)\.
++ **Route Origin Authorization \(ROA\)** — An object created by RIRs for customers to authenticate IP advertisement in particular autonomous systems\. For an overview, see [Route Origin Authorizations \(ROAs\)](https://www.arin.net/resources/manage/rpki/roa_request/) on the ARIN website\.
++ **Local Internet Registry \(LIR\)** — Organizations such as internet service providers that allocate a block of IP addresses from a RIR for their customers\.
 
 ## Requirements and quotas<a name="byoip-requirements"></a>
 + The address range must be registered with your regional internet registry \(RIR\), such as the American Registry for Internet Numbers \(ARIN\), Réseaux IP Européens Network Coordination Centre \(RIPE\), or Asia\-Pacific Network Information Centre \(APNIC\)\. It must be registered to a business or institutional entity and cannot be registered to an individual person\.
 + The most specific IPv4 address range that you can bring is /24\.
 + The most specific IPv6 address range that you can bring is /48 for CIDRs that are publicly advertised, and /56 for CIDRs that are [not publicly advertised](#byoip-provision-non-public)\.
++ ROAs are not required for CIDR ranges that are not publicly advertised, but the RDAP records still need to be updated\. 
 + You can bring each address range to one Region at a time\.
 + You can bring a total of five IPv4 and IPv6 address ranges per Region to your AWS account\.
-+ You cannot share your IP address range with other accounts using AWS Resource Access Manager \(AWS RAM\)\.
++ You cannot share your IP address range with other accounts using AWS RAM unless you use Amazon VPC IP Address Manager \(IPAM\) and integrate IPAM with AWS Organizations\. For more information, see [Integrate IPAM with AWS Organizations](https://docs.aws.amazon.com/vpc/latest/ipam/enable-integ-ipam.html) in the *Amazon VPC IPAM User Guide*\.
 + The addresses in the IP address range must have a clean history\. We might investigate the reputation of the IP address range and reserve the right to reject an IP address range if it contains an IP address that has a poor reputation or is associated with malicious behavior\.
-+ You must own the IP address that you use\. This means that only the following are supported:
-  + ARIN \- "Direct Allocation" and "Direct Assignment" network types
-  + RIPE \- "ALLOCATED PA", "LEGACY", "ASSIGNED PI", and "ALLOCATED\-BY\-RIR" allocation statuses
-  + APNIC – "ALLOCATED PORTABLE" and "ASSIGNED PORTABLE" allocation statuses
++ AWS doesn’t support legacy allocations\.
++ For LIRs, it is common that they use a manual process to update their records\. This can take days to deploy depending on the LIR\.
++ A single ROA object and RDAP record are needed for a large CIDR block\. You can bring multiple smaller CIDR blocks from that range to AWS, even across multiple Regions, using the single object and record\.
 
-## Configure your BYOIP address range<a name="prepare-for-byoip"></a>
+## Onboarding prerequisites for your BYOIP address range<a name="prepare-for-byoip"></a>
 
-The process to configure BYOIP has these phases:
-+ **Preparation**
+The onboarding process for BYOIP has two phases, for which you must perform three steps\. These steps correspond to the steps depicted in the following diagram\.
 
-  For authentication purposes, create an RSA key pair and use it to generate a self\-signed X\.509 certificate\.
-+ **RIR configuration** 
+**Preparation phase**
 
-  Register with the Resource Public Key Infrastructure \(RPKI\) of your RIR, and file a Route Origin Authorization \(ROA\) that defines the desired address range, the autonomous system numbers \(ASNs\) allowed to advertise the address range, and an expiration date\. Upload the self\-signed certificate to your RDAP record comments\. 
-+ **Amazon configuration**
+1\. [Create an RSA key pair](#byoip-certificate), and use it to generate a self\-signed X\.509 certificate for authentication purposes\.
 
-  Sign a CIDR authorization context message with the private RSA key that you created, and upload the message and signature to Amazon using the AWS Command Line Interface\.
+**RIR configuration phase**
 
-To bring on multiple address ranges, you must repeat this process with each address range\. Bringing on an address range has no effect on any address ranges that you brought on previously\.
+2\. [Upload the self\-signed certificate](#byoip-add-certificate) to your RDAP record comments\.
 
-To configure BYOIP, complete the following tasks\. For some tasks, you run Linux commands\. On Windows, you can use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) to run the Linux commands\.
+3\. [Create an ROA object](#byoip-create-roa-object) in your RIR\. The ROA defines the desired address range, the Autonomous System Numbers \(ASNs\) allowed to advertise the address range, and an expiration date to register with the Resource Public Key Infrastructure \(RPKI\) of your RIR\.
 
-**Topics**
-+ [Create a key pair and certificate](#byoip-certificate)
-+ [Create an ROA object in your RIR](#byoip-create-roa-object)
-+ [Update the RDAP record in your RIR](#ee)
-+ [Provision the address range in AWS](#byoip-provision)
-+ [Advertise the address range through AWS](#byoip-advertise)
-+ [Deprovision the address range](#byoip-deprovision)
+**Note**  
+An ROA is not required for non\-publicly advertised IPv6 address space\.
 
-### Create a key pair and certificate<a name="byoip-certificate"></a>
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/byoip-preonboarding.png)
 
-Use the following procedure to create a self\-signed X\.509 certificate and add it to the RDAP record for your RIR\. The openssl commands require OpenSSL version 1\.0\.2 or later\.
+To bring on multiple non\-contiguous address ranges, you must repeat this process with each address range\. However, the preparation and RIR configuration steps don't need to be repeated if splitting a contiguous block across several different Regions\.
 
-Copy the commands below and replace only the placeholder values \(in colored italic text\)\. 
+Bringing on an address range has no effect on any address ranges that you brought on previously\.
+
+Before onboarding your address range, complete the following prerequisites\. For some tasks, you run Linux commands\. On Windows, you can use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) to run the Linux commands\.
+
+### 1\. Create a key pair for AWS authentication<a name="byoip-certificate"></a>
+
+Use the following procedure to create a self\-signed X\.509 certificate and add it to the RDAP record for your RIR\. This key pair is used to authenticate the address range with the RIR\. The openssl commands require OpenSSL version 1\.0\.2 or later\.
+
+Copy the following commands and replace only the placeholder values \(in colored italic text\)\. 
 
 **To create a self\-signed X\.509 certificate and add it to the RDAP record**
 
-This procedure follows the best practice of encrypting your private RSA key and requiring a pass phrase to access it\.
+This procedure follows the best practice of encrypting your private RSA key and requiring a passphrase to access it\.
 
 1. Generate an RSA 2048\-bit key pair as shown in the following\.
 
@@ -67,7 +76,7 @@ This procedure follows the best practice of encrypting your private RSA key and 
    $ openssl genpkey -aes256 -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out private-key.pem
    ```
 
-   The `-aes256` parameter specifies the algorithm used to encrypt the private key\. The command returns the following output, including prompts to set a pass phrase:
+   The `-aes256` parameter specifies the algorithm used to encrypt the private key\. The command returns the following output, including prompts to set a passphrase:
 
    ```
    ......+++
@@ -82,7 +91,7 @@ This procedure follows the best practice of encrypting your private RSA key and 
    $ openssl pkey -in private-key.pem -text
    ```
 
-   This returns a pass\-phrase prompt and the contents of the key, which shouild be similar to the following:
+   This returns a passphrase prompt and the contents of the key, which should be similar to the following:
 
    ```
    Enter pass phrase for private-key.pem: xxxxxxx
@@ -254,6 +263,8 @@ This procedure follows the best practice of encrypting your private RSA key and 
    Common Name (eg, fully qualified host name) []:example.com
    Email Address []:
    ```
+**Note**  
+The Common Name is not needed for AWS provisioning\. It can be any internal or public domain name\.
 
    You can inspect the certificate with the following command:
 
@@ -263,23 +274,38 @@ This procedure follows the best practice of encrypting your private RSA key and 
 
    The output should be a long, PEM\-encoded string without line breaks, prefaced by `-----BEGIN CERTIFICATE-----` and followed by `-----END CERTIFICATE-----`\.
 
-### Create an ROA object in your RIR<a name="byoip-create-roa-object"></a>
-
-Create an ROA object to authorize Amazon ASNs 16509 and 14618 to advertise your address range, as well as the ASNs that are currently authorized to advertise the address range\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, consult your RIR:
-+ ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
-+ RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
-+ APNIC — [Route Management](https://www.apnic.net/wp-content/uploads/2017/01/route-roa-management-guide.pdf)
-
-### Update the RDAP record in your RIR<a name="ee"></a>
+### 2\. Upload the RDAP record to your RIR<a name="byoip-add-certificate"></a>
 
 Add the certificate that you previously created to the RDAP record for your RIR\. Be sure to include the `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` strings before and after the encoded portion\. All of this content must be on a single, long line\. The procedure for updating RDAP depends on your RIR:
 + For ARIN, add the certificate in the "Public Comments" section for your address range\. Do not add it to the comments section for your organization\.
 + For RIPE, add the certificate as a new "descr" field for your address range\. Do not add it to the comments section for your organization\.
 + For APNIC, email the public key to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field for your address range\. Send the email using the APNIC authorized contact for the IP addresses\.
 
-### Provision the address range in AWS<a name="byoip-provision"></a>
+### 3\. Create an ROA object in your RIR<a name="byoip-create-roa-object"></a>
 
-When you provision an address range for use with AWS, you are confirming that you own the address range and are authorizing Amazon to advertise it\. We also verify that you own the address range through a signed authorization message\. This message is signed with the self\-signed X\.509 key pair that you used when updating the RDAP record with the X\.509 certificate\. AWS requires a cryptographically signed authorization message that it presents to the RIR\. The RIR authenticates the signature against the certificate that you added to RDAP, and checks the authorization details against the ROA\.
+Create an ROA object to authorize the Amazon ASNs 16509 and 14618 to advertise your address range, as well as the ASNs that are currently authorized to advertise the address range\. For the AWS GovCloud \(US\) Region, authorize ASN 8987\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, consult your RIR:
++ ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
++ RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
++ APNIC — [Route Management](https://www.apnic.net/wp-content/uploads/2017/01/route-roa-management-guide.pdf)
+
+When you migrate advertisements from an on\-premises workload to AWS, you must create an ROA for your existing ASN before creating the ROAs for Amazon's ASNs\. Otherwise, you might see an impact to your existing routing and advertisements\.
+
+**Note**  
+This step is not required for non\-publicly advertised IPv6 address space\.
+
+## Onboard your BYOIP<a name="byoip-onboard"></a>
+
+ The onboarding process for BYOIP has the following tasks depending on your needs: 
+
+**Topics**
++ [Provision a publicly advertised address range in AWS](#byoip-provision)
++ [Provision an IPv6 address range that's not publicly advertised](#byoip-provision-non-public)
++ [Advertise the address range through AWS](#byoip-advertise)
++ [Deprovision the address range](#byoip-deprovision)
+
+### Provision a publicly advertised address range in AWS<a name="byoip-provision"></a>
+
+When you provision an address range for use with AWS, you are confirming that you control the address range and are authorizing Amazon to advertise it\. We also verify that you control the address range through a signed authorization message\. This message is signed with the self\-signed X\.509 key pair that you used when updating the RDAP record with the X\.509 certificate\. AWS requires a cryptographically signed authorization message that it presents to the RIR\. The RIR authenticates the signature against the certificate that you added to RDAP, and checks the authorization details against the ROA\.
 
 **To provision the address range**
 
@@ -296,7 +322,7 @@ When you provision an address range for use with AWS, you are confirming that yo
    Replace the account number, address range, and expiry date with your own values to create a message resembling the following:
 
    ```
-   1|aws|0123456789AB|198.51.100.0/24|20211231|SHA256|RSAPSS
+   text_message="1|aws|0123456789AB|198.51.100.0/24|20211231|SHA256|RSAPSS"
    ```
 
    This is not to be confused with an ROA message, which has a similar appearance\.
@@ -310,7 +336,7 @@ When you provision an address range for use with AWS, you are confirming that yo
 We recommend that you copy and paste this command\. Except for the message content, do not modify or replace any of the values\.
 
    ```
-   $ echo -n "1|aws|123456789012|198.51.100.0/24|20211231|SHA256|RSAPSS" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private-key.pem -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n"
+   signed_message=$( echo -n $text_message | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private-key.pem -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
    ```
 
 1. 
@@ -318,9 +344,11 @@ We recommend that you copy and paste this command\. Except for the message conte
 **Provision address**
 
    Use the AWS CLI [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command to provision the address range\. The `--cidr-authorization-context` option uses the message and signature strings that you created previously\.
+**Important**  
+You must specify the AWS Region where the BYOIP range should be provisioned if it differs from your [AWS CLI configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) `Default region name`\.
 
    ```
-   aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="message",Signature="signature"
+   aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message" --region us-east-1
    ```
 
    Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\.
@@ -329,17 +357,17 @@ We recommend that you copy and paste this command\. Except for the message conte
 
 **Monitor progress**
 
-   It can take up to three weeks to complete the provisioning process for publicly advertisable ranges\. Use the [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command to monitor progress, as in this example:
+   It can take up to one week to complete the provisioning process for publicly advertisable ranges\. Use the [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command to monitor progress, as in this example:
 
    ```
-   aws ec2 describe-byoip-cidrs --max-results 5
+   aws ec2 describe-byoip-cidrs --max-results 5 --region us-east-1
    ```
 
    If there are issues during provisioning and the status goes to `failed-provision`, you must run the `provision-byoip-cidr` command again after the issues have been resolved\.
 
-#### Provision an IPv6 address range that's not publicly advertised<a name="byoip-provision-non-public"></a>
+### Provision an IPv6 address range that's not publicly advertised<a name="byoip-provision-non-public"></a>
 
-By default, an address range is provisioned to be publicly advertised to the internet\. You can provision an IPv6 address range that will not be publicly advertised\. For routes that are not publicly advertisable, the provisioning process generally completes within minutes\. When you associate an IPv6 CIDR block from a non\-public address range with a VPC, the IPv6 CIDR can only be accessed through an AWS Direct Connect connection\. 
+By default, an address range is provisioned to be publicly advertised to the internet\. You can provision an IPv6 address range that will not be publicly advertised\. For routes that are not publicly advertisable, the provisioning process generally completes within minutes\. When you associate an IPv6 CIDR block from a non\-public address range with a VPC, the IPv6 CIDR can only be accessed through hybrid connectivity options that support IPv6, such as [AWS Direct Connect](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html), [AWS Site\-to\-Site VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html), or [Amazon VPC Transit Gateways](https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html)\.
 
 An ROA is not required to provision a non\-public address range\.
 
@@ -349,7 +377,7 @@ You can only specify whether an address range is publicly advertised during prov
 To provision an IPv6 address range that will not be publicly advertised, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\.
 
 ```
-aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message" --no-publicly-advertisable
+aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message" --no-publicly-advertisable --region us-east-1
 ```
 
 ### Advertise the address range through AWS<a name="byoip-advertise"></a>
@@ -369,13 +397,13 @@ To minimize down time, you can configure your AWS resources to use an address fr
 To advertise the address range, use the following [advertise\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/advertise-byoip-cidr.html) command\.
 
 ```
-aws ec2 advertise-byoip-cidr --cidr address-range
+aws ec2 advertise-byoip-cidr --cidr address-range --region us-east-1
 ```
 
 To stop advertising the address range, use the following [withdraw\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/withdraw-byoip-cidr.html) command\.
 
 ```
-aws ec2 withdraw-byoip-cidr --cidr address-range
+aws ec2 withdraw-byoip-cidr --cidr address-range --region us-east-1
 ```
 
 ### Deprovision the address range<a name="byoip-deprovision"></a>
@@ -387,25 +415,25 @@ You cannot deprovision a portion of the address range\. If you want to use a mor
 \(IPv4\) To release each Elastic IP address, use the following [release\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/release-address.html) command\.
 
 ```
-aws ec2 release-address --allocation-id eipalloc-12345678abcabcabc
+aws ec2 release-address --allocation-id eipalloc-12345678abcabcabc --region us-east-1
 ```
 
 \(IPv6\) To disassociate an IPv6 CIDR block, use the following [disassociate\-vpc\-cidr\-block](https://docs.aws.amazon.com/cli/latest/reference/ec2/disassociate-vpc-cidr-block.html) command\.
 
 ```
-aws ec2 disassociate-vpc-cidr-block --association-id vpc-cidr-assoc-12345abcd1234abc1
+aws ec2 disassociate-vpc-cidr-block --association-id vpc-cidr-assoc-12345abcd1234abc1 --region us-east-1
 ```
 
 To stop advertising the address range, use the following [withdraw\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/withdraw-byoip-cidr.html) command\.
 
 ```
-aws ec2 withdraw-byoip-cidr --cidr address-range
+aws ec2 withdraw-byoip-cidr --cidr address-range --region us-east-1
 ```
 
 To deprovision the address range, use the following [deprovision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/deprovision-byoip-cidr.html) command\.
 
 ```
-aws ec2 deprovision-byoip-cidr --cidr address-range
+aws ec2 deprovision-byoip-cidr --cidr address-range --region us-east-1
 ```
 
 It can take up to a day to deprovision an address range\.
@@ -421,7 +449,7 @@ You can create an Elastic IP address from your IPv4 address pool and use it with
 To view information about the IPv4 address pools that you've provisioned in your account, use the following [describe\-public\-ipv4\-pools](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-public-ipv4-pools.html) command\.
 
 ```
-aws ec2 describe-public-ipv4-pools
+aws ec2 describe-public-ipv4-pools --region us-east-1
 ```
 
 To create an Elastic IP address from your IPv4 address pool, use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) command\. You can use the `--public-ipv4-pool` option to specify the ID of the address pool returned by `describe-byoip-cidrs`\. Or you can use the `--address` option to specify an address from the address range that you provisioned\.
@@ -431,30 +459,183 @@ To create an Elastic IP address from your IPv4 address pool, use the [allocate\-
 To view information about the IPv6 address pools that you've provisioned in your account, use the following [describe\-ipv6\-pools](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-ipv6-pools.html) command\.
 
 ```
-aws ec2 describe-ipv6-pools
+aws ec2 describe-ipv6-pools --region us-east-1
 ```
 
 To create a VPC and specify an IPv6 CIDR from your IPv6 address pool, use the following [create\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-vpc.html) command\. To let Amazon choose the IPv6 CIDR from your IPv6 address pool, omit the `--ipv6-cidr-block` option\.
 
 ```
-aws ec2 create-vpc --cidr-block 10.0.0.0/16 --ipv6-cidr-block ipv6-cidr --ipv6-pool pool-id
+aws ec2 create-vpc --cidr-block 10.0.0.0/16 --ipv6-cidr-block ipv6-cidr --ipv6-pool pool-id --region us-east-1
 ```
 
 To associate an IPv6 CIDR block from your IPv6 address pool with a VPC, use the following [associate\-vpc\-cidr\-block](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-vpc-cidr-block.html) command\. To let Amazon choose the IPv6 CIDR from your IPv6 address pool, omit the `--ipv6-cidr-block` option\.
 
 ```
-aws ec2 associate-vpc-cidr-block --vpc-id vpc-123456789abc123ab --ipv6-cidr-block ipv6-cidr --ipv6-pool pool-id
+aws ec2 associate-vpc-cidr-block --vpc-id vpc-123456789abc123ab --ipv6-cidr-block ipv6-cidr --ipv6-pool pool-id --region us-east-1
 ```
 
 To view your VPCs and the associated IPv6 address pool information, use the [describe\-vpcs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html) command\. To view information about associated IPv6 CIDR blocks from a specific IPv6 address pool, use the following [get\-associated\-ipv6\-pool\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-associated-ipv6-pool-cidrs.html) command\.
 
 ```
-aws ec2 get-associated-ipv6-pool-cidrs --pool-id pool-id
+aws ec2 get-associated-ipv6-pool-cidrs --pool-id pool-id --region us-east-1
 ```
 
 If you disassociate the IPv6 CIDR block from your VPC, it's released back into your IPv6 address pool\.
 
 For more information about working with IPv6 CIDR blocks in the VPC console, see [Working with VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html) in the *Amazon VPC User Guide*\.
+
+## Validate your BYOIP<a name="byoip-validation"></a>
+
+1. Validate the self\-signed x\.509 key pair
+
+   Validate that the certificate has been uploaded and is valid via the whois command\.
+
+   For ARIN, use `whois -h whois.arin.net r + 2001:0DB8:6172::/48` to look up the RDAP record for your address range\. Check the `remarks` section for the `NetRange` \(network range\) in the command output\. The certificate should be added in the `Public Comments` section for the address range\.
+
+   You can inspect the `remarks` containing the certificate using the following command:
+
+   ```
+   whois -h whois.arin.net r + 2001:0DB8:6172::/48 | grep Comment | grep BEGIN
+   ```
+
+   This returns output with the contents of the key, which should be similar to the following:
+
+   ```
+   remarks:
+   -----BEGIN CERTIFICATE-----
+   MIID1zCCAr+gAwIBAgIUBkRPNSLrPqbRAFP8RDAHSP+I1TowDQYJKoZIhvcNAQE
+   LBQAwezELMAkGA1UEBhMCTloxETAPBgNVBAgMCEF1Y2tsYW5kMREwDwYDVQQHDA
+   hBdWNrbGFuZDEcMBoGA1UECgwTQW1hem9uIFdlYiBTZXJ2aWNlczETMBEGA1UEC
+   wwKQllPSVAgRGVtbzETMBEGA1UEAwwKQllPSVAgRGVtbzAeFw0yMTEyMDcyMDI0
+   NTRaFw0yMjEyMDcyMDI0NTRaMHsxCzAJBgNVBAYTAk5aMREwDwYDVQQIDAhBdWN
+   rbGFuZDERMA8GA1UEBwwIQXVja2xhbmQxHDAaBgNVBAoME0FtYXpvbiBXZWIgU2
+   VydmljZXMxEzARBgNVBAsMCkJZT0lQIERlbW8xEzARBgNVBAMMCkJZT0lQIERlb
+   W8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCfmacvDp0wZ0ceiXXc
+   R/q27mHI/U5HKt7SST4X2eAqufR9wXkfNanAEskgAseyFypwEEQr4CJijI/5hp9
+   prh+jsWHWwkFRoBRR9FBtwcU/45XDXLga7D3stsI5QesHVRwOaXUdprAnndaTug
+   mDPkD0vrl475JWDSIm+PUxGWLy+60aBqiaZq35wU/x+wXlAqBXg4MZK2KoUu27k
+   Yt2zhmy0S7Ky+oRfRJ9QbAiSu/RwhQbh5Mkp1ZnVIc7NqnhdeIW48QaYjhMlUEf
+   xdaqYUinzz8KpjfADZ4Hvqj9jWZ/eXo/9b2rGlHWkJsbhr0VEUyAGu1bwkgcdww
+   3A7NjOxQbAgMBAAGjUzBRMB0GA1UdDgQWBBStFyujN6SYBr2glHpGt0XGF7GbGT
+   AfBgNVHSMEGDAWgBStFyujN6SYBr2glHpGt0XGF7GbGTAPBgNVHRMBAf8EBTADA
+   QH/MA0GCSqGSIb3DQEBCwUAA4IBAQBX6nn6YLhz521lfyVfxY0t6o3410bQAeAF
+   08ud+ICtmQ4IO4A4B7zV3zIVYr0clrOOaFyLxngwMYN0XY5tVhDQqk4/gmDNEKS
+   Zy2QkX4Eg0YUWVzOyt6fPzjOvJLcsqc1hcF9wySL507XQz76Uk5cFypBOzbnk35
+   UkWrzA9KK97cXckfIESgK/k1N4ecwxwG6VQ8mBGqVpPpey+dXpzzzv1iBKN/VY4
+   ydjgH/LBfdTsVarmmy2vtWBxwrqkFvpdhSGCvRDl/qdO/GIDJi77dmZWkh/ic90
+   MNk1f38gs1jrCj8lThoar17Uo9y/Q5qJIsoNPyQrJRzqFU9F3FBjiPJF
+   -----END CERTIFICATE-----
+   ```
+
+   For RIPE, use `whois -r -h whois.ripe.net 2001:0DB8:7269::/48` to look up the RDAP record for your address range\. Check the `descr` section for the `inetnum` object \(network range\) in the command output\. The certificate should be added as a new `desc` field for the address range\.
+
+   You can inspect the `descr` containing the certificate using the following command:
+
+   ```
+   whois -r -h whois.ripe.net 2001:0DB8:7269::/48 | grep descr | grep BEGIN
+   ```
+
+   This returns output with the contents of the key, which should be similar to the following:
+
+   ```
+   descr:
+   -----BEGIN CERTIFICATE-----MIID1zCCAr+gAwIBAgIUBkRPNSLrPqbRAFP8
+   RDAHSP+I1TowDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCTloxETAPBgNVBAg
+   MCEF1Y2tsYW5kMREwDwYDVQQHDAhBdWNrbGFuZDEcMBoGA1UECgwTQW1hem9uIF
+   dlYiBTZXJ2aWNlczETMBEGA1UECwwKQllPSVAgRGVtbzETMBEGA1UEAwwKQllPS
+   VAgRGVtbzAeFw0yMTEyMDcyMDI0NTRaFw0yMjEyMDcyMDI0NTRaMHsxCzAJBgNV
+   BAYTAk5aMREwDwYDVQQIDAhBdWNrbGFuZDERMA8GA1UEBwwIQXVja2xhbmQxHDA
+   aBgNVBAoME0FtYXpvbiBXZWIgU2VydmljZXMxEzARBgNVBAsMCkJZT0lQIERlbW
+   8xEzARBgNVBAMMCkJZT0lQIERlbW8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwg
+   gEKAoIBAQCfmacvDp0wZ0ceiXXcR/q27mHI/U5HKt7SST4X2eAqufR9wXkfNanA
+   EskgAseyFypwEEQr4CJijI/5hp9prh+jsWHWwkFRoBRR9FBtwcU/45XDXLga7D3
+   stsI5QesHVRwOaXUdprAnndaTugmDPkD0vrl475JWDSIm+PUxGWLy+60aBqiaZq
+   35wU/x+wXlAqBXg4MZK2KoUu27kYt2zhmy0S7Ky+oRfRJ9QbAiSu/RwhQbh5Mkp
+   1ZnVIc7NqnhdeIW48QaYjhMlUEfxdaqYUinzz8KpjfADZ4Hvqj9jWZ/eXo/9b2r
+   GlHWkJsbhr0VEUyAGu1bwkgcdww3A7NjOxQbAgMBAAGjUzBRMB0GA1UdDgQWBBS
+   tFyujN6SYBr2glHpGt0XGF7GbGTAfBgNVHSMEGDAWgBStFyujN6SYBr2glHpGt0
+   XGF7GbGTAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBX6nn6Y
+   Lhz521lfyVfxY0t6o3410bQAeAF08ud+ICtmQ4IO4A4B7zV3zIVYr0clrOOaFyL
+   xngwMYN0XY5tVhDQqk4/gmDNEKSZy2QkX4Eg0YUWVzOyt6fPzjOvJLcsqc1hcF9
+   wySL507XQz76Uk5cFypBOzbnk35UkWrzA9KK97cXckfIESgK/k1N4ecwxwG6VQ8
+   mBGqVpPpey+dXpzzzv1iBKN/VY4ydjgH/LBfdTsVarmmy2vtWBxwrqkFvpdhSGC
+   vRDl/qdO/GIDJi77dmZWkh/ic90MNk1f38gs1jrCj8lThoar17Uo9y/Q5qJIsoN
+   PyQrJRzqFU9F3FBjiPJF
+   -----END CERTIFICATE-----
+   ```
+
+   For APNIC, use `whois -h whois.apnic.net 2001:0DB8:6170::/48` to look up the RDAP record for your BYOIP address range\. Check the `remarks` section for the `inetnum` object \(network range\) in the command output\. The certificate should be added as a new `desc` field for the address range\.
+
+   You can inspect the `descr` containing the certificate using the following command:
+
+   ```
+   whois -h whois.apnic.net 2001:0DB8:6170::/48 | grep remarks | grep BEGIN
+   ```
+
+   This returns output with the contents of the key, which should be similar to the following:
+
+   ```
+   remarks:
+   -----BEGIN CERTIFICATE-----
+   MIID1zCCAr+gAwIBAgIUBkRPNSLrPqbRAFP8RDAHSP+I1TowDQYJKoZIhvcNAQE
+   LBQAwezELMAkGA1UEBhMCTloxETAPBgNVBAgMCEF1Y2tsYW5kMREwDwYDVQQHDA
+   hBdWNrbGFuZDEcMBoGA1UECgwTQW1hem9uIFdlYiBTZXJ2aWNlczETMBEGA1UEC
+   wwKQllPSVAgRGVtbzETMBEGA1UEAwwKQllPSVAgRGVtbzAeFw0yMTEyMDcyMDI0
+   NTRaFw0yMjEyMDcyMDI0NTRaMHsxCzAJBgNVBAYTAk5aMREwDwYDVQQIDAhBdWN
+   rbGFuZDERMA8GA1UEBwwIQXVja2xhbmQxHDAaBgNVBAoME0FtYXpvbiBXZWIgU2
+   VydmljZXMxEzARBgNVBAsMCkJZT0lQIERlbW8xEzARBgNVBAMMCkJZT0lQIERlb
+   W8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCfmacvDp0wZ0ceiXXc
+   R/q27mHI/U5HKt7SST4X2eAqufR9wXkfNanAEskgAseyFypwEEQr4CJijI/5hp9
+   prh+jsWHWwkFRoBRR9FBtwcU/45XDXLga7D3stsI5QesHVRwOaXUdprAnndaTug
+   mDPkD0vrl475JWDSIm+PUxGWLy+60aBqiaZq35wU/x+wXlAqBXg4MZK2KoUu27k
+   Yt2zhmy0S7Ky+oRfRJ9QbAiSu/RwhQbh5Mkp1ZnVIc7NqnhdeIW48QaYjhMlUEf
+   xdaqYUinzz8KpjfADZ4Hvqj9jWZ/eXo/9b2rGlHWkJsbhr0VEUyAGu1bwkgcdww
+   3A7NjOxQbAgMBAAGjUzBRMB0GA1UdDgQWBBStFyujN6SYBr2glHpGt0XGF7GbGT
+   AfBgNVHSMEGDAWgBStFyujN6SYBr2glHpGt0XGF7GbGTAPBgNVHRMBAf8EBTADA
+   QH/MA0GCSqGSIb3DQEBCwUAA4IBAQBX6nn6YLhz521lfyVfxY0t6o3410bQAeAF
+   08ud+ICtmQ4IO4A4B7zV3zIVYr0clrOOaFyLxngwMYN0XY5tVhDQqk4/gmDNEKS
+   Zy2QkX4Eg0YUWVzOyt6fPzjOvJLcsqc1hcF9wySL507XQz76Uk5cFypBOzbnk35
+   UkWrzA9KK97cXckfIESgK/k1N4ecwxwG6VQ8mBGqVpPpey+dXpzzzv1iBKN/VY4
+   ydjgH/LBfdTsVarmmy2vtWBxwrqkFvpdhSGCvRDl/qdO/GIDJi77dmZWkh/ic90
+   MNk1f38gs1jrCj8lThoar17Uo9y/Q5qJIsoNPyQrJRzqFU9F3FBjiPJF
+   -----END CERTIFICATE-----
+   ```
+
+1. Validate the creation of an ROA object
+
+   Validate the successful creation of the ROA objects using a `whois` command\. Be sure to test your address range against the Amazon ASNs 16509 and 14618, plus the ASNs that are currently authorized to advertise the address range\.
+
+   You can inspect the ROA objects from different Amazon ASNs with your address range by using the following command:
+
+   ```
+   whois -h whois.bgpmon.net " --roa 16509 2001:0DB8:1000::/48"
+   ```
+
+   In this example output, the response has a result of `0 - Valid` for the Amazon ASN 16509\. This indicates the ROA object for the address range was created successfully:
+
+   ```
+   0 - Valid
+   ------------------------
+   ROA Details
+   ------------------------
+   Origin ASN:       AS16509
+   Not valid Before: 2021-11-19 05:00:00
+   Not valid After:  2021-12-24 05:00:00  Expires in 16d8h39m12s
+   Trust Anchor:     rpki.arin.net
+   Prefixes:         2001:0DB8::/32 (max length /48)
+   ```
+
+   In this example output, the response has an error of `1 - Not Found`\. This indicates the ROA object for the address range has not been created:
+
+   ```
+   1 - Not Found
+   ```
+
+   In this example output, the response has an error of `2 - Not Valid`\. This indicates the ROA object for the address range was not created successfully:
+
+   ```
+   2 - Not Valid: Invalid Origin ASN, expected 15169
+   ```
 
 ## Learn more<a name="byoip-learn-more"></a>
 

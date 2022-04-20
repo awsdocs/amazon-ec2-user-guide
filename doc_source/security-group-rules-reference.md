@@ -68,12 +68,15 @@ To connect to your instance, your security group must have inbound rules that al
 
 To allow instances that are associated with the same security group to communicate with each other, you must explicitly add rules for this\. 
 
+**Note**  
+If you configure routes to forward the traffic between two instances in different subnets through a middlebox appliance, you must ensure that the security groups for both instances allow traffic to flow between the instances\. The security group for each instance must reference the private IP address of the other instance, or the CIDR range of the subnet that contains the other instance, as the source\. If you reference the security group of the other instance as the source, this does not allow traffic to flow between the instances\.
+
 The following table describes the inbound rule for a security group that enables associated instances to communicate with each other\. The rule allows all types of traffic\.
 
 
 | Protocol type | Protocol number | Ports | Source IP | 
 | --- | --- | --- | --- | 
-| \-1 \(All\) | \-1 \(All\) | \-1 \(All\) | The ID of the security group\. | 
+| \-1 \(All\) | \-1 \(All\) | \-1 \(All\) | The ID of the security group, or the CIDR range of the subnet that contains the other instance \(see note\)\. | 
 
 ## Rules for ping/ICMP<a name="sg-rules-ping"></a>
 

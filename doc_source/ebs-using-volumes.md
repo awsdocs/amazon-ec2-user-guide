@@ -4,6 +4,8 @@ After you attach an Amazon EBS volume to your instance, it is exposed as a block
 
 You can take snapshots of your EBS volume for backup purposes or to use as a baseline when you create another volume\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
+If the EBS volume you are preparing for use is greater than 2 TiB, you must use a GPT partitioning scheme to access the entire volume\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
+
 You can get directions for volumes on a Windows instance from [Make a volume available for use on Windows](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-using-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ## Format and mount an attached volume<a name="ebs-format-mount-volume"></a>

@@ -16,14 +16,16 @@ Given the benefits of Amazon S3 for storage, you might decide to use this servic
 
 If you have permission, you can copy a file to or from Amazon S3 and your instance using one of the following methods\.
 
-**GET or wget**  
+**GET or wget**
+
+**Note**  
+This method works for public objects only\. If the object is not public, you receive an `ERROR 403: Forbidden` message\. If you receive this error, you must use either the Amazon S3 console, AWS CLI, AWS API, AWS SDK, or AWS Tools for Windows PowerShell, and you must have the required permissions\. For more information, see [Identity and access management in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html) and [ Downloading an object](https://docs.aws.amazon.com/AmazonS3/latest/userguide/download-objects.html) in the *Amazon S3 User Guide*\.
+
 The wget utility is an HTTP and FTP client that allows you to download public objects from Amazon S3\. It is installed by default in Amazon Linux and most other distributions, and available for download on Windows\. To download an Amazon S3 object, use the following command, substituting the URL of the object to download\.
 
 ```
 [ec2-user ~]$ wget https://my_bucket.s3.amazonaws.com/path-to-file
 ```
-
-This method requires that the object you request is public; if the object is not public, you receive an "ERROR 403: Forbidden" message\. If you receive this error, open the Amazon S3 console and change the permissions of the object to public\. For more information, see the [Amazon Simple Storage Service Developer Guide](https://docs.aws.amazon.com/AmazonS3/latest/dev/)\.
 
 **AWS Command Line Interface**  
 The AWS Command Line Interface \(AWS CLI\) is a unified tool to manage your AWS services\. The AWS CLI enables users to authenticate themselves and download restricted items from Amazon S3 and also to upload items\. For more information, such as how to install and configure the tools, see the [AWS Command Line Interface detail page](https://aws.amazon.com/cli/)\.
@@ -51,4 +53,4 @@ Use the following command to download an entire Amazon S3 bucket to a local dire
 ```
 
 **Amazon S3 API**  
-If you are a developer, you can use an API to access data in Amazon S3\. For more information, see the [Amazon Simple Storage Service Developer Guide](https://docs.aws.amazon.com/AmazonS3/latest/dev/)\. You can use this API and its examples to help develop your application and integrate it with other APIs and SDKs, such as the boto Python interface\.
+If you are a developer, you can use an API to access data in Amazon S3\. For more information, see the [Amazon Simple Storage Service User Guide](https://docs.aws.amazon.com/AmazonS3/latest/dev/)\. You can use this API and its examples to help develop your application and integrate it with other APIs and SDKs, such as the boto Python interface\.

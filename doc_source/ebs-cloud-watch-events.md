@@ -8,8 +8,9 @@ For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloud
 
 **Topics**
 + [EBS volume events](#volume-events)
-+ [EBS snapshot events](#snapshot-events)
 + [EBS volume modification events](#volume-modification-events)
++ [EBS snapshot events](#snapshot-events)
++ [EBS Snapshots Archive events](#snapshot-archive-events)
 + [EBS fast snapshot restore events](#fast-snapshot-restore-events)
 + [Using AWS Lambda to handle CloudWatch events](#using_lambda)
 
@@ -182,6 +183,31 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 }
 ```
 
+## EBS volume modification events<a name="volume-modification-events"></a>
+
+Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is modified\. However it is not saved, logged, or archived\.
+
+```
+{
+   "version": "0",
+   "id": "01234567-0123-0123-0123-012345678901",
+   "detail-type": "EBS Volume Notification",
+   "source": "aws.ec2",
+   "account": "012345678901",
+   "time": "yyyy-mm-ddThh:mm:ssZ",
+   "region": "us-east-1",
+   "resources": [
+      "arn:aws:ec2:us-east-1:012345678901:volume/vol-03a55cf56513fa1b6"
+   ],
+   "detail": {
+      "result": "optimizing",
+      "cause": "",
+      "event": "modifyVolume",
+      "request-id": "01234567-0123-0123-0123-0123456789ab"
+   }
+}
+```
+
 ## EBS snapshot events<a name="snapshot-events"></a>
 
 Amazon EBS sends events to CloudWatch Events when the following volume events occur\.
@@ -332,7 +358,7 @@ The listing below is an example of a JSON object emitted by EBS after a successf
     "source": "arn:aws:ec2:eu-west-1::snapshot/snap-76543210",
     "startTime": "yyyy-mm-ddThh:mm:ssZ",
     "endTime": "yyyy-mm-ddThh:mm:ssZ",
-    "Incremental": "True"
+    "Incremental": "true"
   }
 }
 ```
@@ -396,30 +422,9 @@ The following is an example of a JSON object emitted by EBS after a completed `s
 }
 ```
 
-## EBS volume modification events<a name="volume-modification-events"></a>
+## EBS Snapshots Archive events<a name="snapshot-archive-events"></a>
 
-Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is modified\. However it is not saved, logged, or archived\.
-
-```
-{
-   "version": "0",
-   "id": "01234567-0123-0123-0123-012345678901",
-   "detail-type": "EBS Volume Notification",
-   "source": "aws.ec2",
-   "account": "012345678901",
-   "time": "yyyy-mm-ddThh:mm:ssZ",
-   "region": "us-east-1",
-   "resources": [
-      "arn:aws:ec2:us-east-1:012345678901:volume/vol-03a55cf56513fa1b6"
-   ],
-   "detail": {
-      "result": "optimizing",
-      "cause": "",
-      "event": "modifyVolume",
-      "request-id": "01234567-0123-0123-0123-0123456789ab"
-   }
-}
-```
+Amazon EBS emits events related to snapshot archiving actions\. For more information, see [Monitor snapshot archiving](monitor-snapshot-archiving.md)\.
 
 ## EBS fast snapshot restore events<a name="fast-snapshot-restore-events"></a>
 
@@ -559,17 +564,19 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. Choose **Events**, **Create rule**, **Select event source**, and **Amazon EBS Snapshots**\.
+1. In the navigation panel, expand **Events** and choose **Rules**, and then choose **Create rule**\.
 
-1. For **Specific Event\(s\)**, choose **createSnapshot** and for **Specific Result\(s\)**, choose **succeeded**\.
+1. Select **Event Pattern\.**\. For **Service Name**, choose **EC2**, and for **Event Type**, choose **EBS Snapshot Notification**\.
 
-1. For **Rule target**, find and choose the sample function that you previously created\.
+1. Select **Specific event\(s\)** and then choose **createSnapshot**\.
 
-1. Choose **Target**, **Add Target**\.
+1. Select **Specific result\(s\)** and then choose **succeeded**\.
 
-1. For **Lambda function**, select the Lambda function that you previously created and choose **Configure details**\.
+1. In the **Targets** section, choose **Add target**, and then for **Function**, choose the Lambda function that you created previously\.
 
-1. On the **Configure rule details** page, type values for **Name** and **Description**\. Select the **State** check box to activate the function \(setting it to **Enabled**\)\. 
+1. Choose **Configure details**\.
+
+1. On the **Configure rule details** page, enter values for **Name** and **Description**\. Select the **State** check box to activate the function\.
 
 1. Choose **Create rule**\.
 

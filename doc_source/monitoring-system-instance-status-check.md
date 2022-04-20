@@ -67,7 +67,7 @@ You can view status checks by using the AWS Management Console\.
 1. To view the status of a specific instance, select the instance, and then choose the **Status checks** tab\.  
 ![\[View the instance status checks on the Status checks tab\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
 
-   If your instance has a failed status check, you typically must address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\. However, if your instance has a failed status check *and* has been unreachable for over 20 minutes, choose **Open support case** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
+   If your instance has a failed status check, you typically must address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\. To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
 
 1. To review the CloudWatch metrics for status checks, select the instance, and then choose the **Monitoring** tab\. Scroll until you see the graphs for the following metrics:
    + **Status check failed \(any\)**
@@ -88,7 +88,7 @@ You can view status checks by using the AWS Management Console\.
 1. To view the status of a specific instance, select the instance, and then choose the **Status Checks** tab\.  
 ![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab_old.png)
 
-   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **AWS Support** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
+   To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
 
 1. To review the CloudWatch metrics for status checks, select the instance, and then choose the **Monitoring** tab\. Scroll until you see the graphs for the following metrics:
    + **Status Check Failed \(Any\)**

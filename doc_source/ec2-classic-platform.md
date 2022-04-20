@@ -1,67 +1,29 @@
 # EC2\-Classic<a name="ec2-classic-platform"></a>
 
+
+|  | 
+| --- |
+| We are retiring EC2\-Classic on August 15, 2022\. We recommend that you [migrate from EC2\-Classic to a VPC](vpc-migrate.md)\. | 
+
 With EC2\-Classic, your instances run in a single, flat network that you share with other customers\. With Amazon VPC, your instances run in a virtual private cloud \(VPC\) that's logically isolated to your AWS account\.
 
 The EC2\-Classic platform was introduced in the original release of Amazon EC2\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic, so you must launch your Amazon EC2 instances in a VPC\.
 
-If your account does not support EC2\-Classic, we create a default VPC for you\. By default, when you launch an instance, we launch it into your default VPC\. Alternatively, you can create a nondefault VPC and specify it when you launch an instance\.
-
 ## Detect supported platforms<a name="ec2-supported-platforms"></a>
 
-The Amazon EC2 console indicates which platforms you can launch instances into for the selected region, and whether you have a default VPC in that Region\.
-
-Verify that the Region you'll use is selected in the navigation bar\. On the Amazon EC2 console dashboard, look for **Supported Platforms** under **Account Attributes**\.
+The Amazon EC2 console indicates which platforms you can launch instances into for the selected region, and whether you have a default VPC in that Region\. Alternatively, you can use the [describe\-account\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-account-attributes.html) command from the AWS CLI\.
 
 ### Accounts that support EC2\-Classic<a name="both-platforms"></a>
 
-The dashboard displays the following under **Account Attributes** to indicate that the account supports both the EC2\-Classic platform and VPCs in this Region, but the Region does not have a default VPC\.
+Select the Region and locate **Account attributes** on the dashboard\. The following indicates that the account supports EC2\-Classic\.
 
-![\[The Supported Platforms indicator\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/classic_indicator.png)
-
-The output of the [describe\-account\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-account-attributes.html) command includes both the `EC2` and `VPC` values for the `supported-platforms` attribute\.
-
-```
-aws ec2 describe-account-attributes --attribute-names supported-platforms
-{
-    "AccountAttributes": [
-        {
-            "AttributeName": "supported-platforms",
-            "AttributeValues": [
-                {
-                    "AttributeValue": "EC2"
-                },
-                {
-                    "AttributeValue": "VPC"
-                }
-            ]
-        }
-    ]
-}
-```
+![\[The Supported platforms indicator\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/classic_indicator.png)
 
 ### Accounts that require a VPC<a name="vpc-only"></a>
 
-The dashboard displays the following under **Account Attributes** to indicate that the account requires a VPC to launch instances in this Region, does not support the EC2\-Classic platform in this Region, and the Region has a default VPC with the identifier `vpc-1a2b3c4d`\.
+Select the Region and locate **Account attributes** on the dashboard\. The following indicates that the account does not support EC2\-Classic\.
 
-![\[The Supported Platforms indicator\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/vpc_indicator.png)
-
-The output of the [describe\-account\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-account-attributes.html) command for the specified Region includes only the `VPC` value for the `supported-platforms` attribute\.
-
-```
-aws ec2 describe-account-attributes --attribute-names supported-platforms --region us-east-2
-{
-    "AccountAttributes": [
-        {
-            "AttributeValues": [
-                {
-                    "AttributeValue": "VPC"
-                }
-            ]
-            "AttributeName": "supported-platforms",
-        }
-    ]
-}
-```
+![\[The Supported platforms indicator\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/vpc_indicator.png)
 
 ## Instance types available in EC2\-Classic<a name="ec2-classic-instance-types"></a>
 
@@ -129,77 +91,19 @@ grep nameserver /etc/resolv.conf
 
 ### Elastic IP addresses<a name="VPC_EIP_EC2_Differences"></a>
 
-If your account supports EC2\-Classic, there's one pool of Elastic IP addresses for use with the EC2\-Classic platform and another for use with your VPCs\. You can't associate an Elastic IP address that you allocated for use with a VPC with an instance in EC2\-Classic, and vice\- versa\. However, you can migrate an Elastic IP address you've allocated for use in the EC2\-Classic platform for use with a VPC\. You cannot migrate an Elastic IP address to another Region\.
+If your account supports EC2\-Classic, there's one pool of Elastic IP addresses for use with the EC2\-Classic platform and another for use with your VPCs\. You can't associate an Elastic IP address that you allocated for use with a VPC with an instance in EC2\-Classic, or vice\-versa\.
 
-**To allocate an Elastic IP address for use in EC2\-Classic using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic IPs**\.
-
-1. Choose **Allocate new address**\. 
-
-1. Select **Classic**, and then choose **Allocate**\. Close the confirmation screen\.
-
-#### Migrate an Elastic IP Address from EC2\-Classic<a name="migrating-eip"></a>
-
-If your account supports EC2\-Classic, you can migrate Elastic IP addresses that you've allocated for use with EC2\-Classic platform to be used with a VPC, within the same Region\. This can assist you to migrate your resources from EC2\-Classic to a VPC; for example, you can launch new web servers in your VPC, and then use the same Elastic IP addresses that you used for your web servers in EC2\-Classic for your new VPC web servers\.
-
-After you've migrated an Elastic IP address to a VPC, you cannot use it with EC2\-Classic\. However, if required, you can restore it to EC2\-Classic\. You cannot migrate an Elastic IP address that was originally allocated for use with a VPC to EC2\-Classic\.
-
-To migrate an Elastic IP address, it must not be associated with an instance\. For more information about disassociating an Elastic IP address from an instance, see [Disassociate an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
-
-You can migrate as many EC2\-Classic Elastic IP addresses as you can have in your account\. However, when you migrate an Elastic IP address, it counts against your Elastic IP address limit for VPCs\. You cannot migrate an Elastic IP address if it will result in your exceeding your limit\. Similarly, when you restore an Elastic IP address to EC2\-Classic, it counts against your Elastic IP address limit for EC2\-Classic\. For more information, see [Elastic IP address limit](elastic-ip-addresses-eip.md#using-instance-addressing-limit)\. 
-
-You cannot migrate an Elastic IP address that has been allocated to your account for less than 24 hours\.
-
-You can migrate an Elastic IP address from EC2\-Classic using the Amazon EC2 console or the Amazon VPC console\. This option is only available if your account supports EC2\-Classic\.
-
-**To move an Elastic IP address using the Amazon EC2 console**
+**To allocate an Elastic IP address for use in EC2\-Classic**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Elastic IPs**\.
 
-1. Select the Elastic IP address, and choose **Actions**, **Move to VPC scope**\.
+1. Choose **Allocate Elastic IP address**\.
 
-1. In the confirmation dialog box, choose **Move Elastic IP**\.
+1. For **Scope**, select **EC2\-Classic**\.
 
-You can restore an Elastic IP address to EC2\-Classic using the Amazon EC2 console or the Amazon VPC console\.
-
-**To restore an Elastic IP address to EC2\-Classic using the Amazon EC2 console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic IPs**\.
-
-1. Select the Elastic IP address, choose **Actions**, **Restore to EC2 scope**\.
-
-1. In the confirmation dialog box, choose **Restore**\.
-
-After you've performed the command to move or restore your Elastic IP address, the process of migrating the Elastic IP address can take a few minutes\. Use the [describe\-moving\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) command to check whether your Elastic IP address is still moving, or has completed moving\.
-
-After you've moved your Elastic IP address, you can view its allocation ID on the **Elastic IPs** page in the **Allocation ID** field\.
-
-If the Elastic IP address is in a moving state for longer than 5 minutes, contact [Premium Support](https://aws.amazon.com/premiumsupport/)\.
-
-**To move an Elastic IP address using the command line**
-
-You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
-+ [move\-address\-to\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/move-address-to-vpc.html) \(AWS CLI\)
-+ [Move\-EC2AddressToVpc](https://docs.aws.amazon.com/powershell/latest/reference/items/Move-EC2AddressToVpc.html) \(AWS Tools for Windows PowerShell\)
-
-**To restore an Elastic IP address to EC2\-Classic using the command line**
-
-You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
-+ [restore\-address\-to\-classic](https://docs.aws.amazon.com/cli/latest/reference/ec2/restore-address-to-classic.html) \(AWS CLI\)
-+ [Restore\-EC2AddressToClassic](https://docs.aws.amazon.com/powershell/latest/reference/items/Restore-EC2AddressToClassic.html) \(AWS Tools for Windows PowerShell\)
-
-**To describe the status of your moving addresses using the command line**
-
-You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-moving\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) \(AWS CLI\)
-+ [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
+1. Choose **Allocate**\.
 
 ## Share and access resources between EC2\-Classic and a VPC<a name="vpc-classic-shared-resources"></a>
 
@@ -215,7 +119,7 @@ The following resources can be shared or accessed between EC2\-Classic and a VPC
 | AMI |  | 
 | Bundle task |  | 
 | EBS volume |  | 
-| Elastic IP address \(IPv4\) |  You can migrate an Elastic IP address from EC2\-Classic to a VPC\. You can't migrate an Elastic IP address that was originally allocated for use in a VPC to EC2\-Classic\. For more information, see [Migrate an Elastic IP Address from EC2\-Classic](#migrating-eip)\.  | 
+| Elastic IP address \(IPv4\) |  You can migrate an Elastic IP address from EC2\-Classic to a VPC\. You can't migrate an Elastic IP address that was originally allocated for use in a VPC to EC2\-Classic\. For more information, see [Elastic IP addresses](vpc-migrate.md#vpc-migrate-eip)\.  | 
 | Instance |  An EC2\-Classic instance can communicate with instances in a VPC using public IPv4 addresses, or you can use ClassicLink to enable communication over private IPv4 addresses\. You can't migrate an instance from EC2\-Classic to a VPC\. However, you can migrate your application from an instance in EC2\-Classic to an instance in a VPC\. For more information, see [Migrate from EC2\-Classic to a VPC](vpc-migrate.md)\.  | 
 | Key pair |  | 
 | Load balancer |  If you're using ClassicLink, you can register a linked EC2\-Classic instance with a load balancer in a VPC, provided that the VPC has a subnet in the same Availability Zone as the instance\. You can't migrate a load balancer from EC2\-Classic to a VPC\. You can't register an instance in a VPC with a load balancer in EC2\-Classic\.  | 

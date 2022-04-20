@@ -9,6 +9,12 @@ This tutorial refers to modern web encryption simply as TLS\.
 **Important**  
 These procedures are intended for use with the Amazon Linux AMI\. If you are trying to set up a LAMP web server on an instance with a different distribution, some procedures in this tutorial might not work for you\. For Amazon Linux 2, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For Red Hat Enterprise Linux, see the following: [Setting up the Apache HTTP Web Server](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deploying_different_types_of_servers/setting-apache-http-server_deploying-different-types-of-servers)\. For other distributions, see their specific documentation\.
 
+**Note**  
+Alternatively, you can use AWS Certificate Manager \(ACM\) for AWS Nitro enclaves, which is an enclave application that allows you to use public and private SSL/TLS certificates with your web applications and servers running on Amazon EC2 instances with AWS Nitro Enclaves\. Nitro Enclaves is an Amazon EC2 capability that enables creation of isolated compute environments to protect and securely process highly sensitive data, such as SSL/TLS certificates and private keys\.  
+ACM for Nitro Enclaves works with **nginx** running on your Amazon EC2 Linux instance to create private keys, to distribute certificates and private keys, and to manage certificate renewals\.  
+To use ACM for Nitro Enclaves, you must use an enclave\-enabled Linux instance\.  
+For more information, see [ What is AWS Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) and [AWS Certificate Manager for Nitro Enclaves](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html) in the *AWS Nitro Enclaves User Guide*\.
+
 **Topics**
 + [Prerequisites](#ssl-prereq-alami)
 + [Step 1: Enable TLS on the server](#ssl-enable-alami)
@@ -30,6 +36,9 @@ Before you begin this tutorial, complete the following steps:
 + To identify and authenticate web sites, the TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. To use your EC2 instance to host a public web site, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you can use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
 ## Step 1: Enable TLS on the server<a name="ssl-enable-alami"></a>
+
+**Option: Complete this tutorial using automation**  
+ To complete this tutorial using AWS Systems Manager instead of the following tasks, run the [automation document](https://console.aws.amazon.com/systems-manager/documents/AWSDocs-Configure-SSL-TLS-AL/)\.
 
 This procedure takes you through the process of setting up TLS on Amazon Linux with a self\-signed digital certificate\.
 

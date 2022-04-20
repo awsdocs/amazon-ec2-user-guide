@@ -30,7 +30,7 @@ For example, if your bucket name is **my\-bucket\-name** and your prefix is **my
 my-bucket-name.s3.amazonaws.com/my-prefix/111122223333.2019-03-17-20.001.pwBdGTJG.gz
 ```
 
-For more information about bucket names, see [Rules for bucket naming](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html#bucketnamingrules) in the *Amazon Simple Storage Service Developer Guide*\.
+For more information about bucket names, see [Rules for bucket naming](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html#bucketnamingrules) in the *Amazon Simple Storage Service User Guide*\.
 
 The Spot Instance data feed files are tab\-delimited\. Each line in the data file corresponds to one instance hour and contains the fields listed in the following table\.
 
@@ -42,7 +42,7 @@ The Spot Instance data feed files are tab\-delimited\. Each line in the data fil
 |   `Operation`   |  The product being charged for\. For Linux Spot Instances, this field is set to `RunInstances`\. For Windows Spot Instances, this field is set to `RunInstances:0002`\. Spot usage is grouped according to Availability Zone\.  | 
 |   `InstanceID`   |  The ID of the Spot Instance that generated this instance usage\.  | 
 |   `MyBidID`   |  The ID for the Spot Instance request that generated this instance usage\.  | 
-|   `MyMaxPrice`   |  The maximum price specified for this Spot Instance request\.  | 
+|   `MyMaxPrice`   |  The maximum price specified for this Spot request\.  | 
 |   `MarketPrice`   |  The Spot price at the time specified in the `Timestamp` field\.  | 
 |   `Charge`   |  The price charged for this instance usage\.  | 
 |   `Version`   |  The version included in the data feed file name for this record\.  | 

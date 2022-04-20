@@ -14,6 +14,7 @@ For Windows instances, see [Set the time for a Windows instance](https://docs.aw
 + [Configure the time for EC2 instances with IPv4 addresses](#configure-amazon-time-service-amazon-linux-IPv4)
 + [Configure the time for EC2 instances with IPv6 addresses](#configure-amazon-time-service-amazon-linux-IPv6)
 + [Change the time zone on Amazon Linux](#change_time_zone)
++ [Compare timestamps](#compare-timestamps-with-clockbound)
 
 ## Configure the time for EC2 instances with IPv4 addresses<a name="configure-amazon-time-service-amazon-linux-IPv4"></a>
 
@@ -245,7 +246,27 @@ Amazon Linux instances are set to the UTC \(Coordinated Universal Time\) time zo
 **Important**  
 This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
 
-**To change the time zone on an instance**
+**To change the time zone on an Amazon Linux 2 instance**
+
+1. View the system's current time zone setting\.
+
+   ```
+   [ec2-user ~]$ timedatectl
+   ```
+
+1. List the available time zones\.
+
+   ```
+   [ec2-user ~]$ timedatectl list-timezones
+   ```
+
+1. Set the chosen time zone\.
+
+   ```
+   [ec2-user ~]$ sudo timedatectl set-timezone America/Vancouver
+   ```
+
+**To change the time zone on an Amazon Linux instance**
 
 1. Identify the time zone to use on the instance\. The `/usr/share/zoneinfo` directory contains a hierarchy of time zone data files\. Browse the directory structure at that location to find a file for your time zone\.
 
@@ -296,3 +317,9 @@ Do not change the `UTC=true` entry to another value\. This entry is for the hard
    [ec2-user ~]$ date
    Sun Aug 16 05:45:16 PDT 2020
    ```
+
+## Compare timestamps<a name="compare-timestamps-with-clockbound"></a>
+
+If you're using the Amazon Time Sync Service, you can compare the timestamps on your Amazon EC2 instances with ClockBound to determine the true time of an event\. ClockBound measures the clock accuracy of your EC2 instance, and allows you to check if a given timestamp is in the past or future with respect to your instance's current clock\. This information is valuable for determining the order and consistency of events and transactions across EC2 instances, independent of each instance's geographic location\.
+
+ClockBound is an open source daemon and library\. To learn more about ClockBound, including installation instructions, see [ClockBound](https://github.com/aws/clock-bound) on *GitHub*\.

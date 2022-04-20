@@ -151,6 +151,9 @@ For more information about reservation pricing, see [Amazon EC2 Dedicated Hosts 
 
 Savings Plans are a flexible pricing model that offers significant savings over On\-Demand Instances\. With Savings Plans, you make a commitment to a consistent amount of usage, in USD per hour, for a term of one or three years\. This provides you with the flexibility to use the Dedicated Hosts that best meet your needs and continue to save money, instead of making a commitment to a specific Dedicated Host\. For more information, see the [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
 
+**Note**  
+Savings Plans are not supported with `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, and `u-24tb1.metal` Dedicated Hosts\.
+
 ### Pricing for Windows Server on Dedicated Hosts<a name="dh-win-billing"></a>
 
 Subject to Microsoft licensing terms, you can bring your existing Windows Server and SQL Server licenses to Dedicated Hosts\. There is no additional charge for software usage if you choose to bring your own licenses\.

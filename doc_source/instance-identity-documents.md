@@ -83,9 +83,6 @@ The plaintext instance identity document is accompanied by three hashed and encr
 
 Each signature is available at a different endpoint in the instance metadata\. You can use any one of these signatures depending on your hashing and encryption requirements\. To verify the signatures, you must use the corresponding AWS public certificate\.
 
-**Important**  
-To validate the instance identity document using the base64\-encoded signature or RSA2048 signature, you must request the corresponding AWS public certificate from [ AWS Support](https://console.aws.amazon.com/support/home#/)\. 
-
 The following topics provide detailed steps for validating the instance identity document using each signature\.
 + [Use the PKCS7 signature to verify the instance identity document](verify-pkcs7.md)
 + [Use the base64\-encoded signature to verify the instance identity document](verify-signature.md)

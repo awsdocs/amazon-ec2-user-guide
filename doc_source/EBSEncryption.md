@@ -25,7 +25,7 @@ When you create an encrypted EBS volume and attach it to a supported instance ty
 + All snapshots created from the volume
 + All volumes created from those snapshots
 
-EBS encrypts your volume with a data key using the industry\-standard AES\-256 algorithm\. Your data key is stored on disk with your encrypted data, but not before EBS encrypts it with your KMS key\. Your data key never appears on disk in plaintext\. The same data key is shared by snapshots of the volume and any subsequent volumes created from those snapshots\. For more information, see [Data keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) in the *AWS Key Management Service Developer Guide*\.
+EBS encrypts your volume with a data key using the industry\-standard AES\-256 algorithm\. Your data key is stored on disk with your encrypted data, but not before EBS encrypts it with your KMS key\. Your data key never appears on disk in plaintext\.The same data key is shared by snapshots of the volume and any subsequent volumes created from those snapshots if the volumes are encrypted using the same KMS key as the snapshot\. For more information, see [Data keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) in the *AWS Key Management Service Developer Guide*\.
 
 Amazon EC2 works with AWS KMS to encrypt and decrypt your EBS volumes in slightly different ways depending on whether the snapshot from which you create an encrypted volume is encrypted or unencrypted\.
 
@@ -35,7 +35,7 @@ When you create an encrypted volume from an encrypted snapshot that you own, Ama
 
 1. Amazon EC2 sends a [GenerateDataKeyWithoutPlaintext](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyWithoutPlaintext.html) request to AWS KMS, specifying the KMS key that you chose for volume encryption\.
 
-1. AWS KMS generates a new data key, encrypts it under the KMS key that you chose for volume encryption, and sends the encrypted data key to Amazon EBS to be stored with the volume metadata\.
+1. If the volume is encrypted using the same KMS key as the snapshot, AWS KMS uses the same data key as the snapshot and encrypts it under that same KMS key\. If the volume is encrypted using a different KMS key, AWS KMS generates a new data key and encrypts it under the KMS key that you specified\. The encrypted data key is sent to Amazon EBS to be stored with the volume metadata\.
 
 1. When you attach the encrypted volume to an instance, Amazon EC2 sends a [CreateGrant](https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html) request to AWS KMS so that it can decrypt the data key\.
 
@@ -112,10 +112,10 @@ For more information, see [Allows access to the AWS account and enables IAM poli
 
 ## Default KMS key for EBS encryption<a name="EBSEncryption_key_mgmt"></a>
 
-Amazon EBS automatically creates a unique AWS managed key in each Region where you store AWS resources\. This KMS key has the alias `alias/aws/ebs`\. By default, Amazon EBS uses this KMS key for encryption\. Alternatively, you can specify a symmetric customer managed key that you created as the default KMS key for EBS encryption\. Using your own KMS key gives you more flexibility, including the ability to create, rotate, and disable KMS keys\. 
+Amazon EBS automatically creates a unique AWS managed key in each Region where you store AWS resources\. This KMS key has the alias `alias/aws/ebs`\. By default, Amazon EBS uses this KMS key for encryption\. Alternatively, you can specify a symmetric customer managed encryption key that you created as the default KMS key for EBS encryption\. Using your own KMS key gives you more flexibility, including the ability to create, rotate, and disable KMS keys\. 
 
 **Important**  
-Amazon EBS does not support asymmetric KMS keys\. For more information, see [Using symmetric and asymmetric KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+Amazon EBS does not support asymmetric encryption KMS keys\. For more information, see [Using symmetric and asymmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 ------
 #### [ New console ]
@@ -132,7 +132,7 @@ Amazon EBS does not support asymmetric KMS keys\. For more information, see [Usi
 
 1. Choose **Manage**\.
 
-1. For **Default encryption key**, choose a symmetric customer managed key\.
+1. For **Default encryption key**, choose a symmetric customer managed encryption key\.
 
 1. Choose **Update EBS encryption**\.
 
@@ -182,7 +182,7 @@ Encryption by default has no effect on existing EBS volumes or snapshots\.
 
 1. Choose **Manage**\.
 
-1. Select **Enable**\. You keep the AWS managed key with the alias `alias/aws/ebs` created on your behalf as the default encryption key, or choose a symmetric customer managed key\.
+1. Select **Enable**\. You keep the AWS managed key with the alias `alias/aws/ebs` created on your behalf as the default encryption key, or choose a symmetric customer managed encryption key\.
 
 1. Choose **Update EBS encryption**\.
 
@@ -211,7 +211,7 @@ You cannot change the KMS key that is associated with an existing snapshot or en
 
 You encrypt EBS volumes by enabling encryption, either using [encryption by default](#encryption-by-default) or by enabling encryption when you create a volume that you want to encrypt\.
 
-When you encrypt a volume, you can specify the symmetric KMS key to use to encrypt the volume\. If you do not specify a KMS key, the KMS key that is used for encryption depends on the encryption state of the source snapshot and its ownership\. For more information, see the [encryption outcomes table](#ebs-volume-encryption-outcomes)\.
+When you encrypt a volume, you can specify the symmetric encryption KMS key to use to encrypt the volume\. If you do not specify a KMS key, the KMS key that is used for encryption depends on the encryption state of the source snapshot and its ownership\. For more information, see the [encryption outcomes table](#ebs-volume-encryption-outcomes)\.
 
 **Note**  
 If you are using the API or AWS CLI to specify a KMS key, be aware that AWS authenticates the KMS key asynchronously\. If you specify a KMS key ID, an alias, or an ARN that is not valid, the action can appear to complete, but it eventually fails\.
@@ -220,7 +220,7 @@ You cannot change the KMS key that is associated with an existing snapshot or vo
 
 ### Encrypt an empty volume on creation<a name="new-encrypted-volumes"></a>
 
-When you create a new, empty EBS volume, you can encrypt it by enabling encryption for the specific volume creation operation\. If you enabled EBS encryption by default, the volume is automatically encrypted using your default KMS key for EBS encryption\. Alternatively, you can specify a different symmetric KMS key for the specific volume creation operation\. The volume is encrypted by the time it is first available, so your data is always secured\. For detailed procedures, see [Create an Amazon EBS volume](ebs-creating-volume.md)\.
+When you create a new, empty EBS volume, you can encrypt it by enabling encryption for the specific volume creation operation\. If you enabled EBS encryption by default, the volume is automatically encrypted using your default KMS key for EBS encryption\. Alternatively, you can specify a different symmetric encryption KMS key for the specific volume creation operation\. The volume is encrypted by the time it is first available, so your data is always secured\. For detailed procedures, see [Create an Amazon EBS volume](ebs-creating-volume.md)\.
 
 By default, the KMS key that you selected when creating a volume encrypts the snapshots that you make from the volume and the volumes that you restore from those encrypted snapshots\. You cannot remove encryption from an encrypted volume or snapshot, which means that a volume restored from an encrypted snapshot, or a copy of an encrypted snapshot, is always encrypted\.
 
@@ -228,12 +228,12 @@ Public snapshots of encrypted volumes are not supported, but you can share an en
 
 ### Encrypt unencrypted resources<a name="encrypt-unencrypted"></a>
 
-You cannot directly encrypt existing unencrypted volumes or snapshots\. However, you can create encrypted volumes or snapshots from unencrypted volumes or snapshots\. If you enable encryption by default, Amazon EBS automatically encrypts new volumes and snapshots using your default KMS key for EBS encryption\. Otherwise, you can enable encryption when you create an individual volume or snapshot, using either the default KMS key for EBS encryption or a symmetric customer managed key\. For more information, see [Create an Amazon EBS volume](ebs-creating-volume.md) and [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)\.
+You cannot directly encrypt existing unencrypted volumes or snapshots\. However, you can create encrypted volumes or snapshots from unencrypted volumes or snapshots\. If you enable encryption by default, Amazon EBS automatically encrypts new volumes and snapshots using your default KMS key for EBS encryption\. Otherwise, you can enable encryption when you create an individual volume or snapshot, using either the default KMS key for Amazon EBS encryption or a symmetric customer managed encryption key\. For more information, see [Create an Amazon EBS volume](ebs-creating-volume.md) and [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)\.
 
 To encrypt the snapshot copy to a customer managed key, you must both enable encryption and specify the KMS key, as shown in [Copy an unencrypted snapshot \(encryption by default not enabled\)](#snapshot-account-off)\. 
 
 **Important**  
-Amazon EBS does not support asymmetric KMS keys\. For more information, see [Using Symmetric and Asymmetric KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+Amazon EBS does not support asymmetric encryption KMS keys\. For more information, see [Using Symmetric and Asymmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 You can also apply new encryption states when launching an instance from an EBS\-backed AMI\. This is because EBS\-backed AMIs include snapshots of EBS volumes that can be encrypted as described\. For more information, see [Use encryption with EBS\-backed AMIs](AMIEncryption.md)\.
 
@@ -269,11 +269,11 @@ When you have enabled encryption by default, encryption is mandatory for volumes
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/volume-encrypt-account-on.png)
 
-If you want to encrypt the restored volume to a symmetric customer managed key, you must supply both the `Encrypted` and `KmsKeyId` parameters as shown in [Restore an unencrypted volume \(encryption by default not enabled\)](#volume-account-off)\.
+If you want to encrypt the restored volume to a symmetric customer managed encryption key, you must supply both the `Encrypted` and `KmsKeyId` parameters as shown in [Restore an unencrypted volume \(encryption by default not enabled\)](#volume-account-off)\.
 
 ### Copy an unencrypted snapshot \(encryption by default not enabled\)<a name="snapshot-account-off"></a>
 
-Without encryption by default enabled, a copy of an unencrypted snapshot is unencrypted by default\. However, you can encrypt the resulting snapshot by setting the `Encrypted` parameter and, optionally, the `KmsKeyId` parameter\. If you omit `KmsKeyId`, the resulting snapshot is encrypted by your default KMS key\. You must specify a KMS key ID to encrypt the volume to a different symmetric KMS key\.
+Without encryption by default enabled, a copy of an unencrypted snapshot is unencrypted by default\. However, you can encrypt the resulting snapshot by setting the `Encrypted` parameter and, optionally, the `KmsKeyId` parameter\. If you omit `KmsKeyId`, the resulting snapshot is encrypted by your default KMS key\. You must specify a KMS key ID to encrypt the volume to a different symmetric encryption KMS key\.
 
 The following diagram illustrates the process\.
 
@@ -297,7 +297,7 @@ For more information, see [Create a volume from a snapshot](ebs-creating-volume.
 
 ### Re\-encrypt an encrypted snapshot<a name="reencrypt-snapshot"></a>
 
-The ability to encrypt a snapshot during copying allows you to apply a new symmetric KMS key to an already\-encrypted snapshot that you own\. Volumes restored from the resulting copy are only accessible using the new KMS key\. The following diagram illustrates the process\. In this example, you own two KMS keys, KMS key A and KMS key B\. The source snapshot is encrypted by KMS key A\. During copy, with the KMS key ID of KMS key B specified as a parameter, the source data is automatically re\-encrypted by KMS key B\.
+The ability to encrypt a snapshot during copying allows you to apply a new symmetric encryption KMS key to an already\-encrypted snapshot that you own\. Volumes restored from the resulting copy are only accessible using the new KMS key\. The following diagram illustrates the process\. In this example, you own two KMS keys, KMS key A and KMS key B\. The source snapshot is encrypted by KMS key A\. During copy, with the KMS key ID of KMS key B specified as a parameter, the source data is automatically re\-encrypted by KMS key B\.
 
 ![\[Copy an encrypted snapshot and encrypt the copy to a new KMS key.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snap-reencrypt.png)
 

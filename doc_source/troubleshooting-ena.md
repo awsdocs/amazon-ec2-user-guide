@@ -295,7 +295,7 @@ The number of times that this queue resumed after being stopped\.
 Direct memory access error count\. If this value is not 0, it indicates low system resources\.
 
 `queue_N_xdp_tx_linearize`: *N*  
-he number of times XDP buffer linearization was attempted for this queue\.
+The number of times XDP buffer linearization was attempted for this queue\.
 
 `queue_N_xdp_tx_linearize_failed`: *N*  
 The number of times XDP buffer linearization failed for this queue\.

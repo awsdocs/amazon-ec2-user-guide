@@ -157,7 +157,7 @@ Amazon EC2 creates a separate request for each Spot Instance\.
      + If you specify a maximum price that is more than the current Spot Price, your Spot Instance launches and is charged at the current Spot price\.
      + If you specify a maximum price that is lower than the Spot price, your Spot Instance is not launched\.
    + **Persistent request**: Choose **Persistent request** to resubmit the Spot Instance request if your Spot Instance is interrupted\.
-   + **Interruption behavior**: By default, the Spot service terminates a Spot Instance when it is interrupted\. If you choose **Persistent request**, you can then specify that the Spot service stops or hibernates your Spot Instance when it's interrupted\. For more information, see [Interruption behaviors](spot-interruptions.md#interruption-behavior)\.
+   + **Interruption behavior**: By default, the Spot service terminates a Spot Instance when it is interrupted\. If you choose **Persistent request**, you can then specify that the Spot service stops or hibernates your Spot Instance when it's interrupted\. For more information, see [Interruption behavior](interruption-behavior.md)\.
    + \(Optional\) **Request valid to**: Choose **Edit** to specify when the Spot Instance request expires\.
 
    For more information about configuring your Spot Instance, see [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step)\.

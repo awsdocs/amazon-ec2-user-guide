@@ -30,6 +30,8 @@ Security groups act as a firewall for associated instances, controlling both inb
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
+1. From the top navigation bar, select a Region for the security group\. Security groups are specific to a Region, so you should select the same Region in which you created your instance\.
+
 1. In the navigation pane, choose **Instances**\.
 
 1. Select your instance and, in bottom half of the screen, choose the **Security** tab\. **Security groups** lists the security groups that are associated with the instance\. **Inbound rules** displays a list of the inbound rules that are in effect for the instance\.
@@ -80,6 +82,8 @@ If you launched an instance with an IPv6 address and want to connect to your ins
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
+1. From the top navigation bar, select a Region for the security group\. Security groups are specific to a Region, so you should select the same Region in which you created your instance\.
+
 1. In the navigation pane, choose **Instances**\.
 
 1. Select your instance and, in bottom half of the screen, choose the **Security** tab\. **Security groups** lists the security groups that are associated with the instance\. **Inbound rules** displays a list of the inbound rules that are in effect for the instance\.
@@ -126,12 +130,12 @@ Be sure to run the following commands on your local system, not on the instance 
    + [describe\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-attribute.html) \(AWS CLI\)
 
      ```
-     aws ec2 describe-instance-attribute --instance-id instance_id --attribute groupSet
+     aws ec2 describe-instance-attribute --region region --instance-id instance_id --attribute groupSet
      ```
    + [Get\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
      ```
-     PS C:\> (Get-EC2InstanceAttribute -InstanceId instance_id -Attribute groupSet).Groups
+     PS C:\> (Get-EC2InstanceAttribute -Region region -InstanceId instance_id -Attribute groupSet).Groups
      ```
 
    Both commands return a security group ID, which you use in the next step\.
@@ -140,7 +144,7 @@ Be sure to run the following commands on your local system, not on the instance 
    + [authorize\-security\-group\-ingress](https://docs.aws.amazon.com/cli/latest/reference/ec2/authorize-security-group-ingress.html) \(AWS CLI\)
 
      ```
-     aws ec2 authorize-security-group-ingress --group-id security_group_id --protocol tcp --port 22 --cidr cidr_ip_range
+     aws ec2 authorize-security-group-ingress --region region --group-id security_group_id --protocol tcp --port 22 --cidr cidr_ip_range
      ```
    + [Grant\-EC2SecurityGroupIngress](https://docs.aws.amazon.com/powershell/latest/reference/items/Grant-EC2SecurityGroupIngress.html) \(AWS Tools for Windows PowerShell\)
 
@@ -151,7 +155,7 @@ Be sure to run the following commands on your local system, not on the instance 
      ```
 
      ```
-     PS C:\> Grant-EC2SecurityGroupIngress -GroupId security_group_id -IpPermission @($ip1)
+     PS C:\> Grant-EC2SecurityGroupIngress -Region region -GroupId security_group_id -IpPermission @($ip1)
      ```
 
 ## Assign a security group to an instance<a name="assign-security-group-to-instance"></a>

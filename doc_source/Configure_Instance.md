@@ -7,6 +7,7 @@ After you have successfully launched and logged into your Amazon Linux instance,
 + [Manage software on your Amazon Linux instance](managing-software.md)
 + [Manage user accounts on your Amazon Linux instance](managing-users.md)
 + [Processor state control for your EC2 instance](processor_state_control.md)
++ [I/O scheduler](io-scheduler.md)
 + [Set the time for your Linux instance](set-time.md)
 + [Optimize CPU options](instance-optimize-cpu.md)
 + [Change the hostname of your Amazon Linux instance](set-hostname.md)

@@ -49,32 +49,32 @@ The following is example data for this event\.
 
 The possible values for `sub-type` are:
 
+`active`  
+The EC2 Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running instances\.
+
+`cancelled`  
+The EC2 Fleet request is canceled and has no running instances\. The EC2 Fleet will be deleted two days after its instances are terminated\.
+
+`cancelled_running`  
+The EC2 Fleet request is canceled and does not launch additional instances\. Its existing instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\. 
+
+`cancelled_terminating`  
+The EC2 Fleet request is canceled and its instances are terminating\. The request remains in this state until all instances are terminated\. 
+
+`expired`  
+The EC2 Fleet request has expired\. If the request was created with `TerminateInstancesWithExpiration` set, a subsequent `terminated` event indicates that the instances are terminated\.
+
+`modify_in_progress`  
+The EC2 Fleet request is being modified\. The request remains in this state until the modification is fully processed\.
+
+`modify_succeeded`  
+The EC2 Fleet request was modified\.
+
 `submitted`  
 The EC2 Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of instances\. 
 
-`active`  
-The EC2 Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances\.
-
 `progress`  
 The EC2 Fleet request is in the process of being fulfilled\.
-
-`cancelled_terminating`  
-The EC2 Fleet request is deleted and its instances are terminating\. The request remains in this state until all instances are terminated\. 
-
-`cancelled_running`  
-The EC2 Fleet request is deleted and does not launch additional instances\. Its existing instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\. 
-
-`cancelled`  
-The EC2 Fleet request is deleted and has no running instances\. The EC2 Fleet will be deleted two days after its instances are terminated\.
-
-`modify_in_progress`  
-The EC2 Fleet request is being modified\. The request remains in this state until the modification is fully processed or the EC2 Fleet request is deleted\.
-
-`modify_succeeded`  
-The EC2 Fleet request was modified\. This state does not apply to `instant` fleets because `instant` fleets cannot be modified\. 
-
-`expired`  
-The EC2 Fleet request has expired\. If the request was created with `TerminateInstancesWithExpiration` set, a subsequent event indicates that the instances are terminated\.
 
 ## EC2 Fleet Spot Instance Request Change<a name="ec2-fleet-spot-instance-request-change"></a>
 
@@ -104,17 +104,17 @@ The following is example data for this event\.
 
 The possible values for `sub-type` are:
 
-`submitted`  
-The request is submitted\.
+`active`  
+The Spot Instance request is fulfilled and has an associated Spot Instance\.
+
+`cancelled`  
+You cancelled the Spot Instance request, or the Spot Instance request expired\.
 
 `disabled`  
 You stopped the Spot Instance\.
 
-`active`  
-The request is fulfilled and has an associated Spot Instance\.
-
-`cancelled`  
-You cancelled the request, or the request expired\.
+`submitted`  
+The Spot Instance request is submitted\.
 
 ## EC2 Fleet Instance Change<a name="ec2-fleet-instance-change"></a>
 
@@ -151,7 +151,7 @@ A new instance was launched\.
 The instance was terminated\.
 
 `termination_notified`  
-An instance termination notification was sent\.
+An instance termination notification was sent when a Spot Instance was terminated by Amazon EC2 during scale\-down, when the target capacity of the fleet was modified down, for example, from a target capacity of 4 to a target capacity of 3\.
 
 ## EC2 Fleet Information<a name="ec2-fleet-info"></a>
 
@@ -172,7 +172,7 @@ The following is example data for this event\.
         "arn:aws:ec2:us-east-1:123456789012:fleet/fleet-8becf5fe-bb9e-415d-8f54-3fa5a8628b91"
     ],
     "detail": {
-        "description": "r3.8xlarge, ami-032930428bf1abbff, Linux/UNIX, us-east-1a, Spot bid price is less than Spot market price $0.5291",
+        "description": "c4.xlarge, ami-0947d2ba12ee1ff75, Linux/UNIX, us-east-1a, Spot price in either SpotFleetRequestConfigData or SpotFleetLaunchSpecification or LaunchTemplate or LaunchTemplateOverrides is less than Spot market price $0.0619",
         "sub-type": "launchSpecUnusable"
     }
 }
@@ -180,17 +180,17 @@ The following is example data for this event\.
 
 The possible values for `sub-type` are:
 
-`launchSpecUnusable`  
-The price in a launch specification is not valid because it is below the Spot price or the Spot price is above the On\-Demand price\.
-
 `fleetProgressHalted`  
-The price in every launch specification is not valid\. A launch specification might become valid if the Spot price changes\.
-
-`registerWithLoadBalancersFailed`  
-An attempt to register instances with load balancers failed\. For more information, see the description of the event\.
+The price in every launch specification is not valid because it is below the Spot price \(all the launch specifications have produced `launchSpecUnusable` events\)\. A launch specification might become valid if the Spot price changes\.
 
 `launchSpecTemporarilyBlacklisted`  
 The configuration is not valid and several attempts to launch instances have failed\. For more information, see the description of the event\.
+
+`launchSpecUnusable`  
+The price in a launch specification is not valid because it is below the Spot price\.
+
+`registerWithLoadBalancersFailed`  
+An attempt to register instances with load balancers failed\. For more information, see the description of the event\.
 
 ## EC2 Fleet Error<a name="ec2-fleet-config-not-valid"></a>
 
@@ -219,11 +219,14 @@ The following is example data for this event\.
 
 The possible values for `sub-type` are:
 
+`iamFleetRoleInvalid`  
+The EC2 Fleet does not have the required permissions to either launch or terminate an instance\.
+
 `allLaunchSpecsTemporarilyBlacklisted`  
 None of the configurations are valid, and several attempts to launch instances have failed\. For more information, see the description of the event\.
 
-`spotFleetRequestConfigurationInvalid`  
-The configuration is not valid\. For more information, see the description of the event\.
-
 `spotInstanceCountLimitExceeded`  
 You’ve reached the limit on the number of Spot Instances that you can launch\.
+
+`spotFleetRequestConfigurationInvalid`  
+The configuration is not valid\. For more information, see the description of the event\.

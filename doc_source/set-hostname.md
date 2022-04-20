@@ -1,6 +1,8 @@
 # Change the hostname of your Amazon Linux instance<a name="set-hostname"></a>
 
-When you launch an instance, it is assigned a hostname that is a form of the private, internal IPv4 address\. A typical Amazon EC2 private DNS name looks something like this: `ip-12-34-56-78.us-west-2.compute.internal`, where the name consists of the internal domain, the service \(in this case, `compute`\), the region, and a form of the private IPv4 address\. Part of this hostname is displayed at the shell prompt when you log into your instance \(for example, `ip-12-34-56-78`\)\. Each time you stop and restart your Amazon EC2 instance \(unless you are using an Elastic IP address\), the public IPv4 address changes, and so does your public DNS name, system hostname, and shell prompt\.
+When you launch an instance, it is assigned a hostname\. For more information about EC2 hostnames, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\. 
+
+A typical Amazon EC2 private DNS name for an EC2 instance configured to use IP\-based naming with an IPv4 address looks something like this: `ip-12-34-56-78.us-west-2.compute.internal`, where the name consists of the internal domain, the service \(in this case, `compute`\), the region, and a form of the private IPv4 address\. Part of this hostname is displayed at the shell prompt when you log into your instance \(for example, `ip-12-34-56-78`\)\. Each time you stop and restart your Amazon EC2 instance \(unless you are using an Elastic IP address\), the public IPv4 address changes, and so does your public DNS name, system hostname, and shell prompt\.
 
 **Important**  
 This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.

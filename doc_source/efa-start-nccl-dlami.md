@@ -6,7 +6,7 @@ The following steps help you to get started with one of the following AWS Deep L
 + Deep Learning AMI \(Ubuntu 18\.04\) Version 25\.0 and later
 + Deep Learning AMI \(Ubuntu 16\.04\) Version 25\.0 and later
 
-For more information, see the [ *AWS Deep Learning AMI User Guide*](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html)\.
+For more information, see the [https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html)\.
 
 **Note**  
 Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
@@ -29,9 +29,9 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Security Groups** and then choose **Create Security Group**\.
+1. In the navigation pane, choose **Security Groups** and then choose **Create security group**\.
 
-1. In the **Create Security Group** window, do the following:
+1. In the **Create security group** window, do the following:
 
    1. For **Security group name**, enter a descriptive name for the security group, such as `EFA-enabled security group`\.
 
@@ -39,29 +39,29 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
    1. For **VPC**, select the VPC into which you intend to launch your EFA\-enabled instances\.
 
-   1. Choose **Create**\.
+   1. Choose **Create security group**\.
 
-1. Select the security group that you created, and on the **Description** tab, copy the **Group ID**\.
+1. Select the security group that you created, and on the **Details** tab, copy the **Security group ID**\.
 
-1. On the **Inbound** tab, do the following:
+1. With the security group still selected, choose **Actions**, **Edit inbound rules**, and then do the following:
 
-   1. Choose **Edit**\.
-
-   1. For **Type**, choose **All traffic**\.
-
-   1. For **Source**, choose **Custom** and paste the security group ID that you copied into the field\.
-
-   1. Choose **Save**\.
-
-1. On the **Outbound** tab, do the following:
-
-   1. Choose **Edit**\.
+   1. Choose **Add rule**\.
 
    1. For **Type**, choose **All traffic**\.
 
-   1. For **Destination**, choose **Custom** and paste the security group ID that you copied into the field\.
+   1. For **Source type**, choose **Custom** and paste the security group ID that you copied into the field\.
 
-   1. Choose **Save**\.
+   1. Choose **Save rules**\.
+
+1. With the security group still selected, choose **Actions**, **Edit outbound rules**, and then do the following:
+
+   1. Choose **Add rule**\.
+
+   1. For **Type**, choose **All traffic**\.
+
+   1. For **Destination type**, choose **Custom** and paste the security group ID that you copied into the field\.
+
+   1. Choose **Save rules**\.
 
 ## Step 2: Launch a temporary instance<a name="nccl-start-dlami-temp"></a>
 
@@ -79,7 +79,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Configure Instance Details** page, do the following:
 
-   1. For **Subnet**, choose the subnet in which to launch the instance\.
+   1. For **Subnet**, choose the subnet in which to launch the instance\. If you do not select a subnet, you can't enable the instance for EFA\.
 
    1. For **Elastic Fabric Adapter**, choose **Enable**\.
 
@@ -125,6 +125,7 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    + `FI_EFA_USE_DEVICE_RDMA=1`—uses the device's RDMA functionality for one\-sided and two\-sided transfer\.
    + `NCCL_DEBUG=INFO`—enables detailed debugging output\. You can also specify `VERSION` to print only the NCCL version at the start of the test, or `WARN` to receive only error messages\.
    + `NCCL_ALGO=ring`—enables ring algorithm for collective operations\.
+   + `NCCL_PROTO=simple`—instructs NCCL to use a simple protocol for communication\. Currently, the EFA provider does not support LL protocols\. Enabling them could lead to data corruption\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
 
@@ -132,10 +133,10 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    $ /opt/amazon/openmpi/bin/mpirun \
        -x FI_PROVIDER="efa" \
        -x FI_EFA_USE_DEVICE_RDMA=1 \
-       -x RDMAV_FORK_SAFE=1 \
        -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/usr/local/cuda/efa/lib:$LD_LIBRARY_PATH \
        -x NCCL_DEBUG=INFO \
        -x NCCL_ALGO=ring \
+       -x NCCL_PROTO=simple \
        --hostfile my-hosts -n 8 -N 8 \
        --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
        $HOME/src/bin/efa-tests/efa-cuda-10.0/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
@@ -201,6 +202,10 @@ At this point, you no longer need the temporary instance that you launched\. You
 ## Step 7: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-dlami-cluster"></a>
 
 Launch your EFA and NCCL\-enabled instances into a cluster placement group using the EFA\-enabled AMI and the EFA\-enabled security group that you created earlier\.
+
+**Note**  
+It is not an absolute requirement to launch your EFA\-enabled instances into a cluster placementgroup\. However, we do recommend running your EFA\-enabled instances in a cluster placement group as it launches the instances into a low\-latency group in a single Availability Zone\.
+To ensure that capacity is available as you scale your cluster’s instances, you can create a Capacity Reservation for your cluster placement group\. For more information, see [Capacity Reservations in cluster placement groups](cr-cpg.md)\.
 
 **To launch your EFA and NCCL\-enabled instances into a cluster placement group**
 

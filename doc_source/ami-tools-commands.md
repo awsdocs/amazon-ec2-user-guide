@@ -609,7 +609,10 @@ Status messages indicating the various stages of the unbundling process are disp
 
 ### Description<a name="upload-bundle-description"></a>
 
-Uploads the bundle for an instance store\-backed Linux AMI to Amazon S3 and sets the appropriate ACLs on the uploaded objects\. For more information, see [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
+Uploads the bundle for an instance store\-backed Linux AMI to Amazon S3 and sets the appropriate access control lists \(ACLs\) on the uploaded objects\. For more information, see [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
+
+**Note**  
+To upload objects to an S3 bucket for your instance store\-backed Linux AMI, ACLs must be enabled for the bucket\. Otherwise, Amazon EC2 will not be able to set ACLs on the objects to upload\. If your destination bucket uses the bucket owner enforced setting for S3 Object Ownership, this won’t work because ACLs are disabled\. For more information, see [Controlling ownership of uploaded objects using S3 Object Ownership](https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html)\.
 
 ### Syntax<a name="upload-bundle-request"></a>
 

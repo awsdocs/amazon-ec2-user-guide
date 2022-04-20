@@ -5,6 +5,9 @@ It is important to keep software up to date\. Many packages in a Linux distribut
 **Important**  
 This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
 
+**Important**  
+If you launched an EC2 instance that uses an Amazon Linux 2 AMI into an IPv6\-only subnet, you must connect to the instance and run `sudo amazon-linux-https disable`\. This lets your AL2 instance connect to the yum repository in S3 over IPv6 using the http patch service\.
+
 **To update all packages on an Amazon Linux instance**
 
 1. \(Optional\) Start a screen session in your shell window\. Sometimes you might experience a network interruption that can disconnect the SSH connection to your instance\. If this happens during a long software update, it can leave the instance in a recoverable, although confused state\. A screen session allows you to continue running the update even if your connection is interrupted, and you can reconnect to the session later without problems\.

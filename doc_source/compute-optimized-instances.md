@@ -33,6 +33,31 @@ Bare metal instances, such as `c6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 C6g Instances](https://aws.amazon.com/ec2/instance-types/c6)\.
 
+**C6i instances**
+
+These instances are ideal for running advanced, compute\-intensive workloads, such as the following:
++ High\-performance computing \(HPC\)
++ Batch processing
++ Ad serving
++ Video encoding
++ Distributed analytics
++ Highly scalable multiplayer gaming
+
+For more information, see [Amazon EC2 C6i Instances](http://aws.amazon.com/ec2/instance-types/c6i)\.
+
+**Hpc6a instances**
+
+These instances are ideal for running high performance computing \(HPC\) workloads, such as the following:
++ Molecular dynamics
++ Computational chemistry
++ Computational fluid dynamics
++ Weather forecasting
++ Materials simulation
++ Crash simulations
++ Astrophysics
+
+For more information, see [Amazon EC2 Hpc6a Instances](http://aws.amazon.com/ec2/instance-types/hpc6)\.
+
 **Topics**
 + [Hardware specifications](#compute-instances-hardware)
 + [Instance performance](#compute-performance)
@@ -94,6 +119,16 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5n\.9xlarge | 36 | 96 | 
 | c5n\.18xlarge | 72 | 192 | 
 | c5n\.metal | 72 | 192 | 
+| c6a\.large | 2 | 4 | 
+| c6a\.xlarge | 4 | 8 | 
+| c6a\.2xlarge | 8 | 16 | 
+| c6a\.4xlarge | 16 | 32 | 
+| c6a\.8xlarge | 32 | 64 | 
+| c6a\.12xlarge | 48 | 96 | 
+| c6a\.16xlarge | 64 | 128 | 
+| c6a\.24xlarge | 96 | 192 | 
+| c6a\.32xlarge | 128 | 256 | 
+| c6a\.48xlarge | 192 | 384 | 
 | c6g\.medium | 1 | 2 | 
 | c6g\.large | 2 | 4 | 
 | c6g\.xlarge | 4 | 8 | 
@@ -120,6 +155,17 @@ The following is a summary of the hardware specifications for compute optimized 
 | c6gn\.8xlarge | 32 | 64 | 
 | c6gn\.12xlarge | 48 | 96 | 
 | c6gn\.16xlarge | 64 | 128 | 
+| c6i\.large | 2 | 4 | 
+| c6i\.xlarge | 4 | 8 | 
+| c6i\.2xlarge | 8 | 16 | 
+| c6i\.4xlarge | 16 | 32 | 
+| c6i\.8xlarge | 32 | 64 | 
+| c6i\.12xlarge | 48 | 96 | 
+| c6i\.16xlarge | 64 | 128 | 
+| c6i\.24xlarge | 96 | 192 | 
+| c6i\.32xlarge | 128 | 256 | 
+| c6i\.metal | 128 | 256 | 
+| hpc6a\.48xlarge | 96 | 384 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -146,12 +192,16 @@ The following is a summary of network performance for compute optimized instance
 | c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 | c5\.9xlarge \| c5a\.8xlarge \| c5ad\.8xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.12xlarge \| c5a\.12xlarge \| c5ad\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge \| c6gd\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  c6a\.4xlarge and smaller \| c6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c6a\.8xlarge \| c6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6a\.12xlarge c6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5a\.16xlarge \| c5a\.24xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge \| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller  \| c6gn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.9xlarge \| c6gn\.8xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal \| c6a\.16xlarge  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge \| c6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6a\.24xlarge \| c6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.9xlarge \| c6a\.32xlarge \| c6a\.48xlarge  \| c6gn\.8xlarge \| c6i\.32xlarge \| c6i\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c6gn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
+| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  \| hpc6a\.48xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
 
@@ -178,6 +228,10 @@ The following is a summary of network performance for compute optimized instance
 | c5n\.xlarge | 5 | 25 | 
 | c5n\.2xlarge | 10 | 25 | 
 | c5n\.4xlarge | 15 | 25 | 
+| c6a\.large | \.781 | 12 | 
+| c6a\.xlarge | 1\.562 | 12 | 
+| c6a\.2xlarge | 3\.125 | 12 | 
+| c6a\.4xlarge | 6\.25 | 12 | 
 | c6g\.medium | \.5 | 10 | 
 | c6g\.large | \.75 | 10 | 
 | c6g\.xlarge | 1\.25 | 10 | 
@@ -193,10 +247,14 @@ The following is a summary of network performance for compute optimized instance
 | c6gn\.xlarge | 6\.3 | 25 | 
 | c6gn\.2xlarge | 12\.5 | 25 | 
 | c6gn\.4xlarge | 15 | 25 | 
+| c6i\.large | \.781 | 12\.5 | 
+| c6i\.xlarge | 1\.562 | 12\.5 | 
+| c6i\.2xlarge | 3\.125 | 12\.5 | 
+| c6i\.4xlarge | 6\.25 | 12\.5 | 
 
 ## SSD I/O performance<a name="compute-ssd-perf"></a>
 
-If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
+If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
@@ -209,10 +267,10 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | c5ad\.12xlarge | 412,500 | 180,000 | 
 | c5ad\.16xlarge | 521,053 | 227,368 | 
 | c5ad\.24xlarge | 825,000 | 360,000 | 
-| c5d\.large \* | 20,000 | 9,000 | 
-| c5d\.xlarge \* | 40,000 | 18,000 | 
-| c5d\.2xlarge \* | 80,000 | 37,000 | 
-| c5d\.4xlarge \* | 175,000 | 75,000 | 
+| c5d\.large | 20,000 | 9,000 | 
+| c5d\.xlarge | 40,000 | 18,000 | 
+| c5d\.2xlarge | 80,000 | 37,000 | 
+| c5d\.4xlarge | 175,000 | 75,000 | 
 | c5d\.9xlarge | 350,000 | 170,000 | 
 | c5d\.12xlarge | 700,000 | 340,000 | 
 | c5d\.18xlarge | 700,000 | 340,000 | 
@@ -227,8 +285,6 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | c6gd\.12xlarge | 645,000 | 270,000 | 
 | c6gd\.16xlarge | 860,000 | 360,000 | 
 | c6gd\.metal | 860,000 | 360,000 | 
-
-\* For these instances, you can get up to the specified performance\.
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
@@ -249,9 +305,12 @@ The following is a summary of features for compute optimized instances:
 | C5ad | No | Yes | NVMe \* | Yes | 
 | C5d | No | Yes | NVMe \* | Yes | 
 | C5n | Yes | Yes | No | Yes | 
+| C6a | Yes | Yes | No | Yes | 
 | C6g | Yes | Yes | No | Yes | 
 | C6gd | No | Yes | NVMe \* | Yes | 
 | C6gn | Yes | Yes | No | Yes | 
+| C6i | Yes | Yes | No | Yes | 
+| Hpc6a | Yes | Yes | No | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -288,6 +347,11 @@ For more information, see the following:
   + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
   + Debian 10 or later \(64\-bit Arm\)
++ To get the best performance from your C6i instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\.
+  + Amazon Linux 2 with kernel 4\.14\.186
+  + Ubuntu 20\.04 with kernel 5\.4\.0\-1025\-aws
+  + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
+  + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.3\.18\-24\.15\.1
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
 + To get the best performance from your C6gn instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\.
   + Amazon Linux 2 with kernel 4\.14\.186

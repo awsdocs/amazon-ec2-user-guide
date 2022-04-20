@@ -1,50 +1,66 @@
 # Requester\-managed network interfaces<a name="requester-managed-eni"></a>
 
-A requester\-managed network interface is a network interface that an AWS service creates in your VPC\. This network interface can represent an instance for another service, such as an Amazon RDS instance, or it can enable you to access another service or resource, such as an AWS PrivateLink service, or an Amazon ECS task\.
+A requester\-managed network interface is a network interface that an AWS service creates in your VPC on your behalf\. The network interface is associated with a resource for another service, such as a DB instance from Amazon RDS, a NAT gateway, or an interface VPC endpoint from AWS PrivateLink\.
 
-You cannot modify or detach a requester\-managed network interface\. If you delete the resource that the network interface represents, the AWS service detaches and deletes the network interface for you\. To change the security groups for a requester\-managed network interface, you might have to use the console or command line tools for that service\. For more information, see the service\-specific documentation\.
-
-You can tag a requester\-managed network interface\. For more information, see [Add or edit tags](using-eni.md#eni_add_edit_tags)\.
-
-You can view the requester\-managed network interfaces that are in your account\.
+**Considerations**
++ You can't modify or detach a requester\-managed network interface\.
++ You can view the requester\-managed network interfaces in your account and add or remove tags\.
++ When you delete the resource associated with the network interface, the AWS service detaches the network interface and deletes it\.
 
 **To view requester\-managed network interfaces using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Network Interfaces**\.
+1. In the navigation pane, choose **Network & Security** **Network Interfaces**\.
 
-1. Select the network interface and view the following information on the details pane:
-   + **Attachment owner**: If you created the network interface, this field displays your AWS account ID\. Otherwise, it displays an alias or ID for the principal or service that created the network interface\.
-   + **Description**: Provides information about the purpose of the network interface; for example, "VPC Endpoint Interface"\.
+1. Select the ID of the network interface to open its details page\.
 
-**To view requester\-managed network interfaces using the command line**
+1. The following are the key fields that you can use to determine the purpose of the network interface:
+   + **Description**: A description provided by the AWS service that created the interface\. For example, "VPC Endpoint Interface vpce 089f2123488812123"\.
+   + **Requester\-managed**: Indicates whether the network interface is managed by AWS\.
+   + **Requester ID**: The alias of AWS account ID of the principal or service that created the network interface\. If you created the network interface, this is your AWS account ID\. Otherwise, another principal or service created it\.
 
-1. Use the [describe\-network\-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) AWS CLI command to describe the network interfaces in your account\. 
+**To view requester\-managed network interfaces using the AWS CLI**  
+Use the [describe\-network\-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) command as follows\.
 
-   ```
-   aws ec2 describe-network-interfaces
-   ```
+```
+aws ec2 describe-network-interfaces --filters Name=requester-managed,Values=true
+```
 
-1. In the output, the `RequesterManaged` field displays `true` if the network interface is managed by another AWS service\.
+The following is example output that shows the key fields that you can use to determine the purpose of the network interface: `Description` and `InterfaceType`\.
 
-   ```
-   {
-       "Status": "in-use",
-        ...
-       "Description": "VPC Endpoint Interface vpce-089f2123488812123", 
-       "NetworkInterfaceId": "eni-c8fbc27e", 
-       "VpcId": "vpc-1a2b3c4d", 
-       "PrivateIpAddresses": [
-           {
-               "PrivateDnsName": "ip-10-0-2-227.ec2.internal", 
-               "Primary": true, 
-               "PrivateIpAddress": "10.0.2.227"
-           }
-       ], 
-       "RequesterManaged": true, 
-        ...
-   }
-   ```
+```
+{
+     ...
+    "Description": "VPC Endpoint Interface vpce-089f2123488812123",
+    ...
+    "InterfaceType": "vpc_endpoint",
+    ...
+    "NetworkInterfaceId": "eni-0d11e3ccd2c0e6c57",
+    ...
+    "RequesterId": "727180483921",
+    "RequesterManaged": true, 
+    ...
+}
+```
 
-   Alternatively, use the [Get\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) Tools for Windows PowerShell command\.
+**To view requester\-managed network interfaces using the Tools for Windows PowerShell**  
+Use the [Get\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) cmdlet as follows\.
+
+```
+Get-EC2NetworkInterface -Filter @{ Name="requester-managed"; Values="true" }
+```
+
+The following is example output that shows the key fields that you can use to determine the purpose of the network interface: `Description` and `InterfaceType`\.
+
+```
+Description        : VPC Endpoint Interface vpce-089f2123488812123
+...
+InterfaceType      : vpc_endpoint
+...
+NetworkInterfaceId : eni-0d11e3ccd2c0e6c57
+...
+RequesterId        : 727180483921
+RequesterManaged   : True 
+...
+```

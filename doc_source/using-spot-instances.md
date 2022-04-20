@@ -52,9 +52,9 @@ The first thing you need to do is get set up to use Amazon EC2\. It can also be 
 + [How Spot Instances work](how-spot-instances-work.md) 
 
 **Working with Spot Instances**
-+ [Prepare for interruptions](spot-interruptions.md#using-spot-instances-managing-interruptions)
 + [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)
 + [Get request status information](spot-request-status.md#get-spot-instance-request-status)
++ [Spot Instance interruptions](spot-interruptions.md)
 
 ## Related services<a name="spot-related-services"></a>
 
@@ -79,7 +79,7 @@ You can use the \.NET programming environment to manage your Spot Instances\. Fo
 
 You pay the Spot price for Spot Instances, which is set by Amazon EC2 and adjusted gradually based on the long\-term supply of and demand for Spot Instances\. If the maximum price for your request exceeds the current Spot price, Amazon EC2 fulfills your request if capacity is available\. Your Spot Instances run until you terminate them, capacity is no longer available, the Spot price exceeds your maximum price, or your Amazon EC2 Auto Scaling group terminates them during [scale in](https://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html#as-lifecycle-scale-in)\.
 
-If you or Amazon EC2 interrupts a running Spot Instance, you are charged for the seconds used or the full hour, or you receive no charge, depending on the operating system used and who interrupted the Spot Instance\. For more information, see [Billing for interrupted Spot Instances](spot-interruptions.md#billing-for-interrupted-spot-instances)\.
+If you or Amazon EC2 interrupts a running Spot Instance, you are charged for the seconds used or the full hour, or you receive no charge, depending on the operating system used and who interrupted the Spot Instance\. For more information, see [Billing for interrupted Spot Instances](billing-for-interrupted-spot-instances.md)\.
 
 ### View prices<a name="spot-pricing-view-prices"></a>
 
@@ -95,4 +95,4 @@ You can view the savings made from using Spot Instances for a single Spot Fleet 
 
 ### View billing<a name="spot-pricing-view-billing"></a>
 
-Your bill provides details about your service usage\. For more information, see [Viewing your bill](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/getting-viewing-bill.html) in the *AWS Billing and Cost Management User Guide*\.
+Your bill provides details about your service usage\. For more information, see [Viewing your bill](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/getting-viewing-bill.html) in the *AWS Billing User Guide*\.

@@ -8,6 +8,9 @@ There is no cost for instance usage while an instance is in the `stopping` state
 
 Force the instance to stop using either the console or the AWS CLI\.
 
+**Note**  
+You can force an instance to stop using the console only while the instance is in the `stopping` state\. You can force an instance to stop using the AWS CLI while the instance is in any state, except `shutting-down` and `terminated`\.
+
 ------
 #### [ New console ]
 

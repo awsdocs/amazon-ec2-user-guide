@@ -14,7 +14,7 @@ A Spot Fleet request remains active until it expires or you cancel it\. When you
 + [Spot Fleet permissions](#spot-fleet-prerequisites)
 + [Create a Spot Fleet request](#create-spot-fleet)
 + [Tag a Spot Fleet](#tag-spot-fleet)
-+ [Monitor your Spot Fleet](#manage-spot-fleet)
++ [Describe your Spot Fleet](#manage-spot-fleet)
 + [Modify a Spot Fleet request](#modify-spot-fleet)
 + [Cancel a Spot Fleet request](#cancel-spot-fleet)
 
@@ -36,7 +36,7 @@ The following illustration represents the transitions between the request states
 
 Spot Fleet checks the health status of the Spot Instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\.
 
-Spot Fleet determines the health status of an instance by using the status checks provided by Amazon EC2\. An instance is determined as `unhealthy` when the the status of either the instance status check or the system status check is `impaired` for three consecutive health checks\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
+Spot Fleet determines the health status of an instance by using the status checks provided by Amazon EC2\. An instance is determined as `unhealthy` when the status of either the instance status check or the system status check is `impaired` for three consecutive health checks\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
 
 You can configure your fleet to replace unhealthy Spot Instances\. After enabling health check replacement, a Spot Instance is replaced when it is reported as `unhealthy`\. The fleet could go below its target capacity for up to a few minutes while an unhealthy Spot Instance is being replaced\.
 
@@ -261,7 +261,7 @@ Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Spot** to l
 The `aws-ec2-spot-fleet-tagging-role` IAM role grants the Spot Fleet permission to tag the Spot Fleet request, instances, and volumes\. For more information, see [Tag a Spot Fleet](#tag-spot-fleet)\.
 
 **Important**  
-If you choose to tag instances in the fleet and you choose to maintain target capacity \(the Spot Fleet request is of type `maintain`\), the differences in permissions of the IAM user and the `IamFleetRole` might lead to inconsistent tagging behavior of instances in the fleet\. If the `IamFleetRole` does not include the `CreateTags` permission, some of the instances launched by the fleet might not be tagged\. While we are working to fix this inconsistency, to ensure that all instances launched by the fleet are tagged, we recommend that you use the `aws-ec2-spot-fleet-tagging-role` role for the `IamFleetRole`\. Alternatively, to use an existing role, attach the `AmazonEC2SpotFleetTaggingRole` AWS Managed Policy to the existing role\. Otherwise, you need to manually add the `CreateTags` permission to your existing policy\.
+If you choose to tag instances in the fleet and you also choose to maintain target capacity \(the Spot Fleet request is of type `maintain`\), the differences in the permissions that are set for the IAM user and the `IamFleetRole` might lead to inconsistent tagging behavior of instances in the fleet\. If the `IamFleetRole` does not include the `CreateTags` permission, some of the instances launched by the fleet might not be tagged\. While we are working to fix this inconsistency, to ensure that all instances launched by the fleet are tagged, we recommend that you use the `aws-ec2-spot-fleet-tagging-role` role for the `IamFleetRole`\. Alternatively, to use an existing role, attach the `AmazonEC2SpotFleetTaggingRole` AWS Managed Policy to the existing role\. Otherwise, you need to manually add the `CreateTags` permission to your existing policy\.
 
 **To create the IAM role for tagging a Spot Fleet**
 
@@ -269,21 +269,84 @@ If you choose to tag instances in the fleet and you choose to maintain target ca
 
 1. In the navigation pane, choose **Roles**\.
 
-1. Choose **Create roles**\.
+1. Choose **Create role**\.
 
-1. On the **Select type of trusted entity** page, choose **AWS service**\.
+1. On the **Select trusted entity** page, under **Trusted entity type**, choose **AWS service**\.
 
-1. Under **Choose a use case**, **Or select a service to view its use cases**, choose **EC2**\.
+1. Under **Use case**, from **Use cases for other AWS services**, choose **EC2**, and then choose **EC2 \- Spot Fleet Tagging**\.
 
-1. Under **Select your use case**, choose **EC2 \- Spot Fleet Tagging**\.
+1. Choose **Next**\.
 
-1. Choose **Next: Permissions**\.
+1. On the **Add permissions** page, choose **Next**\.
 
-1. On the next page, choose **Next: Tags**\.
+1. On the **Name, review, and create** page, for **Role name**, enter a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\)\.
 
-1. On the next page, choose **Next: Review**\.
+1. Review the information on the page, and then choose **Create role**\.
 
-1. On the **Review** page, enter a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and choose **Create role**\.
+#### Cross\-service confused deputy prevention<a name="cross-service-confused-deputy-prevention"></a>
+
+The [confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) is a security issue where an entity that doesn't have permission to perform an action can coerce a more\-privileged entity to perform the action\. We recommend that you use the [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn) and [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount) global condition context keys in the `aws-ec2-spot-fleet-tagging-role` trust policy to limit the permissions that Spot Fleet gives another service to the resource\.
+
+**To add the aws:SourceArn and aws:SourceAccount condition keys to the `aws-ec2-spot-fleet-tagging-role` trust policy**
+
+1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. In the navigation pane, choose **Roles**\.
+
+1. Find the `aws-ec2-spot-fleet-tagging-role` that you created previously and choose the link \(not the check box\)\.
+
+1. Under **Summary**, choose the **Trust relationships** tab, and then choose **Edit trust policy**\.
+
+1. In the JSON statement, add a `Condition` element containing your `aws:SourceAccount` and `aws:SourceArn` global condition context keys to prevent the [confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html), as follows:
+
+   ```
+   "Condition": {
+         "ArnLike": {
+           "aws:SourceArn": "arn:aws:ec2:us-east-1:account_id:spot-fleet-request/sfr-*"
+         },
+         "StringEquals": {
+           "aws:SourceAccount": "account_id"
+         }
+   ```
+**Note**  
+If the `aws:SourceArn` value contains the account ID and you use both global condition context keys, the `aws:SourceAccount` value and the account in the `aws:SourceArn` value must use the same account ID when used in the same policy statement\.
+
+   The final trust policy will be as follows:
+
+   ```
+   {
+     "Version": "2012-10-17",
+     "Statement": {
+       "Sid": "ConfusedDeputyPreventionExamplePolicy",
+       "Effect": "Allow",
+       "Principal": {
+         "Service": "spotfleet.amazonaws.com"
+       },
+       "Action": "sts:AssumeRole",
+       "Condition": {
+         "ArnLike": {
+           "aws:SourceArn": "arn:aws:ec2:us-east-1:account_id:spot-fleet-request/sfr-*"
+         },
+         "StringEquals": {
+           "aws:SourceAccount": "account_id"
+         }
+       }
+     }
+   }
+   ```
+
+1. Choose **Update policy**\.
+
+The following table provides potential values for `aws:SourceArn` to limit the scope of the your `aws-ec2-spot-fleet-tagging-role` in varying degrees of specificity\.
+
+
+****  
+
+| API operation | Called service | Scope | `aws:SourceArn` | 
+| --- | --- | --- | --- | 
+| RequestSpotFleet | AWS STS \(AssumeRole\) | Limit the AssumeRole capability on aws\-ec2\-spot\-fleet\-tagging\-role to spot\-fleet\-requests in the specified account\. | arn:aws:ec2:\*:123456789012:spot\-fleet\-request/sfr\-\* | 
+| RequestSpotFleet | AWS STS \(AssumeRole\) | Limit the AssumeRole capability on aws\-ec2\-spot\-fleet\-tagging\-role to spot\-fleet\-requests in the specified account and specified Region\. Note that this role will not be usable in other Regions\. | arn:aws:ec2:us\-east\-1:123456789012:spot\-fleet\-request/sfr\-\* | 
+| RequestSpotFleet | AWS STS \(AssumeRole\) | Limit the AssumeRole capability on aws\-ec2\-spot\-fleet\-tagging\-role to only actions affecting the fleet sfr\-11111111\-1111\-1111\-1111\-111111111111\. Note that this role may not be usable for other Spot Fleets\. Also, this role cannot be used to launch any new Spot Fleets through request\-spot\-fleet\. | arn:aws:ec2:us\-east\-1:123456789012:spot\-fleet\-request/sfr\-11111111\-1111\-1111\-1111\-111111111111 | 
 
 ## Create a Spot Fleet request<a name="create-spot-fleet"></a>
 
@@ -304,19 +367,17 @@ Follow these steps to quickly create a Spot Fleet request\.
 
 1. If you are new to Spot, you see a welcome page; choose **Get started**\. Otherwise, choose **Request Spot Instances**\.
 
-1. For **Tell us your application or task need**, choose **Load balancing workloads**, **Flexible workloads**, or **Big data workloads**\.
+1. Under **Launch parameters**, choose **Manually configure launch parameters**\.
 
-1. Under **Configure your instances**, for **Minimum compute unit**, choose the minimum hardware specifications \(vCPUs, memory, and storage\) that you need for your application or task, either **as specs** or **as an instance type**\.
-   + For **as specs**, specify the required number of vCPUs and amount of memory\.
-   + For **as an instance type**, accept the default instance type, or choose **Change instance type** to choose a different instance type\.
+1. For **AMI**, choose an AMI\.
 
-1. Under **Tell us how much capacity you need**, for **Total target capacity**, specify the number of units to request for target capacity\. You can choose instances or vCPUs\.
+1. Under **Target capacity**, for **Total target capacity**, specify the number of units to request\. For the type of unit, you can choose **Instances**, **vCPUs**, or **Memory \(MiB\)**\.
 
-1. Review the recommended **Fleet request settings** based on your application or task selection, and choose **Launch**\.
+1. For **Your fleet request at a glance**, review your fleet configuration, and choose **Launch**\.
 
 ### Create a Spot Fleet request using defined parameters \(console\)<a name="create-spot-fleet-advanced"></a>
 
-You can create a Spot Fleet using the parameters that you define\.
+You can create a Spot Fleet by using parameters that you define\.
 
 **To create a Spot Fleet request using defined parameters \(console\)**
 
@@ -324,90 +385,45 @@ You can create a Spot Fleet using the parameters that you define\.
 
 1. If you are new to Spot, you see a welcome page; choose **Get started**\. Otherwise, choose **Request Spot Instances**\.
 
-1. For **Tell us your application or task need**, choose **Load balancing workloads**, **Flexible workloads**, or **Big data workloads**\.
+1. For **Launch parameters**, do the following:
 
-1. For **Configure your instances**, do the following:
-
-   1. \(Optional\) For **Launch template**, choose a launch template\. The launch template must specify an Amazon Machine Image \(AMI\), as you cannot override the AMI using Spot Fleet if you specify a launch template\.
-**Important**  
- If you intend to specify **Optional On\-Demand portion**, you must choose a launch template\.
+   1. To define the launch parameters in the Spot console, choose **Manually configure launch parameters**\.
 
    1. For **AMI**, choose one of the basic AMIs provided by AWS, or choose **Search for AMI** to use an AMI from our user community, the AWS Marketplace, or one of your own\.
-
-   1. For **Minimum compute unit**, choose the minimum hardware specifications \(vCPUs, memory, and storage\) that you need for your application or task, either **as specs** or **as an instance type**\.
-      + For **as specs**, specify the required number of vCPUs and amount of memory\.
-      + For **as an instance type**, accept the default instance type, or choose **Change instance type** to choose a different instance type\.
-
-   1. For **Network**, choose an existing VPC or create a new one\.
-
-      \[Existing VPC\] Choose the VPC\.
-
-      \[New VPC\] Choose **Create new VPC** to go the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
-
-   1. \(Optional\) For **Availability Zone**, let AWS choose the Availability Zones for your Spot Instances, or specify one or more Availability Zones\.
-
-      If you have more than one subnet in an Availability Zone, choose the appropriate subnet from **Subnet**\. To add subnets, choose **Create new subnet** to go to the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
 
    1. \(Optional\) For **Key pair name**, choose an existing key pair or create a new one\.
 
       \[Existing key pair\] Choose the key pair\.
 
-      \[New key pair\] Choose **Create new key pair** to go the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
+      \[New key pair\] Choose **Create new key pair** to go the **Key Pairs** page\. When you are done, return to the **Spot Requests** page and refresh the list\.
 
-1. \(Optional\) For **Additional configurations**, do the following:
+   1. \(Optional\) Expand **Additional launch parameters**, and do the following:
 
-   1. \(Optional\) To enable Amazon EBS optimization, for **EBS\-optimized**, choose **Launch EBS\-optimized instances**\.
+      1. \(Optional\) To enable Amazon EBS optimization, for **EBS\-optimized**, select **Launch EBS\-optimized instances**\.
 
-   1. \(Optional\) To add temporary block\-level storage for your instances, for **Instance store**, choose **Attach at launch**\.
+      1. \(Optional\) To add temporary block\-level storage for your instances, for **Instance store**, choose **Attach at launch**\.
 
-   1. \(Optional\) To add storage, specify additional instance store volumes or Amazon EBS volumes, depending on the instance type\.
+      1. \(Optional\) To add storage, choose **Add new volume**, and specify additional instance store volumes or Amazon EBS volumes, depending on the instance type\.
 
-   1. \(Optional\) By default, basic monitoring is enabled for your instances\. To enable detailed monitoring, for **Monitoring**, choose **Enable CloudWatch detailed monitoring**\.
+      1. \(Optional\) By default, basic monitoring is enabled for your instances\. To enable detailed monitoring, for **Monitoring**, select **Enable CloudWatch detailed monitoring**\.
 
-   1. \(Optional\) To replace unhealthy Spot Instances, for **Health check**, choose **Replace unhealthy instances**\. To enable this option, you must first choose **Maintain target capacity**\.
+      1. \(Optional\) To run a Dedicated Spot Instance, for **Tenancy**, choose **Dedicated \- run a dedicated instance**\.
 
-   1. \(Optional\) To run a Dedicated Spot Instance, for **Tenancy**, choose **Dedicated \- run a dedicated instance**\.
+      1. \(Optional\) For **Security groups**, choose one or more security groups or create a new one\.
 
-   1. \(Optional\) For **Security groups**, choose one or more security groups or create a new one\.
+         \[Existing security group\] Choose one or more security groups\.
 
-      \[Existing security group\] Choose one or more security groups\.
+         \[New security group\] Choose **Create new security group** to go the **Security Groups** page\. When you are done, return to the **Spot Requests** and refresh the list\.
 
-      \[New security group\] Choose **Create new security group** to go the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
+      1. \(Optional\) To make your instances reachable from the internet, for **Auto\-assign IPv4 Public IP**, choose **Enable**\.
 
-   1. \(Optional\) To make your instances reachable from the internet, for **Auto\-assign IPv4 Public IP**, choose **Enable**\.
+      1. \(Optional\) To launch your Spot Instances with an IAM role, for **IAM instance profile**, choose the role\.
 
-   1. \(Optional\) To launch your Spot Instances with an IAM role, for **IAM instance profile**, choose the role\.
+      1. \(Optional\) To run a start\-up script, copy it to **User data**\.
 
-   1. \(Optional\) To run a start\-up script, copy it to **User data**\.
+      1. \(Optional\) To add a tag, choose **Create tag** and enter the key and value for the tag, and choose **Create**\. Repeat for each tag\.
 
-   1. \(Optional\) To add a tag, choose **Add new tag** and enter the key and value for the tag\. Repeat for each tag\.
-
-      For each tag, to tag the instances and the Spot Fleet request with the same tag, ensure that both **Instance** and **Fleet** are selected\. To tag only the instances launched by the fleet, clear **Fleet**\. To tag only the Spot Fleet request, clear **Instance**\. 
-
-1. For **Tell us how much capacity you need**, do the following:
-
-   1. For **Total target capacity**, specify the number of units to request for target capacity\. You can choose instances or vCPUs\. To specify a target capacity of 0 so that you can add capacity later, choose **Maintain target capacity**\.
-
-   1. \(Optional\) For **Optional On\-Demand portion**, specify the number of On\-Demand units to request\. The number must be less than the **Total target capacity**\. Amazon EC2 calculates the difference, and allocates the difference to Spot units to request\.
-**Important**  
- To specify an optional On\-Demand portion, you must first choose a launch template\.
-
-   1. \(Optional\) By default, the Spot service terminates Spot Instances when they are interrupted\. To maintain the target capacity, select **Maintain target capacity**\. You can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\. To do so, choose the corresponding option from **Interruption behavior**\.
-
-   1. \(Optional\) To allow Spot Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for an existing Spot Instance in the fleet, select **Capacity rebalance**\. For more information, see [Capacity Rebalancing](spot-fleet-capacity-rebalance.md)\.
-**Note**  
-When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\.  
-The instance marked for rebalance is at an elevated risk of interruption, and you will receive a two\-minute Spot Instance interruption notice before Amazon EC2 interrupts it\. 
-
-   1. \(Optional\) To control the amount you pay per hour for all the Spot Instances in your fleet, select **Set maximum cost for Spot Instances** and then enter the maximum total amount you're willing to pay per hour\. When the maximum total amount is reached, Spot Fleet stops launching Spot Instances even if it hasn’t met the target capacity\. For more information, see [Control spending](spot-fleet-control-spending.md)\.
-
-1. For **Fleet request settings**, do the following:
-
-   1. Review the fleet request and fleet allocation strategy based on your application or task selection\. To change the instance types or allocation strategy, clear **Apply recommendations**\.
-
-   1. \(Optional\) For **Fleet allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation strategy for Spot Instances](spot-fleet-allocation-strategy.md)\.
-
-   1. \(Optional\) To remove instance types, for **Fleet request**, select the instance types to remove and then choose **Delete**\. To add instance types, choose **Select instance types**\.
+         For each tag, to tag the instances and the Spot Fleet request with the same tag, ensure that both **Instances** and **Fleet** are selected\. To tag only the instances launched by the fleet, clear **Fleet**\. To tag only the Spot Fleet request, clear **Instances**\.
 
 1. For **Additional request details**, do the following:
 
@@ -419,9 +435,57 @@ The instance marked for rebalance is at an elevated risk of interruption, and yo
 
    1. \(Optional\) To create a request that is valid only during a specific time period, edit **Request valid from** and **Request valid until**\.
 
-   1. \(Optional\) By default, we terminate your Spot Instances when the request expires\. To keep them running after your request expires, clear **Terminate the instances when the request expires**\.
+   1. \(Optional\) By default, we terminate your Spot Instances when the Spot Fleet request expires\. To keep them running after your request expires, clear **Terminate the instances when the request expires**\.
 
    1. \(Optional\) To register your Spot Instances with a load balancer, choose **Receive traffic from one or more load balancers** and choose one or more Classic Load Balancers or target groups\.
+
+1. For **Minimum compute unit**, choose the minimum hardware specifications \(vCPUs, memory, and storage\) that you need for your application or task, either **as specs** or **as an instance type**\.
+   + For **as specs**, specify the required number of vCPUs and amount of memory\.
+   + For **as an instance type**, accept the default instance type, or choose **Change instance type** to choose a different instance type\.
+
+1. For **Target capacity**, do the following:
+
+   1. For **Total target capacity**, specify the number of units to request\. For the type of unit, you can choose **Instances**, **vCPUs**, or **Memory \(MiB\)**\. To specify a target capacity of 0 so that you can add capacity later, choose **Maintain target capacity**\.
+
+   1. \(Optional\) For **Include On\-Demand base capacity**, specify the number of On\-Demand units to request\. The number must be less than the **Total target capacity**\. Amazon EC2 calculates the difference, and allocates the difference to Spot units to request\.
+**Important**  
+ To specify optional On\-Demand capacity, you must first choose a launch template\.
+
+   1. \(Optional\) By default, the Spot service terminates Spot Instances when they are interrupted\. To maintain the target capacity, select **Maintain target capacity**\. You can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\. To do so, choose the corresponding option from **Interruption behavior**\.
+
+   1. \(Optional\) To allow Spot Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for an existing Spot Instance in the fleet, select **Capacity rebalance**, and then choose an instance replacement strategy\. If you choose **Launch before terminate**, specify the delay \(in seconds\) before Spot Fleet terminates the old instances\. For more information, see [Capacity Rebalancing](spot-fleet-capacity-rebalance.md)\.
+
+   1. \(Optional\) To control the amount you pay per hour for all the Spot Instances in your fleet, select **Set maximum cost for Spot Instances** and then enter the maximum total amount you're willing to pay per hour\. When the maximum total amount is reached, Spot Fleet stops launching Spot Instances even if it hasn’t met the target capacity\. For more information, see [Control spending](spot-fleet-control-spending.md)\.
+
+1. For **Network**, do the following:
+
+   1. For **Network**, choose an existing VPC or create a new one\.
+
+      \[Existing VPC\] Choose the VPC\.
+
+      \[New VPC\] Choose **Create new VPC** to go the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
+
+   1. \(Optional\) For **Availability Zone**, let AWS choose the Availability Zones for your Spot Instances, or specify one or more Availability Zones\.
+
+      If you have more than one subnet in an Availability Zone, choose the appropriate subnet from **Subnet**\. To add subnets, choose **Create new subnet** to go to the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
+
+1. For **Instance type requirements**, you can either specify instance attributes and let Amazon EC2 identify the optimal instance types with these attributes, or you can specify a list of instances\. For more information, see [Attribute\-based instance type selection for Spot Fleet](spot-fleet-attribute-based-instance-type-selection.md)\.
+
+   1. If you choose **Specify instance attributes that match your compute requirements**, specify your instance attributes as follows:
+
+      1. For **vCPUs**, enter the desired minimum and maximum number of vCPUs\. To specify no limit, select **No minimum**, **No maximum**, or both\.
+
+      1. For **Memory \(GiB\)**, enter the desired minimum and maximum amount of memory\. To specify no limit, select **No minimum**, **No maximum**, or both\.
+
+      1. \(Optional\) For **Additional instance attributes**, you can optionally specify one or more attributes to express your compute requirements in more detail\. Each additional attribute adds a further constraint to your request\. You can omit the additional attributes; when omitted, the default values are used\. For a description of each attribute and their default values, see [get\-spot\-placement\-scores](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-spot-placement-scores.html) in the *Amazon EC2 Command Line Reference*\.
+
+      1. \(Optional\) To view the instance types with your specified attributes, expand **Preview matching instance types**\. To exclude instance types from being used in your request, select the instances and then choose **Exclude selected instance types**\.
+
+   1. If you choose **Manually select instance types**, Spot Fleet provides a default list of instance types\. To select more instance types, choose **Add instance types**, select the instance types to use in your request, and choose **Select**\. To delete instance types, select the instance types and choose **Delete**\.
+
+1. For **Allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation strategy for Spot Instances](spot-fleet-allocation-strategy.md)\.
+
+1. For **Your fleet request at a glance**, review your fleet configuration, and make any adjustments if necessary\.
 
 1. \(Optional\) To download a copy of the launch configuration for use with the AWS CLI, choose **JSON config**\.
 
@@ -488,6 +552,8 @@ Create a IAM policy that includes the following:
                 "ec2:RequestSpotFleet"
             ],
             "Resource": "*"
+        }
+    ]
 }
 ```
 
@@ -790,11 +856,11 @@ aws ec2 describe-spot-fleet-requests \
 }
 ```
 
-## Monitor your Spot Fleet<a name="manage-spot-fleet"></a>
+## Describe your Spot Fleet<a name="manage-spot-fleet"></a>
 
 The Spot Fleet launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\. The Spot Instances run until they are interrupted or you terminate them\.
 
-**To monitor your Spot Fleet \(console\)**
+**To describe your Spot Fleet \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -806,7 +872,7 @@ The Spot Fleet launches Spot Instances when your maximum price exceeds the Spot 
 
 1. To view the history for the Spot Fleet, choose **History**\.
 
-**To monitor your Spot Fleet \(AWS CLI\)**  
+**To describe your Spot Fleet \(AWS CLI\)**  
 Use the [describe\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-requests.html) command to describe your Spot Fleet requests\.
 
 ```

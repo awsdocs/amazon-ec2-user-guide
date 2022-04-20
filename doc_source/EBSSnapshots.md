@@ -13,7 +13,7 @@ You can track the status of your EBS snapshots through CloudWatch Events\. For m
 Snapshots can be used to create a backup of critical workloads, such as a large database or a file system that spans across multiple EBS volumes\. Multi\-volume snapshots allow you to take exact point\-in\-time, data coordinated, and crash\-consistent snapshots across multiple EBS volumes attached to an EC2 instance\. You are no longer required to stop your instance or to coordinate between volumes to ensure crash consistency, because snapshots are automatically taken across multiple EBS volumes\. For more information, see the steps for creating a multi\-volume EBS snapshot under [Create Amazon EBS snapshots](ebs-creating-snapshot.md) \.
 
 **Snapshot pricing**  
-Charges for your snapshots are based on the amount of data stored\. Because snapshots are incremental, deleting a snapshot might not reduce your data storage costs\. Data referenced exclusively by a snapshot is removed when that snapshot is deleted, but data referenced by other snapshots is preserved\. For more information, see [Amazon Elastic Block Store Volumes and Snapshots](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html#checkebsvolumes) in the *AWS Billing and Cost Management User Guide*\.
+Charges for your snapshots are based on the amount of data stored\. Because snapshots are incremental, deleting a snapshot might not reduce your data storage costs\. Data referenced exclusively by a snapshot is removed when that snapshot is deleted, but data referenced by other snapshots is preserved\. For more information, see [Amazon Elastic Block Store Volumes and Snapshots](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html#checkebsvolumes) in the *AWS Billing User Guide*\.
 
 **Topics**
 + [How incremental snapshots work](#how_snapshots_work)
@@ -22,8 +22,10 @@ Charges for your snapshots are based on the amount of data stored\. Because snap
 + [Create Amazon EBS snapshots](ebs-creating-snapshot.md)
 + [Delete an Amazon EBS snapshot](ebs-deleting-snapshot.md)
 + [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)
++ [Archive Amazon EBS snapshots](snapshot-archive.md)
 + [View Amazon EBS snapshot information](ebs-describing-snapshots.md)
 + [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)
++ [Recover snapshots from the Recycle Bin](recycle-bin-working-with-snaps.md)
 + [Amazon EBS local snapshots on Outposts](snapshots-outposts.md)
 + [Use EBS direct APIs to access the contents of an EBS snapshot](ebs-accessing-snapshot.md)
 + [Automate the snapshot lifecycle](automating-snapshots.md)

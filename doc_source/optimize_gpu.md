@@ -1,6 +1,6 @@
 # Optimize GPU settings<a name="optimize_gpu"></a>
 
-There are several GPU setting optimizations that you can perform to achieve the best performance on G3, G4dn, P2, P3, P3dn, and P4d instances\. With some of these instance types, the NVIDIA driver uses an autoboost feature, which varies the GPU clock speeds\. By disabling autoboost and setting the GPU clock speeds to their maximum frequency, you can consistently achieve the maximum performance with your GPU instances\. The following procedure helps you to configure the GPU settings to be persistent, disable the autoboost feature if needed, and set the GPU clock speeds to their maximum frequency\.
+There are several GPU setting optimizations that you can perform to achieve the best performance on [NVIDIA GPU instances](accelerated-computing-instances.md#gpu-instances)\. With some of these instance types, the NVIDIA driver uses an autoboost feature, which varies the GPU clock speeds\. By disabling autoboost and setting the GPU clock speeds to their maximum frequency, you can consistently achieve the maximum performance with your GPU instances\.  The followingprocedure helps you to configure the GPU settings to be persistent, disable the autoboost feature if needed, and set the GPU clock speeds to their maximum frequency\.
 
 **To optimize GPU settings**
 
@@ -10,9 +10,7 @@ There are several GPU setting optimizations that you can perform to achieve the 
    [ec2-user ~]$ sudo nvidia-persistenced
    ```
 
-1. G2, G3, and P2 instances: Disable the autoboost feature for all GPUs on the instance\.
-**Note**  
-GPUs on G4dn, P3, P3dn, and P4d instances do not support autoboost\.
+1. \[G2, G3, and P2 instances only\] Disable the autoboost feature for all GPUs on the instance\.
 
    ```
    [ec2-user ~]$ sudo nvidia-smi --auto-boost-default=0
@@ -30,6 +28,11 @@ GPUs on G4dn, P3, P3dn, and P4d instances do not support autoboost\.
 
      ```
      [ec2-user ~]$ sudo nvidia-smi -ac 5001,1590
+     ```
+   + G5 instances:
+
+     ```
+     [ec2-user ~]$ sudo nvidia-smi -ac 6250,1710
      ```
    + P2 instances:
 

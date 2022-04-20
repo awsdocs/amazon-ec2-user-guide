@@ -1,4 +1,4 @@
-# Buying Reserved Instances<a name="ri-market-concepts-buying"></a>
+# Buy Reserved Instances<a name="ri-market-concepts-buying"></a>
 
 To purchase a Reserved Instance, search for *Reserved Instance offerings* from AWS and third\-party sellers, adjusting your search parameters until you find the exact match that you're looking for\.
 
@@ -385,13 +385,13 @@ You can renew a Reserved Instance before it is scheduled to expire\. Renewing a 
 ------
 #### [ New console ]
 
-**To renew an Reserved Instance using a queued purchase**
+**To renew a Reserved Instance using a queued purchase**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Reserved Instances**\.
 
-1. Select one or more Reserved Instances\.
+1. Select the Reserved Instance to renew\.
 
 1. Choose **Actions**, **Renew Reserved Instances**\.
 
@@ -400,13 +400,13 @@ You can renew a Reserved Instance before it is scheduled to expire\. Renewing a 
 ------
 #### [ Old console ]
 
-**To renew an Reserved Instance using a queued purchase**
+**To renew a Reserved Instance using a queued purchase**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Reserved Instances**\.
 
-1. Select one or more Reserved Instances\.
+1. Select the Reserved Instance to renew\.
 
 1. Choose **Actions**, **Renew Reserved Instances**\.
 

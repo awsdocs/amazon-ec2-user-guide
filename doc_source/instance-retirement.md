@@ -26,7 +26,7 @@ If an instance is scheduled for retirement, we recommend that you take action as
 
 If your instance is scheduled for retirement, you receive an email prior to the event with the instance ID and retirement date\.
 
-The email is sent to the primary account holder and the operations contact\. For more information, see [Adding, changing, or removing alternate contacts](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-account-payment.html#manage-account-payment-alternate-contacts) in the *AWS Billing and Cost Management User Guide*\.
+The email is sent to the primary account holder and the operations contact\. For more information, see [Adding, changing, or removing alternate contacts](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-account-payment.html#manage-account-payment-alternate-contacts) in the *AWS Billing User Guide*\.
 
 ### Console identification<a name="identify-in-console-cli"></a>
 
@@ -69,7 +69,7 @@ When you are notified that your instance is scheduled for retirement, we recomme
 Create an EBS\-backed AMI from your instance so that you have a backup\. To ensure data integrity, stop the instance before you create the AMI\. You can wait for the scheduled retirement date when the instance is stopped, or stop the instance yourself before the retirement date\. You can start the instance again at any time\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
 **Launch a replacement instance**  
-After you create an AMI from your instance, you can use the AMI to launch a replacement instance\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+After you create an AMI from your instance, you can use the AMI to launch a replacement instance\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
 ## Actions to take for instance\-store backed instances scheduled for retirement<a name="instance-retirement-actions-instance-store"></a>
 
@@ -85,7 +85,7 @@ When you are notified that your instance is scheduled for retirement, we recomme
 + If your instance is unreachable, there is likely very little that can be done to recover your instance\. For more information, see [Troubleshoot an unreachable instance](instance-console.md)\. AWS will terminate your instance on the scheduled retirement date, so, for an unreachable instance, you can immediately [terminate](terminating-instances.md) the instance yourself\.
 
 **Launch a replacement instance**  
-Create an instance store\-backed AMI from your instance using the AMI tools, as described in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+Create an instance store\-backed AMI from your instance using the AMI tools, as described in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
 **Convert your instance to an EBS\-backed instance**  
 Transfer your data to an EBS volume, take a snapshot of the volume, and then create AMI from the snapshot\. You can launch a replacement instance from your new AMI\. For more information, see [Convert your instance store\-backed AMI to an Amazon EBS\-backed AMI](Using_ConvertingS3toEBS.md)\.

@@ -42,7 +42,7 @@ You can find out about the charges and fees to your account by viewing the [AWS 
 
 You can view the charges online, or you can download a CSV file\.
 
-You can also track your Reserved Instance utilization using the AWS Cost and Usage Report\. For more information, see [Reserved Instances ](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage-ri.html) under Cost and Usage Report in the *AWS Billing and Cost Management User Guide*\.
+You can also track your Reserved Instance utilization using the AWS Cost and Usage Report\. For more information, see [Reserved Instances ](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage-ri.html) under Cost and Usage Report in the *AWS Billing User Guide*\.
 
 ## Reserved Instances and consolidated billing<a name="concepts-reserved-instances-billing"></a>
 
@@ -112,7 +112,7 @@ For example, for a 1\-year Partial Upfront `t2.small` Reserved Instance, assume 
 
 ### Buy with a discount tier<a name="buying-discount-tier"></a>
 
-When you buy Reserved Instances, Amazon EC2 automatically applies any discounts to the part of your purchase that falls within a discount pricing tier\. You don't need to do anything differently, and you can buy Reserved Instances using any of the Amazon EC2 tools\. For more information, see [Buying Reserved Instances](ri-market-concepts-buying.md)\.
+When you buy Reserved Instances, Amazon EC2 automatically applies any discounts to the part of your purchase that falls within a discount pricing tier\. You don't need to do anything differently, and you can buy Reserved Instances using any of the Amazon EC2 tools\. For more information, see [Buy Reserved Instances](ri-market-concepts-buying.md)\.
 
 After the list value of your active Reserved Instances in a Region crosses into a discount pricing tier, any future purchase of Reserved Instances in that Region are charged at a discounted rate\. If a single purchase of Reserved Instances in a Region takes you over the threshold of a discount tier, then the portion of the purchase that is above the price threshold is charged at the discounted rate\. For more information about the temporary Reserved Instance IDs that are created during the purchase process, see [Crossing pricing tiers](#crossing-pricing-tiers)\.
 

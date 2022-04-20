@@ -15,6 +15,7 @@ Use the appropriate configuration strategies to create an EC2 Fleet that meets y
 **Topics**
 + [Plan an EC2 Fleet](plan-ec2-fleet.md)
 + [Allocation strategies for Spot Instances](ec2-fleet-allocation-strategy.md)
++ [Attribute\-based instance type selection for EC2 Fleet](ec2-fleet-attribute-based-instance-type-selection.md)
 + [Configure EC2 Fleet for On\-Demand backup](ec2-fleet-on-demand-backup.md)
 + [Capacity Rebalancing](ec2-fleet-capacity-rebalance.md)
 + [Maximum price overrides](ec2-fleet-price-overrides.md)

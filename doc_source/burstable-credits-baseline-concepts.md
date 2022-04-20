@@ -2,7 +2,7 @@
 
 Traditional Amazon EC2 instance types provide fixed CPU resources, while burstable performance instances provide a baseline level of CPU utilization with the ability to burst CPU utilization above the baseline level\. This ensures that you pay only for baseline CPU plus any additional burst CPU usage resulting in lower compute costs\. The baseline utilization and ability to burst are governed by CPU credits\. Burstable performance instances are the only instance types that use credits for CPU usage\.
 
-Each burstable performance instance continuously earns credit when it stays below the CPU baseline, and continuously spends credits when it bursts above the baseline\. The amount of credits earned or spent depends on the CPU utilization of the instance:
+Each burstable performance instance continuously earns credits when it stays below the CPU baseline, and continuously spends credits when it bursts above the baseline\. The amount of credits earned or spent depends on the CPU utilization of the instance:
 + If the CPU utilization is below baseline, then credits earned are greater than credits spent\.
 + If the CPU utilization is equal to baseline, then credits earned are equal to credits spent\.
 + If the CPU utilization is higher than baseline, then credits spent are higher than credits earned\.

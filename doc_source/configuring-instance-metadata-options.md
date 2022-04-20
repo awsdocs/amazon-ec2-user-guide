@@ -14,7 +14,7 @@ You can also use IAM condition keys in an IAM policy or SCP to do the following:
 You should proceed cautiously and conduct careful testing before making any changes\. Take note of the following:  
 If you enforce the use of IMDSv2, applications or agents that use IMDSv1 for instance metadata access will break\.
 If you turn off all access to instance metadata, applications or agents that rely on instance metadata access to function will break\.
-For IMDSv2, you must use `/latest/api/` token when retrieving the token\.
+For IMDSv2, you must use `/latest/api/token` when retrieving the token\.
 
 **Topics**
 + [Configure instance metadata options for new instances](#configuring-IMDS-new-instances)
@@ -37,7 +37,7 @@ For more information, see [Step 3: Configure Instance Details](launching-instanc
 ------
 #### [ AWS CLI ]
 
-**To require the use of IMDSv2 on a new instance**  
+**To require the use of IMDSv2 on a new instance subnet**  
 The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) example launches a `c3.large` instance with `--metadata-options` set to `HttpTokens=required`\. When you specify a value for `HttpTokens`, you must also set `HttpEndpoint` to `enabled`\. Because the secure token header is set to `required` for metadata retrieval requests, this opts in the instance to require using IMDSv2 when requesting instance metadata\.
 
 ```
@@ -49,9 +49,25 @@ aws ec2 run-instances
 ```
 
 ------
+#### [ AWS CloudFormation ]
+
+To specify the metadata options for an instance using AWS CloudFormation, see the [AWS::EC2::LaunchTemplate MetadataOptions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-metadataoptions.html) property in the *AWS CloudFormation User Guide*\. 
+
+------
 
 **To enforce the use of IMDSv2 on all new instances**  
 To ensure that IAM users can only launch instances that require the use of IMDSv2 when requesting instance metadata, you can specify that the condition to require IMDSv2 must be met before an instance can be launched\. For the example IAM policy, see [Work with instance metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
+
+**Configure IPv4 and IPv6 endpoints**  
+By default, the IPv6 endpoint is disabled\. This is true even if you are launching an instance into an IPv6\-only subnet\. You can choose to enable this endpoint at instance launch\. The IPv6 endpoint for IMDS is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\. For more information about the metadata options, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) in the *AWS CLI command reference*\. The following example shows you how to enable the IPv6 endpoint for IMDS:
+
+```
+aws ec2 run-instances
+    --image-id ami-0abcdef1234567890
+    --instance-type t3.large
+    ...
+    --metadata-options "HttpEndpoint=enabled,HttpProtocolIpv6=enabled"
+```
 
 ------
 #### [ Console ]
@@ -75,6 +91,11 @@ aws ec2 run-instances
     ... 
     --metadata-options "HttpEndpoint=disabled"
 ```
+
+------
+#### [ AWS CloudFormation ]
+
+To specify the metadata options for an instance using AWS CloudFormation, see the [AWS::EC2::LaunchTemplate MetadataOptions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-metadataoptions.html) property in the *AWS CloudFormation User Guide*\. 
 
 ------
 
@@ -112,6 +133,16 @@ aws ec2 modify-instance-metadata-options \
     --instance-id i-1234567898abcdef0 \
     --http-tokens optional \
     --http-endpoint enabled
+```
+
+**To turn on the IPv6 endpoint for your instance**  
+By default, the IPv6 endpoint is disabled\. This is true even if you have launched an instance into an IPv6\-only subnet\. The IPv6 endpoint for IMDS is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\. For more information about the metadata options, see [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) in the *AWS CLI command reference*\. The following example shows you how to turn on the IPv6 endpoint for the instance metadata service\.
+
+```
+aws ec2 modify-instance-metadata-options \
+	--instance-id i-1234567898abcdef0 \
+	--http-protocol-ipv6 enabled \
+	--http-endpoint enabled
 ```
 
 **To turn off access to instance metadata**  

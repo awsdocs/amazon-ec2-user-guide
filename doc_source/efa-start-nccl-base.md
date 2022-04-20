@@ -4,7 +4,7 @@ The following steps help you to get started with Elastic Fabric Adapter using on
 
 **Note**  
 Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
-Only Amazon Linux 2, RHEL 7/8, CentOS 7/8, and Ubuntu 18\.04 base AMIs are supported\.
+Only Amazon Linux 2, RHEL 7/8, CentOS 7, and Ubuntu 18\.04 base AMIs are supported\.
 
 **Topics**
 + [Step 1: Prepare an EFA\-enabled security group](#nccl-start-base-setup)
@@ -29,9 +29,9 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Security Groups** and then choose **Create Security Group**\.
+1. In the navigation pane, choose **Security Groups** and then choose **Create security group**\.
 
-1. In the **Create Security Group** window, do the following:
+1. In the **Create security group** window, do the following:
 
    1. For **Security group name**, enter a descriptive name for the security group, such as `EFA-enabled security group`\.
 
@@ -39,29 +39,29 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
    1. For **VPC**, select the VPC into which you intend to launch your EFA\-enabled instances\.
 
-   1. Choose **Create**\.
+   1. Choose **Create security group**\.
 
-1. Select the security group that you created, and on the **Description** tab, copy the **Group ID**\.
+1. Select the security group that you created, and on the **Details** tab, copy the **Security group ID**\.
 
-1. On the **Inbound** tab, do the following:
+1. With the security group still selected, choose **Actions**, **Edit inbound rules**, and then do the following:
 
-   1. Choose **Edit**\.
-
-   1. For **Type**, choose **All traffic**\.
-
-   1. For **Source**, choose **Custom** and paste the security group ID that you copied into the field\.
-
-   1. Choose **Save**\.
-
-1. On the **Outbound** tab, do the following:
-
-   1. Choose **Edit**\.
+   1. Choose **Add rule**\.
 
    1. For **Type**, choose **All traffic**\.
 
-   1. For **Destination**, choose **Custom** and paste the security group ID that you copied into the field\.
+   1. For **Source type**, choose **Custom** and paste the security group ID that you copied into the field\.
 
-   1. Choose **Save**\.
+   1. Choose **Save rules**\.
+
+1. With the security group still selected, choose **Actions**, **Edit outbound rules**, and then do the following:
+
+   1. Choose **Add rule**\.
+
+   1. For **Type**, choose **All traffic**\.
+
+   1. For **Destination type**, choose **Custom** and paste the security group ID that you copied into the field\.
+
+   1. Choose **Save rules**\.
 
 ## Step 2: Launch a temporary instance<a name="nccl-start-base-temp"></a>
 
@@ -79,7 +79,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Configure Instance Details** page, do the following:
 
-   1. For **Subnet**, choose the subnet in which to launch the instance\.
+   1. For **Subnet**, choose the subnet in which to launch the instance\. If you do not select a subnet, you can't enable the instance for EFA\.
 
    1. For **Elastic Fabric Adapter**, choose **Enable**\.
 
@@ -108,6 +108,145 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 
    ```
    $ sudo yum groupinstall 'Development Tools' -y
+   ```
+
+1. Disable the `nouveau` open source drivers\.
+
+   1. Install the required utilities and the kernel headers package for the version of the kernel that you are currently running\.
+
+      ```
+      $ sudo yum install -y wget kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+      ```
+
+   1. Add `nouveau` to the `/etc/modprobe.d/blacklist.conf `deny list file\.
+
+      ```
+      $ cat << EOF | sudo tee --append /etc/modprobe.d/blacklist.conf
+      blacklist vga16fb
+      blacklist nouveau
+      blacklist rivafb
+      blacklist nvidiafb
+      blacklist rivatv
+      EOF
+      ```
+
+   1. Append `GRUB_CMDLINE_LINUX="rdblacklist=nouveau"` to the `grub` file and rebuild the Grub configuration\.
+
+      ```
+      $ echo 'GRUB_CMDLINE_LINUX="rdblacklist=nouveau"' | sudo tee -a /etc/default/grub \
+      && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+      ```
+
+1. Reboot the instance and reconnect to it\.
+
+1. Prepare the required repositories
+
+   1. Install the EPEL repository for DKMS and enable any optional repos for your Linux distribution\.
+
+      ```
+      $ sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      ```
+
+   1. Install the CUDA repository public GPG key\.
+
+      ```
+      $ distribution='rhel7'
+      ```
+
+   1. Set up the CUDA network repository and update the repository cache\.
+
+      ```
+      $ ARCH=$( /bin/arch ) \
+      && sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo \
+      && sudo yum clean expire-cache
+      ```
+
+   1. \(*Kernel version 5\.10 only*\) Perform these steps only if you are using Amazon Linux 2 with kernel version 5\.10\. If you are using Amazon Linux 2 with kernel version 4\.12, skip these steps\. To check your kernel version, run uname \-r\.
+
+      1. Add the `amzn2-nvidia` repository\. Create a new repo file named `/etc/yum.repos.d/amzn2-nvidia.repo`, and using your preferred text editor, add the following to the file\.
+
+         ```
+         [amzn2-nvidia]
+         name=Amazon Linux 2 Nvidia repository
+         mirrorlist=http://amazonlinux.$awsregion.$awsdomain/$releasever/amzn2-nvidia/$target/$basearch/mirror.list
+         priority=20
+         gpgcheck=0
+         gpgkey=https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/7fa2af80.pub
+         enabled=1
+         metadata_expire=300
+         mirrorlist_expire=300
+         report_instanceid=yes
+         ```
+
+      1. Install the `system-release-nvidia` package from the repo you added in the previous step\.
+
+         ```
+         $ sudo yum install system-release-nvidia
+         ```
+
+      1. Create the Nvidia driver configuration file named `/etc/dkms/nvidia.conf`\.
+
+         ```
+         $ sudo mkdir -p /etc/dkms \
+         && echo "MAKE[0]=\"'make' -j2 module SYSSRC=\${kernel_source_dir} IGNORE_XEN_PRESENCE=1 IGNORE_PREEMPT_RT_PRESENCE=1 IGNORE_CC_MISMATCH=1 CC=/usr/bin/gcc10-gcc\"" | sudo tee /etc/dkms/nvidia.conf
+         ```
+
+1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
+
+   ```
+   $ sudo yum clean all \
+   && sudo yum -y install nvidia-driver-latest-dkms \
+   && sudo yum -y install cuda-drivers-fabricmanager cuda libcudnn8-devel
+   ```
+
+1. Reboot the instance and reconnect to it\.
+
+1. \(`p4d.24xlarge` instances only\) Start the Nvidia Fabric Manager service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+
+   ```
+   $ sudo systemctl enable nvidia-fabricmanager && sudo systemctl start nvidia-fabricmanager
+   ```
+
+1. Ensure that the CUDA paths are set each time that the instance starts\.
+   + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
+
+     ```
+     export PATH=/usr/local/cuda/bin:$PATH
+     export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+     ```
+   + For *tcsh* shells, add the following statements to `/home/username/.cshrc`\.
+
+     ```
+     setenv PATH=/usr/local/cuda/bin:$PATH
+     setenv LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+     ```
+
+1. To confirm that the Nvidia GPU drivers are functional, run the following command\.
+
+   ```
+   $ nvidia-smi -q | head
+   ```
+
+   The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
+
+------
+#### [ CentOS 7 ]
+
+**To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
+
+1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\.
+
+   ```
+   $ sudo yum upgrade -y && sudo reboot
+   ```
+
+   After the instance has rebooted, reconnect to it\.
+
+1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
+
+   ```
+   $ sudo yum groupinstall 'Development Tools' -y \
+   && sudo yum install -y tar bzip2 make automake pciutils elfutils-libelf-devel libglvnd-devel iptables firewalld vim bind-utils
    ```
 
 1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
@@ -164,138 +303,6 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
       $ ARCH=$( /bin/arch ) \
       && sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo \
       && sudo yum clean expire-cache
-      ```
-
-   1. Install the NVIDIA, CUDA drivers and cuDNN\.
-
-      ```
-      $ sudo yum clean all \
-      && sudo yum -y install cuda-drivers-fabricmanager cuda libcudnn8-devel
-      ```
-
-1. Reboot the instance and reconnect to it\.
-
-1. \(`p4d.24xlarge` instances only\) Start the Nvidia Fabric Manager service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
-
-   ```
-   $ sudo systemctl start nvidia-fabricmanager \
-   && sudo systemctl enable nvidia-fabricmanager
-   ```
-
-1. Ensure that the CUDA paths are set each time that the instance starts\.
-   + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
-
-     ```
-     export PATH=/usr/local/cuda/bin:$PATH
-     export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
-     ```
-   + For *tcsh* shells, add the following statements to `/home/username/.cshrc`\.
-
-     ```
-     setenv PATH=/usr/local/cuda/bin:$PATH
-     setenv LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
-     ```
-
-1. To confirm that the Nvidia GPU drivers are functional, run the following command\.
-
-   ```
-   $ nvidia-smi -q | head
-   ```
-
-   The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
-
-------
-#### [ CentOS 7/8 ]
-
-**To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
-
-1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\.
-
-   ```
-   $ sudo yum upgrade -y && sudo reboot
-   ```
-
-   After the instance has rebooted, reconnect to it\.
-
-1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
-
-   ```
-   $ sudo yum groupinstall 'Development Tools' -y \
-   && sudo yum install -y tar bzip2 make automake pciutils elfutils-libelf-devel libglvnd-devel iptables firewalld vim bind-utils
-   ```
-
-1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
-
-   1. Install the required utilities and the kernel headers package for the version of the kernel that you are currently running\.
-
-      ```
-      $ sudo yum install -y wget kernel-devel-$(uname -r) kernel-headers-$(uname -r)
-      ```
-
-   1. Add `nouveau` to the `/etc/modprobe.d/blacklist.conf `deny list file\.
-
-      ```
-      $ cat << EOF | sudo tee --append /etc/modprobe.d/blacklist.conf
-      blacklist vga16fb
-      blacklist nouveau
-      blacklist rivafb
-      blacklist nvidiafb
-      blacklist rivatv
-      EOF
-      ```
-
-   1. Open `/etc/default/grub` using your preferred text editor and add the following\. 
-
-      ```
-      GRUB_CMDLINE_LINUX="rdblacklist=nouveau"
-      ```
-
-   1. Rebuild the Grub configuration\.
-
-      ```
-      $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-      ```
-
-1. Reboot the instance and reconnect to it\.
-
-1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
-
-   1. Install the EPEL repository for DKMS and enable any optional repos for your Linux distribution\.
-      + CentOS 7
-
-        ```
-        $ sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-        ```
-      + CentOS 8
-
-        ```
-        $ sudo yum install -y epel-release
-        ```
-
-   1. Install the CUDA repository public GPG key\.
-      + CentOS 7
-
-        ```
-        $ distribution='rhel7'
-        ```
-      + CentOS 8
-
-        ```
-        $ distribution='rhel8'
-        ```
-
-   1. Set up the CUDA network repository and update the repository cache\.
-
-      ```
-      $ ARCH=$( /bin/arch ) \
-      && sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo \
-      && sudo yum clean expire-cache
-      ```
-
-   1. \(CentOS 8 only\) Update the running kernel\.
-
-      ```
-      $ sudo yum install -y kernel kernel-core kernel-modules
       ```
 
    1. Install the NVIDIA, CUDA drivers and cuDNN\.
@@ -599,7 +606,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Connect to the instance you launched\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
-   + Amazon Linux 2, RHEL 7/8, and CentOS 7/8
+   + Amazon Linux 2, RHEL 7/8, and CentOS 7
 
      ```
      $ sudo yum update -y
@@ -613,7 +620,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.13.0.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.15.1.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -641,7 +648,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.13.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.13.0.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.15.1.tar.gz.sig && gpg --verify ./aws-efa-installer-1.15.1.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -659,13 +666,13 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.13.0.tar.gz && cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.15.1.tar.gz && cd aws-efa-installer
    ```
 
 1. Run the EFA software installation script\.
 
    ```
-   $ sudo ./efa_installer.sh -y -g
+   $ sudo ./efa_installer.sh -y
    ```
 
    Libfabric is installed in the `/opt/amazon/efa` directory, while Open MPI is installed in the `/opt/amazon/openmpi` directory\.
@@ -859,6 +866,7 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    + `FI_EFA_USE_DEVICE_RDMA=1`—uses the device's RDMA functionality for one\-sided and two\-sided transfer\.
    + `NCCL_DEBUG=INFO`—enables detailed debugging output\. You can also specify `VERSION` to print only the NCCL version at the start of the test, or `WARN` to receive only error messages\.
    + `NCCL_ALGO=ring`—enables ring algorithm for collective operations\.
+   + `NCCL_PROTO=simple`—instructs NCCL to use a simple protocol for communication\. Currently, the EFA provider does not support LL protocols\. Enabling them could lead to data corruption\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
 
@@ -866,10 +874,10 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    $ /opt/amazon/openmpi/bin/mpirun \
        -x FI_PROVIDER="efa" \
        -x FI_EFA_USE_DEVICE_RDMA=1 \
-       -x RDMAV_FORK_SAFE=1 \
        -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
        -x NCCL_DEBUG=INFO \
        -x NCCL_ALGO=ring \
+       -x NCCL_PROTO=simple \
        --hostfile my-hosts -n 8 -N 8 \
        --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
        $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
@@ -935,6 +943,10 @@ At this point, you no longer need the temporary instance that you launched\. You
 ## Step 12: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-base-cluster"></a>
 
 Launch your EFA and NCCL\-enabled instances into a cluster placement group using the EFA\-enabled AMI and the EFA\-enabled security group that you created earlier\.
+
+**Note**  
+It is not an absolute requirement to launch your EFA\-enabled instances into a cluster placementgroup\. However, we do recommend running your EFA\-enabled instances in a cluster placement group as it launches the instances into a low\-latency group in a single Availability Zone\.
+To ensure that capacity is available as you scale your cluster’s instances, you can create a Capacity Reservation for your cluster placement group\. For more information, see [Capacity Reservations in cluster placement groups](cr-cpg.md)\.
 
 **To launch your EFA and NCCL\-enabled instances into a cluster placement group**
 

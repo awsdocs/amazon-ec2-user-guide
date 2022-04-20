@@ -73,6 +73,33 @@ You can copy an AMI using the AWS Management Console, the AWS Command Line Inter
 **Prerequisite**  
 Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use the Amazon EC2 console to search a wide variety of AMIs provided by AWS\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) and [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
 
+------
+#### [ New console ]
+
+**To copy an AMI using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. From the console navigation bar, select the Region that contains the AMI\.
+
+1. In the navigation pane, choose **Images**, **AMIs** to display the list of AMIs available to you in the Region\.
+
+1. Select the AMI to copy and choose **Actions**, **Copy AMI**\.
+
+1. On the **Copy AMI** page, specify the following information:
+   + **AMI copy name**: A name for the new AMI\. You can include operating system information in the name, as we do not provide this information when displaying details about the AMI\.
+   + **AMI copy description**: By default, the description includes information about the source AMI so that you can distinguish a copy from its original\. You can change this description as needed\.
+   + **Destination Region**: The Region in which to copy the AMI\. For more information, see [Cross\-Region copying](#copy-amis-across-regions)\.
+   + **Encrypt EBS snapshots of AMI copy**: Select this check box to encrypt the target snapshots, or to re\-encrypt them using a different key\. If you have enabled [encryption by default](EBSEncryption.md#encryption-by-default), the **Encrypt EBS snapshots of AMI copy** check box is selected and cannot be cleared\. For more information, see [Encryption and copying](#ami-copy-encryption)\.
+   + **KMS key**: The KMS key to used to encrypt the target snapshots\.
+
+1. Choose **Copy AMI**\.
+
+   The initial status of the new AMI is `Pending`\. The AMI copy operation is complete when the status is `Available`\.
+
+------
+#### [ Old console ]
+
 **To copy an AMI using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -94,6 +121,8 @@ Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use
 
    The initial status of the target AMI is `pending` and the operation is complete when the status is `available`\.
 
+------
+
 **To copy an AMI using the AWS CLI**  
 You can copy an AMI using the [copy\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html) command\. You must specify both the source and destination Regions\. You specify the source Region using the `--source-region` parameter\. You can specify the destination Region using either the `--region` parameter or an environment variable\. For more information, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
@@ -108,6 +137,24 @@ When you encrypt a target snapshot during copying, you must specify these additi
 
 You can stop a pending AMI copy as follows\.
 
+------
+#### [ New console ]
+
+**To stop an AMI copy operation using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. From the navigation bar, select the destination Region from the Region selector\.
+
+1. In the navigation pane, choose **AMIs**\.
+
+1. Select the AMI to stop copying and choose **Actions**, **Deregister AMI**\.
+
+1. When asked for confirmation, choose **Deregister AMI**\.
+
+------
+#### [ Old console ]
+
 **To stop an AMI copy operation using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -119,6 +166,8 @@ You can stop a pending AMI copy as follows\.
 1. Select the AMI to stop copying and choose **Actions**, **Deregister**\.
 
 1. When asked for confirmation, choose **Continue**\.
+
+------
 
 **To stop an AMI copy operation using the command line**
 

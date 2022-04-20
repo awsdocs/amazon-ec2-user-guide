@@ -25,13 +25,14 @@ The AMI boot mode parameter is optional\. An AMI can have one of the following b
 + [Determine the boot mode of an instance](#instance-boot-mode)
 + [Determine the boot mode of the OS](#os-boot-mode)
 + [Set the boot mode of an AMI](#set-ami-boot-mode)
++ [UEFI variables](#uefi-variables)
 
 ## Considerations<a name="boot-considerations"></a>
 + Default boot modes:
   + Intel and AMD instance types: Legacy BIOS
   + Graviton instance types: UEFI
 + Intel and AMD instance types that support UEFI, in addition to Legacy BIOS:
-  + Virtualized: C5, C5a, C5ad, C5d, C5n, D3, D3en, G4, I3en, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, R5, R5a, R5ad, R5b, R5d, R5dn, R5n, T3, T3a, and z1d
+  + Virtualized: C5, C5a, C5ad, C5d, C5n, D3, D3en, G4, I3en, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6i, R5, R5a, R5ad, R5b, R5d, R5dn, R5n, T3, T3a, and z1d
 + UEFI Secure Boot is currently not supported\.
 
 ## Requirements for launching an instance with UEFI<a name="uefi-requirements"></a>
@@ -371,3 +372,12 @@ If you don't perform this step, the AMI will not be usable\.
 1. Launch a new instance using the newly\-created AMI\. All new instances created from this AMI will inherit the same boot mode\.
 
 1. To verify that the new instance has the expected boot mode, use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
+
+## UEFI variables<a name="uefi-variables"></a>
+
+When you launch an instance where the boot mode is set to UEFI, a key\-value store for variables is created\. The store can be used by UEFI and the instance operating system for storing UEFI variables\.
+
+UEFI variables are used by the boot loader and the OS to configure early system startup\. They allow the OS to manage certain settings of the boot process, like the boot order\.
+
+**Warning**  
+Operating systems often provide read access to local processes for any UEFI variable\. You should never store sensitive data, such as passwords or personally identifiable information, in the UEFI variable store\.

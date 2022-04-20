@@ -2,10 +2,11 @@
 
 There is a limit on the number of running and requested Spot Instances per AWS account per Region\. Spot Instance limits are managed in terms of the *number of virtual central processing units \(vCPUs\)* that your running Spot Instances are either using or will use pending the fulfillment of open Spot Instance requests\. If you terminate your Spot Instances but do not cancel the Spot Instance requests, the requests count against your Spot Instance vCPU limit until Amazon EC2 detects the Spot Instance terminations and closes the requests\.
 
-There are six Spot Instance limits:
+There are seven Spot Instance limits:
 + All Standard \(A, C, D, H, I, M, R, T, Z\) Spot Instance Requests
++ All DL Spot Instance Requests
 + All F Spot Instance Requests
-+ All G Spot Instance Requests
++ All G and VT Spot Instance Requests
 + All Inf Spot Instance Requests
 + All P Spot Instance Requests
 + All X Spot Instance Requests
@@ -25,9 +26,9 @@ You can view and manage your Spot Instance limits using the following:
 + The Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console
 + The [get\-service\-quota](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/get-service-quota.html) AWS CLI
 
-For more information, see [Amazon EC2 service quotas](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances* and [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*\. 
+For more information, see [Amazon EC2 service quotas](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances* and [Viewing service quotas](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*\. 
 
-With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Using Amazon CloudWatch Alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
+With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Service Quotas and Amazon CloudWatch alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
 
 ## Request a Spot Instance limit increase<a name="spot-vcpu-limits-request-increase"></a>
 

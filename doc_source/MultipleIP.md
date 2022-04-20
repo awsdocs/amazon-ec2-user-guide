@@ -15,7 +15,7 @@ It can be useful to assign multiple IP addresses to an instance in your VPC to d
 ## How multiple IP addresses work<a name="MultipleIPReqs"></a>
 
 The following list explains how multiple IP addresses work with network interfaces:
-+ You can assign a secondary private IPv4 address to any network interface\. The network interface need not be attached to the instance\.
++ You can assign a secondary private IPv4 address to any network interface\. The network interface does not need to be attached to the instance\.
 + You can assign multiple IPv6 addresses to a network interface that's in a subnet that has an associated IPv6 CIDR block\.
 + You must choose a secondary IPv4 address from the IPv4 CIDR block range of the subnet for the network interface\.
 + You must choose IPv6 addresses from the IPv6 CIDR block range of the subnet for the network interface\.

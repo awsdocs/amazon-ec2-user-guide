@@ -1,6 +1,6 @@
 # EC2 Fleet example configurations<a name="ec2-fleet-examples"></a>
 
-The following examples show launch configurations that you can use with the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command to create an EC2 Fleet\. For more information about the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) parameters, see the [EC2 Fleet JSON configuration file reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\.
+The following examples show launch configurations that you can use with the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command to create an EC2 Fleet\. For more information about the parameters, see [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) in the *AWS CLI Command Reference*\.
 
 **Topics**
 + [Example 1: Launch Spot Instances as the default purchasing option](#ec2-fleet-config1)
@@ -490,10 +490,10 @@ After the fleet is launched, you can run [describe\-capacity\-reservations](http
 
 ## Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances<a name="ec2-fleet-config9"></a>
 
-The following example configures the EC2 Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation for a Spot Instance in the fleet\. To configure the automatic replacement of Spot Instances, for `ReplacementStrategy`, specify `launch`\.
+The following example configures the EC2 Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation for a Spot Instance in the fleet\. To configure the automatic replacement of Spot Instances, for `ReplacementStrategy`, specify `launch-before-terminate`\. To configure the time delay from when the new replacement Spot Instances are launched to when the old Spot Instances are automatically deleted, for `termination-delay`, specify a value in seconds\. For more information, see [Configuration options](ec2-fleet-capacity-rebalance.md#ec2-fleet-capacity-rebalance-config-options)\.
 
 **Note**  
-When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\. 
+We recommend using `launch-before-terminate` only if you can predict how long your instance shutdown procedures will take to complete so that the old instances are only terminated after these procedures are completed\. You are charged for all instances while they are running\.
 
 The effectiveness of the Capacity Rebalancing strategy depends on the number of Spot capacity pools specified in the EC2 Fleet request\. We recommend that you configure the fleet with a diversified set of instance types and Availability Zones, and for `AllocationStrategy`, specify `capacity-optimized`\. For more information about what you should consider when configuring an EC2 Fleet for Capacity Rebalancing, see [Capacity Rebalancing](ec2-fleet-capacity-rebalance.md)\.
 
@@ -539,7 +539,8 @@ The effectiveness of the Capacity Rebalancing strategy depends on the number of 
         "AllocationStrategy": "capacity-optimized",
         "MaintenanceStrategies": {
             "CapacityRebalance": {
-                "ReplacementStrategy": "launch"
+                "ReplacementStrategy": "launch-before-terminate",
+                "TerminationDelay": "720"
             }
         }
     }
@@ -573,13 +574,13 @@ In the following example, the three launch specifications specify three Spot cap
                        {
                            "InstanceType": "m4.2xlarge",
                            "Placement": {
-                               "AvailabilityZone": us-west-2b
+                               "AvailabilityZone": "us-west-2b"
                            },
                        }, 
                        {
                            "InstanceType": "c5.2xlarge",
                            "Placement": {
-                               "AvailabilityZone": us-west-2b
+                               "AvailabilityZone": "us-west-2b"
                            }
                        }
                  ] 
@@ -588,6 +589,8 @@ In the following example, the three launch specifications specify three Spot cap
     "TargetCapacitySpecification": {
             "TotalTargetCapacity": 50,
             "DefaultTargetCapacityType": "spot"
+
+    }
 }
 ```
 
@@ -615,23 +618,23 @@ In the following example, the three launch specifications specify three Spot cap
                  "Overrides": [
                         {
                            "InstanceType": "r4.2xlarge",    
-                           "Priority": 1
+                           "Priority": 1,
                            "Placement": {
                                "AvailabilityZone": "us-west-2a"
                            },
                       },
                        {
                            "InstanceType": "m4.2xlarge",
-                           "Priority": 2
+                           "Priority": 2,
                            "Placement": {
-                               "AvailabilityZone": us-west-2b
+                               "AvailabilityZone": "us-west-2b"
                            },
                        }, 
                        {
                            "InstanceType": "c5.2xlarge",
-                           "Priority": 3
+                           "Priority": 3,
                            "Placement": {
-                               "AvailabilityZone": us-west-2b
+                               "AvailabilityZone": "us-west-2b"
                            }
                        }
                   ] 

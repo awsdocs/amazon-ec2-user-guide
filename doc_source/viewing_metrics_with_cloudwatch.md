@@ -23,7 +23,7 @@ The `AWS/EC2` namespace includes the following instance metrics\.
 
 | Metric | Description | 
 | --- | --- | 
-| CPUUtilization |  The percentage of allocated EC2 compute units that are currently in use on the instance\. This metric identifies the processing power required to run an application on a selected instance\. Depending on the instance type, tools in your operating system can show a lower percentage than CloudWatch when the instance is not allocated a full processor core\. Units: Percent  | 
+| CPUUtilization |  The percentage of allocated EC2 compute units that are currently in use on the instance\. This metric identifies the processing power required to run an application on a selected instance\. Depending on the instance type, tools in your operating system can show a different percentage than CloudWatch when the instance is not allocated a full processor core\. Units: Percent  | 
 | DiskReadOps |  Completed read operations from all instance store volumes available to the instance in a specified period of time\. To calculate the average I/O operations per second \(IOPS\) for the period, divide the total operations in the period by the number of seconds in that period\. If there are no instance store volumes, either the value is 0 or the metric is not reported\. Units: Count  | 
 | DiskWriteOps |  Completed write operations to all instance store volumes available to the instance in a specified period of time\. To calculate the average I/O operations per second \(IOPS\) for the period, divide the total operations in the period by the number of seconds in that period\. If there are no instance store volumes, either the value is 0 or the metric is not reported\. Units: Count  | 
 | DiskReadBytes |  Bytes read from all instance store volumes available to the instance\. This metric is used to determine the volume of the data the application reads from the hard disk of the instance\. This can be used to determine the speed of the application\. The number reported is the number of bytes received during the period\. If you are using basic \(5\-minute\) monitoring, you can divide this number by 300 to find Bytes/second\. If you have detailed \(1\-minute\) monitoring, divide it by 60\. If there are no instance store volumes, either the value is 0 or the metric is not reported\. Units: Bytes  | 
@@ -57,9 +57,7 @@ The `AWS/EC2` namespace includes the following metrics for T3 Dedicated Hosts\.
 
 ## Amazon EBS metrics for Nitro\-based instances<a name="ebs-metrics-nitro"></a>
 
-The `AWS/EC2` namespace includes the following Amazon EBS metrics for the Nitro\-based instances that are not bare metal instances\. For the list of Nitro\-based instance types, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
-
-Metric values for Nitro\-based instances will always be integers \(whole numbers\), whereas values for Xen\-based instances support decimals\. Therefore, low instance CPU utilization on Nitro\-based instances may appear to be rounded down to 0\.
+The `AWS/EC2` namespace includes the following Amazon EBS metrics for the Nitro\-based instances\. For the list of Nitro\-based instance types, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
 
 | Metric | Description | 
@@ -86,7 +84,7 @@ The `AWS/EC2` namespace includes the following status check metrics\. By default
 
 ## Traffic mirroring metrics<a name="traffic-mirroring-metrics"></a>
 
-The `AWS/EC2` namespace includes metrics for mirrored traffic\. For more information, see [Monitoring mirrored traffic using Amazon CloudWatch](https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirror-cloudwatch.html) in the *Amazon VPC Traffic Mirroring Guide*\.
+The `AWS/EC2` namespace includes metrics for mirrored traffic\. For more information, see [Monitor mirrored traffic using Amazon CloudWatch](https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirror-cloudwatch.html) in the *Amazon VPC Traffic Mirroring Guide*\.
 
 ## Amazon EC2 metric dimensions<a name="ec2-cloudwatch-dimensions"></a>
 
@@ -104,7 +102,7 @@ You can use the following dimensions to refine the metrics listed in the previou
 
 You can use CloudWatch usage metrics to provide visibility into your account's usage of resources\. Use these metrics to visualize your current service usage on CloudWatch graphs and dashboards\.
 
-Amazon EC2 usage metrics correspond to AWS service quotas\. You can configure alarms that alert you when your usage approaches a service quota\. For more information about CloudWatch integration with service quotas, see [Service Quotas Integration and Usage Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Service-Quota-Integration.html)\.
+Amazon EC2 usage metrics correspond to AWS service quotas\. You can configure alarms that alert you when your usage approaches a service quota\. For more information about CloudWatch integration with service quotas, see [AWS usage metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Service-Quota-Integration.html) in the *Amazon CloudWatch User Guide*\.
 
 Amazon EC2 publishes the following metrics in the `AWS/Usage` namespace\.
 

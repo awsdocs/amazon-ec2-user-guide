@@ -98,7 +98,7 @@ The sum of the sizes of all of the AMIs in progress is limited to 300 GB \(based
 ## Limitations<a name="limitations"></a>
 + Only EBS\-backed AMIs can be stored using these APIs\.
 + Paravirtual \(PV\) AMIs are not supported\.
-+ The size of an AMI \(before compression\) that can be stored is limited to the size limit of a single S3 object, which is 1 TB\.
++ The size of an AMI \(before compression\) that can be stored is limited to 1 TB\.
 + Quota on [store image](#store-ami) requests: 600 GB of storage work \(snapshot data\) in progress\.
 + Quota on [restore image](#restore-ami) requests: 300 GB of restore work \(snapshot data\) in progress\.
 + For the duration of the store task, the snapshots must not be deleted and the IAM principal doing the store must have access to the snapshots, otherwise the store process will fail\.
@@ -124,11 +124,14 @@ When the AMI snapshots are copied to the S3 object, the data is then copied over
 
 ## Permissions for storing and restoring AMIs using S3<a name="ami-s3-permissions"></a>
 
-If your IAM principals will store or restore AMIs using S3, you need to grant them the required permissions\.
+If your IAM principals will store or restore AMIs using Amazon S3, you need to grant them the required permissions\.
 
 The following example policy includes all of the actions that are required to allow an IAM principal to carry out the store and restore tasks\.
 
-You can also craft policies so that IAM principals can only access named resources\. For more example policies, see [Access management for AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\.
+You can also create IAM policies that grant principals access to specific resources only\. For more example policies, see [ Access management for AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\.
+
+**Note**  
+If the snapshots that make up the AMI are encrypted, or if your account is enabled for encryption by default, your IAM principal must have permission to use the KMS key\. For more information, see [Permissions to use AWS KMS keys](ebsapi-permissions.md#ebsapi-kms-permissions)\.
 
 ```
 {
@@ -152,7 +155,8 @@ You can also craft policies so that IAM principals can only access named resourc
                 "ec2:DescribeStoreImageTasks",
                 "ec2:CreateRestoreImageTask",
                 "ec2:GetEbsEncryptionByDefault",
-                "ec2:DescribeTags"
+                "ec2:DescribeTags",
+                "ec2:CreateTags"
             ],
             "Resource": "*"
         }

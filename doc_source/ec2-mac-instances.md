@@ -2,6 +2,9 @@
 
 Mac1 instances natively support the macOS operating system\. They are built on Mac mini hardware and powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. These instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
 
+**Note**  
+The **unit of billing** is the **dedicated host**\. The instances running on top of that host have no additional charge\.
+
 For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac) and [Pricing](https://aws.amazon.com/mac/#Pricing)\.
 
 **Topics**
@@ -29,12 +32,13 @@ The following considerations apply to Mac instances:
   + macOS Catalina \(version 10\.15\)
   + macOS Mojave \(version 10\.14\)
   + macOS Big Sur \(version 11\)
+  + macOS Monterey \(version 12\)
 + If you attach an EBS volume to a running Mac instance, you must reboot the instance to make the volume available\.
 + If you resized an existing EBS volume on a running Mac instance, you must reboot the instance to make the new size available\.
 + If you attach a network interface to a running Mac instance, you must reboot the instance to make the network interface available\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
-+ You cannot use Mac instances with Amazon EC2 Auto Scaling\.
++ [Mac instances now support Amazon EC2 Auto Scaling\.](http://aws.amazon.com/blogs/compute/implementing-autoscaling-for-ec2-mac-instances/) 
 + Automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
 + When you stop or terminate a Mac instance, a scrubbing workflow is performed on the Dedicated Host\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
 + 
@@ -134,6 +138,9 @@ The following is example output for an instance that is running and has passed s
 
 ## Connect to your instance using SSH<a name="mac-instance-ssh"></a>
 
+**Important**  
+Multiple users can access the OS simultaneously, however please review the appropriate [macOS SLA](https://www.apple.com/legal/sla/) with your counsel to confirm workload compliance\. Typically there is a 1:1 user:GUI session due to the built\-in Screen Sharing service on port 5900\. Using SSH within macOS supports multiple sessions up until the "Max Sessions" limit in sshd\_config file\.
+
 Amazon EC2 Mac instances do not allow remote root SSH by default\. Password authentication is disabled to prevent brute\-force password attacks\. The ec2\-user account is configured to log in remotely using SSH\. The ec2\-user account also has sudo privileges\. After you connect to your instance, you can add other users\.
 
 To support connecting to your instance using SSH, launch the instance using a key pair and a security group that allows SSH access, and ensure that the instance has internet connectivity\. You provide the `.pem` file for the key pair when you connect to the instance\.
@@ -157,6 +164,9 @@ Use the following procedure to connect to your Mac instance using an SSH client\
 ## Connect to your instance using Apple Remote Desktop<a name="mac-instance-vnc"></a>
 
 Use the following procedure to connect to your instance using Apple Remote Desktop \(ARD\)\.
+
+**Note**  
+macOS 10\.14 and later only allows control if Screen Sharing is enabled through [System Preferences](https://support.apple.com/guide/remote-desktop/enable-remote-management-apd8b1c65bd/mac)\.
 
 **To connect to your instance using ARD**
 
@@ -325,9 +335,9 @@ After you increase the size of the volume, you must increase the size of your AP
     [ec2-user ~]$ diskutil list external physical
    /dev/disk0 (external, physical):
       #:                       TYPE NAME                    SIZE       IDENTIFIER
-      0:      GUID_partition_scheme                        *322.1 GB   disk0
-      1:                        EFI ⁨EFI⁩                     209.7 MB   disk0s1
-      2:                 Apple_APFS ⁨Container disk2⁩         321.9 GB   disk0s2
+      0:                 GUID_partition_scheme            *322.1 GB     disk0
+      1:                 EFI EFI                           209.7 MB     disk0s1
+      2:                 Apple_APFS Container disk2        321.9 GB     disk0s2
    ```
 
 1. Copy and paste the following command\.

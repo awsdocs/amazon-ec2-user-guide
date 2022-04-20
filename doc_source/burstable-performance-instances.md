@@ -8,6 +8,9 @@ These low\-to\-moderate CPU utilization workloads lead to wastage of CPU cycles 
 
 The T instance family provides a baseline CPU performance with the ability to burst above the baseline at any time for as long as required\. The baseline CPU is defined to meet the needs of the majority of general purpose workloads, including large\-scale micro\-services, web servers, small and medium databases, data logging, code repositories, virtual desktops, development and test environments, and business\-critical applications\. The T instances offer a balance of compute, memory, and network resources, and provide you with the most cost\-effective way to run a broad spectrum of general purpose applications that have a low\-to\-moderate CPU usage\. They can save you up to 15% in costs when compared to M instances, and can lead to even more cost savings with smaller, more economical instance sizes, offering as low as 2 vCPUs and 0\.5 GiB of memory\. The smaller T instance sizes, such as nano, micro, small, and medium, are well suited for workloads that need a small amount of memory and do not expect high CPU usage\.
 
+**Note**  
+This topic describes burstable CPU\. For information about burstable network performance, see [Amazon EC2 instance network bandwidth](ec2-instance-network-bandwidth.md)\. 
+
 ## EC2 burstable instance types<a name="burstable-instance-types"></a>
 
 The EC2 burstable instances consist of T4g, T3a and T3 instance types, and the previous generation T2 instance types\.
@@ -28,7 +31,7 @@ The following table summarizes the key differences between the burstable instanc
 | Previous generation | 
 | T2 |  Previous generation burstable instances  |  Intel Xeon processors  | 
 
-For more information about instance pricing and additional specifications, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
+For information about instance pricing and additional specifications, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\. For information about burstable network performance, see [Amazon EC2 instance network bandwidth](ec2-instance-network-bandwidth.md)\.
 
 If your account is less than 12 months old, you can use a `t2.micro` instance for free \(or a `t3.micro` instance in Regions where `t2.micro` is unavailable\) within certain usage limits\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
 

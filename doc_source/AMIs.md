@@ -23,7 +23,7 @@ An AMI includes the following:
 + [Use encryption with EBS\-backed AMIs](AMIEncryption.md)
 + [Understand AMI billing information](ami-billing-info.md)
 + [Amazon Linux](amazon-linux-ami-basics.md)
-+ [Enabling Your Own Linux Kernels](UserProvidedKernels.md)
++ [User provided kernels](UserProvidedKernels.md)
 + [Configure the Amazon Linux 2 MATE desktop connection](amazon-linux-ami-mate.md)
 
 ## Use an AMI<a name="ami-using"></a>
@@ -54,7 +54,7 @@ You can purchase AMIs from a third party, including AMIs that come with service 
 
 ## Deregister your AMI<a name="deregistering"></a>
 
-You can deregister an AMI when you have finished with it\. After you deregister an AMI, it can't be used to launch new instances\. Existing instances launched from the AMI are not affected\. For more information, see [Deregister your Linux AMI](deregister-ami.md)\.
+You can deregister an AMI when you have finished with it\. After you deregister an AMI, it can't be used to launch new instances\. Existing instances launched from the AMI are not affected\. For more information, see [Deregister your AMI](deregister-ami.md)\.
 
 ## Amazon Linux 2 and Amazon Linux AMI<a name="amazon-linux"></a>
 

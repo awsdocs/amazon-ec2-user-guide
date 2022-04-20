@@ -21,8 +21,8 @@ Each instance type provides higher or lower minimum performance from a shared re
 + [Storage optimized instances](storage-optimized-instances.md)
 + [Linux accelerated computing instances](accelerated-computing-instances.md)
 + [Find an Amazon EC2 instance type](instance-discovery.md)
-+ [Change the instance type](ec2-instance-resize.md)
 + [Get recommendations for an instance type](ec2-instance-recommendations.md)
++ [Change the instance type](ec2-instance-resize.md)
 
 ## Available instance types<a name="AvailableInstanceTypes"></a>
 
@@ -41,20 +41,28 @@ For the best performance, we recommend that you use the following instance types
 | C5ad | c5ad\.large \| c5ad\.xlarge \| c5ad\.2xlarge \| c5ad\.4xlarge \| c5ad\.8xlarge \| c5ad\.12xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge | [Compute optimized](compute-optimized-instances.md) | 
 | C5d | c5d\.large \| c5d\.xlarge \| c5d\.2xlarge \| c5d\.4xlarge \| c5d\.9xlarge \| c5d\.12xlarge \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  | [Compute optimized](compute-optimized-instances.md) | 
 | C5n | c5n\.large \| c5n\.xlarge \| c5n\.2xlarge \| c5n\.4xlarge \| c5n\.9xlarge \| c5n\.18xlarge \| c5n\.metal | [Compute optimized](compute-optimized-instances.md) | 
+| C6a | c6a\.large \| c6a\.xlarge \| c6a\.2xlarge \| c6a\.4xlarge \| c6a\.8xlarge \| c6a\.12xlarge \| c6a\.16xlarge \| c6a\.24xlarge \| c6a\.32xlarge \| c6a\.48xlarge  | [Compute optimized](compute-optimized-instances.md) | 
 | C6g | c6g\.medium \| c6g\.large \| c6g\.xlarge \| c6g\.2xlarge \| c6g\.4xlarge \| c6g\.8xlarge \| c6g\.12xlarge \| c6g\.16xlarge \| c6g\.metal | [Compute optimized](compute-optimized-instances.md) | 
 | C6gd | c6gd\.medium \| c6gd\.large \| c6gd\.xlarge \| c6gd\.2xlarge \| c6gd\.4xlarge \| c6gd\.8xlarge \| c6gd\.12xlarge \| c6gd\.16xlarge \| c6gd\.metal | [Compute optimized](compute-optimized-instances.md) | 
 | C6gn | c6gn\.medium \| c6gn\.large \| c6gn\.xlarge \| c6gn\.2xlarge \| c6gn\.4xlarge \| c6gn\.8xlarge \| c6gn\.12xlarge \| c6gn\.16xlarge | [Compute optimized](compute-optimized-instances.md) | 
+| C6i | c6i\.large \| c6i\.xlarge \| c6i\.2xlarge \| c6i\.4xlarge \| c6i\.8xlarge \| c6i\.12xlarge \| c6i\.16xlarge \| c6i\.24xlarge \| c6i\.32xlarge \| c6i\.metal | [Compute optimized](compute-optimized-instances.md) | 
 | D2 | d2\.xlarge \| d2\.2xlarge \| d2\.4xlarge \| d2\.8xlarge | [Storage optimized](storage-optimized-instances.md) | 
 | D3 | d3\.xlarge \| d3\.2xlarge \| d3\.4xlarge \| d3\.8xlarge | [Storage optimized](storage-optimized-instances.md) | 
 | D3en | d3en\.large \| d3en\.xlarge \| d3en\.2xlarge \| d3en\.4xlarge \| d3en\.6xlarge \| d3en\.8xlarge \| d3en\.12xlarge | [Storage optimized](storage-optimized-instances.md) | 
+| DL1 | dl1\.24xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | F1 | f1\.2xlarge \| f1\.4xlarge \| f1\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | G3 | g3s\.xlarge \| g3\.4xlarge \| g3\.8xlarge \| g3\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | G4ad | g4ad\.xlarge \| g4ad\.2xlarge \| g4ad\.4xlarge \| g4ad\.8xlarge \| g4ad\.16xlarge  | [Accelerated computing](accelerated-computing-instances.md) | 
 | G4dn | g4dn\.xlarge \| g4dn\.2xlarge \| g4dn\.4xlarge \| g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g4dn\.metal  | [Accelerated computing](accelerated-computing-instances.md) | 
+| G5 | g5\.xlarge \| g5\.2xlarge \| g5\.4xlarge \| g5\.8xlarge \| g5\.12xlarge \| g5\.16xlarge \| g5\.24xlarge \| g5\.48xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
+| G5g | g5g\.xlarge \| g5g\.2xlarge \| g5g\.4xlarge \| g5g\.8xlarge \| g5g\.16xlarge  | [Accelerated computing](accelerated-computing-instances.md) | 
 | H1 | h1\.2xlarge \| h1\.4xlarge \| h1\.8xlarge \| h1\.16xlarge | [Storage optimized](storage-optimized-instances.md) | 
+| Hpc6a | hpc6a\.48xlarge | [Compute optimized](compute-optimized-instances.md) | 
 | I3 | i3\.large \| i3\.xlarge \| i3\.2xlarge \| i3\.4xlarge \| i3\.8xlarge \| i3\.16xlarge \| i3\.metal | [Storage optimized](storage-optimized-instances.md) | 
 | I3en | i3en\.large \| i3en\.xlarge \| i3en\.2xlarge \| i3en\.3xlarge \| i3en\.6xlarge \| i3en\.12xlarge \| i3en\.24xlarge \| i3en\.metal | [Storage optimized](storage-optimized-instances.md) | 
+| Im4gn | im4gn\.large \| im4gn\.xlarge \| im4gn\.2xlarge \| im4gn\.4xlarge \| im4gn\.8xlarge \| im4gn\.16xlarge  | [Storage optimized](storage-optimized-instances.md) | 
 | Inf1 | inf1\.xlarge \| inf1\.2xlarge \| inf1\.6xlarge \| inf1\.24xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
+| Is4gen | is4gen\.medium \| is4gen\.large \| is4gen\.xlarge \| is4gen\.2xlarge \| is4gen\.4xlarge \| is4gen\.8xlarge | [Storage optimized](storage-optimized-instances.md) | 
 | M4 | m4\.large \| m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge \| m4\.10xlarge \| m4\.16xlarge | [General purpose](general-purpose-instances.md) | 
 | M5 | m5\.large \| m5\.xlarge \| m5\.2xlarge \| m5\.4xlarge \| m5\.8xlarge \| m5\.12xlarge \| m5\.16xlarge \| m5\.24xlarge \| m5\.metal | [General purpose](general-purpose-instances.md) | 
 | M5a | m5a\.large \| m5a\.xlarge \| m5a\.2xlarge \| m5a\.4xlarge \| m5a\.8xlarge \| m5a\.12xlarge \| m5a\.16xlarge \| m5a\.24xlarge | [General purpose](general-purpose-instances.md) | 
@@ -63,9 +71,10 @@ For the best performance, we recommend that you use the following instance types
 | M5dn | m5dn\.large \| m5dn\.xlarge \| m5dn\.2xlarge \| m5dn\.4xlarge \| m5dn\.8xlarge \| m5dn\.12xlarge \| m5dn\.16xlarge \| m5dn\.24xlarge \| m5dn\.metal | [General purpose](general-purpose-instances.md) | 
 | M5n | m5n\.large \| m5n\.xlarge \| m5n\.2xlarge \| m5n\.4xlarge \| m5n\.8xlarge \| m5n\.12xlarge \| m5n\.16xlarge \| m5n\.24xlarge \| m5n\.metal | [General purpose](general-purpose-instances.md) | 
 | M5zn | m5zn\.large \| m5zn\.xlarge \| m5zn\.2xlarge \| m5zn\.3xlarge \| m5zn\.6xlarge \| m5zn\.12xlarge \| m5zn\.metal | [General purpose](general-purpose-instances.md) | 
+| M6a | m6a\.large \| m6a\.xlarge \| m6a\.2xlarge \| m6a\.4xlarge \| m6a\.8xlarge \| m6a\.12xlarge \| m6a\.16xlarge \| m6a\.24xlarge \| m6a\.32xlarge \| m6a\.48xlarge  | [General purpose](general-purpose-instances.md) | 
 | M6g | m6g\.medium \| m6g\.large \| m6g\.xlarge \| m6g\.2xlarge \| m6g\.4xlarge \| m6g\.8xlarge \| m6g\.12xlarge \| m6g\.16xlarge \| m6g\.metal | [General purpose](general-purpose-instances.md) | 
 | M6gd | m6gd\.medium \| m6gd\.large \| m6gd\.xlarge \| m6gd\.2xlarge \| m6gd\.4xlarge \| m6gd\.8xlarge \| m6gd\.12xlarge \| m6gd\.16xlarge \| m6gd\.metal | [General purpose](general-purpose-instances.md) | 
-| M6i | m6i\.large \| m6i\.xlarge \| m6i\.2xlarge \| m6i\.4xlarge \| m6i\.8xlarge \| m6i\.12xlarge \| m6i\.16xlarge \| m6i\.24xlarge \| m6i\.32xlarge  | [General purpose](general-purpose-instances.md) | 
+| M6i | m6i\.large \| m6i\.xlarge \| m6i\.2xlarge \| m6i\.4xlarge \| m6i\.8xlarge \| m6i\.12xlarge \| m6i\.16xlarge \| m6i\.24xlarge \| m6i\.32xlarge \| m6i\.metal | [General purpose](general-purpose-instances.md) | 
 | Mac1 | mac1\.metal | [General purpose](general-purpose-instances.md) | 
 | P2 | p2\.xlarge \| p2\.8xlarge \| p2\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | P3 | p3\.2xlarge \| p3\.8xlarge \| p3\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
@@ -81,15 +90,19 @@ For the best performance, we recommend that you use the following instance types
 | R5n | r5n\.large \| r5n\.xlarge \| r5n\.2xlarge \| r5n\.4xlarge \| r5n\.8xlarge \| r5n\.12xlarge \| r5n\.16xlarge \| r5n\.24xlarge \| r5n\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R6g | r6g\.medium \| r6g\.large \| r6g\.xlarge \| r6g\.2xlarge \| r6g\.4xlarge \| r6g\.8xlarge \| r6g\.12xlarge \| r6g\.16xlarge \| r6g\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R6gd | r6gd\.medium \| r6gd\.large \| r6gd\.xlarge \| r6gd\.2xlarge \| r6gd\.4xlarge \| r6gd\.8xlarge \| r6gd\.12xlarge \| r6gd\.16xlarge \| r6gd\.metal | [Memory optimized](memory-optimized-instances.md) | 
+| R6i | r6i\.large \| r6i\.xlarge \| r6i\.2xlarge \| r6i\.4xlarge \| r6i\.8xlarge \| r6i\.12xlarge \| r6i\.16xlarge \| r6i\.24xlarge \| r6i\.32xlarge \| r6i\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | T2 | t2\.nano \| t2\.micro \| t2\.small \| t2\.medium \| t2\.large \| t2\.xlarge \| t2\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | T3 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | T3a | t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | T4g | t4g\.nano \| t4g\.micro \| t4g\.small \| t4g\.medium \| t4g\.large \| t4g\.xlarge \| t4g\.2xlarge | [General purpose](general-purpose-instances.md) | 
-| High memory \(u\-\*\) |  u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \| u\-18tb1\.metal \| u\-24tb1\.metal | [Memory optimized](memory-optimized-instances.md) | 
+| High memory \(u\-\*\) | u\-3tb1\.56xlarge \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \| u\-18tb1\.metal \| u\-24tb1\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | VT1 | vt1\.3xlarge \| vt1\.6xlarge \| vt1\.24xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | X1 | x1\.16xlarge \| x1\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | X1e | x1e\.xlarge \| x1e\.2xlarge \| x1e\.4xlarge \| x1e\.8xlarge \| x1e\.16xlarge \| x1e\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | X2gd | x2gd\.medium \| x2gd\.large \| x2gd\.xlarge \| x2gd\.2xlarge \| x2gd\.4xlarge \| x2gd\.8xlarge \| x2gd\.12xlarge \| x2gd\.16xlarge \| x2gd\.metal | [Memory optimized](memory-optimized-instances.md) | 
+| X2idn | x2idn\.16xlarge \| x2idn\.24xlarge \| x2idn\.32xlarge  | [Memory optimized](memory-optimized-instances.md) | 
+| X2iedn | x2iedn\.xlarge \| x2iedn\.2xlarge \| x2iedn\.4xlarge \| x2iedn\.8xlarge \| x2iedn\.16xlarge \| x2iedn\.24xlarge \| x2iedn\.32xlarge  | [Memory optimized](memory-optimized-instances.md) | 
+| X2iezn | x2iezn\.2xlarge \| x2iezn\.4xlarge \| x2iezn\.6xlarge \| x2iezn\.8xlarge \| x2iezn\.12xlarge \| x2iezn\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | z1d | z1d\.large \| z1d\.xlarge \| z1d\.2xlarge \| z1d\.3xlarge \| z1d\.6xlarge \| z1d\.12xlarge \| z1d\.metal | [Memory optimized](memory-optimized-instances.md) | 
 
 ### Previous generation instances<a name="previous-gen-instances"></a>
@@ -114,12 +127,19 @@ Amazon Web Services offers previous generation instance types for users who have
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-To determine which instance type best meets your needs, we recommend that you launch an instance and use your own benchmark application\. Because you pay by the instance second, it's convenient and inexpensive to test multiple instance types before making a decision\.
+To determine which instance type best meets your needs, we recommend that you launch an instance and use your own benchmark application\. Because you pay by the instance second, it's convenient and inexpensive to test multiple instance types before making a decision\. If your needs change, even after you make a decision, you can change the instance type later\. For more information, see [Change the instance type](ec2-instance-resize.md)\.
 
-If your needs change, even after you make a decision, you can resize your instance later\. For more information, see [Change the instance type](ec2-instance-resize.md)\.
+### Naming conventions<a name="instance-naming-conventions"></a>
 
-**Note**  
-Amazon EC2 instances typically run on 64\-bit virtual Intel processors as specified in the instance type product pages\. For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\. However, confusion may result from industry naming conventions for 64\-bit CPUs\. Chip manufacturer Advanced Micro Devices \(AMD\) introduced the first commercially successful 64\-bit architecture based on the Intel x86 instruction set\. Consequently, the architecture is widely referred to as AMD64 regardless of the chip manufacturer\. Windows and several Linux distributions follow this practice\. This explains why the internal system information on an Ubuntu or Windows EC2 instance displays the CPU architecture as AMD64 even though the instances are running on Intel hardware\.
+Instance type names combine the instance family, generation, and size\. They can also indicate additional capabilities, such as:
++ **a** – AMD processors
++ **g** – AWS Graviton processors
++ **i** – Intel processors
++ **d** – Instance store volumes
++ **n** – Network optimization
++ **b** – Block storage optimization
++ **e** – Extra storage or memory
++ **z** – High frequency
 
 ### Processor features<a name="instance-hardware-processors"></a>
 
@@ -131,6 +151,8 @@ Amazon EC2 instances that run on Intel processors may include the following feat
 + **Intel Deep Learning Boost \(Intel DL Boost\)** — Accelerates AI deep learning use cases\. The 2nd Gen Intel Xeon Scalable processors extend Intel AVX\-512 with a new Vector Neural Network Instruction \(VNNI/INT8\) that significantly increases deep learning inference performance over previous generation Intel Xeon Scalable processors \(with FP32\) for image recognition/segmentation, object detection, speech recognition, language translation, recommendation systems, reinforcement learning, and more\. VNNI may not be compatible with all Linux distributions\. 
 
   The following instances support VNNI: `M5n`, `R5n`, `M5dn`, `M5zn`, `R5b`, `R5dn`, `D3`, and `D3en`\. `C5` and `C5d` instances support VNNI for only `12xlarge`, `24xlarge`, and `metal` instances\. 
+
+Confusion may result from industry naming conventions for 64\-bit CPUs\. Chip manufacturer Advanced Micro Devices \(AMD\) introduced the first commercially successful 64\-bit architecture based on the Intel x86 instruction set\. Consequently, the architecture is widely referred to as AMD64 regardless of the chip manufacturer\. Windows and several Linux distributions follow this practice\. This explains why the internal system information on an instance running Ubuntu or Windows displays the CPU architecture as AMD64 even though the instances are running on Intel hardware\.
 
 ## AMI virtualization types<a name="instance-virtualization-type"></a>
 
@@ -156,13 +178,13 @@ The following components are part of the Nitro System:
   + Monitoring
   + Security
 + Nitro security chip, integrated into the motherboard
-+ Nitro hypervisor \- A lightweight hypervisor that manages memory and CPU allocation and delivers performance that is indistinguishable from bare metal for most workloads\.
++ Nitro hypervisor \- A lightweight hypervisor that manages memory and CPU allocation and delivers performance that is indistinguishable from bare metal for most workloads\.<a name="nitro-instance-types"></a>
 
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ **Virtualized**: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn,  D3, D3en, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, M6i, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, high memory \(u\-\*\), X2gd, and z1d
-+ **Bare metal**: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m5dn.metal`, `m5n.metal`, `m5zn.metal`, `m6g.metal`, `m6gd.metal`, `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r5dn.metal`, `r5n.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, `x2gd.metal`, and `z1d.metal`
++ **Virtualized**: A1,  C5, C5a, C5ad, C5d, C5n, C6a, C6g,  C6gd,  C6gn,  C6i, D3, D3en, DL1,  G4, G4ad, G5, G5g,  Hpc6a,  I3en, Im4gn,  Inf1,  Is4gen,  M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6a, M6g, M6gd,  M6i, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  R6i, T3, T3a, T4g,  `u-3tb1.56xlarge`, `u-6tb1.56xlarge`, `u-6tb1.112xlarge`, `u-9tb1.112xlarge`, `u-12tb1.112xlarge`, VT1,  X2gd,  X2idn, X2iedn, X2iezn, and z1d
++ **Bare metal**: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`,  `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m5dn.metal`, `m5n.metal`, `m5zn.metal`, `m6g.metal`,  `m6gd.metal`,  `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r5dn.metal`, `r5n.metal`, `r6g.metal`,  `r6gd.metal`,  `r6i.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, `x2gd.metal`,  `x2iezn.metal`, and `z1d.metal`
 
 **Learn more**
 
@@ -203,20 +225,28 @@ The following table summarizes the networking and storage features supported by 
 | C5ad | No | Yes | NVMe \* | Yes | ENA | 
 | C5d | No | Yes | NVMe \* | Yes | ENA | 
 | C5n | Yes | Yes | No | Yes | ENA | 
+| C6a | Yes | Yes | No | Yes | ENA | 
 | C6g | Yes | Yes | No | Yes | ENA | 
 | C6gd | No | Yes | NVMe \* | Yes | ENA | 
 | C6gn | Yes | Yes | No | Yes | ENA | 
+| C6i | Yes | Yes | No | Yes | ENA | 
 | D2 | No | No | HDD | Yes | Intel 82599 VF | 
 | D3 | No | Yes | NVMe \* | Yes | ENA | 
 | D3en | No | Yes | NVMe \* | Yes | ENA | 
+| DL1 | No | Yes | NVMe \* | Yes | ENA | 
 | F1 | No | No | NVMe \* | Yes | ENA | 
 | G3 | Yes | No | No | Yes | ENA | 
 | G4ad | No | Yes | NVMe \* | Yes | ENA | 
 | G4dn | No | Yes | NVMe \* | Yes | ENA | 
+| G5 | No | Yes | NVMe \* | Yes | ENA | 
+| G5g | Yes | Yes | No | Yes | ENA | 
 | H1 | No | No | HDD \* | Yes | ENA | 
+| Hpc6a | Yes | Yes | No | Yes | ENA | 
 | I3 | No | No | NVMe \* | Yes | ENA | 
 | I3en | No | Yes | NVMe \* | Yes | ENA | 
+| Im4gn | No | Yes | NVMe \* | Yes | ENA | 
 | Inf1 | Yes | Yes | No | Yes | ENA | 
+| Is4gen | No | Yes | NVMe \* | Yes | ENA | 
 | M4 | Yes | No | No | Yes |  m4\.16xlarge: ENA All other sizes: Intel 82599 VF  | 
 | M5 | Yes | Yes | No | Yes | ENA | 
 | M5a | Yes | Yes | No | Yes | ENA | 
@@ -225,6 +255,7 @@ The following table summarizes the networking and storage features supported by 
 | M5dn | No | Yes | NVMe \* | Yes | ENA | 
 | M5n | Yes | Yes | No | Yes | ENA | 
 | M5zn | Yes | Yes | No | Yes | ENA | 
+| M6a | Yes | Yes | No | Yes | ENA | 
 | M6g | Yes | Yes | No | Yes | ENA | 
 | M6gd | No | Yes | NVMe \* | Yes | ENA | 
 | M6i | Yes | Yes | No | Yes | ENA | 
@@ -243,6 +274,7 @@ The following table summarizes the networking and storage features supported by 
 | R5n | Yes | Yes | No | Yes | ENA | 
 | R6g | Yes | Yes | No | Yes | ENA | 
 | R6gd | No | Yes | NVMe \* | Yes | ENA | 
+| R6i | Yes | Yes | No | Yes | ENA | 
 | T2 | Yes | No | No | No | No | 
 | T3 | Yes | Yes | No | No | ENA | 
 | T3a | Yes | Yes | No | No | ENA | 
@@ -252,6 +284,9 @@ The following table summarizes the networking and storage features supported by 
 | X1 | No | No | SSD \* | Yes | ENA | 
 | X1e | No | No | SSD \* | Yes | ENA | 
 | X2gd | No | Yes | NVMe \* | Yes | ENA | 
+| X2idn | No | Yes | NVMe \* | Yes | ENA | 
+| X2iedn | No | Yes | NVMe \* | Yes | ENA | 
+| X2iezn | Yes | Yes | No | Yes | ENA | 
 | z1d | No | Yes | NVMe \* | Yes | ENA | 
 
 \* The root device volume must be an Amazon EBS volume\.
@@ -269,7 +304,7 @@ The following table summarizes the networking and storage features supported by 
 
 ## Instance limits<a name="instance-type-limits"></a>
 
-There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\.
+There is a limit on the total number of instances that you can launch in a Region, and there are additional limits on some instance types\.
 
 For more information about the default limits, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)
 

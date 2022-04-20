@@ -4,7 +4,7 @@ An Elastic Fabric Adapter \(EFA\) is a network device that you can attach to you
 
 EFA provides lower and more consistent latency and higher throughput than the TCP transport traditionally used in cloud\-based HPC systems\. It enhances the performance of inter\-instance communication that is critical for scaling HPC and machine learning applications\. It is optimized to work on the existing AWS network infrastructure and it can scale depending on application requirements\.
 
-EFA integrates with Libfabric 1\.11\.1 and it supports Open MPI 4\.0\.5 and Intel MPI 2019 Update 7 for HPC applications, and Nvidia Collective Communications Library \(NCCL\) for machine learning applications\.
+EFA integrates with Libfabric 1\.7\.0 and later and it supports Open MPI 3\.1\.3 and later and Intel MPI 2019 Update 5 and later for HPC applications, and Nvidia Collective Communications Library \(NCCL\) for machine learning applications\.
 
 **Note**  
 The OS\-bypass capabilities of EFAs are not supported on Windows instances\. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities\.
@@ -41,58 +41,58 @@ Elastic Network Adapters \(ENAs\) provide traditional IP networking features tha
 ## Supported interfaces and libraries<a name="efa-mpi"></a>
 
 EFA supports the following interfaces and libraries:
-+ Open MPI 4\.0\.5
-+ Intel MPI 2019 Update 7
++ Open MPI 3\.1\.3 and later
++ Intel MPI 2019 Update 5 and later
 + NVIDIA Collective Communications Library \(NCCL\) 2\.4\.2 and later
 
 ## Supported instance types<a name="efa-instance-types"></a>
 
 The following instance types support EFAs:
-+ General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6i.32xlarge` 
-+ Compute optimized: `c5n.18xlarge` \| `c5n.metal`  \| `c6gn.16xlarge` 
-+ Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` 
-+ Storage optimized: `i3en.24xlarge` \| `i3en.metal`
-+ Accelerated computing: `g4dn.metal` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
++ General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.48xlarge` \| `m6i.32xlarge` \| `m6i.metal` 
++ Compute optimized: `c5n.18xlarge` \| `c5n.9xlarge` \| `c5n.metal` \| `c6a.48xlarge`  \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal`  \| `hpc6a.48xlarge`
++ Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `x2d.32xlarge` \| `x2ed.32xlarge` \| `x2iezn.12xlarge` \| `x2iezn.metal`
++ Storage optimized: `i3en.24xlarge` \| `i3en.12xlarge` \| `i3en.metal`  \| `im4gn.16xlarge` 
++ Accelerated computing: `dl1.24xlarge` \|  `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
 
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` option and the appropriate Region code\.
 
 ```
-$ aws ec2 describe-instance-types \
---region us-east-2 \
---filters Name=network-info.efa-supported,Values=true \
---query "InstanceTypes[*].[InstanceType]" \
---output text
+aws ec2 describe-instance-types 
+--region us-east-2 
+--filters Name=network-info.efa-supported,Values=true 
+--query "InstanceTypes[*].[InstanceType]" 
+--output text | sort
 ```
 
-The following is example output\.
+The following is example output for `us-east-1`\.
 
 ```
-g4dn.metal
-i3en.24xlarge
-r5n.24xlarge
 c5n.18xlarge
-m5n.24xlarge
-inf1.24xlarge
-m5dn.24xlarge
+c5n.9xlarge
 c5n.metal
-p3dn.24xlarge
-i3en.metal
-r5dn.24xlarge
+c6gn.16xlarge
+c6i.32xlarge
+c6i.metal
+dl1.24xlarge
+g4dn.12xlarge
+g4dn.8xlarge
+g4dn.metal
+g5.48xlarge
+...
 ```
 
 ## Supported AMIs<a name="efa-amis"></a>
 
 The following AMIs support EFA with Intel x86\-based instance types:
 + Amazon Linux 2
-+ CentOS 7 and 8
++ CentOS 7
 + RHEL 7 and 8
 + Ubuntu 18\.04 and 20\.04
 + SUSE Linux Enterprise 15 SP2 and later
-+ openSUSE Leap 15\.2 and later
++ openSUSE Leap 15\.3 and later
 
 The following AMIs support EFA with Arm\-based \(Graviton 2\) instance types:
 + Amazon Linux 2
-+ CentOS 8
 + RHEL 8
 + Ubuntu 18\.04 and 20\.04
 + SUSE Linux Enterprise 15 SP2 and later

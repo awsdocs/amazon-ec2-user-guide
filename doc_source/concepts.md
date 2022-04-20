@@ -97,7 +97,7 @@ When you sign up for AWS, you can get started with Amazon EC2 for free using the
 Amazon EC2 provides the following purchasing options for instances:
 
 **On\-Demand Instances**  
-Pay for the instances that you use by the second, with no long\-term commitments or upfront payments\.
+Pay for the instances that you use by the second, with a minimum of 60 seconds, with no long\-term commitments or upfront payments\.
 
 **Savings Plans**  
 You can reduce your Amazon EC2 costs by making a commitment to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years\.
@@ -110,7 +110,7 @@ Request unused EC2 instances, which can reduce your Amazon EC2 costs significant
 
 For a complete list of charges and prices for Amazon EC2, see [Amazon EC2 pricing](https://aws.amazon.com/ec2/pricing)\.
 
-To calculate the cost of a sample provisioned environment, see [Cloud Economics Center](https://aws.amazon.com/economics/)\.
+When calculating the cost of a provisioned environment, remember to include incidental costs such as snapshot storage for EBS volumes\. To calculate the cost of a sample provisioned environment, see [Cloud Economics Center](https://aws.amazon.com/economics/)\.
 
 To see your bill, go to the **Billing and Cost Management Dashboard** in the [AWS Billing and Cost Management console](https://console.aws.amazon.com/billing/)\. Your bill contains links to usage reports that provide details about your bill\. To learn more about AWS account billing, see [AWS Billing and Cost Management User Guide](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
 
