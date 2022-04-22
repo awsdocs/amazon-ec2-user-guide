@@ -6,7 +6,10 @@ There is no cost for instance usage while an instance is in the `stopping` state
 
 ## Force stop the instance<a name="force-stop-instance"></a>
 
-Force the instance to stop using either the console or the AWS CLI\. Certain instance states will make the console to grey-out the `stop` option\. In this case, please leverage AWS CLI to perform the force stop action\. In supported regions, you can also use [AWS CloudShell](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html) that has AWS CLI pre-installed\.
+Force the instance to stop using either the console or the AWS CLI\.
+
+**Note**  
+You can force an instance to stop using the console only while the instance is in the `stopping` state\. You can force an instance to stop using the AWS CLI while the instance is in any state, except `shutting-down` and `terminated`\.
 
 ------
 #### [ New console ]
