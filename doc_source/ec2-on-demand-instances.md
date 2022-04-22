@@ -2,7 +2,7 @@
 
 With On\-Demand Instances, you pay for compute capacity by the second with no long\-term commitments\. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it\.
 
-There is no long\-term commitment required when you purchase On\-Demand Instances\. You pay only for the seconds that your On\-Demand Instances are in the `running` state\. The price per second for a running On\-Demand Instance is fixed, and is listed on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
+There is no long\-term commitment required when you purchase On\-Demand Instances\. You pay only for the seconds that your On\-Demand Instances are in the `running` state, with a 60\-second minimum\. The price per second for a running On\-Demand Instance is fixed, and is listed on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
 
 We recommend that you use On\-Demand Instances for applications with short\-term, irregular workloads that cannot be interrupted\.
 
@@ -22,7 +22,7 @@ You can work with On\-Demand Instances in the following ways:
 + [Launch your instance](LaunchingAndUsingInstances.md)
 + [Connect to your Linux instance](AccessingInstances.md)
 + [Stop and start your instance](Stop_Start.md)
-+ [Hibernate your On\-Demand or Reserved Linux instance](Hibernate.md)
++ [Hibernate your On\-Demand Linux instance](Hibernate.md)
 + [Reboot your instance](ec2-instance-reboot.md)
 + [Instance retirement](instance-retirement.md)
 + [Terminate your instance](terminating-instances.md)
@@ -36,14 +36,15 @@ If you're new to Amazon EC2, see [How to get started with Amazon EC2](concepts.m
 
 There is a limit on the number of running On\-Demand Instances per AWS account per Region\. On\-Demand Instance limits are managed in terms of the *number of virtual central processing units \(vCPUs\)* that your running On\-Demand Instances are using, regardless of the instance type\.
 
-There are seven On\-Demand Instance limits:
-+ Running On\-Demand All Standard \(A, C, D, H, I, M, R, T, Z\) instances
-+ Running On\-Demand All F instances
-+ Running On\-Demand All G and VT instances
-+ Running On\-Demand All High Memory instances
-+ Running On\-Demand All Inf instances
-+ Running On\-Demand All P instances
-+ Running On\-Demand All X instances
+There are eight On\-Demand Instance limits:
++ Running On\-Demand Standard \(A, C, D, H, I, M, R, T, Z\) instances
++ Running On\-Demand DL instances
++ Running On\-Demand F instances
++ Running On\-Demand G and VT instances
++ Running On\-Demand High Memory instances
++ Running On\-Demand Inf instances
++ Running On\-Demand P instances
++ Running On\-Demand X instances
 
 Each limit specifies the vCPU limit for one or more instance families\. For information about the different instance families, generations, and sizes, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
 
@@ -80,7 +81,7 @@ You can view and use the following controls and information:
 + **Instance type** – The instance types that you add to the vCPU limits calculator\.
 + **Instance count** – The number of instances that you require for the selected instance type\.
 + **vCPU count** – The number of vCPUs that corresponds to the **Instance count**\.
-+ **Current limit** – Your current limit for the limit type to which the instance type belongs\. The limit applies to all instance types of the same limit type\. For example, in the preceding screenshot, the current limit for `m5.2xlarge` and `c5.4xlarge` is 1,920 vCPUs, which is the limit for all the instance types that belong to the All Standard instances limit\.
++ **Current limit** – Your current limit for the limit type to which the instance type belongs\. The limit applies to all instance types of the same limit type\. For example, in the preceding screenshot, the current limit for `m5.2xlarge` and `c5.4xlarge` is 2,016 vCPUs, which is the limit for all the instance types that belong to the All Standard instances limit\.
 + **New limit** – The new limit, in number of vCPUs, which is calculated by adding **vCPU count** and **Current limit**\.
 + **X** – Choose the **X** to remove the row\.
 + **Add instance type** – Choose **Add instance type** to add another instance type to the calculator\.
@@ -135,4 +136,4 @@ For more information about requesting a limit increase, see [Amazon EC2 service 
 
 ## Query the prices of On\-Demand Instances<a name="query-aws-price-list"></a>
 
-You can use the Price List Service API or the AWS Price List API to query the prices of On\-Demand Instances\. For more information, see [Using the AWS Price List API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html) in the *AWS Billing and Cost Management User Guide*\.
+You can use the Price List Service API or the AWS Price List API to query the prices of On\-Demand Instances\. For more information, see [Using the AWS Price List API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html) in the *AWS Billing User Guide*\.

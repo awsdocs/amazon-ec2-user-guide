@@ -10,7 +10,7 @@ Traffic can utilize the full network bandwidth available to the instance\.
 **To other Regions, an internet gateway, or Direct Connect**  
 Traffic can utilize up to 50% of the network bandwidth available to a [current generation instance](instance-types.md#current-gen-instances) with a minimum of 32 vCPUs\. Bandwidth for a current generation instance with less than 32 vCPUs is limited to 5 Gbps\.
 
-Bandwidth for single\-flow \(5\-tuple\) traffic is limited to 5 Gbps, regardless of the destination of the traffic\. For use cases that require low latency and high single\-flow bandwidth, use a [cluster placement group](placement-groups.md#placement-groups-cluster) to achieve up to 10 Gbps for instances in the same placement group\. Alternatively, set up multiple paths between two endpoints to achieve higher bandwidth using Multipath TCP \(MPTCP\)\.
+Bandwidth for single\-flow \(5\-tuple\) traffic is limited to 5 Gbps when instances are not in the same [cluster placement group](placement-groups.md#placement-groups-cluster)\. For use cases that require low latency and high single\-flow bandwidth, use a cluster placement group to achieve up to 10 Gbps for instances in the same placement group\. Alternatively, set up multiple paths between two endpoints to achieve higher bandwidth using Multipath TCP \(MPTCP\)\.
 
 ## Available instance bandwidth<a name="available-instance-bandwidth"></a>
 

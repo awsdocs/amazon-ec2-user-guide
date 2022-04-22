@@ -11,8 +11,6 @@ These instances are well suited for the following:
 + Applications performing real\-time processing of big unstructured data \(financial services, Hadoop/Spark clusters\)\.
 + High\-performance computing \(HPC\) and Electronic Design Automation \(EDA\) applications\.
 
-R5b instances support `io2` Block Express volumes\. All `io2` volumes attached to an R5b instance during or after launch automatically run on EBS Block Express\. For more information, see [ `io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
-
 Bare metal instances, such as `r5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
 For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/instance-types/r5)\.
@@ -27,8 +25,18 @@ Bare metal instances, such as `r6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 R6g Instances](https://aws.amazon.com/ec2/instance-types/r6)\.
 
+**R6i instances**
+
+These instances are ideal for running memory\-intensive workloads, such as the following:
++ High\-performance databases \(relational and NoSQL\)
++ In\-memory databases, such as SAP HANA
++ Distributed web scale in\-memory caches, such as Memcached and Redis
++ Real\-time big data analytics, such as Hadoop and Spark clusters
+
+For more information, see [Amazon EC2 R6i Instances](http://aws.amazon.com/ec2/instance-types/r6i)\.
+
 **High memory \(u\-\*\) instances**  
-These instances offer 6 TiB, 9 TiB, 12 TiB, 18 TiB, and 24 TiB of memory per instance\. They are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database\.
+These instances offer 3 TiB, 6 TiB, 9 TiB, 12 TiB, 18 TiB, and 24 TiB of memory per instance\. They are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database\.
 
 For more information, see [Amazon EC2 High Memory Instances](http://aws.amazon.com/ec2/instance-types/high-memory/) and [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\. For information about supported operating systems, see [Migrating SAP HANA on AWS to an EC2 High Memory Instance](https://docs.aws.amazon.com/sap/latest/sap-hana/migrating-hana-to-hm.html)\. 
 
@@ -58,7 +66,19 @@ These instances are well suited for the following:
 + Electronic design automation \(EDA\) workloads, such as physical verification and layout tools\.
 + Memory\-intensive workloads, such as real\-time analytics and real\-time caching servers\.
 
-For more information, see [Amazon EC2 X2gd Instances](https://aws.amazon.com/ec2/instance-types/x2)\.
+For more information, see [Amazon EC2 X2g Instances](https://aws.amazon.com/ec2/instance-types/x2g/)\.
+
+**X2idn, X2iedn, and X2iezn instances**
+
+These instances are well suited for the following:
++ In\-memory databases, such as Redis and Memcached\.
++ Relational databases, such as MySQL and PostGreSQL\.
++ Electronic design automation \(EDA\) workloads, such as physical verification and layout tools\.
++ Memory\-intensive workloads, such as real\-time analytics and real\-time caching servers\.
+
+X2idn and X2iedn instances support `io2` Block Express volumes\. All `io2` volumes attached to X2idn and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+
+For more information, see [Amazon EC2 X2i Instances](https://aws.amazon.com/ec2/instance-types/x2i/)\.
 
 **z1d instances**
 
@@ -170,6 +190,17 @@ The following is a summary of the hardware specifications for memory optimized i
 | r6gd\.8xlarge | 32 | 256 | 
 | r6gd\.12xlarge | 48 | 384 | 
 | r6gd\.16xlarge | 64 | 512 | 
+| r6i\.large | 2 | 16 | 
+| r6i\.xlarge | 4 | 32 | 
+| r6i\.2xlarge | 8 | 64 | 
+| r6i\.4xlarge | 16 | 128 | 
+| r6i\.8xlarge | 32 | 256 | 
+| r6i\.12xlarge | 48 | 384 | 
+| r6i\.16xlarge | 64 | 512 | 
+| r6i\.24xlarge | 96 | 768 | 
+| r6i\.32xlarge | 128 | 1,024 | 
+| r6i\.metal | 128 | 1,024 | 
+| u\-3tb1\.56xlarge | 224 | 3,072 | 
 | u\-6tb1\.56xlarge | 224 | 6,144 | 
 | u\-6tb1\.112xlarge | 448 | 6,144 | 
 | u\-6tb1\.metal | 448 \* | 6,144 | 
@@ -196,6 +227,22 @@ The following is a summary of the hardware specifications for memory optimized i
 | x2gd\.12xlarge | 48 | 768 | 
 | x2gd\.16xlarge | 64 | 1,024 | 
 | x2gd\.metal | 64 | 1,024 | 
+| x2idn\.16xlarge | 64 | 1,024 | 
+| x2idn\.24xlarge | 96 | 1,536 | 
+| x2idn\.32xlarge | 128 | 2,048 | 
+| x2iedn\.xlarge | 4 | 128 | 
+| x2iedn\.2xlarge | 8 | 256 | 
+| x2iedn\.4xlarge | 16 | 512 | 
+| x2iedn\.8xlarge | 32 | 1,024 | 
+| x2iedn\.16xlarge | 64 | 2,048 | 
+| x2iedn\.24xlarge | 96 | 3,072 | 
+| x2iedn\.32xlarge | 128 | 4,096 | 
+| x2iezn\.2xlarge | 8 | 256 | 
+| x2iezn\.4xlarge | 16 | 512 | 
+| x2iezn\.6xlarge | 24 | 768 | 
+| x2iezn\.8xlarge | 32 | 1,024 | 
+| x2iezn\.12xlarge | 48 | 1,536 | 
+| x2iezn\.metal | 48 | 1,536 | 
 | z1d\.large | 2 | 16 | 
 | z1d\.xlarge | 4 | 32 | 
 | z1d\.2xlarge | 8 | 64 | 
@@ -236,12 +283,16 @@ The following is a summary of network performance for memory optimized instances
 |  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.8xlarge and smaller \| r5b\.4xlarge and smaller \| r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8xlarge and smaller \| x2gd\.4xlarge and smaller \|  z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5b\.8xlarge \| r5b\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge \| r6gd\.8xlarge  \| x2gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5b\.16xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  \| x2gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \|  x2gd\.metal \|  z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.12xlarge \| r5n\.12xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.16xlarge \| r5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller \| x2iedn\.4xlarge and smaller \| x2iezn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  r6i\.16xlarge \| x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \|  x2gd\.metal \|  x2iedn\.8xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.12xlarge \| r5n\.12xlarge \| r6i\.32xlarge \| r6i\.metal \| u\-3tb1\.56xlarge \| x2idn\.16xlarge \| x2iedn\.16xlarge \| x2iezn\.6xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.16xlarge \| r5n\.16xlarge \| x2idn\.24xlarge \| x2iedn\.24xlarge \| x2iezn\.8xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal \| x2idn\.32xlarge \| x2iedn\.32xlarge \| x2iezn\.12xlarge \| x2iezn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 \* Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
 
@@ -294,15 +345,24 @@ The following is a summary of network performance for memory optimized instances
 | r6gd\.xlarge | 1\.25 | 10 | 
 | r6gd\.2xlarge | 2\.5 | 10 | 
 | r6gd\.4xlarge | 5 | 10 | 
+| r6i\.large | \.781 | 12\.5 | 
+| r6i\.xlarge | 1\.562 | 12\.5 | 
+| r6i\.2xlarge | 3\.125 | 12\.5 | 
+| r6i\.4xlarge | 6\.25 | 12\.5 | 
 | x1e\.xlarge | \.625 | 10 | 
 | x1e\.2xlarge | 1\.25 | 10 | 
 | x1e\.4xlarge | 2\.5 | 10 | 
 | x1e\.8xlarge | 5 | 10 | 
+| x2iedn\.xlarge | 3\.125 | 25 | 
+| x2ed\.2xlarge | 6\.25 | 25 | 
+| x2iedn\.4xlarge | 12\.5 | 25 | 
 | x2gd\.medium | \.5 | 10 | 
 | x2gd\.large | \.75 | 10 | 
 | x2gd\.xlarge | 1\.25 | 10 | 
 | x2gd\.2xlarge | 2\.5 | 10 | 
 | x2gd\.4xlarge | 5 | 10 | 
+| x2iezn\.2xlarge | 12\.5 | 25 | 
+| x2iezn\.4xlarge | 15 | 25 | 
 | z1d\.large | \.75 | 10 | 
 | z1d\.xlarge | 1\.25 | 10 | 
 | z1d\.2xlarge | 2\.5 | 10 | 
@@ -310,32 +370,32 @@ The following is a summary of network performance for memory optimized instances
 
 ## SSD I/O performance<a name="instances-ssd-perf"></a>
 
-If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
+If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| r5ad\.large \* | 30,000 | 15,000 | 
-| r5ad\.xlarge \* | 59,000 | 29,000 | 
-| r5ad\.2xlarge \*  | 117,000 | 57,000 | 
-| r5ad\.4xlarge \* | 234,000 | 114,000 | 
+| r5ad\.large | 30,000 | 15,000 | 
+| r5ad\.xlarge | 59,000 | 29,000 | 
+| r5ad\.2xlarge  | 117,000 | 57,000 | 
+| r5ad\.4xlarge | 234,000 | 114,000 | 
 | r5ad\.8xlarge | 466,666 | 233,333 | 
 | r5ad\.12xlarge | 700,000 | 340,000 | 
 | r5ad\.16xlarge | 933,333 | 466,666 | 
 | r5ad\.24xlarge | 1,400,000 | 680,000 | 
-| r5d\.large \* | 30,000 | 15,000 | 
-| r5d\.xlarge \* | 59,000 | 29,000 | 
-| r5d\.2xlarge \* | 117,000 | 57,000 | 
-| r5d\.4xlarge \* | 234,000 | 114,000 | 
+| r5d\.large | 30,000 | 15,000 | 
+| r5d\.xlarge | 59,000 | 29,000 | 
+| r5d\.2xlarge | 117,000 | 57,000 | 
+| r5d\.4xlarge | 234,000 | 114,000 | 
 | r5d\.8xlarge | 466,666 | 233,333 | 
 | r5d\.12xlarge | 700,000 | 340,000 | 
 | r5d\.16xlarge  | 933,333 | 466,666 | 
 | r5d\.24xlarge | 1,400,000 | 680,000 | 
 | r5d\.metal | 1,400,000 | 680,000 | 
-| r5dn\.large \* | 30,000 | 15,000 | 
-| r5dn\.xlarge \* | 59,000 | 29,000 | 
-| r5dn\.2xlarge \* | 117,000 | 57,000 | 
-| r5dn\.4xlarge \* | 234,000 | 114,000 | 
+| r5dn\.large | 30,000 | 15,000 | 
+| r5dn\.xlarge | 59,000 | 29,000 | 
+| r5dn\.2xlarge | 117,000 | 57,000 | 
+| r5dn\.4xlarge | 234,000 | 114,000 | 
 | r5dn\.8xlarge | 466,666 | 233,333 | 
 | r5dn\.12xlarge | 700,000 | 340,000 | 
 | r5dn\.16xlarge | 933,333 | 466,666 | 
@@ -359,15 +419,23 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | x2gd\.12xlarge | 645,000 | 270,000 | 
 | x2gd\.16xlarge | 860,000 | 360,000 | 
 | x2gd\.metal | 860,000 | 360,000 | 
-| z1d\.large \* | 30,000 | 15,000 | 
-| z1d\.xlarge \* | 59,000 | 29,000 | 
-| z1d\.2xlarge \* | 117,000 | 57,000 | 
-| z1d\.3xlarge \* | 175,000 | 75,000 | 
+| x2idn\.16xlarge | 430,000 | 180,000 | 
+| x2idn\.24xlarge | 645,000 | 270,000 | 
+| x2idn\.32xlarge | 860,000 | 360,000 | 
+| x2iedn\.xlarge | 26,875 | 11,250 | 
+| x2iedn\.2xlarge | 53,750 | 22,500 | 
+| x2iedn\.4xlarge | 107,500 | 45,000 | 
+| x2iedn\.8xlarge | 215,000 | 90,000 | 
+| x2iedn\.16xlarge | 430,000 | 180,000 | 
+| x2iedn\.24xlarge | 645,000 | 270,000 | 
+| x2iedn\.32xlarge | 860,000 | 360,000 | 
+| z1d\.large | 30,000 | 15,000 | 
+| z1d\.xlarge | 59,000 | 29,000 | 
+| z1d\.2xlarge | 117,000 | 57,000 | 
+| z1d\.3xlarge | 175,000 | 75,000 | 
 | z1d\.6xlarge | 350,000 | 170,000 | 
 | z1d\.12xlarge | 700,000 | 340,000 | 
 | z1d\.metal | 700,000 | 340,000 | 
-
-\* For these instances, you can get up to the specified performance\.
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
@@ -392,13 +460,17 @@ The following is a summary of features for memory optimized instances\.
 | R5n | Yes | Yes | No | Yes | 
 | R6g | Yes | Yes | No | Yes | 
 | R6gd | No | Yes | NVMe \* | Yes | 
+| R6i | Yes | Yes | No | Yes | 
 | High memory | Yes | Yes | No | Virtualized: Yes Bare metal: No  | 
 | X1 | No | No | SSD | Yes | 
-| X2gd | No | Yes | NVME \* | Yes | 
+| X2gd | No \*\* | Yes | NVME \* | Yes | 
+| X2idn | No \*\* | Yes | NVME \* | Yes | 
+| X2iedn | No \*\* | Yes | NVME \* | Yes | 
+| X2iezn | Yes | Yes | No | Yes | 
 | X1e | No | No | SSD \* | Yes | 
 | z1d | No | Yes | NVME \* | Yes | 
 
-**\*\*** All `io2` volumes attached to an R5b instance during or after launch automatically run on EBS Block Express\. For more information, see [io2 Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+**\*\*** All `io2` volumes attached to R5b, X2idn, and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [io2 Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -431,6 +503,8 @@ The following AMIs support launching memory optimized instances:
 + R6g and R6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\) are the first instances to be powered by an eight\-socket platform with the latest generation Intel Xeon Platinum 8176M \(Skylake\) processors that are optimized for mission\-critical enterprise workloads\. High Memory instances with 18 TB and 24 TB of memory \(`u-18tb1.metal` and `u-24tb1.metal`\) are the first instances powered by an 8\-socket platform with 2nd Generation Intel Xeon Scalable 8280L \(Cascade Lake\) processors\.
 + X1e and X1 instances feature up to 128 vCPUs and are powered by four Intel Xeon E7\-8880 v3 processors that feature high\-memory bandwidth and larger L3 caches to boost the performance of in\-memory applications\.
++ X2idn and X2iedn instances feature Intel Xeon Scalable processors \(Ice Lake\)\. They are certified by SAP for running Business Suite on HANA, SAP S/4HANA, Data Mart Solutions on HANA, Business Warehouse on HANA, SAP BW/4HANA, and SAP NetWeaver workloads with anyDB in production environments\. For more information, see [Certified and Supported SAP HANA Hardware](https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:23)\.
++ X2iezn instances feature a custom Intel Xeon Scalable processor \(Cascade Lake\)\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
@@ -454,8 +528,13 @@ The following AMIs support launching memory optimized instances:
   + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
   + Debian 10 or later \(64\-bit Arm\)
++ To get the best performance from your R6i instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\.
+  + Amazon Linux 2 with kernel 4\.14\.186
+  + Ubuntu 20\.04 with kernel 5\.4\.0\-1025\-aws
+  + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
+  + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.3\.18\-24\.15\.1
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
-+ All `io2` volumes attached to an R5b instance during or after launch automatically run on EBS Block Express\. For more information, see [ `io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
++ All `io2` volumes attached to R5b, X2idn, and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

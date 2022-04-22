@@ -41,13 +41,13 @@ For more information about supported MTU sizes for transit gateways, see [MTU](h
 
 ## Path MTU Discovery<a name="path_mtu_discovery"></a>
 
-Path MTU Discovery is used to determine the path MTU between two devices\. The path MTU is the maximum packet size that's supported on the path between the originating host and the receiving host\. 
+Path MTU Discovery \(PMTUD\) is used to determine the path MTU between two devices\. The path MTU is the maximum packet size that's supported on the path between the originating host and the receiving host\. When there is a difference in the MTU size in the network between two hosts, PMTUD enables the receiving host to respond to the originating host with an ICMP message\. This ICMP message instructs the originating host to use the lowest MTU size along the network path and to resend the request\. Without this negotiation, packet drop can occur because the request is too large for the receiving host to accept\.
 
 For IPv4, when a host sends a packet that's larger than the MTU of the receiving host or that's larger than the MTU of a device along the path, the receiving host or device drops the packet, and then returns the following ICMP message: `Destination Unreachable: Fragmentation Needed and Don't Fragment was Set` \(Type 3, Code 4\)\. This instructs the transmitting host to split the payload into multiple smaller packets, and then retransmit them\. 
 
 The IPv6 protocol does not support fragmentation in the network\. When a host sends a packet that's larger than the MTU of the receiving host or that's larger than the MTU of a device along the path, the receiving host or device drops the packet, and then returns the following ICMP message: `ICMPv6 Packet Too Big (PTB)` \(Type 2\)\. This instructs the transmitting host to split the payload into multiple smaller packets, and then retransmit them\. 
 
-By default, security groups do not allow any inbound ICMP traffic\. However, security groups are stateful, therefore ICMP responses to outbound requests are allowed to flow in, regardless of security group rules\. Therefore, you do not need to explicitly add an inbound ICMP rule to ensure that your instance can receive the ICMP message response\. For more information about configuring ICMP rules in a network ACL, see [Path MTU Discovery](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#path_mtu_discovery) in the *Amazon VPC User Guide*\.
+By default, security groups do not allow any inbound ICMP traffic\. If you don't explicitly configure an ICMP inbound rule for your security group, PMTUD is blocked\. For more information about configuring ICMP rules in a network ACL, see [Path MTU Discovery](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#path_mtu_discovery) in the *Amazon VPC User Guide*\.
 
 **Important**  
 Path MTU Discovery does not guarantee that jumbo frames will not be dropped by some routers\. An internet gateway in your VPC will forward packets up to 1500 bytes only\. 1500 MTU packets are recommended for internet traffic\.

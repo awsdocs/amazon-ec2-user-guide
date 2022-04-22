@@ -52,4 +52,4 @@ For examples, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.co
 
 ------
 
-You can edit your CloudWatch alarm settings from the Amazon EC2 console or the CloudWatch console\. If you want to delete your alarm, you can do so from the CloudWatch console\. For more information, see [Editing or Deleting a CloudWatch Alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Edit-CloudWatch-Alarm.html) in the *Amazon CloudWatch User Guide*\.
+You can edit your CloudWatch alarm settings from the Amazon EC2 console or the CloudWatch console\. If you want to delete your alarm, you can do so from the CloudWatch console\. For more information, see [Editing or deleting a CloudWatch alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Edit-CloudWatch-Alarm.html) in the *Amazon CloudWatch User Guide*\.

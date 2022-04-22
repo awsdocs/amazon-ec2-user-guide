@@ -79,33 +79,6 @@ The following policy allows all of the *read* EBS direct APIs to be used on all 
 }
 ```
 
-The following policy grants access to decrypt an encrypted snapshot using a specific KMS key\. It grants access to encrypt new snapshots using the default KMS key ID for EBS snapshots\. It also provides the ability to determine if encrypt by default is enabled on the account\. In the policy, replace *<Region>* with the Region of the KMS key, *<AccountId>* with the ID of the AWS account of the KMS key, and *<KeyId>* with the ID of the KMS key used to encrypt the snapshot that you want to read with the EBS direct APIs\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "kms:Encrypt",
-                "kms:Decrypt",
-                "kms:GenerateDataKey",
-                "kms:GenerateDataKeyWithoutPlaintext",
-                "kms:ReEncrypt*",
-                "kms:CreateGrant",
-                "ec2:CreateTags",
-                "kms:DescribeKey",
-                "ec2:GetEbsDefaultKmsKeyId",
-                "ec2:GetEbsEncryptionByDefault"
-            ],
-            "Resource": "arn:aws:kms:<Region>:<AccountId>:key/<KeyId>"
-        }
-    ]
-}
-```
-
 For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
 
 ## Permissions to write snapshots<a name="ebsapi-write-permissions"></a>
@@ -225,7 +198,14 @@ The following policy allows all of the *write* EBS direct APIs to be used on all
 }
 ```
 
-The following policy grants access to decrypt an encrypted snapshot using a specific KMS key\. It grants access to encrypt new snapshots using the default KMS key ID for EBS snapshots\. It also provides the ability to determine if encrypt by default is enabled on the account\. In the policy, replace *<Region>* with the Region of the KMS key, *<AccountId>* with the ID of the AWS account of the KMS key, and *<KeyId>* with the ID of the KMS key used to encrypt the snapshot that you want to read with the EBS direct APIs\.
+For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
+
+## Permissions to use AWS KMS keys<a name="ebsapi-kms-permissions"></a>
+
+The following policy grants permission to decrypt an encrypted snapshot using a specific KMS key\. It also grants permission to encrypt new snapshots using the default KMS key for EBS encryption\. In the policy, replace *<Region>* with the Region of the KMS key, *<AccountId>* with the ID of the AWS account of the KMS key, and *<KeyId>* with the ID of the KMS key\.
+
+**Note**  
+By default, all principals in the account have access to the default AWS managed KMS key for Amazon EBS encryption, and they can use it for EBS encryption and decryption operations\. If you are using a customer managed key, you must create a new key policy or modify the existing key policy for the customer managed key to grant the principal access to the customer managed key\. For more information, see [Key policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
 
 ```
 {
@@ -242,9 +222,7 @@ The following policy grants access to decrypt an encrypted snapshot using a spec
                 "kms:ReEncrypt*",
                 "kms:CreateGrant",
                 "ec2:CreateTags",
-                "kms:DescribeKey",
-                "ec2:GetEbsDefaultKmsKeyId",
-                "ec2:GetEbsEncryptionByDefault"
+                "kms:DescribeKey"
             ],
             "Resource": "arn:aws:kms:<Region>:<AccountId>:key/<KeyId>"
         }

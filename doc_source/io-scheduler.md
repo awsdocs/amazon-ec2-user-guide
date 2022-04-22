@@ -29,14 +29,20 @@ No Operation \(noop\) is the default I/O scheduler for Amazon Linux\. This sched
 
 Changing the I/O scheduler can increase or decrease performance based on whether the scheduler results in more or fewer I/O requests being completed in a given time\. This is largely dependent on your workload, the generation of the instance type that's being used, and the type of device being accessed\. If you change the I/O scheduler being used, we recommend that you use a tool, such as **iotop**, to measure I/O performance and to determine whether the change is beneficial for your use case\.
 
-You can view the I/O scheduler for a device using the following command, which uses `nvme0n1` as an example\.
+You can view the I/O scheduler for a device using the following command, which uses `nvme0n1` as an example\. Replace `nvme0n1` in the following command with the device listed in `/sys/block` on your instance\.
 
 ```
 $  cat /sys/block/nvme0n1/queue/scheduler
 ```
 
-To set the I/O scheduler for the device, use the following command\.
+To set the I/O scheduler for the device, use the following command\. 
 
 ```
 $  echo cfq|deadline|noop > /sys/block/nvme0n1/queue/scheduler
+```
+
+For example, to set the I/O scheduler for an *xvda* device from `noop` to `cfq`, use the following command\. 
+
+```
+$  echo cfq > /sys/block/xvda/queue/scheduler
 ```

@@ -9,7 +9,7 @@ The following illustration represents the transitions between instance states\. 
 The following table provides a brief description of each instance state and indicates whether it is billed or not\.
 
 **Note**  
-The table indicates billing for instance usage only\. Some AWS resources, such as Amazon EBS volumes and Elastic IP addresses, incur charges regardless of the instance's state\. For more information, see [Avoiding Unexpected Charges](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html) in the *AWS Billing and Cost Management User Guide*\.
+The table indicates billing for instance usage only\. Some AWS resources, such as Amazon EBS volumes and Elastic IP addresses, incur charges regardless of the instance's state\. For more information, see [Avoiding Unexpected Charges](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html) in the *AWS Billing User Guide*\.
 
 
 | Instance state | Description | Instance usage billing | 
@@ -56,7 +56,7 @@ When you start your hibernated instance, it enters the `pending` state, and we m
 
 Your instance retains its private IPv4 address, which means that an Elastic IP address associated with the private IPv4 address or network interface is still associated with your instance\. If your instance has an IPv6 address, it retains its IPv6 address\.
 
-For more information, see [Hibernate your On\-Demand or Reserved Linux instance](Hibernate.md)\.
+For more information, see [Hibernate your On\-Demand Linux instance](Hibernate.md)\.
 
 ## Instance reboot<a name="instance-reboot"></a>
 

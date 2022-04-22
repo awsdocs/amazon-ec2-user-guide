@@ -7,7 +7,7 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
 
 **To convert an instance store\-backed AMI to an Amazon EBS\-backed AMI**
 
-1. Launch an Amazon Linux instance from an Amazon EBS\-backed AMI\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\. Amazon Linux instances have the AWS CLI and AMI tools pre\-installed\.
+1. Launch an Amazon Linux instance from an Amazon EBS\-backed AMI\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\. Amazon Linux instances have the AWS CLI and AMI tools pre\-installed\.
 
 1. Upload the X\.509 private key that you used to bundle your instance store\-backed AMI to your instance\. We use this key to ensure that only you and Amazon EC2 can access your AMI\.
 

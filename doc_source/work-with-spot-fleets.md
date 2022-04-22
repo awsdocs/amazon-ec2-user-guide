@@ -14,7 +14,7 @@ A Spot Fleet request remains active until it expires or you cancel it\. When you
 + [Spot Fleet permissions](#spot-fleet-prerequisites)
 + [Create a Spot Fleet request](#create-spot-fleet)
 + [Tag a Spot Fleet](#tag-spot-fleet)
-+ [Monitor your Spot Fleet](#manage-spot-fleet)
++ [Describe your Spot Fleet](#manage-spot-fleet)
 + [Modify a Spot Fleet request](#modify-spot-fleet)
 + [Cancel a Spot Fleet request](#cancel-spot-fleet)
 
@@ -261,7 +261,7 @@ Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Spot** to l
 The `aws-ec2-spot-fleet-tagging-role` IAM role grants the Spot Fleet permission to tag the Spot Fleet request, instances, and volumes\. For more information, see [Tag a Spot Fleet](#tag-spot-fleet)\.
 
 **Important**  
-If you choose to tag instances in the fleet and you choose to maintain target capacity \(the Spot Fleet request is of type `maintain`\), the differences in permissions of the IAM user and the `IamFleetRole` might lead to inconsistent tagging behavior of instances in the fleet\. If the `IamFleetRole` does not include the `CreateTags` permission, some of the instances launched by the fleet might not be tagged\. While we are working to fix this inconsistency, to ensure that all instances launched by the fleet are tagged, we recommend that you use the `aws-ec2-spot-fleet-tagging-role` role for the `IamFleetRole`\. Alternatively, to use an existing role, attach the `AmazonEC2SpotFleetTaggingRole` AWS Managed Policy to the existing role\. Otherwise, you need to manually add the `CreateTags` permission to your existing policy\.
+If you choose to tag instances in the fleet and you also choose to maintain target capacity \(the Spot Fleet request is of type `maintain`\), the differences in the permissions that are set for the IAM user and the `IamFleetRole` might lead to inconsistent tagging behavior of instances in the fleet\. If the `IamFleetRole` does not include the `CreateTags` permission, some of the instances launched by the fleet might not be tagged\. While we are working to fix this inconsistency, to ensure that all instances launched by the fleet are tagged, we recommend that you use the `aws-ec2-spot-fleet-tagging-role` role for the `IamFleetRole`\. Alternatively, to use an existing role, attach the `AmazonEC2SpotFleetTaggingRole` AWS Managed Policy to the existing role\. Otherwise, you need to manually add the `CreateTags` permission to your existing policy\.
 
 **To create the IAM role for tagging a Spot Fleet**
 
@@ -269,21 +269,84 @@ If you choose to tag instances in the fleet and you choose to maintain target ca
 
 1. In the navigation pane, choose **Roles**\.
 
-1. Choose **Create roles**\.
+1. Choose **Create role**\.
 
-1. On the **Select type of trusted entity** page, choose **AWS service**\.
+1. On the **Select trusted entity** page, under **Trusted entity type**, choose **AWS service**\.
 
-1. Under **Choose a use case**, **Or select a service to view its use cases**, choose **EC2**\.
+1. Under **Use case**, from **Use cases for other AWS services**, choose **EC2**, and then choose **EC2 \- Spot Fleet Tagging**\.
 
-1. Under **Select your use case**, choose **EC2 \- Spot Fleet Tagging**\.
+1. Choose **Next**\.
 
-1. Choose **Next: Permissions**\.
+1. On the **Add permissions** page, choose **Next**\.
 
-1. On the next page, choose **Next: Tags**\.
+1. On the **Name, review, and create** page, for **Role name**, enter a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\)\.
 
-1. On the next page, choose **Next: Review**\.
+1. Review the information on the page, and then choose **Create role**\.
 
-1. On the **Review** page, enter a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and choose **Create role**\.
+#### Cross\-service confused deputy prevention<a name="cross-service-confused-deputy-prevention"></a>
+
+The [confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) is a security issue where an entity that doesn't have permission to perform an action can coerce a more\-privileged entity to perform the action\. We recommend that you use the [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn) and [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount) global condition context keys in the `aws-ec2-spot-fleet-tagging-role` trust policy to limit the permissions that Spot Fleet gives another service to the resource\.
+
+**To add the aws:SourceArn and aws:SourceAccount condition keys to the `aws-ec2-spot-fleet-tagging-role` trust policy**
+
+1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. In the navigation pane, choose **Roles**\.
+
+1. Find the `aws-ec2-spot-fleet-tagging-role` that you created previously and choose the link \(not the check box\)\.
+
+1. Under **Summary**, choose the **Trust relationships** tab, and then choose **Edit trust policy**\.
+
+1. In the JSON statement, add a `Condition` element containing your `aws:SourceAccount` and `aws:SourceArn` global condition context keys to prevent the [confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html), as follows:
+
+   ```
+   "Condition": {
+         "ArnLike": {
+           "aws:SourceArn": "arn:aws:ec2:us-east-1:account_id:spot-fleet-request/sfr-*"
+         },
+         "StringEquals": {
+           "aws:SourceAccount": "account_id"
+         }
+   ```
+**Note**  
+If the `aws:SourceArn` value contains the account ID and you use both global condition context keys, the `aws:SourceAccount` value and the account in the `aws:SourceArn` value must use the same account ID when used in the same policy statement\.
+
+   The final trust policy will be as follows:
+
+   ```
+   {
+     "Version": "2012-10-17",
+     "Statement": {
+       "Sid": "ConfusedDeputyPreventionExamplePolicy",
+       "Effect": "Allow",
+       "Principal": {
+         "Service": "spotfleet.amazonaws.com"
+       },
+       "Action": "sts:AssumeRole",
+       "Condition": {
+         "ArnLike": {
+           "aws:SourceArn": "arn:aws:ec2:us-east-1:account_id:spot-fleet-request/sfr-*"
+         },
+         "StringEquals": {
+           "aws:SourceAccount": "account_id"
+         }
+       }
+     }
+   }
+   ```
+
+1. Choose **Update policy**\.
+
+The following table provides potential values for `aws:SourceArn` to limit the scope of the your `aws-ec2-spot-fleet-tagging-role` in varying degrees of specificity\.
+
+
+****  
+
+| API operation | Called service | Scope | `aws:SourceArn` | 
+| --- | --- | --- | --- | 
+| RequestSpotFleet | AWS STS \(AssumeRole\) | Limit the AssumeRole capability on aws\-ec2\-spot\-fleet\-tagging\-role to spot\-fleet\-requests in the specified account\. | arn:aws:ec2:\*:123456789012:spot\-fleet\-request/sfr\-\* | 
+| RequestSpotFleet | AWS STS \(AssumeRole\) | Limit the AssumeRole capability on aws\-ec2\-spot\-fleet\-tagging\-role to spot\-fleet\-requests in the specified account and specified Region\. Note that this role will not be usable in other Regions\. | arn:aws:ec2:us\-east\-1:123456789012:spot\-fleet\-request/sfr\-\* | 
+| RequestSpotFleet | AWS STS \(AssumeRole\) | Limit the AssumeRole capability on aws\-ec2\-spot\-fleet\-tagging\-role to only actions affecting the fleet sfr\-11111111\-1111\-1111\-1111\-111111111111\. Note that this role may not be usable for other Spot Fleets\. Also, this role cannot be used to launch any new Spot Fleets through request\-spot\-fleet\. | arn:aws:ec2:us\-east\-1:123456789012:spot\-fleet\-request/sfr\-11111111\-1111\-1111\-1111\-111111111111 | 
 
 ## Create a Spot Fleet request<a name="create-spot-fleet"></a>
 
@@ -489,6 +552,8 @@ Create a IAM policy that includes the following:
                 "ec2:RequestSpotFleet"
             ],
             "Resource": "*"
+        }
+    ]
 }
 ```
 
@@ -791,11 +856,11 @@ aws ec2 describe-spot-fleet-requests \
 }
 ```
 
-## Monitor your Spot Fleet<a name="manage-spot-fleet"></a>
+## Describe your Spot Fleet<a name="manage-spot-fleet"></a>
 
 The Spot Fleet launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\. The Spot Instances run until they are interrupted or you terminate them\.
 
-**To monitor your Spot Fleet \(console\)**
+**To describe your Spot Fleet \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -807,7 +872,7 @@ The Spot Fleet launches Spot Instances when your maximum price exceeds the Spot 
 
 1. To view the history for the Spot Fleet, choose **History**\.
 
-**To monitor your Spot Fleet \(AWS CLI\)**  
+**To describe your Spot Fleet \(AWS CLI\)**  
 Use the [describe\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-requests.html) command to describe your Spot Fleet requests\.
 
 ```

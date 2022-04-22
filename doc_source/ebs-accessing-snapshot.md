@@ -32,7 +32,7 @@ A block is a fragment of data within a snapshot\. Each snapshot can contain thou
 
 ### Block indexes<a name="ebsapi-block-indexes"></a>
 
-A block index is the offset position of a block within a snapshot, and it is used to identify the block\. Multiply the BlockIndex value with the BlockSize value \(BlockIndex \* BlockSize\) to identify the logical offset of the data in the logical volume\.
+A block index is a logical index in units of `512` KiB blocks\. To identify the block index, divide the logical offset of the data in the logical volume by the block size \(logical offset of data/`524288`\)\. The logical offset of the data must be `512` KiB aligned\.
 
 ### Block tokens<a name="ebsapi-block-tokens"></a>
 

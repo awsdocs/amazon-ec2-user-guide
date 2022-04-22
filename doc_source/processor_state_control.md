@@ -1,20 +1,22 @@
 # Processor state control for your EC2 instance<a name="processor_state_control"></a>
 
-C\-states control the sleep levels that a core can enter when it is idle\. C\-states are numbered starting with C0 \(the shallowest state where the core is totally awake and executing instructions\) and go to C6 \(the deepest idle state where a core is powered off\)\. P\-states control the desired performance \(in CPU frequency\) from a core\. P\-states are numbered starting from P0 \(the highest performance setting where the core is allowed to use Intel Turbo Boost Technology to increase frequency if possible\), and they go from P1 \(the P\-state that requests the maximum baseline frequency\) to P15 \(the lowest possible frequency\)\.
+C\-states control the sleep levels that a core can enter when it is idle\. C\-states are numbered starting with C0 \(the shallowest state where the core is totally awake and executing instructions\) and go to C6 \(the deepest idle state where a core is powered off\)\.
+
+P\-states control the desired performance \(in CPU frequency\) from a core\. P\-states are numbered starting from P0 \(the highest performance setting where the core is allowed to use Intel Turbo Boost Technology to increase frequency if possible\), and they go from P1 \(the P\-state that requests the maximum baseline frequency\) to P15 \(the lowest possible frequency\)\.
 
 The following instance types provide the ability for an operating system to control processor C\-states and P\-states:
-+ General purpose: `m4.10xlarge` \| `m4.16xlarge` \| `m5.metal` \| `m5d.metal`
-+ Compute optimized: `c4.8xlarge` \| `c5.metal` \| `c5n.metal`
-+ Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `r5.metal` \| `r5d.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `u-18tb1.metal` \| `u-24tb1.metal` `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.metal`
-+ Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `i3en.metal` \| `h1.8xlarge` \| `h1.16xlarge`
++ General purpose: `m4.10xlarge` \| `m4.16xlarge` \| `m5.metal` \| `m5d.metal` \| `m5zn.metal` \| `m6i.metal`
++ Compute optimized: `c4.8xlarge` \| `c5.metal` \| `c5n.metal` \| `c6i.metal`
++ Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `r5.metal` \| `r5b.metal` \| `r5d.metal` \| `r6i.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `u-18tb1.metal` \| `u-24tb1.metal` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.metal`
++ Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `i3en.metal` \| `h1.8xlarge` \| `h1.16xlarge` \| `r5b.12xlarge` \| `r5b.24xlarge` \| `r6i.16xlarge` \| `r6i.32xlarge` \| `u-6tb1.56xlarge` \| `u-6tb1.112xlarge` \| `u-9tb1.112xlarge` \| `u-12tb1.112xlarge`
 + Accelerated computing: `f1.16xlarge` \| `g3.16xlarge` \| `g4dn.metal` \| `p2.16xlarge` \| `p3.16xlarge`
 
 The following instance types provide the ability for an operating system to control processor C\-states:
-+ General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` \| `m5n.12xlarge` \| `m5n.24xlarge` \| `m5dn.12xlarge` \| `m5dn.24xlarge`
-+ Compute optimized: `c5.9xlarge` \| `c5.12xlarge` \| `c5.18xlarge` \| `c5.24xlarge` \| `c5a.24xlarge` \| `c5ad.24xlarge` \| `c5d.9xlarge` \| `c5d.12xlarge` \| `c5d.18xlarge` \| `c5d.24xlarge` \| `c5n.9xlarge` \| `c5n.18xlarge`
-+ Memory optimized: `r5.12xlarge` \| `r5.24xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `r5n.12xlarge` \| `r5n.24xlarge` \| `r5dn.12xlarge` \| `r5dn.24xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge`
-+ Storage optimized: `d3en.12xlarge` \| `i3en.12xlarge` \| `i3en.24xlarge`
-+ Accelerated computing: `inf1.24xlarge` \| `p3dn.24xlarge`
++ General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` \| `m5n.12xlarge` \| `m5n.24xlarge` \| `m5dn.12xlarge` \| `m5dn.24xlarge` \| `m6a.24xlarge` \| `m6a.48xlarge` \| `m6i.16xlarge` \| `m6i.32xlarge`
++ Compute optimized: `c5.9xlarge` \| `c5.12xlarge` \| `c5.18xlarge` \| `c5.24xlarge` \| `c5a.24xlarge` \| `c5ad.24xlarge` \| `c5d.9xlarge` \| `c5d.12xlarge` \| `c5d.18xlarge` \| `c5d.24xlarge` \| `c5n.9xlarge` \| `c5n.18xlarge` \| `c6a.24xlarge` \| `c6a.48xlarge` \| `c6i.16xlarge` \| `c6i.32xlarge`
++ Memory optimized: `r5.12xlarge` \| `r5.24xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `r5n.12xlarge` \| `r5n.24xlarge` \| `r5dn.12xlarge` \| `r5dn.24xlarge` \| `r6i.16xlarge` \| `r6i.32xlarge` \| `u-6tb1.56xlarge` \| `u-6tb1.112xlarge` \| `u-9tb1.112xlarge` \| `u-12tb1.112xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge`
++ Storage optimized: `d3en.12xlarge` \| `dl1.24xlarge` \| `i3en.12xlarge` \| `i3en.24xlarge` \| `r5b.12xlarge` \| `r5b.24xlarge` \| `r6i.16xlarge` \| `r6i.32xlarge` \| `u-6tb1.56xlarge` \| `u-6tb1.112xlarge` \| `u-9tb1.112xlarge` \| `u-12tb1.112xlarge` 
++ Accelerated computing: `dl1.24xlarge` \| `g5.24xlarge` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge` \| `vt1.24xlarge`
 
 AWS Graviton processors have built\-in power saving modes and operate at a fixed frequency\. Therefore, they do not provide the ability for the operating system to control C\-states and P\-states\.
 
@@ -23,7 +25,9 @@ You might want to change the C\-state or P\-state settings to increase processor
 The following sections describe the different processor state configurations and how to monitor the effects of your configuration\. These procedures were written for, and apply to Amazon Linux; however, they may also work for other Linux distributions with a Linux kernel version of 3\.9 or newer\. For more information about other Linux distributions and processor state control, see your system\-specific documentation\.
 
 **Note**  
-The examples on this page use the turbostat utility \(which is available on Amazon Linux by default\) to display processor frequency and C\-state information, and the stress command \(which can be installed by running sudo yum install \-y stress\) to simulate a workload\.  
+The examples on this page use the following:  
+The turbostat utility to display processor frequency and C\-state information\. The turbostat utility is available on Amazon Linux by default\.
+The stress command to simulate a workload\. To install stress, first enable the EPEL repository by running sudo amazon\-linux\-extras install epel, and then run sudo yum install \-y stress\.
 If the output does not display the C\-state information, include the \-\-debug option in the command \(sudo turbostat \-\-debug stress *<options>*\)\.
 
 **Topics**
@@ -99,12 +103,14 @@ A common scenario for disabling deeper sleep states is a Redis database applicat
    [ec2-user ~]$ sudo vim /etc/default/grub
    ```
 
-1. Edit the `GRUB_CMDLINE_LINUX_DEFAULT` line and add the `intel_idle.max_cstate=1` option to set `C1` as the deepest C\-state for idle cores\.
+1. Edit the `GRUB_CMDLINE_LINUX_DEFAULT` line and add the `intel_idle.max_cstate=1` and `processor.max_cstate=1` options to set `C1` as the deepest C\-state for idle cores\.
 
    ```
-   GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 nvme_core.io_timeout=4294967295 intel_idle.max_cstate=1"
+   GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 nvme_core.io_timeout=4294967295 intel_idle.max_cstate=1 processor.max_cstate=1"
    GRUB_TIMEOUT=0
    ```
+
+   The `intel_idle.max_cstate=1` option configures the C\-state limit for Intel\-based instances, and the `processor.max_cstate=1` option configures the C\-state limit for AMD\-based instances\. It is safe to add both options to your configuration\. This allows a single configuration to set the desired behavior on both Intel and AMD\.
 
 1. Save the file and exit your editor\.
 
@@ -128,7 +134,7 @@ A common scenario for disabling deeper sleep states is a Redis database applicat
    [ec2-user ~]$ sudo vim /boot/grub/grub.conf
    ```
 
-1. Edit the `kernel` line of the first entry and add the `intel_idle.max_cstate=1` option to set `C1` as the deepest C\-state for idle cores\.
+1. Edit the `kernel` line of the first entry and add the `intel_idle.max_cstate=1` and `processor.max_cstate=1` options to set `C1` as the deepest C\-state for idle cores\.
 
    ```
    # created by imagebuilder
@@ -138,9 +144,11 @@ A common scenario for disabling deeper sleep states is a Redis database applicat
    
    title Amazon Linux 2014.09 (3.14.26-24.46.amzn1.x86_64)
    root (hd0,0)
-   kernel /boot/vmlinuz-3.14.26-24.46.amzn1.x86_64 root=LABEL=/ console=ttyS0 intel_idle.max_cstate=1
+   kernel /boot/vmlinuz-3.14.26-24.46.amzn1.x86_64 root=LABEL=/ console=ttyS0 intel_idle.max_cstate=1  processor.max_cstate=1
    initrd /boot/initramfs-3.14.26-24.46.amzn1.x86_64.img
    ```
+
+   The `intel_idle.max_cstate=1` option configures the C\-state limit for Intel\-based instances, and the `processor.max_cstate=1` option configures the C\-state limit for AMD\-based instances\. It is safe to add both options to your configuration\. This allows a single configuration to set the desired behavior on both Intel and AMD\.
 
 1. Save the file and exit your editor\.
 
@@ -178,6 +186,18 @@ You can reduce the variability of processor frequency with P\-states\. P\-states
 
 Intel Advanced Vector Extensions \(AVX or AVX2\) workloads can perform well at lower frequencies, and AVX instructions can use more power\. Running the processor at a lower frequency, by disabling Turbo Boost, can reduce the amount of power used and keep the speed more consistent\. For more information about optimizing your instance configuration and workload for AVX, see [http://www\.intel\.com/content/dam/www/public/us/en/documents/white\-papers/performance\-xeon\-e5\-v3\-advanced\-vector\-extensions\-paper\.pdf](http://www.intel.com/content/dam/www/public/us/en/documents/white-papers/performance-xeon-e5-v3-advanced-vector-extensions-paper.pdf)\.
 
+CPU idle drivers control P\-state\. Newer CPU generations require updated CPU idle drivers that correspond to the kernel level as follows:
++ Linux kernel versions 5\.6 and higher \(for example, m6i\) – Supports Intel Icelake\.
++ Linux kernel versions 5\.10 and higher \(for example, m6a\) – Supports AMD Milan\.
+
+To detect if a running system's kernel recognizes the CPU, run the following command\.
+
+```
+if [ -d /sys/devices/system/cpu/cpu0/cpuidle ]; then echo "C-state control enabled"; else echo "Kernel cpuidle driver does not recognize this CPU generation"; fi
+```
+
+If the output of this command indicates a lack of support, we recommend that you upgrade the kernel\.
+
 This section describes how to limit deeper sleep states and disable Turbo Boost \(by requesting the `P1` P\-state\) to provide low\-latency and the lowest processor speed variability for these types of workloads\.
 
 **To limit deeper sleep states and disable Turbo Boost on Amazon Linux 2**
@@ -188,12 +208,14 @@ This section describes how to limit deeper sleep states and disable Turbo Boost 
    [ec2-user ~]$ sudo vim /etc/default/grub
    ```
 
-1. Edit the `GRUB_CMDLINE_LINUX_DEFAULT` line and add the `intel_idle.max_cstate=1` option to set `C1` as the deepest C\-state for idle cores\.
+1. Edit the `GRUB_CMDLINE_LINUX_DEFAULT` line and add the `intel_idle.max_cstate=1` and `processor.max_cstate=1` options to set `C1` as the deepest C\-state for idle cores\.
 
    ```
-   GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 nvme_core.io_timeout=4294967295 intel_idle.max_cstate=1"
+   GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 nvme_core.io_timeout=4294967295 intel_idle.max_cstate=1 processor.max_cstate=1"
    GRUB_TIMEOUT=0
    ```
+
+   The `intel_idle.max_cstate=1` option configures the C\-state limit for Intel\-based instances, and the `processor.max_cstate=1` option configures the C\-state limit for AMD\-based instances\. It is safe to add both options to your configuration\. This allows a single configuration to set the desired behavior on both Intel and AMD\.
 
 1. Save the file and exit your editor\.
 
@@ -229,7 +251,7 @@ This section describes how to limit deeper sleep states and disable Turbo Boost 
    [ec2-user ~]$ sudo vim /boot/grub/grub.conf
    ```
 
-1. Edit the `kernel` line of the first entry and add the `intel_idle.max_cstate=1` option to set `C1` as the deepest C\-state for idle cores\.
+1. Edit the `kernel` line of the first entry and add the `intel_idle.max_cstate=1` and `processor.max_cstate=1` options to set `C1` as the deepest C\-state for idle cores\.
 
    ```
    # created by imagebuilder
@@ -239,9 +261,11 @@ This section describes how to limit deeper sleep states and disable Turbo Boost 
    
    title Amazon Linux 2014.09 (3.14.26-24.46.amzn1.x86_64)
    root (hd0,0)
-   kernel /boot/vmlinuz-3.14.26-24.46.amzn1.x86_64 root=LABEL=/ console=ttyS0 intel_idle.max_cstate=1
+   kernel /boot/vmlinuz-3.14.26-24.46.amzn1.x86_64 root=LABEL=/ console=ttyS0 intel_idle.max_cstate=1 processor.max_cstate=1
    initrd /boot/initramfs-3.14.26-24.46.amzn1.x86_64.img
    ```
+
+   The `intel_idle.max_cstate=1` option configures the C\-state limit for Intel\-based instances, and the `processor.max_cstate=1` option configures the C\-state limit for AMD\-based instances\. It is safe to add both options to your configuration\. This allows a single configuration to set the desired behavior on both Intel and AMD\.
 
 1. Save the file and exit your editor\.
 

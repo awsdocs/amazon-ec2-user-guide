@@ -50,7 +50,7 @@ You can specify instance user data when you launch the instance\. If the root vo
 
 ### Specify instance user data at launch<a name="user-data-launch-instance-wizard"></a>
 
-Follow the procedure for launching an instance at [Launch an instance using the Launch Instance Wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, copy your shell script in the **User data** field, and then complete the launch procedure\.
+Follow the procedure for launching an instance at [Launch an instance using the old launch instance wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, copy your shell script in the **User data** field, and then complete the launch procedure\.
 
 In the example script below, the script creates and configures our web server\.
 
@@ -149,7 +149,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 **To pass cloud\-init directives to an instance with user data**
 
-1. Follow the procedure for launching an instance at [Launch an instance using the Launch Instance Wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, enter your cloud\-init directive text in the **User data** field, and then complete the launch procedure\.
+1. Follow the procedure for launching an instance at [Launch an instance using the old launch instance wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, enter your cloud\-init directive text in the **User data** field, and then complete the launch procedure\.
 
    In the example below, the directives create and configure a web server on Amazon Linux 2\. The `#cloud-config` line at the top is required in order to identify the commands as cloud\-init directives\.
 

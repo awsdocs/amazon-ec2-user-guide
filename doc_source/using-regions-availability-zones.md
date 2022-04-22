@@ -21,8 +21,6 @@ To help you determine which deployment is best for you, see [AWS Wavelength FAQs
 
 Each Amazon EC2 Region is designed to be isolated from the other Amazon EC2 Regions\. This achieves the greatest possible fault tolerance and stability\.
 
-
-
 When you view your resources, you see only the resources that are tied to the Region that you specified\. This is because Regions are isolated from each other, and we don't automatically replicate resources across Regions\.
 
 When you launch an instance, you must select an AMI that's in the same Region\. If the AMI is in another Region, you can copy the AMI to the Region you're using\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
@@ -56,6 +54,7 @@ For information about available Wavelength Zones, see [Available Wavelength Zone
 | us\-west\-2 | US West \(Oregon\) | Not required | 
 | af\-south\-1 | Africa \(Cape Town\) | Required | 
 | ap\-east\-1 | Asia Pacific \(Hong Kong\) | Required | 
+| ap\-southeast\-3 | Asia Pacific \(Jakarta\) | Required | 
 | ap\-south\-1 | Asia Pacific \(Mumbai\) | Not required | 
 | ap\-northeast\-3 | Asia Pacific \(Osaka\) | Not required | 
 | ap\-northeast\-2 | Asia Pacific \(Seoul\) | Not required | 
@@ -163,26 +162,31 @@ For more information about the endpoints for Amazon EC2, see [Amazon Elastic Com
 
 ## Availability Zones<a name="concepts-availability-zones"></a>
 
-Each Region has multiple, isolated locations known as *Availability Zones*\. When you launch an instance, you can select an Availability Zone or let us choose one for you\. If you distribute your instances across multiple Availability Zones and one instance fails, you can design your application so that an instance in another Availability Zone can handle requests\.
+Each Region has multiple, isolated locations known as *Availability Zones*\. The code for Availability Zone is its Region code followed by a letter identifier\. For example, `us-east-1a`\.
 
-The following diagram illustrates multiple Availability Zones in an AWS Region\.
+When you launch an instance, you select a Region and a virtual private cloud \(VPC\), and then you can either select a subnet from one of the Availability Zones or let us choose one for you\. If you distribute your instances across multiple Availability Zones and one instance fails, you can design your application so that an instance in another Availability Zone can handle requests\. You can also use Elastic IP addresses to mask the failure of an instance in one Availability Zone by rapidly remapping the address to an instance in another Availability Zone\.
 
-![\[Regions\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/aws-az.png)
+The following diagram illustrates multiple Availability Zones in an AWS Region\. Availability Zone A and Availability Zone B each have one subnet, and each subnet has instances\. Availability Zone C has no subnets, therefore you can't launch instances into this Availability Zone\.
 
-You can also use Elastic IP addresses to mask the failure of an instance in one Availability Zone by rapidly remapping the address to an instance in another Availability Zone\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. 
+![\[A Region with instances in one Availability Zone.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/region-with-azs.png)
 
-An Availability Zone is represented by a Region code followed by a letter identifier; for example, `us-east-1a`\. To ensure that resources are distributed across the Availability Zones for a Region, we independently map Availability Zones to names for each AWS account\. For example, the Availability Zone `us-east-1a` for your AWS account might not be the same location as `us-east-1a` for another AWS account\.
-
-To coordinate Availability Zones across accounts, you must use the *AZ ID*, which is a unique and consistent identifier for an Availability Zone\. For example, `use1-az1` is an AZ ID for the `us-east-1` Region and it has the same location in every AWS account\.
-
-You can view AZ IDs to determine the location of resources in one account relative to the resources in another account\. For example, if you share a subnet in the Availability Zone with the AZ ID `use-az2` with another account, this subnet is available to that account in the Availability Zone whose AZ ID is also `use-az2`\. The AZ ID for each VPC and subnet is displayed in the Amazon VPC console\. For more information, see [Working with Shared VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html) in the *Amazon VPC User Guide*\.
-
-As Availability Zones grow over time, our ability to expand them can become constrained\. If this happens, we might restrict you from launching an instance in a constrained Availability Zone unless you already have an instance in that Availability Zone\. Eventually, we might also remove the constrained Availability Zone from the list of Availability Zones for new accounts\. Therefore, your account might have a different number of available Availability Zones in a Region than another account\. 
+As Availability Zones grow over time, our ability to expand them can become constrained\. If this happens, we might restrict you from launching an instance in a constrained Availability Zone unless you already have an instance in that Availability Zone\. Eventually, we might also remove the constrained Availability Zone from the list of Availability Zones for new accounts\. Therefore, your account might have a different number of available Availability Zones in a Region than another account\.
 
 **Topics**
++ [AZ IDs](#az-ids)
 + [Describe your Availability Zones](#availability-zones-describe)
 + [Launch instances in an Availability Zone](#using-regions-availability-zones-launching)
 + [Migrate an instance to another Availability Zone](#migrating-instance-availability-zone)
+
+### AZ IDs<a name="az-ids"></a>
+
+To ensure that resources are distributed across the Availability Zones for a Region, we independently map Availability Zones to codes for each AWS account\. For example, the Availability Zone `us-east-1a` for your AWS account might not be the same physical location as `us-east-1a` for another AWS account\.
+
+To coordinate Availability Zones across accounts, you must use the *AZ ID*, which is a unique and consistent identifier for an Availability Zone\. For example, `use1-az1` is an AZ ID for the `us-east-1` Region and it has the same physical location in every AWS account\. You can view the AZ IDs for your account to determine the physical location of your resources relative to the resources in another account\. For example, if you share a subnet in the Availability Zone with the AZ ID `use1-az2` with another account, this subnet is available to that account in the Availability Zone whose AZ ID is also `use1-az2`\.
+
+The following diagram illustrates two accounts with different mappings of Availability Zone code to AZ ID\.
+
+![\[Two accounts with different mappings of Availability Zone code to AZ ID.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/availability-zone-mapping.png)
 
 ### Describe your Availability Zones<a name="availability-zones-describe"></a>
 
@@ -196,7 +200,7 @@ You can use the Amazon EC2 console or the command line interface to determine wh
 
 1. On the navigation pane, choose **EC2 Dashboard**\.
 
-1. The Availability Zones are listed under **Service health**, **Zone status**\.
+1. The Availability Zones are listed in the **Service health** pane\.
 
 **To find your Availability Zones using the AWS CLI**
 
@@ -223,11 +227,11 @@ PS C:\> Get-EC2AvailabilityZone -Region region-name
 
 When you launch an instance, select a Region that puts your instances closer to specific customers, or meets the legal or other requirements that you have\. By launching your instances in separate Availability Zones, you can protect your applications from the failure of a single location\. 
 
-When you launch an instance, you can optionally specify an Availability Zone in the Region that you are using\. If you do not specify an Availability Zone, we select an Availability Zone for you\. When you launch your initial instances, we recommend that you accept the default Availability Zone, because this allows us to select the best Availability Zone for you based on system health and available capacity\. If you launch additional instances, specify a Zone only if your new instances must be close to, or separated from, your running instances\.
+When you launch an instance, you can optionally specify an Availability Zone in the Region that you are using\. If you do not specify an Availability Zone, we select an Availability Zone for you\. When you launch your initial instances, we recommend that you accept the default Availability Zone, because this allows us to select the best Availability Zone for you based on system health and available capacity\. If you launch additional instances, specify an Availability Zone only if your new instances must be close to, or separated from, your running instances\.
 
 ### Migrate an instance to another Availability Zone<a name="migrating-instance-availability-zone"></a>
 
-If necessary, you can migrate an instance from one Availability Zone to another\. For example, let's say you are trying to modify the instance type of your instance and we can't launch an instance of the new instance type in the current Availability Zone\. In this case, you can migrate the instance to an Availability Zone where we are able to launch an instance of that instance type\.
+If necessary, you can migrate an instance from one Availability Zone to another\. For example, if you try to modify the instance type of your instance and we can't launch an instance of the new instance type in the current Availability Zone, you can migrate the instance to an Availability Zone with capacity for the new instance type\.
 
 The migration process involves:
 + Creating an AMI from the original instance
@@ -253,26 +257,15 @@ The migration process involves:
 
 ## Local Zones<a name="concepts-local-zones"></a>
 
-A Local Zone is an extension of an AWS Region in geographic proximity to your users\. Local Zones have their own connections to the internet and support AWS Direct Connect, so that resources created in a Local Zone can serve local users with low\-latency communications\. For more information, see [AWS Local Zones](http://aws.amazon.com/about-aws/global-infrastructure/localzones/)\. 
+A Local Zone is an extension of an AWS Region in geographic proximity to your users\. Local Zones have their own connections to the internet and support AWS Direct Connect, so that resources created in a Local Zone can serve local users with low\-latency communications\. For more information, see [AWS Local Zones](http://aws.amazon.com/about-aws/global-infrastructure/localzones/)\.
 
-![\[Local Zones\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/aws-lz.png)
+The code for a Local Zone is its Region code followed by an identifier that indicates its physical location\. For example, `us-west-2-lax-1` in Los Angeles\. For more information, see [Available Local Zones](#local-zones-available)\.
 
-A Local Zone is represented by a Region code followed by an identifier that indicates the location, for example, `us-west-2-lax-1a`\. For more information, see [Available Local Zones](#local-zones-available)\.
+The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and two of its Local Zones\. The VPC spans the Availability Zones and one of the Local Zones\. Each zone in the VPC has one subnet, and each subnet has an instance\.
 
-To use a Local Zone, you must first enable it\. For more information, see [Opt in to Local Zones](#opt-in-local-zone)\. Next, create a subnet in the Local Zone\. Finally, launch any of the following resources in the Local Zone subnet, so that your applications are close to your end users:
-+ Amazon EC2 instances
-+ Amazon EBS volumes
-+ Amazon ECS
-+ Amazon EKS
-+ Internet gateways
+![\[A VPC with Availability Zones and Local Zones.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/region-with-lzs.png)
 
-In addition to the preceding list, the following resources are available in the Los Angeles Local Zones: 
-+ Amazon FSx file servers
-+ Elastic Load Balancing
-+ Amazon EMR
-+ Amazon ElastiCache
-+ Amazon Relational Database Service
-+ Dedicated Hosts
+To use a Local Zone, you must first enable it\. For more information, see [Opt in to Local Zones](#opt-in-local-zone)\. Next, create a subnet in the Local Zone\. Finally, launch resources in the Local Zone subnet, such as instances, so that your applications are close to your end users\.
 
 **Topics**
 + [Available Local Zones](#local-zones-available)
@@ -290,6 +283,7 @@ The following table lists Local Zones in US East \(N\. Virginia\):
 
 | Parent Region | Zone Name | Location \(metro area\) | 
 | --- | --- | --- | 
+| US East \(N\. Virginia\) | us\-east\-1\-atl\-1a | Atlanta | 
 | US East \(N\. Virginia\) | us\-east\-1\-bos\-1a | Boston | 
 | US East \(N\. Virginia\) | us\-east\-1\-chi\-1a | Chicago | 
 | US East \(N\. Virginia\) | us\-east\-1\-dfw\-1a | Dallas | 
@@ -312,7 +306,9 @@ The following table lists Local Zones in US West \(Oregon\):
 | US West \(Oregon\) | us\-west\-2\-las\-1a | Las Vegas | 
 | US West \(Oregon\) | us\-west\-2\-lax\-1a | Los Angeles | 
 | US West \(Oregon\) | us\-west\-2\-lax\-1b | Los Angeles | 
+| US West \(Oregon\) | us\-west\-2\-phx\-1a | Phoenix | 
 | US West \(Oregon\) | us\-west\-2\-pdx\-1a | Portland | 
+| US West \(Oregon\) | us\-west\-2\-sea\-1a | Seattle | 
 
 ### Describe your Local Zones<a name="local-zones-describe"></a>
 
@@ -401,9 +397,11 @@ AWS Wavelength enables developers to build applications that deliver ultra\-low 
 
 A Wavelength Zone is an isolated zone in the carrier location where the Wavelength infrastructure is deployed\. Wavelength Zones are tied to a Region\. A Wavelength Zone is a logical extension of a Region, and is managed by the control plane in the Region\.
 
-![\[Wavelength Zones\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/aws-wz.png)
+The code for a Wavelength Zone is its Region code followed by an identifier that indicates the physical location\. For example, `us-east-1-wl1-bos-wlz-1` in Boston\.
 
-A Wavelength Zone is represented by a Region code followed by an identifier that indicates the Wavelength Zone, for example, `us-east-1-wl1-bos-wlz-1`\.
+The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and a Wavelength Zone\. The VPC spans the Availability Zones and the Wavelength Zone\. Each zone in the VPC has one subnet, and each subnet has an instance\.
+
+![\[A VPC with Availability Zones and a Wavelength Zone.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/region-with-wavelength-zones.png)
 
 To use a Wavelength Zone, you must first opt in to the Zone\. For more information, see [Enable Wavelength Zones](#opt-in-wavelength-zone)\. Next, create a subnet in the Wavelength Zone\. Finally, launch your resources in the Wavelength Zones subnet, so that your applications are closer to your end users\.
 
@@ -487,23 +485,27 @@ For information about how to launch an instance in a Wavelength Zone, see [Get s
 
 AWS Outposts is a fully managed service that extends AWS infrastructure, services, APIs, and tools to customer premises\. By providing local access to AWS managed infrastructure, AWS Outposts enables customers to build and run applications on premises using the same programming interfaces as in AWS Regions, while using local compute and storage resources for lower latency and local data processing needs\.
 
-An Outpost is a pool of AWS compute and storage capacity deployed at a customer site\. AWS operates, monitors, and manages this capacity as part of an AWS Region\. You can create subnets on your Outpost and specify them when you create AWS resources such as EC2 instances, EBS volumes, ECS clusters, and RDS instances\. Instances in Outpost subnets communicate with other instances in the AWS Region using private IP addresses, all within the same VPC\.
+An Outpost is a pool of AWS compute and storage capacity deployed at a customer site\. AWS operates, monitors, and manages this capacity as part of an AWS Region\. You can create subnets on your Outpost and specify them when you create AWS resources\. Instances in Outpost subnets communicate with other instances in the AWS Region using private IP addresses, all within the same VPC\.
 
-To begin using AWS Outposts, you must create an Outpost and order Outpost capacity\. For more information about Outposts configurations, see [our catalog](http://aws.amazon.com/outposts/pricing/)\. After your Outpost equipment is installed, the compute and storage capacity is available for you when you launch Amazon EC2 instances and create Amazon EBS volumes on your Outpost\.
+The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and an Outpost\. The VPC spans the Availability Zones and the Outpost\. The Outpost is in an on\-premises customer data center\. Each zone in the VPC has one subnet, and each subnet has an instance\.
+
+![\[A VPC with Availability Zones and an Outpost.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/region-with-outpost.png)
+
+To begin using AWS Outposts, you must create an Outpost and order Outpost capacity\. For more information about Outposts configurations, see [our catalog](http://aws.amazon.com/outposts/pricing/)\. After your Outpost equipment is installed, the compute and storage capacity is available for you when you launch Amazon EC2 instances on your Outpost\.
 
 ### Launch instances on an Outpost<a name="outposts-instances"></a>
 
-You can launch EC2 instances in the Outpost subnet that you created\. Security groups control inbound and outbound traffic for instances in an Outpost subnet, as they do for instances in an Availability Zone subnet\. To connect to an EC2 instance in an Outpost subnet, you can specify a key pair when you launch the instance, as you do for instances in an Availability Zone subnet\.
+You can launch EC2 instances in the Outpost subnet that you created\. Security groups control inbound and outbound traffic for instances with elastic network interfaces in an Outpost subnet, as they do for instances in an Availability Zone subnet\. To connect to an EC2 instance in an Outpost subnet, you can specify a key pair when you launch the instance, as you do for instances in an Availability Zone subnet\.
 
-The root volume must be 30 GB or smaller\. You can specify data volumes in the block device mapping of the AMI or the instance to provide additional storage\. To trim unused blocks from the boot volume, see [How to Build Sparse EBS Volumes](http://aws.amazon.com/blogs/apn/how-to-build-sparse-ebs-volumes-for-fun-and-easy-snapshotting/) in the AWS Partner Network Blog\.
+The root volume for an instance on an Outpost rack must be 30 GB or smaller\. You can specify data volumes in the block device mapping of the AMI or the instance to provide additional storage\. To trim unused blocks from the boot volume, see [How to Build Sparse EBS Volumes](http://aws.amazon.com/blogs/apn/how-to-build-sparse-ebs-volumes-for-fun-and-easy-snapshotting/) in the AWS Partner Network Blog\.
 
 We recommend that you increase the NVMe timeout for the root volume\. For more information, see [I/O operation timeout](nvme-ebs-volumes.md#timeout-nvme-ebs-volumes)\.
 
 For information about how to create an Outpost, see [Get started with AWS Outposts](https://docs.aws.amazon.com/outposts/latest/userguide/get-started-outposts.html) in the *AWS Outposts User Guide*\.
 
-### Create a volume on an Outpost<a name="outposts-volumes"></a>
+### Create a volume on an Outpost rack<a name="outposts-volumes"></a>
 
-You can create EBS volumes in the Outpost subnet that you created\. When you create the volume, specify the Amazon Resource Name \(ARN\) of the Outpost\.
+AWS Outposts offers rack and server form factors\. If your capacity is on an Outpost rack, you can create EBS volumes in the Outpost subnet that you created\. When you create the volume, specify the Amazon Resource Name \(ARN\) of the Outpost\.
 
 The following [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) command creates an empty 50 GB volume on the specified Outpost\.
 

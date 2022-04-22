@@ -124,11 +124,14 @@ When the AMI snapshots are copied to the S3 object, the data is then copied over
 
 ## Permissions for storing and restoring AMIs using S3<a name="ami-s3-permissions"></a>
 
-If your IAM principals will store or restore AMIs using S3, you need to grant them the required permissions\.
+If your IAM principals will store or restore AMIs using Amazon S3, you need to grant them the required permissions\.
 
 The following example policy includes all of the actions that are required to allow an IAM principal to carry out the store and restore tasks\.
 
-You can also craft policies so that IAM principals can only access named resources\. For more example policies, see [Access management for AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\.
+You can also create IAM policies that grant principals access to specific resources only\. For more example policies, see [ Access management for AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\.
+
+**Note**  
+If the snapshots that make up the AMI are encrypted, or if your account is enabled for encryption by default, your IAM principal must have permission to use the KMS key\. For more information, see [Permissions to use AWS KMS keys](ebsapi-permissions.md#ebsapi-kms-permissions)\.
 
 ```
 {
@@ -152,7 +155,8 @@ You can also craft policies so that IAM principals can only access named resourc
                 "ec2:DescribeStoreImageTasks",
                 "ec2:CreateRestoreImageTask",
                 "ec2:GetEbsEncryptionByDefault",
-                "ec2:DescribeTags"
+                "ec2:DescribeTags",
+                "ec2:CreateTags"
             ],
             "Resource": "*"
         }

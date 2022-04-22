@@ -134,15 +134,27 @@ As an alternative to using the default service roles, you can create custom IAM 
    1. Choose **Edit Trust Relationship**, add the following policy, and then choose **Update Trust Policy**\.
 
       ```
-      { 
-          "Version": "2012-10-17",
-          "Statement": [ 
-          { 
-              "Effect": "Allow", 
-              "Principal": { 
-              "Service": "dlm.amazonaws.com"
-          }, 
-              "Action": "sts:AssumeRole" 
-          } ] 
+      {
+      	"Version": "2012-10-17",
+      	"Statement": [{
+      		"Effect": "Allow",
+      		"Principal": {
+      			"Service": "dlm.amazonaws.com"
+      		},
+      		"Action": "sts:AssumeRole"
+      	}]
+      }
+      ```
+
+      We recommend that you use the `aws:SourceAccount` and `aws:SourceArn` condition keys to protect yourself against the [confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html)\. For example, you could add the following condition block to the previous trust policy\. The `aws:SourceAccount` is the owner of the lifecycle policy and the `aws:SourceArn` is the ARN of the lifecycle policy\. If you don't know the lifecycle policy ID, you can replace that portion of the ARN with a wildcard \(`*`\) and then update the trust policy after you create the lifecycle policy\.
+
+      ```
+      "Condition": {
+          "StringEquals": {
+              "aws:SourceAccount": "account_id"
+          },
+          "ArnLike": {
+              "aws:SourceArn": "arn:partition:dlm:region:account_id:policy/policy_id"
+          }
       }
       ```

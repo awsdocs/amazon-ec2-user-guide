@@ -2,23 +2,23 @@
 
 The following instructions explain how to connect to your Linux instance using EC2 Instance Connect\.
 
-If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md) and [ How do I troubleshoot issues connecting to my EC2 instance using EC2 Instance Connect?](http://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-connect-troubleshooting/)\.
-
 **Topics**
 + [Limitations](#ic-limitations)
 + [Prerequisites](#ic-prerequisites)
 + [Connect using EC2 Instance Connect](#connect-options)
++ [Troubleshoot](#ic-troubleshoot)
 
 ## Limitations<a name="ic-limitations"></a>
-+ The following Linux distributions are supported:
++ Supported Linux distributions:
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
++ Supported in all AWS Regions except Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Osaka\), China \(Beijing\), China \(Ningxia\), Europe \(Milan\), and Middle East \(Bahrain\)\.
 + To connect using the Amazon EC2 console \(browser\-based client\), the instance must have a public IPv4 address\.
 + If the instance does not have a public IP address, you can connect to the instance over a private network using an SSH client or the EC2 Instance Connect CLI\. For example, you can connect from within the same VPC or through a VPN connection, transit gateway, or AWS Direct Connect\.
 + EC2 Instance Connect does not support connecting using an IPv6 address\.
 
 ## Prerequisites<a name="ic-prerequisites"></a>
-+ **Install Instance Connect on your instance\.**
++ **Install EC2 Instance Connect on your instance\.**
 
   For more information, see [Set up EC2 Instance Connect](ec2-instance-connect-set-up.md)\.
 + **\(Optional\) Install an SSH client on your local computer\.**
@@ -87,7 +87,10 @@ $ mssh ubuntu@i-001234a4bf70dec41EXAMPLE
 You can use your own SSH key and connect to your instance from the SSH client of your choice while using the EC2 Instance Connect API\. This enables you to benefit from the Instance Connect capability to push a public key to the instance\. This connection method works for instances with public and private IP addresses\.
 
 **Requirements**
-+ The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 2048 and 4096\. For more information, see [Create a key pair using a third\-party tool and import the public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
++ Requirements for key pairs
+  + Supported types: RSA \(OpenSSH and SSH2\) and ED25519
+  + Supported lengths: 2048 and 4096
+  + For more information, see [Create a key pair using a third\-party tool and import the public key to Amazon EC2](create-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 + When connecting to an instance that only has private IP addresses, the local computer from which you are initiating the SSH session must have connectivity to the EC2 Instance Connect service endpoint \(to push your SSH public key to the instance\) as well as network connectivity to the instance's private IP address to establish the SSH session\. The EC2 Instance Connect service endpoint is reachable over the internet or over an AWS Direct Connect public virtual interface\. To connect to the instance's private IP address, you can leverage services such as [AWS Direct Connect](http://aws.amazon.com/directconnect/), [AWS Site\-to\-Site VPN](http://aws.amazon.com/vpn/), or [VPC peering](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html)\.
 
 **To connect to your instance using your own key and any SSH client**
@@ -96,10 +99,10 @@ You can use your own SSH key and connect to your instance from the SSH client of
 
 **\(Optional\) Generate new SSH private and public keys**
 
-   You can generate new SSH private and public keys, `my_rsa_key` and `my_rsa_key.pub`, using the following command:
+   You can generate new SSH private and public keys, `my_key` and `my_key.pub`, using the following command:
 
    ```
-   $ ssh-keygen -t rsa -f my_rsa_key
+   $ ssh-keygen -t rsa -f my_key
    ```
 
 1. 
@@ -108,14 +111,14 @@ You can use your own SSH key and connect to your instance from the SSH client of
 
    Use the [send\-ssh\-public\-key](https://docs.aws.amazon.com/cli/latest/reference/ec2-instance-connect/send-ssh-public-key.html) command to push your SSH public key to the instance\. If you launched your instance using Amazon Linux 2, the default user name for the AMI is `ec2-user`\. If you launched your instance using Ubuntu, the default user name for the AMI is `ubuntu`\.
 
-   The following example pushes the public key to the specified instance in the specified Availability Zone, to authenticate `ec2-user`:
+   The following example pushes the public key to the specified instance in the specified Availability Zone, to authenticate `ec2-user`\.
 
    ```
    $ aws ec2-instance-connect send-ssh-public-key \
        --instance-id i-001234a4bf70dec41EXAMPLE \
        --availability-zone us-west-2b \
        --instance-os-user ec2-user \
-       --ssh-public-key file://my_rsa_key.pub
+       --ssh-public-key file://my_key.pub
    ```
 
 1. 
@@ -125,5 +128,11 @@ You can use your own SSH key and connect to your instance from the SSH client of
    Use the ssh command to connect to the instance using the private key before the public key is removed from the instance metadata \(you have 60 seconds before it is removed\)\. Specify the private key that corresponds to the public key, the default user name for the AMI that you used to launch your instance, and the instance's public DNS name \(if connecting over a private network, specify the private DNS name or IP address\)\. Add the `IdentitiesOnly=yes` option to ensure that only the files in the ssh config and the specified key are used for the connection\. 
 
    ```
-   $ ssh -o "IdentitiesOnly=yes" -i my_rsa_key ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
+   $ ssh -o "IdentitiesOnly=yes" -i my_key ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
    ```
+
+## Troubleshoot<a name="ic-troubleshoot"></a>
+
+If you receive an error while attempting to connect to your instance, see the following:
++ [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)
++ [How do I troubleshoot issues connecting to my EC2 instance using EC2 Instance Connect?](http://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-connect-troubleshooting/)

@@ -4,7 +4,7 @@ A Local Zone is an extension of an AWS Region that is geographically close to yo
 
 You can extend a VPC from its parent AWS Region into a Local Zone by creating a new subnet in that Local Zone\. When you create a subnet in a Local Zone, your VPC is extended to that Local Zone\. The subnet in the Local Zone operates the same as the other subnets in your VPC\.
 
-By using Local Zones, you can place Capacity Reservations in multiple locations that are closer to your users\. You create and use Capacity Reservations in Local Zones in the same way that you create and use Capacity Reservations in regular Availability Zones\. The same features and instance matching behavior apply\. For more information about the pricing models that are supported in Local Zones, see [ AWS Local Zones FAQs](http://aws.amazon.com/about-aws/global-infrastructure/localzones/faqs/)\.
+By using Local Zones, you can place Capacity Reservations in multiple locations that are closer to your users\. You create and use Capacity Reservations in Local Zones in the same way that you create and use Capacity Reservations in regular Availability Zones\. The same features and instance matching behavior apply\. For more information about the pricing models that are supported in Local Zones, see [AWS Local Zones FAQs](http://aws.amazon.com/about-aws/global-infrastructure/localzones/faqs/)\.
 
 **Considerations**  
 You can't use Capacity Reservation groups in a Local Zone\.

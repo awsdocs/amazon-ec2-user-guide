@@ -7,10 +7,10 @@ If you are creating a volume for a high\-performance storage scenario, you shoul
 Empty EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. However, storage blocks on volumes that were created from snapshots must be initialized \(pulled down from Amazon S3 and written to the volume\) before you can access the block\. This preliminary action takes time and can cause a significant increase in the latency of an I/O operation the first time each block is accessed\. Volume performance is achieved after all blocks have been downloaded and written to the volume\. For most applications, amortizing this cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can force immediate initialization of the entire volume or enable fast snapshot restore\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 
 **Important**  
-If you create an `io2` volume with a size greater than `16` TiB or with IOPS greater than `64,000` in a Region where EBS Block Express is supported, the volume automatically runs on Block Express\. `io2` Block Express volumes can be attached to R5b instances only\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+If you create an `io2` volume with a size greater than `16` TiB or with IOPS greater than `64,000` in a Region where EBS Block Express is supported, the volume automatically runs on Block Express\. `io2` Block Express volumes can be attached to supported instances only\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
 **Methods of creating a volume**
-+ Create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md) and [Block device mappings](block-device-mapping-concepts.md)\.
++ Create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md) and [Block device mappings](block-device-mapping-concepts.md)\.
 + Create an empty EBS volume and attach it to a running instance\. For more information, see [Create an empty volume](#ebs-create-empty-volume) below\.
 + Create an EBS volume from a previously created snapshot and attach it to a running instance\. For more information, see [Create a volume from a snapshot](#ebs-create-volume-from-snapshot) below\.
 
@@ -57,7 +57,7 @@ Encrypted volumes can be attached only to instances that support Amazon EBS encr
 
 1. Choose **Create volume**\.
 **Note**  
-The volume is ready for use when the volume status is `Available`\.
+The volume is ready for use when the **Volume state** is **available**\.
 
 1. To use the volume, attach it to an instance\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
@@ -88,7 +88,7 @@ The volume is ready for use when the volume status is `Available`\.
 
 1. \(Optional\) Choose **Create additional tags** to add tags to the volume\. For each tag, provide a tag key and a tag value\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
-1. Choose **Create Volume**\. The volume is ready for use when the volume status is **Available**\.
+1. Choose **Create Volume**\. The volume is ready for use when the **State** is **available**\.
 
 1. To use your new volume, attach it to an instance, format it, and mount it\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
@@ -100,6 +100,8 @@ The volume is ready for use when the volume status is `Available`\.
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
 + [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
+
+The volume is ready for use when the `state` is `available`\.
 
 ------
 
@@ -146,7 +148,7 @@ Encrypted volumes can be attached only to instances that support Amazon EBS encr
 
 1. Choose **Create Volume**\.
 **Note**  
-The volume is ready for use when the volume status is `Available`\.
+The volume is ready for use when the **Volume state** is **available**\.
 
 1. To use the volume, attach it to an instance\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
@@ -183,7 +185,7 @@ The volume is ready for use when the volume status is `Available`\.
 
 1. \(Optional\) Choose **Create additional tags** to add tags to the volume\. For each tag, provide a tag key and a tag value\.
 
-1. Choose **Create Volume**\.
+1. Choose **Create Volume**\. The volume is ready for use when the **State** is **available**\.
 
 1. To use your new volume, attach it to an instance and mount it\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
@@ -197,5 +199,7 @@ The volume is ready for use when the volume status is `Available`\.
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
 + [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
+
+The volume is ready for use when the `state` is `available`\.
 
 ------

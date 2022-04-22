@@ -15,7 +15,7 @@ A Capacity Reservation owner can share a Capacity Reservation with:
 + [Share across Availability Zones](#cr-sharing-azs)
 + [Share a Capacity Reservation](#sharing-cr)
 + [Stop sharing a Capacity Reservation](#unsharing-cr)
-+ [Identify a shared Capacity Reservation](#identifying-shared-cr)
++ [Identify and view a shared Capacity Reservation](#identifying-shared-cr)
 + [View shared Capacity Reservation usage](#shared-cr-usage)
 + [Shared Capacity Reservation permissions](#shared-cr-perms)
 + [Billing and metering](#shared-cr-billing)
@@ -53,7 +53,10 @@ When you share a Capacity Reservation that you own with other AWS accounts, you 
 
 To share a Capacity Reservation, you must add it to a resource share\. A resource share is an AWS RAM resource that lets you share your resources across AWS accounts\. A resource share specifies the resources to share, and the consumers with whom they are shared\. When you share a Capacity Reservation using the Amazon EC2 console, you add it to an existing resource share\. To add the Capacity Reservation to a new resource share, you must create the resource share using the [AWS RAM console](https://console.aws.amazon.com/ram)\.
 
-If you are part of an organization in AWS Organizations and sharing within your organization is enabled, consumers in your organization are automatically granted access to the shared Capacity Reservation\. Otherwise, consumers receive an invitation to join the resource share and are granted access to the shared Capacity Reservation after accepting the invitation\.
+If you are part of an organization in AWS Organizations and sharing within your organization is enabled, consumers in your organization are granted access to the shared Capacity Reservation if the [prequisites for sharing](#sharing-cr-prereq) are met\. If the Capacity Reservation is shared with external accounts, they receive an invitation to join the resource share and are granted access to the shared Capacity Reservation after accepting the invitation\.
+
+**Important**  
+Before launching instances into a Capacity Reservation that is shared with you, verify that you have access to the shared Capacity Reservation by viewing it in the console or by describing it using the [ describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) AWS CLI command\. If you can view the shared Capacity Reservation in the console or describe it using the AWS CLI, it is available for your use and you can launch instances into it\. If you attempt to launch instances into the Capacity Reservation and it is not accessible due to a sharing failure, the instances will launch into On\-Demand capacity\.
 
 You can share a Capacity Reservation that you own using the Amazon EC2 console, AWS RAM console, or the AWS CLI\.
 
@@ -99,9 +102,12 @@ See [Updating a Resource Share](https://docs.aws.amazon.com/ram/latest/userguide
 **To stop sharing a Capacity Reservation that you own using the AWS CLI**  
 Use the [disassociate\-resource\-share](https://docs.aws.amazon.com/cli/latest/reference/ram/disassociate-resource-share.html) command\.
 
-## Identify a shared Capacity Reservation<a name="identifying-shared-cr"></a>
+## Identify and view a shared Capacity Reservation<a name="identifying-shared-cr"></a>
 
-Owners and consumers can identify shared Capacity Reservations using the Amazon EC2 console and AWS CLI
+**Important**  
+Before launching instances into a Capacity Reservation that is shared with you, verify that you have access to the shared Capacity Reservation by viewing it in the console or by describing it using the AWS CLI\. If you can view the shared Capacity Reservation in the console or describe it using the AWS CLI, it is available for your use and you can launch instances into it\. If you attempt to launch instances into the Capacity Reservation and it is not accessible due to a sharing failure, the instance will launch into On\-Demand capacity\.
+
+Owners and consumers can identify and view shared Capacity Reservations using the Amazon EC2 console and AWS CLI\.
 
 **To identify a shared Capacity Reservation using the Amazon EC2 console**
 

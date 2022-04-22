@@ -113,7 +113,7 @@ You can add API actions to your policy to provide more options for users, for ex
 + To add outbound rules to VPC security groups, users must be granted permission to use the `ec2:AuthorizeSecurityGroupEgress` API action\. To modify or delete existing rules, users must be granted permission to use the relevant `ec2:RevokeSecurityGroup*` API action\.
 + `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Grant permission to tag resources during creation](supported-iam-actions-tagging.md)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
 **Important**  
-Be careful about granting users permission to use the `ec2:CreateTags` action, because doing so limits your ability to use the `ec2:ResourceTag` condition key to restrict their use of other resources\. If you grant users permission to use the `ec2:CreateTags` action, they can change a resource's tag in order to bypass those restrictions\. For more information, see [Control access to EC2 resources using resource tags](control-access-with-tags.md)\.
+Be careful about granting users permission to use the `ec2:CreateTags` action, because doing so limits your ability to use the `aws:ResourceTag` condition key to restrict their use of other resources\. If you grant users permission to use the `ec2:CreateTags` action, they can change a resource's tag in order to bypass those restrictions\. For more information, see [Control access to EC2 resources using resource tags](control-access-with-tags.md)\.
 + To use Systems Manager parameters when selecting an AMI, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your policy\. `ssm:DescribeParameters` grants your IAM users the permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your IAM users the permission to get the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see **Restrict access to specific Systems Manager parameters** later in this section\.
 
 Currently, the Amazon EC2 `Describe*` API actions do not support resource\-level permissions, so you cannot restrict which individual resources users can view in the launch wizard\. However, you can apply resource\-level permissions on the `ec2:RunInstances` API action to restrict which resources users can use to launch an instance\. The launch fails if users select options that they are not authorized to use\. 
@@ -241,7 +241,7 @@ Users cannot tag the volumes that they create \(either during or after volume cr
       "Resource": "arn:aws:ec2:region:111122223333:instance/*",
       "Condition": {
         "StringEquals": {
-          "ec2:ResourceTag/purpose": "test"
+          "aws:ResourceTag/purpose": "test"
         }
      }
    },
@@ -293,7 +293,7 @@ In the first statement, the `ec2:DescribeTags` action allows users to view tags 
       ],
       "Condition": {
          "StringEquals": {
-            "ec2:ResourceTag/Department": "Test"
+            "aws:ResourceTag/Department": "Test"
          }
       }
    },

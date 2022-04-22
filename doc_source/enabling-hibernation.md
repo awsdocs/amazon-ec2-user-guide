@@ -10,7 +10,7 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
 **To enable hibernation using the console**
 
-1. Follow the [Launch an instance using the Launch Instance Wizard](launching-instance.md) procedure\.
+1. Follow the [Launch an instance using the old launch instance wizard](launching-instance.md) procedure\.
 
 1. On the **Choose an Amazon Machine Image \(AMI\)** page, select an AMI that supports hibernation\. For more information about supported AMIs, see [Hibernation prerequisites](hibernating-prerequisites.md)\.
 
@@ -25,7 +25,7 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
    For more information about the prerequisites for the root volume, see [Hibernation prerequisites](hibernating-prerequisites.md)\.
 
-1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
 ------
 #### [ AWS CLI ]

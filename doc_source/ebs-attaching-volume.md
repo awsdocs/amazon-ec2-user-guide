@@ -15,7 +15,7 @@ For information about adding EBS volumes to your instance at launch, see [Instan
   + AWS Marketplace product codes are copied from the volume to the instance\.
 
 **Important**  
-If you attach an `io2` volume to an R5b instance, the volume always runs on EBS Block Express\. Currently, only R5b instances support `io2` Block Express volumes\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+If you attach an `io2` volume to an instance that supports Block Express, the volume always runs on Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
 You can attach a volume to an instance using one of the following methods\.
 

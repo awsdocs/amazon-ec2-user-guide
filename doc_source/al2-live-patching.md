@@ -23,11 +23,8 @@ Kernel Live Patching on Amazon Linux 2 is provided at no additional cost\.
 Kernel Live Patching is supported on Amazon EC2 instances and [on\-premises virtual machines](amazon-linux-2-virtual-machine.md) running Amazon Linux 2\.
 
 To use Kernel Live Patching on Amazon Linux 2, you must use:
-+ A 64\-bit \(x86\_64\) architecture that is supported by Amazon Linux 2
-+ Amazon Linux 2 with kernel version `4.14.165-131.185` or later
-
-**Note**  
-The 64\-bit ARM \(arm64\) architecture is not supported\.
++ A 64\-bit `x86_64` or `ARM64` architecture
++ Kernel version `5.10` or later
 
 ## Work with Kernel Live Patching<a name="working-with-live-patching"></a>
 
@@ -57,7 +54,7 @@ $ sudo yum install binutils
 
 **To enable Kernel Live Patching**
 
-1. Kernel live patches are available for Amazon Linux 2 with kernel version `4.14.165-131.185` or later\. To check your kernel version, run the following command\.
+1. Kernel live patches are available for Amazon Linux 2 with kernel version `5.10` or later\. To check your kernel version, run the following command\.
 
    ```
    $ sudo yum list kernel
@@ -93,7 +90,12 @@ $ sudo yum install binutils
    $ rpm -qa | grep kernel-livepatch
    ```
 
-   When you enable Kernel Live Patching, an empty kernel live patch RPM is automatically applied\. If Kernel Live Patching was successfully enabled, this command returns a list that includes the initial empty kernel live patch RPM\.
+   When you enable Kernel Live Patching, an empty kernel live patch RPM is automatically applied\. If Kernel Live Patching was successfully enabled, this command returns a list that includes the initial empty kernel live patch RPM\. The following is example output\.
+
+   ```
+   yum-plugin-kernel-livepatch-1.0-0.11.amzn2.noarch
+   kernel-livepatch-5.10.102-99.473-1.0-0.amzn2.x86_64
+   ```
 
 1. Install the **kpatch** package\.
 
@@ -113,7 +115,7 @@ $ sudo yum install binutils
    $ sudo systemctl enable kpatch.service
    ```
 
-1. Configure the Amazon Linux 2 Kernel Live Patching repository, which contains the kernel live patches\.
+1. Enable the Kernel Live Patching topic in the Amazon Linux 2 Extras Library\. This topic contains the kernel live patches\.
 
    ```
    $ sudo amazon-linux-extras enable livepatch
@@ -136,9 +138,9 @@ The following shows example output\.
 
 ```
 Loaded plugins: extras_suggestions, kernel-livepatch, langpacks, priorities, update-motd
-	ALAS2LIVEPATCH-2020-002 important/Sec. kernel-livepatch-4.14.165-133.209-1.0-3.amzn2.x86_64
-	ALAS2LIVEPATCH-2020-005 medium/Sec. kernel-livepatch-4.14.165-133.209-1.0-4.amzn2.x86_64
-	updateinfo list done
+ALAS2LIVEPATCH-2020-002 important/Sec. kernel-livepatch-5.10.102-99.473-1.0-3.amzn2.x86_64
+ALAS2LIVEPATCH-2020-005 medium/Sec. kernel-livepatch-5.10.102-99.473-1.0-4.amzn2.x86_64
+updateinfo list done
 ```
 
 **To list all available kernel live patches for CVEs**  
@@ -152,10 +154,10 @@ The following shows example output\.
 
 ```
 Loaded plugins: extras_suggestions, kernel-livepatch, langpacks, priorities, update-motdamzn2-core/2/x86_64 | 2.4 kB 00:00:00 
-	CVE-2019-15918 important/Sec. kernel-livepatch-4.14.165-133.209-1.0-3.amzn2.x86_64
-	CVE-2019-20096 important/Sec. kernel-livepatch-4.14.165-133.209-1.0-3.amzn2.x86_64
-	CVE-2020-8648 medium/Sec. kernel-livepatch-4.14.165-133.209-1.0-4.amzn2.x86_64
-	updateinfo list done
+CVE-2019-15918 important/Sec. kernel-livepatch-5.10.102-99.473-1.0-3.amzn2.x86_64
+CVE-2019-20096 important/Sec. kernel-livepatch-5.10.102-99.473-1.0-3.amzn2.x86_64
+CVE-2020-8648 medium/Sec. kernel-livepatch-5.10.102-99.473-1.0-4.amzn2.x86_64
+updateinfo list done
 ```
 
 ### Apply kernel live patches<a name="al2-live-patching-apply"></a>
@@ -177,10 +179,10 @@ You can choose to apply a specific kernel live patch, or to apply any available 
    $ sudo yum install kernel-livepatch-kernel_version.x86_64
    ```
 
-   For example, the following command applies a kernel live patch for Amazon Linux 2 kernel version `4.14.165-133.209`\.
+   For example, the following command applies a kernel live patch for Amazon Linux 2 kernel version `5.10.102-99.473`\.
 
    ```
-   $ sudo yum install kernel-livepatch-4.14.165-133.209-1.0-4.amzn2.x86_64
+   $ sudo yum install kernel-livepatch-5.10.102-99.473-1.0-4.amzn2.x86_64
    ```
 
 **To apply any available kernel live patches along with your regular security updates**  
@@ -209,14 +211,14 @@ The command returns a list of the loaded and installed security update kernel li
 
 ```
 Loaded patch modules:
-	livepatch_cifs_lease_buffer_len [enabled]
-	livepatch_CVE_2019_20096 [enabled]
-	livepatch_CVE_2020_8648 [enabled]
+livepatch_cifs_lease_buffer_len [enabled]
+livepatch_CVE_2019_20096 [enabled]
+livepatch_CVE_2020_8648 [enabled]
 	
-	Installed patch modules:
-	livepatch_cifs_lease_buffer_len (4.14.165-133.209.amzn2.x86_64)
-	livepatch_CVE_2019_20096 (4.14.165-133.209.amzn2.x86_64)
-	livepatch_CVE_2020_8648 (4.14.165-133.209.amzn2.x86_64)
+Installed patch modules:
+livepatch_cifs_lease_buffer_len (5.10.102-99.473.amzn2.x86_64)
+livepatch_CVE_2019_20096 (5.10.102-99.473.amzn2.x86_64)
+livepatch_CVE_2020_8648 (5.10.102-99.473.amzn2.x86_64)
 ```
 
 **Note**  
@@ -250,7 +252,6 @@ If you no longer need to use Kernel Live Patching, you can disable it at any tim
 
 Kernel Live Patching has the following limitations:
 + While applying a kernel live patch, you can't perform hibernation, use advanced debugging tools \(such as SystemTap, kprobes, and eBPF\-based tools\), or access ftrace output files used by the Kernel Live Patching infrastructure\.
-+ Amazon Linux 2 instances with 64\-bit ARM \(arm64\) architecture are not supported\.
 
 ## Frequently asked questions<a name="al2-live-patching-faq"></a>
 

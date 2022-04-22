@@ -589,6 +589,8 @@ In the following example, the three launch specifications specify three Spot cap
     "TargetCapacitySpecification": {
             "TotalTargetCapacity": 50,
             "DefaultTargetCapacityType": "spot"
+
+    }
 }
 ```
 

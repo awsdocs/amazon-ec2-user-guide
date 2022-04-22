@@ -4,19 +4,21 @@ Because your instance metadata is available from your running instance, you do n
 
 Instance metadata is divided into categories\. For a description of each instance metadata category, see [Instance metadata categories](instancedata-data-categories.md)\.
 
-To view all categories of instance metadata from within a running instance, use the following IPv4 or IPv6 URIs:
+To view all categories of instance metadata from within a running instance, use the following IPv4 or IPv6 URIs\.
+
+**IPv4**
 
 ```
 http://169.254.169.254/latest/meta-data/
 ```
 
-This IPv4 address is a link\-local address and it is valid only from the instance\. For more information, see [ Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
+**IPv6**
 
 ```
 http://[fd00:ec2::254]/latest/meta-data/
 ```
 
-This IPv6 address is a unique local address\. It is routable within the private network only\. It is not routable on the Internet\. For more information, see [Unique local address](https://en.wikipedia.org/wiki/Unique_local_address) on Wikipedia\.
+The IP addresses are link\-local addresses and are valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
 
 **Note**  
 The examples in this section use the IPv4 address of the instance metadata service: `169.254.169.254`\. If you are retrieving instance metadata for EC2 instances over the IPv6 address, ensure that you enable and use the IPv6 address instead: `fd00:ec2::254`\. The IPv6 address of the instance metadata service is compatible with IMDSv2 commands\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
@@ -42,7 +44,11 @@ You can use a tool such as cURL, as shown in the following example\.
 
 ------
 
-Note that you are not billed for HTTP requests used to retrieve instance metadata and user data\.
+For the command to retrieve instance metadata from a Windows instance, see [Retrieve instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instancedata-data-retrieval.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+
+## Costs<a name="imds-costs"></a>
+
+You are not billed for HTTP requests used to retrieve instance metadata and user data\.
 
 ## Considerations<a name="imds-considerations"></a>
 
@@ -67,6 +73,8 @@ For requests made using Instance Metadata Service Version 2, the following HTTP 
 
 ## Examples of retrieving instance metadata<a name="instancedata-meta-data-retrieval-examples"></a>
 
+The following examples provide commands that you can use on a Linux instance\. For the commands to retrieve instance metadata from a Windows instance, see [Retrieve instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instancedata-data-retrieval.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+
 **Topics**
 + [Get the available versions of the instance metadata](#instance-metadata-ex-1)
 + [Get the top\-level metadata items](#instance-metadata-ex-2)
@@ -74,10 +82,15 @@ For requests made using Instance Metadata Service Version 2, the following HTTP 
 + [Show the formats in which public key 0 is available](#instance-metadata-ex-4)
 + [Get public key 0 \(in the OpenSSH key format\)](#instance-metadata-ex-5)
 + [Get the subnet ID for an instance](#instance-metadata-ex-6)
++ [Get the instance tags for an instance](#instance-metadata-ex-7)
 
 ### Get the available versions of the instance metadata<a name="instance-metadata-ex-1"></a>
 
-This example gets the available versions of the instance metadata\. These versions do not necessarily correlate with an Amazon EC2 API version\. The earlier versions are available to you in case you have scripts that rely on the structure and information present in a previous version\. 
+This example gets the available versions of the instance metadata\. Each version refers to an instance metadata build when new instance metadata categories were released\. The instance metadata build versions do not correlate with the Amazon EC2 API versions\. The earlier versions are available to you in case you have scripts that rely on the structure and information present in a previous version\.
+
+**Note**  
+To avoid having to update your code every time Amazon EC2 releases a new instance metadata build, we recommend that you use `latest` in the path, and not the version number\. For example, use `latest` as follows:  
+`curl http://169.254.169.254/latest/meta-data/ami-id`
 
 ------
 #### [ IMDSv2 ]
@@ -101,8 +114,7 @@ This example gets the available versions of the instance metadata\. These versio
 2014-11-05
 2015-10-20
 2016-04-19
-2016-06-30
-2016-09-02
+...
 latest
 ```
 
@@ -127,8 +139,7 @@ latest
 2014-11-05
 2015-10-20
 2016-04-19
-2016-06-30
-2016-09-02
+...
 latest
 ```
 
@@ -396,6 +407,53 @@ subnet-be9b61d7
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/02:29:96:8f:6a:2d/subnet-id
 subnet-be9b61d7
+```
+
+------
+
+### Get the instance tags for an instance<a name="instance-metadata-ex-7"></a>
+
+In the following examples, the sample instance has [tags on instance metadata enabled](Using_Tags.md#allow-access-to-tags-in-IMDS) and the instance tags `Name=MyInstance` and `Environment=Dev`\.
+
+This example gets all the instance tag keys for an instance\.
+
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/tags/instance
+Name
+Environment
+```
+
+------
+#### [ IMDSv1 ]
+
+```
+[ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/tags/instance
+Name
+Environment
+```
+
+------
+
+The following example gets the value of the `Name` key that was obtained in the preceding example\. The IMDSv2 request uses the stored token that was created in the preceding example command, assuming it has not expired\.
+
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/tags/instance/Name
+MyInstance
+```
+
+------
+#### [ IMDSv1 ]
+
+```
+[ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/tags/instance/Name
+MyInstance
 ```
 
 ------

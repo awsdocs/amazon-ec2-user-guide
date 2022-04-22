@@ -30,6 +30,14 @@ For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.c
 
 EBS volumes provide benefits that are not provided by instance store volumes\.
 
+**Topics**
++ [Data availability](#availability-benefit)
++ [Data persistence](#persistence-benefit)
++ [Data encryption](#encryption-benefit)
++ [Data security](#security-benefit)
++ [Snapshots](#backup-benefit)
++ [Flexibility](#flexibility-benefit)
+
 ### Data availability<a name="availability-benefit"></a>
 
 When you create an EBS volume, it is automatically replicated within its Availability Zone to prevent data loss due to failure of any single hardware component\. You can attach an EBS volume to any EC2 instance in the same Availability Zone\. After you attach a volume, it appears as a native block device similar to a hard drive or other physical device\. At that point, the instance can interact with the volume just as it would with a local drive\. You can connect to the instance and format the EBS volume with a file system, such as ext3, and then install applications\. 
@@ -55,6 +63,12 @@ By default, additional EBS volumes that are created and attached to an instance 
 For simplified data encryption, you can create encrypted EBS volumes with the Amazon EBS encryption feature\. All EBS volume types support encryption\. You can use encrypted EBS volumes to meet a wide range of data\-at\-rest encryption requirements for regulated/audited data and applications\. Amazon EBS encryption uses 256\-bit Advanced Encryption Standard algorithms \(AES\-256\) and an Amazon\-managed key infrastructure\. The encryption occurs on the server that hosts the EC2 instance, providing encryption of data\-in\-transit from the EC2 instance to Amazon EBS storage\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\. 
 
  Amazon EBS encryption uses AWS Key Management Service \(AWS KMS\) master keys when creating encrypted volumes and any snapshots created from your encrypted volumes\. The first time you create an encrypted EBS volume in a region, a default master key is created for you automatically\. This key is used for Amazon EBS encryption unless you select a customer master key \(CMK\) that you created separately using AWS KMS\. Creating your own CMK gives you more flexibility, including the ability to create, rotate, disable, define access controls, and audit the encryption keys used to protect your data\. For more information, see the [AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/)\. 
+
+### Data security<a name="security-benefit"></a>
+
+Amazon EBS volumes are presented to you as raw, unformatted block devices\. These devices are logical devices that are created on the EBS infrastructure and the Amazon EBS service ensures that the devices are logically empty \(that is, the raw blocks are zeroed or they contain cryptographically pseudorandom data\) prior to any use or re\-use by a customer\.
+
+If you have procedures that require that all data be erased using a specific method, either after or before use \(or both\), such as those detailed in **DoD 5220\.22\-M** \(National Industrial Security Program Operating Manual\) or **NIST 800\-88** \(Guidelines for Media Sanitization\), you have the ability to do so on Amazon EBS\. That block\-level activity will be reflected down to the underlying storage media within the Amazon EBS service\.
 
 ### Snapshots<a name="backup-benefit"></a>
 

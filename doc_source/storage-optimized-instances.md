@@ -35,7 +35,28 @@ These instances are well suited for the following:
 
 Bare metal instances provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
-For more information, see [Amazon EC2 I3 Instances](https://aws.amazon.com/ec2/instance-types/i3)\.
+For more information, see [Amazon EC2 I3 Instances](https://aws.amazon.com/ec2/instance-types/i3)\.<a name="im4gn-instances"></a>
+
+**Im4gn instances**
+
+These instances are well suited for workloads that require high random I/O performance at a low latency, such as the following:
++ Relational databases
++ NoSQL databases
++ Search
++ Distributed file systems
+
+For more information, see [Amazon EC2 Im4gn and Is4gen Instances](https://aws.amazon.com/ec2/instance-types/i4g)\.<a name="is4gen-instances"></a>
+
+**Is4gen instances**
+
+These instances are well suited for workloads that require high random I/O performance at a low latency, such as the following:
++ NoSQL databases
++ Indexing
++ Streaming
++ Caching
++ Warm storage
+
+For more information, see [Amazon EC2 Im4gn and Is4gen Instances](https://aws.amazon.com/ec2/instance-types/i4g)\.
 
 **Topics**
 + [Hardware specifications](#storage-instances-hardware)
@@ -91,6 +112,18 @@ The following is a summary of the hardware specifications for storage optimized 
 | i3en\.12xlarge | 48 | 384 | 
 | i3en\.24xlarge | 96 | 768 | 
 | i3en\.metal | 96 | 768 | 
+| im4gn\.large | 2 | 8 | 
+| im4gn\.xlarge | 4 | 16 | 
+| im4gn\.2xlarge | 8 | 32 | 
+| im4gn\.4xlarge | 16 | 64 | 
+| im4gn\.8xlarge | 32 | 128 | 
+| im4gn\.16xlarge | 64 | 256 | 
+| is4gen\.medium | 1 | 6 | 
+| is4gen\.large | 2 | 12 | 
+| is4gen\.xlarge | 4 | 24 | 
+| is4gen\.2xlarge | 8 | 48 | 
+| is4gen\.4xlarge | 16 | 96 | 
+| is4gen\.8xlarge | 32 | 192 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -123,12 +156,12 @@ The following is a summary of network performance for storage optimized instance
 | d2\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 | i3\.8xlarge \| h1\.8xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3\.4xlarge and smaller | Up to 15 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| d3en\.2xlarge and smaller \| i3en\.3xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| d3\.8xlarge \| d3en\.4xlarge \| h1\.16xlarge \| i3\.16xlarge \| i3\.metal \| i3en\.6xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3en\.2xlarge and smaller \| i3en\.3xlarge and smaller  \| im4gn\.2xlarge and smaller  \| is4gen\.2xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| d3\.8xlarge \| d3en\.4xlarge \| h1\.16xlarge \| i3\.16xlarge \| i3\.metal \| i3en\.6xlarge  \| im4gn\.4xlarge  \| is4gen\.4xlarge | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3en\.6xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
-| d3\.8xlarge \| d3en\.8xlarge \| i3en\.12xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3\.8xlarge \| d3en\.8xlarge \| i3en\.12xlarge  \| im4gn\.8xlarge  \| is4gen\.8xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3en\.12xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  i3en\.24xlarge \| i3en\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
+|  i3en\.24xlarge \| i3en\.metal  \| im4gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
 
@@ -149,31 +182,48 @@ The following is a summary of network performance for storage optimized instance
 | i3en\.xlarge | 4\.2 | 25 | 
 | i3en\.2xlarge | 8\.4 | 25 | 
 | i3en\.3xlarge | 12\.5 | 25 | 
+| im4gn\.large | 3\.125 | 25 | 
+| im4gn\.xlarge | 6\.250 | 25 | 
+| im4gn\.2xlarge | 12\.5 | 25 | 
+| is4gen\.medium | 1\.563 | 25 | 
+| is4gen\.large | 3\.125 | 25 | 
+| is4gen\.xlarge | 6\.25 | 25 | 
+| is4gen\.2xlarge | 12\.5 | 25 | 
 
 ## SSD I/O performance<a name="storage-instances-diskperf"></a>
 
-If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
+If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| i3\.large \* |  100,125  |  35,000  | 
-| i3\.xlarge \* |  206,250  |  70,000  | 
-| i3\.2xlarge |  412,500  |  180,000  | 
-| i3\.4xlarge |  825,000  |  360,000  | 
-| i3\.8xlarge |  1,650,000  |  720,000  | 
-| i3\.16xlarge |  3,300,000  |  1,400,000  | 
-| i3\.metal |  3,300,000  |  1,400,000  | 
-| i3en\.large \* | 42,500 | 32,500 | 
-| i3en\.xlarge \* | 85,000 | 65,000 | 
-| i3en\.2xlarge \* | 170,000 | 130,000 | 
+| i3\.large | 100,125 | 35,000 | 
+| i3\.xlarge | 206,250 | 70,000 | 
+| i3\.2xlarge | 412,500 | 180,000 | 
+| i3\.4xlarge | 825,000 | 360,000 | 
+| i3\.8xlarge | 1,650,000 | 720,000 | 
+| i3\.16xlarge | 3,300,000 | 1,400,000 | 
+| i3\.metal | 3,300,000 | 1,400,000 | 
+| i3en\.large | 42,500 | 32,500 | 
+| i3en\.xlarge | 85,000 | 65,000 | 
+| i3en\.2xlarge | 170,000 | 130,000 | 
 | i3en\.3xlarge | 250,000 | 200,000 | 
 | i3en\.6xlarge | 500,000 | 400,000 | 
 | i3en\.12xlarge | 1,000,000 | 800,000 | 
 | i3en\.24xlarge | 2,000,000 | 1,600,000 | 
 | i3en\.metal | 2,000,000 | 1,600,000 | 
-
-\* For these instances, you can get up to the specified performance\.
+| im4gn\.large | 31,250 | 25,000 | 
+| im4gn\.xlarge | 62,000 | 50,000 | 
+| im4gn\.2xlarge | 125,000 | 100,000 | 
+| im4gn\.4xlarge | 250,000 | 200,000 | 
+| im4gn\.8xlarge | 500,000 | 400,000 | 
+| im4gn\.16xlarge | 1,000,000 | 800,000 | 
+| is4gen\.medium | 31,250 | 25,000 | 
+| is4gen\.large | 62,000 | 50,000 | 
+| is4gen\.xlarge | 125,000 | 100,000 | 
+| is4gen\.2xlarge | 250,000 | 200,000 | 
+| is4gen\.4xlarge | 500,000 | 400,000 | 
+| is4gen\.8xlarge | 1,000,000 | 800,000 | 
 
 As you fill your SSD\-based instance store volumes, the I/O performance that you get decreases\. This is due to the extra work that the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
@@ -194,6 +244,8 @@ The following is a summary of features for storage optimized instances:
 | H1 | No | HDD \* | Yes | 
 | I3 | No | NVMe \* | Yes | 
 | I3en | No | NVMe \* | Yes | 
+| Im4gn | No | NVMe \* | Yes | 
+| Is4gen | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -272,6 +324,16 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
   + Debian GNU/Linux 9 or later
++ Instances with an AWS Graviton processors have the following requirements:
+  + Use an AMI for the 64\-bit Arm architecture\.
+  + Support booting through UEFI with ACPI tables and support ACPI hot\-plug of PCI devices\.
+
+  The following AMIs meet these requirements:
+  + Amazon Linux 2 \(64\-bit Arm\)
+  + Ubuntu 16\.04 or later \(64\-bit Arm\)
+  + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
+  + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
+  + Debian 10 or later \(64\-bit Arm\)
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

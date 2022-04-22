@@ -2,7 +2,7 @@
 
 Complete the tasks in this section to get set up for launching an Amazon EC2 instance for the first time: 
 
-1. [Sign up for AWS ](#sign-up-for-aws)
+1. [Sign up for AWS](#sign-up-for-aws)
 
 1. [Create a key pair](#create-a-key-pair)
 
@@ -12,7 +12,7 @@ When you are finished, you will be ready for the [Amazon EC2 Getting started](EC
 
 ## Sign up for AWS<a name="sign-up-for-aws"></a>
 
-When you sign up for Amazon Web Services, your AWS account is automatically signed up for all services in AWS , including Amazon EC2\. You are charged only for the services that you use\.
+When you sign up for Amazon Web Services, your AWS account is automatically signed up for all services in AWS, including Amazon EC2\. You are charged only for the services that you use\.
 
 With Amazon EC2, you pay only for what you use\. If you are a new AWS customer, you can get started with Amazon EC2 for free\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
 
@@ -42,7 +42,7 @@ If you haven't created a key pair already, you can create one by using the Amazo
 
 1. For **Name**, enter a descriptive name for the key pair\. Amazon EC2 associates the public key with the name that you specify as the key name\. A key name can include up to 255 ASCII characters\. It can’t include leading or trailing spaces\.
 
-1. For **Key pair type**, choose either **RSA** or **ED25519**\. Note that **ED25519** keys are not supported for Windows instances, EC2 Instance Connect, or EC2 Serial Console\.
+1. For **Key pair type**, choose either **RSA** or **ED25519**\. Note that **ED25519** keys are not supported for Windows instances\.
 
 1. For **Private key file format**, choose the format in which to save the private key\. To save the private key in a format that can be used with OpenSSH, choose **pem**\. To save the private key in a format that can be used with PuTTY, choose **ppk**\.
 

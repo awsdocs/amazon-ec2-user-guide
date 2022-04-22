@@ -59,8 +59,6 @@ The `AWS/EC2` namespace includes the following metrics for T3 Dedicated Hosts\.
 
 The `AWS/EC2` namespace includes the following Amazon EBS metrics for the Nitro\-based instances\. For the list of Nitro\-based instance types, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
-Metric values for Nitro\-based instances will always be integers \(whole numbers\), whereas values for Xen\-based instances support decimals\. Therefore, low instance CPU utilization on Nitro\-based instances may appear to be rounded down to 0\.
-
 
 | Metric | Description | 
 | --- | --- | 
@@ -86,7 +84,7 @@ The `AWS/EC2` namespace includes the following status check metrics\. By default
 
 ## Traffic mirroring metrics<a name="traffic-mirroring-metrics"></a>
 
-The `AWS/EC2` namespace includes metrics for mirrored traffic\. For more information, see [Monitoring mirrored traffic using Amazon CloudWatch](https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirror-cloudwatch.html) in the *Amazon VPC Traffic Mirroring Guide*\.
+The `AWS/EC2` namespace includes metrics for mirrored traffic\. For more information, see [Monitor mirrored traffic using Amazon CloudWatch](https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirror-cloudwatch.html) in the *Amazon VPC Traffic Mirroring Guide*\.
 
 ## Amazon EC2 metric dimensions<a name="ec2-cloudwatch-dimensions"></a>
 
@@ -104,7 +102,7 @@ You can use the following dimensions to refine the metrics listed in the previou
 
 You can use CloudWatch usage metrics to provide visibility into your account's usage of resources\. Use these metrics to visualize your current service usage on CloudWatch graphs and dashboards\.
 
-Amazon EC2 usage metrics correspond to AWS service quotas\. You can configure alarms that alert you when your usage approaches a service quota\. For more information about CloudWatch integration with service quotas, see [Service Quotas Integration and Usage Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Service-Quota-Integration.html)\.
+Amazon EC2 usage metrics correspond to AWS service quotas\. You can configure alarms that alert you when your usage approaches a service quota\. For more information about CloudWatch integration with service quotas, see [AWS usage metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Service-Quota-Integration.html) in the *Amazon CloudWatch User Guide*\.
 
 Amazon EC2 publishes the following metrics in the `AWS/Usage` namespace\.
 

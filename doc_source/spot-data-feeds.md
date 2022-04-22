@@ -42,7 +42,7 @@ The Spot Instance data feed files are tab\-delimited\. Each line in the data fil
 |   `Operation`   |  The product being charged for\. For Linux Spot Instances, this field is set to `RunInstances`\. For Windows Spot Instances, this field is set to `RunInstances:0002`\. Spot usage is grouped according to Availability Zone\.  | 
 |   `InstanceID`   |  The ID of the Spot Instance that generated this instance usage\.  | 
 |   `MyBidID`   |  The ID for the Spot Instance request that generated this instance usage\.  | 
-|   `MyMaxPrice`   |  The maximum price specified for this Spot Instance request\.  | 
+|   `MyMaxPrice`   |  The maximum price specified for this Spot request\.  | 
 |   `MarketPrice`   |  The Spot price at the time specified in the `Timestamp` field\.  | 
 |   `Charge`   |  The price charged for this instance usage\.  | 
 |   `Version`   |  The version included in the data feed file name for this record\.  | 

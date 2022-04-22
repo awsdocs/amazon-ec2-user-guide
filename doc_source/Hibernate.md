@@ -1,4 +1,4 @@
-# Hibernate your On\-Demand or Reserved Linux instance<a name="Hibernate"></a>
+# Hibernate your On\-Demand Linux instance<a name="Hibernate"></a>
 
 When you hibernate an instance, Amazon EC2 signals the operating system to perform hibernation \(suspend\-to\-disk\)\. Hibernation saves the contents from the instance memory \(RAM\) to your Amazon Elastic Block Store \(Amazon EBS\) root volume\. Amazon EC2 persists the instance's EBS root volume and any attached EBS data volumes\. When you start your instance:
 + The EBS root volume is restored to its previous state
@@ -22,7 +22,7 @@ If you no longer need an instance, you can terminate it at any time, including w
 
 **Note**  
 For information about using hibernation on Windows instances, see [Hibernate Your Windows Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html) in the *Amazon EC2 User Guide for Windows Instances*\.  
-For information about hibernating Spot Instances, see [Hibernate interrupted Spot Instances](spot-interruptions.md#hibernate-spot-instances)\.
+This topic describes how to hibernate On\-Demand Instances \(including those that may be covered by a Reserved Instance or a Capacity Reservation\)\. For information about hibernating Spot Instances, see [Hibernate interrupted Spot Instances](hibernate-spot-instances.md)\.
 
 **Topics**
 + [Overview of hibernation](instance-hibernate-overview.md)

@@ -15,4 +15,5 @@ The EBS direct APIs require an AWS Signature Version 4 signature\. For more info
 + [Use Signature Version 4 signing](ebsapis-using-sigv4.md)
 + [Use checksums](ebsapis-using-checksums.md)
 + [Idempotency for StartSnapshot API](ebs-direct-api-idempotency.md)
++ [Error retries](error-retries.md)
 + [Optimize performance](ebsapi-performance.md)

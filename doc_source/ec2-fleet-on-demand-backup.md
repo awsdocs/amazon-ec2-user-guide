@@ -2,11 +2,29 @@
 
 If you have urgent, unpredictable scaling needs, such as a news website that must scale during a major news event or game launch, we recommend that you specify alternative instance types for your On\-Demand Instances, in the event that your preferred option does not have sufficient available capacity\. For example, you might prefer `c5.2xlarge` On\-Demand Instances, but if there is insufficient available capacity, you'd be willing to use some `c4.2xlarge` instances during peak load\. In this case, EC2 Fleet attempts to fulfill all of your target capacity using `c5.2xlarge` instances, but if there is insufficient capacity, it automatically launches `c4.2xlarge` instances to fulfill the target capacity\.
 
+**Topics**
++ [Prioritize instance types for On\-Demand capacity](#ec2-fleet-on-demand-priority)
++ [Use Capacity Reservations for On\-Demand Instances](#ec2-fleet-on-demand-capacity-reservations)
+
 ## Prioritize instance types for On\-Demand capacity<a name="ec2-fleet-on-demand-priority"></a>
 
-When EC2 Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `AllocationStrategy` is set to `prioritized`, EC2 Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\. 
+When EC2 Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `AllocationStrategy` is set to `prioritized`, EC2 Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\.
 
-For example, you have configured three launch template overrides, each with a different instance type: `c3.large`, `c4.large`, and `c5.large`\. The On\-Demand price for `c5.large` is less than the price for `c4.large`\. `c3.large` is the cheapest\. If you do not use priority to determine the order, the fleet fulfills On\-Demand capacity by starting with `c3.large`, and then `c5.large`\. Because you often have unused Reserved Instances for `c4.large`, you can set the launch template override priority so that the order is `c4.large`, `c3.large`, and then `c5.large`\.
+**Example: Prioritize instance types**
+
+In this example, you configure three launch template overrides, each with a different instance type\.
+
+The On\-Demand price for the instance types range in price\. The following are the instance types used in this example, listed in order of price, starting with the cheapest instance type:
++ `m4.large` – cheapest
++ `m5.large`
++ `m5a.large`
+
+If you do not use priority to determine the order, the fleet fulfills the On\-Demand capacity by starting with the cheapest instance type\.
+
+However, say you have unused `m5.large` Reserved Instances that you want to use first\. You can set the launch template override priority so that the instance types are used in the order of priority, as follows:
++ `m5.large` – priority 1
++ `m4.large` – priority 2
++ `m5a.large` – priority 3
 
 ## Use Capacity Reservations for On\-Demand Instances<a name="ec2-fleet-on-demand-capacity-reservations"></a>
 

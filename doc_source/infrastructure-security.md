@@ -4,6 +4,8 @@ You use AWS published API calls to access Amazon EC2 through the network\. Clien
 
 Additionally, requests must be signed using an access key ID and a secret access key that is associated with an IAM principal\. Or you can use the [AWS Security Token Service](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) \(AWS STS\) to generate temporary security credentials to sign requests\.
 
+For more information, see [ Infrastructure Protection](https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/infrastructure-protection.html) in the *Security Pillar \- AWS\-Well\-Architected Framework*\.
+
 ## Network isolation<a name="network-isolation"></a>
 
 A virtual private cloud \(VPC\) is a virtual network in your own logically isolated area in the AWS Cloud\. Use separate VPCs to isolate infrastructure by workload or organizational entity\.
@@ -35,5 +37,3 @@ Consider the following options for controlling network traffic to your EC2 insta
 + Use [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) to automate common administrative tasks instead of opening inbound SSH ports and managing SSH keys\.
 
 In addition to restricting network access to each Amazon EC2 instance, Amazon VPC supports implementing additional network security controls like in\-line gateways, proxy servers, and various network monitoring options\.
-
-For more information, see the [AWS Security Best Practices](https://d1.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf) whitepaper\.

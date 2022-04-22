@@ -2,6 +2,13 @@
 
 The following procedure shows you how to use Amazon Data Lifecycle Manager to automate EBS\-backed AMI lifecycles\.
 
+**Topics**
++ [Create an AMI lifecycle policy](#create-ami-policy)
++ [Considerations for AMI lifecycle policies](#ami-considerations)
++ [Additional resources](#ami-additional-resources)
+
+## Create an AMI lifecycle policy<a name="create-ami-policy"></a>
+
 Use one of the following procedures to create an AMI lifecycle policy\.
 
 ------
@@ -242,3 +249,31 @@ The following is an example of the `policyDetails.json` file\.
 ```
 
 ------
+
+## Considerations for AMI lifecycle policies<a name="ami-considerations"></a>
+
+The following considerations apply when **creating AMI lifecycle policies**:
++ The first AMI creation operation starts within one hour after the specified start time\. Subsequent AMI creation operations start within one hour of their scheduled time\.
++ When Amazon Data Lifecycle Manager deregisters an AMI, it automatically deletes it backing snapshots\.
++ Target resource tags are case sensitive\.
++ You can create multiple policies to back up an instance\. For example, if an instance has two tags, where tag *A* is the target for policy *A* to create an AMI every 12 hours,and tag *B* is the target for policy *B* to create an AMI every 24 hours, Amazon Data Lifecycle Manager creates AMIs according to the schedules for both policies\. Alternatively, you can achieve the same result by creating a single policy that has multiple schedules\. For example, you can create a single policy that targets only tag *A*, and specify two schedules — one for every 12 hours and one for every 24 hours\.
++ New volumes that are attached to a target instance after the policy has been created are automatically included in the backup at the next policy run\. All volumes attached to the instance at the time of the policy run are included\.
++ If you create a policy with a custom cron\-based schedule that is configured to create only one AMI, the policy will not automatically deregister that AMI when the retention threshold is reached\. You must manually deregister the AMI if it is no longer needed\.
+
+The following considerations apply to **terminating instances targeted by a policy:**
++ If you terminate an instance that was targeted by a policy with a count\-based retention schedule, the policy no longer manages the AMIs that it previously created from the terminated instance\. You must manually deregister those earlier AMIs if they are no longer needed\.
++ If you terminate an instance that was targeted by a policy with an age\-based retention schedule, the policy continues to deregister AMIs that were previously created from the terminated instance on the defined schedule, up to, but not including, the last AMI\. You must manually deregister the last AMI if it is no longer needed\.
+
+The following considerations apply to AMI policies and **AMI deprecation:**
++ If you increase the AMI deprecation count for a schedule with count\-based retention, the change is applied to all AMIs \(existing and new\) created by the schedule\.
++ If you increase the AMI deprecation period for a schedule with age\-based retention, the change is applied to new AMIs only\. Existing AMIs are not affected\.
++ If you remove the AMI deprecation rule from a schedule, Amazon Data Lifecycle Manager will not cancel deprecation for AMIs that were previously deprecated by that schedule\.
++ If you decrease the AMI deprecation count or period for a schedule, Amazon Data Lifecycle Manager will not cancel deprecation for AMIs that were previously deprecated by that schedule\.
++ If you manually deprecate an AMI that was created by an AMI policy, Amazon Data Lifecycle Manager will not override the deprecation\.
++ If you manually cancel deprecation for an AMI that was previously deprecated by an AMI policy, Amazon Data Lifecycle Manager will not override the cancellation\.
++ If an AMI is created by multiple conflicting schedules, and one or more of those schedules do not have an AMI deprecation rule, Amazon Data Lifecycle Manager will not deprecate that AMI\.
++ If an AMI is created by multiple conflicting schedules, and all of those schedules have an AMI deprecation rule, Amazon Data Lifecycle Manager will use the deprecation rule that results in the latest deprecation date\.
+
+## Additional resources<a name="ami-additional-resources"></a>
+
+For more information, see the [ Automating Amazon EBS snapshot and AMI management using Amazon Data Lifecycle Manager](https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/) AWS storage blog\.

@@ -193,7 +193,7 @@ You can use the launch wizard in the Amazon EC2 console to launch an EC2\-Classi
 
    1. Expand **Link to VPC \(ClassicLink\)** and choose a VPC from **Link to VPC**\. The console displays only VPCs with ClassicLink enabled\.
 
-1. Complete the rest of the steps in the wizard to launch your instance\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. Complete the rest of the steps in the wizard to launch your instance\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
 ### View your ClassicLink\-enabled VPCs and linked instances<a name="classiclink-describe-vpcs-instances"></a>
 
@@ -326,7 +326,7 @@ The following policy allows user to enable and disable VPCs for ClassicLink that
       "Resource": "arn:aws:ec2:region:account:vpc/*",
       "Condition": {
         "StringEquals": {
-          "ec2:ResourceTag/purpose":"classiclink"
+          "aws:ResourceTag/purpose":"classiclink"
         }
       }
     }
@@ -399,7 +399,7 @@ The following grants users permission to unlink any linked EC2\-Classic instance
       ],
       "Condition": {
          "StringEquals": {
-            "ec2:ResourceTag/unlink":"true"
+            "aws:ResourceTag/unlink":"true"
          }
       }
    },

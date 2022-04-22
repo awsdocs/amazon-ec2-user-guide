@@ -20,7 +20,10 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 
 **Prerequisites**
 + This tutorial assumes that you have already launched a new instance using Amazon Linux 2, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
-+ The following procedure installs the latest PHP version available on Amazon Linux 2, currently PHP 7\.2\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with PHP 7\.2\.<a name="install_apache-2"></a>
++ The following procedure installs the latest PHP version available on Amazon Linux 2, currently PHP 7\.2\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with PHP 7\.2\.
+
+**Note**  
+Note, this install package is bundled with Mariadb \(lamp\-mariadb10\.2\-php7\.2\)\. A number of previous vulnerabilities in php7\.2 have since been patched via [backports](https://alas.aws.amazon.com/alas2.html) by AWS, however your particular security software may still flag this version of PHP\. Ensure you perform system updates frequently\. You can choose to install a newer version of PHP, however you will need to install MariaDB separately\. <a name="install_apache-2"></a>
 
 **To prepare the LAMP server**
 

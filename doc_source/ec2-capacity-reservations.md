@@ -16,10 +16,12 @@ In addition, you can use Savings Plans and Regional Reserved Instances with your
 **Topics**
 + [Differences between Capacity Reservations, Reserved Instances, and Savings Plans](#capacity-reservations-differences)
 + [Supported platforms](#capacity-reservations-platforms)
-+ [Capacity Reservation limits](#capacity-reservations-limits)
-+ [Capacity Reservation limitations and restrictions](#capacity-reservations-limitations)
++ [Quotas](#capacity-reservations-limits)
++ [Limitations](#capacity-reservations-limitations)
 + [Capacity Reservation pricing and billing](capacity-reservations-pricing-billing.md)
 + [Work with Capacity Reservations](capacity-reservations-using.md)
++ [Work with Capacity Reservation groups](create-cr-group.md)
++ [Capacity Reservations in cluster placement groups](cr-cpg.md)
 + [Capacity Reservations in Local Zones](capacity-reservations-localzones.md)
 + [Capacity Reservations in Wavelength Zones](capacity-reservations-wavelengthzones.md)
 + [Capacity Reservations on AWS Outposts](capacity-reservations-outposts.md)
@@ -52,8 +54,14 @@ You must create the Capacity Reservation with the correct platform to ensure tha
 + Linux with SQL Server Standard
 + Linux with SQL Server Web
 + Linux with SQL Server Enterprise
-+ Red Hat Enterprise Linux
 + SUSE Linux
++ Red Hat Enterprise Linux
++ RHEL with SQL Server Standard
++ RHEL with SQL Server Enterprise
++ RHEL with SQL Server Web
++ RHEL with HA
++ RHEL with HA and SQL Server Standard
++ RHEL with HA and SQL Server Enterprise
 
 When you purchase a Capacity Reservation, you must specify the *platform* that represents the operating system for your instance\.
 + For SUSE Linux and RHEL distributions, excluding BYOL, you must choose the specific platform\. For example, the **SUSE Linux** or **Red Hat Enterprise Linux** platform\.
@@ -62,16 +70,16 @@ When you purchase a Capacity Reservation, you must specify the *platform* that r
 
  For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\. 
 
-## Capacity Reservation limits<a name="capacity-reservations-limits"></a>
+## Quotas<a name="capacity-reservations-limits"></a>
 
-The number of instances for which you are allowed to reserve capacity is based on your account's On\-Demand Instance limit\. You can reserve capacity for as many instances as that limit allows, minus the number of instances that are already running\.
+The number of instances for which you are allowed to reserve capacity is based on your account's On\-Demand Instance quota\. You can reserve capacity for as many instances as that quota allows, minus the number of instances that are already running\.
 
-## Capacity Reservation limitations and restrictions<a name="capacity-reservations-limitations"></a>
+## Limitations<a name="capacity-reservations-limitations"></a>
 
 Before you create Capacity Reservations, take note of the following limitations and restrictions\.
 + Active and unused Capacity Reservations count toward your On\-Demand Instance limits\.
 + Capacity Reservations are not transferable from one AWS account to another\. However, you can share Capacity Reservations with other AWS accounts\. For more information, see [Work with shared Capacity Reservations](capacity-reservation-sharing.md)\.
 + Zonal Reserved Instance billing discounts do not apply to Capacity Reservations\.
-+ Capacity Reservations can't be created in placement groups\.
++ Capacity Reservations can be created in cluster placement groups\. Spread and partition placement groups are not supported\.
 + Capacity Reservations can't be used with Dedicated Hosts\.
 + Capacity Reservations do not ensure that a hibernated instance can resume after you try to start it\.
