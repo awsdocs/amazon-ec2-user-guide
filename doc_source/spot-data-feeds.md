@@ -5,7 +5,7 @@ To help you understand the charges for your Spot Instances, Amazon EC2 provides 
 Data feed files arrive in your bucket typically once an hour, and each hour of usage is typically covered in a single data file\. These files are compressed \(gzip\) before they are delivered to your bucket\. Amazon EC2 can write multiple files for a given hour of usage where files are large \(for example, when file contents for the hour exceed 50 MB before compression\)\.
 
 **Note**  
-If you don't have a Spot Instance running during a certain hour, you don't receive a data feed file for that hour\.
+You can create only one Spot Instance data feed per AWS account\. If you don't have a Spot Instance running during a certain hour, you don't receive a data feed file for that hour\.
 
 Spot Instance data feed is supported in all AWS Regions except China \(Beijing\), China \(Ningxia\), AWS GovCloud \(US\), and the [Regions that are disabled by default](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)\.
 
@@ -58,6 +58,7 @@ When you subscribe to the data feed, you must specify an Amazon S3 bucket to sto
 If you update the ACL and remove the permissions for the AWS data feed account, the data feed files cannot be written to the bucket\. You must resubscribe to the data feed to receive the data feed files\.
 + Each data feed file has its own ACL \(separate from the ACL for the bucket\)\. The bucket owner has `FULL_CONTROL` permission to the data files\. The AWS data feed account has read and write permissions\.
 + If you delete your data feed subscription, Amazon EC2 doesn't remove the read and write permissions for the AWS data feed account on either the bucket or the data files\. You must remove these permissions yourself\.
++ You must use a customer managed key if you encrypt your Amazon S3 bucket using server\-side encryption with a AWS KMS key stored in AWS Key Management Service \(SSE\-KMS\)\. For more information, see [Amazon S3 bucket server\-side encryption](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html#AWS-logs-SSE-KMS-S3) in the *Amazon CloudWatch Logs User Guide*\.
 
 ## Subscribe to your Spot Instance data feed<a name="using-spot-instances-datafeed-all"></a>
 

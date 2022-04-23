@@ -6,7 +6,7 @@ To get started, enable fast snapshot restore for specific snapshots in specific 
 
 Fast snapshot restore must be explicitly enabled on a per\-snapshot basis\. If you create a new snapshot from a volume that was restored from a fast snapshot restore\-enabled snapshot, the new snapshot is not automatically enabled for fast snapshot restore\. You must explicitly enable it for the new snapshot\.
 
-The number of volumes that you can restore with the the full performance benefit of fast snapshot restore is determined by volume creation credits for the snapshot\. For more information see [Volume creation credits](#volume-creation-credits)\.
+The number of volumes that you can restore with the full performance benefit of fast snapshot restore is determined by volume creation credits for the snapshot\. For more information see [Volume creation credits](#volume-creation-credits)\.
 
 You can enable fast snapshot restore for snapshots that you own and for public and private snapshots that are shared with you\.
 

@@ -1,10 +1,14 @@
 # Capacity Reservation pricing and billing<a name="capacity-reservations-pricing-billing"></a>
 
-The price for a Capacity Reservation varies by payment option\.
+**Topics**
++ [Pricing](#capacity-reservations-pricing)
++ [Billing](#capacity-reservations-billing)
++ [Billing discounts](#capacity-reservations-discounts)
++ [Viewing your bill](#capacity-reservations-viewing-bill)
 
 ## Pricing<a name="capacity-reservations-pricing"></a>
 
-When the Capacity Reservation enters the `active` state, you are charged the equivalent On\-Demand rate whether you run instances in the reserved capacity or not\. If you do not use the reservation, this shows up as unused reservation on your EC2 bill\. When you run an instance that matches the attributes of a reservation, you just pay for the instance and nothing for the reservation\. There are no upfront or additional charges\. 
+Capacity Reservations are charged at the equivalent On\-Demand rate whether you run instances in reserved capacity or not\. If you do not use the reservation, this shows up as unused reservation on your Amazon EC2 bill\. When you run an instance that matches the attributes of a reservation, you just pay for the instance and nothing for the reservation\. There are no upfront or additional charges\. 
 
 For example, if you create a Capacity Reservation for 20 `m4.large` Linux instances and run 15 `m4.large` Linux instances in the same Availability Zone, you will be charged for 15 active instances and for 5 unused instances in the reservation\.
 
@@ -14,11 +18,11 @@ For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricin
 
 ## Billing<a name="capacity-reservations-billing"></a>
 
-Billing starts as soon as the capacity is provisioned and the Capacity Reservation enters the `active` state, and it continues while the Capacity Reservation remains in the `active` state\.
+Billing starts as soon as the Capacity Reservation is provisioned in your account, and it continues while the Capacity Reservation remains provisioned in your account\.
 
-Capacity Reservations are billed at per\-second granularity\. This means that you are charged for partial hours\. For example, if a reservation remains active in your account for 24 hours and 15 minutes, you will be billed for 24\.25 reservation hours\.
+Capacity Reservations are billed at per\-second granularity\. This means that you are charged for partial hours\. For example, if a Capacity Reservation remains provisioned in your account for `24` hours and `15` minutes, you are billed for `24.25` reservation hours\.
 
-The following example shows how a Capacity Reservation is billed\. The Capacity Reservation is created for one `m4.large` Linux instance, which has an On\-Demand rate of $0\.10 per usage hour\. In this example, the Capacity Reservation is active in the account for five hours\. The Capacity Reservation is unused for the first hour, so it is billed for one unused hour at the `m4.large` instance type's standard On\-Demand rate\. In hours two through five, the Capacity Reservation is occupied by an `m4.large` instance\. During this time, the Capacity Reservation accrues no charges, and the account is instead billed for the `m4.large` instance occupying it\. In the sixth hour, the Capacity Reservation is canceled and the `m4.large` instance runs normally outside of the reserved capacity\. For that hour, it is charged at the On\-Demand rate of the `m4.large` instance type\.
+The following example shows how a Capacity Reservation is billed\. The Capacity Reservation is created for one `m4.large` Linux instance, which has an On\-Demand rate of $0\.10 per usage hour\. In this example, the Capacity Reservation is provisioned in the account for five hours\. The Capacity Reservation is unused for the first hour, so it is billed for one unused hour at the `m4.large` instance type's standard On\-Demand rate\. In hours two through five, the Capacity Reservation is occupied by an `m4.large` instance\. During this time, the Capacity Reservation accrues no charges, and the account is instead billed for the `m4.large` instance occupying it\. In the sixth hour, the Capacity Reservation is canceled and the `m4.large` instance runs normally outside of the reserved capacity\. For that hour, it is charged at the On\-Demand rate of the `m4.large` instance type\.
 
 ![\[Capacity Reservation billing example\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/cr-billing-example.png)
 

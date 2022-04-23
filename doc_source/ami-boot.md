@@ -14,7 +14,7 @@ The AMI boot mode parameter signals to EC2 which boot mode to use when launching
 **Warning**  
 Setting the boot mode parameter does not automatically configure the operating system for the specified boot mode\. The configuration is specific to the operating system\. For the configuration instructions, see the manual for your operating system\.
 
-**Possible boot mode parameter on an AMI**  
+**Possible boot mode parameters on an AMI**  
 The AMI boot mode parameter is optional\. An AMI can have one of the following boot mode parameter values: **uefi** or **legacy\-bios**\. Some AMIs do not have a boot mode parameter\. For AMIs with no boot mode parameter, the instances launched from these AMIs use the default value of the instance type—**uefi** on Graviton, and **legacy\-bios** on all Intel and AMD instance types\.
 
 **Topics**

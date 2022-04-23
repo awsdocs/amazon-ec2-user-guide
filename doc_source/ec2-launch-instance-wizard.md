@@ -211,6 +211,7 @@ By using the **Advanced** view, you can configure each volume as follows:
 + **Delete on termination**: For Amazon EBS volumes, choose **Yes** to delete the volume when the instance is terminated, or choose **No** to keep the volume\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
 + **Encrypted**: If the instance type supports EBS encryption, you can choose **Yes** to enable encryption for the volume\. If you have enabled encryption by default in this Region, encryption is enabled for you\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 + **KMS key**: If you selected **Yes** for **Encrypted**, then you must select a customer managed key to use to encrypt the volume\. If you have enabled encryption by default in this Region, the default customer managed key is selected for you\. You can select a different key or specify the ARN of any customer managed key that you created\.
++ **File systems**: Mount an Amazon EFS or Amazon FSx file system to the instance\. For more information about mounting an Amazon EFS file system, see [Use Amazon EFS with Amazon EC2](AmazonEFS.md)\. For more information about mounting an Amazon FSx file system, see [Use Amazon FSx with Amazon EC2](storage_fsx.md)
 
 ### Advanced details<a name="liw-advanced-details"></a>
 

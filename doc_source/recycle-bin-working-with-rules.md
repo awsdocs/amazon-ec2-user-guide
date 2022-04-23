@@ -154,7 +154,7 @@ $ aws rbin get-rule --identifier pwxIkFcvge4
 
 ## Update retention rules<a name="recycle-bin-update-rule"></a>
 
-You can update a retention rule at any time after creation\. You can modify all of a retention rule's parameters, including its description, resource type, resource tags, and retention period\.
+You can update a retention rule's description, resource tags, and retention period at any time after creation\. You can't update a rule's resource type after creation\.
 
 After you update a retention rule, the changes only apply to new resources that it retains\. The changes do not affect resources that it previously sent to the Recycle Bin\. For example, if you update a retention rule's retention period, only snapshots that are deleted after the update are retained for the new retention period\. Snapshots that it sent to the Recycle Bin before the update are still retained for the previous \(old\) retention period\.
 

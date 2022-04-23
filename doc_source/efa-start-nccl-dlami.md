@@ -51,6 +51,12 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
    1. For **Source type**, choose **Custom** and paste the security group ID that you copied into the field\.
 
+   1. Choose **Add rule**\.
+
+   1. For **Type**, choose **SSH**\.
+
+   1. For **Source type**, choose **Anywhere\-IPv4**\.
+
    1. Choose **Save rules**\.
 
 1. With the security group still selected, choose **Actions**, **Edit outbound rules**, and then do the following:
@@ -66,6 +72,40 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 ## Step 2: Launch a temporary instance<a name="nccl-start-dlami-temp"></a>
 
 Launch a temporary instance that you can use to install and configure the EFA software components\. You use this instance to create an EFA\-enabled AMI from which you can launch your EFA\-enabled instances\.
+
+------
+#### [ New console ]
+
+**To launch a temporary instance**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation panel, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
+
+1. \(*Optional*\) In the **Name and tags** section, provide a name for the instance, such as `EFA-instance`\. The name is assigned to the instance as a resource tag \(`Name=EFA-instance`\)\.
+
+1. In the **Application and OS Images** section, select a supported **AWS Deep Learning AMI Version 25\.0 or later**\.
+
+1. In the **Instance type** section, select either `p3dn.24xlarge` or `p4d.24xlarge`\.
+
+1. In the **Key pair** section, select the key pair to use for the instance\.
+
+1. In the **Network settings** section, choose **Edit**, and then do the following:
+
+   1. For **Subnet**, choose the subnet in which to launch the instance\. If you do not select a subnet, you can't enable the instance for EFA\.
+
+   1. For **Firewall \(security groups\)**, choose **Select existing security group**, and then select the security group that you created in the previous step\.
+
+   1. Expand the **Advanced network configuration** section, and for **Elastic Fabric Adapter**, select **Enable**\.
+
+1. In the **Storage** section, configure the volumes as needed\.
+**Note**  
+You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Toolkit\. If you do not provision enough storage, you will receive an `insufficient disk space` error when attempting to install the Nvidia drivers and CUDA toolkit\.
+
+1. In the **Summary** panel on the right, choose **Launch instance**\.
+
+------
+#### [ Old console ]
 
 **To launch a temporary instance**
 
@@ -94,6 +134,8 @@ Launch a temporary instance that you can use to install and configure the EFA so
 1. On the **Configure Security Group** page, for **Assign a security group**, select **Select an existing security group**\. Then select the security group that you created in **Step 1**\.
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instance\.
+
+------
 
 ## Step 3: Test your EFA and NCCL configuration<a name="nccl-start-dlami-test"></a>
 
@@ -207,6 +249,40 @@ Launch your EFA and NCCL\-enabled instances into a cluster placement group using
 It is not an absolute requirement to launch your EFA\-enabled instances into a cluster placementgroup\. However, we do recommend running your EFA\-enabled instances in a cluster placement group as it launches the instances into a low\-latency group in a single Availability Zone\.
 To ensure that capacity is available as you scale your cluster’s instances, you can create a Capacity Reservation for your cluster placement group\. For more information, see [Capacity Reservations in cluster placement groups](cr-cpg.md)\.
 
+------
+#### [ New console ]
+
+**To launch a temporary instance**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation panel, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
+
+1. \(*Optional*\) In the **Name and tags** section, provide a name for the instance, such as `EFA-instance`\. The name is assigned to the instance as a resource tag \(`Name=EFA-instance`\)\.
+
+1. In the **Application and OS Images** section, choose **My AMIs**, and then select the AMI that you created in the previous step\.
+
+1. In the **Instance type** section, select either `p3dn.24xlarge` or `p4d.24xlarge`\.
+
+1. In the **Key pair** section, select the key pair to use for the instance\.
+
+1. In the **Network settings** section, choose **Edit**, and then do the following:
+
+   1. For **Subnet**, choose the subnet in which to launch the instance\. If you do not select a subnet, you can't enable the instance for EFA\.
+
+   1. For **Firewall \(security groups\)**, choose **Select existing security group**, and then select the security group that you created in the previous step\.
+
+   1. Expand the **Advanced network configuration** section, and for **Elastic Fabric Adapter**, select **Enable**\.
+
+1. \(*Optional*\) In the **Storage** section, configure the volumes as needed\.
+
+1. In the **Advanced details** section, for **Placement group name**, select the cluster placement group into which to launch the instance\. If you need to create a new cluster placement group, choose **Create new placement group**\.
+
+1. In the **Summary** panel on the right, for **Number of instances**, enter the number of EFA\-enabled instances that you want to launch, and then choose **Launch instance**\.
+
+------
+#### [ Old console ]
+
 **To launch your EFA and NCCL\-enabled instances into a cluster placement group**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -242,6 +318,8 @@ To ensure that capacity is available as you scale your cluster’s instances, yo
 1. Choose **Review and Launch**\.
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instances\.
+
+------
 
 ## Step 8: Enable passwordless SSH<a name="nccl-start-dlami-passwordless"></a>
 

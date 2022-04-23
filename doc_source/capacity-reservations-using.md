@@ -185,6 +185,9 @@ Capacity Reservations have the following possible states:
 + `pending`—The Capacity Reservation request was successful but the capacity provisioning is still pending\.
 + `failed`—The Capacity Reservation request has failed\. A request can fail due to request parameters that are not valid, capacity constraints, or instance limit constraints\. You can view a failed request for 60 minutes\.
 
+**Note**  
+Due to the [ evntual consistency](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#eventual-consistency) model followed by the Amazon EC2 APIs, after you create a Capacity Reservation, it can take up to 5 minutes for the console and the [ describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) response to indicate that the Capacity Reservation is in the `active` state\. During this time, the console and the `describe-capacity-reservations` response might indicate that the Capacity Reservation is in the `pending` state\. However, the Capacity Reservation might already be available for use and you can attempt to launch instances into it\.
+
 **To view your Capacity Reservations using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.

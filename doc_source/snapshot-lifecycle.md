@@ -37,23 +37,17 @@ The following are the key elements of Amazon Data Lifecycle Manager\.
 
 ### Snapshots<a name="dlm-ebs-snapshots"></a>
 
-Snapshots are the primary means to back up data from your EBS volumes\. To save storage costs, successive snapshots are incremental, containing only the volume data that changed since the previous snapshot\. When you delete one snapshot in a series of snapshots for a volume, only the data that's unique to that snapshot is removed\. The rest of the captured history of the volume is preserved\.
-
-For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
+Snapshots are the primary means to back up data from your EBS volumes\. To save storage costs, successive snapshots are incremental, containing only the volume data that changed since the previous snapshot\. When you delete one snapshot in a series of snapshots for a volume, only the data that's unique to that snapshot is removed\. The rest of the captured history of the volume is preserved\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
 ### EBS\-backed AMIs<a name="dlm-ebs-amis"></a>
 
-An Amazon Machine Image \(AMI\) provides the information that's required to launch an instance\. You can launch multiple instances from a single AMI when you need multiple instances with the same configuration\. Amazon Data Lifecycle Manager supports EBS\-backed AMIs only\. EBS\-backed AMIs include a snapshot for each EBS volume that's attached to the source instance\.
-
-For more information, see [Amazon Machine Images \(AMI\)](AMIs.md)\.
+An Amazon Machine Image \(AMI\) provides the information that's required to launch an instance\. You can launch multiple instances from a single AMI when you need multiple instances with the same configuration\. Amazon Data Lifecycle Manager supports EBS\-backed AMIs only\. EBS\-backed AMIs include a snapshot for each EBS volume that's attached to the source instance\. For more information, see [Amazon Machine Images \(AMI\)](AMIs.md)\.
 
 ### Target resource tags<a name="dlm-tagging-volumes"></a>
 
 Amazon Data Lifecycle Manager uses resource tags to identify the resources to back up\. Tags are customizable metadata that you can assign to your AWS resources \(including Amazon EC2 instances, EBS volumes and snapshots\)\. An Amazon Data Lifecycle Manager policy \(described later\) targets an instance or volume for backup using a single tag\. Multiple tags can be assigned to an instance or volume if you want to run multiple policies on it\.
 
-You can't use a '\\' or '=' character in a tag key\. Target resource tags are case sensitive\.
-
-For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
+You can't use the `\` or `=` characters in a tag key\. Target resource tags are case sensitive\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 ### Amazon Data Lifecycle Manager tags<a name="dlm-tagging-snapshots"></a>
 
@@ -63,7 +57,7 @@ Amazon Data Lifecycle Manager applies the following tags to all snapshots and AM
 + `aws:dlm:expirationTime` — For policies with age\-based retention schedules only\.
 + `dlm:managed`
 
-You can also specify custom tags to be applied to snapshots and AMIs on creation\. You can't use a '\\' or '=' character in a tag key\.
+You can also specify custom tags to be applied to snapshots and AMIs on creation\. You can't use the `\` or `=` characters in a tag key\.
 
 The target tags that Amazon Data Lifecycle Manager uses to associate volumes with a snapshot policy can optionally be applied to snapshots created by the policy\. Similarly, the target tags that are used to associate instances with an AMI policy can optionally be applied to AMIs created by the policy\.
 
@@ -76,8 +70,7 @@ A lifecycle policy consists of these core settings:
   + Cross\-account copy event policy—Used to automate snapshot copies across accounts\. Use this policy type in conjunction with an EBS snapshot policy that shares snapshots across accounts\.
 + **Resource type**—Defines the type of resources that are targeted by the policy\. Snapshot lifecycle policies can target instances or volumes\. Use `VOLUME` to create snapshots of individual volumes, or use `INSTANCE` to create multi\-volume snapshots of all of the volumes that are attached to an instance\. For more information, see [Multi\-volume snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\. AMI lifecycle policies can target instances only\. One AMI is created that includes snapshots of all of the volumes that are attached to the target instance\. 
 + **Target tags**—Specifies the tags that must be assigned to an EBS volume or an Amazon EC2 instance for it to be targeted by the policy\.
-+ **Schedules**—The start times and intervals for creating snapshots or AMIs\. The first snapshot or AMI creation operation starts within one hour after the specified start time\. Subsequent snapshot or AMI creation operations start within one hour of their scheduled time\. A policy can have up to four schedules: one mandatory schedule, and up to three optional schedules\. For more information, see [Policy schedules](#dlm-lifecycle-schedule)\. 
-+ **Retention**—Specifies how snapshots or AMIs are to be retained\. You can retain snapshots or AMIs based either on their total count \(count\-based\), or their age \(age\-based\)\. For snapshot policies, when the retention threshold is reached, the oldest snapshot is deleted\. For AMI policies, when the retention threshold is reached, the oldest AMI is deregistered and its backing snapshots are deleted\. 
++ **Policy schedules**\(Snapshot and AMI policies only\)—Define when snapshots or AMIs are to be created and how long to retain them for\. For more information, see [Policy schedules](#dlm-lifecycle-schedule)\. 
 
 For example, you could create a policy with settings similar to the following:
 + Manages all EBS volumes that have a tag with a key of `account` and a value of `finance`\.

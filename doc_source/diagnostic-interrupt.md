@@ -18,7 +18,7 @@ Before sending a diagnostic interrupt to your instance, we recommend that you co
 
 ## Supported instance types<a name="diagnostic-interrupt-instances"></a>
 
-Diagnostic interrupt is supported on all Nitro\-based instance types, except A1\. For more information, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
+Diagnostic interrupt is supported on all Nitro\-based instance types, except those powered by AWS Graviton processors\. For more information, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) and [AWS Graviton](http://aws.amazon.com/ec2/graviton/)\.
 
 ## Prerequisites<a name="diagnostic-interrupt-prereqs"></a>
 

@@ -321,6 +321,11 @@ To create a launch template, you must specify the launch template name and at le
 
 ### Create a launch template from an existing launch template<a name="create-launch-template-from-existing-launch-template"></a>
 
+You can clone an existing launch template and then adjust the parameters to create a new launch template\. However, you can only do this when using the Amazon EC2 console; the AWS CLI does not support cloning a template\.
+
+------
+#### [ Console ]
+
 **To create a launch template from an existing launch template using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -338,6 +343,8 @@ To create a launch template, you must specify the launch template name and at le
 1. For **Source template version**, choose the launch template version on which to base the new launch template\.
 
 1. Adjust any launch parameters as required, and then choose **Create launch template**\.
+
+------
 
 ### Create a launch template from an instance<a name="create-launch-template-from-instance"></a>
 
