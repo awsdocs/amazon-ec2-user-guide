@@ -19,19 +19,6 @@ If you decide that you no longer need an instance, you can terminate it\. As soo
 
 You can only stop an Amazon EBS\-backed instance\. To verify the root device type of your instance, describe the instance and check whether the device type of its root volume is `ebs` \(Amazon EBS\-backed instance\) or `instance store` \(instance store\-backed instance\)\. For more information, see [Determine the root device type of your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
 
-When you stop a running instance, the following happens:
-+ The instance performs a normal shutdown and stops running; its status changes to `stopping` and then `stopped`\.
-+ Any Amazon EBS volumes remain attached to the instance, and their data persists\.
-+ Any data stored in the RAM of the host computer or the instance store volumes of the host computer is gone\.
-+ In most cases, the instance is migrated to a new underlying host computer when it's started \(though in some cases, it remains on the current host\)\.
-+ The instance retains its private IPv4 addresses and any IPv6 addresses when stopped and started\. We release the public IPv4 address and assign a new one when you start it\.
-+ The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a stopped instance\. With EC2\-Classic, an Elastic IP address is dissociated from your instance when you stop it\. For more information, see [EC2\-Classic](ec2-classic-platform.md)\.
-+ When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configuring a Windows instance using the EC2Config service](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2config-service.html) in the *Amazon EC2 User Guide for Windows Instances*\.
-+ If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
-+ When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after starting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
-
-For more information, see [Differences between reboot, stop, hibernate, and terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
-
 You can modify the following attributes of an instance only when it is stopped:
 + Instance type
 + User data
@@ -40,9 +27,36 @@ You can modify the following attributes of an instance only when it is stopped:
 
 If you try to modify these attributes while the instance is running, Amazon EC2 returns the `IncorrectInstanceState` error\.
 
+The following happens when you stop and start an instance\.
+
+### When you stop an instance<a name="when-instance-stops"></a>
++ The instance performs a normal shutdown and stops running\.
++ The instance status changes to `stopping` and then `stopped`\.
++  \(Auto Scaling group\) If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and might terminate it and launch a replacement instance\. For more information, see [Health checks for Auto Scaling instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ \(Windows\) When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configure a Windows instance using the EC2Config service](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2config-service.html) in the *Amazon EC2 User Guide for Windows Instances*\.
++ \(ClassicLink\) When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after starting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
+
+**When you stop an instance, the following is *lost*:**
++ Data stored in the RAM\.
++ Data stored in the instance store volumes\.
++ The public IPv4 address that Amazon EC2 automatically assigned to the instance on launch or start\. \(To retain a public IPv4 address that never changes, you can associate an [Elastic IP address](elastic-ip-addresses-eip.md) with your instance\.\)
++ \(EC2\-Classic\) With EC2\-Classic, Elastic IP addresses are dissociated from your instance\. For more information, see [EC2\-Classic](ec2-classic-platform.md)\.
+
+**When you stop an instance, the following *persists*:**
++ Data stored in the Amazon EBS volumes\. The EBS volumes remain attached to the instance\.
++ Private IPv4 addresses\.
++ IPv6 addresses\.
++ Elastic IP addresses associated with the instance\. Note that when the instance is stopped, we [start charging you for the associated Elastic IP addresses](elastic-ip-addresses-eip.md#eip-pricing)\.
+
+### When you start an instance<a name="when-instance-starts"></a>
++ In most cases, the instance is migrated to a new underlying host computer \(though in some cases, it remains on the current host\)\.
++ Amazon EC2 assigns a new public IPv4 address to the instance if the instance is configured to receive a public IPv4 address\. \(To retain a public IPv4 address that never changes, you can associate an [Elastic IP address](elastic-ip-addresses-eip.md) with your instance\.\)
+
+For more information, see [Differences between reboot, stop, hibernate, and terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
+
 ## What happens when you stop an instance<a name="what-happens-stop"></a>
 
-When an EC2 instance is stopped using the `stop-instances` command, the following is registered at the OS level:
+When you stop an EC2 instance by using the StopInstances API \(for example, by choosing **Instance state**, **Stop instance** in the Amazon EC2 console, or by using the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) AWS CLI command\), the following is registered at the OS level:
 + The API request sends a button press event to the guest\.
 + Various system services are stopped as a result of the button press event\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
 + ACPI shutdown is initiated\.

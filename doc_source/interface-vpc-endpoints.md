@@ -1,31 +1,33 @@
-# Amazon EC2 and interface VPC endpoints<a name="interface-vpc-endpoints"></a>
+# Access Amazon EC2 using an interface VPC endpoint<a name="interface-vpc-endpoints"></a>
 
-You can improve the security posture of your VPC by configuring Amazon EC2 to use an interface VPC endpoint\. Interface endpoints are powered by AWS PrivateLink, a technology that enables you to privately access Amazon EC2 APIs by restricting all network traffic between your VPC and Amazon EC2 to the Amazon network\. With interface endpoints, you also don't need an internet gateway, a NAT device, or a virtual private gateway\.
+You can improve the security posture of your VPC by creating a private connection between your VPC and Amazon EC2\. You can access Amazon EC2 as if it were in your VPC, without the use of an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection\. Instances in your VPC don't need public IP addresses to access Amazon EC2\.
 
-You are not required to configure AWS PrivateLink, but it's recommended\. For more information about AWS PrivateLink and VPC endpoints, see [Interface VPC Endpoints \(AWS PrivateLink\)](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html)\.
+For more information, see [Access AWS services through AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-interface.html) in the *AWS PrivateLink Guide*\.
 
 **Topics**
 + [Create an interface VPC endpoint](#create-endpoint)
-+ [Create an interface VPC endpoint policy](#endpoint-policy)
++ [Create an endpoint policy](#endpoint-policy)
 
 ## Create an interface VPC endpoint<a name="create-endpoint"></a>
 
-Create an endpoint for Amazon EC2 using the following service name:
-+ **`com.amazonaws.region.ec2`** — Creates an endpoint for the Amazon EC2 API actions\.
+Create an interface endpoint for Amazon EC2 using the following service name:
++ **com\.amazonaws\.*region*\.ec2** — Creates an endpoint for the Amazon EC2 API actions\.
 
-For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint) in the *Amazon VPC User Guide*\.
+For more information, see [Access an AWS service using an interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint) in the *AWS PrivateLink Guide*\.
 
-## Create an interface VPC endpoint policy<a name="endpoint-policy"></a>
+## Create an endpoint policy<a name="endpoint-policy"></a>
 
-You can attach a policy to your VPC endpoint to control access to the Amazon EC2 API\. The policy specifies:
-+ The principal that can perform actions\.
+An endpoint policy is an IAM resource that you can attach to your interface endpoint\. The default endpoint policy allows full access to the Amazon EC2 API through the interface endpoint\. To control the access allowed to the Amazon EC2 API from your VPC, attach a custom endpoint policy to the interface endpoint\.
+
+An endpoint policy specifies the following information:
++ The principals that can perform actions\.
 + The actions that can be performed\.
 + The resource on which the actions can be performed\.
 
 **Important**  
 When a non\-default policy is applied to an interface VPC endpoint for Amazon EC2, certain failed API requests, such as those failing from `RequestLimitExceeded`, might not be logged to AWS CloudTrail or Amazon CloudWatch\.
 
-For more information, see [ Controlling Access to Services with VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the * Amazon VPC User Guide*\.
+For more information, see [ Control access to services using endpoint policies](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) in the *AWS PrivateLink Guide*\.
 
 The following example shows a VPC endpoint policy that denies permission to create unencrypted volumes or to launch instances with unencrypted volumes\. The example policy also grants permission to perform all other Amazon EC2 actions\.
 

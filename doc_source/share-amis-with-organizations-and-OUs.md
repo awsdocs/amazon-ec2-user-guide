@@ -1,8 +1,8 @@
 # Share an AMI with specific organizations or organizational units<a name="share-amis-with-organizations-and-OUs"></a>
 
-You can share an AMI with an organization or an organizational unit \(OU\), in addition to [sharing it with specific accounts](sharingamis-explicit.md)\.
+ [AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services_list.html) is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage\. You can share an AMI with an organization or an organizational unit \(OU\) that you have created, in addition to [sharing it with specific accounts](sharingamis-explicit.md)\.
 
-An organization is an entity that you create to consolidate and centrally manage your AWS accounts\. You can organize the accounts in a hierarchical, tree\-like structure with a [root](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#root) at the top and [organizational units](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#organizationalunit) nested under the root\. Each account can be directly in the root, or placed in one of the OUs in the hierarchy\. For more information, see [AWS Organizations terminology and concepts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html) in the *AWS Organizations User Guide*\.
+An organization is an entity that you create to consolidate and centrally manage your AWS accounts\. You can organize the accounts in a hierarchical, tree\-like structure, with a [root](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#root) at the top and [organizational units](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#organizationalunit) nested under the root\. Each account can be added directly to the root, or placed in one of the OUs in the hierarchy\. For more information, see [AWS Organizations terminology and concepts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html) in the *AWS Organizations User Guide*\.
 
 When you share an AMI with an organization or an OU, all of the children accounts gain access to the AMI\. For example, in the following diagram, the AMI is shared with a top\-level OU \(indicated by the arrow at the number **1**\)\. All of the OUs and accounts that are nested underneath that top\-level OU \(indicated by the dotted line at number **2**\) also have access to the AMI\. The accounts in the organization and OU outside the dotted line \(indicated by the number **3**\) do not have access to the AMI because they are not children of the OU that the AMI is shared with\.
 
@@ -11,11 +11,13 @@ When you share an AMI with an organization or an OU, all of the children account
 
 
 ## Considerations<a name="considerations-org-ou"></a>
+
+Consider the following when sharing AMIs with specific organizations or organizational units\.
 + **No sharing limits** – The AMI owner can share an AMI with any organization or OU, including organizations and OUs that they’re not a member of\.
 
   There is no limit to the number of organizations or OUs with which an AMI can be shared\.
-+ **Tags** – User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the AWS accounts in the other organizations and OUs that the AMI is shared with\.
-+ **ARN format** – When specifying an organization or OU in a command, make sure to use the correct ARN format\. You'll get an error if you specify only the ID, for example, if you specify only `o-123example` or `ou-1234-5example`\.
++ **Tags** – User\-defined tags that you attach to a shared AMI are available only to your AWS account, and not to the AWS accounts in the other organizations and OUs with which the AMI is shared\. 
++ **ARN format** – When you specify an organization or OU in a command, make sure to use the correct ARN format\. You'll get an error if you specify only the ID, for example, if you specify only `o-123example` or `ou-1234-5example`\.
 
   Correct ARN formats:
   + Organization ARN: `arn:aws:organizations::account-id:organization/organization-id`
@@ -26,12 +28,12 @@ When you share an AMI with an organization or an OU, all of the children account
   + *`organization-id`* is the organization ID, for example, `o-123example`\.
   + *`ou-id`* is the organizational unit ID, for example, `ou-1234-5example`\.
 
-  For more information about the ARN format, see [Amazon Resource Names \(ARNs\)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *AWS General Reference*\.
+  For more information about the format of ARNs, see [Amazon Resource Names \(ARNs\)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *AWS General Reference*\.
 + **Encryption and keys** – You can share AMIs that are backed by unencrypted and encrypted snapshots\.
   + The encrypted snapshots must be encrypted with a customer managed key\. You can’t share AMIs that are backed by snapshots that are encrypted with the default AWS managed key\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
   + If you share an AMI that is backed by encrypted snapshots, you must allow the organizations or OUs to use the customer managed keys that were used to encrypt the snapshots\. For more information, see [Allow organizations and OUs to use a KMS key](#allow-org-ou-to-use-key)\.
-+ **Regional resource** – AMIs are a regional resource\. When you share an AMI, it is only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
-+ **AMI use** – When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from their instance\.
++ **Region** – AMIs are a Regional resource\. When you share an AMI, it is available only in the Region from which you shared it\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
++ **Usage** – When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from the instance they launched\.
 + **Billing** – You are not billed when your AMI is used by other AWS accounts to launch instances\. The accounts that launch instances using the AMI are billed for the instances that they launch\.
 
 ## Allow organizations and OUs to use a KMS key<a name="allow-org-ou-to-use-key"></a>

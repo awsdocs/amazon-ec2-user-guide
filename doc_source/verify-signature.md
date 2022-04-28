@@ -49,7 +49,7 @@ This topic explains how to verify the instance identity document using the base6
 ------
 #### [ Other AWS Regions ]
 
-   The following AWS public certificate is for all AWS Regions, except Hong Kong, Bahrain, China, and GovCloud\.
+   The following AWS public certificate is for all AWS Regions, except Hong Kong, Bahrain, Cape Town, Milan, Jakarta, China, and GovCloud\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -165,6 +165,28 @@ This topic explains how to verify the instance identity document using the base6
    DQEBCwUAA4GBAGLLrY3P+HH6C57dYgtJkuGZGT2+rMkk2n81/abzTJvsqRqGRrWv
    XRKRXlKdM/dfiuYGokDGxiC0Mg6TYy6wvsR2qRhtXW1OtZkiHWcQCnOttz+8vpew
    wx8JGMvowtuKB1iMsbwyRqZkFYLcvH+Opfb/Aayi20/ChQLdI6M2R5VU
+   -----END CERTIFICATE-----" >> certificate
+   ```
+
+------
+#### [ Jakarta Region ]
+
+   The AWS public certificate for the Jakarta Region is as follows\.
+
+   ```
+   $  echo "-----BEGIN CERTIFICATE-----
+   MIICMzCCAZygAwIBAgIGAXbVDG2yMA0GCSqGSIb3DQEBBQUAMFwxCzAJBgNVBAYT
+   AlVTMRkwFwYDVQQIDBBXYXNoaW5ndG9uIFN0YXRlMRAwDgYDVQQHDAdTZWF0dGxl
+   MSAwHgYDVQQKDBdBbWF6b24gV2ViIFNlcnZpY2VzIExMQzAgFw0yMTAxMDYwMDE1
+   MzBaGA8yMjAwMDEwNjAwMTUzMFowXDELMAkGA1UEBhMCVVMxGTAXBgNVBAgMEFdh
+   c2hpbmd0b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAeBgNVBAoMF0FtYXpv
+   biBXZWIgU2VydmljZXMgTExDMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCn
+   CS/Vbt0gQ1ebWcur2hSO7PnJifE4OPxQ7RgSAlc4/spJp1sDP+ZrS0LO1ZJfKhXf
+   1R9S3AUwLnsc7b+IuVXdY5LK9RKqu64nyXP5dx170zoL8loEyCSuRR2fs+04i2Qs
+   WBVP+KFNAn7P5L1EHRjkgTO8kjNKviwRV+OkP9ab5wIDAQABMA0GCSqGSIb3DQEB
+   BQUAA4GBAI4WUy6+DKh0JDSzQEZNyBgNlSoSuC2owtMxCwGB6nBfzzfcekWvs6eo
+   fLTSGovrReX7MtVgrcJBZjmPIentw5dWUs+87w/g9lNwUnUt0ZHYyh2tuBG6hVJu
+   UEwDJ/z3wDd6wQviLOTF3MITawt9P8siR1hXqLJNxpjRQFZrgHqi
    -----END CERTIFICATE-----" >> certificate
    ```
 

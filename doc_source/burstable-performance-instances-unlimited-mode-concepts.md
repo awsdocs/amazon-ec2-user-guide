@@ -100,4 +100,4 @@ When a `standard` instance is switched to `unlimited`, the following occurs:
 
 ## Monitor credit usage<a name="unlimited-mode-monitoring-credit-usage"></a>
 
-To see if your instance is spending more credits than the baseline provides, you can use CloudWatch metrics to track usage, and you can set up hourly alarms to be notified of credit usage\. For more information, see [Monitor your CPU credits](burstable-performance-instances-monitoring-cpu-credits.md)\.
+To see if your instance is spending more credits than the baseline provides, you can use CloudWatch metrics to track usage, and you can set up hourly alarms to be notified of credit usage\. For more information, see [Monitor your CPU credits for burstable performance instances](burstable-performance-instances-monitoring-cpu-credits.md)\.

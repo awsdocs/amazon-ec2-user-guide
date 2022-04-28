@@ -264,7 +264,7 @@ Some of the available features in WordPress require write access to the Apache d
 1. Recursively change the file permissions of `/var/www` and its subdirectories\.
 
    ```
-   [ec2-user ~]$ find /var/www -type f -exec sudo chmod 0644 {}\;
+   [ec2-user ~]$ find /var/www -type f -exec sudo chmod 0644 {} \;
    ```
 **Note**  
  If you intend to also use WordPress as an FTP server, you'll need more permissive Group settings here\. Please review the recommended [steps and security settings in WordPress](https://wordpress.org/support/article/changing-file-permissions/) to accomplish this\. 

@@ -5,13 +5,15 @@ You can share an AMI with specific AWS accounts without making the AMI public\. 
 
 
 ## Considerations<a name="considerations-for-sharing-AMI-with-accounts"></a>
+
+Consider the following when sharing AMIs with specific AWS accounts\.
 + **No sharing limits** – There is no limit to the number of AWS accounts with which an AMI can be shared\.
 + **Tags** – User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the other accounts that the AMI is shared with\.
 + **Encryption and keys** – You can share AMIs that are backed by unencrypted and encrypted snapshots\.
   + The encrypted snapshots must be encrypted with a customer managed key\. You can’t share AMIs that are backed by snapshots that are encrypted with the default AWS managed key\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
   + If you share an AMI that is backed by encrypted snapshots, you must allow the AWS accounts to use the customer managed keys that were used to encrypt the snapshots\. For more information, see [Allow organizations and OUs to use a KMS key](share-amis-with-organizations-and-OUs.md#allow-org-ou-to-use-key)\.
-+ **Regional resource** – AMIs are a regional resource\. When you share an AMI, it is only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
-+ **AMI use** – When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from their instance\.
++ **Region** – AMIs are a regional resource\. When you share an AMI, it is only available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
++ **Usage** – When you share an AMI, users can only launch instances from the AMI\. They can’t delete, share, or modify it\. However, after they have launched an instance using your AMI, they can then create an AMI from their instance\.
 + **Copying shared AMIs** – If users in another account want to copy a shared AMI, you must grant them read permissions for the storage that backs the AMI\. For more information, see [Cross\-account copying](CopyingAMIs.md#copy-ami-across-accounts)\.
 + **Billing** – You are not billed when your AMI is used by other AWS accounts to launch instances\. The accounts that launch instances using the AMI are billed for the instances that they launch\.
 

@@ -51,7 +51,7 @@ For more information, see [Instance purchasing options](instance-purchasing-opti
 + [Unlimited mode for burstable performance instances](burstable-performance-instances-unlimited-mode.md)
 + [Standard mode for burstable performance instances](burstable-performance-instances-standard-mode.md)
 + [Work with burstable performance instances](burstable-performance-instances-how-to.md)
-+ [Monitor your CPU credits](burstable-performance-instances-monitoring-cpu-credits.md)
++ [Monitor your CPU credits for burstable performance instances](burstable-performance-instances-monitoring-cpu-credits.md)
 
 ## Best practices<a name="burstable-performance-instances-best-practices"></a>
 

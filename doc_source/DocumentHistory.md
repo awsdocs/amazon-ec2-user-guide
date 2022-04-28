@@ -4,6 +4,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [I4i instances](#DocumentHistory) | New storage optimized instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | April 27, 2022 | 
 | [Mount Amazon FSx file systems at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/storage_fsx.html) | You can mount a new or existing Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS file system at launch using the new launch instance wizard\. | April 12, 2022 | 
 | [New launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html) | A new and improved launch experience in the Amazon EC2 console, providing a quicker and easier way to launch an EC2 instance\. | April 5, 2022 | 
 | [Automatically deprecate public AMIs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-intro.html#considerations-for-sharing-public-AMIs) | By default, the deprecation date of all public AMIs is set to two years from the AMI creation date\. | March 31, 2022 | 

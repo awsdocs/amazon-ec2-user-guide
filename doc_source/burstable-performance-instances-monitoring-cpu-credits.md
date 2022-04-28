@@ -1,6 +1,6 @@
-# Monitor your CPU credits<a name="burstable-performance-instances-monitoring-cpu-credits"></a>
+# Monitor your CPU credits for burstable performance instances<a name="burstable-performance-instances-monitoring-cpu-credits"></a>
 
-You can see the credit balance for each instance in the Amazon EC2 per\-instance metrics of the CloudWatch console\.
+EC2 sends metrics to Amazon CloudWatch\. You can see the CPU credit metrics in the Amazon EC2 per\-instance metrics of the CloudWatch console or by using the AWS CLI to list the metrics for each instance\. For more information, see [List metrics using the console](viewing_metrics_with_cloudwatch.md#list-ec2-metrics-console) and [List metrics using the AWS CLI](viewing_metrics_with_cloudwatch.md#list-ec2-metrics-cli)\.
 
 **Topics**
 + [Additional CloudWatch metrics for burstable performance instances](#burstable-performance-instances-cw-metrics)

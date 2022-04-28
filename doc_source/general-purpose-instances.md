@@ -158,6 +158,7 @@ The following is a summary of the hardware specifications for general purpose in
 | m6a\.24xlarge | 96 | 256 | 
 | m6a\.32xlarge | 128 | 256 | 
 | m6a\.48xlarge | 192 | 256 | 
+| m6a\.metal | 192 | 256 | 
 | m6g\.medium | 1 | 4 | 
 | m6g\.large | 2 | 8 | 
 | m6g\.xlarge | 4 | 16 | 
@@ -250,7 +251,7 @@ The following is a summary of network performance for general purpose instances 
 |  m5dn\.4xlarge and smaller \| m5n\.4xlarge and smaller \| m5zn\.3xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge \| m6a\.16xlarge  \| m6g\.16xlarge \| m6g\.metal \| m6gd\.16xlarge \| m6gd\.metal \| m6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m6a\.24xlarge \| m6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.12xlarge \| m5n\.12xlarge \| m5zn\.6xlarge \| m6a\.32xlarge \| m6a\.48xlarge \| m6i\.32xlarge \| m6i\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.12xlarge \| m5n\.12xlarge \| m5zn\.6xlarge \| m6a\.32xlarge \| m6a\.48xlarge \| m6a\.metal \| m6i\.32xlarge \| m6i\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.16xlarge \| m5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.24xlarge \| m5dn\.metal \| m5n\.24xlarge \| m5n\.metal \| m5zn\.12xlarge \| m5zn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 

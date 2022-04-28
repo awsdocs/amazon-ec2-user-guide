@@ -2,7 +2,7 @@
 
 You can use the Amazon EC2 console or the command line to find shared AMIs\. 
 
-AMIs are a regional resource\. Therefore, when searching for a shared AMI \(public or private\), you must search for it from within the Region from which it is being shared\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
+AMIs are a Regional resource\. When you search for a shared AMI \(public or private\), you must search for it from the same Region from which it is shared\. To make an AMI available in a different Region, copy the AMI to the Region, and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
 
 **Topics**
 + [Find a shared AMI \(console\)](#usingsharedamis-finding-console)
@@ -17,7 +17,7 @@ AMIs are a regional resource\. Therefore, when searching for a shared AMI \(publ
 
 1. In the navigation pane, choose **AMIs**\. 
 
-1. In the first filter, choose **Private images**\. All AMIs that have been shared with you are listed\. To granulate your search, choose the Search bar and use the filter options provided in the menu\.
+1. In the first filter, choose **Private images**\. All AMIs that have been shared with you are listed\. To granulate your search, choose the **Search** bar and use the filter options provided in the menu\.
 
 **To find a shared public AMI using the console**
 
@@ -25,7 +25,7 @@ AMIs are a regional resource\. Therefore, when searching for a shared AMI \(publ
 
 1. In the navigation pane, choose **AMIs**\.
 
-1. In the first filter, choose **Public images**\. To granulate your search, choose the Search bar and use the filter options provided in the menu\.
+1. In the first filter, choose **Public images**\. To granulate your search, choose the **Search** bar and use the filter options provided in the menu\.
 
 1. Use filters to list only the types of AMIs that interest you\. For example, choose **Owner :** and then choose **Amazon images** to display only Amazon's public images\.
 
@@ -48,7 +48,7 @@ aws ec2 describe-images --executable-users self
 ```
 
 **Example: List AMIs owned by Amazon**  
-The following command lists the AMIs owned by Amazon\. Amazon's public AMIs have an aliased owner, which appears as `amazon` in the account field\. This enables you to find AMIs from Amazon easily\. Other users can't alias their AMIs\.
+The following command lists the AMIs owned by Amazon\. Public AMIs owned by Amazon have an aliased owner, which appears as `amazon` in the account field\. This helps you to easily find AMIs from Amazon\. Other users can't alias their AMIs\.
 
 ```
 aws ec2 describe-images --owners amazon

@@ -14,7 +14,7 @@ You can deprecate both private and public AMIs\.
 You can also create Amazon Data Lifecycle Manager EBS\-backed AMI policies to automate the deprecation of EBS\-backed AMIs\. For more information, see [Automate AMI lifecycles](ami-policy.md)\.
 
 **Note**  
-We have released a new feature where, by default, the deprecation date of all public AMIs is set to two years from the AMI creation date\. Initially, all public AMIs that are older than two years will only be deprecated June 30, 2022\. You can set the deprecation date to earlier than two years\. To cancel the deprecation date, or to move the deprecation date further into the future, you must make the AMI private by [sharing it with specific AWS accounts](sharingamis-explicit.md) only\. Note that the deprecation date for public AMIs will be backfilled over the next month, starting March 31, 2022\.
+We have released a new feature where, by default, the deprecation date of all public AMIs is set to two years from the AMI creation date\. Initially, all public AMIs that are older than two years will be deprecated on June 30, 2022\. You can set the deprecation date to earlier than two years\. To cancel the deprecation date, or to move the deprecation to a later date, you must make the AMI private by only [sharing it with specific AWS accounts](sharingamis-explicit.md)\.
 
 **Topics**
 + [Costs](#ami-deprecate-costs)

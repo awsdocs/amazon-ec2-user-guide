@@ -55,7 +55,7 @@ This topic explains how to verify the instance identity document using the PKCS7
 ------
 #### [ Other AWS Regions ]
 
-   The following AWS public certificate is for all AWS Regions, except Hong Kong, Bahrain, China, and GovCloud\.
+   The following AWS public certificate is for all AWS Regions, except Hong Kong, Bahrain, Cape Town, Milan, Jakarta, China, and GovCloud\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -179,6 +179,32 @@ This topic explains how to verify the instance identity document using the PKCS7
    wDUbeu65DcRdw2rSwCbBTU342sitFo/iGCV/Gjf+BaiAJtxniZze7J1ob8vOBeLv
    uaMQmgOYeZ5e0fl04GtqPl+lhcQwCQYHKoZIzjgEAwMwADAtAhQdoeWLrkm0K49+
    AeBK+j6m2h9SKQIVAIBNhS2a8cQVABDCQXVXrc0tOmO8
+   -----END CERTIFICATE-----" >> certificate
+   ```
+
+------
+#### [ Jakarta Region ]
+
+   The AWS public certificate for the Jakarta Region is as follows\.
+
+   ```
+   $  echo "-----BEGIN CERTIFICATE-----
+   MIIC8DCCArCgAwIBAgIGAXbVDEikMAkGByqGSM44BAMwXDELMAkGA1UEBhMCVVMx
+   GTAXBgNVBAgMEFdhc2hpbmd0b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAe
+   BgNVBAoMF0FtYXpvbiBXZWIgU2VydmljZXMgTExDMB4XDTIxMDEwNjAwMTUyMFoX
+   DTQ3MDEwNjAwMTUyMFowXDELMAkGA1UEBhMCVVMxGTAXBgNVBAgMEFdhc2hpbmd0
+   b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAeBgNVBAoMF0FtYXpvbiBXZWIg
+   U2VydmljZXMgTExDMIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9K
+   nC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00
+   b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNa
+   FpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA
+   9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJ
+   FnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7
+   zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUAAoGBAPjuiEx05N3J
+   Q6cVwntJie67D8OuNo4jGRn+crEtL7YO0jSVB9zGE1ga+UgRPIaYETL293S8rTJT
+   VgXAqdpBwfaHC6NUzre8U8iJ8FMNnlP9Gw1oUIlgQBjORyynVJexoB31TDZM+/52
+   g9O/bpq1QqNyKbeIgyBBlc1dAtr1QLnsMAkGByqGSM44BAMDLwAwLAIUK8E6RDIR
+   twK+9qnaTOBhvO/njuQCFFocyT1OxK+UDR888oNsdgtif2Sf
    -----END CERTIFICATE-----" >> certificate
    ```
 
