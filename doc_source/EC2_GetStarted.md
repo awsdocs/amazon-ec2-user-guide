@@ -30,37 +30,39 @@ Before you begin, be sure that you've completed the steps in [Set up to use Amaz
 
 ## Step 1: Launch an instance<a name="ec2-launch-instance"></a>
 
-You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you quickly launch your first instance, so it doesn't cover all possible options\. For information about advanced options, see [Launch an instance using the old launch instance wizard](launching-instance.md)\. For information about other ways to launch your instance, see [Launch your instance](LaunchingAndUsingInstances.md)\.
+You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you quickly launch your first instance, so it doesn't cover all possible options\. For information about advanced options, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\. For information about other ways to launch your instance, see [Launch your instance](LaunchingAndUsingInstances.md)\.
 
 **To launch an instance**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the console dashboard, choose **Launch Instance**\.
+1. From the EC2 console dashboard, in the **Launch instance** box, choose **Launch instance**, and then choose **Launch instance** from the options that appear\.
 
-1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations, called *Amazon Machine Images \(AMIs\)*, that serve as templates for your instance\. Select an HVM version of Amazon Linux 2\. Notice that these AMIs are marked "Free tier eligible\."
+1. Under **Name and tags**, for **Name**, enter a descriptive name for your instance\.
 
-1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. Select the `t2.micro` instance type, which is selected by default\. The `t2.micro` instance type is eligible for the free tier\. In Regions where `t2.micro` is unavailable, you can use a `t3.micro` instance under the free tier\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
+1. Under **Application and OS Images \(Amazon Machine Image\)**, do the following:
 
-1. On the **Choose an Instance Type** page, choose **Review and Launch** to let the wizard complete the other configuration settings for you\.
+   1. Choose **Quick Start**, and then choose Amazon Linux\. This is the operating system \(OS\) for your instance\.
 
-1. On the **Review Instance Launch** page, under **Security Groups**, you'll see that the wizard created and selected a security group for you\. You can use this security group, or alternatively you can select the security group that you created when getting set up using the following steps:
+   1. From **Amazon Machine Image \(AMI\)**, select an HVM version of Amazon Linux 2\. Notice that these AMIs are marked **Free tier eligible**\. An *Amazon Machine Image \(AMI\)* is a basic configuration that serves as a template for your instance\.
 
-   1. Choose **Edit security groups**\.
+1. Under **Instance type**, from the **Instance type** list, you can select the hardware configuration for your instance\. Choose the `t2.micro` instance type, which is selected by default\. The `t2.micro` instance type is eligible for the free tier\. In Regions where `t2.micro` is unavailable, you can use a `t3.micro` instance under the free tier\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
 
-   1. On the **Configure Security Group** page, ensure that **Select an existing security group** is selected\.
-
-   1. Select your security group from the list of existing security groups, and then choose **Review and Launch**\.
-
-1. On the **Review Instance Launch** page, choose **Launch**\.
-
-1. When prompted for a key pair, select **Choose an existing key pair**, then select the key pair that you created when getting set up\.
+1. Under **Key pair \(login\)**, for **Key pair name**, choose the key pair that you created when getting set up\.
 **Warning**  
-Don't select **Proceed without a key pair**\. If you launch your instance without a key pair, then you can't connect to it\.
+Do not choose **Proceed without a key pair \(Not recommended\)**\. If you launch your instance without a key pair, then you can't connect to it\.
 
-   When you are ready, select the acknowledgement check box, and then choose **Launch Instances**\.
+1. Next to **Network settings**, choose **Edit**\. For **Security group name**, you'll see that the wizard created and selected a security group for you\. You can use this security group, or alternatively you can select the security group that you created when getting set up using the following steps:
 
-1. A confirmation page lets you know that your instance is launching\. Choose **View Instances** to close the confirmation page and return to the console\.
+   1. Choose **Select existing security group**\.
+
+   1. From **Common security groups**, choose your security group from the list of existing security groups\.
+
+1. Keep the default selections for the other configuration settings for your instance\. 
+
+1. Review a summary of your instance configuration in the **Summary** panel, and when you're ready, choose **Launch instance**\.
+
+1. A confirmation page lets you know that your instance is launching\. Choose **View all instances** to close the confirmation page and return to the console\.
 
 1. On the **Instances** screen, you can view the status of the launch\. It takes a short time for an instance to launch\. When you launch an instance, its initial state is `pending`\. After the instance starts, its state changes to `running` and it receives a public DNS name\. If the **Public IPv4 DNS** column is hidden, choose the settings icon \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \) in the top\-right corner, toggle on **Public IPv4 DNS**, and choose **Confirm**\.
 

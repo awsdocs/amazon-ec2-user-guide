@@ -14,7 +14,7 @@ If you want to find an Ubuntu AMI, see their [EC2 AMI Locator](https://cloud-ima
 
 If you want to find a RedHat AMI, see the RHEL [knowledgebase article](https://access.redhat.com/solutions/15356)\.
 
-**Topics**
+**Find a Linux AMI topics**
 + [Find a Linux AMI using the Amazon EC2 console](#finding-an-ami-console)
 + [Find an AMI using the AWS CLI](#finding-an-ami-aws-cli)
 + [Find the latest Amazon Linux AMI using Systems Manager](#finding-an-ami-parameter-store)
@@ -32,7 +32,9 @@ You can find Linux AMIs using the Amazon EC2 console\. You can select from the l
 
 1. From the console dashboard, choose **Launch instance**\.
 
-1. On the **Quick Start** tab, select from one of the commonly used AMIs in the list\. If you don't see the AMI that you want to use, choose the **My AMIs**, **AWS Marketplace**, or **Community AMIs** tab to find additional AMIs\. For more information, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
+1. \(New console\) Under **Application and OS Images \(Amazon Machine Image\)**, choose **Quick Start**, choose the operating system \(OS\) for your instance, and then, from **Amazon Machine Image \(AMI\)**, select from one of the commonly used AMIs in the list\. If you don't see the AMI that you want to use, choose **Browse more AMIs** to browse the full AMI catalog\. For more information, see [Application and OS Images \(Amazon Machine Image\)](ec2-launch-instance-wizard.md#liw-ami)\.
+
+   \(Old console\) On the **Quick Start** tab, select from one of the commonly used AMIs in the list\. If you don't see the AMI that you want to use, choose the **My AMIs**, **AWS Marketplace**, or **Community AMIs** tab to find additional AMIs\. For more information, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
 
 **To find a Linux AMI using the AMIs page**
 
@@ -42,7 +44,11 @@ You can find Linux AMIs using the Amazon EC2 console\. You can select from the l
 
 1. In the navigation pane, choose **AMIs**\.
 
-1. \(Optional\) Use the **Filter** and **Search** options to scope the list of displayed AMIs to see only the AMIs that match your criteria\. For example, to list all Linux AMIs provided by AWS, choose **Public images**\. Then use the **Search** options to further scope the list of displayed AMIs\. Choose the **Search** bar and, from the menu, choose **Owner alias**, then the **=** operator, and then the value **amazon**\. Choose the **Search** bar again to choose **Platform**, then the **=** operator, and then the operating system from the list provided\.
+1. \(Optional\) Use the filter and search options to scope the list of displayed AMIs to see only the AMIs that match your criteria\. For example, to list all Linux AMIs provided by AWS, choose **Public images**\. Then use the search options to further scope the list of displayed AMIs\.
+
+   \(New console\) Choose the **Search** bar and, from the menu, choose **Owner alias**, then the **=** operator, and then the value **amazon**\. Choose the **Search** bar again to choose **Platform**, then the **=** operator, and then the operating system from the list provided\.
+
+   \(Old console\) Choose the **Search** bar and, from the menu, choose **Owner** and then the value **Amazon images**\. Choose the **Search** bar again to choose **Platform** and then the operating system from the list provided\.
 
 1. \(Optional\) Choose the **Preferences** icon \(new console\) or **Show/Hide Columns** icon \(old console\) to select which image attributes to display, such as the root device type\. Alternatively, you can select an AMI from the list and view its properties on the **Details** tab\.
 
@@ -52,7 +58,7 @@ You can find Linux AMIs using the Amazon EC2 console\. You can select from the l
 
 ## Find an AMI using the AWS CLI<a name="finding-an-ami-aws-cli"></a>
 
-You can use AWS CLI commands for Amazon EC2 to list only the Linux AMIs that match your requirements\. After locating an AMI that matches your requirements, make note of its ID so that you can use it to launch instances\. For more information, see [Launching an Instance Using the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-launch.html#launching-instances) in the *AWS Command Line Interface User Guide*\.
+You can use AWS CLI commands for Amazon EC2 to list only the Linux AMIs that match your requirements\. After locating an AMI that matches your requirements, make note of its ID so that you can use it to launch instances\. For more information, see [Launch your instance](https://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-launch.html#launching-instances) in the *AWS Command Line Interface User Guide*\.
 
 The [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command supports filtering parameters\. For example, use the `--owners` parameter to display public AMIs owned by Amazon\.
 
@@ -140,7 +146,7 @@ AMIs and Systems Manager parameters are Region specific\. To use the same System
 
 ### Launch an instance using a Systems Manager parameter<a name="systems-manager-parameter-launch-instance"></a>
 
-You can launch an instance using the console or the AWS CLI\. Instead of specifying an AMI ID, you can specify an AWS Systems Manager parameter that points to an AMI ID\.
+You can launch an instance using the console or the AWS CLI\. Instead of specifying an AMI ID, you can specify an AWS Systems Manager parameter that points to an AMI ID\. Currently, only the old launch instance wizard supports specifying a Systems Manager parameter\.
 
 **To find a Linux AMI using a Systems Manager parameter \(console\)**
 

@@ -7,6 +7,7 @@ When you delete a public key using the following methods, you're only deleting t
 **Note**  
 To remove a public key from an instance, see [Add or remove a public key on your instance](replacing-key-pair.md)\.
 
+**Important**  
 If you're using an Auto Scaling group \(for example, in an Elastic Beanstalk environment\), ensure that the public key you're deleting is not specified in an associated launch template or launch configuration\. If Amazon EC2 Auto Scaling detects an unhealthy instance, it launches a replacement instance\. However, the instance launch fails if the public key cannot be found\. For more information, see [Launch templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchTemplates.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 You can delete a public key on Amazon EC2 using the following methods\.

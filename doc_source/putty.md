@@ -17,14 +17,14 @@ To find the public DNS name or IP address of your instance and the user name tha
 **Install PuTTY on your local computer**  
 Download and install PuTTY from the [PuTTY download page](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. If you already have an older version of PuTTY installed, we recommend that you download the latest version\. Be sure to install the entire suite\.
 
-**Convert your private key using PuTTYgen**  
-Locate the private key \(\.pem file\) for the key pair that you specified when you launched the instance\. Convert the \.pem file to a \.ppk file for use with PuTTY\. For more information, follow the steps in the next section\.
+**Convert your private \.pem key to \.ppk using PuTTYgen**  
+For the key pair that you specified when you launched the instance, if you chose to create the private key in the \.pem format, you must convert it to a \.ppk file for use with PuTTY\. Locate the private \.pem file, and then follow the steps in the next section\.
 
 ### Convert your private key using PuTTYgen<a name="putty-private-key"></a>
 
-PuTTY does not natively support the private key format for SSH keys\. PuTTY provides a tool named PuTTYgen, which converts keys to the required format for PuTTY\. You must convert your private key \(\.pem file\) into this format \(\.ppk file\) as follows in order to connect to your instance using PuTTY\.
+PuTTY does not natively support the PEM format for SSH keys\. PuTTY provides a tool named PuTTYgen, which converts PEM keys to the required PPK format for PuTTY\. You must convert your private key \(\.pem file\) into this format \(\.ppk file\) as follows in order to connect to your instance using PuTTY\.
 
-**To convert your private key**
+**To convert your private \.pem key to \.ppk**
 
 1. From the **Start** menu, choose **All Programs**, **PuTTY**, **PuTTYgen**\.
 

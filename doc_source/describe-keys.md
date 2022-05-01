@@ -9,7 +9,7 @@ You can describe the public keys that are stored in Amazon EC2\. You can also re
 
 ## Describe public keys<a name="describe-public-key"></a>
 
-You can view the following information about your public keys that are stored in Amazon EC2: public key name, ID, key type, fingerprint, and any tags that are associated with the public key\. To get access to the public key material, see [Retrieve the public key material](#retrieving-the-public-key) in the section that follows\.
+You can view the following information about your public keys that are stored in Amazon EC2: public key name, ID, key type, fingerprint, public key material, the date and time \(in the UTC time zone\) the key was created by Amazon EC2 \(if the key was created by a third\-party tool, then it's the date and time the key was imported to Amazon EC2\), and any tags that are associated with the public key\.
 
 You can use the Amazon EC2 console or AWS CLI to view information about your public keys\.
 
@@ -22,7 +22,8 @@ You can use the Amazon EC2 console or AWS CLI to view information about your pub
 
 1. In the left navigator, choose **Key Pairs**\.
 
-1. You can view the information about each public key in the **Key pairs** table\.
+1. You can view the information about each public key in the **Key pairs** table\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/key-pairs-describe-console.png)
 
 1. To view a public key's tags, select the check box next to the key, and then choose **Actions**, **Manage tags**\.
 
@@ -46,23 +47,48 @@ Example output
             "KeyFingerprint": "1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f",
             "KeyName": "my-key-pair",
             "KeyType": "rsa",
-            "Tags": []
+            "Tags": [],
+            "CreateTime": "2022-04-28T11:37:26.000Z"
         }
     ]
 }
 ```
 
-Alternatively, instead of `--key-names`, you can specify the `--key-pair-ids` parameter\.
+Alternatively, instead of `--key-names`, you can specify the `--key-pair-ids` parameter to identify the public key\.
 
 ```
 aws ec2 describe-key-pairs --key-pair-ids key-0123456789example
+```
+
+To view the public key material in the output, you must specify the `--include-public-key` parameter\.
+
+```
+aws ec2 describe-key-pairs --key-names my-key-pair --include-public-key
+```
+
+Example output – In the output, the `PublicKey` field contains the public key material\. 
+
+```
+{
+    "KeyPairs": [
+        {
+            "KeyPairId": "key-0123456789example",
+            "KeyFingerprint": "1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f",
+            "KeyName": "my-key-pair",
+            "KeyType": "rsa",
+            "Tags": [],
+            "PublicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIj7azlDjVHAsSxgcpCRZ3oWnTm0nAFM64y9jd22ioI/ my-key-pair",
+            "CreateTime": "2022-04-28T11:37:26.000Z"
+        }
+    ]
+}
 ```
 
 ------
 
 ## Retrieve the public key material<a name="retrieving-the-public-key"></a>
 
-To get access to the public key material, you can retrieve it from the matching private key on your local computer, or from the instance metadata or the `authorized_keys` file on the instance that was launched with the public key\.
+You can use various methods to get access to the public key material\. You can retrieve the public key material from the matching private key on your local computer, or from the instance metadata or the `authorized_keys` file on the instance that was launched with the public key, or by using the `describe-key-pairs` AWS CLI command\.
 
 Use one of the following methods to retrieve the public key material\.
 
@@ -143,7 +169,7 @@ If you specify a key pair when launching a Linux instance, when the instance boo
    [ec2-user ~]$ nano ~/.ssh/authorized_keys
    ```
 
-   The `authorized_keys` file opens, displaying the public key followed by the name of the key pair\. The following is an example entry for the key pair named `my-key-pair`\.
+   The `authorized_keys` file opens, displaying the public key followed by the name of the key pair\. The following is an example entry for the key pair named *`my-key-pair`*\.
 
    ```
    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClKsfkNkuSevGj3eYhCe53pcjqP3maAhDFcvBS7O6V
@@ -152,6 +178,40 @@ If you specify a key pair when launching a Linux instance, when the instance boo
    qaeJAAHco+CY/5WrUBkrHmFJr6HcXkvJdWPkYQS3xqC0+FmUZofz221CBt5IMucxXPkX4rWi+z7wB3Rb
    BQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE my-key-pair
    ```
+
+------
+#### [ From describe\-key\-pairs ]
+
+**To retrieve the public key material from the `describe-key-pairs`AWS CLI command**  
+Use the [describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command and specify the `--key-names` parameter to identify the public key\. To include the public key material in the output, specify the `--include-public-key` parameter\.
+
+```
+aws ec2 describe-key-pairs --key-names my-key-pair --include-public-key
+```
+
+Example output – In the output, the `PublicKey` field contains the public key material\. 
+
+```
+{
+    "KeyPairs": [
+        {
+            "KeyPairId": "key-0123456789example",
+            "KeyFingerprint": "1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f",
+            "KeyName": "my-key-pair",
+            "KeyType": "rsa",
+            "Tags": [],
+            "PublicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIj7azlDjVHAsSxgcpCRZ3oWnTm0nAFM64y9jd22ioI/ my-key-pair",
+            "CreateTime": "2022-04-28T11:37:26.000Z"
+        }
+    ]
+}
+```
+
+Alternatively, instead of `--key-names`, you can specify the `--key-pair-ids` parameter to identify the public key\.
+
+```
+aws ec2 describe-key-pairs --key-pair-ids key-0123456789example --include-public-key
+```
 
 ------
 

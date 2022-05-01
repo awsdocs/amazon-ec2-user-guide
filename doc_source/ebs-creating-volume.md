@@ -10,7 +10,7 @@ Empty EBS volumes receive their maximum performance the moment that they are ava
 If you create an `io2` volume with a size greater than `16` TiB or with IOPS greater than `64,000` in a Region where EBS Block Express is supported, the volume automatically runs on Block Express\. `io2` Block Express volumes can be attached to supported instances only\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
 **Methods of creating a volume**
-+ Create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md) and [Block device mappings](block-device-mapping-concepts.md)\.
++ Create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md) and [Block device mappings](block-device-mapping-concepts.md)\.
 + Create an empty EBS volume and attach it to a running instance\. For more information, see [Create an empty volume](#ebs-create-empty-volume) below\.
 + Create an EBS volume from a previously created snapshot and attach it to a running instance\. For more information, see [Create a volume from a snapshot](#ebs-create-volume-from-snapshot) below\.
 

@@ -28,7 +28,7 @@ These procedures are for modifying the key pair for the default user account, su
 
 1. \(Optional\) If you're replacing an existing key pair, connect to your instance and delete the public key information for the original key pair from the `.ssh/authorized_keys` file\.
 
-**Note**  
+**Important**  
 If you're using an Auto Scaling group, ensure that the key pair you're replacing is not specified in your launch template or launch configuration\. If Amazon EC2 Auto Scaling detects an unhealthy instance, it launches a replacement instance\. However, the instance launch fails if the key pair cannot be found\. For more information, see [Launch templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchTemplates.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 **To remove a public key from an instance**

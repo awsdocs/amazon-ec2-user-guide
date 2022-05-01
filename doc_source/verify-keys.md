@@ -26,7 +26,8 @@ The following table lists the hash functions that are used to calculate the fing
 
 If you plan to use the same key pair to connect to instances in different AWS Regions, you must import the public key to all of the Regions in which you'll use it\. If you use Amazon EC2 to create the key pair, you can [generate a public key from the Amazon EC2 private key](describe-keys.md#retrieving-the-public-key) so that you can import the public key to the other Regions\.
 
-Note that if you create an RSA key pair using Amazon EC2, and then you generate a public key from the Amazon EC2 private key, the imported public keys will have a different fingerprint than the original public key\. This is because the fingerprint of the original RSA key created using Amazon EC2 is calculated using a SHA\-1 hash function, while the fingerprint of the imported RSA keys is calculated using an MD5 hash function\.
+**Note**  
+If you create an RSA key pair using Amazon EC2, and then you generate a public key from the Amazon EC2 private key, the imported public keys will have a different fingerprint than the original public key\. This is because the fingerprint of the original RSA key created using Amazon EC2 is calculated using a SHA\-1 hash function, while the fingerprint of the imported RSA keys is calculated using an MD5 hash function\.
 
 For ED25519 key pairs, the fingerprints will be same regardless of whether they’re created by Amazon EC2 or imported to Amazon EC2, because the same SHA\-256 hash function is used to calculate the fingerprint\.
 

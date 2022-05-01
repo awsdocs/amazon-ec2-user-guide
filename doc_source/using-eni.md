@@ -746,7 +746,7 @@ You can use one of the following commands\. For more information about these com
 
 ### Attach a network interface to an instance<a name="attach_eni"></a>
 
-You can attach a network interface to any instance in the same Availability Zone as the network interface, using either the **Instances** or **Network Interfaces** page of the Amazon EC2 console\. Alternatively, you can specify existing network interfaces when you [launch instances](launching-instance.md)\.
+You can attach a network interface to any instance in the same Availability Zone as the network interface, using either the **Instances** or **Network Interfaces** page of the Amazon EC2 console\. Alternatively, you can specify existing network interfaces when you [launch instances](ec2-launch-instance-wizard.md)\.
 
 **Important**  
 For EC2 instances in an IPv6\-only subnet, if you attach a secondary network interface to the instance, the private DNS hostname of the second network interface will resolve to the first IPv6 address on the instance's first network interface\. For more information about EC2 instance private DNS hostnames, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.

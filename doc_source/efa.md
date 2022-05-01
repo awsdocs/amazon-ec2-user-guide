@@ -100,7 +100,7 @@ The following AMIs support EFA with Arm\-based \(Graviton 2\) instance types:
 ## EFA limitations<a name="efa-limits"></a>
 
 EFA has the following limitations:
-+ `p4d.24xlarge` instances support up to four EFAs\. All other supported instance types support only one EFA per instance\.
++ `p4d.24xlarge` and `dl1.24xlarge` instances support up to four EFAs\. All other supported instance types support only one EFA per instance\.
 + EFA OS\-bypass traffic is limited to a single subnet\. In other words, EFA traffic cannot be sent from one subnet to another\. Normal IP traffic from the EFA can be sent from one subnet to another\.
 + EFA OS\-bypass traffic is not routable\. Normal IP traffic from the EFA remains routable\.
 + The EFA must be a member of a security group that allows all inbound and outbound traffic to and from the security group itself\.

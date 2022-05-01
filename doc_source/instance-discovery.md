@@ -33,7 +33,7 @@ You can find an instance type that meets your needs using the Amazon EC2 console
 
 1. \(Optional\) To save the list of instance types to a comma\-separated values \(\.csv\) file for further review, choose **Actions**, **Download list CSV**\. The file includes all instance types that match the filters you set\.
 
-1. \(Optional\) To launch instances using an instance type that meet your needs, select the checkbox for the instance type and choose **Actions**, **Launch instance**\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
+1. \(Optional\) To launch instances using an instance type that meet your needs, select the checkbox for the instance type and choose **Actions**, **Launch instance**\. For more information, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\.
 
 ## Find an instance type using the AWS CLI<a name="instance-discovery-cli"></a>
 

@@ -133,12 +133,12 @@ For **Instance type**, you can either select an instance type, or you can specif
 
 **Note**  
 Specifying instance attributes is supported only when using Auto Scaling groups, EC2 Fleet, and Spot Fleet to launch instances\. For more information, see [Creating an Auto Scaling group using attribute\-based instance type selection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html), [Attribute\-based instance type selection for EC2 Fleet](ec2-fleet-attribute-based-instance-type-selection.md), and [Attribute\-based instance type selection for Spot Fleet](spot-fleet-attribute-based-instance-type-selection.md)\.  
-If you plan to use the launch template in the [launch instance wizard](launching-instance.md) or with the [RunInstances API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html), you must select an instance type\.
+If you plan to use the launch template in the [launch instance wizard](ec2-launch-instance-wizard.md) or with the [RunInstances API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html), you must select an instance type\.
 + **Instance type**: Ensure that the instance type is compatible with the AMI that you've specified\. For more information, see [Instance types](instance-types.md)\.
 + **Compare instance types**: You can compare different instance types by the following attributes: number of vCPUs, architecture, amount of memory \(GiB\), amount of storage \(GB\), storage type, and network performance\.
 + **Advanced**: To specify instance attributes and let Amazon EC2 identify the instance types with those attributes, choose **Advanced**, and then choose **Specify instance type attributes**\.
-  + **Number of vCPUs**: Enter the minimum and maximum number of vCPUs for your compute requirements\. To indicate no limits, enter a minimum of 0, and leave the maximum blank\.
-  + **Amount of memory \(MiB\)**: Enter the minimum and maximum amount of memory, in MiB, for your compute requirements\. To indicate no limits, enter a minimum of 0, and leave the maximum blank\.
+  + **Number of vCPUs**: Enter the minimum and maximum number of vCPUs for your compute requirements\. To indicate no limits, enter a minimum of **0**, and leave the maximum blank\.
+  + **Amount of memory \(MiB\)**: Enter the minimum and maximum amount of memory, in MiB, for your compute requirements\. To indicate no limits, enter a minimum of **0**, and leave the maximum blank\.
   + Expand **Optional instance type attributes** and choose **Add attribute** to express your compute requirements in more detail\. For information about each attribute, see [InstanceRequirementsRequest](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_InstanceRequirementsRequest.html) in the *Amazon EC2 API Reference*\.
   + **Resulting instance types**: You can preview the instance types that match the specified attributes\. To exclude instance types, choose **Add attribute**, and from the **Attribute** list, choose **Excluded instance types**\. From the **Attribute value** list, select the instance types to exclude\.
 
@@ -190,7 +190,7 @@ Rules that enable all IP addresses \(`0.0.0.0/0`\) to access your instance over 
   + **IPv6 Prefixes**: The IPv6 prefixes for the network interface\.
   + **Delete on termination**: Whether the network interface is deleted when the instance is deleted\.
   + **Elastic Fabric Adapter**: Indicates whether the network interface is an Elastic Fabric Adapter\. For more information, see [Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html)\.
-  + **Network card index**: The index of the network card\. The primary network interface must be assigned to network card index 0\. Some instance types support multiple network cards\.
+  + **Network card index**: The index of the network card\. The primary network interface must be assigned to network card index **0**\. Some instance types support multiple network cards\.
 
   Choose **Add network interface** to add more network interfaces\. The number of network interfaces that you can add depends on the number that is supported by the selected instance type\. A secondary network interface can reside in a different subnet of the VPC, provided it's in the same Availability Zone as your instance\.
 
@@ -224,8 +224,8 @@ For **Resource tags**, specify [tags](Using_Tags.md) by providing key and value 
 For **Advanced details**, expand the section to view the fields and specify any additional parameters for the instance\.
 + **Purchasing option**: Choose **Request Spot Instances** to request Spot Instances at the Spot price, capped at the On\-Demand price, and choose **Customize** to change the default Spot Instance settings\. You can set your maximum price, and change the request type, request duration, and interruption behavior\. If you do not request a Spot Instance, EC2 launches an On\-Demand Instance by default\. For more information, see [Spot Instances](using-spot-instances.md)\.
 + **IAM instance profile**: Select an AWS Identity and Access Management \(IAM\) instance profile to associate with the instance\. For more information, see [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)\.
-+ **Hostname type**: Select if you want the guest OS hostname of the EC2 instance to be the Resource name \(RBN\) or IP name \(IPBN\)\. For more information about hostname type and these options, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.
-+ **DNS Hostname**: Determines if the DNS queries to the IP name and/or the Resource name will respond with the IPv4 address \(A record\), IPv6 address \(AAAA record\), or both\. For more information about these options, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.
++ **Hostname type**: Select whether the guest OS hostname of the instance will include the resource name or the IP name\. For more information, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.
++ **DNS Hostname**: Determines if the DNS queries to the resource name or the IP name \(depending on what you selected for **Hostname type**\) will respond with the IPv4 address \(A record\), IPv6 address \(AAAA record\), or both\. For more information, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.
 + **Shutdown behavior**: Select whether the instance should stop or terminate when shut down\. For more information, see [Change the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 + **Stop \- Hibernate behavior**: To enable hibernation, choose **Enable**\. This field is only valid for instances that meet the hibernation prerequisites\. For more information, see [Hibernate your On\-Demand Linux instance](Hibernate.md)\.
 + **Termination protection**: To prevent accidental termination, choose **Enable**\. For more information, see [Enable termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
@@ -245,7 +245,7 @@ For **Advanced details**, expand the section to view the fields and specify any 
 + **Metadata accessible**: You can enable or disable access to the instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
 + **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
 + **Metadata response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
-+ **Allow tags in metadata**: If you select **Enable**, the instance will allow access to all of its instance's tags from its metadata\. If you do not include this setting in the template, by default, access to the tags in instance metadata is disabled\. For more information, see [Allow access to tags in instance metadata](Using_Tags.md#allow-access-to-tags-in-IMDS)\.
++ **Allow tags in metadata**: If you select **Enable**, the instance will allow access to all of its instance's tags from its metadata\. If you do not include this setting in the template, by default, access to the tags in instance metadata is not allowed\. For more information, see [Allow access to tags in instance metadata](Using_Tags.md#allow-access-to-tags-in-IMDS)\.
 + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. For more information, see [Run commands on your Linux instance at launch](user-data.md)\.
 
 ##### Summary<a name="lt-summary"></a>
@@ -540,7 +540,7 @@ Using the console, you can view all the versions of the selected launch template
 #### [ AWS CLI ]
 
 **To describe a launch template version using the AWS CLI**
-+ Use the [describe\-launch\-template\-versions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-launch-template-versions.html) command and specify the version numbers\. In the following example, versions 1 and 3 are specified\.
++ Use the [describe\-launch\-template\-versions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-launch-template-versions.html) command and specify the version numbers\. In the following example, versions `1` and *`3`* are specified\.
 
   ```
   aws ec2 describe-launch-template-versions \
@@ -641,7 +641,7 @@ Instances that are launched using a launch template are automatically assigned t
       --tag-specifications "ResourceType=instance,Tags=[{Key=Owner,Value=TeamA}]"
   ```
 
-  In the following example, the instance is launched with a volume with the device name `/dev/xvdb` as well as any other block device mappings that are specified in the launch template\. If the launch template has an existing volume defined for `/dev/xvdb`, its values are replaced with the specified values\.
+  In the following example, the instance is launched with a volume with the device name *`/dev/xvdb`* as well as any other block device mappings that are specified in the launch template\. If the launch template has an existing volume defined for *`/dev/xvdb`*, its values are replaced with the specified values\.
 
   ```
   aws ec2 run-instances \

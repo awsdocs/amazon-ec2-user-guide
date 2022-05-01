@@ -25,11 +25,9 @@ You can use Amazon EC2 to create a key pair using one of the following methods\.
 
 1. For **Name**, enter a descriptive name for the key pair\. Amazon EC2 associates the public key with the name that you specify as the key name\. A key name can include up to 255 ASCII characters\. It can’t include leading or trailing spaces\.
 
-1. For **Key pair type**, choose either **RSA** or **ED25519**\. Note that **ED25519** keys are not supported for Windows instances\.
+1. For **Key pair type**, choose either **RSA** or **ED25519**\.
 
 1. For **Private key file format**, choose the format in which to save the private key\. To save the private key in a format that can be used with OpenSSH, choose **pem**\. To save the private key in a format that can be used with PuTTY, choose **ppk**\.
-
-   If you chose **ED25519** in the previous step, the **Private key file format** options do not appear, and the private key format defaults to **pem**\.
 
 1. To add a tag to the public key, choose **Add tag**, and enter the key and value for the tag\. Repeat for each tag\. 
 
@@ -58,14 +56,17 @@ This is the only chance for you to save the private key file\.
 
    For `--key-type`, specify either `rsa` or `ed25519`\. If you do not include the `--key-type` parameter, an `rsa` key is created by default\. Note that ED25519 keys are not supported for Windows instances\.
 
+   For `--key-format`, specify either `pem` or `ppk`\. If you do not include the `--key-format` parameter, a `pem` file is created by default\.
+
    `--query "KeyMaterial"` prints the private key material to the output\.
 
-   `--output text > my-key-pair.pem` saves the private key material in a file with the `.pem` extension\. The private key can have a name that's different from the public key name, but for ease of use, use the same name\.
+   `--output text > my-key-pair.pem` saves the private key material in a file with the specified extension\. The extension can be either `.pem` or `.ppk`\. The private key can have a name that's different from the public key name, but for ease of use, use the same name\.
 
    ```
    aws ec2 create-key-pair \
        --key-name my-key-pair \
        --key-type rsa \
+       --key-format pem \
        --query "KeyMaterial" \
        --output text > my-key-pair.pem
    ```
@@ -82,18 +83,20 @@ This is the only chance for you to save the private key file\.
 #### [ PowerShell ]
 
 **To create a key pair using Amazon EC2**  
-Use the [New\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) AWS Tools for Windows PowerShell command as follows to generate the key and save it to a `.pem` file\.
+Use the [New\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) AWS Tools for Windows PowerShell command as follows to generate the key and save it to a `.pem` or `.ppk` file\.
 
 For `-KeyName`, specify a name for the public key\. The name can be up to 255 ASCII characters\.
 
 For `-KeyType`, specify either `rsa` or `ed25519`\. If you do not include the `-KeyType` parameter, an `rsa` key is created by default\. Note that ED25519 keys are not supported for Windows instances\.
 
+For `-KeyFormat`, specify either `pem` or `ppk`\. If you do not include the `-KeyFormat` parameter, a `pem` file is created by default\.
+
 `KeyMaterial` prints the private key material to the output\.
 
-`Out-File -Encoding ascii -FilePath C:\path\my-key-pair.pem` saves the private key material in a file with the `.pem` extension\. The private key can have a name that's different from the public key name, but for ease of use, use the same name\.
+`Out-File -Encoding ascii -FilePath C:\path\my-key-pair.pem` saves the private key material in a file with the the specified extension\. The extension can be `.pem` or `.ppk`\. The private key can have a name that's different from the public key name, but for ease of use, use the same name\.
 
 ```
-PS C:\> (New-EC2KeyPair -KeyName "my-key-pair" -KeyType "rsa").KeyMaterial | Out-File -Encoding ascii -FilePath C:\path\my-key-pair.pem
+PS C:\> (New-EC2KeyPair -KeyName "my-key-pair" -KeyType "rsa" -KeyFormat "pem").KeyMaterial | Out-File -Encoding ascii -FilePath C:\path\my-key-pair.pem
 ```
 
 ------
@@ -104,10 +107,11 @@ Instead of using Amazon EC2 to create a key pair, you can create an RSA or ED255
 
 **Requirements for key pairs**
 + Supported types: RSA and ED25519\. Amazon EC2 does not accept DSA keys\.
-  + Note that ED25519 keys are not supported for Windows instances\.
+**Note**  
+ED25519 keys are not supported for Windows instances\.
 + Supported formats:
   + OpenSSH public key format \(the format in `~/.ssh/authorized_keys`\)\. If you connect using SSH while using the EC2 Instance Connect API, the SSH2 format is also supported\.
-  + SSH private key file format must be PEM
+  + SSH private key file format must be PEM or PPK
   + \(RSA only\) Base64 encoded DER format
   + \(RSA only\) SSH public key file format as specified in [RFC 4716](https://www.ietf.org/rfc/rfc4716.txt)
 + Supported lengths: 1024, 2048, and 4096\. If you connect using SSH while using the EC2 Instance Connect API, the supported lengths are 2048 and 4096\.
@@ -116,11 +120,11 @@ Instead of using Amazon EC2 to create a key pair, you can create an RSA or ED255
 
 1. Generate a key pair with a third\-party tool of your choice\. For example, you can use ssh\-keygen \(a tool provided with the standard OpenSSH installation\)\. Alternatively, Java, Ruby, Python, and many other programming languages provide standard libraries that you can use to create an RSA or ED25519 key pair\.
 **Important**  
-The private key must be in the PEM format\. For example, use `ssh-keygen -m PEM` to generate the OpenSSH key in the PEM format\.
+The private key must be in the PEM or PPK format\. For example, use `ssh-keygen -m PEM` to generate the OpenSSH key in the PEM format\.
 
 1. Save the public key to a local file\. For example, `~/.ssh/my-key-pair.pub`\. The file name extension for this file is not important\.
 
-1. Save the private key to a local file that has the `.pem` extension\. For example, `~/.ssh/my-key-pair.pem`\.
+1. Save the private key to a local file that has the `.pem` or `.ppk` extension\. For example, `~/.ssh/my-key-pair.pem` or `~/.ssh/my-key-pair.ppk`\.
 **Important**  
 Save the private key file in a safe place\. You'll need to provide the name of your public key when you launch an instance, and the corresponding private key each time you connect to the instance\.
 

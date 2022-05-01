@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Describe public keys](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/describe-keys.html) | You can query the public key and creation date of an Amazon EC2 key pair\. | April 28, 2022 | 
+| [Create key pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html#having-ec2-create-your-key-pair) | You can specify the key format \(PEM or PPK\) when creating a new key pair\. | April 28, 2022 | 
 | [I4i instances](#DocumentHistory) | New storage optimized instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | April 27, 2022 | 
 | [Mount Amazon FSx file systems at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/storage_fsx.html) | You can mount a new or existing Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS file system at launch using the new launch instance wizard\. | April 12, 2022 | 
 | [New launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html) | A new and improved launch experience in the Amazon EC2 console, providing a quicker and easier way to launch an EC2 instance\. | April 5, 2022 | 
