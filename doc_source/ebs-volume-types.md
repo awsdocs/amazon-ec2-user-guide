@@ -77,11 +77,11 @@ The maximum ratio of provisioned IOPS to provisioned volume size is 500 IOPS per
 + 32 GiB or larger: 500 IOPS/GiB × 32 GiB = 16,000 IOPS
 + 8 GiB or larger and 4,000 IOPS or higher: 4,000 IOPS × 0\.25 MiB/s/IOPS = 1,000 MiB/s
 
-When attached to EBS\-optimized instances, `gp3` volumes deliver within 10% of their provisioned IOPS performance 99% of the time in a given year\.
+When attached to EBS\-optimized instances, `gp3` volumes deliver at least 90% of their provisioned IOPS performance 99% of the time in a given year\.
 
 ## General Purpose SSD volumes \(gp2\)<a name="EBSVolumeTypes_gp2"></a>
 
-General Purpose SSD \(`gp2`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver single\-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time\. Between a minimum of 100 IOPS \(at 33\.33 GiB and below\) and a maximum of 16,000 IOPS \(at 5,334 GiB and above\), baseline performance scales linearly at 3 IOPS per GiB of volume size\. When attached to EBS\-optimized instances, `gp2` volumes deliver within 10% of their provisioned IOPS performance 99% of the time in a given year\. A `gp2` volume can range in size from 1 GiB to 16 TiB\.
+General Purpose SSD \(`gp2`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver single\-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time\. Between a minimum of 100 IOPS \(at 33\.33 GiB and below\) and a maximum of 16,000 IOPS \(at 5,334 GiB and above\), baseline performance scales linearly at 3 IOPS per GiB of volume size\. When attached to EBS\-optimized instances, `gp2` volumes deliver at least 90% of their provisioned IOPS performance 99% of the time in a given year\. A `gp2` volume can range in size from 1 GiB to 16 TiB\.
 
 ### I/O Credits and burst performance<a name="IOcredit"></a>
 
@@ -171,7 +171,7 @@ V  =  -----
 
 ## Provisioned IOPS SSD volumes<a name="EBSVolumeTypes_piops"></a>
 
-Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume\. When attached to EBS\-optimized instances, Provisioned IOPS SSD \(`io1` and `io2`\) volumes deliver within 10% of the provisioned IOPS performance 99\.9% of the time in a given year\.
+Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume\. When attached to EBS\-optimized instances, Provisioned IOPS SSD \(`io1` and `io2`\) volumes deliver at least 90% of the provisioned IOPS performance 99\.9% of the time in a given year\.
 
 `io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
 
@@ -260,7 +260,7 @@ Throughput Optimized HDD \(`st1`\) volumes, though similar to Cold HDD \(`sc1`\)
 
 This volume type is optimized for workloads involving large, sequential I/O, and we recommend that customers with workloads performing small, random I/O use `gp2`\. For more information, see [Inefficiency of small read/writes on HDD](#inefficiency)\.
 
-Throughput Optimized HDD \(`st1`\) volumes attached to EBS\-optimized instances are designed to offer consistent performance, delivering within 10% of the expected throughput performance 99% of the time in a given year\.
+Throughput Optimized HDD \(`st1`\) volumes attached to EBS\-optimized instances are designed to offer consistent performance, delivering at least 90% of the expected throughput performance 99% of the time in a given year\.
 
 ### Throughput credits and burst performance<a name="ST1ThroughputBurst"></a>
 
@@ -339,7 +339,7 @@ Cold HDD \(`sc1`\) volumes, though similar to Throughput Optimized HDD \(`st1`\)
 **Note**  
 This volume type is optimized for workloads involving large, sequential I/O, and we recommend that customers with workloads performing small, random I/O use `gp2`\. For more information, see [Inefficiency of small read/writes on HDD](#inefficiency)\.
 
-Cold HDD \(`sc1`\) volumes attached to EBS\-optimized instances are designed to offer consistent performance, delivering within 10% of the expected throughput performance 99% of the time in a given year\.
+Cold HDD \(`sc1`\) volumes attached to EBS\-optimized instances are designed to offer consistent performance, delivering at least 90% of the expected throughput performance 99% of the time in a given year\.
 
 ### Throughput credits and burst performance<a name="SC1ThroughputBurst"></a>
 

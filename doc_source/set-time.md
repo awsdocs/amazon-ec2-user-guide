@@ -266,6 +266,12 @@ This information applies to Amazon Linux\. For information about other distribut
    [ec2-user ~]$ sudo timedatectl set-timezone America/Vancouver
    ```
 
+1. \(Optional\) Confirm that the current time zone is updated to the new time zone by running the timedatectl command again\.
+
+   ```
+   [ec2-user ~]$ timedatectl
+   ```
+
 **To change the time zone on an Amazon Linux instance**
 
 1. Identify the time zone to use on the instance\. The `/usr/share/zoneinfo` directory contains a hierarchy of time zone data files\. Browse the directory structure at that location to find a file for your time zone\.

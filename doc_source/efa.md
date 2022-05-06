@@ -50,7 +50,7 @@ EFA supports the following interfaces and libraries:
 The following instance types support EFAs:
 + General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.48xlarge` \| `m6a.metal` \| `m6i.32xlarge` \| `m6i.metal` 
 + Compute optimized: `c5n.18xlarge` \| `c5n.9xlarge` \| `c5n.metal` \| `c6a.48xlarge` \| `c6a.metal`  \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal`  \| `hpc6a.48xlarge`
-+ Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `x2d.32xlarge` \| `x2ed.32xlarge` \| `x2iezn.12xlarge` \| `x2iezn.metal`
++ Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `x2d.32xlarge` \| `x2d.metal` \| `x2ed.32xlarge` \| `x2ed.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal`
 + Storage optimized: `i3en.24xlarge` \| `i3en.12xlarge` \| `i3en.metal` \| `i4i.32xlarge`  \| `im4gn.16xlarge` 
 + Accelerated computing: `dl1.24xlarge` \|  `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
 

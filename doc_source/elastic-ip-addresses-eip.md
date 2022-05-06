@@ -216,8 +216,8 @@ The `New-EC2Tag` command needs a `Tag` parameter, which specifies the key and va
 
 ```
 PS C:\> $tag = New-Object Amazon.EC2.Model.Tag
-PS C:\> $tag.Key = "Owner"
-PS C:\> $tag.Value = "TeamA"
+	PS C:\> $tag.Key = "Owner"
+	PS C:\> $tag.Value = "TeamA"
 ```
 
 ```
@@ -421,8 +421,17 @@ If you intend to send email to third parties from an instance, we recommend that
 **Considerations**
 + Before you create a reverse DNS record, you must set a corresponding forward DNS record \(record type A\) that points to your Elastic IP address\.
 + If a reverse DNS record is associated with an Elastic IP address, the Elastic IP address is locked to your account and cannot be released from your account until the record is removed\.
++ 
 
-**To create a reverse DNS record using the console**
+**AWS GovCloud \(US\) Region**  
+You can't create a reverse DNS record using the console or AWS CLI\. AWS must assign the static reverse DNS records for you\. Open [Request to remove reverse DNS and email sending limitations](https://console.aws.amazon.com/support/contacts?#/rdns-limits) and provide us with your Elastic IP addresses and reverse DNS records\.
+
+### Create a reverse DNS record<a name="eip-create-rdns-record"></a>
+
+To create a reverse DNS record, choose the tab that matches your preferred method\.
+
+------
+#### [ Console ]
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -436,10 +445,35 @@ If you intend to send email to third parties from an instance, we recommend that
 
 1. Choose **Update**\.
 
-**To create a reverse DNS record using the AWS CLI**  
-Use the [modify\-address\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-address-attribute.html) AWS CLI command\.
+------
+#### [ AWS CLI ]
 
-**To remove a reverse DNS record using the console**
+Use the [modify\-address\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-address-attribute.html) command in the AWS CLI, as shown in the following example:
+
+```
+aws ec2 modify-address-attribute --allocation-id eipalloc-abcdef01234567890  --domain-name example.com
+{
+    "Addresses": [
+        {
+            "PublicIp": "192.0.2.0",
+            "AllocationId": "eipalloc-abcdef01234567890",
+            "PtrRecord": "example.net."
+            "PtrRecordUpdate": {
+                "Value": "example.com.",
+                "Status": "PENDING"
+        }
+    ]
+}
+```
+
+------
+
+### Remove a reverse DNS record<a name="w1466aac23c22c17b9"></a>
+
+To remove a reverse DNS record, choose the tab that matches your preferred method\.
+
+------
+#### [ Console ]
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -453,11 +487,32 @@ Use the [modify\-address\-attribute](https://docs.aws.amazon.com/cli/latest/refe
 
 1. Choose **Update**\.
 
-**To remove a reverse DNS record using the AWS CLI**  
-Use the [reset\-address\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/reset-address-attribute.html) AWS CLI command\.
+------
+#### [ AWS CLI ]
 
-**AWS GovCloud \(US\) Region**  
-You can't create a reverse DNS record using the methods above\. AWS must assign the static reverse DNS records for you\. Open [Request to remove reverse DNS and email sending limitations](https://console.aws.amazon.com/support/contacts?#/rdns-limits) and provide us with your Elastic IP addresses and reverse DNS records\.
+Use the [reset\-address\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/reset-address-attribute.html) command in the AWS CLI, as shown in the following example:
+
+```
+aws ec2 reset-address-attribute --allocation-id eipalloc-abcdef01234567890 --attribute domain-name
+{
+    "Addresses": [
+        {
+            "PublicIp": "192.0.2.0",
+            "AllocationId": "eipalloc-abcdef01234567890",
+            "PtrRecord": "example.com."
+            "PtrRecordUpdate": {
+                "Value": "example.net.",
+                "Status": "PENDING"
+        }
+    ]
+}
+```
+
+**Note**  
+If you receive the following error when you run the command, you can submit a [Request to remove email sending limitations](http://aws.amazon.com/forms/ec2-email-limit-rdns-request) to customer support for assistance\.  
+*The address with allocation id cannot be released because it is locked to your account*\.
+
+------
 
 ## Elastic IP address limit<a name="using-instance-addressing-limit"></a>
 

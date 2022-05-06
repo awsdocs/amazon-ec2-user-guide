@@ -2,7 +2,7 @@
 
 An Amazon EBS–optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
 
-EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2` and `gp3`\) volumes are designed to deliver within 10% of their provisioned IOPS performance 99% of the time in a given year, and Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to deliver within 10% of their provisioned IOPS performance 99\.9% of the time in a given year\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) deliver within 10% of their expected throughput performance 99% of the time in a given year\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
+EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2` and `gp3`\) volumes are designed to deliver at least 90% of their provisioned IOPS performance 99% of the time in a given year, and Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to deliver at least 90% of their provisioned IOPS performance 99\.9% of the time in a given year\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) deliver at least 90% of their expected throughput performance 99% of the time in a given year\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
 **Topics**
 + [Supported instance types](#ebs-optimization-support)
@@ -170,6 +170,7 @@ You can also view this information programatically using the AWS CLI\. For more 
 | g5g\.4xlarge | 4,750 | 593\.75 | 20,000 | 
 | g5g\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | g5g\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| g5g\.metal | 19,000 | 2,375 | 80,000 | 
 | h1\.2xlarge | 1,750 | 218\.75 | 12,000 | 
 | h1\.4xlarge | 3,500 | 437\.5 | 20,000 | 
 | h1\.8xlarge | 7,000 | 875 | 40,000 | 
@@ -475,6 +476,7 @@ You can also view this information programatically using the AWS CLI\. For more 
 | x2idn\.16xlarge | 40,000 | 5,000 | 130,000 | 
 | x2idn\.24xlarge | 60,000 | 7,500 | 195,000 | 
 | x2idn\.32xlarge | 80,000 | 10,000 | 260,000 | 
+| x2idn\.metal | 80,000 | 10,000 | 260,000 | 
 | x2iedn\.xlarge \* | 20,000 | 2,500 | 65,000 | 
 | x2iedn\.2xlarge \* | 20,000 | 2,500 | 65,000 | 
 | x2iedn\.4xlarge \* | 20,000 | 2,500 | 65,000 | 
@@ -482,6 +484,7 @@ You can also view this information programatically using the AWS CLI\. For more 
 | x2iedn\.16xlarge | 40,000 | 5,000 | 130,000 | 
 | x2iedn\.24xlarge | 60,000 | 7,500 | 195,000 | 
 | x2iedn\.32xlarge | 80,000 | 10,000 | 260,000 | 
+| x2iedn\.metal | 80,000 | 10,000 | 260,000 | 
 | x2iezn\.2xlarge | 3,170 | 396\.25 | 13,333 | 
 | x2iezn\.4xlarge | 4,750 | 593\.75 | 20,000 | 
 | x2iezn\.6xlarge | 9,500 | 1,187\.5 | 40,000 | 

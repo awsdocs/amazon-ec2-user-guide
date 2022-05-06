@@ -12,6 +12,7 @@ If you decide that you no longer need an instance, you can terminate it\. As soo
 + [Overview](#instance_stop)
 + [What happens when you stop an instance](#what-happens-stop)
 + [Stop and start your instances](#starting-stopping-instances)
++ [Stop and start your instances on a schedule](#stop-start-ec2-instances-on-a-schedule)
 + [Modify a stopped instance](#Using_ChangingAttributesWhileInstanceStopped)
 + [Troubleshoot stopping your instance](#troubleshoot-instance-stop)
 
@@ -119,6 +120,16 @@ You can use one of the following commands\. For more information about these com
 
 **To run a controlled fault injection experiment**  
 You can use AWS Fault Injection Simulator to test how your application responds when your instance is stopped and started\. For more information, see the [AWS Fault Injection Simulator User Guide](https://docs.aws.amazon.com/fis/latest/userguide)\.
+
+## Stop and start your instances on a schedule<a name="stop-start-ec2-instances-on-a-schedule"></a>
+
+You can schedule the stopping and starting of your EC2 instances\. The following are two options for configuring this process\.
+
+**Use Instance Scheduler on AWS**  
+You can use Instance Scheduler on AWS to automate the starting and stopping of EC2 instances\. For more information, see [How do I use Instance Scheduler with CloudFormation to schedule EC2 instances?](http://aws.amazon.com/premiumsupport/knowledge-center/stop-start-instance-scheduler/) Note that [additional charges apply](https://docs.aws.amazon.com/solutions/latest/instance-scheduler-on-aws/cost.html)\. 
+
+**Use AWS Lambda and an Amazon EventBridge rule**  
+You can use Lambda and an EventBridge rule to stop and start your instances on a schedule\. For more information, see [How do I stop and start Amazon EC2 instances at regular intervals using Lambda?](http://aws.amazon.com/premiumsupport/knowledge-center/start-stop-lambda-eventbridge/)
 
 ## Modify a stopped instance<a name="Using_ChangingAttributesWhileInstanceStopped"></a>
 

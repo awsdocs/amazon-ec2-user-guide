@@ -180,6 +180,7 @@ The following is a summary of the hardware specifications for accelerated comput
 | g5g\.4xlarge | 16 | 32 | 1 | 
 | g5g\.8xlarge | 32 | 64 | 1 | 
 | g5g\.16xlarge | 64 | 128 | 2 | 
+| g5g\.metal | 64 | 128 | 2 | 
 | inf1\.xlarge | 4 | 8 | 1 | 
 | inf1\.2xlarge | 8 | 16 | 1 | 
 | inf1\.6xlarge | 24 | 48 | 4 | 
@@ -222,7 +223,7 @@ The following is a summary of network performance for accelerated computing inst
 | g5g\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g4ad\.8xlarge | 15 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.4xlarge and smaller \| g5\.4xlarge  \| inf1\.2xlarge and smaller  \| vt1\.3xlarge  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| g5\.8xlarge \| g5\.16xlarge \| g5g\.16xlarge \|  inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  \| vt1\.6xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| g5\.8xlarge \| g5\.16xlarge \| g5g\.16xlarge \| g5g\.metal \|  inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  \| vt1\.6xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g5\.12xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g5\.24xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.metal \| g5\.48xlarge \| inf1\.24xlarge \| p3dn\.24xlarge  \| vt1\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 

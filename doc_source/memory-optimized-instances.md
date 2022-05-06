@@ -230,6 +230,7 @@ The following is a summary of the hardware specifications for memory optimized i
 | x2idn\.16xlarge | 64 | 1,024 | 
 | x2idn\.24xlarge | 96 | 1,536 | 
 | x2idn\.32xlarge | 128 | 2,048 | 
+| x2idn\.metal | 128 | 2,048 | 
 | x2iedn\.xlarge | 4 | 128 | 
 | x2iedn\.2xlarge | 8 | 256 | 
 | x2iedn\.4xlarge | 16 | 512 | 
@@ -237,6 +238,7 @@ The following is a summary of the hardware specifications for memory optimized i
 | x2iedn\.16xlarge | 64 | 2,048 | 
 | x2iedn\.24xlarge | 96 | 3,072 | 
 | x2iedn\.32xlarge | 128 | 4,096 | 
+| x2iedn\.metal | 128 | 4,096 | 
 | x2iezn\.2xlarge | 8 | 256 | 
 | x2iezn\.4xlarge | 16 | 512 | 
 | x2iezn\.6xlarge | 24 | 768 | 
@@ -288,11 +290,11 @@ The following is a summary of network performance for memory optimized instances
 |  r6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5b\.16xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  \| x2gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller \| x2iedn\.4xlarge and smaller \| x2iezn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  r6i\.16xlarge \| x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \|  x2gd\.metal \|  x2iedn\.8xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  r6i\.16xlarge \| x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \| x2gd\.metal \|  x2iedn\.8xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.12xlarge \| r5n\.12xlarge \| r6i\.32xlarge \| r6i\.metal \| u\-3tb1\.56xlarge \| x2idn\.16xlarge \| x2iedn\.16xlarge \| x2iezn\.6xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.16xlarge \| r5n\.16xlarge \| x2idn\.24xlarge \| x2iedn\.24xlarge \| x2iezn\.8xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal \| x2idn\.32xlarge \| x2iedn\.32xlarge \| x2iezn\.12xlarge \| x2iezn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal \| x2idn\.32xlarge \| x2idn\.metal \| x2iedn\.32xlarge \| x2iedn\.metal \| x2iezn\.12xlarge \| x2iezn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 \* Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
 
@@ -422,6 +424,7 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | x2idn\.16xlarge | 430,000 | 180,000 | 
 | x2idn\.24xlarge | 645,000 | 270,000 | 
 | x2idn\.32xlarge | 860,000 | 360,000 | 
+| x2idn\.metal | 860,000 | 360,000 | 
 | x2iedn\.xlarge | 26,875 | 11,250 | 
 | x2iedn\.2xlarge | 53,750 | 22,500 | 
 | x2iedn\.4xlarge | 107,500 | 45,000 | 
@@ -429,6 +432,7 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | x2iedn\.16xlarge | 430,000 | 180,000 | 
 | x2iedn\.24xlarge | 645,000 | 270,000 | 
 | x2iedn\.32xlarge | 860,000 | 360,000 | 
+| x2iedn\.metal | 860,000 | 360,000 | 
 | z1d\.large | 30,000 | 15,000 | 
 | z1d\.xlarge | 59,000 | 29,000 | 
 | z1d\.2xlarge | 117,000 | 57,000 | 

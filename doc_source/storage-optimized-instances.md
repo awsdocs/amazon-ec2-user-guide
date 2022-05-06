@@ -259,7 +259,7 @@ For instance store volumes that support TRIM, you can use the TRIM command to no
 
 ## Instance features<a name="storage-instances-features"></a>
 
-The following is a summary of features for storage optimized instances:
+The following is a summary of features for storage optimized instances\.
 
 
 |  | EBS only | Instance store | Placement group | 
