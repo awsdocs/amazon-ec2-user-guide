@@ -74,11 +74,7 @@ For more information, see [Amazon EC2 Im4gn and Is4gen Instances](https://aws.am
 
 ## Hardware specifications<a name="storage-instances-hardware"></a>
 
-The primary data storage for D2, D3, and D3en instances is HDD instance store volumes\. The primary data storage for I3 and I3en instances is non\-volatile memory express \(NVMe\) SSD instance store volumes\.
-
-Instance store volumes persist only for the life of the instance\. When you stop, hibernate, or terminate an instance, the applications and data in its instance store volumes are erased\. We recommend that you regularly back up or replicate important data in your instance store volumes\. For more information, see [Amazon EC2 instance store](InstanceStorage.md) and [SSD instance store volumes](ssd-instance-store.md)\.
-
-The following is a summary of the hardware specifications for storage optimized instances\.
+The following is a summary of the hardware specifications for storage optimized instances\. A virtual central processing unit \(vCPU\) represents a portion of the physical CPU assigned to a virtual machine \(VM\)\. For x86 instances, there are two vCPUs per core\. For Graviton instances, there is one vCPU per core\.
 
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
@@ -137,9 +133,7 @@ The following is a summary of the hardware specifications for storage optimized 
 | is4gen\.4xlarge | 16 | 96 | 
 | is4gen\.8xlarge | 32 | 192 | 
 
-For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
-
-For more information about specifying CPU options, see [Optimize CPU options](instance-optimize-cpu.md)\.
+For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 ## Instance performance<a name="storage-performance"></a>
 
@@ -210,6 +204,10 @@ The following is a summary of network performance for storage optimized instance
 | is4gen\.2xlarge | 12\.5 | 25 | 
 
 ## SSD I/O performance<a name="storage-instances-diskperf"></a>
+
+The primary data storage for D2, D3, and D3en instances is HDD instance store volumes\. The primary data storage for I3 and I3en instances is non\-volatile memory express \(NVMe\) SSD instance store volumes\.
+
+Instance store volumes persist only for the life of the instance\. When you stop, hibernate, or terminate an instance, the applications and data in its instance store volumes are erased\. We recommend that you regularly back up or replicate important data in your instance store volumes\. For more information, see [Amazon EC2 instance store](InstanceStorage.md) and [SSD instance store volumes](ssd-instance-store.md)\.
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 

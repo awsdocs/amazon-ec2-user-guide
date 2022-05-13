@@ -22,3 +22,4 @@ This documentation helps you understand how to apply the shared responsibility m
 + [Access Amazon EC2 using an interface VPC endpoint](interface-vpc-endpoints.md)
 + [Update management in Amazon EC2](update-management.md)
 + [Compliance validation for Amazon EC2](compliance-validation.md)
++ [NitroTPM](nitrotpm.md)

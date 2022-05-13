@@ -11,6 +11,7 @@ For information about getting the statistics for these metrics, see [Get statist
 + [Amazon EBS metrics for Nitro\-based instances](#ebs-metrics-nitro)
 + [Status check metrics](#status-check-metrics)
 + [Traffic mirroring metrics](#traffic-mirroring-metrics)
++ [Auto Scaling group metrics](#autoscaling-metrics)
 + [Amazon EC2 metric dimensions](#ec2-cloudwatch-dimensions)
 + [Amazon EC2 usage metrics](#service-quota-metrics)
 + [List metrics using the console](#list-ec2-metrics-console)
@@ -85,6 +86,10 @@ The `AWS/EC2` namespace includes the following status check metrics\. By default
 ## Traffic mirroring metrics<a name="traffic-mirroring-metrics"></a>
 
 The `AWS/EC2` namespace includes metrics for mirrored traffic\. For more information, see [Monitor mirrored traffic using Amazon CloudWatch](https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirror-cloudwatch.html) in the *Amazon VPC Traffic Mirroring Guide*\.
+
+## Auto Scaling group metrics<a name="autoscaling-metrics"></a>
+
+The `AWS/AutoScaling` namespace includes metrics for Auto Scaling groups\. For more information, see [Monitor CloudWatch metrics for your Auto Scaling groups and instances](https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirror-cloudwatch.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 ## Amazon EC2 metric dimensions<a name="ec2-cloudwatch-dimensions"></a>
 

@@ -68,7 +68,7 @@ For more information, see [Amazon EC2 Hpc6a Instances](http://aws.amazon.com/ec2
 
 ## Hardware specifications<a name="compute-instances-hardware"></a>
 
-The following is a summary of the hardware specifications for compute optimized instances\.
+The following is a summary of the hardware specifications for compute optimized instances\. A virtual central processing unit \(vCPU\) represents a portion of the physical CPU assigned to a virtual machine \(VM\)\. For x86 instances, there are two vCPUs per core\. For Graviton instances, there is one vCPU per core\.
 
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
@@ -168,9 +168,7 @@ The following is a summary of the hardware specifications for compute optimized 
 | c6i\.metal | 128 | 256 | 
 | hpc6a\.48xlarge | 96 | 384 | 
 
-For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
-
-For more information about specifying CPU options, see [Optimize CPU options](instance-optimize-cpu.md)\.
+For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 ## Instance performance<a name="compute-performance"></a>
 
@@ -321,9 +319,6 @@ For more information, see the following:
 + [Placement groups](placement-groups.md)
 
 ## Release notes<a name="compute-instance-release-notes"></a>
-+ C5 and C5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
-+ C5a and C5ad instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
-+ C6g, C6gd, and C6gn instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + C4 instances and instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
@@ -359,7 +354,6 @@ For more information, see the following:
   + Ubuntu 20\.04 with kernel 5\.4\.0\-1025\-aws
   + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
   + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.3\.18\-24\.15\.1
-+ [Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/) is not supported on C6gn instances\.
 + To launch AMIs for all Linux distributions on C6gn instances, use AMIs with the latest version and run an update for the latest driver\. For earlier versions, download the latest driver from [GitHub](https://github.com/amzn/amzn-drivers/tree/master/kernel/linux/ena)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:

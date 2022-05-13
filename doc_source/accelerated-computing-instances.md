@@ -140,7 +140,7 @@ For more information, see [Amazon EC2 F1 Instances](https://aws.amazon.com/ec2/i
 
 ## Hardware specifications<a name="gpu-instance-specifications"></a>
 
-The following is a summary of the hardware specifications for accelerated computing instances\.
+The following is a summary of the hardware specifications for accelerated computing instances\. A virtual central processing unit \(vCPU\) represents a portion of the physical CPU assigned to a virtual machine \(VM\)\. For x86 instances, there are two vCPUs per core\. For Graviton instances, there is one vCPU per core\.
 
 
 | Instance type | Default vCPUs | Memory \(GiB\) | Accelerators | 
@@ -197,9 +197,7 @@ The following is a summary of the hardware specifications for accelerated comput
 | vt1\.6xlarge | 24 | 48 | 4 | 
 | vt1\.24xlarge | 96 | 192 | 16 | 
 
-For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
-
-For more information about specifying CPU options, see [Optimize CPU options](instance-optimize-cpu.md)\.
+For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 ## Instance performance<a name="gpu-instance-performance"></a>
 

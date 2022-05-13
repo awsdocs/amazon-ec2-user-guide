@@ -1,0 +1,3 @@
+# Prerequisites<a name="enable-nitrotpm-prerequisites"></a>
++ NitroTPM requires that an instance runs in UEFI boot mode, which requires that the AMI must be configured for UEFI boot mode\. For more information, see [UEFI Secure Boot](uefi-secure-boot.md)\.
++ The AMI must include an operating system with a TPM 2\.0 CRB driver\. Most current operating systems, such as Amazon Linux 2, contain a TPM 2\.0 CRB driver\.

@@ -102,7 +102,7 @@ For more information, see [Amazon EC2 z1d Instances](https://aws.amazon.com/ec2/
 
 ## Hardware specifications<a name="memory-instances-hardware"></a>
 
-The following is a summary of the hardware specifications for memory optimized instances\.
+The following is a summary of the hardware specifications for memory optimized instances\. A virtual central processing unit \(vCPU\) represents a portion of the physical CPU assigned to a virtual machine \(VM\)\. For x86 instances, there are two vCPUs per core\. For Graviton instances, there is one vCPU per core\.
 
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
@@ -255,9 +255,7 @@ The following is a summary of the hardware specifications for memory optimized i
 
 \* Each logical processor is a hyperthread on 224 cores\.
 
-For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
-
-For more information about specifying CPU options, see [Optimize CPU options](instance-optimize-cpu.md)\.
+For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 ## Memory performance<a name="memory-perf"></a>
 
@@ -501,14 +499,6 @@ The following AMIs support launching memory optimized instances:
 + Windows Server 2008 SP2 64\-bit
 
 ## Release notes<a name="memory-instance-limits"></a>
-+ R4 instances feature up to 64 vCPUs and are powered by two AWS\-customized Intel XEON processors based on E5\-2686v4 that feature high\-memory bandwidth and larger L3 caches to boost the performance of in\-memory applications\.
-+ R5, R5b, and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
-+ R5a and R5ad instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
-+ R6g and R6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
-+ High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\) are the first instances to be powered by an eight\-socket platform with the latest generation Intel Xeon Platinum 8176M \(Skylake\) processors that are optimized for mission\-critical enterprise workloads\. High Memory instances with 18 TB and 24 TB of memory \(`u-18tb1.metal` and `u-24tb1.metal`\) are the first instances powered by an 8\-socket platform with 2nd Generation Intel Xeon Scalable 8280L \(Cascade Lake\) processors\.
-+ X1e and X1 instances feature up to 128 vCPUs and are powered by four Intel Xeon E7\-8880 v3 processors that feature high\-memory bandwidth and larger L3 caches to boost the performance of in\-memory applications\.
-+ X2idn and X2iedn instances feature Intel Xeon Scalable processors \(Ice Lake\)\. They are certified by SAP for running Business Suite on HANA, SAP S/4HANA, Data Mart Solutions on HANA, Business Warehouse on HANA, SAP BW/4HANA, and SAP NetWeaver workloads with anyDB in production environments\. For more information, see [Certified and Supported SAP HANA Hardware](https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:23)\.
-+ X2iezn instances feature a custom Intel Xeon Scalable processor \(Cascade Lake\)\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed

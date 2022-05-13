@@ -78,7 +78,7 @@ For more information, see [Amazon EC2 T2 Instances](http://aws.amazon.com/ec2/in
 
 ## Hardware specifications<a name="general-purpose-hardware"></a>
 
-The following is a summary of the hardware specifications for general purpose instances\.
+The following is a summary of the hardware specifications for general purpose instances\. A virtual central processing unit \(vCPU\) represents a portion of the physical CPU assigned to a virtual machine \(VM\)\. For x86 instances, there are two vCPUs per core\. For Graviton instances, there is one vCPU per core\.
 
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
@@ -217,9 +217,7 @@ The following is a summary of the hardware specifications for general purpose in
 | t4g\.xlarge | 4 | 16 | 
 | t4g\.2xlarge | 8 | 32 | 
 
-For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
-
-For more information about specifying CPU options, see [Optimize CPU options](instance-optimize-cpu.md)\.
+For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 ## Instance performance<a name="general-purpose-performance"></a>
 
@@ -410,13 +408,6 @@ For more information, see the following:
 + [Placement groups](placement-groups.md)
 
 ## Release notes<a name="general-purpose-instances-release-notes"></a>
-+ M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
-+ M5a, M5ad, and T3a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
-+ M5zn instances are powered by Intel Cascade Lake CPUs that deliver all\-core turbo frequency of up to 4\.5 GHz and up to 100 Gbps network bandwidth\.
-+ M6g and M6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
-+ M6i instances feature third generation Intel Xeon Scalable processors \(Ice Lake\) and support the Intel Advanced Vector Extensions 512 \(Intel AVX\-512\) instruction set\.
-+ Mac1 instances feature a 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processor\.
-+ T4g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances), M4, `t2.large` and larger, `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
