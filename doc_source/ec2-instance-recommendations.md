@@ -18,7 +18,7 @@ To get recommendations from Compute Optimizer, you must first opt in to Compute 
 
 ## Limitations<a name="compute-optimizer-limitations"></a>
 
-Compute Optimizer currently generates recommendations for M, C, R, T, and X instance types\. Other instance types are not considered by Compute Optimizer\. If you're using other instance types, they will not be listed in the Compute Optimizer recommendations view\. For information about these and other instance types, see [Instance types](instance-types.md)\.
+Compute Optimizer currently generates recommendations for C, D, H, I, M, R, T, X, and z instance types\. Other instance types are not considered by Compute Optimizer\. If you're using other instance types, they will not be listed in the Compute Optimizer recommendations view\. For more information about the supported and unsupported instance types, see [Amazon EC2 instance requirements](https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-ec2-instances) in the *AWS Compute Optimizer User Guide*\.
 
 ## Findings<a name="findings-classifications"></a>
 

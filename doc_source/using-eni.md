@@ -189,6 +189,14 @@ The following table lists the maximum number of network interfaces per instance 
 | c6i\.24xlarge | 15 | 50 | 50 | 
 | c6i\.32xlarge | 15 | 50 | 50 | 
 | c6i\.metal | 15 | 50 | 50 | 
+| c7g\.medium | 2 | 4 | 4 | 
+| c7g\.large | 3 | 10 | 10 | 
+| c7g\.xlarge | 4 | 15 | 15 | 
+| c7g\.2xlarge | 4 | 15 | 15 | 
+| c7g\.4xlarge | 8 | 30 | 30 | 
+| c7g\.8xlarge | 8 | 30 | 30 | 
+| c7g\.12xlarge | 8 | 30 | 30 | 
+| c7g\.16xlarge | 15 | 50 | 50 | 
 | cc2\.8xlarge |  8  |  30  | IPv6 not supported | 
 | cr1\.8xlarge |  8  |  30  | IPv6 not supported | 
 | d2\.xlarge |  4  |  15  | 15 | 
@@ -274,6 +282,7 @@ The following table lists the maximum number of network interfaces per instance 
 | i4i\.8xlarge | 8 | 30 | 30 | 
 | i4i\.16xlarge | 15 | 50 | 50 | 
 | i4i\.32xlarge | 15 | 50 | 50 | 
+| i4i\.metal | 15 | 50 | 50 | 
 | im4gn\.large | 3 | 10 | 10 | 
 | im4gn\.xlarge | 4 | 15 | 15 | 
 | im4gn\.2xlarge | 4 | 15 | 15 | 

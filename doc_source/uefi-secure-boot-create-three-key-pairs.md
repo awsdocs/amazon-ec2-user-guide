@@ -1,6 +1,6 @@
 # Create three key pairs<a name="uefi-secure-boot-create-three-key-pairs"></a>
 
-UEFI Secure Boot is based on the following three key databases, which are used in a chain of trust: the platform key \(PK\), the key exchange key \(KEK\), and the signature database \(db\)\.¹ 
+UEFI Secure Boot is based on the following three key databases, which are used in a chain of trust: the platform key \(PK\), the key exchange key \(KEK\), and the signature database \(db\)\.¹
 
 You create each key on the instance\. To prepare the public keys in a format that is valid for the UEFI Secure Boot standard, you create a certificate for each key\. `DER` defines the SSL format \(binary encoding of a format\)\. You then convert each certificate into a UEFI signature list, which is the binary format that is understood by UEFI Secure Boot\. And finally, you sign each certificate with the relevant key\.
 

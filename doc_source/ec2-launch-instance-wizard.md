@@ -139,7 +139,7 @@ Choose **Browse more AMIs** to browse the full AMI catalog\.
 The instance type defines the hardware configuration and size of the instance\. Larger instance types have more CPU and memory\. For more information, see [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)\.
 + For **Instance type**, select the instance type for the instance\.
 
-  If your AWS account is less than 12 months old, you can use Amazon EC2 under the Free Tier by selecting the **t2\.micro** instance type \(or the **t3\.micro** instance type in Regions where **t2\.micro** is unavailable\)\. For more information about t2\.micro and t3\.micro, see [Burstable performance instances](burstable-performance-instances.md)\.
+  **Free Tier** – If your AWS account is less than 12 months old, you can use Amazon EC2 under the Free Tier by selecting the **t2\.micro** instance type \(or the **t3\.micro** instance type in Regions where **t2\.micro** is unavailable\)\. If an instance type is eligible under the Free Tier, it is labeled **Free tier eligible**\. For more information about t2\.micro and t3\.micro, see [Burstable performance instances](burstable-performance-instances.md)\.
 + **Compare instance types**: You can compare different instance types by the following attributes: number of vCPUs, architecture, amount of memory \(GiB\), amount of storage \(GB\), storage type, and network performance\.
 
 ### Key pair \(login\)<a name="liw-key-pair"></a>

@@ -69,7 +69,7 @@ The AMIs that AWS community members have made available for others to use\. To f
 
 On the **Choose an Instance Type** page, select the hardware configuration and size of the instance to launch\. Larger instance types have more CPU and memory\. For more information, see [Instance types](instance-types.md)\.
 
-To remain eligible for the free tier, choose the **t2\.micro** instance type \(or the **t3\.micro** instance type in Regions where **t2\.micro** is unavailable\)\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\.
+To remain eligible for the free tier, choose the **t2\.micro** instance type \(or the **t3\.micro** instance type in Regions where **t2\.micro** is unavailable\)\. If an instance type is eligible under the Free Tier, it is labeled **Free tier eligible**\. For more information about t2\.micro and t3\.micro, see [Burstable performance instances](burstable-performance-instances.md)\.
 
 By default, the wizard displays current generation instance types, and selects the first available instance type based on the AMI that you selected\. To view previous generation instance types, choose **All generations** from the filter list\.
 

@@ -5,7 +5,7 @@ You can describe the public keys that are stored in Amazon EC2\. You can also re
 **Topics**
 + [Describe public keys](#describe-public-key)
 + [Retrieve the public key material](#retrieving-the-public-key)
-+ [Identify the public key pair specified at launch](#identify-key-pair-specified-at-launch)
++ [Identify the public key specified at launch](#identify-key-pair-specified-at-launch)
 
 ## Describe public keys<a name="describe-public-key"></a>
 
@@ -215,9 +215,9 @@ aws ec2 describe-key-pairs --key-pair-ids key-0123456789example --include-public
 
 ------
 
-## Identify the public key pair specified at launch<a name="identify-key-pair-specified-at-launch"></a>
+## Identify the public key specified at launch<a name="identify-key-pair-specified-at-launch"></a>
 
-If you specify a public key when you launch an instance, the public key pair name is recorded by the instance\.
+If you specify a public key when you launch an instance, the public key name is recorded by the instance\.
 
 **To identify the public key that was specified at launch**
 

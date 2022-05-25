@@ -154,6 +154,7 @@ The following table provides the quantity, size, type, and performance optimizat
 | i4i\.8xlarge | 2 x 3,750 GB \(7\.5 TB\) | NVMe SSD |  | ✔ | 
 | i4i\.16xlarge | 4 x 3,750 GB \(15 TB\) | NVMe SSD |  | ✔ | 
 | i4i\.32xlarge | 8 x 3,750 GB \(30 TB\) | NVMe SSD |  | ✔ | 
+| i4i\.metal | 8 x 3,750 GB \(30 TB\) | NVMe SSD |  | ✔ | 
 | im4gn\.large | 1 x 937 GB | NVMe SSD |  | ✔ | 
 | im4gn\.xlarge | 1 x 1,875 GB | NVMe SSD |  | ✔ | 
 | im4gn\.2xlarge | 1 x 3,750 GB | NVMe SSD |  | ✔ | 

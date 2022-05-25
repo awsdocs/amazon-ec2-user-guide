@@ -68,7 +68,7 @@ The launch template parameters are grouped in the launch template\. The followin
 
 **Topics**
 + [Start launch template creation](#lt-initiate-launch-template)
-+ [Launch template name and description](#lt-name-and-tags)
++ [Launch template name, description, and tags](#lt-name-and-tags)
 + [Application and OS Images \(Amazon Machine Image\)](#lt-ami)
 + [Instance type](#lt-instance-type)
 + [Key pair \(login\)](#lt-key-pair)
@@ -84,13 +84,15 @@ The launch template parameters are grouped in the launch template\. The followin
 
 1. In the navigation pane, choose **Launch Templates**, and then choose **Create launch template**\.
 
-##### Launch template name and description<a name="lt-name-and-tags"></a>
+##### Launch template name, description, and tags<a name="lt-name-and-tags"></a>
 
 1. For **Launch template name**, enter a descriptive name for the launch template\.
 
 1. For **Template version description**, provide a brief description of this version of the launch template\.
 
-1. To tag the launch template on creation, expand **Template tags**, choose **Add tag**, and then enter a tag key and value pair\. Choose **Add tag** again for each additional tag to add\.
+1. To [tag](Using_Tags.md) the launch template on creation, expand **Template tags**, choose **Add tag**, and then enter a tag key and value pair\. Choose **Add tag** again for each additional tag to add\.
+**Note**  
+To tag the resources that are created when an instance is launched, you must specify the tags under **Resource tags**\. For more information, see [Resource tags](#lt-resource-tags)\.
 
 ##### Application and OS Images \(Amazon Machine Image\)<a name="lt-ami"></a>
 
@@ -217,7 +219,17 @@ By using the **Advanced** view, you can configure each volume as follows:
 
 ##### Resource tags<a name="lt-resource-tags"></a>
 
-For **Resource tags**, specify [tags](Using_Tags.md) by providing key and value combinations\. You can tag instances, volumes, elastic graphics, Spot Instance requests, and network interfaces\.
+To [tag](Using_Tags.md) the resources that are created when an instance is launched, under **Resource tags**, choose **Add tag**, and then enter a tag key and value pair\. For **Resource types**, specify the resources to tag on creation\. You can specify the same tag for all the resources, or specify different tags for different resources\. Choose **Add tag** again for each additional tag to add\.
+
+You can specify tags for the following resources that are created when a launch template is used:
++ Instances
++ Volumes
++ Elastic graphics
++ Spot Instance requests
++ Network interfaces
+
+**Note**  
+To tag the launch template itself, you must specify the tags under **Template tags**\. For more information, see [Launch template name, description, and tags](#lt-name-and-tags)\.
 
 ##### Advanced details<a name="lt-advanced-details"></a>
 

@@ -1,6 +1,6 @@
-# Determine whether Amazon EC2 interrupted a Spot Instance<a name="BidEvictedEvent"></a>
+# Determine whether Amazon EC2 terminated a Spot Instance<a name="BidEvictedEvent"></a>
 
-If a Spot Instance is stopped, hibernated, or terminated, you can use CloudTrail to see whether Amazon EC2 interrupted the Spot Instance\. In AWS CloudTrail, the event name `BidEvictedEvent` indicates that Amazon EC2 interrupted the Spot Instance\.
+If a Spot Instance is terminated, you can use CloudTrail to see whether Amazon EC2 terminated the Spot Instance\. In AWS CloudTrail, the event name `BidEvictedEvent` indicates that Amazon EC2 terminated the Spot Instance\.
 
 
 

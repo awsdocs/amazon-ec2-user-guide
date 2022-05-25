@@ -139,9 +139,9 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 ## User data and cloud\-init directives<a name="user-data-cloud-init"></a>
 
-The cloud\-init package configures specific aspects of a new Amazon Linux instance when it is launched; most notably, it configures the `.ssh/authorized_keys` file for the ec2\-user so you can log in with your own private key\. For more information, see [cloud\-init](amazon-linux-ami-basics.md#amazon-linux-cloud-init)\.
+The cloud\-init package configures specific aspects of a new Amazon Linux instance when it is launched; most notably, it configures the `.ssh/authorized_keys` file for the ec2\-user so you can log in with your own private key\. For more information about the configuration tasks that the cloud\-init package performs for Amazon Linux instances, see [cloud\-init](amazon-linux-ami-basics.md#amazon-linux-cloud-init)\.
 
-The cloud\-init user directives can be passed to an instance at launch the same way that a script is passed, although the syntax is different\. For more information about cloud\-init, go to [http://cloudinit\.readthedocs\.org/en/latest/index\.html](http://cloudinit.readthedocs.org/en/latest/index.html)\.
+The cloud\-init user directives can be passed to an instance at launch the same way that a script is passed, although the syntax is different\. For more information about cloud\-init, see [http://cloudinit\.readthedocs\.org/en/latest/index\.html](http://cloudinit.readthedocs.org/en/latest/index.html)\.
 
 **Important**  
 By default, user data scripts and cloud\-init directives run only during the boot cycle when you first launch an instance\. You can update your configuration to ensure that your user data scripts and cloud\-init directives run every time you restart your instance\. For more information, see [How can I utilize user data to automatically run a script with every restart of my Amazon EC2 Linux instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
@@ -177,7 +177,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 1. Allow enough time for the instance to launch and run the directives in your user data, and then check to see that your directives have completed the tasks you intended\.
 
-   For our example, in a web browser, enter the URL of the PHP test file the directives created\. This URL is the public DNS address of your instance followed by a forward slash and the file name\.
+   For this example, in a web browser, enter the URL of the PHP test file the directives created\. This URL is the public DNS address of your instance followed by a forward slash and the file name\.
 
    ```
    http://my.public.dns.amazonaws.com/phpinfo.php

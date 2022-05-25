@@ -527,7 +527,7 @@ To resolve the error, you must run the `eic_harvest_hostkeys` script on your ins
 
 If you lose the private key for an EBS\-backed instance, you can regain access to your instance\. You must stop the instance, detach its root volume and attach it to another instance as a data volume, modify the `authorized_keys` file with a new public key, move the volume back to the original instance, and restart the instance\. For more information about launching, connecting to, and stopping instances, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 
-This procedure is only supported for instances with EBS root volumes\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in the details pane\. The value is either `ebs` or `instance store`\.
+This procedure is only supported for instances with EBS root volumes\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in the **Description** tab in the Old console, or the **Details** tab in the New console\. The value is either `ebs` or `instance store`\.
 
 In addition to the following steps, there are other ways to connect to your Linux instance if you lose your private key\. For more information, see [How can I connect to my Amazon EC2 instance if I lost my SSH key pair after its initial launch?](http://aws.amazon.com/premiumsupport/knowledge-center/user-data-replace-key-pair-ec2/)
 
@@ -571,12 +571,36 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 ### Step 4: Launch a temporary instance<a name="step-4-launch-temp-instance"></a>
 
+------
+#### [ New console ]
+
+**To launch a temporary instance**
+
+1. In the navigation panel, choose **Instances**, and then choose **Launch instances**\.
+
+1. In the **Name and tags** section, for **Name**, enter **Temporary**\.
+
+1. In the **Application and OS Images** section, select the same AMI that you used to launch the original instance\. If this AMI is unavailable, you can create an AMI that you can use from the stopped instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) \.
+
+1. In the **Instance type** section, keep the default instance type\.
+
+1. In the **Key pair** section, for **Key pair name**, select the existing key pair to use or create a new one\.
+
+1. In the **Network settings** section, choose **Edit**, and then for **Subnet**, select a subnet in the same Availability Zone as the original instance\.
+
+1. In the **Summary** panel, choose **Launch**\.
+
+------
+#### [ Old console ]
+
 Choose **Launch instances**, and then use the launch wizard to launch a *temporary* instance with the following options:
 + On the **Choose an AMI** page, select the same AMI that you used to launch the original instance\. If this AMI is unavailable, you can create an AMI that you can use from the stopped instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 + On the **Choose an Instance Type** page, leave the default instance type that the wizard selects for you\.
 + On the **Configure Instance Details** page, specify the same Availability Zone as the original instance\. If you're launching an instance in a VPC, select a subnet in this Availability Zone\.
 + On the **Add Tags** page, add the tag `Name=Temporary` to the instance to indicate that this is a temporary instance\.
 + On the **Review** page, choose **Launch**\. Choose the key pair that you created in Step 1, then choose **Launch Instances**\.
+
+------
 
 ### Step 5: Detach the root volume from the original instance and attach it to the temporary instance<a name="step-5-detach-root-volume-and-attach-to-temp-instance"></a>
 

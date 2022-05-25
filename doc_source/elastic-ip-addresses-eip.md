@@ -468,7 +468,7 @@ aws ec2 modify-address-attribute --allocation-id eipalloc-abcdef01234567890  --d
 
 ------
 
-### Remove a reverse DNS record<a name="w1521aac23c22c17b9"></a>
+### Remove a reverse DNS record<a name="w1542aac23c22c17b9"></a>
 
 To remove a reverse DNS record, choose the tab that matches your preferred method\.
 

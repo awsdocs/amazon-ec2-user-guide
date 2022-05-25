@@ -1,9 +1,6 @@
 # Recover your instance<a name="ec2-instance-recover"></a>
 
-To automatically recover an instance, you can use the default configuration of the instance or create an Amazon CloudWatch alarm\. If an instance becomes impaired because of an underlying hardware failure or a problem that requires AWS involvement to repair, the instance is automatically recovered\.
-
-**Note**  
-Terminated instances cannot be recovered\.
+To automatically recover an instance when a system status check failure occurs, you can use the default configuration of the instance or create an Amazon CloudWatch alarm\. If an instance becomes unreachable because of an underlying hardware failure or a problem that requires AWS involvement to repair, the instance is automatically recovered\.
 
 A recovered instance is identical to the original instance, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata\. If the impaired instance has a public IPv4 address, the instance retains the public IPv4 address after recovery\. If the impaired instance is in a placement group, the recovered instance runs in the placement group\. During instance recovery, the instance is migrated as part of an instance reboot, and any data that is in\-memory is lost\.
 
@@ -20,7 +17,13 @@ Examples of problems that require instance recovery:
 
 ## Simplified automatic recovery based on instance configuration<a name="instance-configuration-recovery"></a>
 
-Instances that support simplified automatic recovery are configured by default to recover a failed instance\. Simplified automatic recovery is initiated in response to system status check failures\. Simplified automatic recovery doesn't take place during Service Health Dashboard events, or any other events that impact the underlying rack\. For more information, see [Troubleshoot instance recovery failures](#TroubleshootingInstanceRecovery)\.
+Instances that support simplified automatic recovery are configured by default to recover a failed instance\. The default configuration applies to new instances that you launch and existing instances that you previously launched\. Simplified automatic recovery is initiated in response to system status check failures\. Simplified automatic recovery doesn't take place during Service Health Dashboard events, or any other events that impact the underlying hardware\. For more information, see [Troubleshoot instance recovery failures](#TroubleshootingInstanceRecovery)\.
+
+When a simplified automatic recovery event succeeds, you are notified by an AWS Health Dashboard event\. When a simplified automatic recovery event fails, you are notified by an AWS Health Dashboard event and by email\. You can also use Amazon EventBridge rules to monitor for simplified automatic recovery events using the following event codes:
++ `AWS_EC2_SIMPLIFIED_AUTO_RECOVERY_SUCCESS` — successful events
++ `AWS_EC2_SIMPLIFIED_AUTO_RECOVERY_FAILURE` — failed events
+
+For more information, see [ Amazon EventBridge rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html)\.
 
 ### Requirements<a name="requirements-for-recovery"></a>
 
@@ -29,7 +32,7 @@ Simplified automatic recovery is supported by an instance if the instance has th
 + It does not use an Elastic Fabric Adaptor\.
 + It uses one of the following instance types:
   + General purpose: A1 \| M4 \| M5 \| M5a \| M5n \| M5zn \| M6a \| M6g \| M6i \| T1 \| T2 \| T3 \| T3a \| T4g
-  + Compute optimized: C4 \| C5 \| C5a \| C5n \| C6a \| C6g \| C6gn \| C6i \| Hpc6a
+  + Compute optimized: C4 \| C5 \| C5a \| C5n \| C6a \| C6g \| C6gn \| C6i \| Hpc6a \| C7g
   + Memory optimized: R4 \| R5 \| R5a \| R5b \| R5n \| R6a \| R6g \| R6i \| high memory \(u\-\*\), virtualized only
   + Accelerated computing: G3 \| G5g \| Inf1 \| P2 \| P3 \| VT1
 + It uses one of the following instance types, if it does not have instance store volumes:
@@ -39,7 +42,9 @@ Simplified automatic recovery is supported by an instance if the instance has th
 
 ### Limitations<a name="limitations-simplified-recovery"></a>
 + Instances with instance store volumes and metal instance types are not supported by simplified automatic recovery\.
-+ If your instance is part of an Auto Scaling group with health checks enabled, then the instance is replaced when it becomes impaired\. Auto recovery is not initiated for instances inside an Auto Scaling group\.
++ If your instance is part of an Auto Scaling group with health checks enabled, then the instance is replaced when it becomes impaired\. Automatic recovery is not initiated for instances inside an Auto Scaling group\.
++ Simplified automatic recovery applies to unplanned events only\. It does not apply to scheduled events\.
++ Terminated or stopped instances cannot be recovered\.
 
 ### Verify the recovery behavior<a name="verify-recovery-behavior"></a>
 
@@ -73,10 +78,20 @@ aws ec2 describe-instance-types --filters Name=auto-recovery-supported,Values=tr
 
 ### Set the recovery behavior<a name="set-recovery-behavior"></a>
 
-You can set the automatic recovery behavior to `disabled` or `default` after launching the instance\. The default configuration does not enable simplified automatic recovery for an unsupported instance type\.
+You can set the automatic recovery behavior to `disabled` or `default` during or after launching the instance\. The default configuration does not enable simplified automatic recovery for an unsupported instance type\.
 
 ------
 #### [ Console ]
+
+**To disable simplified automatic recovery during instance launch**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, and then choose **Launch instance**\.
+
+1. In the **Advanced details** section, for **Instance auto\-recovery**, select **Disabled**\.
+
+1. Configure the remaining instance launch settings as needed and then launch the instance\.
 
 **To disable simplified automatic recovery for a running or stopped instance**
 
@@ -146,7 +161,7 @@ All of the instance types supported by simplified automatic recovery are also su
 
 Amazon CloudWatch action based recovery does not support recovery for instances with Amazon EC2 Dedicated Hosts tenancy and metal instances\.
 
-For information about creating an Amazon CloudWatch alarm to recover an instance, see [Add recover actions to Amazon CloudWatch alarms](UsingAlarmActions.md#AddingRecoverActions)\.
+You can use Amazon CloudWatch alarms to recover an instance even if simplified automatic recovery is not disabled\. For information about creating an Amazon CloudWatch alarm to recover an instance, see [Add recover actions to Amazon CloudWatch alarms](UsingAlarmActions.md#AddingRecoverActions)\.
 
 ## Troubleshoot instance recovery failures<a name="TroubleshootingInstanceRecovery"></a>
 

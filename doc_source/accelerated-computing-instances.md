@@ -197,6 +197,21 @@ The following is a summary of the hardware specifications for accelerated comput
 | vt1\.6xlarge | 24 | 48 | 4 | 
 | vt1\.24xlarge | 96 | 192 | 16 | 
 
+The accelerated computing instances use the following processors\.
+
+**AWS Graviton processors**
++ **AWS Graviton2**: G5g
+
+**AMD processors**
++ **2nd generation AMD EPYC processors \(AMD EPYC 7R32\)**: G4ad, G5
+
+**Intel processors**
++ **Intel Xeon Scalable processors \(Broadwell E5\-2686 v4\)**: F1, G3, P2, P3
++ **Intel Xeon Scalable processors \(Skylake 8175\)**: P3dn
++ **2nd generation Intel Xeon Scalable processors \(Cascade Lake P\-8275CL\)**: DL1, P4d
++ **2nd generation Intel Xeon Scalable processors \(Cascade Lake P\-8259CL\)**: VT1
++ **2nd generation Intel Xeon Scalable processors \(Cascade Lake P\-8259L\)**: G4dn, Inf1
+
 For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 ## Instance performance<a name="gpu-instance-performance"></a>

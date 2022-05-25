@@ -120,6 +120,7 @@ The following is a summary of the hardware specifications for storage optimized 
 | i4i\.8xlarge | 32 | 256 | 
 | i4i\.16xlarge | 64 | 512 | 
 | i4i\.32xlarge | 128 | 1,024 | 
+| i4i\.metal | 128 | 1,024 | 
 | im4gn\.large | 2 | 8 | 
 | im4gn\.xlarge | 4 | 16 | 
 | im4gn\.2xlarge | 8 | 32 | 
@@ -132,6 +133,18 @@ The following is a summary of the hardware specifications for storage optimized 
 | is4gen\.2xlarge | 8 | 48 | 
 | is4gen\.4xlarge | 16 | 96 | 
 | is4gen\.8xlarge | 32 | 192 | 
+
+The storage optimized instances use the following processors\.
+
+**AWS Graviton processors**
++ **AWS Graviton2**: Im4gn, Is4gen
+
+**Intel processors**
++ **Intel Xeon Scalable processors \(Haswell E5\-2676 v3\)**: D2
++ **Intel Xeon Scalable processors \(Broadwell E5\-2686 v4\)**: H1, I3
++ **Intel Xeon Scalable processors \(Skylake 8175M or Cascade Lake 8259CL\)**: I3en
++ **2nd generation Intel Xeon Scalable processors \(Cascade Lake 8259CL\)**: D3, D3en
++ **3rd generation Intel Xeon Scalable processors \(Ice Lake 8375C\)**: I4i
 
 For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -169,7 +182,7 @@ The following is a summary of network performance for storage optimized instance
 | i4i\.16xlarge | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3en\.6xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3\.8xlarge \| d3en\.8xlarge \| i3en\.12xlarge  \| im4gn\.8xlarge  \| is4gen\.8xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| d3en\.12xlarge \| i4i\.32xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3en\.12xlarge \| i4i\.32xlarge \| i4i\.metal | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  i3en\.24xlarge \| i3en\.metal  \| im4gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
@@ -236,6 +249,7 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | i4i\.8xlarge | 800,000 | 440,000 | 
 | i4i\.16xlarge | 1,600,000 | 880,000 | 
 | i4i\.32xlarge | 3,200,000 | 1,760,000 | 
+| i4i\.metal | 3,200,000 | 1,760,000 | 
 | im4gn\.large | 31,250 | 25,000 | 
 | im4gn\.xlarge | 62,000 | 50,000 | 
 | im4gn\.2xlarge | 125,000 | 100,000 | 

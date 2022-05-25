@@ -217,6 +217,22 @@ The following is a summary of the hardware specifications for general purpose in
 | t4g\.xlarge | 4 | 16 | 
 | t4g\.2xlarge | 8 | 32 | 
 
+The general purpose instances use the following processors\.
+
+**AWS Graviton processors**
++ **AWS Graviton2**: M6g, M6gd, T4g
+
+**AMD processors**
++ **AMD EPYC 7000 series processors \(AMD EPYC 7571\)**: M5a, M5ad, T3a
++ **3rd generation AMD EPYC processors \(AMD EPYC 7R13\)**: M6a
+
+**Intel processors**
++ **Intel Xeon Scalable processors \(Haswell E5\-2676 v3 or Broadwell E5\-2686 v4\)**: M4, T2
++ **Intel Xeon Scalable processors \(Skylake 8175M or Cascade Lake 8259CL\)**: M5, M5d, T3
++ **2nd generation Intel Xeon Scalable processors \(Cascade Lake 8259CL\)**: M5n
++ **2nd generation Intel Xeon Scalable processors \(Cascade Lake 8252C\)**: M5zn
++ **3rd generation Intel Xeon Scalable processors \(Ice Lake 8375C\)**: M6i
+
 For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 ## Instance performance<a name="general-purpose-performance"></a>

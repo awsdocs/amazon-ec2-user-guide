@@ -13,7 +13,7 @@ Some AMIs do not have a boot mode parameter\. When an AMI has no boot mode param
 1. On the **Details** tab, inspect the **Boot mode** field\.
 
 **To determine the boot mode parameter of an AMI when launching an instance \(console\)**  
-When launching an instance using the launch instance wizard, at the step to select an AMI, inspect the **Boot mode** field\. For more information, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
+When launching an instance using the launch instance wizard, at the step to select an AMI, inspect the **Boot mode** field\. For more information, see [Application and OS Images \(Amazon Machine Image\)](ec2-launch-instance-wizard.md#liw-ami)\.
 
 **To determine the boot mode parameter of an AMI \(AWS CLI version 1\.19\.34 and later and version 2\.1\.32 and later\)**  
 Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command to determine the boot mode of an AMI\.

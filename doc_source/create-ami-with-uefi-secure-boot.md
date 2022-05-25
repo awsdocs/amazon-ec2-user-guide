@@ -9,7 +9,8 @@ The following procedures for creating an AMI to support UEFI Secure Boot are int
 + The following tools will be used:
   + OpenSSL – [https://www\.openssl\.org/](https://www.openssl.org/ )
   + efivar – [https://github\.com/rhboot/efivar](https://github.com/rhboot/efivar)
-  + efitools – [https://github\.com/vathpela/efitools](https://github.com/vathpela/efitools)
+  + efitools – [https://git\.kernel\.org/pub/scm/linux/kernel/git/jejb/efitools\.git/](https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/)
+  + [get\-instance\-uefi\-data](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-instance-uefi-data.html) AWS CLI command
 + Your Linux instance must have been launched with a Linux AMI that supports UEFI boot mode, and have non\-volatile data present\.
 
 Newly created instances without UEFI Secure Boot keys are created in `SetupMode`, which allows you to enroll your own keys\. Some AMIs come preconfigured with UEFI Secure Boot and you cannot change the existing keys\. If you want to change the keys, you must create a new AMI based on the original AMI\.
@@ -22,4 +23,4 @@ You have two ways to propagate the keys in the variable store, which are describ
 + [Option B: Create a binary blob containing a pre\-filled variable store](uefi-secure-boot-optionB.md)
 
 **Note**  
-These instructions can only be used to create a Linux AMI\. If you need a Windows AMI, use one of the supported Windows AMIs\. For more information, see [Launch an instance with UEFI Secure Boot support ](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/uefi-secure-boot.html#launch-instance-with-uefi-sb) in the *Amazon EC2 User Guide for Windows Instances*\.
+These instructions can only be used to create a Linux AMI\. If you need a Windows AMI, use one of the supported Windows AMIs\. For more information, see [Launch an instance with UEFI Secure Boot support ](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/launch-instance-with-uefi-sb) in the *Amazon EC2 User Guide for Windows Instances*\.

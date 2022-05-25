@@ -16,7 +16,7 @@ The procedure that you'll use to clean up your AMI depends on whether it's backe
 
 The following considerations apply to deregistering AMIs:
 + You can't deregister an AMI that is not owned by your account\.
-+ You can't deregister an AMI that is managed by the AWS Backup service using Amazon EC2\. Instead, use AWS Backup to delete the corresponding recovery points in the backup vault\.
++ You can't deregister an AMI that is managed by the AWS Backup service using Amazon EC2\. Instead, use AWS Backup to delete the corresponding recovery points in the backup vault\. For more information, see [Deleting backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/deleting-backups.html) in the *AWS Backup Developer Guide*\.
 
 ## Clean up your Amazon EBS\-backed AMI<a name="clean-up-ebs-ami"></a>
 

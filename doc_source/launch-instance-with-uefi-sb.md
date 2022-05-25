@@ -11,4 +11,4 @@ UEFI Secure Boot protects your instance and its operating system against boot fl
   Currently, there are no UEFI Secure Boot\-enabled Amazon Linux AMIs\. To use a supported AMI, you must perform a number of configuration steps on your own Linux AMI\. For more information, see [Create a Linux AMI to support UEFI Secure Boot](create-ami-with-uefi-secure-boot.md)\.
 + **Instance type** – All virtualized instance types that support UEFI also support UEFI Secure Boot\. Bare metal instance types do not support UEFI Secure Boot\. For the instance types that support UEFI Secure Boot, see [Considerations](launch-instance-boot-mode.md#boot-considerations)\.
 
-For the prerequisites for Windows instances, see [Launch an instance with UEFI Secure Boot support](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html#launch-instance-with-uefi-sb) in the *Amazon EC2 User Guide for Windows Instances***\.
+For the prerequisites for Windows instances, see [Launch an instance with UEFI Secure Boot support](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/launch-instance-with-uefi-sb) in the *Amazon EC2 User Guide for Windows Instances***\.

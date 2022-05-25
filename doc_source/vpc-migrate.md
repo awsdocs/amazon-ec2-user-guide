@@ -17,9 +17,7 @@ To migrate from EC2\-Classic to a VPC, you must migrate or recreate your EC2\-Cl
 You can migrate or move some of your resources to a VPC\. Some resources can only be migrated from EC2\-Classic to a VPC that's in the same Region and in the same AWS account\. If the resource cannot be migrated, you must create a new resource for use in your VPC\.
 
 **Prerequisites**  
-Before you begin, you must have a VPC\. If you don't have a default VPC, you can create a nondefault VPC using one of these methods:
-+ In the Amazon VPC console, use the VPC wizard to create a new VPC\. For more information, see [Amazon VPC Console Wizard Configurations](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_wizard.html)\. Use this option if you want to set up a VPC quickly, using one of the available configuration options\.
-+ In the Amazon VPC console, set up the components of a VPC according to your requirements\. For more information, see [VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html)\. Use this option if you have specific requirements for your VPC, such as a particular number of subnets\.
+Before you begin, you must have a VPC\. If you don't have a default VPC, you can create a nondefault VPC\. For more information, see [Create a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC)\.
 
 **Topics**
 + [Security groups](#vpc-migrate-security-group)

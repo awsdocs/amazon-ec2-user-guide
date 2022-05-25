@@ -51,33 +51,27 @@ The following instance types support EFAs:
 + General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.48xlarge` \| `m6a.metal` \| `m6i.32xlarge` \| `m6i.metal` 
 + Compute optimized: `c5n.18xlarge` \| `c5n.9xlarge` \| `c5n.metal` \| `c6a.48xlarge` \| `c6a.metal`  \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal`  \| `hpc6a.48xlarge`
 + Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `x2d.32xlarge` \| `x2d.metal` \| `x2ed.32xlarge` \| `x2ed.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal`
-+ Storage optimized: `i3en.24xlarge` \| `i3en.12xlarge` \| `i3en.metal` \| `i4i.32xlarge`  \| `im4gn.16xlarge` 
++ Storage optimized: `i3en.24xlarge` \| `i3en.12xlarge` \| `i3en.metal` \| `i4i.32xlarge` \| `i4i.metal`  \| `im4gn.16xlarge` 
 + Accelerated computing: `dl1.24xlarge` \|  `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
 
-The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` option and the appropriate Region code\.
+**To see the available instance types that support EFA in a specific Region**  
+The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` parameter\. Include the `--filters` parameter to scope the results to the instance types that support EFA and the `--query` parameter to scope the output to the value of `InstanceType`\.
 
 ```
-aws ec2 describe-instance-types 
---region us-east-2 
---filters Name=network-info.efa-supported,Values=true 
---query "InstanceTypes[*].[InstanceType]" 
---output text | sort
+aws ec2 describe-instance-types  --region us-east-1  --filters Name=network-info.efa-supported,Values=true  --query "InstanceTypes[*].[InstanceType]"  --output text | sort
 ```
 
-The following is example output for `us-east-1`\.
+Example output
 
 ```
 c5n.18xlarge
 c5n.9xlarge
 c5n.metal
+c6a.32xlarge
+c6a.48xlarge
+c6a.metal
 c6gn.16xlarge
 c6i.32xlarge
-c6i.metal
-dl1.24xlarge
-g4dn.12xlarge
-g4dn.8xlarge
-g4dn.metal
-g5.48xlarge
 ...
 ```
 

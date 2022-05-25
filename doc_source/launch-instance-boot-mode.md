@@ -9,7 +9,7 @@ Consider the following when launching an instance:
   + Graviton instance types: UEFI
   + Intel and AMD instance types: Legacy BIOS
 + Intel and AMD instance types that support UEFI, in addition to Legacy BIOS:
-  + Virtualized: C5, C5a, C5ad, C5d, C5n, D3, D3en, G4, I3en, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6i, R5, R5a, R5ad, R5b, R5d, R5dn, R5n, T3, T3a, and z1d
+  + Virtualized: C5, C5a, C5ad, C5d, C5n, C6a, C6i, D3, D3en, G4ad, G4dn, G5, Hpc6a, I3en, I4i, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6a, M6i, P3dn, R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6i, T3, T3a, u\-3tb1, u\-6tb1, u\-9tb1, u\-12tb1, X2idn, X2iedn, X2iezn, and z1d
 
      
 
@@ -27,6 +27,7 @@ The available instance types vary by Region\. To see the available instance type
     a1.4xlarge
     a1.large
     a1.medium
+    ...
     ```
 
      

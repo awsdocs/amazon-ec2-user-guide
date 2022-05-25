@@ -95,7 +95,7 @@ You can use one of the following commands\. For more information about these com
 + [Remove\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 **To run a controlled fault injection experiment**  
-You can use AWS Fault Injection Simulator to test how your application responds when your instance is terminated\. For more information, see the [AWS Fault Injection Simulator User Guide](https://docs.aws.amazon.com/fis/latest/userguide)\.
+You can use AWS Fault Injection Simulator User Guide to test how your application responds when your instance is terminated\. For more information, see the [AWS Fault Injection Simulator User Guide User Guide](https://docs.aws.amazon.com/fis/latest/userguide)\.
 
 ## Enable termination protection<a name="Using_ChangingDisableAPITermination"></a>
 

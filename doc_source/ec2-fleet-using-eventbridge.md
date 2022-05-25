@@ -21,7 +21,9 @@ For the list of EC2 Fleet events and example event data, see [EC2 Fleet event ty
 
 ## Create an EventBridge rule to send a notification<a name="eventbridge-send-notification"></a>
 
-The following example creates an EventBridge rule to send an email, text message, or mobile push notification every time that Amazon EC2 emits an EC2 Fleet state change notification\. The signal in this example is emitted as an `EC2 Fleet State Change` event, which triggers the action defined by the rule\. Before creating the EventBridge rule, you must create the Amazon SNS topic for the email, text message, or mobile push notification\.
+The following example creates an EventBridge rule to send an email, text message, or mobile push notification every time that Amazon EC2 emits an EC2 Fleet state change notification\. The signal in this example is emitted as an `EC2 Fleet State Change` event, which triggers the action defined by the rule\.
+
+Before creating the EventBridge rule, you must create the Amazon SNS topic for the email, text message, or mobile push notification\.
 
 **To create an EventBridge rule to send a notification when an EC2 Fleet state changes**
 
@@ -29,52 +31,82 @@ The following example creates an EventBridge rule to send an email, text message
 
 1. Choose **Create rule**\.
 
-1. Enter a **Name** for the rule, and, optionally, a description\.
+1. For **Define rule detail**, do the following:
 
-   A rule can't have the same name as another rule in the same Region and on the same event bus\.
+   1. Enter a **Name** for the rule, and, optionally, a description\.
 
-1. For **Define pattern**, choose **Event pattern**\.
+      A rule can't have the same name as another rule in the same Region and on the same event bus\.
 
-1. Under **Event matching pattern**, you can choose **Pre\-defined pattern by service** or **Custom pattern**\. The **Custom pattern** allows you to create a more detailed rule\.
+   1. For **Event bus**, choose **default**\. When an AWS service in your account generates an event, it always goes to your account's default event bus\.
 
-   1. If you choose **Pre\-defined pattern by service**, do the following:
+   1. For **Rule type**, choose **Rule with an event pattern**\.
 
-      1. For **Service provider**, choose **AWS**\.
+   1. Choose **Next**\.
 
-      1. For **Service name**, choose **EC2 Fleet**\.
+1. For **Build event pattern**, do the following:
 
-      1. For **Event type**, select the required event type\. For this example, choose **EC2 Fleet Instance Change**\.
+   1. For **Event source**, choose **AWS events or EventBridge partner events**\.
 
-   1. If you choose **Custom pattern**, do the following:
+   1. For **Event pattern**, for this example you’ll specify the following event pattern to match the `EC2 Fleet Instance Change` event\.
 
-      1. In the **Event pattern** box, add the following pattern to match the `EC2 Fleet Instance Change` event for this example, and then choose **Save**\.
+      ```
+      {
+       "source": ["aws.ec2fleet"],
+       "detail-type": ["EC2 Fleet Instance Change"]
+      }
+      ```
 
-        ```
-        {
-            "source": ["aws.ec2fleet"],
-            "detail-type": ["EC2 Fleet Instance Change"]
-        }
-        ```
+      To add the event pattern, you can either use a template by choosing **Event pattern form**, or specify your own pattern by choosing **Custom pattern \(JSON editor\)**, as follows:
 
-1. For **Select event bus**, choose **AWS default event bus**\. When an AWS service in your account emits an event, it always goes to your account's default event bus\.
+      1. To use a template to create the event pattern, do the following:
 
-1. Confirm that **Enable the rule on the selected event bus** is toggled on\. 
+         1. Choose **Event pattern form**\.
 
-1. For **Target**, choose **SNS topic** to send an email, text message, or mobile push notification when the event occurs\.
+         1. For **Event source**, choose **AWS services**\.
 
-1. For **Topic**, choose an existing topic\. You first need to create an Amazon SNS topic using the Amazon SNS console\. For more information, see [Using Amazon SNS for application\-to\-person \(A2P\) messaging](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) in the *Amazon Simple Notification Service Developer Guide*\.
+         1. For **AWS Service**, choose **EC2 Fleet**\.
 
-1. For **Configure input**, choose the input for the email, text message, or mobile push notification\.
+         1. For **Event type**, choose **EC2 Fleet Instance Change**\.
 
-1. Choose **Create**\.
+         1. To customize the template, choose **Edit pattern** and make your changes to match the example event pattern\.
+
+      1. \(Alternative\) To specify a custom event pattern, do the following:
+
+         1. Choose **Custom pattern \(JSON editor\)**\.
+
+         1. In the **Event pattern** box, add the event pattern for this example\.
+
+   1. Choose **Next**\.
+
+1. For **Select target\(s\)**, do the following:
+
+   1. For **Target types**, choose **AWS service**\.
+
+   1. For **Select a target**, choose **SNS topic** to send an email, text message, or mobile push notification when the event occurs\.
+
+   1. For **Topic**, choose an existing topic\. You first need to create an Amazon SNS topic using the Amazon SNS console\. For more information, see [Using Amazon SNS for application\-to\-person \(A2P\) messaging](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) in the *Amazon Simple Notification Service Developer Guide*\.
+
+   1. \(Optional\) Under **Additional settings**, you can optionally configure additional settings\. For more information, see [Creating Amazon EventBridge rules that react to events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule.html) \(step 16\) in the *Amazon EventBridge User Guide*\.
+
+   1. Choose **Next**\.
+
+1. \(Optional\) For **Tags**, you can optionally assign one or more tags to your rule, and then choose **Next**\.
+
+1. For **Review and create**, do the following:
+
+   1. Review the details of the rule and modify them as necessary\.
+
+   1. Choose **Create rule**\.
 
 For more information, see [Amazon EventBridge rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html) and [Amazon EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*
 
 ## Create an EventBridge rule to trigger a Lambda function<a name="eventbridge-trigger-lambda"></a>
 
-The following example creates an EventBridge rule to trigger a Lambda function every time that Amazon EC2 emits an EC2 Fleet instance change notification for when an instance is launched\. The signal in this example is emitted as an `EC2 Fleet Instance Change` event, sub\-type `launched`, which triggers the action defined by the rule\. Before creating the EventBridge rule, you must create the Lambda function\.
+The following example creates an EventBridge rule to trigger a Lambda function every time that Amazon EC2 emits an EC2 Fleet instance change notification for when an instance is launched\. The signal in this example is emitted as an `EC2 Fleet Instance Change` event, sub\-type `launched`, which triggers the action defined by the rule\.
 
-**To create an EventBridge rule to trigger a Lambda function when an instance in an EC2 Fleet changes state**
+Before creating the EventBridge rule, you must create the Lambda function\.
+
+**To create the Lambda function to use in the EventBridge rule**
 
 1. Open the AWS Lambda console at [https://console\.aws\.amazon\.com/lambda/](https://console.aws.amazon.com/lambda/)\.
 
@@ -84,44 +116,79 @@ The following example creates an EventBridge rule to trigger a Lambda function e
 
    For more information about using Lambda, see [Create a Lambda function with the console](https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html) in the *AWS Lambda Developer Guide*\.
 
+**To create an EventBridge rule to trigger a Lambda function when an instance in an EC2 Fleet changes state**
+
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
 
 1. Choose **Create rule**\.
 
-1. Enter a **Name** for the rule, and, optionally, a description\.
+1. For **Define rule detail**, do the following:
 
-   A rule can't have the same name as another rule in the same Region and on the same event bus\.
+   1. Enter a **Name** for the rule, and, optionally, a description\.
 
-1. For **Define pattern**, choose **Event pattern**\.
+      A rule can't have the same name as another rule in the same Region and on the same event bus\.
 
-1. Under **Event matching pattern**, you can choose **Pre\-defined pattern by service** or **Custom pattern**\. The **Custom pattern** allows you to create a more detailed rule\.
+   1. For **Event bus**, choose **default**\. When an AWS service in your account generates an event, it always goes to your account's default event bus\.
 
-   1. If you choose **Pre\-defined pattern by service**, do the following:
+   1. For **Rule type**, choose **Rule with an event pattern**\.
 
-      1. For **Service provider**, choose **AWS**\.
+   1. Choose **Next**\.
 
-      1. For **Service name**, choose **EC2 Fleet**\.
+1. For **Build event pattern**, do the following:
 
-      1. For **Event type**, select the required event type\. For this example, choose **EC2 Fleet Instance Change**\.
+   1. For **Event source**, choose **AWS events or EventBridge partner events**\.
 
-   1. If you choose **Custom pattern**, do the following:
+   1. For **Event pattern**, for this example you’ll specify the following event pattern to match the `EC2 Fleet Instance Change` event and `launched` sub\-type\.
 
-      1. In the **Event pattern** box, add the following pattern to match the `EC2 Fleet Instance Change` event and `launched` sub\-type for this example, and then choose **Save**\.
+      ```
+      {
+       "source": ["aws.ec2fleet"],
+       "detail-type": ["EC2 Fleet Instance Change"],
+       "detail": {
+         "sub-type": ["launched"]
+      }
+      ```
 
-        ```
-        {
-            "source": ["aws.ec2fleet"],
-            "detail-type": ["EC2 Fleet Instance Change"],
-            "detail": {
-              "sub-type": ["launched"]
-            }
-        }
-        ```
+      To add the event pattern, you can either use a template by choosing **Event pattern form**, or specify your own pattern by choosing **Custom pattern \(JSON editor\)**, as follows:
 
-1. For **Target**, choose **Lambda function**, and for **Function**, choose the function that you created to respond when the event occurs\.
+      1. To use a template to create the event pattern, do the following:
 
-1. Choose **Create**\.
+         1. Choose **Event pattern form**\.
 
-   In this example, the Lambda function will be triggered when the `EC2 Fleet Instance Change` event with the sub\-type `launched` occurs\.
+         1. For **Event source**, choose **AWS services**\.
+
+         1. For **AWS Service**, choose **EC2 Fleet**\.
+
+         1. For **Event type**, choose **EC2 Fleet Instance Change**\.
+
+         1. Choose **Edit pattern**, and add `"detail": {"sub-type": ["launched"]` to match the example event pattern\. For proper JSON format, insert a comma \(`,`\) after the preceding square bracket \(`]`\)\.
+
+      1. \(Alternative\) To specify a custom event pattern, do the following:
+
+         1. Choose **Custom pattern \(JSON editor\)**\.
+
+         1. In the **Event pattern** box, add the event pattern for this example\.
+
+   1. Choose **Next**\.
+
+1. For **Select target\(s\)**, do the following:
+
+   1. For **Target types**, choose **AWS service**\.
+
+   1. For **Select a target**, choose **SNS topic** to send an email, text message, or mobile push notification when the event occurs\.
+
+   1. For **Topic**, choose **Lambda function**, and for **Function**, choose the function that you created to respond when the event occurs\.
+
+   1. \(Optional\) Under **Additional settings**, you can optionally configure additional settings\. For more information, see [Creating Amazon EventBridge rules that react to events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule.html) \(step 16\) in the *Amazon EventBridge User Guide*\.
+
+   1. Choose **Next**\.
+
+1. \(Optional\) For **Tags**, you can optionally assign one or more tags to your rule, and then choose **Next**\.
+
+1. For **Review and create**, do the following:
+
+   1. Review the details of the rule and modify them as necessary\.
+
+   1. Choose **Create rule**\.
 
 For a tutorial on how to create a Lambda function and an EventBridge rule that runs the Lambda function, see [Tutorial: Log the State of an Amazon EC2 Instance Using EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/log-ec2-instance-state.html) in the *AWS Lambda Developer Guide*\.

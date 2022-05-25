@@ -124,6 +124,14 @@ You can also view this information programatically using the AWS CLI\. For more 
 | c6i\.24xlarge | 30,000 | 3,750 | 120,000 | 
 | c6i\.32xlarge | 40,000 | 5,000 | 160,000 | 
 | c6i\.metal | 40,000 | 5,000 | 160,000 | 
+| c7g\.medium \* | 10,000 | 1,250 | 40,000 | 
+| c7g\.large \* | 10,000 | 1,250 | 40,000 | 
+| c7g\.xlarge \* | 10,000 | 1,250 | 40,000 | 
+| c7g\.2xlarge \* | 10,000 | 1,250 | 40,000 | 
+| c7g\.4xlarge \* | 10,000 | 1,250 | 40,000 | 
+| c7g\.8xlarge | 10,000 |  1,250  | 40,000 | 
+| c7g\.12xlarge | 15,000 | 1875 | 60,000 | 
+| c7g\.16xlarge | 20,000 | 2,500 | 80,000 | 
 | d2\.xlarge | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
@@ -198,6 +206,7 @@ You can also view this information programatically using the AWS CLI\. For more 
 | i4i\.8xlarge | 10,000 | 1,250 | 40,000 | 
 | i4i\.16xlarge | 20,000 | 2,500 | 80,000 | 
 | i4i\.32xlarge | 40,000 | 5,000 | 160,000 | 
+| i4i\.metal | 40,000 | 5,000 | 160,000 | 
 | im4gn\.large \* | 9,500 | 1,187\.5 | 40,000 | 
 | im4gn\.xlarge \* | 9,500 | 1,187\.5 | 40,000 | 
 | im4gn\.2xlarge \* | 9,500 | 1,187\.5 | 40,000 | 
@@ -545,6 +554,14 @@ You can also view this information programatically using the AWS CLI\. For more 
 | c6i\.xlarge | 1,250 | 156\.25 | 6,000 | 
 | c6i\.2xlarge | 2,500 | 312\.5 | 12,000 | 
 | c6i\.4xlarge | 5,000 | 625 | 20,000 | 
+|  `c7g.medium`  |  315  | 39\.375  |  2,500  | 
+|  `c7g.large`  | 630 | 78\.75 |  3,600  | 
+| c7g\.xlarge | 1,250 | 156\.25 | 6,000 | 
+|  `c7g.2xlarge`  | 2,500 | 312\.5 | 12,000 | 
+|  `c7g.4xlarge`  | 5,000 | 625 | 20,000 | 
+|  `c7g.8xlarge`  | 10,000 | 1,250 | 40,000 | 
+|  `c7g.12xlarge`  | 15,000 | 1,875 | 60,000 | 
+| c7g\.16xlarge | 20,000 | 2,500 | 80,000 | 
 | d3\.xlarge | 850 | 106\.25 | 5,000 | 
 | d3\.2xlarge | 1,700 | 212\.5 | 10,000 | 
 | d3en\.large | 425 | 53\.125 | 2,500 | 

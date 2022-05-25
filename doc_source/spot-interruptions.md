@@ -17,5 +17,5 @@ An On\-Demand Instance specified in an EC2 Fleet or Spot Fleet cannot be interru
 + [Prepare for interruptions](prepare-for-interruptions.md)
 + [Spot Instance interruption notices](spot-instance-termination-notices.md)
 + [Find interrupted Spot Instances](finding-an-interrupted-Spot-Instance.md)
-+ [Determine whether Amazon EC2 interrupted a Spot Instance](BidEvictedEvent.md)
++ [Determine whether Amazon EC2 terminated a Spot Instance](BidEvictedEvent.md)
 + [Billing for interrupted Spot Instances](billing-for-interrupted-spot-instances.md)

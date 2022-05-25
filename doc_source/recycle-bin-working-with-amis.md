@@ -110,6 +110,13 @@ Example output:
 }
 ```
 
+**Important**  
+If you receive the following error, you might need to update your AWS CLI version\. For more information, see [Command not found errors ](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-troubleshooting.html#tshoot-install-not-found)\.  
+
+```
+aws.exe: error: argument operation: Invalid choice, valid choices are: ...
+```
+
 ------
 
 ## Restore AMIs from the Recycle Bin<a name="recycle-bin-restore-ami"></a>
@@ -148,5 +155,12 @@ $ aws restore-image-from-recycle-bin --image-id ami-01234567890abcdef
 ```
 
 The command returns no output on success\.
+
+**Important**  
+If you receive the following error, you might need to update your AWS CLI version\. For more information, see [Command not found errors ](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-troubleshooting.html#tshoot-install-not-found)\.  
+
+```
+aws.exe: error: argument operation: Invalid choice, valid choices are: ...
+```
 
 ------

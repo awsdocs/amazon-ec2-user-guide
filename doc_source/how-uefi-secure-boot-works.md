@@ -22,7 +22,7 @@ To change the db database, you must have the private PK key or any of the privat
 The dbx database is a list of public keys and binary hashes that are not trusted, and are used in the chain of trust as a revocation file\.  
 The dbx database always takes precedence over all other key databases\.  
 To change the dbx database, you must have the private PK key or any of the private KEK keys to sign an update request\.  
-The UEFI Forum maintains a publicly available dbx for many known\-bad binaries and keys at [https://uefi\.org/revocationlistfile](https://uefi.org/revocationlistfile)\.
+The UEFI Forum maintains a publicly available dbx for many known\-bad binaries and certs at [https://uefi\.org/revocationlistfile](https://uefi.org/revocationlistfile)\.
 
 **Important**  
 UEFI Secure Boot enforces signature validation on any UEFI binaries\. To permit execution of a UEFI binary in UEFI Secure Boot, you sign it with any of the private db keys described above\.
