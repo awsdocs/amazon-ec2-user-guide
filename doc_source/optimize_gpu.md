@@ -44,7 +44,7 @@ There are several GPU setting optimizations that you can perform to achieve the 
      ```
      [ec2-user ~]$ sudo nvidia-smi -ac 877,1530
      ```
-   + P4d instances:
+   + P4d and P4de instances:
 
      ```
      [ec2-user ~]$ sudo nvidia-smi -ac 1215,1410

@@ -60,6 +60,8 @@ These instances use NVIDIA A100 GPUs and provide a high\-performance platform fo
 For more information, see [Amazon EC2 P4d Instances](http://aws.amazon.com/ec2/instance-types/p4/)\.
 
 P4d instances support NVIDIA NVSwitch GPU interconnect and NVIDIA GPUDirect RDMA\.
+
+P4de instances offer NVIDIA 80GB\-A100s GPUs
 <a name="p3-instances"></a>
 **P3 instances**  
 These instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and up to 32 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\.
@@ -193,6 +195,8 @@ The following is a summary of the hardware specifications for accelerated comput
 | p3\.16xlarge | 64 | 488 | 8 | 
 | p3dn\.24xlarge | 96 | 768 | 8 | 
 | p4d\.24xlarge | 96 | 1,152 | 8 | 
+| p4d\.24xlarge | 96 | 1,152 | 8 | 
+| p4de\.24xlarge | 96 | 1,152 | 8 | 
 | vt1\.3xlarge | 12 | 24 | 2 | 
 | vt1\.6xlarge | 24 | 48 | 4 | 
 | vt1\.24xlarge | 96 | 192 | 16 | 
@@ -208,7 +212,7 @@ The accelerated computing instances use the following processors\.
 **Intel processors**
 + **Intel Xeon Scalable processors \(Broadwell E5\-2686 v4\)**: F1, G3, P2, P3
 + **Intel Xeon Scalable processors \(Skylake 8175\)**: P3dn
-+ **2nd generation Intel Xeon Scalable processors \(Cascade Lake P\-8275CL\)**: DL1, P4d
++ **2nd generation Intel Xeon Scalable processors \(Cascade Lake P\-8275CL\)**: DL1, P4d, `P4de`
 + **2nd generation Intel Xeon Scalable processors \(Cascade Lake P\-8259CL\)**: VT1
 + **2nd generation Intel Xeon Scalable processors \(Cascade Lake P\-8259L\)**: G4dn, Inf1
 
@@ -240,7 +244,7 @@ The following is a summary of network performance for accelerated computing inst
 | g5\.12xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g5\.24xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.metal \| g5\.48xlarge \| inf1\.24xlarge \| p3dn\.24xlarge  \| vt1\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  dl1\.24xlarge \|  p4d\.24xlarge  | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  dl1\.24xlarge \|  p4d\.24xlarge \| p4de\.24xlarge | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
 
@@ -300,19 +304,20 @@ The following is a summary of features for accelerated computing instances\.
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-| DL1 | No | Yes | NVMe \* | Yes | 
-| F1 | No | No | NVMe \* | Yes | 
-| G2 | No | No | SSD | Yes | 
-| G3 | Yes | No | No | Yes | 
-| G4ad | No | Yes | NVMe \* | Yes | 
-| G4dn | No | Yes | NVMe \* | Yes | 
+|  DL1  |  No  |  Yes  |  NVMe \*  |  Yes  | 
+|  F1  |  No  |  No  |  NVMe \*  |  Yes  | 
+|  G2  |  No  |  No  |  SSD  |  Yes  | 
+|  G3  |  Yes  |  No  |  No  |  Yes  | 
+|  G4ad  |  No  |  Yes  |  NVMe \*  |  Yes  | 
+|  G4dn  |  No  |  Yes  |  NVMe \*  |  Yes  | 
 | G5 | No | Yes | NVMe \* | Yes | 
 | G5g | Yes | Yes | No | Yes | 
-| Inf1 | Yes | No | No | Yes | 
-| P2 | Yes | No | No | Yes | 
-| P3 |  24xlarge: No All other sizes: Yes  |  24xlarge: Yes All other sizes: No  | 24xlarge: NVMe \* | Yes | 
-| P4d | No | Yes | NVMe \* | Yes | 
-| VT1 | Yes | Yes | No | Yes | 
+|  Inf1  |  Yes  |  No  |  No  |  Yes  | 
+|  P2  |  Yes  |  No  |  No  |  Yes  | 
+|  P3  |  24xlarge: No All other sizes: Yes  |  24xlarge: Yes All other sizes: No  | 24xlarge: NVMe \* |  Yes  | 
+|  P4d  |  No  |  Yes  |  NVMe \*  |  Yes  | 
+|  P4de  |  No  |  Yes  |  NVMe \*  |  Yes  | 
+|  VT1  |  Yes  |  Yes  |  No  |  Yes  | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 

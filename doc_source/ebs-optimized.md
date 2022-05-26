@@ -335,7 +335,8 @@ You can also view this information programatically using the AWS CLI\. For more 
 | p3\.8xlarge | 7,000 | 875 | 40,000 | 
 | p3\.16xlarge | 14,000 | 1,750 | 80,000 | 
 | p3dn\.24xlarge | 19,000 | 2,375 | 80,000 | 
-| p4d\.2xlarge | 19,000 | 2,375 | 80,000 | 
+| p4d\.24xlarge | 19,000 | 2,375 | 80,000 | 
+| p4de\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | r4\.large | 425 | 53\.13 | 3,000 | 
 | r4\.xlarge | 850 | 106\.25 | 6,000 | 
 | r4\.2xlarge | 1,700 | 212\.5 | 12,000 | 

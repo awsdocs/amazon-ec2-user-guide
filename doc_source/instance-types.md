@@ -82,6 +82,7 @@ For the best performance, we recommend that you use the following instance types
 | P3 | p3\.2xlarge \| p3\.8xlarge \| p3\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | P3dn | p3dn\.24xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | P4d | p4d\.24xlarge  | [Accelerated computing](accelerated-computing-instances.md) | 
+| P4de | p4de\.24xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | R4 | r4\.large \| r4\.xlarge \| r4\.2xlarge \| r4\.4xlarge \| r4\.8xlarge \| r4\.16xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | R5 | r5\.large \| r5\.xlarge \| r5\.2xlarge \| r5\.4xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5\.16xlarge \| r5\.24xlarge \| r5\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R5a | r5a\.large \| r5a\.xlarge \| r5a\.2xlarge \| r5a\.4xlarge \| r5a\.8xlarge \| r5a\.12xlarge \| r5a\.16xlarge \| r5a\.24xlarge  | [Memory optimized](memory-optimized-instances.md) | 
@@ -267,6 +268,7 @@ The following table summarizes the networking and storage features supported by 
 | P3 | Yes | No | No | Yes | ENA | 
 | P3dn | No | Yes | NVMe \* | Yes | ENA | 
 | P4d | No | Yes | NVMe \* | Yes | ENA | 
+| P4de | No | Yes | NVMe \* | Yes | ENA | 
 | R4 | Yes | No | No | Yes | ENA | 
 | R5 | Yes | Yes | No | Yes | ENA | 
 | R5a | Yes | Yes | No | Yes | ENA | 

@@ -75,6 +75,7 @@ The following instances support multiple network cards\. All other instance type
 | --- | --- | 
 | dl1\.24xlarge | 4 | 
 | p4d\.24xlarge | 4 | 
+| p4de\.24xlarge | 4 | 
 
 ## IP addresses per network interface per instance type<a name="AvailableIpPerENI"></a>
 
@@ -423,6 +424,7 @@ The following table lists the maximum number of network interfaces per instance 
 | p3\.16xlarge | 8 | 30 | 30 | 
 | p3dn\.24xlarge | 15 | 50 | 50 | 
 | p4d\.24xlarge | 15 per network card \(15, 30, 45, or 60\) | 50 | 50 | 
+| p4de\.24xlarge | 15 per network card \(15, 30, 45, or 60\) | 50 | 50 | 
 | r3\.large | 3 | 10 | 10 | 
 | r3\.xlarge | 4 | 15 | 15 | 
 | r3\.2xlarge | 4 | 15 | 15 | 

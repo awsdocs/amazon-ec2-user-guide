@@ -46,6 +46,7 @@ The following table summarizes the supported NVIDIA drivers for each GPU instanc
 | P2 | Yes | No | No | 
 | P3 | Yes | Yes ² | No | 
 | P4d | Yes | No | No | 
+| P4de | Yes | No | No | 
 
 ¹ This Tesla driver also supports optimized graphics applications specific to the ARM64 platform
 
@@ -90,6 +91,7 @@ Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate
 | P2 | Tesla | K\-Series | K80 | 
 | P3 | Tesla | V\-Series | V100 | 
 | P4d | Tesla | A\-Series | A100 | 
+| P4de | Tesla | A\-Series | A100 | 
 
 ¹ G5 instances require driver version 470\.00 or later
 

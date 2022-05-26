@@ -80,7 +80,7 @@ You can assign additional IPv6 addresses to your instance by assigning them to a
 
 ## Work with the IPv4 addresses for your instances<a name="working-with-ip-addresses"></a>
 
-You can assign a public IPv4 address to your instance when you launch it\. You can view the IPv4 addresses for your in the console through either the **Instances** page or the **Network Interfaces** page\.
+You can assign a public IPv4 address to your instance when you launch it\. You can view the IPv4 addresses for your instance in the console through either the **Instances** page or the **Network Interfaces** page\.
 
 **Topics**
 + [View the IPv4 addresses](#using-instance-addressing-common)

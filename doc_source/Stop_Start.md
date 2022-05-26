@@ -179,7 +179,7 @@ The `DisableApiStop` attribute controls whether the instance can be stopped usin
 
 ------
 
-**To disable stop protection for a running or stopped instance using the console**
+**To disable stop protection for a running or stopped instance**
 
 ------
 #### [ New console ]
@@ -188,7 +188,7 @@ The `DisableApiStop` attribute controls whether the instance can be stopped usin
 
 1. In the Amazon EC2 console, select the instance, and choose **Actions** at the top right, **Instance Settings**, **Change Stop Protection**
 
-1. Choose **Yes, Disable**\. Clear the Enable check box and **Save**
+1. Clear the Enable check box and **Save**
 
 ------
 #### [ Old console ]
@@ -197,7 +197,7 @@ The `DisableApiStop` attribute controls whether the instance can be stopped usin
 
 1. Select the instance, and choose **Actions** at the top left, **Instance Settings**, **Change Stop Protection**\.
 
-1. Choose **Yes, Disable**\. Clear the Enable check box and **Save**
+1. Clear the Enable check box and **Save**
 
 ------
 #### [ AWS CLI ]
@@ -208,7 +208,7 @@ The `DisableApiStop` attribute controls whether the instance can be stopped usin
   Set the `disable-api-stop` attribute using the [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html)\.
 
   ```
-  aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --disable-api-stop true
+  aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --disable-api-stop false
   ```
 
 ------

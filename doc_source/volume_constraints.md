@@ -32,11 +32,11 @@ Amazon EBS abstracts the massively distributed storage of a data center into vir
 
 EBS is not aware of the data contained in its virtual disk sectors; it only ensures the integrity of the sectors\. This means that AWS actions and OS actions are independent of each other\. When you are selecting a volume size, be aware of the capabilities and limits of both, as in the following cases: 
 + EBS currently supports a maximum volume size of 64 TiB\. This means that you can create an EBS volume as large as 64 TiB, but whether the OS recognizes all of that capacity depends on its own design characteristics and on how the volume is partitioned\.
-+ Linux boot volumes may use either the MBR or GPT partitioning scheme\. MBR supports boot volumes up to 2047 GiB \(2 TiB \- 1 GiB\)\. GPT with GRUB 2 supports boot volumes 2 TiB or larger\. If your Linux AMI uses MBR, your boot volume is limited to 2047 GiB, but your non\-boot volumes do not have this limit\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
++ Linux boot volumes may use either the MBR or GPT partitioning scheme\. The AMI you launch an instance from determines the boot mode parameter and subsequently which partition scheme can be used for the boot volume\. MBR supports boot volumes up to 2047 GiB \(2 TiB \- 1 GiB\)\. GPT with GRUB 2 supports boot volumes 2 TiB or larger\. If your Linux AMI uses MBR, your boot volume is limited to 2047 GiB, but your non\-boot volumes do not have this limit\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md) and [Set the boot mode of an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-ami-boot-mode.html)\.
 
 ## Partitioning schemes<a name="partitioning"></a>
 
-Among other impacts, the partitioning scheme determines how many logical data blocks can be uniquely addressed in a single volume\. For more information, see [Data block sizes](#block_size)\. The common partitioning schemes in use are *master boot record* \(MBR\) and *GUID partition table* \(GPT\)\. The important differences between these schemes can be summarized as follows\.
+Among other impacts, the partitioning scheme determines how many logical data blocks can be uniquely addressed in a single volume\. For more information, see [Data block sizes](#block_size)\. The common partitioning schemes in use are *Master Boot Record* \(MBR\) and *GUID partition table* \(GPT\)\. The important differences between these schemes can be summarized as follows\.
 
 ### MBR<a name="mbr-partitioning"></a>
 
