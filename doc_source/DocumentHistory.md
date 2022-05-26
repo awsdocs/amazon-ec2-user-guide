@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [M6id instances](#DocumentHistory) | New general purpose instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | May 26, 2022 | 
+| [C6id instances](#DocumentHistory) | New compute optimized instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | May 26, 2022 | 
 | [UEFI Secure Boot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html) | UEFI Secure Boot builds on the long\-standing secure boot process of Amazon EC2 and provides additional defense\-in\-depth that helps customers secure software from threats that persist across reboots\. | May 10, 2022 | 
 | [NitroTPM](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html) | Nitro Trusted Platform Module \(NitroTPM\) is a virtual device that is provided by the AWS Nitro System and conforms to the TPM 2\.0 specification\. | May 10, 2022 | 
 | [AMI state change events](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-ami-events.html) | Amazon EC2 now generates an event when an AMI changes state\. You can use Amazon EventBridge to detect and react to these events\. | May 9, 2022 | 

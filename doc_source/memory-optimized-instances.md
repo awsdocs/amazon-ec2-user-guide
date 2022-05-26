@@ -489,7 +489,7 @@ The following is a summary of features for memory optimized instances\.
 | X1e | No | No | SSD \* | Yes | 
 | z1d | No | Yes | NVME \* | Yes | 
 
-**\*\*** All `io2` volumes attached to R5b, X2idn, X2iedn, and C7g instances, during or after launch, automatically run on EBS Block Express\. For more information, see [io2 Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+**\*\*** All `io2` volumes attached to C7g, R5b, X2idn, and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [io2 Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -545,7 +545,7 @@ The following AMIs support launching memory optimized instances:
   + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
   + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.3\.18\-24\.15\.1
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
-+ All `io2` volumes attached to R5b, X2idn, X2iedn, and C7g instances, during or after launch, automatically run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
++ All `io2` volumes attached to C7g, R5b, X2idn, and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

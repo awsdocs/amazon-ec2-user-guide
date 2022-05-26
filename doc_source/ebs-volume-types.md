@@ -33,7 +33,7 @@ The following is a summary of the use cases and characteristics of SSD\-backed v
 
 † To achieve maximum throughput of 1,000 MiB/s, the volume must be provisioned with 64,000 IOPS and it must be attached to an [instance built on the Nitro System](instance-types.md#ec2-nitro-instances)\. `io1` volumes created before December 6, 2017 and that have not been modified since creation, might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
 
-‡ `io2` Block Express volumes are supported with R5b, X2idn, X2iedn, and C7g instances only\. `io2` volumes attached to these instances, during or after launch, automatically run on Block Express\. For more information, see [`io2` Block Express volumes](#io2-block-express)\.
+‡ `io2` Block Express volumes are supported with C7g, R5b, X2idn, and X2iedn instances only\. `io2` volumes attached to these instances, during or after launch, automatically run on Block Express\. For more information, see [`io2` Block Express volumes](#io2-block-express)\.
 
 ## Hard disk drives \(HDD\)<a name="hard-disk-drives"></a>
 
@@ -175,7 +175,7 @@ Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs 
 
 `io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
 
-Provisioned IOPS SSD `io1` and `io2` volumes are available for all Amazon EC2 instance types\. Provisioned IOPS SSD `io2` volumes attached to R5b, X2idn, X2iedn, and C7g instances run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+Provisioned IOPS SSD `io1` and `io2` volumes are available for all Amazon EC2 instance types\. Provisioned IOPS SSD `io2` volumes attached to C7g, R5b, X2idn, and X2iedn instances run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
 **Considerations for `io2` volumes**  
 
@@ -194,7 +194,7 @@ Provisioned IOPS SSD `io1` and `io2` volumes are available for all Amazon EC2 in
   + If you detach an `io2` volume with a size of 16 TiB or less and IOPS of 64,000 or less from an instance that supports Block Express and attach it to an instance type that does not support [Block Express](#io2-block-express), the volume no longer runs on Block Express and it provides `io2` latency\.
 + Keep the following in mind when **modifying `io2` volumes**:
   + You can't modify an `io2` volume and increase its size beyond 16 TiB or its IOPS beyond 64,000 while it is attached to an instance type that does not support [Block Express](#io2-block-express)\.
-  + You can't modify the size or provisioned IOPS of `io2` volumes attached to R5b, X2idn, X2iedn, and C7g instances\.
+  + You can't modify the size or provisioned IOPS of `io2` volumes attached to C7g, R5b, X2idn, and X2iedn instances\.
 
 **Performance**  
 Provisioned IOPS SSD volumes can range in size from 4 GiB to 16 TiB and you can provision from 100 IOPS up to 64,000 IOPS per volume\. You can achieve up to 64,000 IOPS only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\. On other instance families you can achieve performance up to 32,000 IOPS\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1 for `io1` volumes, and 500:1 for `io2` volumes\. For example, a 100 GiB `io1` volume can be provisioned with up to 5,000 IOPS, while a 100 GiB `io2` volume can be provisioned with up to 50,000 IOPS\. On a supported instance type, the following volume sizes allow provisioning up to the 64,000 IOPS maximum:
@@ -210,7 +210,7 @@ Your per\-I/O latency experience depends on the provisioned IOPS and on your wor
 ### `io2` Block Express volumes<a name="io2-block-express"></a>
 
 **Note**  
-`io2` Block Express volumes are supported with R5b, X2idn, X2iedn, and C7g instances only\.
+`io2` Block Express volumes are supported with C7g, R5b, X2idn, and X2iedn instances only\.
 
 `io2` Block Express volumes is the next generation of Amazon EBS storage server architecture\. It has been built for the purpose of meeting the performance requirements of the most demanding I/O intensive applications that run on Nitro\-based Amazon EC2 instances\. 
 
@@ -227,7 +227,7 @@ Block Express architecture increases performance and scale\. Block Express serve
 + [Pricing and billing](#io2-bx-pricing)
 
 #### Considerations<a name="io2-bx-considerations"></a>
-+ `io2` Block Express volumes are currently supported with R5b, X2idn, X2iedn, and C7g instances only\.
++ `io2` Block Express volumes are currently supported with C7g, R5b, X2idn, and X2iedn instances only\.
 + `io2` Block Express volumes are currently available in all Regions where supported instances are available, including `us-east-1`, `us-east-2`, `us-west-2`, `ap-southeast-1`, `ap-northeast-1`, and `eu-central-1`\. Instance availability might vary by Availability Zone\. For more information, see [Find an Amazon EC2 instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-discovery.html)\.
 + `io2` Block Express volumes do not support fast snapshot restore\. We recommend that you initialize these volumes to ensure that they deliver full performance\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 + `io2` Block Express volumes do not support Elastic Volume operations\.

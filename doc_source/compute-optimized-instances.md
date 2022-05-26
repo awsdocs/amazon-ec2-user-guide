@@ -33,7 +33,7 @@ Bare metal instances, such as `c6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 C6g Instances](https://aws.amazon.com/ec2/instance-types/c6)\.
 
-**C6i instances**
+**C6i and C6id instances**
 
 These instances are ideal for running advanced, compute\-intensive workloads, such as the following:
 + High\-performance computing \(HPC\)
@@ -166,6 +166,16 @@ The following is a summary of the hardware specifications for compute optimized 
 | c6i\.24xlarge | 96 | 192 | 
 | c6i\.32xlarge | 128 | 256 | 
 | c6i\.metal | 128 | 256 | 
+| c6id\.large | 2 | 4 | 
+| c6id\.xlarge | 4 | 8 | 
+| c6id\.2xlarge | 8 | 16 | 
+| c6id\.4xlarge | 16 | 32 | 
+| c6id\.8xlarge | 32 | 64 | 
+| c6id\.12xlarge | 48 | 96 | 
+| c6id\.16xlarge | 64 | 128 | 
+| c6id\.24xlarge | 96 | 192 | 
+| c6id\.32xlarge | 128 | 256 | 
+| c6id\.metal | 128 | 256 | 
 | c7g\.medium | 1 | 2 | 
 | c7g\.large | 2 | 4 | 
 | c7g\.xlarge | 4 | 8 | 
@@ -191,7 +201,7 @@ The compute optimized instances use the following processors\.
 + **Intel Xeon Scalable processors \(Skylake 8124\)**: C5n
 + **Intel Xeon Scalable processors \(Skylake 8124M or Cascade Lake 8223CL\)**: Smaller C5 and C5d
 + **2nd generation Intel Xeon Scalable processors \(Cascade Lake 8275CL\)**: Larger C5 and C5d
-+ **3rd generation Intel Xeon Scalable processors \(Ice Lake 8375C\)**: C6i
++ **3rd generation Intel Xeon Scalable processors \(Ice Lake 8375C\)**: C6i, C6id
 
 For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -216,18 +226,18 @@ The following is a summary of network performance for compute optimized instance
 | c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 | c5\.9xlarge \| c5a\.8xlarge \| c5ad\.8xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.12xlarge \| c5a\.12xlarge \| c5ad\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge \| c6gd\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  c6a\.4xlarge and smaller \| c6i\.4xlarge and smaller \| c7g\.xlarge and smaller | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| c6a\.8xlarge \| c6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  c6a\.4xlarge and smaller \| c6i\.4xlarge and smaller \| c6id\.4xlarge and smaller \| c7g\.xlarge and smaller | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c6a\.8xlarge \| c6i\.8xlarge \| c6id\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c7g\.2xlarge \| c7g\.4xlarge | Up to 15 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c7g\.8xlarge | 15 Gbps |  | 
-| c6a\.12xlarge c6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6a\.12xlarge \| c6i\.12xlarge \| c6id\.12xlarge | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5a\.16xlarge \| c5a\.24xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge \| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c7g\.12xlarge | 22\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller  \| c6gn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal \| c6a\.16xlarge  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge \| c6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal \| c6a\.16xlarge  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge \| c6i\.16xlarge \| c6id\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c7g\.16xlarge | 30 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c6a\.24xlarge \| c6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.9xlarge \| c6a\.32xlarge \| c6a\.48xlarge \| c6a\.metal  \| c6gn\.8xlarge \| c6i\.32xlarge \| c6i\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6a\.24xlarge \| c6i\.24xlarge \| c6id\.24xlarge | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.9xlarge \| c6a\.32xlarge \| c6a\.48xlarge \| c6a\.metal  \| c6gn\.8xlarge \| c6i\.32xlarge \| c6i\.metal \| c6id\.32xlarge \| c6id\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c6gn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  \| hpc6a\.48xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
@@ -279,6 +289,10 @@ The following is a summary of network performance for compute optimized instance
 | c6i\.xlarge | 1\.562 | 12\.5 | 
 | c6i\.2xlarge | 3\.125 | 12\.5 | 
 | c6i\.4xlarge | 6\.25 | 12\.5 | 
+| c6id\.large | \.781 | 12\.5 | 
+| c6id\.xlarge | 1\.562 | 12\.5 | 
+| c6id\.2xlarge | 3\.125 | 12\.5 | 
+| c6id\.4xlarge | 6\.25 | 12\.5 | 
 
 ## SSD I/O performance<a name="compute-ssd-perf"></a>
 
@@ -338,6 +352,7 @@ The following is a summary of features for compute optimized instances:
 | C6gd | No | Yes | NVMe \* | Yes | 
 | C6gn | Yes | Yes | No | Yes | 
 | C6i | Yes | Yes | No | Yes | 
+| C6id | No | Yes | NVMe \* | Yes | 
 | C7g | Yes | Yes | No | Yes | 
 | Hpc6a | Yes | Yes | No | Yes | 
 

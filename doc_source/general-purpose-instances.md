@@ -38,7 +38,7 @@ Bare metal instances, such as `m6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 M6g Instances](https://aws.amazon.com/ec2/instance-types/m6)\.
 
-**M6i instances**
+**M6i and M6id instances**
 
 These instances are well suited for general\-purpose workloads such as the following:
 + Application servers and web servers
@@ -187,6 +187,16 @@ The following is a summary of the hardware specifications for general purpose in
 | m6i\.24xlarge | 96 | 384 | 
 | m6i\.32xlarge | 128 | 512 | 
 | m6i\.metal | 128 | 512 | 
+| m6id\.large | 2 | 8 | 
+| m6id\.xlarge | 4 | 16 | 
+| m6id\.2xlarge | 8 | 32 | 
+| m6id\.4xlarge | 16 | 64 | 
+| m6id\.8xlarge | 32 | 128 | 
+| m6id\.12xlarge | 48 | 192 | 
+| m6id\.16xlarge | 64 | 256 | 
+| m6id\.24xlarge | 96 | 384 | 
+| m6id\.32xlarge | 128 | 512 | 
+| m6id\.metal | 128 | 512 | 
 | mac1\.metal | 12 | 32 | 
 | t2\.nano | 1 | 0\.5 | 
 | t2\.micro | 1 | 1 | 
@@ -231,7 +241,7 @@ The general purpose instances use the following processors\.
 + **Intel Xeon Scalable processors \(Skylake 8175M or Cascade Lake 8259CL\)**: M5, M5d, T3
 + **2nd generation Intel Xeon Scalable processors \(Cascade Lake 8259CL\)**: M5n
 + **2nd generation Intel Xeon Scalable processors \(Cascade Lake 8252C\)**: M5zn
-+ **3rd generation Intel Xeon Scalable processors \(Ice Lake 8375C\)**: M6i
++ **3rd generation Intel Xeon Scalable processors \(Ice Lake 8375C\)**: M6i, M6id
 
 For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -258,14 +268,14 @@ The following is a summary of network performance for general purpose instances 
 | m4\.10xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 |  m5\.8xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge \| m5d\.12xlarge \| mac1\.metal  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | m5\.12xlarge \| m5a\.16xlarge \| m5ad\.16xlarge  \| m6g\.8xlarge \| m6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m6a\.4xlarge and smaller \| m6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  m6a\.8xlarge \| m6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m6a\.12xlarge \| m6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m6a\.4xlarge and smaller \| m6i\.4xlarge and smaller \| m6id\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  m6a\.8xlarge \| m6i\.8xlarge \| m6id\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m6a\.12xlarge \| m6i\.12xlarge \| m6id\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5\.16xlarge \| m5a\.24xlarge \| m5ad\.24xlarge \| m5d\.16xlarge  \| m6g\.12xlarge \| m6gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.4xlarge and smaller \| m5n\.4xlarge and smaller \| m5zn\.3xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge \| m6a\.16xlarge  \| m6g\.16xlarge \| m6g\.metal \| m6gd\.16xlarge \| m6gd\.metal \| m6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m6a\.24xlarge \| m6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.12xlarge \| m5n\.12xlarge \| m5zn\.6xlarge \| m6a\.32xlarge \| m6a\.48xlarge \| m6a\.metal \| m6i\.32xlarge \| m6i\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge \| m6a\.16xlarge  \| m6g\.16xlarge \| m6g\.metal \| m6gd\.16xlarge \| m6gd\.metal \| m6i\.16xlarge \| m6id\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m6a\.24xlarge \| m6i\.24xlarge \| m6id\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.12xlarge \| m5n\.12xlarge \| m5zn\.6xlarge \| m6a\.32xlarge \| m6a\.48xlarge \| m6a\.metal \| m6i\.32xlarge \| m6i\.metal \| m6id\.32xlarge \| m6id\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.16xlarge \| m5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.24xlarge \| m5dn\.metal \| m5n\.24xlarge \| m5n\.metal \| m5zn\.12xlarge \| m5zn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
@@ -320,6 +330,10 @@ The following is a summary of network performance for general purpose instances 
 | m6i\.xlarge | 1\.562 | 12\.5 | 
 | m6i\.2xlarge | 3\.125 | 12\.5 | 
 | m6i\.4xlarge | 6\.25 | 12\.5 | 
+| m6id\.large | \.781 | 12\.5 | 
+| m6id\.xlarge | 1\.562 | 12\.5 | 
+| m6id\.2xlarge | 3\.125 | 12\.5 | 
+| m6id\.4xlarge | 6\.25 | 12\.5 | 
 | t3\.nano | \.032 | 5 | 
 | t3\.micro | \.064 | 5 | 
 | t3\.small | \.128 | 5 | 
@@ -384,6 +398,16 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | m6gd\.12xlarge | 645,000 | 270,000 | 
 | m6gd\.16xlarge | 860,000 | 360,000 | 
 | m6gd\.metal | 860,000 | 360,000 | 
+| m6id\.large | 33,542 | 16,771 | 
+| m6id\.xlarge | 67,083 | 33,542 | 
+| m6id\.2xlarge | 134,167 | 67,084 | 
+| m6id\.4xlarge | 268,333 | 134,167 | 
+| m6id\.8xlarge | 536,666 | 268,334 | 
+| m6id\.12xlarge | 804,999 | 402,501 | 
+| m6id\.16xlarge | 1,073,332 | 536,668 | 
+| m6id\.24xlarge | 1,609,998 | 805,002 | 
+| m6id\.32xlarge | 2,146,664 | 1,073,336 | 
+| m6id\.metal | 2,146,664 | 1,073,336 | 
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
@@ -410,6 +434,7 @@ The following is a summary of features for general purpose instances:
 | M6g | Yes | Yes | No | Yes | 
 | M6gd | No | Yes | NVMe \* | Yes | 
 | M6i | Yes | Yes | No | Yes | 
+| M6id | No | Yes | NVMe \* | Yes | 
 | Mac1 | Yes | Yes | No | No | 
 | T2 | Yes | No | No | No | 
 | T3 | Yes | Yes | No | No | 

@@ -63,8 +63,8 @@ GPT fdisk (gdisk) version 0.8.8
 + If you modify the volume type of a volume, the size and performance must be within the limits of the target volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)
 + You can't decrease the size of an EBS volume\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.
 + After provisioning over 32,000 IOPS on an existing `io1` or `io2` volume, you might need to detach and re\-attach the volume, or restart the instance to see the full performance improvements\.
-+ For `io2` volumes, you can't increase the size beyond `16` TiB or the IOPS beyond `64,000` while the volume is attached to an instance type that does not support `io2` Block Express volumes\. Currently, only R5b, X2idn, X2iedn, and C7g instances support `io2` Block Express volumes volumes\. For more information, see [`io2` Block Express volumes](ebs-volume-types.md#io2-block-express)
-+ You can't modify the size or provisioned IOPS of an `io2` volume that is attached to an R5b, X2idn, X2iedn, and C7g instance\.
++ For `io2` volumes, you can't increase the size beyond `16` TiB or the IOPS beyond `64,000` while the volume is attached to an instance type that does not support `io2` Block Express volumes\. Currently, only C7g, R5b, X2idn, and X2iedn instances support `io2` Block Express volumes volumes\. For more information, see [`io2` Block Express volumes](ebs-volume-types.md#io2-block-express)
++ You can't modify the size or provisioned IOPS of an `io2` volume that is attached to an C7g, R5b, X2idn, and X2iedn instance\.
 + You can't modify the volume type of Multi\-Attach enabled `io2` volumes\.
 + You can't modify the volume type, size, or Provisioned IOPS of Multi\-Attach enabled `io1` volumes\.
 + A `gp2` volume that is attached to an instance as a root volume can't be modified to an `st1` or `sc1` volume\. If detached and modified to `st1` or `sc1`, it can't be re\-attached to an instance as the root volume\.
