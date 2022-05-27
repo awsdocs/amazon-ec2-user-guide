@@ -43,6 +43,6 @@ Assigning prefixes has the following benefits:
 
 Take the following into consideration when you use prefixes:
 + Network interfaces with prefixes are supported with [instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
-+ Prefixes for network interfaces are limited to private IPv4 addresses and IPv6 addresses\.
++ Prefixes for network interfaces are limited to IPv6 addresses and private IPv4 addresses\.
 + The maximum number of IP addresses that you can assign to a network interface depends on the instance type\. Each prefix that you assign to a network interface counts as one IP address\. For example, a `c5.large` instance has a limit of `10` IPv4 addresses per network interface\. Each network interface for this instance has a primary IPv4 address\. If a network interface has no secondary IPv4 addresses, you can assign up to 9 prefixes to the network interface\. For each additional IPv4 address that you assign to a network interface, you can assign one less prefix to the network interface\. For more information, see [IP addresses per network interface per instance type](using-eni.md#AvailableIpPerENI)\.
 + Prefixes are included in source/destination checks\.
