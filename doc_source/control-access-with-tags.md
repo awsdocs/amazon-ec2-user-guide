@@ -5,7 +5,7 @@ When you create an IAM policy that grants IAM users permission to use EC2 resour
 For example, you can create a policy that allows users to terminate an instance, but denies the action if the instance has the tag `environment=production`\. To do this, you use the `aws:ResourceTag` condition key to allow or deny access to the resource based on the tags that are attached to the resource\.
 
 ```
-"StringEquals": { "aws:ResourceTag/environment": "production" }
+"StringEquals": { "ec2:ResourceTag/environment": "production" }
 ```
 
 To learn whether an Amazon EC2 API action supports controlling access using the `aws:ResourceTag` condition key, see [Actions, resources, and condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html)\. Note that the `Describe` actions do not support resource\-level permissions, so you must specify them in a separate statement without conditions\.
