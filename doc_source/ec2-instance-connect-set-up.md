@@ -237,7 +237,7 @@ The following instructions explain how to create the policy and attach it to an 
             "Resource": "arn:aws:ec2:region:account-id:instance/*",
             "Condition":{ 
                "StringEquals":{ 
-                  "aws:ResourceTag/tag-key":"tag-value"
+                  "ec2:ResourceTag/tag-key":"tag-value"
                }
             }
          },

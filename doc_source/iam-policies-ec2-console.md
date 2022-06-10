@@ -241,7 +241,7 @@ Users cannot tag the volumes that they create \(either during or after volume cr
       "Resource": "arn:aws:ec2:region:111122223333:instance/*",
       "Condition": {
         "StringEquals": {
-          "aws:ResourceTag/purpose": "test"
+          "ec2:ResourceTag/purpose": "test"
         }
      }
    },

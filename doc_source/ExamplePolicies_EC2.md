@@ -152,7 +152,7 @@ The third statement allows users to terminate all instances in the US East \(N\.
       "Resource": "arn:aws:ec2:us-east-1:account-id:instance/*",
       "Condition": {
          "StringEquals": {
-            "aws:ResourceTag/purpose": "test"
+            "ec2:ResourceTag/purpose": "test"
          }
       }
    }
@@ -187,7 +187,7 @@ The following policy allows users to attach volumes with the tag "`volume_user`=
       "Resource": "arn:aws:ec2:us-east-1:account-id:instance/*",
       "Condition": {
         "StringEquals": {
-          "aws:ResourceTag/department": "dev"
+          "ec2:ResourceTag/department": "dev"
         }
       }
    },
@@ -200,7 +200,7 @@ The following policy allows users to attach volumes with the tag "`volume_user`=
       "Resource": "arn:aws:ec2:us-east-1:account-id:volume/*",
       "Condition": {
         "StringEquals": {
-          "aws:ResourceTag/volume_user": "${aws:username}"
+          "ec2:ResourceTag/volume_user": "${aws:username}"
         }
       }
    }
@@ -545,7 +545,7 @@ The following policy allows snapshots to be created only if the source volume is
          "Resource":"arn:aws:ec2:us-east-1:account-id:volume/*",
          "Condition":{
             "StringEquals":{
-               "aws:ResourceTag/User":"${aws:username}"
+               "ec2:ResourceTag/User":"${aws:username}"
             }
          }
       },
@@ -586,7 +586,7 @@ The following policy for `CreateSnapshots` allows snapshots to be created only i
          "Resource":"arn:aws:ec2:us-east-1:account-id:volume/*",
          "Condition":{
             "StringEquals":{
-               "aws:ResourceTag/User":"${aws:username}"
+               "ec2:ResourceTag/User":"${aws:username}"
             }
          }
       },
@@ -622,7 +622,7 @@ The following policy allows deletion of a snapshot only if the snapshot is tagge
          "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
          "Condition":{
             "StringEquals":{
-               "aws:ResourceTag/User":"${aws:username}"
+               "ec2:ResourceTag/User":"${aws:username}"
             }
          }
       }
@@ -756,7 +756,7 @@ The following policy allows modification of a snapshot only if the snapshot is t
          "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
          "Condition":{
             "StringEquals":{
-               "aws:ResourceTag/user-name":"${aws:username}"
+               "ec2:ResourceTag/user-name":"${aws:username}"
             }
          }
       }
@@ -1450,7 +1450,7 @@ The following example allows users to launch instances only if they use a launch
       "Resource": "arn:aws:ec2:region:account-id:launch-template/*",
       "Condition": {
        "StringEquals": {
-           "aws:ResourceTag/Purpose": "Webservers" 
+           "ec2:ResourceTag/Purpose": "Webservers" 
         }
        }
      }
@@ -1805,7 +1805,7 @@ The following policy allows users to tag any taggable resource that already has 
             "Condition": {
                 "StringEquals": {
                     "aws:RequestTag/anycompany:environment-type": ["test","prod"],
-                    "aws:ResourceTag/owner": "${aws:username}"
+                    "ec2:ResourceTag/owner": "${aws:username}"
                 } 
             }
         }
@@ -1851,7 +1851,7 @@ This policy allows users to delete only the `environment=prod` tag on any resour
       "Condition": {
         "StringEquals": {
           "aws:RequestTag/environment": "prod",
-          "aws:ResourceTag/owner": "${aws:username}"
+          "ec2:ResourceTag/owner": "${aws:username}"
         },
         "ForAllValues:StringEquals": {
           "aws:TagKeys": ["environment"]
@@ -1882,7 +1882,7 @@ IAM users must have permission to use the `iam:PassRole` action in order to pass
       "Resource": "arn:aws:ec2:us-east-1:account-id:instance/*",
       "Condition": {
         "StringEquals": {
-          "aws:ResourceTag/department":"test"
+          "ec2:ResourceTag/department":"test"
         }
       }
     },
@@ -2022,7 +2022,7 @@ The following policy allows users to delete any launch template and launch templ
       "Resource": "arn:aws:ec2:region:account-id:launch-template/*",
       "Condition": {
         "StringEquals": {
-          "aws:ResourceTag/Purpose": "Testing"
+          "ec2:ResourceTag/Purpose": "Testing"
         }
       }
     }
