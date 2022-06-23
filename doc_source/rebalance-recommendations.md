@@ -62,7 +62,7 @@ The following fields form the event pattern that is defined in the rule:
 `"detail-type": "EC2 Instance Rebalance Recommendation"`  
 Identifies that the event is a rebalance recommendation event
 
-`source": "aws.ec2`  
+`"source": "aws.ec2"`  
 Identifies that the event is from Amazon EC2
 
 #### Create an EventBridge rule<a name="cp-eventbridge-rule"></a>
