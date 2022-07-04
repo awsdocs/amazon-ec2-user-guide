@@ -62,13 +62,13 @@ A self\-signed certificate is acceptable for testing but not production\. If you
 The `-y` option installs the updates without asking for confirmation\. If you would like to examine the updates before installing, you can omit this option\.
 
    ```
-   [ec2-user ~]$ sudo yum install openssl mod_ssl
+   [ec2-user ~]$ sudo dnf install openssl mod_ssl
    ```
 
 1. After you enter the following command, you will be taken to a prompt where you can enter information about your site\. 
 
    ```
-   [ec2-user ~]$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/pki/tls/private/localhost.key -out /etc/pki/tls/certs/localhost.crt
+   [ec2-user ~]$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/pki/tls/private/apache-selfsigned.key -out /etc/pki/tls/certs/apache-selfsigned.crt
    ```
 
    This generates a new file `localhost.crt` in the `/etc/pki/tls/certs/` directory\. The specified file name matches the default that is assigned in the SSLCertificateFile directive in `/etc/httpd/conf.d/ssl.conf`\. 
