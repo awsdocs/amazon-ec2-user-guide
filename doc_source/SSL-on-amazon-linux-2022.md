@@ -62,7 +62,7 @@ A self\-signed certificate is acceptable for testing but not production\. If you
 The `-y` option installs the updates without asking for confirmation\. If you would like to examine the updates before installing, you can omit this option\.
 
    ```
-   [ec2-user ~]$ sudo dnf install openssl mod_ssl
+   [ec2-user ~]$ sudo yum install openssl mod_ssl
    ```
 
 1. After you enter the following command, you will be taken to a prompt where you can enter information about your site\. 
