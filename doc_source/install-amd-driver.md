@@ -269,3 +269,5 @@ EndSection
    ```
 
 1. \(Optional\) [Install the NICE DCV server](https://docs.aws.amazon.com/dcv/latest/adminguide/setting-up-installing.html) to use NICE DCV as a high\-performance display protocol, and then [connect to a NICE DCV session](https://docs.aws.amazon.com/dcv/latest/userguide/using-connecting.html) using your preferred client\.
+
+   

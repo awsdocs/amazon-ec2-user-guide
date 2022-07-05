@@ -3,11 +3,11 @@
 To launch a Spot Instance, either you create a *Spot Instance request*, or Amazon EC2 creates a Spot Instance request on your behalf\. The Spot Instance launches when the Spot Instance request is fulfilled\.
 
 You can launch a Spot Instance using several different services\. For more information, see [Getting Started with Amazon EC2 Spot Instances](http://aws.amazon.com/ec2/spot/getting-started/)\. In this user guide, we describe the following ways to launch a Spot Instance using EC2:
-+ You can create a Spot Instance request\. For more information, see [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
++ You can create a Spot Instance request by using the [launch instance wizard](ec2-launch-instance-wizard.md) in the Amazon EC2 console or the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command\. For more information, see [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
 + You can create an EC2 Fleet, in which you specify the desired number of Spot Instances\. Amazon EC2 creates a Spot Instance request on your behalf for every Spot Instance that is specified in the EC2 Fleet\. For more information, see [Create an EC2 Fleet](manage-ec2-fleet.md#create-ec2-fleet)\.
 + You can create a Spot Fleet request, in which you specify the desired number of Spot Instances\. Amazon EC2 creates a Spot Instance request on your behalf for every Spot Instance that is specified in the Spot Fleet request\. For more information, see [Create a Spot Fleet request](work-with-spot-fleets.md#create-spot-fleet)\.
 
-The Spot Instance request must include the maximum price that you're willing to pay per hour per instance\. If you don't specify a price, the price defaults to the On\-Demand price\. The request can include other constraints such as the instance type and Availability Zone\.
+The Spot Instance request must include the maximum price that you're willing to pay per hour per instance\. If you don't specify a price, the price defaults to the Spot price, capped at the On\-Demand price\. The request can include other constraints such as the instance type and Availability Zone\.
 
 Your Spot Instance launches if the maximum price that you're willing to pay exceeds the Spot price, and if there is available capacity\. If the maximum price you're willing to pay is lower than the Spot price, then your instance does not launch\. However, because Amazon EC2 gradually adjusts the Spot price based on the long\-term supply of and demand for Spot Instances, the maximum price you're willing to pay might eventually exceed the Spot price, in which case your instance will launch\.
 

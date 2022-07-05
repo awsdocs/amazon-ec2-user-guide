@@ -9,6 +9,7 @@ Amazon Linux is provided by Amazon Web Services \(AWS\)\. It is designed to prov
 + [AWS command line tools](#amazon-linux-aws-command-line-tools)
 + [Package repository](#package-repository)
 + [Extras library \(Amazon Linux 2\)](#extras-library)
++ [Amazon Linux 2 supported kernels](#aml2-kernel)
 + [Access source packages for reference](#amazon-linux-source-packages)
 + [cloud\-init](#amazon-linux-cloud-init)
 + [Subscribe to Amazon Linux notifications](#linux-ami-notifications)
@@ -19,25 +20,25 @@ Amazon Linux is provided by Amazon Web Services \(AWS\)\. It is designed to prov
 
 AWS provides Amazon Linux 2 and the Amazon Linux AMI\. If you are migrating from another Linux distribution to Amazon Linux, we recommend that you migrate to Amazon Linux 2\.
 
-The last version of the Amazon Linux AMI, 2018\.03, reaches the end of standard support on December 31, 2020\. For more information, see the following blog post: [Amazon Linux AMI end of life](http://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life/)\. If you are currently using the Amazon Linux AMI, we recommend that you migrate to Amazon Linux 2\. To migrate to Amazon Linux 2, launch an instance or create a virtual machine using the current Amazon Linux 2 image\. Install your applications, plus any required packages\. Test your application, and make any changes required for it to run on Amazon Linux 2\.
+The last version of the Amazon Linux AMI, 2018\.03, ended standard support on December 31, 2020\. For more information, see the following blog post: [Amazon Linux AMI end of life](http://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life/)\. If you are currently using the Amazon Linux AMI, we recommend that you migrate to Amazon Linux 2\. To migrate to Amazon Linux 2, launch an instance or create a virtual machine using the current Amazon Linux 2 image\. Install your applications, plus any required packages\. Test your application, and make any changes required for it to run on Amazon Linux 2\.
 
 For more information, see [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) and [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. For Amazon Linux Docker container images, see [amazonlinux](https://hub.docker.com/_/amazonlinux/) on Docker Hub\.
 
 ## Connect to an Amazon Linux instance<a name="connect-to-amazon-linux-limits"></a>
 
-Amazon Linux does not allow remote root SSH by default\. Also, password authentication is disabled to prevent brute\-force password attacks\. To enable SSH logins to an Amazon Linux instance, you must provide your key pair to the instance at launch\. You must also set the security group used to launch your instance to allow SSH access\. By default, the only account that can log in remotely using SSH is ec2\-user; this account also has sudo privileges\. If you enable remote root login, be aware that it is less secure than relying on key pairs and a secondary user\.
+Amazon Linux does not allow remote root secure shell \(SSH\) by default\. Also, password authentication is disabled to prevent brute\-force password attacks\. To enable SSH logins to an Amazon Linux instance, you must provide your key pair to the instance at launch\. You must also set the security group used to launch your instance to allow SSH access\. By default, the only account that can log in remotely using SSH is ec2\-user; this account also has sudo privileges\. If you enable remote root login, be aware that it is less secure than relying on key pairs and a secondary user\.
 
 ## Identify Amazon Linux images<a name="amazon-linux-image-id"></a>
 
 Each image contains a unique `/etc/image-id` file that identifies it\. This file contains the following information about the image:
-+ `image_name`, `image_version`, `image_arch` — Values from the build recipe that Amazon used to construct the image\.
-+ `image_stamp` — A unique, random hex value generated during image creation\.
-+ `image_date` — The UTC time of image creation, in *YYYYMMDDhhmmss* format
-+ `recipe_name`, `recipe_id` — The name and ID of the build recipe Amazon used to construct the image\.
++ `image_name`, `image_version`, `image_arch` – Values from the build recipe that Amazon used to construct the image\.
++ `image_stamp` – A unique, random hex value generated during image creation\.
++ `image_date` – The UTC time of image creation, in *YYYYMMDDhhmmss* format
++ `recipe_name`, `recipe_id` – The name and ID of the build recipe Amazon used to construct the image\.
 
-Amazon Linux contains an `/etc/system-release` file that specifies the current release that is installed\. This file is updated using yum and is part of the `system-release` RPM\.
+Amazon Linux contains an `/etc/system-release` file that specifies the current release that is installed\. This file is updated using yum and is part of the `system-release` RPM Package Manager \(RPM\)\.
 
-Amazon Linux also contains a machine\-readable version of `/etc/system-release` that follows the CPE specification; see `/etc/system-release-cpe`\.
+Amazon Linux also contains a machine\-readable version of `/etc/system-release` that follows the Common Platform Enumeration \(CPE\) specification; see `/etc/system-release-cpe`\.
 
 ### Amazon Linux 2<a name="image-id-amazon-linux-2"></a>
 
@@ -266,6 +267,61 @@ To disable a topic and make the packages inaccessible to the yum package manager
 **Important**  
 This command is intended for advanced users\. Improper usage of this command could cause package compatibility conflicts\.
 
+## Amazon Linux 2 supported kernels<a name="aml2-kernel"></a>
+
+**Supported kernel versions**
+
+Currently, Amazon Linux 2 \(AL2\) AMIs are available with kernel versions 4\.14 and 5\.10, with version 5\.10 being a default\. You also have an option of upgrading the kernel on AL2 to version 5\.15 by using the extras repository\. Note that an upgrade to 5\.15 requires a reboot for the new kernel to take effect\. Review new features and limitations of the kernel version 5\.15 on AL2 before deciding whether an upgrade is required for your use case\. If you require live patching support, we recommend you use AL2 AMI with kernel 5\.10\.
+
+**New features in kernel 5\.15**
++ [Kernel\-based Virtual Machine](https://www.linux-kvm.org/page/Main_Page) \(KVM\) now defaults to the new x86 TDP MMU and adds AMD SVM 5\-level paging to allow for greater parallelism and scalability compared to the original KVM x86 MMU code\.
++ [OverlayFS](https://www.kernel.org/doc/html/latest/filesystems/overlayfs.html) has improved performance and now also handles copying immutable/append/sync/noatime attributes\.
++ New optimizations and improvements for EXT4 are added, such as addition of a new orphan\_file feature to eliminate bottlenecks in cases of large parallel truncates, file deletions and moving the DISCARD work out of the JBD2 commit thread to help with devices having slow DISCARD behavior and not blocking the JBD2 commit KThread\.
++ New optimizations and improvements for XFS are added, such as batch inode activations in per\-CPU background threads that improve directory tree deletion times and enablement of pipelining to help with performance around handling lots of metadata updates\.
++ [DAMON](https://www.kernel.org/doc/html/v5.15-rc1/vm/damon/index.html) is better supported as the data access monitoring framework for proactive memory reclamation and performance analysis\.
+
+**Limitations for kernel 5\.15**
++ LustreFSx is not supported \(support will be added later\)\.
++ Kernel live patching is not supported\.
+
+**Instructions for installing kernel 5\.15**
+
+You can upgrade to kernel 5\.15 from both Amazon Linux 2 AMI with kernel 4\.14 and AL2 AMI with kernel 5\.10 using the following commands:
+
+1. Enable the `kernel-5.15` topic in `amazon-linux-extras` and install kernel 5\.15 on the host\.
+
+   ```
+   sudo amazon-linux-extras install kernel-5.15
+   ```
+
+1. Reboot the host with the installed kernel 5\.15\.
+
+   ```
+   sudo reboot
+   ```
+
+1. Check the system kernel version\.
+
+   ```
+   uname -r
+   ```
+
+**Support Timeframe**
+
+All Linux kernels available on Amazon Linux 2 \(4\.14, 5\.10, and 5\.15\) will be supported until Amazon Linux 2 AMI reaches the end of standard support\.
+
+**Live patching support**
+
+
+|  |  | 
+| --- |--- |
+| Amazon Linux 2 kernel version | Kernel live patching supported | 
+| 4\.14 | Yes | 
+| 5\.10 | Yes | 
+| 5\.15 | No | 
+
+
+
 ## Access source packages for reference<a name="amazon-linux-source-packages"></a>
 
 You can view the source of packages you have installed on your instance for reference purposes by using tools provided in Amazon Linux\. Source packages are available for all of the packages included in Amazon Linux and the online package repository\. Simply determine the package name for the source package you want to install and use the yumdownloader \-\-source command to view source within your running instance\. For example:
@@ -321,7 +377,7 @@ The cloud\-init package supports user\-data handling of a variety of formats:
   + The script is run by `/etc/init.d/cloud-init-user-scripts` during the first boot cycle\. This occurs late in the boot process \(after the initial configuration actions are performed\)\.
 + Include file
   + Begins with `#include` or `Content-Type: text/x-include-url`\.
-  + This content is an include file\. The file contains a list of URLs, one per line\. Each of the URLs is read, and their content passed through this same set of rules\. The content read from the URL can be gzipped, MIME\-multi\-part, or plaintext\.
+  + This content is an include file\. The file contains a list of URLs, one per line\. Each of the URLs is read, and their content passed through this same set of rules\. The content read from the URL can be gzip compressed, MIME\-multi\-part, or plaintext\.
 + Cloud Config Data
   + Begins with `#cloud-config` or `Content-Type: text/cloud-config`\.
   + This content is cloud\-config data\. For a commented example of supported configuration formats, see the examples\.
@@ -331,7 +387,7 @@ The cloud\-init package supports user\-data handling of a variety of formats:
 + Cloud Boothook
   + Begins with `#cloud-boothook` or `Content-Type: text/cloud-boothook`\.
   + This content is boothook data\. It is stored in a file under `/var/lib/cloud` and then runs immediately\.
-  +  This is the earliest "hook" available\. There is no mechanism provided for running it only one time\. The boothook must take care of this itself\. It is provided with the instance ID in the environment variable `INSTANCE_ID`\. Use this variable to provide a once\-per\-instance set of boothook data\.
+  +  This is the earliest *hook* available\. There is no mechanism provided for running it only one time\. The boothook must take care of this itself\. It is provided with the instance ID in the environment variable `INSTANCE_ID`\. Use this variable to provide a once\-per\-instance set of boothook data\.
 
 ## Subscribe to Amazon Linux notifications<a name="linux-ami-notifications"></a>
 

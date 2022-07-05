@@ -4,7 +4,7 @@ The following steps help you to get started with Elastic Fabric Adapter using on
 
 **Note**  
 Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
-Only Amazon Linux 2, RHEL 7/8, CentOS 7, and Ubuntu 18\.04 base AMIs are supported\.
+Only Amazon Linux 2, RHEL 7/8, CentOS 7, and Ubuntu 18\.04/20\.04 base AMIs are supported\.
 
 **Topics**
 + [Step 1: Prepare an EFA\-enabled security group](#nccl-start-base-setup)
@@ -497,15 +497,14 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
    The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
 
 ------
-#### [ Ubuntu 18\.04 ]
+#### [ Ubuntu 18\.04/20\.04 ]
 
 **To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
 
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
 
    ```
-   $ sudo apt-get update \
-   && sudo apt-get install build-essential -y
+   $ sudo apt-get update && sudo apt-get install build-essential -y
    ```
 
 1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
@@ -553,7 +552,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
         && sudo dpkg -i /tmp/deeplearning.deb \
         && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin \
         && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
-        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub \
+        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub \
         && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /' \
         && sudo apt update
         ```
@@ -565,7 +564,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
         && sudo dpkg -i /tmp/deeplearning.deb \
         && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin \
         && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
-        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub \
+        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub \
         && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /' \
         && sudo apt update
         ```
@@ -611,8 +610,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
    1. Start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
 
       ```
-      $ sudo systemctl start nvidia-fabricmanager \
-      && sudo systemctl enable nvidia-fabricmanager
+      $ sudo systemctl start nvidia-fabricmanager && sudo systemctl enable nvidia-fabricmanager
       ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.
@@ -653,7 +651,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
      ```
      $ sudo yum update -y
      ```
-   + Ubuntu 18\.04
+   + Ubuntu 18\.04/20\.04
 
      ```
      $ sudo apt-get update && sudo apt-get upgrade -y
@@ -662,7 +660,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.15.2.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.17.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -690,7 +688,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.15.2.tar.gz.sig && gpg --verify ./aws-efa-installer-1.15.2.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.17.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.17.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -708,7 +706,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.15.2.tar.gz && cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.17.0.tar.gz && cd aws-efa-installer
    ```
 
 1. Run the EFA software installation script\.
@@ -838,8 +836,7 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
 1. Install the aws\-ofi\-nccl plugin\.
 
    ```
-   $ make \
-   && sudo make install
+   $ make && sudo make install
    ```
 
 ## Step 7: Install the NCCL tests<a name="nccl-start-base-tests"></a>
@@ -866,7 +863,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib64:$LD_LIBRARY_PATH
      ```
-   + Ubuntu 18\.04
+   + Ubuntu 18\.04/20\.04
 
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib:$LD_LIBRARY_PATH
@@ -916,7 +913,7 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    $ /opt/amazon/openmpi/bin/mpirun \
        -x FI_PROVIDER="efa" \
        -x FI_EFA_USE_DEVICE_RDMA=1 \
-       -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
+       -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
        -x NCCL_DEBUG=INFO \
        -x NCCL_ALGO=ring \
        -x NCCL_PROTO=simple \

@@ -3,8 +3,8 @@
 Kernel Live Patching for Amazon Linux 2 enables you to apply security vulnerability and critical bug patches to a running Linux kernel, without reboots or disruptions to running applications\. This allows you to benefit from improved service and application availability, while keeping your infrastructure secure and up to date\. 
 
 AWS releases two types of kernel live patches for Amazon Linux 2:
-+ **Security updates**—Include updates for Linux common vulnerabilities and exposures \(CVE\)\. These updates are typically rated as *important* or *critical* using the Amazon Linux Security Advisory ratings\. They generally map to a Common Vulnerability Scoring System \(CVSS\) score of 7 and higher\. In some cases, AWS might provide updates before a CVE is assigned\. In these cases, the patches might appear as bug fixes\.
-+ **Bug fixes**—Include fixes for critical bugs and stability issues that are not associated with CVEs\.
++ **Security updates** – Include updates for Linux common vulnerabilities and exposures \(CVE\)\. These updates are typically rated as *important* or *critical* using the Amazon Linux Security Advisory ratings\. They generally map to a Common Vulnerability Scoring System \(CVSS\) score of 7 and higher\. In some cases, AWS might provide updates before a CVE is assigned\. In these cases, the patches might appear as bug fixes\.
++ **Bug fixes** – Include fixes for critical bugs and stability issues that are not associated with CVEs\.
 
 AWS provides kernel live patches for an Amazon Linux 2 kernel version for up to 3 months after its release\. After the 3\-month period, you must update to a later kernel version to continue to receive kernel live patches\.
 

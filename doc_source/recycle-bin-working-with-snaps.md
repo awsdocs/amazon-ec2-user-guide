@@ -73,7 +73,7 @@ You can view the snapshots in the Recycle Bin using one of the following methods
 
 **To view snapshots in the Recycle Bin using the console**
 
-1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com//rbin/home/](https://console.aws.amazon.com//rbin/home/)
+1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
 1. In the navigation panel, choose **Recycle Bin**\.
 
@@ -124,7 +124,7 @@ You can restore a snapshot from the Recycle Bin using one of the following metho
 
 **To restore a snapshot from the Recycle Bin using the console**
 
-1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com//rbin/home/](https://console.aws.amazon.com//rbin/home/)
+1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
 1. In the navigation panel, choose **Recycle Bin**\.
 

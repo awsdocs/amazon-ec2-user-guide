@@ -26,7 +26,7 @@ The following workflow references the numbered points on the graph:
 
 **P4** – For the next 12 hours, CPU utilization decreases to 2\.5% \(below the baseline\), which requires a spend of 36 credits\. In the same time, the instance earns 72 credits\. The instance earns more credits than it spends, and the `CPUCreditBalance` value increases to 122 credits\.
 
-**P5** – For the next two hours, the instance bursts at 100% CPU utilization, and depletes its entire `CPUCreditBalance` value of 122 credits\. At the end of this period, with the `CPUCreditBalance` at zero, CPU utilization is forced to drop to the baseline utilization level of 5%\. At the baseline, the instance earns as many credits as it spends\.
+**P5** – For the next two hours, the instance bursts at 60% CPU utilization, and depletes its entire `CPUCreditBalance` value of 122 credits\. At the end of this period, with the `CPUCreditBalance` at zero, CPU utilization is forced to drop to the baseline utilization level of 5%\. At the baseline, the instance earns as many credits as it spends\.
 
 **P6** – For the next 14 hours, CPU utilization is at 5% \(the baseline\)\. The instance earns as many credits as it spends\. The `CPUCreditBalance` value remains at 0\.
 

@@ -29,7 +29,7 @@ There is no additional charge for using EC2 Fleet\. You pay only for the EC2 ins
 ## EC2 Fleet limitations<a name="EC2-fleet-limitations"></a>
 
 The following limitations apply to EC2 Fleet:
-+ EC2 Fleet is available only through the API or AWS CLI\.
++ EC2 Fleet is available only through the [Amazon EC2 API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet.html), [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html), [AWS SDKs](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet.html#API_CreateFleet_SeeAlso), and [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html)\.
 + An EC2 Fleet request can't span AWS Regions\. You need to create a separate EC2 Fleet for each Region\.
 + An EC2 Fleet request can't span different subnets from the same Availability Zone\.
 

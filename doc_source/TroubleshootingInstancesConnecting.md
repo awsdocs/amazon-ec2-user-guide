@@ -14,6 +14,7 @@ The following information can help you troubleshoot issues with connecting to yo
 + [Cannot ping instance](#troubleshoot-instance-ping)
 + [Error: Server unexpectedly closed network connection](#troubleshoot-ssh)
 + [Error: Host key validation failed for EC2 Instance Connect](#troubleshoot-host-key-validation)
++ [Can't connect to Ubuntu instance using EC2 Instance Connect](#troubleshoot-eic-ubuntu)
 + [I've lost my private key\. How can I connect to my Linux instance?](#replacing-lost-key-pair)
 
 ## Common causes for connection issues<a name="TroubleshootingInstancesCommonCauses"></a>
@@ -523,11 +524,35 @@ To resolve the error, you must run the `eic_harvest_hostkeys` script on your ins
 
 ------
 
+## Can't connect to Ubuntu instance using EC2 Instance Connect<a name="troubleshoot-eic-ubuntu"></a>
+
+If you use EC2 Instance Connect to connect to your Ubuntu instance and you get an error when attempting to connect, you can use the following information to try to fix the issue\.
+
+**Possible cause**
+
+The `ec2-instance-connect` package on the instance is not the latest version\.
+
+**Solution**
+
+Update the `ec2-instance-connect` package on the instance to the latest version, as follows:
+
+1. [Connect](AccessingInstances.md) to your instance using a method other than EC2 Instance Connect\.
+
+1. Run the following command on your instance to update the `ec2-instance-connect` package to the latest version\.
+
+   ```
+   apt update && apt upgrade
+   ```
+
 ## I've lost my private key\. How can I connect to my Linux instance?<a name="replacing-lost-key-pair"></a>
 
 If you lose the private key for an EBS\-backed instance, you can regain access to your instance\. You must stop the instance, detach its root volume and attach it to another instance as a data volume, modify the `authorized_keys` file with a new public key, move the volume back to the original instance, and restart the instance\. For more information about launching, connecting to, and stopping instances, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 
-This procedure is only supported for instances with EBS root volumes\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in the **Description** tab in the Old console, or the **Details** tab in the New console\. The value is either `ebs` or `instance store`\.
+This procedure is only supported for instances with EBS root volumes\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in one of the following locations:
++ **New console:** Choose the **Storage** tab\. The value is shown in the **Root device details** section\.
++ **Old console:** Choose the **Description** tab\.
+
+The value is either `ebs` or `instance store`\.
 
 In addition to the following steps, there are other ways to connect to your Linux instance if you lose your private key\. For more information, see [How can I connect to my Amazon EC2 instance if I lost my SSH key pair after its initial launch?](http://aws.amazon.com/premiumsupport/knowledge-center/user-data-replace-key-pair-ec2/)
 

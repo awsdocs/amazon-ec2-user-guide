@@ -293,6 +293,11 @@ The following is a summary of network performance for compute optimized instance
 | c6id\.xlarge | 1\.562 | 12\.5 | 
 | c6id\.2xlarge | 3\.125 | 12\.5 | 
 | c6id\.4xlarge | 6\.25 | 12\.5 | 
+| C7g\.medium | 0\.52 | 12\.5 | 
+| C7g\.large | 0\.937 | 12\.5 | 
+| C7g\.xlarge | 1\.876 | 12\.5 | 
+| C7g\.2xlarge | 3\.75 | 15 | 
+| C7g\.4xlarge | 7\.5 | 15 | 
 
 ## SSD I/O performance<a name="compute-ssd-perf"></a>
 
@@ -327,6 +332,16 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | c6gd\.12xlarge | 645,000 | 270,000 | 
 | c6gd\.16xlarge | 860,000 | 360,000 | 
 | c6gd\.metal | 860,000 | 360,000 | 
+| c6id\.large | 33,542 | 16,771 | 
+| c6id\.xlarge | 67,083 | 33,542 | 
+| c6id\.2xlarge | 134,167 | 67,084 | 
+| c6id\.4xlarge | 268,333 | 134,167 | 
+| c6id\.8xlarge | 536,666 | 268,334 | 
+| c6id\.12xlarge | 804,999 | 402,501 | 
+| c6id\.16xlarge | 1,073,332 | 536,668 | 
+| c6id\.24xlarge | 1,609,998 | 805,002 | 
+| c6id\.32xlarge | 2,146,664 | 1,073,336 | 
+| c6id\.metal | 2,146,664 | 1,073,336 | 
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
@@ -366,6 +381,7 @@ For more information, see the following:
 ## Release notes<a name="compute-instance-release-notes"></a>
 + C4 instances and instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + C7g instances are powered by the latest generation AWS Graviton3 processors\. They offer up to 25% better performance over the sixth generation AWS Graviton2\-based C6g instances\. C7g instances are the first in the cloud to feature DDR5 memory, which provides 50% higher memory bandwidth compared to DDR4 memory to enable high\-speed access to data in memory\.
+  + C7g instances limit the aggregate execution rate of high power instructions such as floating point multiply accumulates across cores in an instance\. Future instance types focused on other workload segments may not have this restriction
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed

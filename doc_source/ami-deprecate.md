@@ -14,7 +14,7 @@ You can deprecate both private and public AMIs\.
 You can also create Amazon Data Lifecycle Manager EBS\-backed AMI policies to automate the deprecation of EBS\-backed AMIs\. For more information, see [Automate AMI lifecycles](ami-policy.md)\.
 
 **Note**  
-We have released a new feature where, by default, the deprecation date of all public AMIs is set to two years from the AMI creation date\. Initially, all public AMIs that are older than two years will be deprecated on June 30, 2022\. You can set the deprecation date to earlier than two years\. To cancel the deprecation date, or to move the deprecation to a later date, you must make the AMI private by only [sharing it with specific AWS accounts](sharingamis-explicit.md)\.
+We have released a new feature where, by default, the deprecation date of all public AMIs is set to two years from the AMI creation date\. Initially, all public AMIs that are older than two years will be deprecated on July 30, 2022\. You can set the deprecation date to earlier than two years\. To cancel the deprecation date, or to move the deprecation to a later date, you must make the AMI private by only [sharing it with specific AWS accounts](sharingamis-explicit.md)\.
 
 **Topics**
 + [Costs](#ami-deprecate-costs)
@@ -150,10 +150,10 @@ You can view the deprecation date and time of an AMI, and filter all the AMIs by
 When you describe all AMIs using the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, the results are different depending on whether you are an AMI user or the AMI owner\.
 + If you are an AMI user: 
 
-  By default, when you describe all AMIs using the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, deprecated AMIs that are not owned by you, but which are shared with you, do not appear in the results\. To include deprecated AMIs in the results, you must specify the `--include-deprecated true` parameter\. The default value for `--include-deprecated` is `false`\. If you omit this parameter, deprecated AMIs do not appear in the results\.
+  By default, when you describe all AMIs using the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, deprecated AMIs that are not owned by you, but which are shared with you, do not appear in the results\. This is because the default is `--no-include-deprecated`\. To include deprecated AMIs in the results, you must specify the `--include-deprecated` parameter\.
 + If you are the AMI owner:
 
-  When you describe all AMIs using the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, all the AMIs that you own, including deprecated AMIs, appear in the results\. You do not need to specify the `--include-deprecated true` parameter\. Furthermore, you cannot exclude deprecated AMIs that you own from the results by using `--include-deprecated false`\.
+  When you describe all AMIs using the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, all the AMIs that you own, including deprecated AMIs, appear in the results\. You do not need to specify the `--include-deprecated` parameter\. Furthermore, you cannot exclude deprecated AMIs that you own from the results by using `--no-include-deprecated`\.
 
 If an AMI is deprecated, the `DeprecationTime` field appears in the results\.
 
@@ -161,19 +161,19 @@ If an AMI is deprecated, the `DeprecationTime` field appears in the results\.
 A deprecated AMI is an AMI whose deprecation date is in the past\. If you have set the deprecation date to a date in the future, the AMI is not yet deprecated\.
 
 **To include all deprecated AMIs when describing all AMIs**  
-Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command and specify the `--include-deprecated` parameter with a value of `true` to include all deprecated AMIs that are not owned by you in the results\.
+Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command and specify the `--include-deprecated` parameter to include all deprecated AMIs that are not owned by you in the results\.
 
 ```
 aws ec2 describe-images \
     --region us-east-1 \
     --owners 123456example    
-    --include-deprecated true
+    --include-deprecated
 ```
 
 **To describe the deprecation date of an AMI**  
 Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command and specify the ID of the AMI\.
 
-Note that if you specify `--include-deprecated false` together with the AMI ID, the deprecated AMI will be returned in the results\.
+Note that if you specify `--no-include-deprecated` together with the AMI ID, the deprecated AMI will be returned in the results\.
 
 ```
 aws ec2 describe-images \

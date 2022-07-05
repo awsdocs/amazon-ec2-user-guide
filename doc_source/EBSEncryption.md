@@ -12,6 +12,7 @@ You can attach both encrypted and unencrypted volumes to an instance simultaneou
 + [Default KMS key for EBS encryption](#EBSEncryption_key_mgmt)
 + [Encryption by default](#encryption-by-default)
 + [Encrypt EBS resources](#encryption-parameters)
++ [Rotating AWS KMS keys](#kms-key-rotation)
 + [Encryption scenarios](#encryption-examples)
 + [Set encryption defaults using the API and CLI](#encryption-by-default-api)
 
@@ -236,6 +237,19 @@ To encrypt the snapshot copy to a customer managed key, you must both enable enc
 Amazon EBS does not support asymmetric encryption KMS keys\. For more information, see [Using Symmetric and Asymmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 You can also apply new encryption states when launching an instance from an EBS\-backed AMI\. This is because EBS\-backed AMIs include snapshots of EBS volumes that can be encrypted as described\. For more information, see [Use encryption with EBS\-backed AMIs](AMIEncryption.md)\.
+
+## Rotating AWS KMS keys<a name="kms-key-rotation"></a>
+
+Cryptographic best practices discourage extensive reuse of encryption keys\. To create new cryptographic material for your KMS key, you can create new KMS key, and then change your applications or aliases to use the new KMS key\. Or, you can enable automatic key rotation for an existing KMS key\.
+
+When you enable automatic key rotation for a KMS key, AWS KMS generates new cryptographic material for the KMS key every year\. AWS KMS saves all previous versions of the cryptographic material so you can decrypt any data encrypted with that KMS key\. AWS KMS does not delete any rotated key material until you delete the KMS key\.
+
+When you use a rotated KMS key to encrypt data, AWS KMS uses the current key material\. When you use the rotated KMS key to decrypt data, AWS KMS uses the version of the key material that was used to encrypt it\. You can safely use a rotated KMS key in applications and AWS services without code changes\.
+
+**Note**  
+Automatic key rotation is supported only for symmetric customer managed keys with key material that AWS KMS creates\. AWS KMS automatically rotates AWS managed keys every year\. You can't enable or disable key rotation for AWS managed keys\.
+
+For more information, see [ Rotating KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotate-keys-how-it-works) in the t*AWS Key Management Service Developer Guide*\.
 
 ## Encryption scenarios<a name="encryption-examples"></a>
 

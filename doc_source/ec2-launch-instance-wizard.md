@@ -58,7 +58,7 @@ To set up an instance quickly for testing purposes, follow these steps\. You'll 
 
 1. From the Amazon EC2 console dashboard, choose **Launch instance**\. 
 
-   If you see the old launch wizard, the new launch instance wizard is not yet the default view in the currently selected Region\. To open the new launch instance wizard, choose **Opt\-in to the new experience** at the top right of the screen\.
+   If you see the old launch wizard, the new launch instance wizard is not yet the default view in the currently selected Region\. To open the new launch instance wizard, choose **Opt in to the new experience** at the top right of the screen\.
 
 1. \(Optional\) Under **Name and tags**, for **Name**, enter a descriptive name for your instance\.
 
@@ -91,7 +91,7 @@ Except for the key pair, the launch instance wizard provides default values for 
 
 1. From the Amazon EC2 console dashboard, choose **Launch instance**\.
 
-   If you see the old launch wizard, the new launch instance wizard is not yet the default view in the currently selected Region\. To open the new launch instance wizard, choose **Opt\-in to the new experience** at the top right of the screen\.
+   If you see the old launch wizard, the new launch instance wizard is not yet the default view in the currently selected Region\. To open the new launch instance wizard, choose **Opt in to the new experience** at the top right of the screen\.
 
 ### Name and tags<a name="liw-name-and-tags"></a>
 
@@ -134,6 +134,9 @@ Choose **Browse more AMIs** to browse the full AMI catalog\.
 + Check the **Boot mode** listed for each AMI\. Notice which AMIs use the boot mode that you need: either **legacy\-bios** or **uefi**\. For more information, see [Boot modes](ami-boot.md)\.
 + Choose an AMI that meets your needs, and then choose **Select**\.
 
+**Warning when changing the AMI**  
+If you modify the configuration of any volumes or security groups associated with the selected AMI, and then you choose a different AMI, a window opens to warn you that some of your current settings will be changed or removed\. You can review the changes to the security groups and volumes\. Furthermore, you can either view which volumes will be added and deleted, or view only the volumes that will be added\.
+
 ### Instance type<a name="liw-instance-type"></a>
 
 The instance type defines the hardware configuration and size of the instance\. Larger instance types have more CPU and memory\. For more information, see [Instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)\.
@@ -168,11 +171,17 @@ Configure the network settings, as necessary\.
 
   Select or create a security group as follows:
   + To select an existing security group, choose **Select existing security group**, and select your security group from **Common security groups**\.
-  + To create a new security group, choose **Create security group**\. The launch instance wizard automatically defines the **launch\-wizard\-*x*** security group and creates an inbound rule to allow you to connect to your instance over SSH \(port 22\)\.
+  + To create a new security group, choose **Create security group**\. The launch instance wizard automatically defines the **launch\-wizard\-*x*** security group and provides the following check boxes for quickly adding security group rules:
 
-    You can add rules to suit your needs\. For example, if your instance is a web server, open ports 80 \(HTTP\) and 443 \(HTTPS\) to allow internet traffic\.
+    **Allow SSH traffic from** – Creates an inbound rule to allow you to connect to your instance over SSH \(port 22\)\. Specify whether the traffic comes from **Anywhere**, **Custom**, or **My IP**\.
 
-    To add a rule, choose **Add security group rule**\. For **Type**, select the network traffic type\. The **Protocol** field is automatically filled in with the protocol to open to network traffic\. For **Source type**, select the source type\. To let the launch instance wizard add your computer's public IP address, choose **My IP**\. However, if you are connecting through an ISP or from behind your firewall without a static IP address, you need to find out the range of IP addresses used by client computers\.
+    **Allow HTTPs traffic from the internet** – Creates an inbound rule that opens port 443 \(HTTPS\) to allow internet traffic from anywhere\. If your instance will be a web server, you'll need this rule\.
+
+    **Allow HTTP traffic from the internet** – Creates an inbound rule that opens port 80 \(HTTP\) to allow internet traffic from anywhere\. If your instance will be a web server, you'll need this rule\.
+
+    You can edit these rules and add rules to suit your needs\.
+
+    To edit or add a rule, choose **Edit** \(at top right\)\. To add a rule, choose **Add security group rule**\. For **Type**, select the network traffic type\. The **Protocol** field is automatically filled in with the protocol to open to network traffic\. For **Source type**, select the source type\. To let the launch instance wizard add your computer's public IP address, choose **My IP**\. However, if you are connecting through an ISP or from behind your firewall without a static IP address, you need to find out the range of IP addresses used by client computers\.
 **Warning**  
 Rules that enable all IP addresses \(`0.0.0.0/0`\) to access your instance over SSH or RDP are acceptable if you are briefly launching a test instance and will stop or terminate it soon, but are unsafe for production environments\. You should authorize only a specific IP address or range of addresses to access your instance\.
 + **Advanced network configuration** – Available only if you choose a subnet\.
@@ -216,14 +225,14 @@ By using the **Advanced** view, you can configure each volume as follows:
 ### Advanced details<a name="liw-advanced-details"></a>
 
 For **Advanced details**, expand the section to view the fields and specify any additional parameters for the instance\.
-+ **Purchasing option**: Choose **Request Spot Instances** to request Spot Instances at the Spot price, capped at the On\-Demand price, and choose **Customize** to change the default Spot Instance settings\. You can set your maximum price, and change the request type, request duration, and interruption behavior\. If you do not request a Spot Instance, Amazon EC2 launches an On\-Demand Instance by default\. For more information, see [Spot Instances](using-spot-instances.md)\.
++ **Purchasing option**: Choose **Request Spot Instances** to request Spot Instances at the Spot price, capped at the On\-Demand price, and choose **Customize** to change the default Spot Instance settings\. You can set your maximum price \(not recommended\), and change the request type, request duration, and interruption behavior\. If you do not request a Spot Instance, Amazon EC2 launches an On\-Demand Instance by default\. For more information, see [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
 + **IAM instance profile**: Select an AWS Identity and Access Management \(IAM\) instance profile to associate with the instance\. For more information, see [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)\.
 + **Hostname type**: Select whether the guest OS hostname of the instance will include the resource name or the IP name\. For more information, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.
 + **DNS Hostname**: Determines if the DNS queries to the resource name or the IP name \(depending on what you selected for **Hostname type**\) will respond with the IPv4 address \(A record\), IPv6 address \(AAAA record\), or both\. For more information, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.
 + **Shutdown behavior**: Select whether the instance should stop or terminate when shut down\. For more information, see [Change the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 + **Stop \- Hibernate behavior**: To enable hibernation, choose **Enable**\. This field is available only if your instance meets the hibernation prerequisites\. For more information, see [Hibernate your On\-Demand Linux instance](Hibernate.md)\.
 + **Termination protection**: To prevent accidental termination, choose **Enable**\. For more information, see [Enable termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
-+ **Stop protection**: To prevent accidental stopping, choose **Enable**\. For more information, see [Enable Stop Protection](Stop_Start.md#Using_StopProtection)\.
++ **Stop protection**: To prevent accidental stopping, choose **Enable**\. For more information, see [Enable stop protection](Stop_Start.md#Using_StopProtection)\.
 + **Detailed CloudWatch monitoring**: Choose **Enable** to turn on detailed monitoring of your instance using Amazon CloudWatch\. Additional charges apply\. For more information, see [Monitor your instances using CloudWatch](using-cloudwatch.md)\.
 + **Credit specification**: Choose **Unlimited** to enable applications to burst beyond the baseline for as long as needed\. This field is only valid for **T** instances\. Additional charges may apply\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\.
 + **Placement group name**: Specify a placement group in which to launch the instance\. You can select an existing placement group, or create a new one\. Not all instance types support launching an instance in a placement group\. For more information, see [Placement groups](placement-groups.md)\.

@@ -71,7 +71,7 @@ The block size for GPT volumes is commonly 4,096 bytes\. Therefore:
    = 64 ZiB
 ```
 
-Real\-world computer systems don't support anything close to this theoretical maximum\. Implemented file\-system size is currently limited to 50 TiB for ext4 and 256 TiB for NTFS—both of which exceed the 16\-TiB limit imposed by AWS\.
+Real\-world computer systems don't support anything close to this theoretical maximum\. Implemented file\-system size is currently limited to 50 TiB for ext4 and 256 TiB for NTFS\.
 
 ## Data block sizes<a name="block_size"></a>
 
@@ -88,4 +88,4 @@ The industry default size for logical data blocks is currently 4,096 bytes \(4 K
 | 32 KiB | 128 TiB | 
 | 64 KiB \(maximum\) | 256 TiB | 
 
-The EBS\-imposed limit on volume size \(16 TiB\) is currently equal to the maximum size enabled by 4\-KiB data blocks\.
+The EBS\-imposed limit on volume size \(64 TiB\) is currently equal to the maximum size enabled by 16\-KiB data blocks\.

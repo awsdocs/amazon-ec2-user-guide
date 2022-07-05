@@ -25,7 +25,7 @@ Instances with a tenancy value of `default` run on shared tenancy hardware\. Ins
 The tenancy of the VPC into which you launch the instance can also determine the instance's tenancy\. A VPC can have a tenancy of either `default` or `dedicated`\. If you launch an instance into a VPC that has a tenancy of `default`, the instance runs on shared tenancy hardware by default, unless you specify a different tenancy for the instance\. If you launch an instance into a VPC that has a tenancy of `dedicated`, the instance runs as a Dedicated Instance by default, unless you specify a different tenancy for the instance\. 
 
 To launch Dedicated Instances, you can do the following:
-+ Create a VPC with a tenancy of `dedicated` and launch all instances as Dedicated Instances by default\. For more information, see [Create a VPC with an instance tenancy of dedicated](dedicated-usage-overview.md#creatingdedicatedvpc)\.
++ Create a VPC with a tenancy of `dedicated` and launch all instances as Dedicated Instances by default\. For more information, see [Create a VPC with a dedicated instance tenancy](dedicated-usage-overview.md#creatingdedicatedvpc)\.
 + Create a VPC with a tenancy of `default` and manually specify a tenancy of `dedicated` for the instances that you want to run as Dedicated Instances\. For more information, see [Launch Dedicated Instances into a VPC](dedicated-usage-overview.md#dedicatedinstancesintovpc)\.
 
 ## Supported features<a name="features"></a>

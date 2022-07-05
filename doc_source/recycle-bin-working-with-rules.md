@@ -24,7 +24,7 @@ After you create a retention rule, resources that match its criteria are automat
 
 To create a retention rule, you must specify:
 + An optional name for the retention rule\. The name can be up to 255 characters long\.
-+ An optional description for the rule\. The description can be up to 255 characters long\.
++ An optional description for the retention rule\. The description can be up to 255 characters long\.
 + The resource type that is to be protected by the retention rule\.
 + Resource tags that identify the resources that are to be retained in the Recycle Bin\. You can specify up to 50 tags for each rule\. However, you can add the same tag key and value pair to up to 5 retention rules only\.
   + To create a tag\-level retention rule, specify at least one tag key and value pair\.
@@ -330,7 +330,7 @@ $ aws rbin untag-resource \
 
 ## Delete Recycle Bin retention rules<a name="recycle-bin-delete-rule"></a>
 
-You can delete a retention rule at any time\. When you delete a retention rule, it no longer retains new resources after they have been deleted\. Resources that were sent to the Recycle Bin before the retention rule was deleted continue to be retained in the Recycle Bin according to the retention period defined in the retention rule\. When the period expires, the resource is permanently deleted from the Recycle Bin\.
+You can delete a retention rule at any time\. When you delete a retention rule, it no longer retains new resources in the Recycle Bin after they have been deleted\. Resources that were sent to the Recycle Bin before the retention rule was deleted continue to be retained in the Recycle Bin according to the retention period defined in the retention rule\. When the period expires, the resource is permanently deleted from the Recycle Bin\.
 
 You can delete a retention rule using one of the following methods\.
 

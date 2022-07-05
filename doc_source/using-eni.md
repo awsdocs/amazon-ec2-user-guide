@@ -545,6 +545,16 @@ The following table lists the maximum number of network interfaces per instance 
 | r6i\.24xlarge | 15 | 50 | 50 | 
 | r6i\.32xlarge | 15 | 50 | 50 | 
 | r6i\.metal | 15 | 50 | 50 | 
+| r6id\.large | 3 | 10 | 10 | 
+| r6id\.xlarge | 4 | 15 | 15 | 
+| r6id\.2xlarge | 4 | 15 | 15 | 
+| r6id\.4xlarge | 8 | 30 | 30 | 
+| r6id\.8xlarge | 8 | 30 | 30 | 
+| r6id\.12xlarge | 8 | 30 | 30 | 
+| r6id\.16xlarge | 15 | 50 | 50 | 
+| r6id\.24xlarge | 15 | 50 | 50 | 
+| r6id\.32xlarge | 15 | 50 | 50 | 
+| r6id\.metal | 15 | 50 | 50 | 
 | t1\.micro |  2  |  2  | IPv6 not supported | 
 | t2\.nano |  2  |  2  | 2 | 
 | t2\.micro |  2  |  2  | 2 | 

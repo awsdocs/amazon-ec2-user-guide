@@ -109,7 +109,7 @@ Alternatively, you can assign a secondary private IPv4 address to an instance\. 
 ### Configure the operating system on your instance to recognize secondary private IPv4 addresses<a name="StepTwoConfigOS"></a>
 
 After you assign a secondary private IPv4 address to your instance, you need to configure the operating system on your instance to recognize the secondary private IP address\.
-+ If you are using Amazon Linux, the ec2\-net\-utils package can take care of this step for you\. It configures additional network interfaces that you attach while the instance is running, refreshes secondary IPv4 addresses during DHCP lease renewal, and updates the related routing rules\. You can immediately refresh the list of interfaces by using the command `sudo service network restart` and then view the up\-to\-date list using `ip addr li`\. If you require manual control over your network configuration, you can remove the ec2\-net\-utils package\. For more information, see [Configure your network interface using ec2\-net\-utils](best-practices-for-configuring-network-interfaces.md#ec2-net-utils)\.
++ If you are using Amazon Linux, the ec2\-net\-utils package can take care of this step for you\. It configures additional network interfaces that you attach while the instance is running, refreshes secondary IPv4 addresses during DHCP lease renewal, and updates the related routing rules\. You can immediately refresh the list of interfaces by using the command `sudo service network restart` and then view the up\-to\-date list using `ip addr li`\. If you require manual control over your network configuration, you can remove the ec2\-net\-utils package\. For more information, see [Configure your network interface using ec2\-net\-utils for Amazon Linux](best-practices-for-configuring-network-interfaces.md#ec2-net-utils)\.
 + If you are using another Linux distribution, see the documentation for your Linux distribution\. Search for information about configuring additional network interfaces and secondary IPv4 addresses\. If the instance has two or more interfaces on the same subnet, search for information about using routing rules to work around asymmetric routing\.
 
 For information about configuring a Windows instance, see [Configuring a secondary private IP address for your Windows instance in a VPC](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/config-windows-multiple-ip.html) in the *Amazon EC2 User Guide for Windows Instances*\.
@@ -199,7 +199,7 @@ You can assign multiple IPv6 addresses to your instance, view the IPv6 addresses
 
 ### Assign multiple IPv6 addresses<a name="assign-multiple-ipv6"></a>
 
-You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\. For more information, see [VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
+You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\. For more information, see [IPv6 addresses](https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html#vpc-ipv6-addresses) in the *Amazon VPC User Guide*\.
 
 **To assign multiple IPv6 addresses during launch**
 

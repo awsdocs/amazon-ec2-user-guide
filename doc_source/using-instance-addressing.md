@@ -24,7 +24,7 @@ VPC subnets can be one of the following types:
 + IPv6\-only subnets: You can only create resources in these subnets with IPv6 addresses assigned to them\.
 + IPv4 and IPv6 subnets: You can create resources in these subnets with either IPv4 or IPv6 addresses assigned to them\.
 
-When you launch an EC2 instance into an IPv4\-only or dual stack \(IPv4 and IPv6\) subnet, the instance receives a primary private IP address from the IPv4 address range of the subnet\. For more information, see [VPC and subnet sizing](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing) in the *Amazon VPC User Guide*\. If you don't specify a primary private IP address when you launch the instance, we select an available IP address in the subnet's IPv4 range for you\. Each instance has a default network interface \(eth0\) that is assigned the primary private IPv4 address\. You can also specify additional private IPv4 addresses, known as *secondary private IPv4 addresses*\. Unlike primary private IP addresses, secondary private IP addresses can be reassigned from one instance to another\. For more information, see [Multiple IP addresses](MultipleIP.md)\. 
+When you launch an EC2 instance into an IPv4\-only or dual stack \(IPv4 and IPv6\) subnet, the instance receives a primary private IP address from the IPv4 address range of the subnet\. For more information, see [IP addressing](https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html#vpc-ip-addressing) in the *Amazon VPC User Guide*\. If you don't specify a primary private IP address when you launch the instance, we select an available IP address in the subnet's IPv4 range for you\. Each instance has a default network interface \(eth0\) that is assigned the primary private IPv4 address\. You can also specify additional private IPv4 addresses, known as *secondary private IPv4 addresses*\. Unlike primary private IP addresses, secondary private IP addresses can be reassigned from one instance to another\. For more information, see [Multiple IP addresses](MultipleIP.md)\. 
 
 A private IPv4 address, regardless of whether it is a primary or secondary address, remains associated with the network interface when the instance is stopped and started, or hibernated and started, and is released when the instance is terminated\.
 
@@ -35,7 +35,7 @@ A public IP address is an IPv4 address that's reachable from the Internet\. You 
 When you launch an instance in a default VPC, we assign it a public IP address by default\. When you launch an instance into a nondefault VPC, the subnet has an attribute that determines whether instances launched into that subnet receive a public IP address from the public IPv4 address pool\. By default, we don't assign a public IP address to instances launched in a nondefault subnet\.
 
 You can control whether your instance receives a public IP address as follows:
-+ Modifying the public IP addressing attribute of your subnet\. For more information, see [Modifying the public IPv4 addressing attribute for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip) in the *Amazon VPC User Guide*\.
++ Modifying the public IP addressing attribute of your subnet\. For more information, see [Modifying the public IPv4 addressing attribute for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-subnets.html#subnet-public-ip) in the *Amazon VPC User Guide*\.
 + Enabling or disabling the public IP addressing feature during launch, which overrides the subnet's public IP addressing attribute\. For more information, see [Assign a public IPv4 address during instance launch](#public-ip-addresses)\.
 
 A public IP address is assigned to your instance from Amazon's pool of public IPv4 addresses, and is not associated with your AWS account\. When a public IP address is disassociated from your instance, it is released back into the public IPv4 address pool, and you cannot reuse it\.
@@ -62,12 +62,12 @@ We do not support Elastic IP addresses for IPv6\.
 ## IPv6 addresses<a name="ipv6-addressing"></a>
 
 You can optionally associate an IPv6 CIDR block with your VPC and associate IPv6 CIDR blocks with your subnets\. The IPv6 CIDR block for your VPC is automatically assigned from Amazon's pool of IPv6 addresses; you cannot choose the range yourself\. For more information, see the following topics in the *Amazon VPC User Guide*:
-+ [VPC and subnet sizing for IPv6](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#vpc-sizing-ipv6)
-+ [Associating an IPv6 CIDR block with your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#vpc-associate-ipv6-cidr)
-+ [Associating an IPv6 CIDR block with your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#subnet-associate-ipv6-cidr)
++ [VPC sizing for IPv6](https://docs.aws.amazon.com/vpc/latest/userguide/configure-your-vpc.html#vpc-sizing)
++ [Associate IPv6 CIDR blocks with your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#vpc-associate-ipv6-cidr)
++ [Associate an IPv6 CIDR block with your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-subnets.html#subnet-associate-ipv6-cidr)
 
-IPv6 addresses are globally unique and can be configured to remain private or reachable over the Internet\. For more information about IPv6, see [IP Addressing in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\. Your instance receives an IPv6 address if an IPv6 CIDR block is associated with your VPC and subnet, and if one of the following is true:
-+ Your subnet is configured to automatically assign an IPv6 address to an instance during launch\. For more information, see [Modifying the IPv6 addressing attribute for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-ipv6)\.
+IPv6 addresses are globally unique and can be configured to remain private or reachable over the Internet\. For more information about IPv6, see [IP Addressing](https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html#vpc-ip-addressing) in the *Amazon VPC User Guide*\. Your instance receives an IPv6 address if an IPv6 CIDR block is associated with your VPC and subnet, and if one of the following is true:
++ Your subnet is configured to automatically assign an IPv6 address to an instance during launch\. For more information, see [Modify the IPv6 addressing attribute for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-subnets.html#subnet-ipv6)\.
 + You assign an IPv6 address to your instance during launch\.
 + You assign an IPv6 address to the primary network interface of your instance after launch\.
 + You assign an IPv6 address to a network interface in the same subnet, and attach the network interface to your instance after launch\. 

@@ -3,49 +3,17 @@
 You can create a VPC with an instance tenancy of `dedicated` to ensure that all instances launched into the VPC are Dedicated Instances\. Alternatively, you can specify the tenancy of the instance during launch\. 
 
 **Topics**
-+ [Create a VPC with an instance tenancy of dedicated](#creatingdedicatedvpc)
++ [Create a VPC with a dedicated instance tenancy](#creatingdedicatedvpc)
 + [Launch Dedicated Instances into a VPC](#dedicatedinstancesintovpc)
 + [Display tenancy information](#dedicated-gettingpgsinfo)
 + [Change the tenancy of an instance](#dedicated-change-tenancy)
 + [Change the tenancy of a VPC](#change-tenancy-vpc)
 
-## Create a VPC with an instance tenancy of dedicated<a name="creatingdedicatedvpc"></a>
+## Create a VPC with a dedicated instance tenancy<a name="creatingdedicatedvpc"></a>
 
-When you create a VPC, you have the option of specifying its instance tenancy\. If you're using the Amazon VPC console, you can create a VPC using the VPC wizard or the **Your VPCs** page\.
+When you create a VPC, you have the option of specifying its instance tenancy\. If you launch an instance into a VPC that has an instance tenancy of `dedicated`, your instance is automatically a Dedicated Instance, regardless of the tenancy of the instance\.
 
-If you launch an instance into a VPC that has an instance tenancy of `dedicated`, your instance is automatically a Dedicated Instance, regardless of the tenancy of the instance\.
-
-------
-#### [ Console ]
-
-**To create a VPC with an instance tenancy of dedicated \(VPC Wizard\)**
-
-1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
-
-1. From the dashboard, choose **Launch VPC Wizard**\.
-
-1. Select a VPC configuration, and then choose **Select**\.
-
-1. For **Hardware tenancy**, choose **Dedicated**\.
-
-1. Choose **Create VPC**\.
-
-**To create a VPC with an instance tenancy of dedicated \(Create VPC dialog box\)**
-
-1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
-
-1. In the navigation pane, choose **Your VPCs**, and then choose **Create VPC**\.
-
-1. For **Tenancy**, choose **Dedicated**\. Specify the CIDR block, and choose **Create VPC**\.
-
-------
-#### [ Command line ]
-
-**To set the tenancy option when you create a VPC using the command line**
-+ [create\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-vpc.html) \(AWS CLI\)
-+ [New\-EC2Vpc](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Vpc.html) \(AWS Tools for Windows PowerShell\)
-
-------
+For more information on creating a VPC and choosing the tenancy options, see [Create a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC) in the *Amazon VPC User Guide*\.
 
 ## Launch Dedicated Instances into a VPC<a name="dedicatedinstancesintovpc"></a>
 

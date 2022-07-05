@@ -52,14 +52,14 @@ The possible values for `sub-type` are:
 `active`  
 The EC2 Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running instances\.
 
-`cancelled`  
-The EC2 Fleet request is canceled and has no running instances\. The EC2 Fleet will be deleted two days after its instances are terminated\.
+`deleted`  
+The EC2 Fleet request is deleted and has no running instances\. The EC2 Fleet will be deleted two days after its instances are terminated\.
 
-`cancelled_running`  
-The EC2 Fleet request is canceled and does not launch additional instances\. Its existing instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\. 
+`deleted_running`  
+The EC2 Fleet request is deleted and does not launch additional instances\. Its existing instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\. 
 
-`cancelled_terminating`  
-The EC2 Fleet request is canceled and its instances are terminating\. The request remains in this state until all instances are terminated\. 
+`deleted_terminating`  
+The EC2 Fleet request is deleted and its instances are terminating\. The request remains in this state until all instances are terminated\. 
 
 `expired`  
 The EC2 Fleet request has expired\. If the request was created with `TerminateInstancesWithExpiration` set, a subsequent `terminated` event indicates that the instances are terminated\.

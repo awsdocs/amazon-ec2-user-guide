@@ -33,7 +33,7 @@ The `AWS/EC2` namespace includes the following instance metrics\.
 | NetworkIn |  The number of bytes received by the instance on all network interfaces\. This metric identifies the volume of incoming network traffic to a single instance\. The number reported is the number of bytes received during the period\. If you are using basic \(5\-minute\) monitoring and the statistic is Sum, you can divide this number by 300 to find Bytes/second\. If you have detailed \(1\-minute\) monitoring and the statistic is Sum, divide it by 60\. Units: Bytes  | 
 | NetworkOut |  The number of bytes sent out by the instance on all network interfaces\. This metric identifies the volume of outgoing network traffic from a single instance\. The number reported is the number of bytes sent during the period\. If you are using basic \(5\-minute\) monitoring and the statistic is Sum, you can divide this number by 300 to find Bytes/second\. If you have detailed \(1\-minute\) monitoring and the statistic is Sum, divide it by 60\. Units: Bytes  | 
 | NetworkPacketsIn |  The number of packets received by the instance on all network interfaces\. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only \(5\-minute periods\)\. To calculate the number of packets per second \(PPS\) your instance received for the 5 minutes, divide the Sum statistic value by 300\. Units: Count  | 
-| NetworkPacketsOut |  The number of packets sent out by the instance on all network interfaces\. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only \(5\-minute periods\)\. To calculate the number of packets per second \(PPS\) your instance received for the 5 minutes, divide the Sum statistic value by 300\. Units: Count  | 
+| NetworkPacketsOut |  The number of packets sent out by the instance on all network interfaces\. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only \(5\-minute periods\)\. To calculate the number of packets per second \(PPS\) your instance sent for the 5 minutes, divide the Sum statistic value by 300\. Units: Count  | 
 
 ## CPU credit metrics<a name="cpu-credit-metrics"></a>
 
@@ -89,7 +89,7 @@ The `AWS/EC2` namespace includes metrics for mirrored traffic\. For more informa
 
 ## Auto Scaling group metrics<a name="autoscaling-metrics"></a>
 
-The `AWS/AutoScaling` namespace includes metrics for Auto Scaling groups\. For more information, see [Monitor CloudWatch metrics for your Auto Scaling groups and instances](https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirror-cloudwatch.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+The `AWS/AutoScaling` namespace includes metrics for Auto Scaling groups\. For more information, see [Monitor CloudWatch metrics for your Auto Scaling groups and instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-cloudwatch-monitoring.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 ## Amazon EC2 metric dimensions<a name="ec2-cloudwatch-dimensions"></a>
 

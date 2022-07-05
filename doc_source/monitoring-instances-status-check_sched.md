@@ -6,6 +6,9 @@ Scheduled events are managed by AWS; you cannot schedule events for your instanc
 
 To update the contact information for your account so that you can be sure to be notified about scheduled events, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.
 
+**Note**  
+When an instance is affected by a scheduled event, and it is part of an Auto Scaling group, Amazon EC2 Auto Scaling eventually replaces it as part of its health checks, with no further action necessary on your part\. For more information about the health checks performed by Amazon EC2 Auto Scaling, see [Health checks for Auto Scaling instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-health-checks.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+
 **Topics**
 + [Types of scheduled events](#types-of-scheduled-events)
 + [View scheduled events](#viewing_scheduled_events)
@@ -342,8 +345,6 @@ You can wait for the instance to stop as scheduled\. Alternatively, you can stop
 
 You can automate an immediate stop and start in response to a scheduled instance stop event\. For more information, see [Automating Actions for EC2 Instances](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#automating-instance-actions) in the *AWS Health User Guide*\.
 
-If your instance is part of an Auto Scaling group with health checks enabled, then the instance is replaced when a scheduled event is created for that instance\. The Auto Scaling group does not wait for the scheduled event to complete, but replaces the instance immediately upon receiving the notification\.
-
 **Actions for Instances Backed by Instance Store**  
 We recommend that you launch a replacement instance from your most recent AMI and migrate all necessary data to the replacement instance before the instance is scheduled to terminate\. Then, you can terminate the original instance, or wait for it to terminate as scheduled\.
 
@@ -352,8 +353,6 @@ We recommend that you launch a replacement instance from your most recent AMI an
 When AWS must perform tasks such as installing updates or maintaining the underlying host, it can schedule the instance or the underlying host for a reboot\. You can [reschedule most reboot events](#reschedule-event) so that your instance is rebooted at a specific date and time that suits you\.
 
 If you stop your linked [EC2\-Classic instance](vpc-classiclink.md#classiclink-limitations), it is automatically unlinked from the VPC and the VPC security groups are no longer associated with the instance\. You can link your instance to the VPC again after you've restarted it\.
-
-If your instance is part of an Auto Scaling group with health checks enabled, then the instance is replaced when a scheduled event is created for that instance\. The Auto Scaling group does not wait for the scheduled event to complete, but replaces the instance immediately upon receiving the notification\.
 
 ### View the reboot event type<a name="view-type-of-scheduled-reboot"></a>
 

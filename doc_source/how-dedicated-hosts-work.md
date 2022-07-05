@@ -136,7 +136,7 @@ PS C:\> New-EC2Host -InstanceType m4.large -AvailabilityZone eu-west-1a -AutoPla
 After you have allocated a Dedicated Host, you can launch instances onto it\. You can't launch instances with `host` tenancy if you do not have active Dedicated Hosts with enough available capacity for the instance type that you are launching\.
 
 **Note**  
-The instances launched onto Dedicated Hosts can only be launched in a VPC\. For more information, see [Introduction to VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Introduction.html)\.
+The instances launched onto Dedicated Hosts can only be launched in a VPC\. For more information, see [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)\.
 
 Before you launch your instances, take note of the limitations\. For more information, see [Dedicated Hosts restrictions](dedicated-hosts-overview.md#dedicated-hosts-limitations)\.
 

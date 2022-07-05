@@ -12,7 +12,7 @@ To activate the GRID Virtual Applications on G3, G4dn, and G5 instances \(NVIDIA
 
 1. Open the `/etc/nvidia/gridd.conf` file in your favorite text editor\.
 
-1. Find the `FeatureType` line, and set it equal to 0\. Then add a line with `IgnoreSP=TRUE`\.
+1. Find the `FeatureType` line, and set it equal to `0`\. Then add a line with `IgnoreSP=TRUE`\.
 
    ```
    FeatureType=0

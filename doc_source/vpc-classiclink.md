@@ -110,7 +110,6 @@ The ClassicLink features are only visible in the consoles for accounts and Regio
 
 **Topics**
 + [Enable a VPC for ClassicLink](#classiclink-enable-vpc)
-+ [Create a VPC with ClassicLink enabled](#classiclink-vpc-wizard)
 + [Link an instance to a VPC](#classiclink-link-instance)
 + [Link an instance to a VPC at launch](#classiclink-launch-wizard)
 + [View your ClassicLink\-enabled VPCs and linked instances](#classiclink-describe-vpcs-instances)
@@ -134,22 +133,6 @@ To link an EC2\-Classic instance to a VPC, you must first enable the VPC for Cla
 1. Choose **Actions**, **Enable ClassicLink**\.
 
 1. When prompted for confirmation, choose **Enable ClassicLink**\.
-
-1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enable ClassicLink DNS support](#classiclink-enable-dns-support)\.
-
-### Create a VPC with ClassicLink enabled<a name="classiclink-vpc-wizard"></a>
-
-You can create a new VPC and immediately enable it for ClassicLink by using the VPC wizard in the Amazon VPC console\.
-
-**To create a VPC with ClassicLink enabled**
-
-1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
-
-1. From the Amazon VPC dashboard, choose **Launch VPC Wizard**\.
-
-1. Select one of the VPC configuration options and choose **Select**\. 
-
-1. On the next page of the wizard, choose **Yes** for **Enable ClassicLink**\. Complete the rest of the steps in the wizard to create your VPC\. For more information about using the VPC wizard, see [Scenarios for Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenarios.html) in the *Amazon VPC User Guide*\.
 
 1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enable ClassicLink DNS support](#classiclink-enable-dns-support)\.
 

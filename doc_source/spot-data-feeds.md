@@ -59,6 +59,8 @@ If you update the ACL and remove the permissions for the AWS data feed account, 
 + Each data feed file has its own ACL \(separate from the ACL for the bucket\)\. The bucket owner has `FULL_CONTROL` permission to the data files\. The AWS data feed account has read and write permissions\.
 + If you delete your data feed subscription, Amazon EC2 doesn't remove the read and write permissions for the AWS data feed account on either the bucket or the data files\. You must remove these permissions yourself\.
 + You must use a customer managed key if you encrypt your Amazon S3 bucket using server\-side encryption with a AWS KMS key stored in AWS Key Management Service \(SSE\-KMS\)\. For more information, see [Amazon S3 bucket server\-side encryption](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html#AWS-logs-SSE-KMS-S3) in the *Amazon CloudWatch Logs User Guide*\.
+**Note**  
+For Spot Instance data feed, the resource that generates the S3 files is no longer Amazon CloudWatch Logs\. Therefore, you must remove the `aws:SourceArn` section from the S3 bucket permission policy and from the KMS policy\.
 
 ## Subscribe to your Spot Instance data feed<a name="using-spot-instances-datafeed-all"></a>
 
@@ -70,7 +72,7 @@ aws ec2 create-spot-datafeed-subscription \
     [--prefix my-prefix]
 ```
 
-The following is example output:
+Example output
 
 ```
 {
@@ -91,7 +93,7 @@ To describe your data feed subscription, use the [describe\-spot\-datafeed\-subs
 aws ec2 describe-spot-datafeed-subscription
 ```
 
-The following is example output:
+Example output
 
 ```
 {

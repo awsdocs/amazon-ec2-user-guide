@@ -23,16 +23,18 @@ Must be an HVM AMI that supports hibernation:
 | --- | --- | --- | 
 | Amazon Linux 2 AMI released 2019\.08\.29 or later | Supported | Supported | 
 | Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later | Supported | Supported | 
-| CentOS version 8 AMI\* \([Additional configuration](hibernation-enabled-AMI.md#configure-centos-for-hibernation) is required\)  | Not supported | Supported | 
-| Fedora version 34 or later AMI\* \([Additional configuration](hibernation-enabled-AMI.md#configure-fedora-for-hibernation) is required\)  | Not supported | Supported | 
-| Red Hat Enterprise Linux \(RHEL\) 8 AMI\* \([Additional configuration](hibernation-enabled-AMI.md#configure-RHEL-for-hibernation) is required\)  | Not supported | Supported | 
-|  Ubuntu 20\.04 LTS \- Focal AMI released with serial number 20210820 or later †  | Supported | Supported | 
-| Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later † | Supported | Supported | 
-| Ubuntu 16\.04 LTS \- Xenial AMI † \([Additional configuration](hibernation-enabled-AMI.md#configure-ubuntu1604-for-hibernation) is required\) | Supported | Supported | 
+| CentOS version 8 AMI ¹ \([Additional configuration](hibernation-enabled-AMI.md#configure-centos-for-hibernation) is required\) | Not supported | Supported | 
+| Fedora version 34 or later AMI ¹ \([Additional configuration](hibernation-enabled-AMI.md#configure-fedora-for-hibernation) is required\) | Not supported | Supported | 
+| Red Hat Enterprise Linux \(RHEL\) 8 AMI ¹ \([Additional configuration](hibernation-enabled-AMI.md#configure-RHEL-for-hibernation) is required\) | Not supported | Supported | 
+|  Ubuntu 20\.04 LTS \- Focal AMI released with serial number 20210820 or later ²  | Supported | Supported | 
+| Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later ² | Supported | Supported | 
+| Ubuntu 16\.04 LTS \- Xenial AMI ² ³ \([Additional configuration](hibernation-enabled-AMI.md#configure-ubuntu1604-for-hibernation) is required\) | Supported | Supported | 
 
-\* For CentOS, Fedora, and Red Hat Enterprise Linux, hibernation is supported on Nitro\-based instances only\. 
+¹ For CentOS, Fedora, and Red Hat Enterprise Linux, hibernation is supported on Nitro\-based instances only\.
 
-† We recommend disabling KASLR on instances with Ubuntu 20\.04 LTS – Focal, Ubuntu 18\.04 LTS \- Bionic, and Ubuntu 16\.04 LTS \- Xenial\. For more information, see [Disable KASLR on an instance \(Ubuntu only\)](hibernation-disable-kaslr.md)\.
+² We recommend disabling KASLR on instances with Ubuntu 20\.04 LTS – Focal, Ubuntu 18\.04 LTS \- Bionic, and Ubuntu 16\.04 LTS \- Xenial\. For more information, see [Disable KASLR on an instance \(Ubuntu only\)](hibernation-disable-kaslr.md)\.
+
+³ For the Ubuntu 16\.04 LTS \- Xenial AMI, hibernation is not supported on `t3.nano` instance types\. No patch will be made available because Ubuntu Xenial ended support in April 2021\. If you want to use `t3.nano` instance types, we recommend that you upgrade to the Ubuntu 20\.04 LTS \- Focal AMI or the Ubuntu 18\.04 LTS \- Bionic AMI\.
 
 To configure your own AMI to support hibernation, see [Configure an existing AMI to support hibernation](hibernation-enabled-AMI.md)\.
 

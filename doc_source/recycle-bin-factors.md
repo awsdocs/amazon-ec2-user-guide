@@ -25,7 +25,7 @@ If you have retention rules for AMIs and for their associated snapshots, make th
   + If you restore the snapshot before fast snapshot restore is disabled for the snapshot, it remains enabled\.
   + If you restore the snapshot, after fast snapshot restore has been disabled, it remains disabled\. If needed, you must manually re\-enable fast snapshot restore\.
 + If a snapshot is shared when it is deleted, it is automatically unshared when it is sent to the Recycle Bin\. If you restore the snapshot, all of the previous sharing permissions are automatically restored\.
-+ If a snapshot that was created by another AWS service, such as AWS Backup, is sent to the Recycle Bin and you later restore that snapshot from the Recycle Bin, it is no longer managed by the AWS service that created it\. You must manually delete the snapshot if it is no longer needed\.
++ If a snapshot that was created by another AWS service, such as AWS Backup is sent to the Recycle Bin and you later restore that snapshot from the Recycle Bin, it is no longer managed by the AWS service that created it\. You must manually delete the snapshot if it is no longer needed\.
 
 **Considerations for AMIs**
 + Only Amazon EBS\-backed AMIs are supported\.

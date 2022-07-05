@@ -256,6 +256,10 @@ For more information, see [Update instance software on your Amazon Linux instanc
 
 To configure Ubuntu 16\.04 LTS to support hibernation, you need to install the linux\-aws\-hwe kernel package version 4\.15\.0\-1058\-aws or later and the ec2\-hibinit\-agent\.
 
+**Important**  
+The `linux-aws-hwe` kernel package is supported by Canonical\. The standard support for Ubuntu 16\.04 LTS ended in April 2021, and the package no longer receives regular updates\. However, it will receive additional security updates until the Extended Security Maintenance support ends in 2024\. For more information, see [Amazon EC2 Hibernation for Ubuntu 16\.04 LTS now available](https://ubuntu.com/blog/amazon-ec2-hibernation-for-ubuntu-16-04-lts-now-available) on the Canonical Ubuntu Blog\.  
+We recommend that you upgrade to the Ubuntu 20\.04 LTS \- Focal AMI or the Ubuntu 18\.04 LTS \- Bionic AMI\.
+
 **To configure an Ubuntu 16\.04 LTS AMI to support hibernation**
 
 1. Update the kernel to `4.15.0-1058-aws` or later\.
@@ -264,8 +268,6 @@ To configure Ubuntu 16\.04 LTS to support hibernation, you need to install the l
    [ec2-user ~]$ sudo apt update
    [ec2-user ~]$ sudo apt install linux-aws-hwe
    ```
-**Note**  
-The `linux-aws-hwe` kernel package is fully supported by Canonical\. The package will continue to receive regular updates until standard support for Ubuntu 16\.04 LTS ends in April 2021, and will receive additional security updates until the Extended Security Maintenance support ends in 2024\. For more information, see [Amazon EC2 Hibernation for Ubuntu 16\.04 LTS now available](https://ubuntu.com/blog/amazon-ec2-hibernation-for-ubuntu-16-04-lts-now-available) on the Canonical Ubuntu Blog\.
 
 1. Install the `ec2-hibinit-agent` package from the repositories\.
 

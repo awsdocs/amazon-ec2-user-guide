@@ -25,7 +25,7 @@ Bare metal instances, such as `r6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 R6g Instances](https://aws.amazon.com/ec2/instance-types/r6)\.
 
-**R6i instances**
+**R6i and R6id instances**
 
 These instances are ideal for running memory\-intensive workloads, such as the following:
 + High\-performance databases \(relational and NoSQL\)
@@ -200,6 +200,16 @@ The following is a summary of the hardware specifications for memory optimized i
 | r6i\.24xlarge | 96 | 768 | 
 | r6i\.32xlarge | 128 | 1,024 | 
 | r6i\.metal | 128 | 1,024 | 
+| r6id\.large | 2 | 16 | 
+| r6id\.xlarge | 4 | 32 | 
+| r6id\.2xlarge | 8 | 64 | 
+| r6id\.4xlarge | 16 | 128 | 
+| r6id\.8xlarge | 32 | 256 | 
+| r6id\.12xlarge | 48 | 384 | 
+| r6id\.16xlarge | 64 | 512 | 
+| r6id\.24xlarge | 96 | 768 | 
+| r6id\.32xlarge | 128 | 1,024 | 
+| r6id\.metal | 128 | 1,024 | 
 | u\-3tb1\.56xlarge | 224 | 3,072 | 
 | u\-6tb1\.56xlarge | 224 | 6,144 | 
 | u\-6tb1\.112xlarge | 448 | 6,144 | 
@@ -270,7 +280,7 @@ The memory optimized instances use the following processors\.
 + **Intel Xeon Scalable processors \(Skylake 8175M or Cascade Lake 8259CL\)**: R5, R5d
 + **2nd generation Intel Xeon Scalable processors \(Cascade Lake 8259CL\)**: R5b, R5n
 + **2nd generation Intel Xeon Scalable processors \(Cascade Lake 8252C\)**: X2iezn
-+ **3rd generation Intel Xeon Scalable processors \(Ice Lake 8375C\)**: R6i, X2idn, X2iedn
++ **3rd generation Intel Xeon Scalable processors \(Ice Lake 8375C\)**: R6i, R6id, X2idn, X2iedn
 
 For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -300,14 +310,14 @@ The following is a summary of network performance for memory optimized instances
 |  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.8xlarge and smaller \| r5b\.4xlarge and smaller \| r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8xlarge and smaller \| x2gd\.4xlarge and smaller \|  z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5b\.8xlarge \| r5b\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge \| r6gd\.8xlarge  \| x2gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r6i\.4xlarge and smaller \| r6id\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r6i\.8xlarge \| r6id\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r6i\.12xlarge \| r6id\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5b\.16xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  \| x2gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller \| x2iedn\.4xlarge and smaller \| x2iezn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  r6i\.16xlarge \| x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \| x2gd\.metal \|  x2iedn\.8xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.12xlarge \| r5n\.12xlarge \| r6i\.32xlarge \| r6i\.metal \| u\-3tb1\.56xlarge \| x2idn\.16xlarge \| x2iedn\.16xlarge \| x2iezn\.6xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  r6i\.16xlarge \|r6id\.16xlarge \| x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \| x2gd\.metal \|  x2iedn\.8xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r6i\.24xlarge \| r6id\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.12xlarge \| r5n\.12xlarge \| r6i\.32xlarge \| r6i\.metal \| r6id\.32xlarge \| r6id\.metal \| u\-3tb1\.56xlarge \| x2idn\.16xlarge \| x2iedn\.16xlarge \| x2iezn\.6xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.16xlarge \| r5n\.16xlarge \| x2idn\.24xlarge \| x2iedn\.24xlarge \| x2iezn\.8xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal \| x2idn\.32xlarge \| x2idn\.metal \| x2iedn\.32xlarge \| x2iedn\.metal \| x2iezn\.12xlarge \| x2iezn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
@@ -366,6 +376,10 @@ The following is a summary of network performance for memory optimized instances
 | r6i\.xlarge | 1\.562 | 12\.5 | 
 | r6i\.2xlarge | 3\.125 | 12\.5 | 
 | r6i\.4xlarge | 6\.25 | 12\.5 | 
+| r6id\.large | \.781 | 12\.5 | 
+| r6id\.xlarge | 1\.562 | 12\.5 | 
+| r6id\.2xlarge | 3\.125 | 12\.5 | 
+| r6id\.4xlarge | 6\.25 | 12\.5 | 
 | x1e\.xlarge | \.625 | 10 | 
 | x1e\.2xlarge | 1\.25 | 10 | 
 | x1e\.4xlarge | 2\.5 | 10 | 
@@ -427,6 +441,16 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | r6gd\.12xlarge | 645,000 | 270,000 | 
 | r6gd\.16xlarge | 860,000 | 360,000 | 
 | r6gd\.metal | 860,000 | 360,000 | 
+| r6id\.large | 33,542 | 16,771 | 
+| r6id\.xlarge | 67,083 | 33,542 | 
+| r6id\.2xlarge | 134,167 | 67,084 | 
+| r6id\.4xlarge | 268,333 | 134,167 | 
+| r6id\.8xlarge | 536,666 | 268,334 | 
+| r6id\.12xlarge | 804,999 | 402,501 | 
+| r6id\.16xlarge | 1,073,332 | 536,668 | 
+| r6id\.24xlarge | 1,609,998 | 805,002 | 
+| r6id\.32xlarge | 2,146,664 | 1,073,336 | 
+| r6id\.metal | 2,146,664 | 1,073,336 | 
 | x2gd\.medium | 13,438 | 5,625 | 
 | x2gd\.large | 26,875 | 11,250 | 
 | x2gd\.xlarge | 53,750 | 22,500 | 
@@ -480,6 +504,7 @@ The following is a summary of features for memory optimized instances\.
 | R6g | Yes | Yes | No | Yes | 
 | R6gd | No | Yes | NVMe \* | Yes | 
 | R6i | Yes | Yes | No | Yes | 
+| R6id | No | Yes | NVMe \* | Yes | 
 | High memory | Yes | Yes | No | Virtualized: Yes Bare metal: No  | 
 | X1 | No | No | SSD | Yes | 
 | X2gd | No \*\* | Yes | NVME \* | Yes | 

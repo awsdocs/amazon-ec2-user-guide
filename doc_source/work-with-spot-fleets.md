@@ -2,7 +2,7 @@
 
 To start using a Spot Fleet, you create a Spot Fleet request that includes the target capacity, an optional On\-Demand portion, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. The fleet request must include a launch specification that defines the information that the fleet needs to launch an instance, such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\.
 
-If you fleet includes Spot Instances, Amazon EC2 can attempt to maintain your fleet target capacity as Spot prices change\.
+If your fleet includes Spot Instances, Amazon EC2 can attempt to maintain your fleet target capacity as Spot prices change\.
 
 It is not possible to modify the target capacity of a one\-time request after it's been submitted\. To change the target capacity, cancel the request and submit a new one\.
 

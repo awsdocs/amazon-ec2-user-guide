@@ -5,6 +5,7 @@ By default, AWS Identity and Access Management \(IAM\) users don't have permissi
 **Topics**
 + [Permissions for working with Recycle Bin and retention rules](#rule-perms)
 + [Permissions for working with resources in the Recycle Bin](#resource-perms)
++ [Condition keys for Recycle Bin](rbin-condition-keys.md)
 
 ## Permissions for working with Recycle Bin and retention rules<a name="rule-perms"></a>
 

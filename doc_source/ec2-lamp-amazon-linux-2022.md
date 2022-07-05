@@ -3,7 +3,8 @@
 The following procedures help you install an Apache web server with PHP and [MariaDB](https://mariadb.org/about/) \(a community\-developed fork of MySQL\) support on your Amazon Linux 2022 instance \(sometimes called a LAMP web server or LAMP stack\)\. You can use this server to host a static website or deploy a dynamic PHP application that reads and writes information to a database\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux 2022, which is still in Preview phase\. You may access the official AMIs in the AWS Management Console by using the search filters 'Amazon Linux 2022' and 'Owner: Amazon images' on the Community AMI page, or click directly from the [Amazon Linux 2022](https://aws.amazon.com/linux/amazon-linux-2022/) news post\. If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux AMI, see [Tutorial: Install a LAMP web server on the Amazon Linux AMI](install-LAMP.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
+These procedures are intended for use with Amazon Linux 2022, which is still in preview\. You can access the official Amazon Linux 2022 AMIs in the AWS Management Console by using the search filters **Amazon Linux 2022** and **Owner alias = amazon** when searching through the AMI catalog, or by clicking directly from the [Amazon Linux 2022](https://aws.amazon.com/linux/amazon-linux-2022/) news post\.  
+If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux 2, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. For Amazon Linux AMI, see [Tutorial: Install a LAMP web server on the Amazon Linux AMI](install-LAMP.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
 
 **Option: Complete this tutorial using automation**  
 To complete this tutorial using AWS Systems Manager Automation instead of the following tasks, run the [AWSDocs\-InstallALAMPServer\-AL2](https://console.aws.amazon.com/systems-manager/automation/execute/AWSDocs-InstallALAMPServer-AL2) Automation document\.
@@ -20,13 +21,13 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 
 **Prerequisites**
 + This tutorial assumes that you have already launched a new instance using Amazon Linux 2022, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
-+ The following procedure installs the latest PHP version available on Amazon Linux 2022, currently 7\.4;\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with 7\.4\.<a name="install_apache-2022"></a>
++ The following procedure installs the latest PHP version available on Amazon Linux 2022, currently 7\.4\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with 7\.4\.<a name="install_apache-2022"></a>
 
 **To prepare the LAMP server**
 
 1. [Connect to your instance](EC2_GetStarted.md#ec2-connect-to-instance-linux)\.
 
-1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes, but it is important to make sure that you have the latest security updates and bug fixes\.
+1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process might take a few minutes, but it is important to make sure that you have the latest security updates and bug fixes\.
 
    The `-y` option installs the updates without asking for confirmation\. If you would like to examine the updates before installing, you can omit this option\.
 
@@ -34,15 +35,13 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
    [ec2-user ~]$ sudo yum update -y
    ```
 
-1. Install the latest versions of Apache web server, and PHP packages for Amazon Linux 2022\.
+1. Install the latest versions of Apache web server and PHP packages for Amazon Linux 2022\.
 
    ```
    [ec2-user ~]$ sudo yum install -y httpd wget php-fpm php-mysqli php-json php php-devel
    ```
 
-   To set up a LAMP web server on Amazon Linux 2, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.
-
-1. Install the MariaDB, software packages\. Use the dnf install command to install multiple software packages and all related dependencies at the same time\.
+1. Install the MariaDB software packages\. Use the dnf install command to install multiple software packages and all related dependencies at the same time\.
 
    ```
    [ec2-user ~]$ sudo dnf install mariadb105-server
@@ -72,11 +71,11 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
    [ec2-user ~]$ sudo systemctl is-enabled httpd
    ```
 
-1. Add a security rule to allow inbound HTTP \(port 80\) connections to your instance if you have not already done so\. By default, a **launch\-wizard\-*N*** security group was set up for your instance during initialization\. This group contains a single rule to allow SSH connections\. 
+1. Add a security rule to allow inbound HTTP \(port 80\) connections to your instance if you have not already done so\. By default, a **launch\-wizard\-*N*** security group was created for your instance during launch\. If you did not add additional security group rules, this group contains only a single rule to allow SSH connections\.
 
    1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-   1. Choose **Instances** and select your instance\.
+   1. In the left navigator, choose **Instances**, and select your instance\.
 
    1. On the **Security** tab, view the inbound rules\. You should see the following rule:
 
@@ -87,22 +86,24 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 **Warning**  
 Using `0.0.0.0/0` allows all IPv4 addresses to access your instance using SSH\. This is acceptable for a short time in a test environment, but it's unsafe for production environments\. In production, you authorize only a specific IP address or range of addresses to access your instance\.
 
-   1. Choose the link for the security group\. Using the procedures in [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
+   1. If there is no inbound rule to allow HTTP \(port 80\) connections, you must the add rule now\. Choose the link for the security group\. Using the procedures in [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
       + **Type**: HTTP
       + **Protocol**: TCP
       + **Port Range**: 80
       + **Source**: Custom
 
-1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. If there is no content in `/var/www/html`, you should see the Apache test page\. You can get the public DNS for your instance using the Amazon EC2 console \(check the **Public DNS** column; if this column is hidden, choose **Show/Hide Columns** \(the gear\-shaped icon\) and choose **Public DNS**\)\.
+1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. If there is no content in `/var/www/html`, you should see the Apache test page\.
+
+   You can get the public DNS for your instance using the Amazon EC2 console \(check the **Public IPv4 DNS** column; if this column is hidden, choose **Preferences** \(the gear\-shaped icon\) and toggle on **Public IPv4 DNS**\)\.
 
    Verify that the security group for the instance contains a rule to allow HTTP traffic on port 80\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 **Important**  
-If you are not using Amazon Linux, you may also need to configure the firewall on your instance to allow these connections\. For more information about how to configure the firewall, see the documentation for your specific distribution\.  
+If you are not using Amazon Linux, you might also need to configure the firewall on your instance to allow these connections\. For more information about how to configure the firewall, see the documentation for your specific distribution\.  
 ![\[Apache test page\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/apache_test_page_al2_2.4.png)
 
 Apache httpd serves files that are kept in a directory called the Apache document root\. The Amazon Linux Apache document root is `/var/www/html`, which by default is owned by root\.
 
-To allow the `ec2-user` account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add `ec2-user` to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="setting-file-permissions-2022"></a>
+To allow the `ec2-user` account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add `ec2-user` to the `apache` group to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="setting-file-permissions-2022"></a>
 
 **To set file permissions**
 
@@ -317,7 +318,7 @@ We do not recommend using `phpMyAdmin` to access a LAMP server unless you have e
 
 ## Troubleshoot<a name="lamp-troubleshooting-2022"></a>
 
-This section offers suggestions for resolving common problems you may encounter while setting up a new LAMP server\. 
+This section offers suggestions for resolving common problems you might encounter while setting up a new LAMP server\. 
 
 ### I can't connect to my server using a web browser<a name="is_apache_on_2022"></a>
 
@@ -340,7 +341,7 @@ Perform the following checks to see if your Apache web server is running and acc
 Perform the following checks to see if your Apache web server is configured to support HTTPS\.
 + **Is the web server correctly configured?**
 
-  After you install Apache, the server is configured for HTTP traffic\. To support HTTPS, enable TLS on the server and install an SSL certificate\. For information, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
+  After you install Apache, the server is configured for HTTP traffic\. To support HTTPS, enable TLS on the server and install an SSL certificate\. For information, see [Tutorial: Configure SSL/TLS on Amazon Linux 2022](SSL-on-amazon-linux-2022.md)\.
 + **Is the firewall correctly configured?**
 
   Verify that the security group for the instance contains a rule to allow HTTPS traffic on port 443\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.

@@ -20,7 +20,7 @@ For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot
 + You can copy AWS Marketplace, VM Import/Export, and Storage Gateway snapshots, but you must verify that the snapshot is supported in the destination Region\.
 
 **Considerations**
-+ Each account can have up to twenty concurrent snapshot copy requests to a single destination Region\.
++ There is a limit of `20` concurrent snapshot copy requests per destination Region\. If you exceed this quota, you receive a `ResourceLimitExceeded` error\. If you receive this error, wait for one or more of the copy requests to complete before making a new snapshot copy request\.
 + User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 + Snapshots created by a snapshot copy operation have an arbitrary volume ID that should not be used for any purpose\.
 + Resource\-level permissions specified for the snapshot copy operation apply only to the new snapshot\. You cannot specify resource\-level permissions for the source snapshot\. For an example, see [Example: Copying snapshots](ExamplePolicies_EC2.md#iam-copy-snapshot)\.

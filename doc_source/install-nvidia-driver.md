@@ -109,6 +109,7 @@ These downloads are available to AWS customers only\. By downloading, in order t
 + IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
 + G5 instances require GRID 13\.1 or later \(or GRID 12\.4 or later\)\.
 + G3 instances require AWS provided DNS resolution for GRID licensing to work\.
++ [IMDSv2](configuring-instance-metadata-service.md) is only supported with NVIDIA driver version 14\.0 or greater\. 
 
 #### Amazon Linux and Amazon Linux 2<a name="nvidia-grid-amazon-linux"></a>
 
@@ -178,6 +179,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
 
    ```
    [ec2-user ~]$ nvidia-smi -q | head
+   ```
+
+1. If you are using NVIDIA driver version 14\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
    ```
 
 1. \(Optional\) Depending on your use case, you might complete the following optional steps\. If you do not require this functionality, do not complete these steps\.
@@ -276,6 +287,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
    [ec2-user ~]$ nvidia-smi -q | head
    ```
 
+1. If you are using NVIDIA driver version 14\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
+   ```
+
 1. \(Optional\) Depending on your use case, you might complete the following optional steps\. If you do not require this functionality, do not complete these steps\.
 
    1. To help take advantage of the four displays of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
@@ -352,6 +373,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
    [ec2-user ~]$ nvidia-smi -q | head
    ```
 
+1. If you are using NVIDIA driver version 14\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
+   ```
+
 1. \(Optional\) Depending on your use case, you might complete the following optional steps\. If you do not require this functionality, do not complete these steps\.
 
    1. To help take advantage of the four displays of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
@@ -426,6 +457,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
 
    ```
    [ec2-user ~]$ nvidia-smi -q | head
+   ```
+
+1. If you are using NVIDIA driver version 14\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
    ```
 
 1. \(Optional\) Depending on your use case, you might complete the following optional steps\. If you do not require this functionality, do not complete these steps\.
@@ -530,6 +571,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
    [ec2-user ~]$ nvidia-smi -q | head
    ```
 
+1. If you are using NVIDIA driver version 14\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
+   ```
+
 1. \(Optional\) Depending on your use case, you might complete the following optional steps\. If you do not require this functionality, do not complete these steps\.
 
    1. To help take advantage of the four displays of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
@@ -550,6 +601,7 @@ These drivers are available to AWS customers only\. By downloading them, you agr
 + Install the AWS CLI on your Linux instance and configure default credentials\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
 + IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
 + G3 instances require AWS provided DNS resolution for GRID licensing to work\.
++ [IMDSv2](configuring-instance-metadata-service.md) is only supported with NVIDIA driver version 495\.x or greater\. 
 
 #### Amazon Linux and Amazon Linux 2<a name="nvidia-gaming-amazon-linux"></a>
 
@@ -644,6 +696,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
 
    ```
    [ec2-user ~]$ sudo reboot
+   ```
+
+1. If you are using NVIDIA driver version 510\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
    ```
 
 1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
@@ -763,6 +825,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
    [ec2-user ~]$ sudo reboot
    ```
 
+1. If you are using NVIDIA driver version 510\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
+   ```
+
 1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\. If you do not require this functionality, do not complete this step\.
 
 #### CentOS Stream 8 and Red Hat Enterprise Linux 8<a name="nvidia-gaming-centos8-rhel8"></a>
@@ -854,6 +926,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
    [ec2-user ~]$ sudo reboot
    ```
 
+1. If you are using NVIDIA driver version 510\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
+   ```
+
 1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
 
 #### Rocky Linux 8<a name="nvidia-gaming-rocky-linux-8"></a>
@@ -943,6 +1025,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
 
    ```
    [ec2-user ~]$ sudo reboot
+   ```
+
+1. If you are using NVIDIA driver version 510\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
    ```
 
 1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
@@ -1066,6 +1158,16 @@ If you are using Amazon Linux 2 with kernel version 5\.10, use the following com
 
    ```
    [ec2-user ~]$ sudo reboot
+   ```
+
+1. If you are using NVIDIA driver version 510\.x or greater on the G4dn or G5g instances, disable GSP with the following commands\. For more information, on why this is required visit [NVIDIA’s documentation](https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp)\.
+
+   ```
+   sudo touch /etc/modprobe.d/nvidia.conf
+   ```
+
+   ```
+   echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
    ```
 
 1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\. If you do not require this functionality, do not complete this step\.

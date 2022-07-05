@@ -237,7 +237,7 @@ The following policy allows users to use the [CreateVolume](https://docs.aws.ama
 
 ### Example: Create a volume with tags<a name="iam-example-manage-volumes-tags"></a>
 
-The following policy includes the `aws:RequestTag` condition key that requires users to tag any volumes they create with the tags `costcenter=115` and `stack=prod`\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` are allowed in the request \(no other tags can be specified\)\. If users don't pass these specific tags, or if they don't specify tags at all, the request fails\. 
+The following policy includes the `aws:RequestTag` condition key that requires users to tag any volumes they create with the tags `costcenter=115` and `stack=prod`\. If users don't pass these specific tags, or if they don't specify tags at all, the request fails\. 
 
 For resource\-creating actions that apply tags, users must also have permissions to use the `CreateTags` action\. The second statement uses the `ec2:CreateAction` condition key to allow users to create tags only in the context of `CreateVolume`\. Users cannot tag existing volumes or any other resources\. For more information, see [Grant permission to tag resources during creation](supported-iam-actions-tagging.md)\.
 
@@ -254,9 +254,6 @@ For resource\-creating actions that apply tags, users must also have permissions
         "StringEquals": {
           "aws:RequestTag/costcenter": "115",
           "aws:RequestTag/stack": "prod"
-         },
-         "ForAllValues:StringEquals": {
-             "aws:TagKeys": ["costcenter","stack"]
          }
        }
      },
@@ -315,7 +312,7 @@ The following are example policies for both `CreateSnapshot` \(point\-in\-time s
 + [Example: Create a snapshot](#iam-creating-snapshot)
 + [Example: Create snapshots](#iam-creating-snapshots)
 + [Example: Create a snapshot with tags](#iam-creating-snapshot-with-tags)
-+ [Example: Create snapshots with tags](#iam-creating-snapshots-with-tags)
++ [Example: Create multi\-volume snapshots with tags](#iam-creating-snapshots-with-tags)
 + [Example: Copying snapshots](#iam-copy-snapshot)
 + [Example: Modify permission settings for snapshots](#iam-modifying-snapshot-with-tags)
 
@@ -382,7 +379,7 @@ The following policy allows customers to use the [CreateSnapshots](https://docs.
 
 ### Example: Create a snapshot with tags<a name="iam-creating-snapshot-with-tags"></a>
 
-The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` can be specified in the request\. The request fails if either of these conditions is not met\.
+The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. If users don't pass these specific tags, or if they don't specify tags at all, the request fails\.
 
 For resource\-creating actions that apply tags, customers must also have permissions to use the `CreateTags` action\. The third statement uses the `ec2:CreateAction` condition key to allow customers to create tags only in the context of `CreateSnapshot`\. Customers cannot tag existing volumes or any other resources\. For more information, see [Grant permission to tag resources during creation](supported-iam-actions-tagging.md)\.
 
@@ -404,12 +401,6 @@ For resource\-creating actions that apply tags, customers must also have permiss
             "StringEquals":{
                "aws:RequestTag/costcenter":"115",
                "aws:RequestTag/stack":"prod"
-            },
-            "ForAllValues:StringEquals":{
-               "aws:TagKeys":[
-                  "costcenter",
-                  "stack"
-               ]
             }
          }
       },
@@ -427,9 +418,9 @@ For resource\-creating actions that apply tags, customers must also have permiss
 }
 ```
 
-### Example: Create snapshots with tags<a name="iam-creating-snapshots-with-tags"></a>
+### Example: Create multi\-volume snapshots with tags<a name="iam-creating-snapshots-with-tags"></a>
 
-The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` can be specified in the request\. The request fails if either of these conditions is not met\.
+The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` when creating a multi\-volume snapshot set\. If users don't pass these specific tags, or if they don't specify tags at all, the request fails\.
 
 ```
 {
@@ -454,12 +445,6 @@ The following policy includes the `aws:RequestTag` condition key that requires t
             "StringEquals":{
                "aws:RequestTag/costcenter":"115",
                "aws:RequestTag/stack":"prod"
-            },
-            "ForAllValues:StringEquals":{
-               "aws:TagKeys":[
-                  "costcenter",
-                  "stack"
-               ]
             }
          }
       },
@@ -477,7 +462,7 @@ The following policy includes the `aws:RequestTag` condition key that requires t
 }
 ```
 
-The following policy allows customers to create a snapshot without having to specify tags\. The `CreateTags` action is evaluated only if tags are specified in the `CreateSnapshot` or `CreateSnapshots` request\. If a tag is specified, the tag must be `purpose=test`\. No other tags are allowed in the request\.
+The following policy allows customers to create a snapshot without having to specify tags\. The `CreateTags` action is evaluated only if tags are specified in the `CreateSnapshot` or `CreateSnapshots` request\. Tags can be omitted in the request\. If a tag is specified, the tag must be `purpose=test`\. No other tags are allowed in the request\.
 
 ```
 {
@@ -505,6 +490,8 @@ The following policy allows customers to create a snapshot without having to spe
    ]
 }
 ```
+
+The following policy allows customers to create multi\-volume snapshot sets without having to specify tags\. The `CreateTags` action is evaluated only if tags are specified in the `CreateSnapshot` or `CreateSnapshots` request\. Tags can be omitted in the request\. If a tag is specified, the tag must be `purpose=test`\. No other tags are allowed in the request\.
 
 ```
 {
@@ -1046,7 +1033,7 @@ For more information, see [Grant permission to tag resources during creation](su
 
 **Tag instances and volumes on creation with specific tags**
 
-The following policy includes the `aws:RequestTag` condition key that requires users to tag any instances and volumes that are created by `RunInstances` with the tags `environment=production` and `purpose=webserver`\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `environment` and `purpose` are allowed in the request \(no other tags can be specified\)\. If no tags are specified in the request, the request fails\. 
+The following policy includes the `aws:RequestTag` condition key that requires users to tag any instances and volumes that are created by `RunInstances` with the tags `environment=production` and `purpose=webserver`\. If users don't pass these specific tags, or if they don't specify tags at all, the request fails\.
 
 ```
 {
@@ -1078,9 +1065,6 @@ The following policy includes the `aws:RequestTag` condition key that requires u
          "StringEquals": {
              "aws:RequestTag/environment": "production" ,
              "aws:RequestTag/purpose": "webserver"
-          },
-          "ForAllValues:StringEquals": {
-              "aws:TagKeys": ["environment","purpose"]
           }
        }
     },
@@ -1763,7 +1747,7 @@ To allow users to view and modify the Reserved Instances in your account, but no
 
 ## Example: Tag resources<a name="iam-example-taggingresources"></a>
 
-The following policy allows users to use the `CreateTags` action to apply tags to an instance only if the tag contains the key `environment` and the value `production`\. The `ForAllValues` modifier is used with the `aws:TagKeys` condition key to indicate that only the key `environment` is allowed in the request \(no other tags are allowed\)\. The user cannot tag any other resource types\.
+The following policy allows users to use the `CreateTags` action to apply tags to an instance only if the tag contains the key`environment` and the value `production`\. No other tags are allowe and the user cannot tag any other resource types\.
 
 ```
 {
@@ -1778,11 +1762,6 @@ The following policy allows users to use the `CreateTags` action to apply tags t
             "Condition": {
                 "StringEquals": {
                     "aws:RequestTag/environment": "production"
-                },
-                "ForAllValues:StringEquals": {
-                    "aws:TagKeys": [
-                        "environment"
-                    ]
                 }
             }
         }

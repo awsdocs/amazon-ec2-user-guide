@@ -183,7 +183,7 @@ The first part of migrating to a VPC is deciding what kind of VPC architecture s
 ![\[A web application in a VPC\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/vpc-migrate-example-vpc.png)
 
 To migrate your web application to a VPC, you can follow these steps:
-+ **Create a VPC**: In this case, you can use the VPC wizard in the Amazon VPC console to create your VPC and subnets\. The second wizard configuration creates a VPC with one private and one public subnet, and launches and configures a NAT device in your public subnet for you\. For more information, see [VPC with public and private subnets \(NAT\)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html) in the *Amazon VPC User Guide*\.
++ **Create a VPC**: For more information, see [Create a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC) in the *Amazon VPC User Guide*\. For information about VPC architecture scenarios, see [Scenarios](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-scenarios-intro.html) in the *Amazon VPC User Guide*\. 
 + **Configure your security groups**: In your EC2\-Classic environment, you have one security group for your web servers, and another security group for your database server\. You can use the Amazon EC2 console to copy the rules from each security group into new security groups for your VPC\. For more information, see [Security groups](#vpc-migrate-security-group)\. 
 **Tip**  
 Create the security groups that are referenced by other security groups first\.

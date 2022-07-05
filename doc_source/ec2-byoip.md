@@ -26,14 +26,15 @@ The following steps describe how to bring your own IP address range for use in A
 + The address range must be registered with your regional internet registry \(RIR\), such as the American Registry for Internet Numbers \(ARIN\), Réseaux IP Européens Network Coordination Centre \(RIPE\), or Asia\-Pacific Network Information Centre \(APNIC\)\. It must be registered to a business or institutional entity and cannot be registered to an individual person\.
 + The most specific IPv4 address range that you can bring is /24\.
 + The most specific IPv6 address range that you can bring is /48 for CIDRs that are publicly advertised, and /56 for CIDRs that are [not publicly advertised](#byoip-provision-non-public)\.
-+ ROAs are not required for CIDR ranges that are not publicly advertised, but the RDAP records still need to be updated\. 
++ ROAs are not required for CIDR ranges that are not publicly advertised, but the RDAP records still need to be updated\.
 + You can bring each address range to one Region at a time\.
-+ You can bring a total of five IPv4 and IPv6 address ranges per Region to your AWS account\.
++ You can bring a total of five BYOIP IPv4 and IPv6 address ranges per Region to your AWS account\. You cannot adjust the quotas for BYOIP CIDRs using the Service Quotas console, but you can contact the AWS Support Center as described in [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.
 + You cannot share your IP address range with other accounts using AWS RAM unless you use Amazon VPC IP Address Manager \(IPAM\) and integrate IPAM with AWS Organizations\. For more information, see [Integrate IPAM with AWS Organizations](https://docs.aws.amazon.com/vpc/latest/ipam/enable-integ-ipam.html) in the *Amazon VPC IPAM User Guide*\.
 + The addresses in the IP address range must have a clean history\. We might investigate the reputation of the IP address range and reserve the right to reject an IP address range if it contains an IP address that has a poor reputation or is associated with malicious behavior\.
 + AWS doesn’t support legacy allocations\.
 + For LIRs, it is common that they use a manual process to update their records\. This can take days to deploy depending on the LIR\.
 + A single ROA object and RDAP record are needed for a large CIDR block\. You can bring multiple smaller CIDR blocks from that range to AWS, even across multiple Regions, using the single object and record\.
++ BYOIP is not supported for Local Zones, Wavelength Zones, or on AWS Outposts\.
 
 ## Onboarding prerequisites for your BYOIP address range<a name="prepare-for-byoip"></a>
 

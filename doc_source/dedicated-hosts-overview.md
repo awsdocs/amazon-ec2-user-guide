@@ -13,6 +13,7 @@ For information about the configurations supported on Dedicated Hosts, see [Dedi
 + [Pricing and billing](#dedicated-hosts-billing)
 + [Work with Dedicated Hosts](how-dedicated-hosts-work.md)
 + [Work with shared Dedicated Hosts](dh-sharing.md)
++ [Dedicated Hosts on AWS Outposts](dh-outposts.md)
 + [Host recovery](dedicated-hosts-recovery.md)
 + [Track configuration changes](dedicated-hosts-aws-config.md)
 

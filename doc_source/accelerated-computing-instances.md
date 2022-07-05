@@ -18,6 +18,7 @@ If you require high processing capability, you'll benefit from using accelerated
 + [Release notes](#gpu-instance-release-notes)
 + [Install NVIDIA drivers on Linux instances](install-nvidia-driver.md)
 + [Install AMD drivers on Linux instances](install-amd-driver.md)
++ [Setting up Dual 4K displays on G4ad](activate_g4ad_4k.md)
 + [Activate NVIDIA GRID Virtual Applications](activate_grid.md)
 + [Optimize GPU settings](optimize_gpu.md)
 

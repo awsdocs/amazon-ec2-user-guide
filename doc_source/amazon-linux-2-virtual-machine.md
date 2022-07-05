@@ -19,8 +19,8 @@ The `seed.iso` boot image includes the initial configuration information that is
 The `seed.iso` boot image includes only the configuration information required to boot the VM\. It does not include the Amazon Linux 2 operating system files\.
 
 To generate the `seed.iso` boot image, you need two configuration files:
-+ `meta-data`—This file includes the hostname and static network settings for the VM\.
-+ `user-data`—This file configures user accounts, and specifies their passwords, key pairs, and access mechanisms\. By default, the Amazon Linux 2 VM image creates a `ec2-user` user account\. You use the `user-data` configuration file to set the password for the default user account\.
++ `meta-data`> – This file includes the hostname and static network settings for the VM\.
++ `user-data` – This file configures user accounts, and specifies their passwords, key pairs, and access mechanisms\. By default, the Amazon Linux 2 VM image creates a `ec2-user` user account\. You use the `user-data` configuration file to set the password for the default user account\.
 
 **To create the `seed.iso` boot disc**
 
@@ -74,8 +74,8 @@ To generate the `seed.iso` boot image, you need two configuration files:
    1. \(Optional\) By default, cloud\-init applies network settings each time the VM boots\. Add the following to prevent cloud\-init from applying network settings at each boot, and to retain the network settings applied during the first boot\.
 
       ```
-      # NOTE: Cloud-init applies network settings on every boot by default. To retain network settings from first
-      boot, add the following ‘write_files’ section:
+      # NOTE: Cloud-init applies network settings on every boot by default. To retain network settings 
+      # from first boot, add the following ‘write_files’ section:
       write_files:
         - path: /etc/cloud/cloud.cfg.d/80_disable_network_after_firstboot.cfg
           content: |

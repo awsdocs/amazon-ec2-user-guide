@@ -7,7 +7,7 @@ Bandwidth for aggregate multi\-flow traffic available to an instance depends on 
 **Within the Region**  
 Traffic can utilize the full network bandwidth available to the instance\.
 
-**To other Regions, an internet gateway, or Direct Connect**  
+**To other Regions, an internet gateway, Direct Connect, or local gateways \(LGW\)**  
 Traffic can utilize up to 50% of the network bandwidth available to a [current generation instance](instance-types.md#current-gen-instances) with a minimum of 32 vCPUs\. Bandwidth for a current generation instance with less than 32 vCPUs is limited to 5 Gbps\.
 
 Bandwidth for single\-flow \(5\-tuple\) traffic is limited to 5 Gbps when instances are not in the same [cluster placement group](placement-groups.md#placement-groups-cluster)\. For use cases that require low latency and high single\-flow bandwidth, use a cluster placement group to achieve up to 10 Gbps for instances in the same placement group\. Alternatively, set up multiple paths between two endpoints to achieve higher bandwidth using Multipath TCP \(MPTCP\)\.
@@ -19,6 +19,8 @@ The available network bandwidth of an instance depends on the number of vCPUs th
 Typically, instances with 16 vCPUs or fewer \(size `4xlarge` and smaller\) are documented as having "up to" a specified bandwidth; for example, "up to 10 Gbps"\. These instances have a baseline bandwidth\. To meet additional demand, they can use a network I/O credit mechanism to burst beyond their baseline bandwidth\. Instances can use burst bandwidth for a limited time, typically from 5 to 60 minutes, depending on the instance size\.
 
 An instance receives the maximum number of network I/O credits at launch\. If the instance exhausts its network I/O credits, it returns to its baseline bandwidth\. A running instance earns network I/O credits whenever it uses less network bandwidth than its baseline bandwidth\. A stopped instance does not earn network I/O credits\. Instance burst is on a best effort basis, even when the instance has credits available, as burst bandwidth is a shared resource\.
+
+**Base and burst network performance**
 
 The following documentation describes the network performance for all instances, plus the baseline network bandwidth available for instances that can use burst bandwidth\.
 + [General purpose instances](general-purpose-instances.md#general-purpose-network-performance)

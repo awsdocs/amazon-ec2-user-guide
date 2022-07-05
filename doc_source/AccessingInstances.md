@@ -18,3 +18,6 @@ The operating system of your local computer determines the options that you have
 + [SSH client](AccessingInstancesLinux.md)
 + [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)
 + [Windows Subsystem for Linux](WSL.md)
+
+**Note**  
+If you need to troubleshoot boot, network configuration, and other issues for instances built on the [AWS Nitro System](http://aws.amazon.com/ec2/nitro/), you can use the [EC2 Serial Console for Linux instances](ec2-serial-console.md)\.

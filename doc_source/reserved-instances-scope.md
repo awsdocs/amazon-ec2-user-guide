@@ -6,6 +6,8 @@ When you purchase a Reserved Instance, you determine the scope of the Reserved I
 
 The scope does not affect the price\. You pay the same price for a regional or zonal Reserved Instance\. For more information about Reserved Instance pricing, see [Key variables that determine Reserved Instance pricing](ec2-reserved-instances.md#ri-key-pricing-variables) and [Amazon EC2 Reserved Instances Pricing](http://aws.amazon.com/ec2/pricing/reserved-instances/pricing/)\.
 
+For more information about how to specify the scope of a Reserved Instance, see [RI Attributes](http://aws.amazon.com/ec2/pricing/reserved-instances/#riattributes), specifically the **Availability Zone** bullet\.
+
 ## Differences between regional and zonal Reserved Instances<a name="reserved-instances-regional-zonal-differences"></a>
 
 The following table highlights some key differences between regional Reserved Instances and zonal Reserved Instances:

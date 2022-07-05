@@ -34,8 +34,6 @@ Your request to create a Capacity Reservation could fail if one of the following
 
    1. **Launch EBS\-optimized instances**—Specify whether to reserve the capacity for EBS\-optimized instances\. This option is selected by default for some instance types\. For more information about EBS\-optimized instances, see [Amazon Elastic Block Store \(Amazon EBS\)](AmazonEBS.md)\.
 
-   1. **Attach instance store at launch**—Specify whether instances launched into the Capacity Reservation use temporary block\-level storage\. The data on an instance store volume persists only during the life of the associated instance\.
-
    1. **Platform**—The operating system for your instances\.  For more information, see [Supported platforms](ec2-capacity-reservations.md#capacity-reservations-platforms)\. For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\.
 
    1. **Availability Zone**—The Availability Zone in which to reserve the capacity\.
@@ -112,7 +110,7 @@ aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro
 
 You can change the attributes of an active Capacity Reservation after you have created it\. You cannot modify a Capacity Reservation after it has expired or after you have explicitly canceled it\.
 
-When modifying a Capacity Reservation, you can only increase or decrease the quantity and change the way in which it is released\. You cannot change the instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility of a Capacity Reservation\. If you need to modify any of these attributes, we recommend that you cancel the reservation, and then create a new one with the required attributes\.
+When modifying a Capacity Reservation, you can only increase or decrease the quantity and change the way in which it is released\. You cannot change the instance type, EBS optimization, platform, Availability Zone, or instance eligibility of a Capacity Reservation\. If you need to modify any of these attributes, we recommend that you cancel the reservation, and then create a new one with the required attributes\.
 
 If you specify a new quantity that exceeds your remaining On\-Demand Instance limit for the selected instance type, the update fails\.
 
@@ -186,7 +184,7 @@ Capacity Reservations have the following possible states:
 + `failed`—The Capacity Reservation request has failed\. A request can fail due to request parameters that are not valid, capacity constraints, or instance limit constraints\. You can view a failed request for 60 minutes\.
 
 **Note**  
-Due to the [ evntual consistency](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#eventual-consistency) model followed by the Amazon EC2 APIs, after you create a Capacity Reservation, it can take up to 5 minutes for the console and the [ describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) response to indicate that the Capacity Reservation is in the `active` state\. During this time, the console and the `describe-capacity-reservations` response might indicate that the Capacity Reservation is in the `pending` state\. However, the Capacity Reservation might already be available for use and you can attempt to launch instances into it\.
+Due to the [ eventual consistency](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#eventual-consistency) model followed by the Amazon EC2 APIs, after you create a Capacity Reservation, it can take up to 5 minutes for the console and the [ describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) response to indicate that the Capacity Reservation is in the `active` state\. During this time, the console and the `describe-capacity-reservations` response might indicate that the Capacity Reservation is in the `pending` state\. However, the Capacity Reservation might already be available for use and you can attempt to launch instances into it\.
 
 **To view your Capacity Reservations using the console**
 

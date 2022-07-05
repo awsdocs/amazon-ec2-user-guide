@@ -11,11 +11,16 @@ The number of volumes that you can restore with the full performance benefit of 
 You can enable fast snapshot restore for snapshots that you own and for public and private snapshots that are shared with you\.
 
 **Topics**
++ [Considerations](#fsr-considerations)
 + [Volume creation credits](#volume-creation-credits)
 + [Manage fast snapshot restore](#manage-fsr)
 + [Monitor fast snapshot restore](#monitor)
 + [Fast snapshot restore quotas](#limits)
 + [Pricing and Billing](#fsr-pricing)
+
+## Considerations<a name="fsr-considerations"></a>
++ Fast snapshot restore can be enabled on snapshots with a size of 16 TiB or less\.
++ Volumes provisioned with performance up to 64,000 IOPS and 1,000 MiB/s throughput receive the full performance benefit of fast snapshot restore\. For volumes provisioned with performance greater than 64,000 IOPS or 1,000 MiB/s throughput, we recommend that you [initialize the volume](ebs-initialize.md) to receive its full performance\. 
 
 ## Volume creation credits<a name="volume-creation-credits"></a>
 

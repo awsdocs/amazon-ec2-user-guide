@@ -42,7 +42,8 @@ Some instance types use NVMe or SATA\-based solid state drives \(SSD\) to delive
 
 The data on NVMe instance store volumes and some HDD instance store volumes is encrypted at rest\. For more information, see [Data protection in Amazon EC2](data-protection.md)\.
 
-The following table provides the quantity, size, type, and performance optimizations of instance store volumes available on each supported instance type\. For a complete list of instance types, including EBS\-only types, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
+**Available instance store volumes**  
+The following table provides the quantity, size, type, and performance optimizations of instance store volumes available on each supported instance type\.
 
 
 | Instance type | Instance store volumes | Type | Needs initialization\* | TRIM support\*\* | 
@@ -276,6 +277,16 @@ The following table provides the quantity, size, type, and performance optimizat
 | r6gd\.12xlarge | 2 x 1,425 GB \(2\.85 TB\) | NVMe SSD |  | ✔ | 
 | r6gd\.16xlarge | 2 x 1,900 GB \(3\.8 TB\) | NVMe SSD |  | ✔ | 
 | r6gd\.metal | 2 x 1,900 GB \(3\.8 TB\) | NVMe SSD |  | ✔ | 
+| r6id\.large | 1 x 118 GB  | NVMe SSD |  | ✔ | 
+| r6id\.xlarge | 1 x 237 GB | NVMe SSD |  | ✔ | 
+| r6id\.2xlarge | 1 x 474 GB | NVMe SSD |  | ✔ | 
+| r6id\.4xlarge | 1 x 950 GB | NVMe SSD |  | ✔ | 
+| r6id\.8xlarge | 1 x 1,900 GB | NVMe SSD |  | ✔ | 
+| r6id\.12xlarge | 2 x 1,425 GB \(2\.85 TB\) | NVMe SSD |  | ✔ | 
+| r6id\.16xlarge | 2 x 1,900 GB \(3\.8 TB\) | NVMe SSD |  | ✔ | 
+| r6id\.24xlarge | 4 x 1,425 GB \(5\.7 TB\) | NVMe SSD |  | ✔ | 
+| r6id\.32xlarge | 4 x 1,900 GB \(7\.6 TB\) | NVMe SSD |  | ✔ | 
+| r6id\.metal | 4 x 1,900 GB \(7\.6 TB\) | NVMe SSD |  | ✔ | 
 | x1\.16xlarge | 1 x 1,920 GB | SSD |  |  | 
 | x1\.32xlarge | 2 x 1,920 GB \(3\.84 TB\) | SSD |  |  | 
 | x1e\.xlarge | 1 x 120 GB | SSD |  |  | 
@@ -318,6 +329,15 @@ The following table provides the quantity, size, type, and performance optimizat
 \*\* For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
 † The `c1.medium` and `m1.small` instance types also include a 900 MB instance store swap volume, which may not be automatically enabled at boot time\. For more information, see [Instance store swap volumes](instance-store-swap-volumes.md)\.
+
+**Instance store volume performance**
+
+The following documentation describes the I/O performance of the instance store volumes\.
++ [General purpose instances](general-purpose-instances.md#general-purpose-ssd-perf)
++ [Compute optimized instances](compute-optimized-instances.md#compute-ssd-perf)
++ [Memory optimized instances](memory-optimized-instances.md#instances-ssd-perf)
++ [Storage optimized instances](storage-optimized-instances.md#storage-instances-diskperf)
++ [Accelerated computing instances](accelerated-computing-instances.md#accelerated-computing-ssd-perf)
 
 **To query instance store volume information using the AWS CLI**  
 You can use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) AWS CLI command to display information about an instance type, such as its instance store volumes\. The following example displays the total size of instance storage for all R5 instances with instance store volumes\.

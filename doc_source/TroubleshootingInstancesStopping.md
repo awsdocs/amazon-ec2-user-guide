@@ -22,6 +22,8 @@ You can force an instance to stop using the console only while the instance is i
 
 1. Choose **Instance state**, **Force stop instance**, **Stop**\.
 
+   Note that **Force stop instance** is only available in the console if your instance is in the `stopping` state\. If your instance is in another state \(except `shutting-down` and `terminated`\) you can use the AWS CLI to force stop your instance\.
+
 ------
 #### [ Old console ]
 
@@ -45,11 +47,11 @@ aws ec2 stop-instances --instance-ids i-0123ab456c789d01e --force
 
 ------
 
-If, after 10 minutes, the instance has not stopped, post a request for help in the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. To help expedite a resolution, include the instance ID, and describe the steps that you've already taken\. Alternatively, if you have a support plan, create a technical support case in the [Support Center](https://console.aws.amazon.com/support/home#/)\.
+If, after 10 minutes, the instance has not stopped, post a request for help on [AWS re:Post](https://repost.aws/)\. To help expedite a resolution, include the instance ID, and describe the steps that you've already taken\. Alternatively, if you have a support plan, create a technical support case in the [Support Center](https://console.aws.amazon.com/support/home#/)\.
 
 ## Create a replacement instance<a name="Creating_Replacement_Instance"></a>
 
-To attempt to resolve the problem while you are waiting for assistance from the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30) or the [Support Center](https://console.aws.amazon.com/support/home#/), create a replacement instance\. Create an AMI of the stuck instance, and launch a new instance using the new AMI\. 
+To attempt to resolve the problem while you are waiting for assistance from [AWS re:Post](https://repost.aws/) or the [Support Center](https://console.aws.amazon.com/support/home#/), create a replacement instance\. Create an AMI of the stuck instance, and launch a new instance using the new AMI\. 
 
 ------
 #### [ New console ]
