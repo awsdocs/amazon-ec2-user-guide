@@ -81,7 +81,7 @@ There are no performance, security, or physical differences between Dedicated In
 | Automatic instance recovery | Supported | Supported | 
 | Bring Your Own License \(BYOL\) | Supported | Partial support \* | 
 
-\* Microsoft SQL Server with License Mobility through Software Assurance, and Windows Virtual Desktop Access \(VDA\) licenses can use be used with Dedicated Instance\.
+\* Microsoft SQL Server with License Mobility through Software Assurance, and Windows Virtual Desktop Access \(VDA\) licenses can be used with Dedicated Instance\.
 
 For more information about Dedicated Hosts, see [Dedicated Hosts](dedicated-hosts-overview.md)\.
 
