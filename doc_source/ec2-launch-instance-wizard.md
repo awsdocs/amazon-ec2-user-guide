@@ -32,8 +32,6 @@ We're in the process of rolling out the new launch instance wizard\. If it's not
 **Work in progress**
 
 We’re working continuously to improve the experience\. Here’s what we’re currently working on:
-+ **Missing feature**
-  + Domain join is a missing feature that will be added in the future\.
 + **Defaults and dependency assistance**
   + **Default values** will be provided for all fields\.
   + **Additional logic** will be added to help you set up your instance configuration correctly \(for example, we’ll disable parameters that are not available with your current settings\)\.
@@ -95,7 +93,7 @@ Except for the key pair, the launch instance wizard provides default values for 
 
 ### Name and tags<a name="liw-name-and-tags"></a>
 
-The instance name is a tag, where the key is **Name**, and the value is the name that you specify\. You can tag the instance, the volumes, and elastic graphics\. For Spot Instances, you can tag the Spot Instance request only\. For information about tags, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
+The instance name is a tag, where the key is **Name**, and the value is the name that you specify\. You can tag the instance, volumes, elastic graphics, and network interfaces\. For Spot Instances, you can tag the Spot Instance request only\. For information about tags, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 Specifying an instance name and additional tags is optional\.
 + For **Name**, enter a descriptive name for the instance\. If you don't specify a name, the instance can be identified by its ID, which is automatically generated when you launch the instance\.
@@ -226,6 +224,7 @@ By using the **Advanced** view, you can configure each volume as follows:
 
 For **Advanced details**, expand the section to view the fields and specify any additional parameters for the instance\.
 + **Purchasing option**: Choose **Request Spot Instances** to request Spot Instances at the Spot price, capped at the On\-Demand price, and choose **Customize** to change the default Spot Instance settings\. You can set your maximum price \(not recommended\), and change the request type, request duration, and interruption behavior\. If you do not request a Spot Instance, Amazon EC2 launches an On\-Demand Instance by default\. For more information, see [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
++ **Domain join directory**: Select the AWS Directory Service directory \(domain\) to which your Linux instance is joined after launch\. If you select a domain, you must select an IAM role with the required permissions\. For more information, see [Seamlessly join a Linux EC2 instance to your AWS Managed Microsoft AD directory](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/seamlessly_join_linux_instance.html)\.
 + **IAM instance profile**: Select an AWS Identity and Access Management \(IAM\) instance profile to associate with the instance\. For more information, see [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)\.
 + **Hostname type**: Select whether the guest OS hostname of the instance will include the resource name or the IP name\. For more information, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.
 + **DNS Hostname**: Determines if the DNS queries to the resource name or the IP name \(depending on what you selected for **Hostname type**\) will respond with the IPv4 address \(A record\), IPv6 address \(AAAA record\), or both\. For more information, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.

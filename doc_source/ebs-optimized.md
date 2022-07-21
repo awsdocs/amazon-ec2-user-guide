@@ -13,14 +13,20 @@ EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attac
 
 ## Supported instance types<a name="ebs-optimization-support"></a>
 
-The following tables show which instance types support EBS optimization\. They include the dedicated bandwidth to Amazon EBS, the typical maximum aggregate throughput that can be achieved on that connection with a streaming read workload and 128 KiB I/O size, and the maximum IOPS the instance can support if you are using a 16 KiB I/O size\. Choose an EBS–optimized instance that provides more dedicated Amazon EBS throughput than your application needs; otherwise, the connection between Amazon EBS and Amazon EC2 can become a performance bottleneck\.
+The following tables show which instance types support EBS optimization\. They include the dedicated bandwidth to Amazon EBS, the typical maximum aggregate throughput that can be achieved on that connection with a streaming read workload and 128 KiB I/O size, and the maximum IOPS the instance can support if you are using a 16 KiB I/O size\.
+
+**Note**  
+You can also view this information programatically using the AWS CLI\. For more information, see [View instances types that support EBS optimization](#describe-ebs-optimization)\.
+
+Choose an EBS–optimized instance that provides more dedicated Amazon EBS throughput than your application needs; otherwise, the connection between Amazon EBS and Amazon EC2 can become a performance bottleneck\.
 
 ### EBS optimized by default<a name="current"></a>
 
 The following table lists the instance types that support EBS optimization and EBS optimization is enabled by default\. There is no need to enable EBS optimization and no effect if you disable EBS optimization\.
 
-**Note**  
-You can also view this information programatically using the AWS CLI\. For more information, see [View instances types that support EBS optimization](#describe-ebs-optimization)\.
+**Important**  
+**\*** These instances can support maximum performance for 30 minutes at least once every 24 hours\.  
+Other instances can sustain the maximum performance indefinitely\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select one of these instances\.
 
 
 | Instance size | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KiB I/O\) | Maximum IOPS \(16 KiB I/O\) | 
@@ -77,10 +83,10 @@ You can also view this information programatically using the AWS CLI\. For more 
 | c5n\.9xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | c5n\.18xlarge | 19,000 | 2,375 | 80,000 | 
 | c5n\.metal | 19,000 | 2,375 | 80,000 | 
-| c6a\.large | 6,666\.664 | 833\.333 | 26,667 | 
-| c6a\.xlarge | 6,666\.664 | 833\.333 | 26,667 | 
-| c6a\.2xlarge | 6,666\.664 | 833\.333 | 26,667 | 
-| c6a\.4xlarge | 6,666\.664 | 833\.333 | 26,667 | 
+| c6a\.large \* | 6,666\.664 | 833\.333 | 26,667 | 
+| c6a\.xlarge \* | 6,666\.664 | 833\.333 | 26,667 | 
+| c6a\.2xlarge \* | 6,666\.664 | 833\.333 | 26,667 | 
+| c6a\.4xlarge \* | 6,666\.664 | 833\.333 | 26,667 | 
 | c6a\.8xlarge | 6,666\.664 | 833\.333 | 26,667 | 
 | c6a\.12xlarge | 10,000 | 1,250 | 40,000 | 
 | c6a\.16xlarge | 13,300 | 1,662\.5 | 53,333 | 
@@ -424,6 +430,17 @@ You can also view this information programatically using the AWS CLI\. For more 
 | r5n\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | r5n\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | r5n\.metal | 19,000 | 2,375 | 80,000 | 
+| r6a\.large \* | 6,666\.664 | 833\.333 | 26,667 | 
+| r6a\.xlarge \* | 6,666\.664 | 833\.333 | 26,667 | 
+| r6a\.2xlarge \* | 6,666\.664 | 833\.333 | 26,667 | 
+| r6a\.4xlarge \* | 6,666\.664 | 833\.333 | 26,667 | 
+| r6a\.8xlarge | 6,666\.664 | 833\.333 | 26,667 | 
+| r6a\.12xlarge | 10,000 | 1,250 | 40,000 | 
+| r6a\.16xlarge | 13,300 | 1,662\.5 | 53,333 | 
+| r6a\.24xlarge | 20,000 | 2,500 | 80,000 | 
+| r6a\.32xlarge | 26,666\.664 | 3,333\.333 | 100,000 | 
+| r6a\.48xlarge | 40,000 | 5,000 | 160,000 | 
+| r6a\.metal | 40,000 | 5,000 | 160,000 | 
 | r6g\.medium \* | 4,750 | 593\.75 | 20,000 | 
 | r6g\.large \* | 4,750 | 593\.75 | 20,000 | 
 | r6g\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
@@ -480,9 +497,9 @@ You can also view this information programatically using the AWS CLI\. For more 
 | t4g\.micro \* | 2,606 | 325\.75 | 11,800 | 
 | t4g\.small \* | 2,606 | 325\.75 | 11,800 | 
 | t4g\.medium \* | 2,606 | 325\.75 | 11,800 | 
-| t4g\.large \* | 3,475 | 434\.37 | 15,700 | 
-| t4g\.xlarge \* | 3,475 | 434\.37 | 15,700 | 
-| t4g\.2xlarge \* | 3,475 | 434\.37 | 15,700 | 
+| t4g\.large \* | 2,780 | 434\.37 | 15,700 | 
+| t4g\.xlarge \* | 2,780 | 434\.37 | 15,700 | 
+| t4g\.2xlarge \* | 2,780 | 434\.37 | 15,700 | 
 | u\-3tb1\.56xlarge | 19,000 | 2,375 | 80,000 | 
 | u\-6tb1\.56xlarge | 38,000 | 4,750 | 160,000 | 
 | u\-6tb1\.112xlarge | 38,000 | 4,750 | 160,000 | 
@@ -539,7 +556,7 @@ You can also view this information programatically using the AWS CLI\. For more 
 | z1d\.12xlarge | 19,000 | 2,375 | 80,000 | 
 | z1d\.metal | 19,000 | 2,375 | 80,000 | 
 
-\* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance as shown in the following table\.
+The following table shows the baseline performance for those instance types that support maximum performance for only 30 minutes at least once every 24 hours \(\* above\)\.
 
 
 | Instance size | Baseline bandwidth \(Mbps\) | Baseline throughput \(MB/s, 128 KiB I/O\) | Baseline IOPS \(16 KiB I/O\) | 
@@ -690,6 +707,10 @@ You can also view this information programatically using the AWS CLI\. For more 
 | r5n\.large | 650 | 81\.25 | 3,600 | 
 | r5n\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | r5n\.2xlarge | 2,300 | 287\.5 | 12,000 | 
+| r6a\.large | 531 | 66\.375 | 3,600 | 
+| r6a\.xlarge | 1,061 | 132\.625 | 6,000 | 
+| r6a\.2xlarge | 2,122 | 265\.25 | 8,333 | 
+| r6a\.4xlarge | 4,245 | 530\.625 | 16,000 | 
 | r6g\.medium | 315 | 39\.375 | 2,500 | 
 | r6g\.large | 630 | 78\.75 | 3,600 | 
 | r6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
@@ -741,9 +762,6 @@ You can also view this information programatically using the AWS CLI\. For more 
 ### EBS optimization supported<a name="previous"></a>
 
 The following table lists the instance types that support EBS optimization but EBS optimization is not enabled by default\. You can enable EBS optimization when you launch these instances or after they are running\. Instances must have EBS optimization enabled to achieve the level of performance described\. When you enable EBS optimization for an instance that is not EBS\-optimized by default, you pay an additional low, hourly fee for the dedicated capacity\. For pricing information, see EBS\-Optimized Instances on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
-
-**Note**  
-You can also view this information programatically using the AWS CLI\. For more information, see [View instances types that support EBS optimization](#describe-ebs-optimization)\.
 
 
 | Instance size | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KiB I/O\) | Maximum IOPS \(16 KiB I/O\) | 

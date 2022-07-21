@@ -178,7 +178,10 @@ The following policy allows access to the serial console of a specific instance,
             "Sid": "AllowSerialConsoleAccess",
             "Effect": "Allow",
             "Action": [
-                "ec2-instance-connect:SendSerialConsoleSSHPublicKey"
+                "ec2-instance-connect:SendSerialConsoleSSHPublicKey",
+                "ec2:DescribeInstances",
+                "ec2:DescribeInstanceTypes",
+                "ec2:GetSerialConsoleAccessStatus"
             ],
             "Resource": "arn:aws:ec2:region:account-id:instance/i-0598c7d356eba48d7"
         }
@@ -198,7 +201,10 @@ The following IAM policy allows access to the serial console of all instances, d
             "Sid": "AllowSerialConsoleAccess",
             "Effect": "Allow",
             "Action": [
-                "ec2-instance-connect:SendSerialConsoleSSHPublicKey"
+                "ec2-instance-connect:SendSerialConsoleSSHPublicKey",
+                "ec2:DescribeInstances",
+                "ec2:DescribeInstanceTypes",
+                "ec2:GetSerialConsoleAccessStatus"
             ],
             "Resource": "*"
         },
@@ -230,7 +236,10 @@ For more information about using tags to control access to your AWS resources, s
             "Sid": "AllowTagBasedSerialConsoleAccess",
             "Effect": "Allow",
             "Action": [
-                "ec2-instance-connect:SendSerialConsoleSSHPublicKey"
+                "ec2-instance-connect:SendSerialConsoleSSHPublicKey",
+                "ec2:DescribeInstances",
+                "ec2:DescribeInstanceTypes",
+                "ec2:GetSerialConsoleAccessStatus"
             ],
             "Resource": "*",
             "Condition": {

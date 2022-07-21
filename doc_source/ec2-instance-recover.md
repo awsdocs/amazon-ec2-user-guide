@@ -33,7 +33,7 @@ Simplified automatic recovery is supported by an instance if the instance has th
 + It uses one of the following instance types:
   + General purpose: A1 \| M4 \| M5 \| M5a \| M5n \| M5zn \| M6a \| M6g \| M6i \| T1 \| T2 \| T3 \| T3a \| T4g
   + Compute optimized: C4 \| C5 \| C5a \| C5n \| C6a \| C6g \| C6gn \| C6i \| Hpc6a \| C7g
-  + Memory optimized: R4 \| R5 \| R5a \| R5b \| R5n \| R6g \| R6i \| high memory \(u\-\*\), virtualized only
+  + Memory optimized: R4 \| R5 \| R5a \| R5b \| R5n \| R6a \| R6g \| R6i \| high memory \(u\-\*\), virtualized only
   + Accelerated computing: G3 \| G5g \| Inf1 \| P2 \| P3 \| VT1
 + It uses one of the following instance types, if it does not have instance store volumes:
   + General purpose: M3

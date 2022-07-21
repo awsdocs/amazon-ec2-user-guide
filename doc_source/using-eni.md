@@ -517,6 +517,17 @@ The following table lists the maximum number of network interfaces per instance 
 | r5n\.16xlarge | 15 | 50 | 50 | 
 | r5n\.24xlarge | 15 | 50 | 50 | 
 | r5n\.metal | 15 | 50 | 50 | 
+| r6a\.large | 3 | 10 | 10 | 
+| r6a\.xlarge | 4 | 15 | 15 | 
+| r6a\.2xlarge | 4 | 15 | 15 | 
+| r6a\.4xlarge | 8 | 30 | 30 | 
+| r6a\.8xlarge | 8 | 30 | 30 | 
+| r6a\.12xlarge | 8 | 30 | 30 | 
+| r6a\.16xlarge | 15 | 50 | 50 | 
+| r6a\.24xlarge | 15 | 50 | 50 | 
+| r6a\.32xlarge | 15 | 50 | 50 | 
+| r6a\.48xlarge | 15 | 50 | 50 | 
+| r6a\.metal | 15 | 50 | 50 | 
 | r6g\.medium | 2 | 4 | 4 | 
 | r6g\.large | 3 | 10 | 10 | 
 | r6g\.xlarge | 4 | 15 | 15 | 

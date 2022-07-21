@@ -19,10 +19,15 @@ Use the following process when modifying a volume:
 
 ## Modify an EBS volume using Elastic Volumes<a name="modify-ebs-volume"></a>
 
-You can only increase volume size\. You can increase or decrease volume performance\. If you are not changing the volume type, then volume size and performance modifications must be within the limits of the current volume type\. If you are changing the volume type, then volume size and performance modifications must be within the limits of the target volume type\.
+**Considerations**  
+Keep the following in mind when modifying volumes:
++ You can't cancel a volume modification request after it has been submitted\.
++ You can only increase volume size\. You can't decrease volume size\.
++ You can increase or decrease volume performance\.
++ If you are not changing the volume type, then volume size and performance modifications must be within the limits of the current volume type\. If you are changing the volume type, then volume size and performance modifications must be within the limits of the target volume type
++ If you change the volume type from `gp2` to `gp3`, and you do not specify IOPS or throughput performance, Amazon EBS automatically provisions either equivalent performance to that of the source `gp2` volume, or the baseline `gp3` performance, whichever is higher\.
 
-**Note**  
-You can't cancel or undo a volume modification request after it has been submitted\.
+  For example, if you modify a 500 GiB `gp2` volume with 250 MiB/s throughput and 1500 IOPS to `gp3` without specifying IOPS or throughput performance, Amazon EBS automatically provisions the `gp3` volume with 3000 IOPS \(baseline `gp3` IOPS\) and 250 MiB/s \(to match the source `gp2` volume throughput\)\.
 
 To modify an EBS volume, use one of the following methods\.
 

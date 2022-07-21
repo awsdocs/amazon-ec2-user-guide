@@ -1,8 +1,10 @@
-# Create an AMI for NitroTPM support<a name="enable-nitrotpm-support-on-ami"></a>
+# Create a Linux AMI for NitroTPM support<a name="enable-nitrotpm-support-on-ami"></a>
 
-You configure your AMI for NitroTPM support when you register the AMI\. You can’t configure NitroTPM support later\.
+You configure your Linux AMI for NitroTPM support when you register the AMI\. You can’t configure NitroTPM support later\.
 
-**To configure an AMI for NitroTPM support**  
+For the list of Windows AMIs that are preconfigured for NitroTPM support, see [Prerequisites for launching Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/enable-nitrotpm-prerequisites.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+
+**To configure a Linux AMI for NitroTPM support**  
 Use the [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) command and set the `tpm-support` parameter to `v2.0` and the `boot-mode` parameter to `uefi`\.
 
 ```

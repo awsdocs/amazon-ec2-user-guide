@@ -13,7 +13,7 @@ If you require high processing capability, you'll benefit from using accelerated
 + [Hardware specifications](#gpu-instance-specifications)
 + [Instance performance](#gpu-instance-performance)
 + [Network performance](#gpu-network-performance)
-+ [SSD I/O performance](#accelerated-computing-ssd-perf)
++ [Instance store volume I/O performance](#accelerated-computing-ssd-perf)
 + [Instance features](#gpu-instances-features)
 + [Release notes](#gpu-instance-release-notes)
 + [Install NVIDIA drivers on Linux instances](install-nvidia-driver.md)
@@ -271,7 +271,7 @@ The following is a summary of network performance for accelerated computing inst
 | p3\.2xlarge | 2\.5 | 10 | 
 | vt1\.3xlarge | 12\.5 | 25 | 
 
-## SSD I/O performance<a name="accelerated-computing-ssd-perf"></a>
+## Instance store volume I/O performance<a name="accelerated-computing-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 

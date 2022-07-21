@@ -93,6 +93,7 @@ For the best performance, we recommend that you use the following instance types
 | R5d | r5d\.large \| r5d\.xlarge \| r5d\.2xlarge \| r5d\.4xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| r5d\.16xlarge \| r5d\.24xlarge \| r5d\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R5dn | r5dn\.large \| r5dn\.xlarge \| r5dn\.2xlarge \| r5dn\.4xlarge \| r5dn\.8xlarge \| r5dn\.12xlarge \| r5dn\.16xlarge \| r5dn\.24xlarge \| r5dn\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R5n | r5n\.large \| r5n\.xlarge \| r5n\.2xlarge \| r5n\.4xlarge \| r5n\.8xlarge \| r5n\.12xlarge \| r5n\.16xlarge \| r5n\.24xlarge \| r5n\.metal | [Memory optimized](memory-optimized-instances.md) | 
+| R6a | r6a\.large \| r6a\.xlarge \| r6a\.2xlarge \| r6a\.4xlarge \| r6a\.8xlarge \| r6a\.12xlarge \| r6a\.16xlarge \| r6a\.24xlarge \| r6a\.32xlarge \| r6a\.48xlarge \| r6a\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R6g | r6g\.medium \| r6g\.large \| r6g\.xlarge \| r6g\.2xlarge \| r6g\.4xlarge \| r6g\.8xlarge \| r6g\.12xlarge \| r6g\.16xlarge \| r6g\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R6gd | r6gd\.medium \| r6gd\.large \| r6gd\.xlarge \| r6gd\.2xlarge \| r6gd\.4xlarge \| r6gd\.8xlarge \| r6gd\.12xlarge \| r6gd\.16xlarge \| r6gd\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R6i | r6i\.large \| r6i\.xlarge \| r6i\.2xlarge \| r6i\.4xlarge \| r6i\.8xlarge \| r6i\.12xlarge \| r6i\.16xlarge \| r6i\.24xlarge \| r6i\.32xlarge \| r6i\.metal | [Memory optimized](memory-optimized-instances.md) | 
@@ -189,8 +190,8 @@ The following components are part of the Nitro System:
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ **Virtualized**: A1,  C5, C5a, C5ad, C5d, C5n, C6a, C6g,  C6gd,  C6gn,  C6i, C6id, D3, D3en, DL1,  G4, G4ad, G5, G5g,  Hpc6a,  I3en, I4i, Im4gn,  Inf1,  Is4gen,  M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6a, M6g, M6gd,  M6i, M6id, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  R6i, R6id, T3, T3a, T4g,  `u-3tb1.56xlarge`, `u-6tb1.56xlarge`, `u-6tb1.112xlarge`, `u-9tb1.112xlarge`, `u-12tb1.112xlarge`, VT1,  X2gd,  X2idn, X2iedn, X2iezn, and z1d
-+ **Bare metal**: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6a.metal`, `c6g.metal`,  `c6gd.metal`,  `c6i.metal`, `c6id.metal`, `g4dn.metal`, `g5g.metal`,  `i3.metal`, `i3en.metal`, `i4i.metal`, `m5.metal`, `m5d.metal`, `m5dn.metal`, `m5n.metal`, `m5zn.metal`, `m6a.metal`, `m6g.metal`,  `m6gd.metal`,  `m6i.metal`, `m6id.metal`, `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r5dn.metal`, `r5n.metal`, `r6g.metal`,  `r6gd.metal`,  `r6i.metal`, `r6id.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, `x2gd.metal`,  `x2idn.metal`, `x2iedn.metal`, `x2iezn.metal`, and `z1d.metal`
++ **Virtualized**: A1,  C5, C5a, C5ad, C5d, C5n, C6a, C6g,  C6gd,  C6gn,  C6i, C6id, D3, D3en, DL1,  G4, G4ad, G5, G5g,  Hpc6a,  I3en, I4i, Im4gn,  Inf1,  Is4gen,  M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6a, M6g, M6gd,  M6i, M6id, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6a, R6g, R6gd,  R6i, R6id, T3, T3a, T4g,  `u-3tb1.56xlarge`, `u-6tb1.56xlarge`, `u-6tb1.112xlarge`, `u-9tb1.112xlarge`, `u-12tb1.112xlarge`, VT1,  X2gd,  X2idn, X2iedn, X2iezn, and z1d
++ **Bare metal**: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6a.metal`, `c6g.metal`,  `c6gd.metal`,  `c6i.metal`, `c6id.metal`, `g4dn.metal`, `g5g.metal`,  `i3.metal`, `i3en.metal`, `i4i.metal`, `m5.metal`, `m5d.metal`, `m5dn.metal`, `m5n.metal`, `m5zn.metal`, `m6a.metal`, `m6g.metal`,  `m6gd.metal`,  `m6i.metal`, `m6id.metal`, `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r5dn.metal`, `r5n.metal`, r6a\.metal, `r6g.metal`,  `r6gd.metal`,  `r6i.metal`, `r6id.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, `x2gd.metal`,  `x2idn.metal`, `x2iedn.metal`, `x2iezn.metal`, and `z1d.metal`
 
 **Learn more**
 
@@ -282,6 +283,7 @@ The following table summarizes the networking and storage features supported by 
 | R5d | No | Yes | NVMe \* | Yes | ENA | 
 | R5dn | No | Yes | NVMe \* | Yes | ENA | 
 | R5n | Yes | Yes | No | Yes | ENA | 
+| R6a | Yes | Yes | No | Yes | ENA | 
 | R6g | Yes | Yes | No | Yes | ENA | 
 | R6gd | No | Yes | NVMe \* | Yes | ENA | 
 | R6i | Yes | Yes | No | Yes | ENA | 

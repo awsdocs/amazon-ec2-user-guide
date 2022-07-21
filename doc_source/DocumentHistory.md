@@ -4,8 +4,9 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [R6a instances](#DocumentHistory) | New memory optimized instances featuring 3rd generation AMD EPYC processors\. | July 19, 2022 | 
 | [Condition keys for Recycle Bin](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rbin-condition-keys.html) | You can use the `rbin:Request/ResourceType` and `rbin:Attribute/ResourceType` condition keys to filter access on Recycle Bin requests\. | June 14, 2022 | 
-| [R6id instances](#DocumentHistory) | New compute optimized instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | June 9, 2022 | 
+| [R6id instances](#DocumentHistory) | New memory optimized instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | June 9, 2022 | 
 | [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express) | You can modify the size and provisioned IOPS of `io2` Block Express volumes and you can enable them for fast snapshot restore\. | May 31, 2022 | 
 | [Dedicated Hosts on AWS Outposts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dh-outposts.html) | You can allocate Dedicated Hosts on AWS Outposts\. | May 31, 2022 | 
 | [M6id instances](#DocumentHistory) | New general purpose instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | May 26, 2022 | 

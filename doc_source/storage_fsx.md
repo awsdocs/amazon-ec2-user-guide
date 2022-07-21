@@ -6,7 +6,7 @@ The Amazon FSx family of services makes it easy to launch, run, and scale shared
 
 **Note**  
 This functionality is available in the new launch instance wizard only\. For more information, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)
-Amazon FSx for Windows File Server and Amazon FSx for Lustre file systems can't be mounted atlaunch\. You must mount these file systems manually after launch\.
+Amazon FSx for Windows File Server and Amazon FSx for Lustre file systems can't be mounted at launch\. You must mount these file systems manually after launch\.
 
 You can choose to mount an existing file system that you created previously, or you can create a new file system to mount to an instance at launch\.
 

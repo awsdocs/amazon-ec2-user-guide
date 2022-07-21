@@ -34,7 +34,7 @@ You can use the Amazon EC2 console or AWS CLI to view information about your pub
 Use the [describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command and specify the `--key-names` parameter\.
 
 ```
-aws ec2 describe-key-pairs --key-names my-key-pair
+aws ec2 describe-key-pairs --key-names key-pair-name
 ```
 
 Example output
@@ -45,7 +45,7 @@ Example output
         {
             "KeyPairId": "key-0123456789example",
             "KeyFingerprint": "1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f",
-            "KeyName": "my-key-pair",
+            "KeyName": "key-pair-name",
             "KeyType": "rsa",
             "Tags": [],
             "CreateTime": "2022-04-28T11:37:26.000Z"
@@ -63,7 +63,7 @@ aws ec2 describe-key-pairs --key-pair-ids key-0123456789example
 To view the public key material in the output, you must specify the `--include-public-key` parameter\.
 
 ```
-aws ec2 describe-key-pairs --key-names my-key-pair --include-public-key
+aws ec2 describe-key-pairs --key-names key-pair-name --include-public-key
 ```
 
 Example output – In the output, the `PublicKey` field contains the public key material\. 
@@ -74,7 +74,7 @@ Example output – In the output, the `PublicKey` field contains the public key 
         {
             "KeyPairId": "key-0123456789example",
             "KeyFingerprint": "1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f",
-            "KeyName": "my-key-pair",
+            "KeyName": "key-pair-name",
             "KeyType": "rsa",
             "Tags": [],
             "PublicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIj7azlDjVHAsSxgcpCRZ3oWnTm0nAFM64y9jd22ioI/ my-key-pair",
@@ -115,7 +115,7 @@ BQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE
 If the command fails, run the following command to ensure that you've changed the permissions on your private key pair file so that only you can view it\.
 
 ```
-chmod 400 my-key-pair.pem
+chmod 400 key-pair-name.pem
 ```
 
 ------
@@ -149,7 +149,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClKsfkNkuSevGj3eYhCe53pcjqP3maAhDFcvBS7O6V
 hz2ItxCih+PnDSUaw+WNQn/mZphTk/a/gU8jEzoOWbkM4yxyb/wB96xbiFveSFJuOp/d6RJhJOI0iBXr
 lsLnBItntckiJ7FbtxJMXLvvwJryDUilBMTjYtwB+QhYXUMOzce5Pjz5/i8SeJtjnV3iAoG/cQk+0FzZ
 qaeJAAHco+CY/5WrUBkrHmFJr6HcXkvJdWPkYQS3xqC0+FmUZofz221CBt5IMucxXPkX4rWi+z7wB3Rb
-BQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE my-key-pair
+BQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE key-pair-name
 ```
 
 For more information about instance metadata, see [Retrieve instance metadata](instancedata-data-retrieval.md)\.
@@ -169,14 +169,14 @@ If you specify a key pair when launching a Linux instance, when the instance boo
    [ec2-user ~]$ nano ~/.ssh/authorized_keys
    ```
 
-   The `authorized_keys` file opens, displaying the public key followed by the name of the key pair\. The following is an example entry for the key pair named *`my-key-pair`*\.
+   The `authorized_keys` file opens, displaying the public key followed by the name of the key pair\. The following is an example entry for the key pair named *`key-pair-name`*\.
 
    ```
    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClKsfkNkuSevGj3eYhCe53pcjqP3maAhDFcvBS7O6V
    hz2ItxCih+PnDSUaw+WNQn/mZphTk/a/gU8jEzoOWbkM4yxyb/wB96xbiFveSFJuOp/d6RJhJOI0iBXr
    lsLnBItntckiJ7FbtxJMXLvvwJryDUilBMTjYtwB+QhYXUMOzce5Pjz5/i8SeJtjnV3iAoG/cQk+0FzZ
    qaeJAAHco+CY/5WrUBkrHmFJr6HcXkvJdWPkYQS3xqC0+FmUZofz221CBt5IMucxXPkX4rWi+z7wB3Rb
-   BQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE my-key-pair
+   BQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE key-pair-name
    ```
 
 ------
@@ -186,7 +186,7 @@ If you specify a key pair when launching a Linux instance, when the instance boo
 Use the [describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command and specify the `--key-names` parameter to identify the public key\. To include the public key material in the output, specify the `--include-public-key` parameter\.
 
 ```
-aws ec2 describe-key-pairs --key-names my-key-pair --include-public-key
+aws ec2 describe-key-pairs --key-names key-pair-name --include-public-key
 ```
 
 Example output – In the output, the `PublicKey` field contains the public key material\. 
@@ -197,7 +197,7 @@ Example output – In the output, the `PublicKey` field contains the public key 
         {
             "KeyPairId": "key-0123456789example",
             "KeyFingerprint": "1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f",
-            "KeyName": "my-key-pair",
+            "KeyName": "key-pair-name",
             "KeyType": "rsa",
             "Tags": [],
             "PublicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIj7azlDjVHAsSxgcpCRZ3oWnTm0nAFM64y9jd22ioI/ my-key-pair",

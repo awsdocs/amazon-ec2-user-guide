@@ -4,7 +4,6 @@ Demand for Spot Instances can vary significantly from moment to moment, and the 
 
 We recommend that you follow these best practices so that you're prepared for a Spot Instance interruption\.
 + Create your Spot request using an Auto Scaling group\. If your Spot Instances are interrupted, the Auto Scaling group will automatically launch replacement instances\. For more information, see [Auto Scaling groups with multiple instance types and purchase options](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html) in the *Amazon EC2 Auto Scaling User Guide*\.
-+ When you create your Spot request, specify the default maximum price, which is the On\-Demand price\. When your Spot Instances launch, you'll only pay the Spot price\.
 + Ensure that your instance is ready to go as soon as the request is fulfilled by using an Amazon Machine Image \(AMI\) that contains the required software configuration\. You can also use user data to run commands at startup\.
 + Store important data regularly in a place that isn't affected if the Spot Instance terminates\. For example, you can use Amazon S3, Amazon EBS, or DynamoDB\.
 + Divide the work into small tasks \(using a Grid, Hadoop, or queue\-based architecture\) or use checkpoints so that you can save your work frequently\.

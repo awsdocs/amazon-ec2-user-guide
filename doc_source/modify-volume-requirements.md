@@ -66,5 +66,5 @@ GPT fdisk (gdisk) version 0.8.8
 + For `io2` volumes, you can't increase the size beyond `16` TiB or the IOPS beyond `64,000` while the volume is attached to an instance type that does not support `io2` Block Express volumes\. Currently, only C7g, R5b, X2idn, and X2iedn instances support `io2` Block Express volumes volumes\. For more information, see [`io2` Block Express volumes](ebs-volume-types.md#io2-block-express)
 + You can't modify the volume type of Multi\-Attach enabled `io2` volumes\.
 + You can't modify the volume type, size, or Provisioned IOPS of Multi\-Attach enabled `io1` volumes\.
-+ A `gp2` volume that is attached to an instance as a root volume can't be modified to an `st1` or `sc1` volume\. If detached and modified to `st1` or `sc1`, it can't be re\-attached to an instance as the root volume\.
++ A root volume of type `io1`, `io2`, `gp2`, `gp3`, or `standard` can't be modified to an `st1` or `sc1` volume, even if it is detached from the instance\.
 + While `m3.medium` instances fully support volume modification, `m3.large`, `m3.xlarge`, and `m3.2xlarge` instances might not support all volume modification features\.

@@ -23,8 +23,8 @@ Kernel Live Patching on Amazon Linux 2 is provided at no additional cost\.
 Kernel Live Patching is supported on Amazon EC2 instances and [on\-premises virtual machines](amazon-linux-2-virtual-machine.md) running Amazon Linux 2\.
 
 To use Kernel Live Patching on Amazon Linux 2, you must use:
-+ A 64\-bit `x86_64` or `ARM64` architecture
-+ Kernel version `5.10` or later
++ Kernel version `4.14` or `5.10` on the `x86_64` architecture
++ Kernel version `5.10` on the `ARM64` architecture
 
 ## Work with Kernel Live Patching<a name="working-with-live-patching"></a>
 

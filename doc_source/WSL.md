@@ -47,12 +47,12 @@ Use the following procedure to connect to your Linux instance using the Windows 
    + \(Public DNS\) To connect using your instance's public DNS name, enter the following command\.
 
      ```
-     ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-public-dns-name
+     ssh -i /path/key-pair-name.pem instance-user-name@my-instance-public-dns-name
      ```
    + \(IPv6\) Alternatively, if your instance has an IPv6 address, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file, the appropriate user name, and the IPv6 address\.
 
      ```
-     ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-IPv6-address
+     ssh -i /path/key-pair-name.pem instance-user-name@my-instance-IPv6-address
      ```
 
    You see a response like the following:
@@ -91,16 +91,16 @@ The following procedure steps you through using SCP to transfer a file\. If you'
 
 **To use SCP to transfer a file**
 
-1. Transfer a file to your instance using the instance's public DNS name\. For example, if the name of the private key file is `my-key-pair`, the file to transfer is `SampleFile.txt`, the user name is `my-instance-user-name`, and the public DNS name of the instance is `my-instance-public-dns-name` or the IPv6 address is `my-instance-IPv6-address`, use one the following commands to copy the file to the `my-instance-user-name` home directory\.
+1. Transfer a file to your instance using the instance's public DNS name\. For example, if the name of the private key file is `key-pair-name`, the file to transfer is `SampleFile.txt`, the user name is `instance-user-name`, and the public DNS name of the instance is `my-instance-public-dns-name` or the IPv6 address is `my-instance-IPv6-address`, use one the following commands to copy the file to the `instance-user-name` home directory\.
    + \(Public DNS\) To transfer a file using your instance's public DNS name, enter the following command\.
 
      ```
-     scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@my-instance-public-dns-name:~
+     scp -i /path/key-pair-name.pem /path/SampleFile.txt instance-user-name@my-instance-public-dns-name:~
      ```
    + \(IPv6\) Alternatively, if your instance has an IPv6 address, you can transfer a file using the instance's IPv6 address\. The IPv6 address must be enclosed in square brackets \(`[ ]`\), which must be escaped \(`\`\)\.
 
      ```
-     scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@\[my-instance-IPv6-address\]:~
+     scp -i /path/key-pair-name.pem /path/SampleFile.txt instance-user-name@\[my-instance-IPv6-address\]:~
      ```
 
    You see a response like the following:
@@ -136,12 +136,12 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    + \(Public DNS\) To transfer a file using your instance's public DNS name, enter the following command\.
 
      ```
-     scp -i /path/my-key-pair.pem my-instance-user-name@ec2-198-51-100-1.compute-1.amazonaws.com:~/SampleFile.txt ~/SampleFile2.txt
+     scp -i /path/key-pair-name.pem instance-user-name@ec2-198-51-100-1.compute-1.amazonaws.com:~/SampleFile.txt ~/SampleFile2.txt
      ```
    + \(IPv6\) Alternatively, if your instance has an IPv6 address, to transfer files in the other direction using the instance's IPv6 address, enter the following command\.
 
      ```
-     scp -i /path/my-key-pair.pem my-instance-user-name@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~/SampleFile.txt ~/SampleFile2.txt
+     scp -i /path/key-pair-name.pem instance-user-name@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~/SampleFile.txt ~/SampleFile2.txt
      ```
 
 ## Uninstall WSL<a name="uninstall-WSL"></a>

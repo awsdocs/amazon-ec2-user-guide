@@ -33,12 +33,12 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    + \(Public DNS\) To connect using your instance's public DNS name, enter the following command\.
 
      ```
-     ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-public-dns-name
+     ssh -i /path/key-pair-name.pem instance-user-name@instance-public-dns-name
      ```
    + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter the following command\.
 
      ```
-     ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-IPv6-address
+     ssh -i /path/key-pair-name.pem instance-user-name@instance-IPv6-address
      ```
 
    You see a response like the following:
@@ -75,16 +75,16 @@ The following procedure steps you through using SCP to transfer a file using the
 
 **To use SCP to transfer files between your computer and your instance**
 
-1. Determine the location of the source file on your computer and the destination path on the instance\. In the following examples, the name of the private key file is `my-key-pair.pem`, the file to transfer is `my-file.txt`, the user name for the instance is ec2\-user, the public DNS name of the instance is `my-instance-public-dns-name`, and the IPv6 address of the instance is `my-instance-IPv6-address`\.
+1. Determine the location of the source file on your computer and the destination path on the instance\. In the following examples, the name of the private key file is `key-pair-name.pem`, the file to transfer is `my-file.txt`, the user name for the instance is ec2\-user, the public DNS name of the instance is `instance-public-dns-name`, and the IPv6 address of the instance is `instance-IPv6-address`\.
    + \(Public DNS\) To transfer a file to the destination on the instance, enter the following command from your computer\.
 
      ```
-     scp -i /path/my-key-pair.pem /path/my-file.txt ec2-user@my-instance-public-dns-name:path/
+     scp -i /path/key-pair-name.pem /path/my-file.txt ec2-user@instance-public-dns-name:path/
      ```
    + \(IPv6\) To transfer a file to the destination on the instance if the instance has an IPv6 address, enter the following command from your computer\. The IPv6 address must be enclosed in square brackets \(`[ ]`\), which must be escaped \(`\`\)\.
 
      ```
-     scp -i /path/my-key-pair.pem /path/my-file.txt ec2-user@\[my-instance-IPv6-address\]:path/
+     scp -i /path/key-pair-name.pem /path/my-file.txt ec2-user@\[instance-IPv6-address\]:path/
      ```
 
 1. If you haven't already connected to the instance using SSH, you see a response like the following:
@@ -112,12 +112,12 @@ The following procedure steps you through using SCP to transfer a file using the
    + \(Public DNS\) To transfer a file to a destination on your computer, enter the following command from your computer\.
 
      ```
-     scp -i /path/my-key-pair.pem ec2-user@my-instance-public-dns-name:path/my-file.txt path/my-file2.txt
+     scp -i /path/key-pair-name.pem ec2-user@instance-public-dns-name:path/my-file.txt path/my-file2.txt
      ```
    + \(IPv6\) To transfer a file to a destination on your computer if the instance has an IPv6 address, enter the following command from your computer\. The IPv6 address must be enclosed in square brackets \(`[ ]`\), which must be escaped \(`\`\)\.
 
      ```
-     scp -i /path/my-key-pair.pem ec2-user@\[my-instance-IPv6-address\]:path/my-file.txt path/my-file2.txt
+     scp -i /path/key-pair-name.pem ec2-user@\[instance-IPv6-address\]:path/my-file.txt path/my-file2.txt
      ```
 
 ## Troubleshoot<a name="AccessingInstancesLinux-troubleshoot"></a>

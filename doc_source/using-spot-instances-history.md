@@ -2,7 +2,7 @@
 
 Spot Instance prices are set by Amazon EC2 and adjust gradually based on long\-term trends in supply and demand for Spot Instance capacity\.
 
-When you request Spot Instances, we recommend that you use the default maximum price \(the On\-Demand price\)\. When your request is fulfilled, your Spot Instances launch at the current Spot price, not exceeding the On\-Demand price\. If you want to specify a maximum price, we recommend that you first review the Spot price history\. You can view the Spot price history for the last 90 days, filtering by instance type, operating system, and Availability Zone\.
+When your Spot request is fulfilled, your Spot Instances launch at the current Spot price, not exceeding the On\-Demand price\. You can view the Spot price history for the last 90 days, filtering by instance type, operating system, and Availability Zone\.
 
 **To view the current Spot prices**  
 For the *current* Spot Instance prices, see [Amazon EC2 Spot Instances Pricing](http://aws.amazon.com/ec2/spot/pricing/)\.
@@ -22,7 +22,7 @@ For the *current* Spot Instance prices, see [Amazon EC2 Spot Instances Pricing](
    The following screenshot shows a price comparison for different instance types\.  
 ![\[The Spot Instance pricing history tool in the Amazon EC2 console.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot-instance-pricing-history.png)
 
-1. Move your pointer over the graph to display the prices at specific times in the selected date range\. The prices are displayed in the information blocks above the graph\. The price displayed in the top row shows the price on a specific date\. The price displayed in the second row shows the average price over the selected date range\.
+1. Hover \(move your pointer\) over the graph to display the prices at specific times in the selected date range\. The prices are displayed in the information blocks above the graph\. The price displayed in the top row shows the price on a specific date\. The price displayed in the second row shows the average price over the selected date range\.
 
 1. To display the price per vCPU, toggle on **Display normalized prices**\. To display the price for the instance type, toggle off **Display normalized prices**\.
 

@@ -1,6 +1,8 @@
 # Amazon EC2 Mac instances<a name="ec2-mac-instances"></a>
 
-Mac1 instances natively support the macOS operating system\. They are built on Mac mini hardware and powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. These instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
+**Introduction**
+
+Amazon EC2 Mac instances natively support the macOS operating system\. EC2 x86 Mac instances are built on Mac mini hardware powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. EC2 M1 Mac instances are built on Mac mini hardware powered by Apple Silicon M1 processors\. These instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
 
 **Note**  
 The **unit of billing** is the **dedicated host**\. The instances running on top of that host have no additional charge\.
@@ -29,17 +31,16 @@ The following considerations apply to Mac instances:
 + Mac instances are available only as bare metal instances on [Dedicated Hosts](dedicated-hosts-overview.md), with a minimum allocation period of 24 hours before you can release the Dedicated Host\. You can launch one Mac instance per Dedicated Host\. You can share the Dedicated Host with the AWS accounts or organizational units within your AWS organization, or the entire AWS organization\.
 + Mac instances are available only as On\-Demand Instances\. They are not available as Spot Instances or Reserved Instances\. You can save money on Mac instances by purchasing a [Savings Plan](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
 + Mac instances can run one of the following operating systems:
-  + macOS Catalina \(version 10\.15\)
-  + macOS Mojave \(version 10\.14\)
+  + macOS Mojave \(version 10\.14\) \(x86 Mac Instances only\)
+  + macOS Catalina \(version 10\.15\) \(x86 Mac Instances only\)
   + macOS Big Sur \(version 11\)
   + macOS Monterey \(version 12\)
-+ If you attach an EBS volume to a running Mac instance, you must reboot the instance to make the volume available\.
-+ If you resized an existing EBS volume on a running Mac instance, you must reboot the instance to make the new size available\.
-+ If you attach a network interface to a running Mac instance, you must reboot the instance to make the network interface available\.
++ EBS hotplug is now supported
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
 + [Mac instances now support Amazon EC2 Auto Scaling\.](http://aws.amazon.com/blogs/compute/implementing-autoscaling-for-ec2-mac-instances/) 
-+ Automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
++ On x86 Mac instances, automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
++ On M1 Mac instances, in\-place software updates are currently unsupported\. We will distribute new Amazon Machine Images \(AMIs\) for major, minor, and patch versions of macOS\.
 + When you stop or terminate a Mac instance, a scrubbing workflow is performed on the Dedicated Host\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
 + 
 **Warning**  
@@ -47,9 +48,13 @@ Do not use FileVault\. If data\-at\-rest and data\-in\-transit is required, use 
 
 ## Launch a Mac instance using the console<a name="mac-instance-launch"></a>
 
-You can launch a Mac instance using the AWS Management Console as described in the following procedure\. Mac instances require a [Dedicated Host](dedicated-hosts-overview.md)\.
 
-**To launch a Mac instance onto a Dedicated Host**
+
+You can launch a Mac instance using the AWS Management Console as described in the following procedure\. EC2 Mac instances require a [Dedicated Host](dedicated-hosts-overview.md)\. There are two families of EC2 Mac instances:
+
+    mac1, based on the 2018 Mac mini and powered by the Intel Core i7 processor   mac2, based on the 2020 Mac mini and powered by the Apple Silicon M1 processor    
+
+The procedure to launch either family is the same\. To launch a Mac instance onto a Dedicated Host:
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -57,9 +62,9 @@ You can launch a Mac instance using the AWS Management Console as described in t
 
 1. Choose **Allocate Dedicated Host** and then do the following:
 
-   1. For **Instance family**, choose **mac1**\. If **mac1** doesn’t appear in the list, it’s not supported in the currently selected Region\.
+   1. For **Instance family**, choose **mac1** or **mac2**\. If the instance family doesn’t appear in the list, it’s not supported in the currently selected Region\.
 
-   1. For **Instance type**, select **mac1\.metal**\.
+   1. For **Instance type**, select **mac1\.metal** or **mac2\.metal** based on the instance family chosen\.
 
    1. For **Availability Zone**, choose the Availability Zone for the Dedicated Host\.
 
@@ -73,6 +78,10 @@ You can launch a Mac instance using the AWS Management Console as described in t
 
    1. Select a macOS AMI\.
 
+   1. Select the appropriate instance type \(mac1\.metal or mac2\.metal\)\.
+
+   1. On the **Configure Instance Details page**, verify that **Tenancy** and **Host** are preconfigured based on the Dedicated Host you created\.
+
    1. Select the `mac1.metal` instance type\.
 
    1. On the **Configure Instance Details page**, verify that **Tenancy** and **Host** are preconfigured based on the Dedicated Host you created\. Update **Affinity** as needed\.
@@ -83,13 +92,13 @@ You can launch a Mac instance using the AWS Management Console as described in t
 
 ## Launch a Mac instance using the AWS CLI<a name="mac-instance-launch-cli"></a>
 
-Use the following [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) command to allocate a Dedicated Host for your Mac instance\.
+Use the following [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) command to allocate a Dedicated Host for your Mac instance, replacing the instance\-type with either mac1\.metal or mac2\.metal, and the region and availability zone with the appropriate ones for your environment\.
 
 ```
 aws ec2 allocate-hosts --region us-east-1 --instance-type mac1.metal --availability-zone us-east-1b --auto-placement "on" --quantity 1
 ```
 
-Use the following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch a Mac instance\.
+Use the following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch a Mac instance, again replacing the instance\-type with either mac1\.metal or mac2\.metal, and the region and availability zone with the ones used previously\.
 
 ```
 aws ec2 run-instances --region us-east-1 --instance-type mac1.metal --placement Tenancy=host --image-id ami_id --key-name my-key-pair
@@ -136,6 +145,15 @@ The following is example output for an instance that is running and has passed s
 }
 ```
 
+**Instance Readiness**
+
+You can use a small shell script, like the one below, to poll the describe\-instance\-status API to know when the instance is ready for SSH access\. For x86 Mac instances, this may take up to 15 minutes from launch\. For M1 Mac instances, this may take up to 40 minutes from launch\. Replace the example Instance ID with your own\.
+
+```
+for i in seq 1 200; do aws ec2 describe-instance-status --instance-ids=i-017f8354e2dc69c4f \
+--query='InstanceStatuses[0].InstanceStatus.Status'; sleep 5; done;
+```
+
 ## Connect to your instance using SSH<a name="mac-instance-ssh"></a>
 
 **Important**  
@@ -158,7 +176,7 @@ Use the following procedure to connect to your Mac instance using an SSH client\
 1. Connect to your instance using the following ssh command, specifying the public DNS name of the instance and the `.pem` file\.
 
    ```
-   ssh -i /path/my-key-pair.pem ec2-user@my-instance-public-dns-name
+   ssh -i /path/key-pair-name.pem ec2-user@instance-public-dns-name
    ```
 
 ## Connect to your instance using Apple Remote Desktop<a name="mac-instance-vnc"></a>
@@ -191,7 +209,7 @@ macOS 10\.14 and later only allows control if Screen Sharing is enabled through 
 1. From your computer, connect to your instance using the following ssh command\. In addition to the options shown in the previous section, use the \-L option to enable port forwarding and forward all traffic on local port 5900 to the ARD server on the instance\.
 
    ```
-   ssh -L 5900:localhost:5900 -i /path/my-key-pair.pem ec2-user@my-instance-public-dns-name
+   ssh -L 5900:localhost:5900 -i /path/key-pair-name.pem ec2-user@instance-public-dns-name
    ```
 
 1. From your local computer, use the ARD client or VNC client that supports ARD to connect to localhost on port 5900\. For example, use the Screen Sharing application on macOS as follows:
@@ -205,6 +223,9 @@ macOS 10\.14 and later only allows control if Screen Sharing is enabled through 
 ## Modify macOS screen resolution on Mac instances<a name="mac-screen-resolution"></a>
 
 Once you connect to your EC2 Mac instance using ARD or a VNC client that supports ARD installed, you can modify the screen resolution of your macOS environment using any of the publicly available macOS tools or utilities, such as [displayplacer](https://github.com/jakehilborn/displayplacer)
+
+**Note**  
+The current build of displayplacer is not supported on M1 Mac instances
 
 **Modifying screen resolution using displayplacer**
 
@@ -238,8 +259,8 @@ Once you connect to your EC2 Mac instance using ARD or a VNC client that support
 Amazon EC2 macOS is designed to provide a stable, secure, and high\-performance environment for developer workloads running on Amazon EC2 Mac instances\. EC2 macOS AMIs includes packages that enable easy integration with AWS, such as launch configuration tools and popular AWS libraries and tools\. EC2 macOS AMIs include the following by default:
 + ENA drivers
 + EC2 macOS Init
-+ EC2 System Monitoring for macOS
 + SSM Agent for macOS
++ EC2 System Monitoring for macOS \(x86 Mac instances only\)
 + AWS Command Line Interface \(AWS CLI\) version 2
 + Command Line Tools for Xcode
 + Homebrew
@@ -248,9 +269,12 @@ AWS provides updated EC2 macOS AMIs on a regular basis that include updates to A
 
 ## Update the operating system and software<a name="mac-instance-updates"></a>
 
-You can install operating system updates from Apple using the softwareupdate command\.
+**Warning**  
+Do not install beta or pre\-release macOS versions on your EC2 Mac instances, as this configuration is currently not supported\. Installing beta or pre release macOS versions will lead to degradation of your EC2 Mac Dedicated Host when you stop or terminate your instance, and will prevent you from starting or launching a new instance on that host\. 
 
-**To install operating system updates from Apple**
+On x86 Mac instances, you can install operating system updates from Apple using the `softwareupdate` command\. In\-place operating system updates are not currently supported on M1 Mac instances\.
+
+****To install operating system updates from Apple on x86 Mac instances****
 
 1. List the packages with available updates using the following command\.
 
@@ -267,10 +291,10 @@ You can install operating system updates from Apple using the softwareupdate com
    To install all updates instead, use the following command\.
 
    ```
-   [ec2-user ~]$ sudo softwareupdate --install --all
+   [ec2-user ~]$ sudo softwareupdate --install --all --restart
    ```
 
-System administrators can use AWS Systems Manager to roll out pre\-approved operating system updates\. For more information, see the [AWS Systems Manager User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/)\.
+System administrators can use AWS Systems Manager to roll out pre\-approved operating system updates on x86 Mac instances\. For more information, see the [AWS Systems Manager User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/)\.
 
 You can use Homebrew to install updates to packages in the EC2 macOS AMIs, so that you have the latest version of these packages on your instances\. You can also use Homebrew to install and run common macOS applications on Amazon EC2 macOS\. For more information, see the [Homebrew Documentation](https://docs.brew.sh/)\.
 
@@ -291,7 +315,7 @@ You can use Homebrew to install updates to packages in the EC2 macOS AMIs, so th
 1. Install all updates or only specific updates\. To install specific updates, use the following command\.
 
    ```
-   [ec2-user ~]$ brew upgrade formula
+   [ec2-user ~]$ brew upgrade package name
    ```
 
    To install all updates instead, use the following command\.
@@ -299,9 +323,6 @@ You can use Homebrew to install updates to packages in the EC2 macOS AMIs, so th
    ```
    [ec2-user ~]$ brew upgrade
    ```
-
-**Warning**  
-Do not install beta or prerelease macOS versions on your EC2 Mac instances, as this configuration is currently not supported\. Installing beta or prerelease macOS versions will lead to degradation of your EC2 Mac Dedicated Host when you stop or terminate your instance, and will prevent you from starting or launching a new instance on that host\. 
 
 ## EC2 macOS Init<a name="ec2-macos-init"></a>
 
@@ -318,6 +339,9 @@ EC2 System Monitoring for macOS provides CPU utilization metrics to Amazon Cloud
 ```
 sudo setup-ec2monitoring [enable | disable]
 ```
+
+**Note**  
+EC2 System Monitoring for macOS is not currently supported on M1 Mac instances\.
 
 ## Increase the size of an EBS volume on your Mac instance<a name="mac-instance-increase-volume"></a>
 
@@ -358,7 +382,7 @@ After you increase the size of the volume, you must increase the size of your AP
 
 When you stop a Mac instance, the instance remains in the `stopping` state for about 15 minutes before it enters the `stopped` state\.
 
-When you stop or terminate a Mac instance, Amazon EC2 performs a scrubbing workflow on the underlying Dedicated Host to erase the internal SSD, to clear the persistent NVRAM variables, and if needed, to update the bridgeOS software on the underlying Mac mini\. This ensures that Mac instances provide the same security and data privacy as other EC2 Nitro instances\. It also enables you to run the latest macOS AMIs without manually updating the bridgeOS software\. During the scrubbing workflow, the Dedicated Host temporarily enters the `pending` state\. If the bridgeOS software does not need to be updated, the scrubbing workflow takes up to 50 minutes to complete\. If the bridgeOS software needs to be updated, the scrubbing workflow can take up to 3 hours to complete\.
+When you stop or terminate a Mac instance, Amazon EC2 performs a scrubbing workflow on the underlying Dedicated Host to erase the internal SSD, to clear the persistent NVRAM variables, and to update to the latest device firmware\. This ensures that Mac instances provide the same security and data privacy as other EC2 Nitro instances\. It also enables you to run the latest macOS AMIs\. During the scrubbing workflow, the Dedicated Host temporarily enters the pending state\. On x86 Mac instances, the scrubbing workflow may take up to 50 minutes to complete\. On M1 Mac instances, the scrubbing workflow may take up to 110 minutes to complete\. Additionally, on x86 Mac instances, if the device firmware needs to be updated, the scrubbing workflow may take up to 3 hours to complete\.
 
 You can't start the stopped Mac instance or launch a new Mac instance until after the scrubbing workflow completes, at which point the Dedicated Host enters the `available` state\.
 

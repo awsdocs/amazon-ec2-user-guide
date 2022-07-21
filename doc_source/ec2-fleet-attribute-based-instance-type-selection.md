@@ -65,7 +65,7 @@ EC2 Fleet provisions a fleet in the following way:
 
 ### Price protection<a name="ec2fleet-abs-price-protection"></a>
 
-Price protection is a feature that prevents your EC2 Fleet from using instance types that you would consider too expensive even if they happen to fit the attributes that you specified\. When you create a fleet with attribute\-based instance type selection, price protection is enabled by default, with separate thresholds for On\-Demand Instances and Spot Instances\. When Amazon EC2 selects instance types with your attributes, it excludes instance types priced above your threshold\. The thresholds represent the maximum you'll pay, expressed as a percentage above the least expensive M, C, or R instance type with your specified attributes\.
+Price protection is a feature that prevents your EC2 Fleet from using instance types that you would consider too expensive even if they happen to fit the attributes that you specified\. When you create a fleet with attribute\-based instance type selection, price protection is enabled by default, with separate thresholds for On\-Demand Instances and Spot Instances\. When Amazon EC2 selects instance types with your attributes, it excludes instance types priced above your threshold\. The thresholds represent the maximum you'll pay, expressed as a percentage above the least expensive current generation M, C, or R instance type with your specified attributes\.
 
 If you don't specify a threshold, the following thresholds are used by default:
 + For On\-Demand Instances, the price protection threshold is set at 20 percent\.

@@ -40,7 +40,7 @@ PuTTY does not natively support the PEM format for SSH keys\. PuTTY provides a t
 **Note**  
 A passphrase on a private key is an extra layer of protection\. Even if your private key is discovered, it can't be used without the passphrase\. The downside to using a passphrase is that it makes automation harder because human intervention is needed to log on to an instance, or to copy files to an instance\.
 
-1. Specify the same name for the key that you used for the key pair \(for example, `my-key-pair`\) and choose **Save**\. PuTTY automatically adds the `.ppk` file extension\. 
+1. Specify the same name for the key that you used for the key pair \(for example, `key-pair-name`\) and choose **Save**\. PuTTY automatically adds the `.ppk` file extension\. 
 
 Your private key is now in the correct format for use with PuTTY\. You can now connect to your instance using PuTTY's SSH client\.
 
@@ -55,8 +55,8 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 1. In the **Category** pane, choose **Session** and complete the following fields:
 
    1. In the **Host Name** box, do one of the following:
-      + \(Public DNS\) To connect using your instance's public DNS name, enter *my\-instance\-user\-name*@*my\-instance\-public\-dns\-name*\.
-      + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter *my\-instance\-user\-name*@*my\-instance\-IPv6\-address*\.
+      + \(Public DNS\) To connect using your instance's public DNS name, enter *instance\-user\-name*@*instance\-public\-dns\-name*\.
+      + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter *instance\-user\-name*@*instance\-IPv6\-address*\.
 
       For information about how to get the user name for your instance, and the public DNS name or IPv6 address of your instance, see [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
 
@@ -93,16 +93,16 @@ The PuTTY Secure Copy client \(PSCP\) is a command line tool that you can use to
 
 To use PSCP, you need the private key you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance, or the IPv6 address if your instance has one\.
 
-The following example transfers the file `Sample_file.txt` from the C:\\ drive on a Windows computer to the `my-instance-user-name` home directory on an Amazon Linux instance\. To transfer a file, use one of the following commands\.
+The following example transfers the file `Sample_file.txt` from the C:\\ drive on a Windows computer to the `instance-user-name` home directory on an Amazon Linux instance\. To transfer a file, use one of the following commands\.
 + \(Public DNS\) To transfer a file using your instance's public DNS name, enter the following command\.
 
   ```
-  pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt my-instance-user-name@my-instance-public-dns-name:/home/my-instance-user-name/Sample_file.txt
+  pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt instance-user-name@instance-public-dns-name:/home/instance-user-name/Sample_file.txt
   ```
 + \(IPv6\) Alternatively, if your instance has an IPv6 address, to transfer a file using your instance's IPv6 address, enter the following command\. The IPv6 address must be enclosed in square brackets \(`[ ]`\)\.
 
   ```
-  pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt my-instance-user-name@[my-instance-IPv6-address]:/home/my-instance-user-name/Sample_file.txt
+  pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt instance-user-name@[instance-IPv6-address]:/home/instance-user-name/Sample_file.txt
   ```
 
 ## Transfer files to your Linux instance using WinSCP<a name="Transfer_WinSCP"></a>

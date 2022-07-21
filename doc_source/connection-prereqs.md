@@ -48,7 +48,7 @@
   If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
   ```
-  chmod 400 my-key-pair.pem
+  chmod 400 key-pair-name.pem
   ```
 
   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.

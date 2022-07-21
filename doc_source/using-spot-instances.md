@@ -1,6 +1,6 @@
 # Spot Instances<a name="using-spot-instances"></a>
 
-A Spot Instance is an instance that uses spare EC2 capacity that is available for less than the On\-Demand price\. Because Spot Instances enable you to request unused EC2 instances at steep discounts, you can lower your Amazon EC2 costs significantly\. The hourly price for a Spot Instance is called a Spot price\. The Spot price of each instance type in each Availability Zone is set by Amazon EC2, and is adjusted gradually based on the long\-term supply of and demand for Spot Instances\. Your Spot Instance runs whenever capacity is available and the maximum price per hour for your request exceeds the Spot price\.
+A Spot Instance is an instance that uses spare EC2 capacity that is available for less than the On\-Demand price\. Because Spot Instances enable you to request unused EC2 instances at steep discounts, you can lower your Amazon EC2 costs significantly\. The hourly price for a Spot Instance is called a Spot price\. The Spot price of each instance type in each Availability Zone is set by Amazon EC2, and is adjusted gradually based on the long\-term supply of and demand for Spot Instances\. Your Spot Instance runs whenever capacity is available\.
 
 Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if your applications can be interrupted\. For example, Spot Instances are well\-suited for data analysis, batch jobs, background processing, and optional tasks\. For more information, see [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot-instances/)\.
 
@@ -16,25 +16,25 @@ Before you get started with Spot Instances, you should be familiar with the foll
 + *Spot capacity pool* – A set of unused EC2 instances with the same instance type \(for example, `m5.large`\) and Availability Zone\.
 + *Spot price* – The current price of a Spot Instance per hour\.
 + *Spot Instance request* – Requests a Spot Instance\. When capacity is available, Amazon EC2 fulfills your request\. A Spot Instance request is either *one\-time* or *persistent*\. Amazon EC2 automatically resubmits a persistent Spot Instance request after the Spot Instance associated with the request is interrupted\.
-+ *EC2 instance rebalance recommendation* \- Amazon EC2 emits an instance rebalance recommendation signal to notify you that a Spot Instance is at an elevated risk of interruption\. This signal gives you the opportunity to proactively rebalance your workloads across existing or new Spot Instances without having to wait for the two\-minute Spot Instance interruption notice\.
++ *EC2 instance rebalance recommendation* – Amazon EC2 emits an instance rebalance recommendation signal to notify you that a Spot Instance is at an elevated risk of interruption\. This signal provides an opportunity to proactively rebalance your workloads across existing or new Spot Instances without having to wait for the two\-minute Spot Instance interruption notice\.
 + *Spot Instance interruption* – Amazon EC2 terminates, stops, or hibernates your Spot Instance when Amazon EC2 needs the capacity back\. Amazon EC2 provides a Spot Instance interruption notice, which gives the instance a two\-minute warning before it is interrupted\.
 
 ### Key differences between Spot Instances and On\-Demand Instances<a name="key-differences-spot-on-demand"></a>
 
-The following table lists the key differences between Spot Instances and On\-Demand Instances\.
+The following table lists the key differences between Spot Instances and [On\-Demand Instances](ec2-on-demand-instances.md)\.
 
 
 |  | Spot Instances | On\-Demand Instances | 
 | --- | --- | --- | 
 |  Launch time  |  Can only be launched immediately if the Spot Instance request is active and capacity is available\.  |  Can only be launched immediately if you make a manual launch request and capacity is available\.  | 
 |  Available capacity  |  If capacity is not available, the Spot Instance request continues to automatically make the launch request until capacity becomes available\.  |  If capacity is not available when you make a launch request, you get an insufficient capacity error \(ICE\)\.  | 
-|  Hourly price  |  The hourly price for Spot Instances varies based on demand\.  |  The hourly price for On\-Demand Instances is static\.  | 
+|  Hourly price  |  The hourly price for Spot Instances varies based on long\-term supply and demand\.  |  The hourly price for On\-Demand Instances is static\.  | 
 | Rebalance recommendation | The signal that Amazon EC2 emits for a running Spot Instance when the instance is at an elevated risk of interruption\. | You determine when an On\-Demand Instance is interrupted \(stopped, hibernated, or terminated\)\. | 
 |  Instance interruption  |  You can stop and start an Amazon EBS\-backed Spot Instance\. In addition, Amazon EC2 can [interrupt](spot-interruptions.md) an individual Spot Instance if capacity is no longer available\.   |  You determine when an On\-Demand Instance is interrupted \(stopped, hibernated, or terminated\)\.  | 
 
 ## How to get started<a name="spot-get-started"></a>
 
-The first thing you need to do is get set up to use Amazon EC2\. It can also be helpful to have experience launching On\-Demand Instances before launching Spot Instances\.
+The first thing that you need to do is get set up to use Amazon EC2\. It can also be helpful to have experience launching On\-Demand Instances before launching Spot Instances\.
 
 **Get up and running**
 + [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)

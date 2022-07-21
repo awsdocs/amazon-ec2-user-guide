@@ -203,7 +203,7 @@ Alternatively, you can create a new key pair using a third\-party tool\. For mor
 + Use `ssh -vvv` to get triple verbose debugging information while connecting:
 
   ```
-  ssh -vvv -i path/my-key-pair.pem my-instance-user-name@ec2-203-0-113-25.compute-1.amazonaws.com
+  ssh -vvv -i path/key-pair-name.pem instance-user-name@ec2-203-0-113-25.compute-1.amazonaws.com
   ```
 
   The following sample output demonstrates what you might see if you were trying to connect to your instance with a key that was not recognized by the server:
@@ -276,7 +276,7 @@ The appropriate user names are as follows:
 For example, to use an SSH client to connect to an Amazon Linux instance, use the following command:
 
 ```
-ssh -i /path/my-key-pair.pem my-instance-user-name@ec2-203-0-113-25.compute-1.amazonaws.com
+ssh -i /path/key-pair-name.pem instance-user-name@ec2-203-0-113-25.compute-1.amazonaws.com
 ```
 
 Confirm that you are using the private key file that corresponds to the key pair that you selected when you launched the instance\.
@@ -307,7 +307,7 @@ Confirm that you are using the private key file that corresponds to the key pair
 
 If you generated your own key pair, ensure that your key generator is set up to create RSA keys\. DSA keys are not accepted\.
 
-If you get a `Permission denied (publickey)` error and none of the above applies \(for example, you were able to connect previously\), the permissions on the home directory of your instance may have been changed\. Permissions for `/home/my-instance-user-name/.ssh/authorized_keys` must be limited to the owner only\.
+If you get a `Permission denied (publickey)` error and none of the above applies \(for example, you were able to connect previously\), the permissions on the home directory of your instance may have been changed\. Permissions for `/home/instance-user-name/.ssh/authorized_keys` must be limited to the owner only\.
 
 **To verify the permissions on your instance**
 
@@ -317,18 +317,18 @@ If you get a `Permission denied (publickey)` error and none of the above applies
 
 1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
-1. From the temporary instance, check the permissions of the `/home/my-instance-user-name/` directory of the attached volume\. If necessary, adjust the permissions as follows:
+1. From the temporary instance, check the permissions of the `/home/instance-user-name/` directory of the attached volume\. If necessary, adjust the permissions as follows:
 
    ```
-   [ec2-user ~]$ chmod 600 mount_point/home/my-instance-user-name/.ssh/authorized_keys
-   ```
-
-   ```
-   [ec2-user ~]$ chmod 700 mount_point/home/my-instance-user-name/.ssh
+   [ec2-user ~]$ chmod 600 mount_point/home/instance-user-name/.ssh/authorized_keys
    ```
 
    ```
-   [ec2-user ~]$ chmod 700 mount_point/home/my-instance-user-name
+   [ec2-user ~]$ chmod 700 mount_point/home/instance-user-name/.ssh
+   ```
+
+   ```
+   [ec2-user ~]$ chmod 700 mount_point/home/instance-user-name
    ```
 
 1. Unmount the volume, detach it from the temporary instance, and re\-attach it to the original instance\. Ensure that you specify the correct device name for the root volume; for example, `/dev/xvda`\.

@@ -1,6 +1,8 @@
 # Identity and access management for Amazon EC2<a name="security-iam"></a>
 
-Your security credentials identify you to services in AWS and grant you unlimited use of your AWS resources, such as your Amazon EC2 resources\. You can use features of Amazon EC2 and AWS Identity and Access Management \(IAM\) to allow other users, services, and applications to use your Amazon EC2 resources without sharing your security credentials\. You can use IAM to control how other users use resources in your AWS account, and you can use security groups to control access to your Amazon EC2 instances\. You can choose to allow full use or limited use of your Amazon EC2 resources\.
+Your security credentials identify you to services in AWS and grant you unlimited use of your AWS resources, such as your Amazon EC2 resources\. You can use features of Amazon EC2 and AWS Identity and Access Management \(IAM\) to allow other users, services, and applications to use your Amazon EC2 resources without sharing your security credentials\. You can use IAM to control how other users use resources in your AWS account, and you can use security groups to control access to your Amazon EC2 instances\. You can choose to allow full use or limited use of your Amazon EC2 resources\. 
+
+For best practices for securing your AWS resources using IAM, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)\.
 
 **Topics**
 + [Network access to your instance](#intro-to-security-groups)

@@ -71,7 +71,7 @@ The following is the contents of `instanceTypeSpecification.json`\.
     "InstancePlatform":"platform",            
     "Weight": instance_type_weight
     "AvailabilityZone":"availability_zone",
-    "AvailzbilityZoneId" : "az_id",             
+    "AvailabilityZoneId" : "az_id",             
     "EbsOptimized": true|false,            
     "Priority" : instance_type_priority
 }

@@ -2,6 +2,8 @@
 
 You can use Amazon EC2 to create an RSA or ED25519 key pair, or you can use a third\-party tool to create a key pair and then import the public key to Amazon EC2\.
 
+For steps to connect to your Linux instance using SSH after you have created a key pair, see [Connect to your Linux instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)\.
+
 **Topics**
 + [Create a key pair using Amazon EC2](#having-ec2-create-your-key-pair)
 + [Create a key pair using a third\-party tool and import the public key to Amazon EC2](#how-to-generate-your-own-key-and-import-it-to-aws)
@@ -40,7 +42,7 @@ This is the only chance for you to save the private key file\.
 1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
    ```
-   chmod 400 my-key-pair.pem
+   chmod 400 key-pair-name.pem
    ```
 
    If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
@@ -74,7 +76,7 @@ This is the only chance for you to save the private key file\.
 1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
    ```
-   chmod 400 my-key-pair.pem
+   chmod 400 key-pair-name.pem
    ```
 
    If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.

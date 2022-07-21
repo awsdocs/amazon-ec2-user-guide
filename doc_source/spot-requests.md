@@ -1,6 +1,6 @@
 # Spot Instance requests<a name="spot-requests"></a>
 
-To use Spot Instances, you create a Spot Instance request that includes the desired number of instances, the instance type, the Availability Zone, and the maximum price that you are willing to pay per instance hour\. If your maximum price exceeds the current Spot price, Amazon EC2 fulfills your request immediately if capacity is available\. Otherwise, Amazon EC2 waits until your request can be fulfilled or until you cancel the request\.
+To use Spot Instances, you create a Spot Instance request that includes the desired number of instances, the instance type, and the Availability Zone\. If capacity is available, Amazon EC2 fulfills your request immediately\. Otherwise, Amazon EC2 waits until your request can be fulfilled or until you cancel the request\.
 
 The following illustration shows how Spot Instance requests work\. Notice that the request type \(one\-time or persistent\) determines whether the request is opened again when Amazon EC2 interrupts a Spot Instance or if you stop a Spot Instance\. If the request is persistent, the request is opened again after your Spot Instance is interrupted\. If the request is persistent and you stop your Spot Instance, the request only opens after you start your Spot Instance\.
 
@@ -34,9 +34,9 @@ The following illustration represents the transitions between the request states
 
 ![\[Spot Instance request states\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot_request_states.png)
 
-A one\-time Spot Instance request remains active until Amazon EC2 launches the Spot Instance, the request expires, or you cancel the request\. If the Spot price exceeds your maximum price or capacity is not available, your Spot Instance is terminated and the Spot Instance request is closed\.
+A one\-time Spot Instance request remains active until Amazon EC2 launches the Spot Instance, the request expires, or you cancel the request\. If capacity is not available, your Spot Instance is terminated and the Spot Instance request is closed\.
 
-A persistent Spot Instance request remains active until it expires or you cancel it, even if the request is fulfilled\. If the Spot price exceeds your maximum price or capacity is not available, your Spot Instance is interrupted\. After your instance is interrupted, when your maximum price exceeds the Spot price or capacity becomes available again, the Spot Instance is started if stopped or resumed if hibernated\. You can stop a Spot Instance and start it again if capacity is available and your maximum price exceeds the current Spot price\. If the Spot Instance is terminated \(irrespective of whether the Spot Instance is in a stopped or running state\), the Spot Instance request is opened again and Amazon EC2 launches a new Spot Instance\. For more information, see [Stop a Spot Instance](#stopping-a-spot-instance), [Start a Spot Instance](#starting-a-spot-instance), and [Terminate a Spot Instance](#terminating-a-spot-instance)\.
+A persistent Spot Instance request remains active until it expires or you cancel it, even if the request is fulfilled\. If capacity is not available, your Spot Instance is interrupted\. After your instance is interrupted, when capacity becomes available again, the Spot Instance is started if stopped or resumed if hibernated\. You can stop a Spot Instance and start it again if capacity is available\. If the Spot Instance is terminated \(irrespective of whether the Spot Instance is in a stopped or running state\), the Spot Instance request is opened again and Amazon EC2 launches a new Spot Instance\. For more information, see [Stop a Spot Instance](#stopping-a-spot-instance), [Start a Spot Instance](#starting-a-spot-instance), and [Terminate a Spot Instance](#terminating-a-spot-instance)\.
 
 You can track the status of your Spot Instance requests, as well as the status of the Spot Instances launched, through the status\. For more information, see [Spot request status](spot-request-status.md)\.
 
@@ -327,7 +327,7 @@ For example launch specification files to use with these commands, see [Spot Ins
 
 ## Find running Spot Instances<a name="using-spot-instances-running"></a>
 
-Amazon EC2 launches a Spot Instance when the maximum price exceeds the Spot price and capacity is available\. A Spot Instance runs until it is interrupted or you terminate it yourself\. If your maximum price is exactly equal to the Spot price, there is a chance that your Spot Instance remains running, depending on demand\.
+Amazon EC2 launches a Spot Instance when capacity is available\. A Spot Instance runs until it is interrupted or you terminate it yourself\.
 
 **To find running Spot Instances \(console\)**
 

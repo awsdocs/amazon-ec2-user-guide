@@ -14,6 +14,6 @@ There is no additional cost for using NitroTPM\. You pay only for the underlying
 **Topics**
 + [Considerations](nitrotpm-considerations.md)
 + [Prerequisites for launching Linux instances](enable-nitrotpm-prerequisites.md)
-+ [Create an AMI for NitroTPM support](enable-nitrotpm-support-on-ami.md)
++ [Create a Linux AMI for NitroTPM support](enable-nitrotpm-support-on-ami.md)
 + [Verify whether an AMI is enabled for NitroTPM](verify-nitrotpm-support-on-ami.md)
 + [Enable or stop using NitroTPM on an instance](nitrotpm-instance.md)

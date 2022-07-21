@@ -67,7 +67,7 @@ For more information, see [Amazon EC2 Im4gn and Is4gen Instances](https://aws.am
 + [Hardware specifications](#storage-instances-hardware)
 + [Instance performance](#storage-performance)
 + [Network performance](#storage-network-performance)
-+ [SSD I/O performance](#storage-instances-diskperf)
++ [Instance store volume I/O performance](#storage-instances-diskperf)
 + [Instance features](#storage-instances-features)
 + [Support for vCPUs](#d2-instances-cpu-support)
 + [Release notes](#storage-instance-release-notes)
@@ -216,7 +216,7 @@ The following is a summary of network performance for storage optimized instance
 | is4gen\.xlarge | 6\.25 | 25 | 
 | is4gen\.2xlarge | 12\.5 | 25 | 
 
-## SSD I/O performance<a name="storage-instances-diskperf"></a>
+## Instance store volume I/O performance<a name="storage-instances-diskperf"></a>
 
 The primary data storage for D2, D3, and D3en instances is HDD instance store volumes\. The primary data storage for I3 and I3en instances is non\-volatile memory express \(NVMe\) SSD instance store volumes\.
 

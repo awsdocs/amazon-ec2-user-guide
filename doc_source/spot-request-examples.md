@@ -2,13 +2,11 @@
 
 The following examples show launch configurations that you can use with the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command to create a Spot Instance request\. For more information, see [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
 
-1. [Launch Spot Instances](#spot-launch-specification1)
-
-1. [Launch Spot Instances in the specified Availability Zone](#spot-launch-specification2)
-
-1. [Launch Spot Instances in the specified subnet](#spot-launch-specification3)
-
-1. [Launch a Dedicated Spot Instance](#spot-launch-specification4)
+**Topics**
++ [Example 1: Launch Spot Instances](#spot-launch-specification1)
++ [Example 2: Launch Spot Instances in the specified Availability Zone](#spot-launch-specification2)
++ [Example 3: Launch Spot Instances in the specified subnet](#spot-launch-specification3)
++ [Example 4: Launch a Dedicated Spot Instance](#spot-launch-specification4)
 
 ## Example 1: Launch Spot Instances<a name="spot-launch-specification1"></a>
 
@@ -61,7 +59,7 @@ The following example includes a subnet\. Amazon EC2 launches the instances in t
 }
 ```
 
-To assign a public IPv4 address to an instance in a nondefault VPC, specify the `AssociatePublicIpAddress` field as shown in the following example\. When you specify a network interface, you must include the subnet ID and security group ID using the network interface, rather than using the `SubnetId` and `SecurityGroupIds` fields shown in example 3\.
+To assign a public IPv4 address to an instance in a nondefault VPC, specify the `AssociatePublicIpAddress` field as shown in the following example\. When you specify a network interface, you must include the subnet ID and security group ID using the network interface, rather than using the `SubnetId` and `SecurityGroupIds` fields shown in the previous code block\.
 
 ```
 {

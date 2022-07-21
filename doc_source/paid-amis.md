@@ -4,7 +4,7 @@ A *paid AMI* is an AMI that you can purchase from a developer\.
 
 Amazon EC2 integrates with AWS Marketplace, enabling developers to charge other Amazon EC2 users for the use of their AMIs or to provide support for instances\. 
 
-The AWS Marketplace is an online store where you can buy software that runs on AWS, including AMIs that you can use to launch your EC2 instance\. The AWS Marketplace AMIs are organized into categories, such as Developer Tools, to enable you to find products to suit your requirements\. For more information about AWS Marketplace, see the [AWS Marketplace](https://aws.amazon.com/marketplace) site\.
+The AWS Marketplace is an online store where you can buy software that runs on AWS, including AMIs that you can use to launch your EC2 instance\. The AWS Marketplace AMIs are organized into categories, such as Developer Tools, to enable you to find products to suit your requirements\. For more information about AWS Marketplace, see the [AWS Marketplace](https://aws.amazon.com/marketplace) website\.
 
 Launching an instance from a paid AMI is the same as launching an instance from any other AMI\. No additional parameters are required\. The instance is charged according to the rates set by the owner of the AMI, as well as the standard usage fees for the related web services, for example, the hourly rate for running an m1\.small instance type in Amazon EC2\. Additional taxes might also apply\. The owner of the paid AMI can confirm whether a specific instance was launched using that paid AMI\. 
 
@@ -40,9 +40,9 @@ There are several ways that you can find AMIs that are available for you to purc
 
 1. Choose **Public images** for the first filter\.
 
-1. In the Search bar, choose **Owner**, then **AWS Marketplace**\.
+1. In the Search bar, choose **Owner alias**, then **=**, and then **aws\-marketplace**\.
 
-1. If you know the product code, choose **Product Code**, then type the product code\.
+1. If you know the product code, choose **Product code**, then **=**, and then enter the product code\.
 
 ### Find a paid AMI using AWS Marketplace<a name="finding-an-ami-mkt"></a>
 
@@ -50,7 +50,7 @@ There are several ways that you can find AMIs that are available for you to purc
 
 1. Open [AWS Marketplace](https://aws.amazon.com/marketplace)\.
 
-1. Enter the name of the operating system in the search box, and click **Go**\.
+1. Enter the name of the operating system in the search field, and then choose the search button \(magnifying glass\)\.
 
 1. To scope the results further, use one of the categories or filters\.
 
@@ -173,9 +173,9 @@ On the AWS Marketplace website, you can check your subscription details, view th
 
    1. In the navigation pane, choose **Instances**\.
 
-   1. Select the instance, and choose **Actions**, **Instance State**, **Terminate**\.
+   1. Select the instance, and then choose **Instance state**, **Terminate instance**\.
 
-   1. Choose **Yes, Terminate** when prompted for confirmation\.
+   1. Choose **Terminate** when prompted for confirmation\.
 
 1. Log in to the [AWS Marketplace](https://aws.amazon.com/marketplace), and choose **Your Marketplace Account**, then **Manage your software subscriptions**\.
 

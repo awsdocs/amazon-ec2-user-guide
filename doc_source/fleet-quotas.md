@@ -9,7 +9,7 @@ In addition, the following quotas apply:
 
 | Quota description | Quota | 
 | --- | --- | 
-| The number of EC2 Fleets and Spot Fleets per Region in the active, deleted\_running, and cancelled\_running states | 1,000 ¹ ² ³ | 
+| The number of EC2 Fleets and Spot Fleets per Region in the active, deleted\_running, and cancelled\_running states | 1,000 ¹ ² ³ ⁴ | 
 | The number of Spot capacity pools \(unique combination of instance type and subnet\) | 300 ¹ ⁴ | 
 | The size of the user data in a launch specification | 16 KB ² | 
 | The target capacity per EC2 Fleet or Spot Fleet | 10,000 | 

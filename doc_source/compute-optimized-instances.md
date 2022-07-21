@@ -62,7 +62,7 @@ For more information, see [Amazon EC2 Hpc6a Instances](http://aws.amazon.com/ec2
 + [Hardware specifications](#compute-instances-hardware)
 + [Instance performance](#compute-performance)
 + [Network performance](#compute-network-performance)
-+ [SSD I/O performance](#compute-ssd-perf)
++ [Instance store volume I/O performance](#compute-ssd-perf)
 + [Instance features](#compute-instances-features)
 + [Release notes](#compute-instance-release-notes)
 
@@ -299,7 +299,7 @@ The following is a summary of network performance for compute optimized instance
 | C7g\.2xlarge | 3\.75 | 15 | 
 | C7g\.4xlarge | 7\.5 | 15 | 
 
-## SSD I/O performance<a name="compute-ssd-perf"></a>
+## Instance store volume I/O performance<a name="compute-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
