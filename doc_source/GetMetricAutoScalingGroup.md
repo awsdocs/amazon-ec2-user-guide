@@ -21,7 +21,7 @@ Use the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/referen
 
 ```
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name DiskWriteBytes --period 360 \
---statistics "Sum" "SampleCount" --dimensions Name=AutoScalingGroupName,Value=my-asg --start-time 2016-10-16T23:18:00 --end-time 2016-10-18T23:18:00
+--statistics "Sum" "SampleCount" --dimensions Name=AutoScalingGroupName,Value=my-asg --start-time 2022-10-16T23:18:00 --end-time 2022-10-18T23:18:00
 ```
 
 The following is example output:
@@ -31,13 +31,13 @@ The following is example output:
     "Datapoints": [
         {
             "SampleCount": 18.0, 
-            "Timestamp": "2016-10-19T21:36:00Z", 
+            "Timestamp": "2022-10-19T21:36:00Z", 
             "Sum": 0.0, 
             "Unit": "Bytes"
         }, 
         {
             "SampleCount": 5.0, 
-            "Timestamp": "2016-10-19T21:42:00Z", 
+            "Timestamp": "2022-10-19T21:42:00Z", 
             "Sum": 0.0, 
             "Unit": "Bytes"
         }

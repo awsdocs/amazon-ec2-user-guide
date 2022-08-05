@@ -17,6 +17,7 @@ To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driv
 + CentOS 7\.4\.1708 or later
 + FreeBSD 11\.1 or later
 + Debian GNU/Linux 9 or later
++ Bottlerocket
 
 After you connect to your instance, you can list the NVMe devices using the lspci command\. The following is example output for an `i3.8xlarge` instance, which supports four NVMe devices\.
 

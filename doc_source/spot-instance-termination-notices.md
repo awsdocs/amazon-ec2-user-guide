@@ -4,7 +4,7 @@ A *Spot Instance interruption notice* is a warning that is issued two minutes be
 
 The best way for you to gracefully handle Spot Instance interruptions is to architect your application to be fault\-tolerant\. To accomplish this, you can take advantage of Spot Instance interruption notices\. We recommend that you check for these interruption notices every 5 seconds\. 
 
-The interruption notices are made available as a CloudWatch event and as items in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\. Events are emitted on a best effort basis\.
+The interruption notices are made available as a CloudWatch event and as items in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\. Interruption notices are emitted on a best effort basis\.
 
 ## EC2 Spot Instance interruption notice<a name="ec2-spot-instance-interruption-warning-event"></a>
 

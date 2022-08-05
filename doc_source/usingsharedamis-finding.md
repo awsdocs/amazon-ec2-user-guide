@@ -25,9 +25,27 @@ AMIs are a Regional resource\. When you search for a shared AMI \(public or priv
 
 1. In the navigation pane, choose **AMIs**\.
 
-1. In the first filter, choose **Public images**\. To granulate your search, choose the **Search** bar and use the filter options provided in the menu\.
+1. In the first filter, choose **Public images**\. To granulate your search, choose the **Search** field and use the filter options provided in the menu\.
 
-1. Use filters to list only the types of AMIs that interest you\. For example, choose **Owner :** and then choose **Amazon images** to display only Amazon's public images\.
+**To find Amazon's shared public AMIs using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **AMIs**\.
+
+1. In the first filter, choose **Public images**\.
+
+1. Choose the **Search** field and then, from the menu options that appear, choose **Owner alias**, then **=**, and then **amazon** to display only Amazon's public images\.
+
+**To find a shared public AMI from a verified provider using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **AMI Catalog**\.
+
+1. Choose **Community AMIs**\.
+
+1. The **Verified provider** label indicates the AMIs that are from Amazon or a verified partner\.
 
 ## Find a shared AMI \(AWS CLI\)<a name="usingsharedamis-finding-cli"></a>
 
@@ -47,11 +65,14 @@ The following command lists the AMIs for which you have explicit launch permissi
 aws ec2 describe-images --executable-users self
 ```
 
-**Example: List AMIs owned by Amazon**  
-The following command lists the AMIs owned by Amazon\. Public AMIs owned by Amazon have an aliased owner, which appears as `amazon` in the account field\. This helps you to easily find AMIs from Amazon\. Other users can't alias their AMIs\.
+**Example: List AMIs owned by verified providers**  
+The following command lists the AMIs owned by verified providers\. Public AMIs owned by verified providers \(either Amazon or verified partners\) have an aliased owner, which appears as `amazon` or `aws-marketplace` in the account field\. This helps you to easily find AMIs from verified providers\. Other users can't alias their AMIs\.
 
 ```
-aws ec2 describe-images --owners amazon
+aws ec2 describe-images \
+    --owners amazon aws-marketplace \
+    --query 'Images[*].[ImageId]' \
+    --output text
 ```
 
 **Example: List AMIs owned by an account**  

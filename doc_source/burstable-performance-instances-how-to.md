@@ -21,6 +21,22 @@ You can launch your instances as `unlimited` or `standard` using the Amazon EC2 
 + You must launch your instances using an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 instance root device volume](RootDeviceStorage.md)\.
 + For more information about AMI and driver requirements for these instances, see [Release notes](general-purpose-instances.md#general-purpose-instances-release-notes)\.
 
+------
+#### [ New console ]
+
+**To launch a burstable performance instance as Unlimited or Standard \(console\)**
+
+1. Follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-quickly-launch-instance)\.
+
+1. Under **Instance type**, select a T instance type\.
+
+1. Expand **Advanced details**, and for **Credit specification**, select a credit specification\. If you do not make a selection, the default is used, which is `standard` for T2, and `unlimited` for T4g, T3a and T3\.
+
+1. In the **Summary** panel, review your instance configuration, and then choose **Launch instance**\. For more information, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\.
+
+------
+#### [ Old console ]
+
 **To launch a burstable performance instance as Unlimited or Standard \(console\)**
 
 1. Follow the [Launch an instance using the old launch instance wizard](launching-instance.md) procedure\.
@@ -34,6 +50,8 @@ You can launch your instances as `unlimited` or `standard` using the Amazon EC2 
    1. To launch a T2 instance as `unlimited`, select **Unlimited**\.
 
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
+
+------
 
 **To launch a burstable performance instance as Unlimited or Standard \(AWS CLI\)**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch your instances\. Specify the credit specification using the `--credit-specification CpuCredits=` parameter\. Valid credit specifications are `unlimited` and `standard`\.

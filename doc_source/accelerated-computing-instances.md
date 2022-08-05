@@ -211,7 +211,7 @@ The accelerated computing instances use the following processors\.
 + **2nd generation AMD EPYC processors \(AMD EPYC 7R32\)**: G4ad, G5
 
 **Intel processors**
-+ **Intel Xeon Scalable processors \(Broadwell E5\-2686 v4\)**: F1, G3, P2, P3
++ **Intel Xeon Scalable processors \(Broadwell E5\-2686 v4\)**: `F1`G3, P2, P3
 + **Intel Xeon Scalable processors \(Skylake 8175\)**: P3dn
 + **2nd generation Intel Xeon Scalable processors \(Cascade Lake P\-8275CL\)**: DL1, P4d, `P4de`
 + **2nd generation Intel Xeon Scalable processors \(Cascade Lake P\-8259CL\)**: VT1

@@ -4,8 +4,6 @@ An *Elastic IP address* is a static IPv4 address designed for dynamic cloud comp
 
 An Elastic IP address is a public IPv4 address, which is reachable from the internet\. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the internet\. For example, this allows you to connect to your instance from your local computer\.
 
-We currently do not support Elastic IP addresses for IPv6\.
-
 **Topics**
 + [Elastic IP address pricing](#eip-pricing)
 + [Elastic IP address basics](#eip-basics)
@@ -23,6 +21,8 @@ For more information, see Elastic IP Addresses on the [Amazon EC2 Pricing, On\-D
 
 The following are the basic characteristics of an Elastic IP address:
 + An Elastic IP address is static; it does not change over time\.
++ An Elastic IP address is for use in a specific Region only, and cannot be moved to a different Region\.
++ An Elastic IP address comes from Amazon's pool of IPv4 addresses, or from a custom IPv4 address pool that you have brought to your AWS account\.
 + To use an Elastic IP address, you first allocate one to your account, and then associate it with your instance or a network interface\.
 + When you associate an Elastic IP address with an instance, it is also associated with the instance's primary network interface\. When you associate an Elastic IP address with a network interface that is attached to an instance, it is also associated with the instance\.
 + When you associate an Elastic IP address with an instance or its primary network interface, the instance's public IPv4 address \(if it had one\) is released back into Amazon's pool of public IPv4 addresses\. You cannot reuse a public IPv4 address, and you cannot convert a public IPv4 address to an Elastic IP address\. For more information, see [Public IPv4 addresses](using-instance-addressing.md#concepts-public-addresses)\.
@@ -30,11 +30,9 @@ The following are the basic characteristics of an Elastic IP address:
 + A disassociated Elastic IP address remains allocated to your account until you explicitly release it\. We impose a small hourly charge for Elastic IP addresses that are not associated with a running instance\.
 + When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS host name of the instance changes to match the Elastic IP address\.
 + We resolve a public DNS host name to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\.
-+ An Elastic IP address comes from Amazon's pool of IPv4 addresses, or from a custom IP address pool that you have brought to your AWS account\.
 + When you allocate an Elastic IP address from an IP address pool that you have brought to your AWS account, it does not count toward your Elastic IP address limits\. For more information, see [Elastic IP address limit](#using-instance-addressing-limit)\.
 + When you allocate the Elastic IP addresses, you can associate the Elastic IP addresses with a network border group\. This is the location from which we advertise the CIDR block\. Setting the network border group limits the CIDR block to this group\. If you do not specify the network border group, we set the border group containing all of the Availability Zones in the Region \(for example, `us-west-2`\)\.
 + An Elastic IP address is for use in a specific network border group only\.
-+ An Elastic IP address is for use in a specific Region only, and cannot be moved to a different Region\.
 
 ## Work with Elastic IP addresses<a name="working-with-eips"></a>
 
@@ -468,7 +466,7 @@ aws ec2 modify-address-attribute --allocation-id eipalloc-abcdef01234567890  --d
 
 ------
 
-### Remove a reverse DNS record<a name="w1594aac23c22c17b9"></a>
+### Remove a reverse DNS record<a name="w1604aac23c22c15b9"></a>
 
 To remove a reverse DNS record, choose the tab that matches your preferred method\.
 

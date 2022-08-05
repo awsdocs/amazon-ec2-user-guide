@@ -49,7 +49,9 @@ The Spot Instance data feed files are tab\-delimited\. Each line in the data fil
 
 ## Amazon S3 bucket requirements<a name="using-spot-instances-dfs3"></a>
 
-When you subscribe to the data feed, you must specify an Amazon S3 bucket to store the data feed files\. Before you choose an Amazon S3 bucket for the data feed, consider the following:
+When you subscribe to the data feed, you must specify an Amazon S3 bucket to store the data feed files\.
+
+Before you choose an Amazon S3 bucket for the data feed, consider the following:
 + You must have `FULL_CONTROL` permission to the bucket, which includes permission for the `s3:GetBucketAcl` and `s3:PutBucketAcl` actions\.
 
   If you're the bucket owner, you have this permission by default\. Otherwise, the bucket owner must grant your AWS account this permission\.

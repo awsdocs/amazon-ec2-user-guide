@@ -64,7 +64,7 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
 ## Step 2: Launch a temporary instance<a name="efa-start-tempinstance"></a>
 
-Launch a temporary instance that you can use to install and configure the EFA software components\. You use this instance to create an EFA\-enabled AMI from which you can launch your EFA\-enabled instances\.
+Launch a temporary instance that you can use to install and configure the EFA software components\. You use this instance to create an EFA\-enabled AMI from which you can launch your EFA\-enabled instances\. 
 
 ------
 #### [ New console ]
@@ -216,7 +216,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 If you are using a SUSE Linux operating system, you must additionally specify the `--skip-kmod` option to prevent kmod installation\. By default, SUSE Linux does not allow out\-of\-tree kernel modules\. As a result, EFA and NVIDIA GPUDirect support is currently not supported with SUSE Linux\.
    + **Open MPI and Intel MPI**
 
-     If you intend to use EFA with Open MPI and Intel MPI, you must install the EFA software with Libfabric and Open MPI, and you must complete Step 5: \(Optional\) Install Intel MPI\. To install the EFA software with Libfabric and Open MPI, run the following command\.
+     If you intend to use an EFA with Open MPI and Intel MPI, you must install the EFA software with Libfabric and Open MPI, and you must complete Step 5: \(Optional\) Install Intel MPI\. To install the EFA software with Libfabric and Open MPI, run the following command\.
 
      ```
      $ sudo ./efa_installer.sh -y

@@ -23,7 +23,7 @@ Use the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/referen
 
 ```
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
---statistics Average --dimensions Name=ImageId,Value=ami-3c47a355 --start-time 2016-10-10T00:00:00 --end-time 2016-10-11T00:00:00
+--statistics Average --dimensions Name=ImageId,Value=ami-3c47a355 --start-time 2022-10-10T00:00:00 --end-time 2022-10-11T00:00:00
 ```
 
 The following is example output\. Each value represents an average CPU utilization percentage for the EC2 instances running the specified AMI\.
@@ -32,17 +32,17 @@ The following is example output\. Each value represents an average CPU utilizati
 {
     "Datapoints": [
         {
-            "Timestamp": "2016-10-10T07:00:00Z", 
+            "Timestamp": "2022-10-10T07:00:00Z", 
             "Average": 0.041000000000000009, 
             "Unit": "Percent"
         }, 
         {
-            "Timestamp": "2016-10-10T14:00:00Z", 
+            "Timestamp": "2022-10-10T14:00:00Z", 
             "Average": 0.079579831932773085, 
             "Unit": "Percent"
         }, 
         {
-            "Timestamp": "2016-10-10T06:00:00Z", 
+            "Timestamp": "2022-10-10T06:00:00Z", 
             "Average": 0.036000000000000011, 
             "Unit": "Percent"
         }, 

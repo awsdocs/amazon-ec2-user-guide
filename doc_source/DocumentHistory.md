@@ -4,6 +4,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Verified AMI provider](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharing-amis.html#verified-ami-provider) | In the Amazon EC2 console, public AMIs that are owned by Amazon or a verified Amazon partner are marked **Verified provider**\. | July 22, 2022 | 
 | [R6a instances](#DocumentHistory) | New memory optimized instances featuring 3rd generation AMD EPYC processors\. | July 19, 2022 | 
 | [Condition keys for Recycle Bin](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rbin-condition-keys.html) | You can use the `rbin:Request/ResourceType` and `rbin:Attribute/ResourceType` condition keys to filter access on Recycle Bin requests\. | June 14, 2022 | 
 | [R6id instances](#DocumentHistory) | New memory optimized instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | June 9, 2022 | 
@@ -11,6 +12,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 | [Dedicated Hosts on AWS Outposts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dh-outposts.html) | You can allocate Dedicated Hosts on AWS Outposts\. | May 31, 2022 | 
 | [M6id instances](#DocumentHistory) | New general purpose instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | May 26, 2022 | 
 | [C6id instances](#DocumentHistory) | New compute optimized instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | May 26, 2022 | 
+| [Instance stop protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection) | To prevent your instance from being accidentally stopped, you can enable stop protection for the instance\. | May 24, 2022 | 
+| [C7g instances](#DocumentHistory) | New compute optimized instances featuring the latest AWS Graviton3 processors\. | May 23, 2022 | 
 | [UEFI Secure Boot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html) | UEFI Secure Boot builds on the long\-standing secure boot process of Amazon EC2 and provides additional defense\-in\-depth that helps customers secure software from threats that persist across reboots\. | May 10, 2022 | 
 | [NitroTPM](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html) | Nitro Trusted Platform Module \(NitroTPM\) is a virtual device that is provided by the AWS Nitro System and conforms to the TPM 2\.0 specification\. | May 10, 2022 | 
 | [AMI state change events](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-ami-events.html) | Amazon EC2 now generates an event when an AMI changes state\. You can use Amazon EventBridge to detect and react to these events\. | May 9, 2022 | 

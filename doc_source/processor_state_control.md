@@ -14,7 +14,7 @@ The following instance types provide the ability for an operating system to cont
 The following instance types provide the ability for an operating system to control processor C\-states:
 + General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` \| `m5n.12xlarge` \| `m5n.24xlarge` \| `m5dn.12xlarge` \| `m5dn.24xlarge` \| `m6a.24xlarge` \| `m6a.48xlarge` \| `m6i.16xlarge` \| `m6i.32xlarge`
 + Compute optimized: `c5.9xlarge` \| `c5.12xlarge` \| `c5.18xlarge` \| `c5.24xlarge` \| `c5a.24xlarge` \| `c5ad.24xlarge` \| `c5d.9xlarge` \| `c5d.12xlarge` \| `c5d.18xlarge` \| `c5d.24xlarge` \| `c5n.9xlarge` \| `c5n.18xlarge` \| `c6a.24xlarge` \| `c6a.48xlarge` \| `c6i.16xlarge` \| `c6i.32xlarge`
-+ Memory optimized: `r5.12xlarge` \| `r5.24xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `r5n.12xlarge` \| `r5n.24xlarge` \| `r5dn.12xlarge` \| `r5dn.24xlarge` \| `r6i.16xlarge` \| `r6i.32xlarge` \| `u-6tb1.56xlarge` \| `u-6tb1.112xlarge` \| `u-9tb1.112xlarge` \| `u-12tb1.112xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge`
++ Memory optimized: `r5.12xlarge` \| `r5.24xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `r5n.12xlarge` \| `r5n.24xlarge` \| `r5dn.12xlarge` \| `r5dn.24xlarge` \| `r6a.24xlarge` \| `r6a.48xlarge` \| `r6i.16xlarge` \| `r6i.32xlarge` \| `u-6tb1.56xlarge` \| `u-6tb1.112xlarge` \| `u-9tb1.112xlarge` \| `u-12tb1.112xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge`
 + Storage optimized: `d3en.12xlarge` \| `dl1.24xlarge` \| `i3en.12xlarge` \| `i3en.24xlarge` \| `i4i.metal` \| `r5b.12xlarge` \| `r5b.24xlarge`
 + Accelerated computing: `dl1.24xlarge` \| `g5.24xlarge` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge` \| `p4de.24xlarge` \| `vt1.24xlarge`
 

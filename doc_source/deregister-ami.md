@@ -208,10 +208,10 @@ The following diagram illustrates the process for cleaning up your instance stor
 
 ## Last launched time<a name="deregister-ami-last-launched-time"></a>
 
-`LastLaunchedTime` is a timestamp that indicates when your AMI was last used to launch an instance\. AMIs that have not been used recently might be good candidates for deregistering or [deprecation](ami-deprecate.md)\.
+`LastLaunchedTime` is a timestamp that indicates when your AMI was last used to launch an instance\. AMIs that have not been used recently to launch an instance might be good candidates for deregistering or [deprecation](ami-deprecate.md)\.
 
 **Note**  
-When the AMI is used, there is a 24\-hour delay before that usage is reported\. 
+When the AMI is used to launch an instance, there is a 24\-hour delay before that usage is reported\. 
 `lastLaunchedTime` data is available starting April 2017\. 
 
 ------

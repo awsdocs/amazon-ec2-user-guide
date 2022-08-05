@@ -19,7 +19,6 @@ For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/i
 
 These instances are ideal for running memory\-intensive workloads, such as the following:
 + High\-performance databases \(relational and NoSQL\)
-+ In\-memory databases
 + Distributed web scale in\-memory caches, such as Memcached and Redis
 + Real\-time big data analytics, such as Hadoop and Spark clusters
 

@@ -12,7 +12,6 @@ No list of security guidelines can be exhaustive\. Build your shared AMIs carefu
 + [Remove SSH host key pairs](#remove-ssh-host-key-pairs)
 + [Install public key credentials](#public-amis-install-credentials)
 + [Disabling sshd DNS checks \(optional\)](#public-amis-disable-ssh-dns-lookups)
-+ [Identify yourself](#public-amis-identity)
 + [Protect yourself](#public-amis-protect-yourself)
 
 If you are building AMIs for AWS Marketplace, see [Best practices for building AMIs](https://docs.aws.amazon.com/marketplace/latest/userguide/best-practices-for-building-your-amis.html) in the *AWS Marketplace Seller Guide* for guidelines, policies, and best practices\.
@@ -175,12 +174,6 @@ Disabling sshd DNS checks slightly weakens your sshd security\. However, if DNS 
 
 **Note**  
 The location of this configuration file can differ for your distribution or if you are not running OpenSSH\. If this is the case, consult the relevant documentation\. 
-
-## Identify yourself<a name="public-amis-identity"></a>
-
-Currently, there is no easy way to know who provided a shared AMI, because each AMI is represented by an account ID\. 
-
-We recommend that you post a description of your AMI, and the AMI ID, in the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. This provides a convenient central location for users who are interested in trying new shared AMIs\.
 
 ## Protect yourself<a name="public-amis-protect-yourself"></a>
 

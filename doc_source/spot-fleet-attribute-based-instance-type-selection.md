@@ -95,7 +95,7 @@ When creating the Spot Fleet, if you set **Total target capacity** type to **vCP
 
   When using the CLI, the launch template overrides will override the launch template\. For example, if the launch template contains an instance type and the launch template override contains instance attributes, the instances that are identified by the instance attributes will override the instance type in the launch template\.
 + When using the CLI, when you specify instance attributes as overrides, you can't also specify weights or priorities\.
-+ You can specify a maximum of three `InstanceRequirements` structures in a request configuration\.
++ You can specify a maximum of four `InstanceRequirements` structures in a request configuration\.
 
 ## Create a Spot Fleet with attribute\-based instance type selection<a name="abs-create-spot-fleet"></a>
 

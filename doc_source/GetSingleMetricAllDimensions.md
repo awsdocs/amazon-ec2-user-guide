@@ -30,8 +30,8 @@ aws cloudwatch get-metric-statistics \
     --namespace AWS/EC2 \
     --metric-name CPUUtilization \ 
     --period 3600  --statistics "Average" "SampleCount" \ 
-    --start-time 2016-10-11T23:18:00 \
-    --end-time 2016-10-12T23:18:00
+    --start-time 2022-10-11T23:18:00 \
+    --end-time 2022-10-12T23:18:00
 ```
 
 The following is example output:
@@ -41,19 +41,19 @@ The following is example output:
     "Datapoints": [
         {
             "SampleCount": 238.0, 
-            "Timestamp": "2016-10-12T07:18:00Z", 
+            "Timestamp": "2022-10-12T07:18:00Z", 
             "Average": 0.038235294117647062, 
             "Unit": "Percent"
         }, 
         {
             "SampleCount": 240.0, 
-            "Timestamp": "2016-10-12T09:18:00Z", 
+            "Timestamp": "2022-10-12T09:18:00Z", 
             "Average": 0.16670833333333332, 
             "Unit": "Percent"
         }, 
         {
             "SampleCount": 238.0, 
-            "Timestamp": "2016-10-11T23:18:00Z", 
+            "Timestamp": "2022-10-11T23:18:00Z", 
             "Average": 0.041596638655462197, 
             "Unit": "Percent"
         },

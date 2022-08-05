@@ -63,8 +63,8 @@ This command generates a certificate that is valid for 365 days\.
 
 1. Open an RDP client on the computer from which you will connect to the instance \(for example, Remote Desktop Connection on a computer running Microsoft Windows\)\. Enter `ec2-user` as the user name and enter the password that you set in the previous step\.
 
-**To disable the MATE Desktop Environment on your Amazon EC2 instance**  
-You can turn off the GUI environment at any time by running one of the following commands on your Linux instance\.
+**To disable `xrdp` on your Amazon EC2 instance**  
+You can disable `xrdp` at any time by running one of the following commands on your Linux instance\. The following commands do not impact your ability to use MATE using an X11 server\.
 
 ```
 [ec2-user ~]$ sudo systemctl disable xrdp
@@ -74,8 +74,8 @@ You can turn off the GUI environment at any time by running one of the following
 [ec2-user ~]$ sudo systemctl stop xrdp
 ```
 
-**To enable the MATE Desktop Environment on your Amazon EC2 instance**  
-To turn the GUI back on, you can run one of the following commands on your Linux instance\.
+**To enable `xrdp` on your Amazon EC2 instance**  
+To re\-enable `xrdp` so that you can connect to your Amazon Linux 2 instance running the MATE desktop environment, run one of the following commands on your Linux instance\.
 
 ```
 [ec2-user ~]$ sudo systemctl enable xrdp

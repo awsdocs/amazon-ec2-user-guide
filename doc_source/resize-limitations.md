@@ -2,6 +2,8 @@
 
 You can change the instance type only if the instance's current configuration is compatible with the instance type that you want\. If the instance type that you want is not compatible with the instance's current configuration, you must launch a new instance with a configuration that is compatible with the instance type, and then migrate your application to the new instance\.
 
+For compatibility information for changing Windows instance types, see [Compatibility for changing the instance type](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/resize-limitations.html) in the *User Guide for Windows Instances*\.
+
 Compatibility is determined in the following ways:
 
 **Virtualization type**  
