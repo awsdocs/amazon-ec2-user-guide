@@ -25,41 +25,43 @@ Kernel Live Patching is supported on Amazon EC2 instances and [on\-premises virt
 To use Kernel Live Patching on Amazon Linux 2, you must use:
 + Kernel version `4.14` or `5.10` on the `x86_64` architecture
 + Kernel version `5.10` on the `ARM64` architecture
-+ When an Amazon VPC endpoint enforces data perimeters to prevent access to resources that do not belong to your organization, Amazon Linux 2 Kernel Live Patching is not applied\. Kernel Live Patching requires access to service\-owned Amazon S3 buckets\. In order to access the S3 buckets, you must include an exception in the data perimeter policy that permits access to the service owned buckets\. 
 
 ### <a name="aml_live_patching"></a>
 
-<a name="aml-live-patching"></a>The following table describes each of the S3 buckets that Amazon EC2 might need to access for Kernel Live Patching\.
+**Policy Requirements**
+
+<a name="aml-live-patching"></a>To download packages from Amazon Linux repositories, Amazon Elastic Compute Cloud needs access to service\-owned Amazon S3 buckets\. If you are using a Amazon Virtual Private Cloud \(VPC\) endpoint for Amazon S3 in your environment, you need to ensure that your VPC endpoint policy allows access to those public buckets\. 
+
+The table describes each of the Amazon S3 buckets that EC2 might need to access for Kernel Live Patching\.
 
 
 | S3 bucket ARN | Description | 
 | --- | --- | 
-|  arn:aws:s3:::packages\.region\-id\.amazonaws\.com/\*  |  Amazon S3 bucket containing Amazon Linux 1 repositories   | 
-|  arn:aws:s3:::repo\.region\-id\.amazonaws\.com/\*  |  Amazon S3 bucket containing Amazon Linux 1 repositories  | 
-|  arn:aws:s3:::amazonlinux\.region\-id\.amazonaws\.com/\*  |  Amazon S3 bucket containing Amazon Linux 2 repositories  | 
-|  arn:aws:s3:::amazonlinux\-2\-repos\-region\-id/\*  |  Amazon S3 bucket containing Amazon Linux 2 repositories   | 
+|  arn:aws:s3:::packages\.region\.amazonaws\.com/\*  |  Amazon S3 bucket containing Amazon Linux AMI packages   | 
+|  arn:aws:s3:::repo\.region\.amazonaws\.com/\*  |  Amazon S3 bucket containing Amazon Linux AMI repositories  | 
+|  arn:aws:s3:::amazonlinux\.region\.amazonaws\.com/\*  |  Amazon S3 bucket containing Amazon Linux 2 repositories  | 
+|  arn:aws:s3:::amazonlinux\-2\-repos\-region/\*  |  Amazon S3 bucket containing Amazon Linux 2 repositories   | 
 
 ### <a name="s3_live_patch_permissions"></a>
 
-The permissions required for Live Patching are in the following policy\. 
+The following policy illustrates how to restrict access to identities and resources that belong to your organization and provide access to the Amazon S3 buckets required for Kernel Live Patching\. Replace *region*, *principal\-org\-id* and *resource\-org\-id* with your organization’s values\.
 
 ```
 {
-    "Version": "2012-10-17",
-    {
+  "Version": "2012-10-17",
   "Statement": [
     {
       "Sid": "AllowRequestsByOrgsIdentitiesToOrgsResources",
       "Effect": "Allow",
       "Principal": {
-        "AWS": ""
+        "AWS": "*"
       },
-      "Action": "",
-      "Resource": "",
+      "Action": "*",
+      "Resource": "*",
       "Condition": {
         "StringEquals": {
-          "aws:PrincipalOrgId": "*org-id*",
-          "aws:ResourceOrgID": "*org-id*"
+          "aws:PrincipalOrgID": "principal-org-id",
+          "aws:ResourceOrgID": "resource-org-id"
         }
       }
     },
@@ -67,16 +69,16 @@ The permissions required for Live Patching are in the following policy\.
       "Sid": "AllowAccessToAmazonLinuxAMIRepositories",
       "Effect": "Allow",
       "Principal": {
-        "AWS": ""
+        "AWS": "*"
       },
       "Action": [
         "s3:GetObject"
       ],
       "Resource": [
-        "arn:aws:s3:::packages.*region-id*.amazonaws.com/",
-        "arn:aws:s3:::repo.*region-id*.amazonaws.com/",
-        "arn:aws:s3:::amazonlinux.*region-id*.amazonaws.com/",
-        "arn:aws:s3:::amazonlinux-2-repos-*region-id*/"
+        "arn:aws:s3:::packages.region.amazonaws.com/*",
+        "arn:aws:s3:::repo.region.amazonaws.com/*",
+        "arn:aws:s3:::amazonlinux.region.amazonaws.com/*",
+        "arn:aws:s3:::amazonlinux-2-repos-region/*"
       ]
     }
   ]

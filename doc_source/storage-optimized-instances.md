@@ -67,8 +67,8 @@ For more information, see [Amazon EC2 Im4gn and Is4gen Instances](https://aws.am
 + [Hardware specifications](#storage-instances-hardware)
 + [Instance performance](#storage-performance)
 + [Network performance](#storage-network-performance)
++ [Amazon EBS I/O performance](#storage-ebs-perf)
 + [Instance store volume I/O performance](#storage-instances-diskperf)
-+ [Instance features](#storage-instances-features)
 + [Support for vCPUs](#d2-instances-cpu-support)
 + [Release notes](#storage-instance-release-notes)
 
@@ -216,6 +216,12 @@ The following is a summary of network performance for storage optimized instance
 | is4gen\.xlarge | 6\.25 | 25 | 
 | is4gen\.2xlarge | 12\.5 | 25 | 
 
+## Amazon EBS I/O performance<a name="storage-ebs-perf"></a>
+
+Amazon EBS optimized instances use an optimized configuration stack and provide additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your Amazon EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
+
+For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
+
 ## Instance store volume I/O performance<a name="storage-instances-diskperf"></a>
 
 The primary data storage for D2, D3, and D3en instances is HDD instance store volumes\. The primary data storage for I3 and I3en instances is non\-volatile memory express \(NVMe\) SSD instance store volumes\.
@@ -268,30 +274,6 @@ As you fill your SSD\-based instance store volumes, the I/O performance that you
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
 For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
-
-## Instance features<a name="storage-instances-features"></a>
-
-The following is a summary of features for storage optimized instances\.
-
-
-|  | EBS only | Instance store | Placement group | 
-| --- | --- | --- | --- | 
-| D2 | No | HDD  | Yes | 
-| D3 | No | HDD \*  | Yes | 
-| D3en | No | HDD \*  | Yes | 
-| H1 | No | HDD \* | Yes | 
-| I3 | No | NVMe \* | Yes | 
-| I3en | No | NVMe \* | Yes | 
-| I4i | No | NVMe \* | Yes | 
-| Im4gn | No | NVMe \* | Yes | 
-| Is4gen | No | NVMe \* | Yes | 
-
-**\*** The root device volume must be an Amazon EBS volume\.
-
-For more information, see the following:
-+ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
-+ [Amazon EC2 instance store](InstanceStorage.md)
-+ [Placement groups](placement-groups.md)
 
 ## Support for vCPUs<a name="d2-instances-cpu-support"></a>
 

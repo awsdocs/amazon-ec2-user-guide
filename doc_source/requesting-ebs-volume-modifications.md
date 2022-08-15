@@ -50,7 +50,9 @@ To modify an EBS volume, use one of the following methods\.
 
 1. After you have finished changing the volume settings, choose **Modify**\. When prompted for confirmation, choose **Modify**\.
 
-1. Modifying volume size has no practical effect until you also extend the volume's file system to make use of the new storage capacity\. For more information, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
+1. 
+**Important**  
+If you've increased the size of your volume, then you must also extend the volume's partition to make use of the additional storage capacity\. For more information, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
 
 ------
 #### [ Old console ]<a name="console-modify-size"></a>
@@ -69,7 +71,9 @@ To modify an EBS volume, use one of the following methods\.
 
 1. After you have finished changing the volume settings, choose **Modify**\. When prompted for confirmation, choose **Yes**\.
 
-1. Modifying volume size has no practical effect until you also extend the volume's file system to make use of the new storage capacity\. For more information, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
+1. 
+**Important**  
+If you've increased the size of your volume, then you must also extend the volume's partition to make use of the additional storage capacity\. For more information, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
 
 ------
 #### [ AWS CLI ]
@@ -100,7 +104,8 @@ The following is example output:
 }
 ```
 
-Modifying volume size has no practical effect until you also extend the volume's file system to make use of the new storage capacity\. For more information, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
+**Important**  
+If you've increased the size of your volume, then you must also extend the volume's partition to make use of the additional storage capacity\. For more information, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
 
 ------
 

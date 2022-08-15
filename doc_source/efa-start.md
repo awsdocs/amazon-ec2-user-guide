@@ -7,7 +7,7 @@ This tutorial helps you to launch an EFA and MPI\-enabled instance cluster for H
 + [Step 2: Launch a temporary instance](#efa-start-tempinstance)
 + [Step 3: Install the EFA software](#efa-start-enable)
 + [Step 4: Disable ptrace protection](#efa-start-ptrace)
-+ [Step 5: \(Optional\) Install Intel MPI](#efa-start-impi)
++ [Step 5: \(*Optional*\) Install Intel MPI](#efa-start-impi)
 + [Step 6: Install your HPC application](#efa-start-hpc-app)
 + [Step 7: Create an EFA\-enabled AMI](#efa-start-ami)
 + [Step 8: Launch EFA\-enabled instances into a cluster placement group](#efa-start-instances)
@@ -276,7 +276,7 @@ Do one of the following:
   ```
 + To permanently disable ptrace protection, add `kernel.yama.ptrace_scope = 0` to `/etc/sysctl.d/10-ptrace.conf` and reboot the instance\.
 
-## Step 5: \(Optional\) Install Intel MPI<a name="efa-start-impi"></a>
+## Step 5: \(*Optional*\) Install Intel MPI<a name="efa-start-impi"></a>
 
 **Important**  
 If you intend to only use Open MPI, skip this step\. Perform this step only if you intend to use Intel MPI\.
@@ -307,17 +307,133 @@ Ensure that the user performing the following steps has sudo permissions\.
 
 1. When the installation completes, choose **Close**\.
 
-1. Add the Intel MPI environment variables to the corresponding shell startup scripts to ensure that they are set each time that the instance starts\. Do one of the following depending on your shell\.
-   + For **bash**, add the following environment variable to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
+1. By default, Intel MPI uses its embedded \(internal\) Libfabric\. You can configure Intel MPI to use the Libfabric that ships with the EFA installer instead\. Typically, the EFA installer ships with a later version of Libfabric than Intel MPI\. In some cases, the Libfabric that ships with the EFA installer is more performant than that of Intel MPI\. To configure Intel MPI to use the Libfabric that ships with the EFA installer, do one of the following depending on your shell\.
 
-     ```
-     source /opt/intel/oneapi/mpi/latest/env/vars.sh
-     ```
-   + For **csh and tcsh**, add the following environment variable to `/home/username/.cshrc`\.
+------
+#### [ bash shells ]
 
-     ```
-     source /opt/intel/oneapi/mpi/latest/env/vars.csh
-     ```
+   For **bash** shells, add the following statement to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
+
+   ```
+   export I_MPI_OFI_LIBRARY_INTERNAL=0
+   ```
+
+------
+#### [ csh and tcsh shells ]
+
+   For **csh and tcsh** shells, add the following statement to `/home/username/.cshrc`\.
+
+   ```
+   setenv I_MPI_OFI_LIBRARY_INTERNAL 0
+   ```
+
+------
+
+1. Add the following **source** command to your shell script to source the `vars.sh` script from the installation directory to set up the compiler environment each time the instance starts\. Do one of the following depending on your shell\.
+
+------
+#### [ bash shells ]
+
+   For **bash** shells, add the following statement to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
+
+   ```
+   source /opt/intel/oneapi/mpi/latest/env/vars.sh
+   ```
+
+------
+#### [ csh and tcsh shells ]
+
+   For **csh and tcsh** shells, add the following statement to `/home/username/.cshrc`\.
+
+   ```
+   source /opt/intel/oneapi/mpi/latest/env/vars.csh
+   ```
+
+------
+
+1. By default, if EFA is not available due to a misconfiguration, Intel MPI defaults to the TCP/IP network stack, which might result in slower application performance\. You can prevent this by setting `I_MPI_OFI_PROVIDER` to `efa`\. This causes Intel MPI to fail with the following error if EFA is not available:
+
+   ```
+   Abort (XXXXXX) on node 0 (rank 0 in comm 0): Fatal error in PMPI_Init: OtherMPI error,
+   MPIR_Init_thread (XXX)........:	
+   MPID_Init (XXXX)..............:
+   MPIDI_OFI_mpi_init_hook (XXXX):
+   open_fabric (XXXX)............:
+   find_provider (XXXX)..........:
+   OFI fi_getinfo() failed (ofi_init.c:2684:find_provider:
+   ```
+
+   Do one of the following depending on your shell\.
+
+------
+#### [ bash shells ]
+
+   For **bash** shells, add the following statement to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
+
+   ```
+   export I_MPI_OFI_PROVIDER=efa
+   ```
+
+------
+#### [ csh and tcsh shells ]
+
+   For **csh and tcsh** shells, add the following statement to `/home/username/.cshrc`\.
+
+   ```
+   setenv I_MPI_OFI_PROVIDER efa
+   ```
+
+------
+
+1. By default, Intel MPI doesn't print debugging information\. You can specify different verbosity levels to control the debugging information\. Possible values \(in order of the amount of detail they provide\) are: `0` \(default\), `1`, `2`, `3`, `4`, `5`\. Level `1` and higher prints the `libfabric version` and `libfabric provider`\. Use `libfabric version` to check whether Intel MPI is using the internal Libfabric or the Libfabric that ships with the EFA installer\. If it's using the internal Libfabric, the version is suffixed with `impi`\. Use `libfabric provider` to check with Intel MPI is using EFA or the TCP/IP network\. If it's using EFA, the value is `efa`\. If it's using TCP/IP, the value is `tcp;ofi_rxm`\.
+
+   To enable debugging information, do one of the following depending on your shell\.
+
+------
+#### [ bash shells ]
+
+   For **bash** shells, add the following statement to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
+
+   ```
+   export I_MPI_DEBUG=value
+   ```
+
+------
+#### [ csh and tcsh shells ]
+
+   For **csh and tcsh** shells, add the following statement to `/home/username/.cshrc`\.
+
+   ```
+   setenv I_MPI_DEBUG value
+   ```
+
+------
+
+1. By default, Intel MPI uses the operating system’s shared memory \(`shm`\) for intra\-node communication, and it uses Libfabric \(`ofi`\) only for inter\-node communication\. Generally, this configuration provides the best performance\. However, in some cases the Intel MPI shm fabric can cause certain applications to hang indefinitely\.
+
+   To resolve this issue, you can force Intel MPI to use Libfabric for both intra\-node and inter\-node communication\. To do this, do one of the following depending on your shell\.
+
+------
+#### [ bash shells ]
+
+   For **bash** shells, add the following statement to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
+
+   ```
+   export I_MPI_FABRICS=ofi
+   ```
+
+------
+#### [ csh and tcsh shells ]
+
+   For **csh and tcsh** shells, add the following statement to `/home/username/.cshrc`\.
+
+   ```
+   setenv I_MPI_FABRICS ofi
+   ```
+
+------
+**Note**  
+The EFA Libfabric provider uses the operating system's shared memory for intra\-node communication\. This means that setting `I_MPI_FABRICS` to `ofi` yields similar performance to the default `shm:ofi` configuration\.
 
 1. Log out of the instance and then log back in\.
 

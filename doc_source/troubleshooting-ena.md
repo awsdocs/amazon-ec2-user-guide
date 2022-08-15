@@ -2,7 +2,9 @@
 
 The Elastic Network Adapter \(ENA\) is designed to improve operating system health and reduce the chances of long\-term disruption because of unexpected hardware behavior and or failures\. The ENA architecture keeps device or driver failures as transparent to the system as possible\. This topic provides troubleshooting information for ENA\.
 
-If you are unable to connect to your instance, start with the [Troubleshoot connectivity issues](#ena-connectivity-issues) section\. 
+If you are unable to connect to your instance, start with the [Troubleshoot connectivity issues](#ena-connectivity-issues) section\.
+
+If you experience performance degradation after migrating to a sixth generation instance type, see the article [What do I need to do before migrating my EC2 instance to a sixth generation instance to make sure that I get maximum network performance?](http://aws.amazon.com/premiumsupport/knowledge-center/migrate-to-gen6-ec2-instance/) in the AWS Knowledge Center\.
 
 If you are able to connect to your instance, you can gather diagnostic information by using the failure detection and recovery mechanisms that are covered in the later sections of this topic\.
 

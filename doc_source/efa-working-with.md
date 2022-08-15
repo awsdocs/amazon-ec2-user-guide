@@ -7,7 +7,7 @@ You can create, use, and manage an EFA much like any other elastic network inter
 To use an EFA, you must do the following:
 + Choose one of the [supported instance types](efa.md#efa-instance-types)\.
 + Use one of the [supported AMIs](efa.md#efa-amis)\.
-+ Install the EFA software components\. For more information, see [Step 3: Install the EFA software](efa-start.md#efa-start-enable) and [Step 5: \(Optional\) Install Intel MPI](efa-start.md#efa-start-impi)\.
++ Install the EFA software components\. For more information, see [Step 3: Install the EFA software](efa-start.md#efa-start-enable) and [Step 5: \(*Optional*\) Install Intel MPI](efa-start.md#efa-start-impi)\.
 + Use a security group that allows all inbound and outbound traffic to and from the security group itself\. For more information, see [Step 1: Prepare an EFA\-enabled security group](efa-start.md#efa-start-security)\.
 
 **Topics**

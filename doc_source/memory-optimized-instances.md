@@ -102,8 +102,8 @@ For more information, see [Amazon EC2 z1d Instances](https://aws.amazon.com/ec2/
 + [Memory performance](#memory-perf)
 + [Instance performance](#memory-compute-perf)
 + [Network performance](#memory-network-perf)
++ [Amazon EBS I/O performance](#memory-ebs-perf)
 + [Instance store volume I/O performance](#instances-ssd-perf)
-+ [Instance features](#memory-instances-features)
 + [Support for vCPUs](#high-cpu-support)
 + [Release notes](#memory-instance-limits)
 
@@ -422,6 +422,12 @@ The following is a summary of network performance for memory optimized instances
 | z1d\.2xlarge | 2\.5 | 10 | 
 | z1d\.3xlarge | 5 | 10 | 
 
+## Amazon EBS I/O performance<a name="memory-ebs-perf"></a>
+
+Amazon EBS optimized instances use an optimized configuration stack and provide additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your Amazon EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
+
+For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
+
 ## Instance store volume I/O performance<a name="instances-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
@@ -509,44 +515,6 @@ As you fill the SSD\-based instance store volumes for your instance, the number 
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
 For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
-
-## Instance features<a name="memory-instances-features"></a>
-
-The following is a summary of features for memory optimized instances\.
-
-
-|  | EBS only | NVMe EBS | Instance store | Placement group | 
-| --- | --- | --- | --- | --- | 
-| R4 | Yes | No | No | Yes | 
-| R5 | Yes | Yes | No | Yes | 
-| R5a | Yes | Yes | No | Yes | 
-| R5ad | No | Yes | NVME \* | Yes | 
-| R5b | Yes \*\* | Yes | No | Yes | 
-| R5d | No | Yes | NVME \* | Yes | 
-| R5dn | No | Yes | NVME \* | Yes | 
-| R5n | Yes | Yes | No | Yes | 
-| R6a |  Yes  |  Yes  |  No  |  Yes  | 
-| R6g | Yes | Yes | No | Yes | 
-| R6gd | No | Yes | NVMe \* | Yes | 
-| R6i | Yes | Yes | No | Yes | 
-| R6id | No | Yes | NVMe \* | Yes | 
-| High memory | Yes | Yes | No | Virtualized: Yes Bare metal: No  | 
-| X1 | No | No | SSD | Yes | 
-| X2gd | No \*\* | Yes | NVME \* | Yes | 
-| X2idn | No \*\* | Yes | NVME \* | Yes | 
-| X2iedn | No \*\* | Yes | NVME \* | Yes | 
-| X2iezn | Yes | Yes | No | Yes | 
-| X1e | No | No | SSD \* | Yes | 
-| z1d | No | Yes | NVME \* | Yes | 
-
-**\*\*** All `io2` volumes attached to C7g, R5b, X2idn, and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [io2 Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
-
-**\*** The root device volume must be an Amazon EBS volume\.
-
-For more information, see the following:
-+ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
-+ [Amazon EC2 instance store](InstanceStorage.md)
-+ [Placement groups](placement-groups.md)
 
 ## Support for vCPUs<a name="high-cpu-support"></a>
 

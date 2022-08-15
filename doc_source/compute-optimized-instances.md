@@ -62,8 +62,8 @@ For more information, see [Amazon EC2 Hpc6a Instances](http://aws.amazon.com/ec2
 + [Hardware specifications](#compute-instances-hardware)
 + [Instance performance](#compute-performance)
 + [Network performance](#compute-network-performance)
++ [Amazon EBS I/O performance](#compute-ebs-perf)
 + [Instance store volume I/O performance](#compute-ssd-perf)
-+ [Instance features](#compute-instances-features)
 + [Release notes](#compute-instance-release-notes)
 
 ## Hardware specifications<a name="compute-instances-hardware"></a>
@@ -299,6 +299,12 @@ The following is a summary of network performance for compute optimized instance
 | C7g\.2xlarge | 3\.75 | 15 | 
 | C7g\.4xlarge | 7\.5 | 15 | 
 
+## Amazon EBS I/O performance<a name="compute-ebs-perf"></a>
+
+Amazon EBS optimized instances use an optimized configuration stack and provide additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your Amazon EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
+
+For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
+
 ## Instance store volume I/O performance<a name="compute-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
@@ -348,35 +354,6 @@ As you fill the SSD\-based instance store volumes for your instance, the number 
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
 For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
-
-## Instance features<a name="compute-instances-features"></a>
-
-The following is a summary of features for compute optimized instances:
-
-
-|  | EBS only | NVMe EBS | Instance store | Placement group | 
-| --- | --- | --- | --- | --- | 
-| C4 | Yes | No | No | Yes | 
-| C5 | Yes | Yes | No | Yes | 
-| C5a | Yes | Yes | No | Yes | 
-| C5ad | No | Yes | NVMe \* | Yes | 
-| C5d | No | Yes | NVMe \* | Yes | 
-| C5n | Yes | Yes | No | Yes | 
-| C6a | Yes | Yes | No | Yes | 
-| C6g | Yes | Yes | No | Yes | 
-| C6gd | No | Yes | NVMe \* | Yes | 
-| C6gn | Yes | Yes | No | Yes | 
-| C6i | Yes | Yes | No | Yes | 
-| C6id | No | Yes | NVMe \* | Yes | 
-| C7g | Yes | Yes | No | Yes | 
-| Hpc6a | Yes | Yes | No | Yes | 
-
-**\*** The root device volume must be an Amazon EBS volume\.
-
-For more information, see the following:
-+ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
-+ [Amazon EC2 instance store](InstanceStorage.md)
-+ [Placement groups](placement-groups.md)
 
 ## Release notes<a name="compute-instance-release-notes"></a>
 + C4 instances and instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.

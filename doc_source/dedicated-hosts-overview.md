@@ -112,6 +112,9 @@ Before you allocate Dedicated Hosts, take note of the following limitations and 
 + Amazon RDS instances are not supported\.
 + The AWS Free Usage tier is not available for Dedicated Hosts\.
 + Instance placement control refers to managing instance launches onto Dedicated Hosts\. You cannot launch Dedicated Hosts into placement groups\.
++ If you allocate a host for a virtualized instance type, you can't modify the instance type to a `.metal` instance type after the host is allocated\. For example, if you allocate a host for the `m5.large` instance type, you can't modify the instance type to `m5.metal`\.
+
+  Similarly, if you allocate a host for a `.metal` instance type, you can't modify the instance type to a virtualized instance type after the host is allocated\. For example, if you allocate a host for the `m5.metal` instance type, you can't modify the instance type to `m5.large`\.
 
 ## Pricing and billing<a name="dedicated-hosts-billing"></a>
 

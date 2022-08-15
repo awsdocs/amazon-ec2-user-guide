@@ -62,7 +62,7 @@ For more information, see [General prerequisites for connecting to your instance
 If you try to connect to your instance and get an error message `Network error: Connection timed out` or `Error connecting to [instance], reason: -> Connection timed out: connect`, try the following:
 
 **Check your security group rules\.**  
-You need a security group rule that allows inbound traffic from your public IPv4 address on the proper port\.
+You need a security group rule that allows inbound traffic from your local computer's public IPv4 address on the proper port\.
 
 ------
 #### [ New console ]
@@ -72,10 +72,12 @@ You need a security group rule that allows inbound traffic from your public IPv4
 1. In the navigation pane, choose **Instances**, and then select your instance\.
 
 1. On the **Security** tab at the bottom of the console page, under **Inbound rules**, check the list of rules that are in effect for the selected instance\.
-   + For Linux instances: Verify that there is a rule that allows traffic from your computer to port 22 \(SSH\)\.
-   + For Windows instances: Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
+   + For Linux instances: Verify that there is a rule that allows traffic from your local computer to port 22 \(SSH\)\.
+   + For Windows instances: Verify that there is a rule that allows traffic from your local computer to port 3389 \(RDP\)\.
 
-1. Each time you restart your instance, a new IP address \(and host name\) will be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address might not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+   If your security group does not have a rule that allows inbound traffic from your local computer, add a rule to your security group\. For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+
+1. For the rule that allows inbound traffic, check the **Source** field\. If the value is a single IP address, and if the IP address is not static, a new IP address will be assigned each time you restart your computer\. This will result in the rule not including your computer's IP address traffic\. The IP address might not be static if your computer is on a corporate network, or you're connecting through an internet service provider \(ISP\), or your computer IP address is dynamic and changes each time you restart your computer\. To ensure that your security group rule allows inbound traffic from your local computer, instead of specifying a single IP address for **Source**, rather specify the range of IP addresses used by your client computers\.
 
    For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\.
 
@@ -87,12 +89,12 @@ You need a security group rule that allows inbound traffic from your public IPv4
 1. In the navigation pane, choose **Instances**, and then select your instance\.
 
 1. In the **Description** tab at the bottom of the console page, next to **Security groups**, select **view inbound rules** to display the list of rules that are in effect for the selected instance\.
+   + For Linux instances: When you select **view inbound rules**, a window will appear that displays the port\(s\) to which traffic is allowed\. Verify that there is a rule that allows traffic from your computer to port 22 \(SSH\)\.
+   + For Windows instances: When you select **view inbound rules**, a window will appear that displays the port\(s\) to which traffic is allowed\. Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
 
-1. For Linux instances: When you select **view inbound rules**, a window will appear that displays the port\(s\) to which traffic is allowed\. Verify that there is a rule that allows traffic from your computer to port 22 \(SSH\)\.
+   If your security group does not have a rule that allows inbound traffic, add a rule to your security group\. For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
-   For Windows instances: When you select **view inbound rules**, a window will appear that displays the port\(s\) to which traffic is allowed\. Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
-
-   Each time you restart your instance, a new IP address \(and host name\) will be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address may not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+1. Each time you restart your local computer, a new IP address \(and host name\) can be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address might not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\.
 
    For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\.
 

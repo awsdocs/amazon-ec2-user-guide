@@ -28,9 +28,12 @@ Before you begin, you must have a VPC\. If you don't have a default VPC, you can
 
 ### Security groups<a name="vpc-migrate-security-group"></a>
 
-If you want your instances in your VPC to have the same security group rules as your EC2\-Classic instances, you can use the Amazon EC2 console to copy your existing EC2\-Classic security group rules \(including default ones\) to a new VPC security group\. Default security groups cannot be deleted and will be removed on your behalf when EC2\-Classic is retired\.
+If you want your instances in your VPC to have the same security group rules as your EC2\-Classic instances, you can use the Amazon EC2 console to copy your existing EC2\-Classic security group rules to a new VPC security group\. You can copy any security group from EC2\-Classic to your VPC that meets the requirements\. Default security groups cannot be deleted and will be removed on your behalf when EC2\-Classic is retired\.
 
 You can only copy security group rules to a new security group in the same AWS account in the same Region\. If you are using a different Region or a different AWS account, you must create a new security group and manually add the rules yourself\. For more information, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
+
+**Prerequisites**  
+Before you begin copying your security groups, you should check for rules in which your EC2\-Classic security groups reference another security group in EC2\-Classic\. These rules should be removed as they cannot be copied into a VPC\.
 
 **To copy your security group rules to a new security group**
 
@@ -38,17 +41,17 @@ You can only copy security group rules to a new security group in the same AWS a
 
 1. In the navigation pane, choose **Security Groups**\.
 
-1. Select the security group that's associated with your EC2\-Classic instance, then choose **Actions**, and select **Copy to new**\.
+1. Select the security group that's associated with your EC2\-Classic instance, then choose **Actions**, and select **Copy to new security group**\.
 **Note**  
 To identify an EC2\-Classic security group, check the **VPC ID** column\. For each EC2\-Classic security group, the value in the column is blank or a `-` symbol\.
 
-1. In the **Create Security Group** dialog box, specify a name and description for your new security group\. Select your VPC from the **VPC** list\. 
+1. In the **Copy to new security group** dialog box, specify a name and description for your new security group\. Select your VPC from the **VPC** list\. 
 
-1. The **Inbound** tab is populated with the rules from your EC2\-Classic security group\. You can modify the rules as required\. In the **Outbound** tab, a rule that allows all outbound traffic has automatically been created for you\. For more information about modifying security group rules, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
-**Note**  
-If you've defined a rule in your EC2\-Classic security group that references another security group, you cannot use the same rule in your VPC security group\. Modify the rule to reference a security group in the same VPC\.
+1. Under **Inbound rules**, the fields are populated with the rules from your EC2\-Classic security group\. You can modify the rules as required\. Under **Outbound rules**, a rule that allows all outbound traffic has automatically been created for you\. For more information about modifying security group rules, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
+**Important**  
+You must remove any rules that reference a security group in EC2\-Classic, because you can't reference an EC2\-Classic security group from a VPC security group\. You can add similar rules after you copy the security group to your VPC\.
 
-1. Choose **Create**\.
+1. Choose **Create security group**\.
 
 ### Elastic IP addresses<a name="vpc-migrate-eip"></a>
 
@@ -101,10 +104,10 @@ aws ec2 describe-instances --query 'Reservations[*].Instances[?VpcId==`null`]'
 After you've identified your EC2\-Classic instance, you can create an AMI from it\.
 
 **To create a Windows AMI**  
-For more information, see [Creating a custom Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)\.
+For more information, see [Create a custom Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)\.
 
 **To create a Linux AMI**  
-The method that you use to create your Linux AMI depends on the root device type of your instance, and the operating system platform on which your instance runs\. To find out the root device type of your instance, go to the **Instances** page, select your instance, and look at the information in the **Root device type** field in the **Description** tab\. If the value is `ebs`, then your instance is EBS\-backed\. If the value is `instance-store`, then your instance is instance store\-backed\. You can also use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) AWS CLI command to find out the root device type\.
+The method that you use to create your Linux AMI depends on the root device type of your instance, and the operating system platform on which your instance runs\. To find out the root device type of your instance, go to the **Instances** page, select your instance, and on the **Storage** tab \(new console\) or **Description** tab \(old console\), look at the information in the **Root device type** field\. If the value is `ebs`, then your instance is EBS\-backed\. If the value is `instance-store`, then your instance is instance store\-backed\. You can also use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) AWS CLI command to find out the root device type\.
 
 The following table provides options for you to create your Linux AMI based on the root device type of your instance, and the software platform\.
 
@@ -114,9 +117,9 @@ Some instance types support both PV and HVM virtualization, while others support
 
 | Instance root device type | Action | 
 | --- | --- | 
-| EBS | Create an EBS\-backed AMI from your instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html)\. | 
-| Instance store | Create an instance store\-backed AMI from your instance using the AMI tools\. For more information, see [Creating an instance store\-backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html)\. | 
-| Instance store | Convert your instance store\-backed instance to an EBS\-backed instance\. For more information, see [Converting your instance store\-backed AMI to an Amazon EBS\-backed AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ConvertingS3toEBS.html)\.  | 
+| EBS | Create an EBS\-backed AMI from your instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html)\. | 
+| Instance store | Create an instance store\-backed AMI from your instance using the AMI tools\. For more information, see [Create an instance store\-backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html)\. | 
+| Instance store | Convert your instance store\-backed instance to an EBS\-backed instance\. For more information, see [Convert your instance store\-backed AMI to an Amazon EBS\-backed AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ConvertingS3toEBS.html)\.  | 
 
 #### \(Optional\) Share or copy your AMI<a name="vpc-migrate-share-ami"></a>
 
@@ -137,10 +140,34 @@ To back up the data on your Amazon EBS volume, you can take periodic snapshots o
 
 #### Launch an instance into your VPC<a name="vpc-migrate-instance"></a>
 
-After you've created an AMI, you can use the Amazon EC2 launch wizard to launch an instance into your VPC\. The instance will have the same data and configurations as your existing EC2\-Classic instance\. 
+After you've created an AMI, you can use the Amazon EC2 launch instance wizard to launch an instance into your VPC\. The instance will have the same data and configurations as your existing EC2\-Classic instance\. 
 
 **Note**  
 You can use this opportunity to [upgrade to a current generation instance type](https://aws.amazon.com/ec2/previous-generation/#Upgrade_Paths)\. However, verify that the instance type supports the type of virtualization that your AMI offers \(PV or HVM\)\. For more information about PV and HVM virtualization, see [Linux AMI virtualization types](virtualization_types.md)\.
+
+------
+#### [ New console ]
+
+**To launch an instance into your VPC**
+
+1. Follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-quickly-launch-instance)\.
+
+1. Under **Application and OS Images \(Amazon Machine Image\)**, choose **My AMIs**, ensure that** Owned by me** is selected, and select the AMI that you created\. Alternatively, if you shared an AMI from another account, choose **Shared with me**, and select the AMI that you shared from your EC2\-Classic account\.
+
+1. Under **Network settings**, choose **Edit** \(on the right\), and do the following:
+
+   1. For **VPC**, select your VPC\.
+
+   1. For **Subnet**, select the required subnet\.
+
+   1. For **Security group name**, select the security group that you created for your VPC\.
+
+1. Configure any other details that you require, such as the instance type and key pair\. For information about the fields in the launch instance wizard, see [Launch an instance using defined parameters](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters)\.
+
+1. In the **Summary** panel, review your instance configuration, and then choose **Launch instance**\.
+
+------
+#### [ Old console ]
 
 **To launch an instance into your VPC**
 
@@ -157,6 +184,8 @@ You can use this opportunity to [upgrade to a current generation instance type](
 1. Select **Select an existing group**, and select the security group that you created for your VPC\. Choose **Review and Launch**\.
 
 1. Review your instance details, then choose **Launch** to specify a key pair and launch your instance\.
+
+------
 
 For more information about the parameters that you can configure in each step of the wizard, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 

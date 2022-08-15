@@ -24,7 +24,7 @@ The following table summarizes the theoretical and implemented storage capacitie
 
 \*\* [https://access.redhat.com/solutions/1532](https://access.redhat.com/solutions/1532)
 
-† `io2` Block Express volumes support up to 64 TiB for GPT partitions\. For more information, see [`io2` Block Express volumes](ebs-volume-types.md#io2-block-express)\.
+† `io2` Block Express volumes support up to 64 TiB for GPT partitions\. For more information, see [`io2` Block Express volumes](provisioned-iops.md#io2-block-express)\.
 
 ## Service limitations<a name="aws_limits"></a>
 

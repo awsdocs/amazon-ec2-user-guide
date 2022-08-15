@@ -18,11 +18,15 @@ You can share an encrypted snapshot only with specific AWS accounts\. For others
 
 ## Multi\-volume snapshots<a name="ebs-create-snapshot-multi-volume"></a>
 
-You can create multi\-volume snapshots, which are point\-in\-time snapshots for all EBS volumes attached to an EC2 instance\. You can also create lifecycle policies to automate the creation and retention of multi\-volume snapshots\. For more information, see [Amazon Data Lifecycle Manager](snapshot-lifecycle.md)\.
+You can create multi\-volume snapshots, which are point\-in\-time snapshots for all, or some, of the volumes attached to an instance\.
 
-After the snapshots are created, each snapshot is treated as an individual snapshot\. You can perform all snapshot operations, such as restore, delete, and copy across Regions or accounts, just as you would with a single volume snapshot\. You can also tag your multi\-volume snapshots as you would a single volume snapshot\. We recommend you tag your multiple volume snapshots to manage them collectively during restore, copy, or retention\.
+By default, when you create multi\-volume snapshots from an instance, Amazon EBS creates snapshots of all the volumes \(root and data \(non\-root\)\) that are attached to the instance\. However, you can choose to create snapshots of a subset of the volumes that are attached to the instance\.
 
-Multi\-volume, crash\-consistent snapshots are typically restored as a set\. It is helpful to identify the snapshots that are in a crash\-consistent set by tagging your set with the instance ID, name, or other relevant details\. You can also choose to automatically copy tags from the source volume to the corresponding snapshots\. This helps you to set the snapshot metadata, such as access policies, attachment information, and cost allocation, to match the source volume\. 
+You can tag your multi\-volume snapshots as you would a single volume snapshot\. We recommend you tag your multiple volume snapshots to manage them collectively during restore, copy, or retention\. You can also choose to automatically copy tags from the source volume to the corresponding snapshots\. This helps you to set the snapshot metadata, such as access policies, attachment information, and cost allocation, to match the source volume\.
+
+After the snapshots are created, each snapshot is treated as an individual snapshot\. You can perform all snapshot operations, such as restore, delete, and copy across Regions or accounts, just as you would with a single volume snapshot\. 
+
+Multi\-volume, crash\-consistent snapshots are typically restored as a set\. It is helpful to identify the snapshots that are in a crash\-consistent set by tagging your set with the instance ID, name, or other relevant details\. 
 
 After creating your snapshots, they appear in your EC2 console created at the exact point\-in\-time\.
 
@@ -30,7 +34,7 @@ If any one snapshot for the multi\-volume snapshot set fails, all of the other s
 
 ## Amazon Data Lifecycle Manager<a name="automate-snapshots"></a>
 
-You can create, retain, and delete snapshots manually, or you can use Amazon Data Lifecycle Manager to manage your snapshots for you\. For more information, see [Amazon Data Lifecycle Manager](snapshot-lifecycle.md)\.
+You can create snapshot lifecycle policies to automate the creation and retention of snapshots of individual volumes and multi\-volume snapshots of instances\. For more information, see [Amazon Data Lifecycle Manager](snapshot-lifecycle.md)\.
 
 ## Considerations<a name="ebs-create-snapshot-limitations"></a>
 
@@ -40,6 +44,7 @@ The following considerations apply to creating snapshots:
 + Although you can take a snapshot of a volume while a previous snapshot of that volume is in the `pending` status, having multiple `pending` snapshots of a volume can result in reduced volume performance until the snapshots complete\.
 + There is a limit of one `pending` snapshot for a single `st1` or `sc1` volume, or five `pending` snapshots for a single volume of the other volume types\. If you receive a `ConcurrentSnapshotLimitExceeded` error while trying to create multiple concurrent snapshots of the same volume, wait for one or more of the `pending` snapshots to complete before creating another snapshot of that volume\.
 + When a snapshot is created from a volume with an AWS Marketplace product code, the product code is propagated to the snapshot\.
++ When creating multi\-volume snapshot sets from instances, you can specify up to 40 data \(non\-root\) volumes to exclude\.
 
 ## Create a snapshot<a name="ebs-create-snapshot"></a>
 
@@ -100,6 +105,11 @@ You can use one of the following commands\. For more information about these com
 
 ## Create a multi\-volume snapshot<a name="ebs-create-snapshots"></a>
 
+When you create a multi\-volume snapshot set from an instance, you can choose whether to copy the tags from the source volume to the corresponding snapshot\. You can specify whether to create a snapshot of the root volume\. You can also specify whether to create snapshots of all the data \(non\-root\) volumes that are attached to the instance, or whether to create snapshots of a subset of those volumes\.
+
+**Considerations**
++ Multi\-volume snapshots support up to 40 EBS volumes for each instance\.
+
 To create a snapshot from the volumes of an instance, use one of the following methods\.
 
 ------
@@ -113,17 +123,17 @@ To create a snapshot from the volumes of an instance, use one of the following m
 
 1. For **Resource type**, choose **Instance**\.
 
-1. For **Instance ID**, choose the instance from which to create the snapshots\. Multi\-volume snapshots support up to 40 EBS volumes for each instance\.
-
-   The **Attached volumes** section lists all of the volumes that are attached to the selected instance, along with their encryption statuses\. Snapshots get the same encryption status as their source volume\.
-
 1. For **Description**, enter a brief description for the snapshots\. This description is applied to all of the snapshots\.
 
-1. To create snapshots from all of the instance's volumes, including its root volume, for **Root volume**, choose **Include**\. To create snapshots from the instance's data volumes only, for **Root volume**, choose **Exclude**\.
+1. \(Optional\) By default, Amazon EBS creates a snapshot of the instance's root volume\. If you do not want to create a snapshot of the instance's root volume, select **Exclude root volume**\.
 
-1. \(Optional\) To automatically copy tags from the source volumes to the corresponding snapshots, for **Copy tags from source volume**, select **Enable**\. This sets snapshot metadata—such as access policies, attachment information, and cost allocation—to match the source volume\.
+1. \(Optional\) By default, Amazon EBS creates snapshots of all the data \(non\-root\) volumes attached to the instance\. If you want to create snapshots of a subset of the data \(non\-root\) volumes attached to the instance, select **Exclude specific data volumes**\. The **Attached data volumes** section lists all of the data volumes that are currently attached to the selected instance\.
 
-1. \(Optional\) To assign custom tags to the snapshots, in the **Tags** section, choose **Add tag**, and then enter the key\-value pair\. You can add up to 50 tags\.
+   In the **Attached data volumes** section, select the data volumes for which you do **not** want to create snapshots\. Only the volumes that remain unselected will be included in the multi\-volume snapshot set\. You can exclude up to 40 volumes\.
+
+1. \(Optional\) To automatically copy tags from the source volumes to the corresponding snapshots, for **Copy tags from source volume**, select **Copy tags**\. This sets snapshot metadata—such as access policies, attachment information, and cost allocation—to match the source volume\.
+
+1. \(Optional\) To assign additional custom tags to the snapshots, in the **Tags** section, choose **Add tag**, and then enter the key\-value pair\. You can add up to 50 tags\.
 
 1. Choose **Create snapshot**\.
 
@@ -131,6 +141,9 @@ To create a snapshot from the volumes of an instance, use one of the following m
 
 ------
 #### [ Old console ]
+
+**Note**  
+You can't exclude data volumes from a multi\-volume snapshot set when using the old console\.
 
 **To create multi\-volume snapshots using the console**
 
@@ -153,13 +166,17 @@ To create a snapshot from the volumes of an instance, use one of the following m
 1. Choose **Create Snapshot**\.
 
 ------
-#### [ AWS CLI ]
+#### [ Command line ]
 
-**To create multi\-volume snapshots using the command line**
+**AWS CLI**  
+To create multi\-volume snapshots using the AWS CLI, use the [create\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshots.html) command\.
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshots.html) \(AWS CLI\)
-+ [New\-EC2SnapshotBatch](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SnapshotBatch.html) \(AWS Tools for Windows PowerShell\)
+If you do not want to create a snapshot of the root volume, for `--instance-specification ExcludeBootVolume`, specify `true`\. If you do not want to create snapshots of all the data \(non\-root\) volumes attached to the instance, for `--instance-specification ExcludeDataVolumes`, specify the IDs of the data volumes for which you do not want to create snapshots\. You can specify up to 40 volumes to exclude\.
+
+**AWS Tools for Windows PowerShell**  
+To create multi\-volume snapshots using the Tools for Windows PowerShell, use the [ New\-EC2SnapshotBatch](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SnapshotBatch.html) command\.
+
+If you do not want to create a snapshot of the root volume, for `-InstanceSpecification_ExcludeBootVolume`, specify `1`\. If you do not want to create snapshots of all the data \(non\-root\) volumes attached to the instance, for `-InstanceSpecification_ExcludeDataVolumes`, specify the IDs of the data volumes for which you do not want to create snapshots\. You can specify up to 40 volumes to exclude\.
 
 ------
 

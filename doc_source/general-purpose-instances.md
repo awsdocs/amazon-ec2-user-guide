@@ -71,8 +71,8 @@ For more information, see [Amazon EC2 T2 Instances](http://aws.amazon.com/ec2/in
 + [Hardware specifications](#general-purpose-hardware)
 + [Instance performance](#general-purpose-performance)
 + [Network performance](#general-purpose-network-performance)
++ [Amazon EBS I/O performance](#general-purpose-ebs-perf)
 + [Instance store volume I/O performance](#general-purpose-ssd-perf)
-+ [Instance features](#general-purpose-features)
 + [Release notes](#general-purpose-instances-release-notes)
 + [Burstable performance instances](burstable-performance-instances.md)
 
@@ -356,6 +356,12 @@ The following is a summary of network performance for general purpose instances 
 | t4g\.xlarge | 1\.024 | 5 | 
 | t4g\.2xlarge | 2\.048 | 5 | 
 
+## Amazon EBS I/O performance<a name="general-purpose-ebs-perf"></a>
+
+Amazon EBS optimized instances use an optimized configuration stack and provide additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your Amazon EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
+
+For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
+
 ## Instance store volume I/O performance<a name="general-purpose-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
@@ -414,39 +420,6 @@ As you fill the SSD\-based instance store volumes for your instance, the number 
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
 For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
-
-## Instance features<a name="general-purpose-features"></a>
-
-The following is a summary of features for general purpose instances:
-
-
-|  | EBS only | NVMe EBS | Instance store | Placement group | 
-| --- | --- | --- | --- | --- | 
-| M4 | Yes | No | No | Yes | 
-| M5 | Yes | Yes | No | Yes | 
-| M5a | Yes | Yes | No | Yes | 
-| M5ad | No | Yes | NVMe \* | Yes | 
-| M5d | No | Yes | NVMe \* | Yes | 
-| M5dn | No | Yes | NVMe \* | Yes | 
-| M5n | Yes | Yes | No | Yes | 
-| M5zn | Yes | Yes | No | Yes | 
-| M6a | Yes | Yes | No | Yes | 
-| M6g | Yes | Yes | No | Yes | 
-| M6gd | No | Yes | NVMe \* | Yes | 
-| M6i | Yes | Yes | No | Yes | 
-| M6id | No | Yes | NVMe \* | Yes | 
-| Mac1 | Yes | Yes | No | No | 
-| T2 | Yes | No | No | No | 
-| T3 | Yes | Yes | No | No | 
-| T3a | Yes | Yes | No | No | 
-| T4g | Yes | Yes | No | No | 
-
-**\*** The root device volume must be an Amazon EBS volume\.
-
-For more information, see the following:
-+ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
-+ [Amazon EC2 instance store](InstanceStorage.md)
-+ [Placement groups](placement-groups.md)
 
 ## Release notes<a name="general-purpose-instances-release-notes"></a>
 + Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances), M4, `t2.large` and larger, `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.

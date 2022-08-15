@@ -44,7 +44,7 @@ The following table summarizes the important differences when using the two type
 
 \* By default, EBS root volumes have the `DeleteOnTermination` flag set to `true`\. For information about how to change this flag so that the volume persists after termination, see [Change the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
 
-\*\* Supported with `io2` EBS Block Express only\. For more information, see [`io2` Block Express volumes](ebs-volume-types.md#io2-block-express)\.
+\*\* Supported with `io2` EBS Block Express only\. For more information, see [`io2` Block Express volumes](provisioned-iops.md#io2-block-express)\.
 
 ### Determine the root device type of your AMI<a name="display-ami-root-device-type"></a>
 

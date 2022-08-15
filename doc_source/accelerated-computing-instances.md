@@ -13,8 +13,8 @@ If you require high processing capability, you'll benefit from using accelerated
 + [Hardware specifications](#gpu-instance-specifications)
 + [Instance performance](#gpu-instance-performance)
 + [Network performance](#gpu-network-performance)
++ [Amazon EBS I/O performance](#accelerated-ebs-perf)
 + [Instance store volume I/O performance](#accelerated-computing-ssd-perf)
-+ [Instance features](#gpu-instances-features)
 + [Release notes](#gpu-instance-release-notes)
 + [Install NVIDIA drivers on Linux instances](install-nvidia-driver.md)
 + [Install AMD drivers on Linux instances](install-amd-driver.md)
@@ -271,6 +271,12 @@ The following is a summary of network performance for accelerated computing inst
 | p3\.2xlarge | 2\.5 | 10 | 
 | vt1\.3xlarge | 12\.5 | 25 | 
 
+## Amazon EBS I/O performance<a name="accelerated-ebs-perf"></a>
+
+Amazon EBS optimized instances use an optimized configuration stack and provide additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your Amazon EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
+
+For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
+
 ## Instance store volume I/O performance<a name="accelerated-computing-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
@@ -297,35 +303,6 @@ As you fill the SSD\-based instance store volumes for your instance, the number 
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
 For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
-
-## Instance features<a name="gpu-instances-features"></a>
-
-The following is a summary of features for accelerated computing instances\.
-
-
-|  | EBS only | NVMe EBS | Instance store | Placement group | 
-| --- | --- | --- | --- | --- | 
-|  DL1  |  No  |  Yes  |  NVMe \*  |  Yes  | 
-|  F1  |  No  |  No  |  NVMe \*  |  Yes  | 
-|  G2  |  No  |  No  |  SSD  |  Yes  | 
-|  G3  |  Yes  |  No  |  No  |  Yes  | 
-|  G4ad  |  No  |  Yes  |  NVMe \*  |  Yes  | 
-|  G4dn  |  No  |  Yes  |  NVMe \*  |  Yes  | 
-| G5 | No | Yes | NVMe \* | Yes | 
-| G5g | Yes | Yes | No | Yes | 
-|  Inf1  |  Yes  |  No  |  No  |  Yes  | 
-|  P2  |  Yes  |  No  |  No  |  Yes  | 
-|  P3  |  24xlarge: No All other sizes: Yes  |  24xlarge: Yes All other sizes: No  | 24xlarge: NVMe \* |  Yes  | 
-|  P4d  |  No  |  Yes  |  NVMe \*  |  Yes  | 
-|  P4de  |  No  |  Yes  |  NVMe \*  |  Yes  | 
-|  VT1  |  Yes  |  Yes  |  No  |  Yes  | 
-
-**\*** The root device volume must be an Amazon EBS volume\.
-
-For more information, see the following:
-+ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
-+ [Amazon EC2 instance store](InstanceStorage.md)
-+ [Placement groups](placement-groups.md)
 
 ## Release notes<a name="gpu-instance-release-notes"></a>
 + You must launch the instance using an HVM AMI\.

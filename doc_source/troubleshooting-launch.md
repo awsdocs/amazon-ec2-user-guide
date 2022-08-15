@@ -3,10 +3,37 @@
 The following issues prevent you from launching an instance\.
 
 **Topics**
++ [Invalid device name](#troubleshooting-launch-devicename)
 + [Instance limit exceeded](#troubleshooting-launch-limit)
 + [Insufficient instance capacity](#troubleshooting-launch-capacity)
 + [The requested configuration is currently not supported\. Please check the documentation for supported configurations\.](#troubleshooting-instance-configuration)
 + [Instance terminates immediately](#troubleshooting-launch-internal)
+
+## Invalid device name<a name="troubleshooting-launch-devicename"></a>
+
+### Description<a name="troubleshooting-launch-devicename-description"></a>
+
+You get the `Invalid device name device_name` error when you try to launch a new instance\.
+
+### Cause<a name="troubleshooting-launch-devicename-cause"></a>
+
+If you get this error when you try to launch an instance, the device name specified for one or more volumes in the request has an invalid device name\. Possible causes include:
++ The device name might be in use by the selected AMI\.
++ The device name might be reserved for root volumes\.
++ The device name might be used for another volume in the request\.
++ The device name might not be valid for the operating system\.
+
+### Solution<a name="troubleshooting-launch-devicename-solution"></a>
+
+To resolve the issue:
++ Ensure that the device name is not used in the AMI that you selected\. Run the following command to view the device names used by the AMI\.
+
+  ```
+  $ aws ec2 describe-images --image-id ami_id --query 'Images[*].BlockDeviceMappings[].DeviceName'
+  ```
++ Ensure that you are not using a device name that is reserved for root volumes\. For more information, see [Available device names](device_naming.md#available-ec2-device-names)\.
++ Ensure that each volume specified in your request has a unique device name\.
++ Ensure that the device names that you specified are in the correct format\. For more information, see [Available device names](device_naming.md#available-ec2-device-names)\.
 
 ## Instance limit exceeded<a name="troubleshooting-launch-limit"></a>
 
