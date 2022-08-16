@@ -6,7 +6,7 @@ The [ StartSnapshot](https://docs.aws.amazon.com/ebs/latest/APIReference/API_Sta
 
 If you do not specify your own client token, the AWS SDKs automatically generates a client token for the request to ensure that it is idempotent\.
 
-A client token can be any string that includes up to up to 64 ASCII characters\. You should not reuse the same client tokens for different requests\.
+A client token can be any string that includes up to 64 ASCII characters\. You should not reuse the same client tokens for different requests\.
 
 **To make an idempotent StartSnapshot request with your own client token using the API**  
 Specify the `ClientToken` request parameter\.

@@ -183,7 +183,7 @@ The following is an example of the `policyDetails.json` file\.
 }
 ```
 
-Upon success, the command returns the ID of the newly created policy\. The following is example output\.
+If the request succeeds, the command returns the ID of the newly created policy\. The following is example output\.
 
 ```
 {

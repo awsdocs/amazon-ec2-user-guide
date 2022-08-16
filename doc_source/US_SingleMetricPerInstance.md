@@ -30,7 +30,7 @@ Use the following [get\-metric\-statistics](https://docs.aws.amazon.com/cli/late
 ```
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
 --statistics Maximum --dimensions Name=InstanceId,Value=i-1234567890abcdef0 \
---start-time 2016-10-18T23:18:00 --end-time 2016-10-19T23:18:00
+--start-time 2022-10-18T23:18:00 --end-time 2022-10-19T23:18:00
 ```
 
 The following is example output\. Each value represents the maximum CPU utilization percentage for a single EC2 instance\.
@@ -39,22 +39,22 @@ The following is example output\. Each value represents the maximum CPU utilizat
 {
     "Datapoints": [
         {
-            "Timestamp": "2016-10-19T00:18:00Z", 
+            "Timestamp": "2022-10-19T00:18:00Z", 
             "Maximum": 0.33000000000000002, 
             "Unit": "Percent"
         }, 
         {
-            "Timestamp": "2016-10-19T03:18:00Z", 
+            "Timestamp": "2022-10-19T03:18:00Z", 
             "Maximum": 99.670000000000002, 
             "Unit": "Percent"
         }, 
         {
-            "Timestamp": "2016-10-19T07:18:00Z", 
+            "Timestamp": "2022-10-19T07:18:00Z", 
             "Maximum": 0.34000000000000002, 
             "Unit": "Percent"
         }, 
         {
-            "Timestamp": "2016-10-19T12:18:00Z", 
+            "Timestamp": "2022-10-19T12:18:00Z", 
             "Maximum": 0.34000000000000002, 
             "Unit": "Percent"
         }, 

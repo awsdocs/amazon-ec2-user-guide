@@ -26,6 +26,65 @@ To use Kernel Live Patching on Amazon Linux 2, you must use:
 + Kernel version `4.14` or `5.10` on the `x86_64` architecture
 + Kernel version `5.10` on the `ARM64` architecture
 
+### <a name="aml_live_patching"></a>
+
+**Policy Requirements**
+
+<a name="aml-live-patching"></a>To download packages from Amazon Linux repositories, Amazon Elastic Compute Cloud needs access to service\-owned Amazon S3 buckets\. If you are using a Amazon Virtual Private Cloud \(VPC\) endpoint for Amazon S3 in your environment, you need to ensure that your VPC endpoint policy allows access to those public buckets\. 
+
+The table describes each of the Amazon S3 buckets that EC2 might need to access for Kernel Live Patching\.
+
+
+| S3 bucket ARN | Description | 
+| --- | --- | 
+|  arn:aws:s3:::packages\.region\.amazonaws\.com/\*  |  Amazon S3 bucket containing Amazon Linux AMI packages   | 
+|  arn:aws:s3:::repo\.region\.amazonaws\.com/\*  |  Amazon S3 bucket containing Amazon Linux AMI repositories  | 
+|  arn:aws:s3:::amazonlinux\.region\.amazonaws\.com/\*  |  Amazon S3 bucket containing Amazon Linux 2 repositories  | 
+|  arn:aws:s3:::amazonlinux\-2\-repos\-region/\*  |  Amazon S3 bucket containing Amazon Linux 2 repositories   | 
+
+### <a name="s3_live_patch_permissions"></a>
+
+The following policy illustrates how to restrict access to identities and resources that belong to your organization and provide access to the Amazon S3 buckets required for Kernel Live Patching\. Replace *region*, *principal\-org\-id* and *resource\-org\-id* with your organization’s values\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowRequestsByOrgsIdentitiesToOrgsResources",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "*",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:PrincipalOrgID": "principal-org-id",
+          "aws:ResourceOrgID": "resource-org-id"
+        }
+      }
+    },
+    {
+      "Sid": "AllowAccessToAmazonLinuxAMIRepositories",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::packages.region.amazonaws.com/*",
+        "arn:aws:s3:::repo.region.amazonaws.com/*",
+        "arn:aws:s3:::amazonlinux.region.amazonaws.com/*",
+        "arn:aws:s3:::amazonlinux-2-repos-region/*"
+      ]
+    }
+  ]
+}
+```
+
 ## Work with Kernel Live Patching<a name="working-with-live-patching"></a>
 
 You can enable and use Kernel Live Patching on individual instances using the command line on the instance itself, or you can enable and use Kernel Live Patching on a group of managed instances using AWS Systems Manager\.

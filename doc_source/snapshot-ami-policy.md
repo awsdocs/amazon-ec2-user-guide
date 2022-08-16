@@ -39,7 +39,11 @@ Use one of the following procedures to create a snapshot lifecycle policy\.
 
 1. For **Policy tags**, add the tags to apply to the lifecycle policy\. You can use these tags to identify and categorize your policies\.
 
-1. For **Policy status after creation**, choose **Enable policy** to start the policy runs at the next scheduled time, or **Disable policy** to prevent the policy from running\. If you do not enable the policy now, it will not start creating snapshots until you manually enable it after creation\.
+1. For **Policy status**, choose **Enable** to start the policy runs at the next scheduled time, or **Disable policy** to prevent the policy from running\. If you do not enable the policy now, it will not start creating snapshots until you manually enable it after creation\.
+
+1. \(Only for policies that target instances\) By default, Amazon Data Lifecycle Manager will create snapshots of all the volumes attached to targeted instances\. However, you can choose to create snapshots of a subset of the attached volumes\. In the **Parameters** section, do the following:
+   + If you do not want to create snapshots of the root volumes attached to the targeted instances, select **Exclude root volume**\. If you select this option, only the data \(non\-root\) volumes that are attached to targeted instances will be included in the multi\-volume snapshot sets\.
+   + If you want to create snapshots of a subset of the data \(non\-root\) volumes attached to the targeted instances, select **Exclude specific data volumes**, and then specify the tags that are to be used to identify the data volumes that should not be snapshotted\. Amazon Data Lifecycle Manager will not create snapshots of data volumes that have any of the specified tags\. Amazon Data Lifecycle Manager will create snapshots only of data volumes that do not have any of the specified tags\.
 
 1. Choose **Next**\.
 
@@ -110,6 +114,9 @@ You can only share snapshots that are unencrypted or that are encrypted using a 
 
 ------
 #### [ Old console ]
+
+**Note**  
+You can't exclude data volumes using the old console\.
 
 **To create a snapshot policy**
 
@@ -228,7 +235,7 @@ The following is an example of the `policyDetails.json` file\.
 ]}
 ```
 
-Upon success, the command returns the ID of the newly created policy\. The following is example output\.
+If the request succeeds, the command returns the ID of the newly created policy\. The following is example output\.
 
 ```
 {
@@ -236,7 +243,64 @@ Upon success, the command returns the ID of the newly created policy\. The follo
 }
 ```
 
-**Example 2—Snapshot lifecycle policy that automates local snapshots of Outpost resources**  
+**Example 2—Snapshot lifecycle policy that targets instances and creates snapshots of a subset of data \(non\-root\) volumes**  
+This example creates a snapshot lifecycle policy that creates multi\-volume snapshot sets from instances tagged with `code=production`\. The policy includes only one schedule\. The schedule does not create snapshots of the data volumes that are tagged with `code=temp`\.
+
+```
+aws dlm create-lifecycle-policy \
+--description "My volume policy" \
+--state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+--policy-details file://policyDetails.json
+```
+
+The following is an example of the `policyDetails.json` file\.
+
+```
+{
+    "PolicyType": "EBS_SNAPSHOT_MANAGEMENT",
+    "ResourceTypes": [
+        "INSTANCE"
+    ],
+    "TargetTags": [{
+        "Key": "code",
+        "Value": "production"
+    }],
+    "Parameters": {
+        "ExcludeDataVolumeTags": [{
+            "Key": "code",
+            "Value": "temp"
+        }]
+    },
+    "Schedules": [{
+        "Name": "DailySnapshots",
+        "TagsToAdd": [{
+            "Key": "type",
+            "Value": "myDailySnapshot"
+        }],
+        "CreateRule": {
+            "Interval": 24,
+            "IntervalUnit": "HOURS",
+            "Times": [
+                "03:00"
+            ]
+        },
+        "RetainRule": {
+            "Count": 5
+        },
+        "CopyTags": false
+    }
+]}
+```
+
+If the request succeeds, the command returns the ID of the newly created policy\. The following is example output\.
+
+```
+{
+   "PolicyId": "policy-0123456789abcdef0"
+}
+```
+
+**Example 3—Snapshot lifecycle policy that automates local snapshots of Outpost resources**  
 This example creates a snapshot lifecycle policy that creates snapshots of volumes tagged with `team=dev` across all of your Outposts\. The policy creates the snapshots on the same Outposts as the source volumes\. The policy creates snapshots every `12` hours starting at `00:00` UTC\.
 
 ```
@@ -277,7 +341,7 @@ The following is an example of the `policyDetails.json` file\.
 ]}
 ```
 
-**Example 3—Snapshot lifecycle policy that creates snapshots in a Region and copies them to an Outpost**  
+**Example 4—Snapshot lifecycle policy that creates snapshots in a Region and copies them to an Outpost**  
 The following example policy creates snapshots of volumes that are tagged with `team=dev`\. Snapshots are created in the same Region as the source volume\. Snapshots are created every `12` hours starting at `00:00` UTC, and retains a maximum of `1` snapshot\. The policy also copies the snapshots to Outpost `arn:aws:outposts:us-east-1:123456789012:outpost/op-1234567890abcdef0`, encrypts the copied snapshots using the default encryption KMS key, and retains the copies for `1` month\.
 
 ```
@@ -336,6 +400,9 @@ The following considerations apply when **creating snapshot lifecycle policies**
 + Target resource tags are case sensitive\.
 + If you create a policy that targets instances, and new volumes are attached to a target instance after the policy has been created, the newly\-added volumes are included in the backup at the next policy run\. All volumes attached to the instance at the time of the policy run are included\.
 + If you create a policy with a custom cron\-based schedule that is configured to create only one snapshot, the policy will not automatically delete that snapshot when the retention threshold is reached\. You must manually delete the snapshot if it is no longer needed\.
+
+The following considerations apply to **excluding root volumes and data \(non\-root\) volumes**:
++ If you choose to exclude boot volumes and you specify tags that consequently exclude all of the additional data volumes attached to an instance, then Amazon Data Lifecycle Manager will not create any snapshots for the affected instance, and it will emit a `SnapshotsCreateFailed` CloudWatch metric\. For more information, see [Monitor your policies using CloudWatch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-dlm-cw-metrics.html)\.
 
 The following considerations apply to **deleting volumes or terminating instances targeted by snapshot lifecycle policies**:
 + If you delete a volume or terminate an instance targeted by a policy with a count\-based retention schedule, the policy no longer manages the snapshots that it previously created from the deleted volume or terminated instance\. You must manually delete those earlier snapshots if they are no longer needed\.

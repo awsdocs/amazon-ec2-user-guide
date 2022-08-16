@@ -28,7 +28,7 @@ The following steps describe how to bring your own IP address range for use in A
 + The most specific IPv6 address range that you can bring is /48 for CIDRs that are publicly advertised, and /56 for CIDRs that are [not publicly advertised](#byoip-provision-non-public)\.
 + ROAs are not required for CIDR ranges that are not publicly advertised, but the RDAP records still need to be updated\.
 + You can bring each address range to one Region at a time\.
-+ You can bring a total of five BYOIP IPv4 and IPv6 address ranges per Region to your AWS account\. You cannot adjust the quotas for BYOIP CIDRs using the Service Quotas console, but you can contact the AWS Support Center as described in [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.
++ You can bring a total of five BYOIP IPv4 and IPv6 address ranges per Region to your AWS account\. You cannot adjust the quotas for BYOIP CIDRs using the Service Quotas console, but you can request a quota increase by contacting the AWS Support Center as described in [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.
 + You cannot share your IP address range with other accounts using AWS RAM unless you use Amazon VPC IP Address Manager \(IPAM\) and integrate IPAM with AWS Organizations\. For more information, see [Integrate IPAM with AWS Organizations](https://docs.aws.amazon.com/vpc/latest/ipam/enable-integ-ipam.html) in the *Amazon VPC IPAM User Guide*\.
 + The addresses in the IP address range must have a clean history\. We might investigate the reputation of the IP address range and reserve the right to reject an IP address range if it contains an IP address that has a poor reputation or is associated with malicious behavior\.
 + AWS doesn’t support legacy allocations\.
@@ -38,7 +38,7 @@ The following steps describe how to bring your own IP address range for use in A
 
 ## Onboarding prerequisites for your BYOIP address range<a name="prepare-for-byoip"></a>
 
-The onboarding process for BYOIP has two phases, for which you must perform three steps\. These steps correspond to the steps depicted in the following diagram\.
+The onboarding process for BYOIP has two phases, for which you must perform three steps\. These steps correspond to the steps depicted in the following diagram\. We include manual steps in this documentation, but your RIR might offer managed services to help you with these steps\.
 
 **Preparation phase**
 

@@ -255,11 +255,15 @@ Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://
 
 1. For **Snapshot destination**, choose **AWS Outpost**\. The snapshots will be created on the same Outpost as the source instance\. The **Outpost ARN** shows the ARN of the destination Outpost\.
 
-1. \(Optional\) To exclude the root volume from being snapshotted, select **Exclude root volume**\.
+1. To exclude the instance's root volume from the multi\-volume snapshot set, select **Exclude root volume**\. If you do this, Amazon EBS will not create a snapshot of the instance's root volume\.
 
-1. \(Optional\) To automatically copy tags from the source volume to the snapshots, select **Copy tags from volume**\. This sets snapshot metadata—such as access policies, attachment information, and cost allocation—to match the source volume\.
+1. To exclude specific data volumes from the multi\-volume snapshot set, select **Exclude specific data volumes**\. The **Attached data volumes** section lists all of the data volumes that are curretntly attached to the selected instance\.
 
-1. \(Optional\) Choose **Add Tag** to add tags to your snapshot\. For each tag, provide a tag key and a tag value\.
+   In the **Attached data volumes** section, deselect the data volumes to exclude from the multi\-volume snapshot set\. Only the volumes that remain selected will be included in the multi\-volume snapshot set\.
+
+1. \(Optional\) To automatically copy tags from the source volumes to the corresponding snapshots, for **Copy tags from source volume**, select **Copy tags**\. This sets snapshot metadata—such as access policies, attachment information, and cost allocation—to match the source volume\.
+
+1. \(Optional\) To assign additional custom tags to the snapshots, in the **Tags** section, choose **Add tag**, and then enter the key\-value pair\. You can add up to 50 tags\.
 
 1. Choose **Create Snapshot**\.
 

@@ -27,7 +27,7 @@ To manage tags for snapshots in the Recycle Bin, IAM users need the following ad
 
 To use the Recycle Bin console, IAM users need the `ec2:DescribeTags` permission\.
 
-The following is an example IAM policy\. It includes the `ec2:DescribeTags` permission for console users, and it includes the `ec2:CreateTags` and `ec2:CreateTags` permissions for managing tags\. If the permissions are not needed, you can remove them from the policy\.
+The following is an example IAM policy\. It includes the `ec2:DescribeTags` permission for console users, and it includes the `ec2:CreateTags` and `ec2:DeleteTags` permissions for managing tags\. If the permissions are not needed, you can remove them from the policy\.
 
 ```
 {

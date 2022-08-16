@@ -8,4 +8,5 @@ You can also see status of specific events that are scheduled for your instances
 
 **Topics**
 + [Status checks for your instances](monitoring-system-instance-status-check.md)
++ [State change events for your instances](monitoring-instance-state-changes.md)
 + [Scheduled events for your instances](monitoring-instances-status-check_sched.md)

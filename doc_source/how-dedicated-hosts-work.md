@@ -385,6 +385,8 @@ To modify a Dedicated Host to support multiple instance types, you must first st
 
 To modify a Dedicated Host that supports multiple instance types to support only a single instance type, the host must either have no running instances, or the running instances must be of the instance type that you want the host to support\. For example, to modify a host that supports multiple instance types in the `m5` instance family to support only `m5.large` instances, the Dedicated Host must either have no running instances, or it must have only `m5.large` instances running on it\.
 
+If you allocate a host for a virtualized instance type, you can't modify the instance type to a `.metal` instance type after the host is allocated\. For example, if you allocate a host for the `m5.large` instance type, you can't modify the instance type to `m5.metal`\. Similarly, if you allocate a host for a `.metal` instance type, you can't modify the instance type to a virtualized instance type after the host is allocated\. For example, if you allocate a host for the `m5.metal` instance type, you can't modify the instance type to `m5.large`\.
+
 You can modify the supported instance types using one of the following methods\.
 
 ------

@@ -6,7 +6,30 @@ To hibernate an instance, you must first enable it for hibernation while launchi
 You can't enable or disable hibernation for an instance after you launch it\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To enable hibernation using the console**
+
+1. Follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-quickly-launch-instance)\.
+
+1. Under **Application and OS Images \(Amazon Machine Image\)**, select an AMI that supports hibernation\. For more information about supported AMIs, see [Hibernation prerequisites](hibernating-prerequisites.md)\.
+
+1. Under **Instance type**, select a supported instance type\. For information about supported instance types, see [Hibernation prerequisites](hibernating-prerequisites.md)\.
+
+1. Under **Configure storage**, choose **Advanced** \(at the right\), and specify the following information for the root volume:
+   + For **Size \(GiB\)**, enter the EBS root volume size\. The volume must be large enough to store the RAM contents and accommodate your expected usage\.
+   + For **Volume type**, select a supported EBS volume type: General Purpose SSD \(`gp2` and `gp3`\) or Provisioned IOPS SSD \(`io1` and `io2`\)\.
+   + For **Encrypted**, choose **Yes**\. If you enabled encryption by default in this AWS Region, **Yes** is selected\.
+   + For **KMS key**, select the encryption key for the volume\. If you enabled encryption by default in this AWS Region, the default encryption key is selected\.
+
+   For more information about the prerequisites for the root volume, see [Hibernation prerequisites](hibernating-prerequisites.md)\.
+
+1. Expand **Advanced details**, and for **Stop \- Hibernate behavior**, choose **Enable**\.
+
+1. In the **Summary** panel, review your instance configuration, and then choose **Launch instance**\. For more information, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\.
+
+------
+#### [ Old console ]
 
 **To enable hibernation using the console**
 

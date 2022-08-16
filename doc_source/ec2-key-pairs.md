@@ -1,6 +1,6 @@
 # Amazon EC2 key pairs and Linux instances<a name="ec2-key-pairs"></a>
 
-A key pair, consisting of a public key and a private key, is a set of security credentials that you use to prove your identity when connecting to an Amazon EC2 instance\. Amazon EC2 stores the public key on your instance, and you store the private key\. For Linux instances, the private key allows you to securely SSH into your instance\.
+A key pair, consisting of a public key and a private key, is a set of security credentials that you use to prove your identity when connecting to an Amazon EC2 instance\. Amazon EC2 stores the public key on your instance, and you store the private key\. For Linux instances, the private key allows you to securely SSH into your instance\. As an alternative to key pairs, you can use [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html) to connect to your instance with an interactive one\-click browser\-based shell or the AWS Command Line Interface \(AWS CLI\)\.
 
 Anyone who possesses your private key can connect to your instances, so it's important that you store your private key in a secure place\.
 

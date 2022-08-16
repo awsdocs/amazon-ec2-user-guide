@@ -1,6 +1,46 @@
 # Launch an AWS Marketplace instance<a name="launch-marketplace-console"></a>
 
-You can subscribe to an AWS Marketplace product and launch an instance from the product's AMI using the Amazon EC2 launch wizard\. For more information about paid AMIs, see [Paid AMIs](paid-amis.md)\. To cancel your subscription after launch, you first have to terminate all instances running from it\. For more information, see [Manage your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\. 
+You can subscribe to an AWS Marketplace product and launch an instance from the product's AMI using the Amazon EC2 launch wizard\. For more information about paid AMIs, see [Paid AMIs](paid-amis.md)\. To cancel your subscription after launch, you first have to terminate all instances running from it\. For more information, see [Manage your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\.
+
+------
+#### [ New console ]
+
+**To launch an instance from the AWS Marketplace using the launch wizard**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. From the Amazon EC2 console dashboard, choose **Launch instance**\.
+
+1. \(Optional\) Under **Name and tags**, for **Name**, enter a descriptive name for your instance\.
+
+1. Under **Application and OS Images \(Amazon Machine Image\)**, choose **Browse more AMIs**, and then choose the **AWS Marketplace AMIs** tab\. Find a suitable AMI by browsing the categories or using the search functionality\. To choose a product, choose **Select**\.
+
+1. A dialog box opens with an overview of the product you've selected\. You can view the pricing information, as well as any other information that the vendor has provided\. When you're ready, choose **Continue**\.
+**Note**  
+You're not charged for using the product until you have launched an instance with the AMI\. Take note of the pricing for each supported instance type when you select an instance type\. Additional taxes might also apply to the product\.
+
+1. For **Instance type**, select an instance type for your instance\. The instance type defines the hardware configuration and size of the instance to launch\.
+
+1. Under **Key pair \(login\)**, for **Key pair name**, choose an existing key pair or create a new one\.
+
+1. Under **Network settings**, **Firewall \(security groups\)**, take note of the new security group that was created according to the vendor's specifications for the product\. The security group might include rules that allow all IPv4 addresses \(`0.0.0.0/0`\) access on SSH \(port 22\) on Linux or RDP \(port 3389\) on Windows\. We recommend that you adjust these rules to allow only a specific address or range of addresses to access your instance over those ports\.
+
+1. You can use the other fields on the screen to configure your instance, add storage, and add tags\. For information about the different options that you can configure, see [Launch an instance using defined parameters](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters)\.
+
+1. In the **Summary** panel, under **Software Image \(AMI\)**, check the details of the AMI from which you're about to launch the instance\. Also check the other configuration details that you specified\. When you're ready to launch your instance, choose **Launch instance**\.
+
+1. Depending on the product you've subscribed to, the instance might take a few minutes or more to launch\. You are first subscribed to the product before your instance can launch\. If there are any problems with your credit card details, you will be asked to update your account details\. When the launch confirmation page displays, choose **View all instances** to go to the **Instances** page\. 
+**Note**  
+You are charged the subscription price as long as your instance is in the `running` state, even if it is idle\. If your instance is stopped, you might still be charged for storage\.
+
+1. When your instance is in the `running` state, you can connect to it\. To do this, select your instance in the list, choose **Connect**, and choose a connection option\. For more information about connecting to your instance, see [Connect to your Linux instance](AccessingInstances.md)\.
+**Important**  
+Check the vendor's usage instructions carefully, as you might need to use a specific user name to connect to your instance\. For information about accessing your subscription details, see [Manage your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\.
+
+1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshoot instance launch issues](troubleshooting-launch.md)\.
+
+------
+#### [ Old console ]
 
 **To launch an instance from the AWS Marketplace using the launch wizard**
 
@@ -33,6 +73,8 @@ You are charged the subscription price as long as your instance is running, even
 Check the vendor's usage instructions carefully, as you may need to use a specific user name to log in to the instance\. For more information about accessing your subscription details, see [Manage your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\.
 
 1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshoot instance launch issues](troubleshooting-launch.md)\.
+
+------
 
 ## Launch an AWS Marketplace AMI instance using the API and CLI<a name="launch-marketplace-cli-api"></a>
 

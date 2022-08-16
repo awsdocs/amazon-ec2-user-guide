@@ -87,6 +87,7 @@ By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(u
 1. Choose **Yes, Terminate** when prompted for confirmation\.
 
 ------
+#### [ AWS CLI ]
 
 **To terminate an instance using the command line**
 
@@ -94,8 +95,10 @@ You can use one of the following commands\. For more information about these com
 + [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\)
 + [Remove\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
+------
+
 **To run a controlled fault injection experiment**  
-You can use AWS Fault Injection Simulator User Guide to test how your application responds when your instance is terminated\. For more information, see the [AWS Fault Injection Simulator User Guide User Guide](https://docs.aws.amazon.com/fis/latest/userguide)\.
+You can use AWS Fault Injection Simulator to test how your application responds when your instance is terminated\. For more information, see the [AWS Fault Injection Simulator User Guide](https://docs.aws.amazon.com/fis/latest/userguide)\.
 
 ## Enable termination protection<a name="Using_ChangingDisableAPITermination"></a>
 
@@ -143,6 +146,9 @@ By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(u
 
 You can update the `InstanceInitiatedShutdownBehavior` attribute using the Amazon EC2 console or the command line\. The `InstanceInitiatedShutdownBehavior` attribute only applies when you perform a shutdown from the operating system of the instance itself; it does not apply when you stop an instance using the `StopInstances` API or the Amazon EC2 console\.
 
+------
+#### [ Console ]
+
 **To change the shutdown behavior of an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -155,11 +161,16 @@ You can update the `InstanceInitiatedShutdownBehavior` attribute using the Amazo
 
 1. To change the behavior, select **Stop** or **Terminate** from **Shutdown behavior** and then choose **Apply**\.
 
+------
+#### [ AWS CLI ]
+
 **To change the shutdown behavior of an instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 ## Preserve Amazon EBS volumes on instance termination<a name="preserving-volumes-on-termination"></a>
 
@@ -210,22 +221,22 @@ When you launch an EBS\-backed instance, you can use one of the following comman
 + [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
 + [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-For example, add the following option to your `run-instances` command:
+In the block device mappings for the volumes that you want to persist, include `--DeleteOnTermination`, and specify `false`\.
+
+For example, to persist a volume add the following option to your `run-instances` command:
 
 ```
 --block-device-mappings file://mapping.json
 ```
 
-Specify the following in `mapping.json`:
+In `mapping.json`, specify the device name, for example `/dev/sda1` or `/dev/xvda`, and for `--DeleteOnTermination`, specify `false`\.
 
 ```
 [
   {
-    "DeviceName": "/dev/sda1",
+    "DeviceName": "device_name",
     "Ebs": {
-      "DeleteOnTermination": false,
-      "SnapshotId": "snap-1234567890abcdef0",
-      "VolumeType": "gp2"
+      "DeleteOnTermination": false
     }
   }
 ]
@@ -243,12 +254,12 @@ For example, use the following command:
 aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --block-device-mappings file://mapping.json
 ```
 
-Specify the following in `mapping.json`:
+In `mapping.json`, specify the device name, for example `/dev/sda1` or `/dev/xvda`, and for `--DeleteOnTermination`, specify `false`\.
 
 ```
 [
   {
-    "DeviceName": "/dev/sda1",
+    "DeviceName": "device_name",
     "Ebs": {
       "DeleteOnTermination": false
     }

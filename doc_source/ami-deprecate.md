@@ -75,10 +75,10 @@ Expected output
 
 ### Last launched time<a name="ami-last-launched-time"></a>
 
-`LastLaunchedTime` is a timestamp that indicates when your AMI was last used to launch an instance\. AMIs that have not been used recently might be good candidates for deprecation or [deregistering](deregister-ami.md)\.
+`LastLaunchedTime` is a timestamp that indicates when your AMI was last used to launch an instance\. AMIs that have not been used recently to launch an instance might be good candidates for deprecation or [deregistering](deregister-ami.md)\.
 
 **Note**  
-When the AMI is used, there is a 24\-hour delay before that usage is reported\. 
+When an AMI is used to launch an instance, there is a 24\-hour delay before that usage is reported\. 
 `lastLaunchedTime` data is available starting April 2017\. 
 
 ------

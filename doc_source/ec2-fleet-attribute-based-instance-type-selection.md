@@ -87,7 +87,7 @@ When creating the EC2 Fleet, if you set `TargetCapacityUnitType` to `vcpu` or `m
 
   When using the CLI, the launch template overrides will override the launch template\. For example, if the launch template contains an instance type and the launch template override contains instance attributes, the instances that are identified by the instance attributes will override the instance type in the launch template\.
 + When using the CLI, when you specify instance attributes as overrides, you can't also specify weights or priorities\.
-+ You can specify a maximum of three `InstanceRequirements` structures in a request configuration\.
++ You can specify a maximum of four `InstanceRequirements` structures in a request configuration\.
 
 ## Create an EC2 Fleet with attribute\-based instance type selection<a name="abs-create-ec2-fleet"></a>
 
