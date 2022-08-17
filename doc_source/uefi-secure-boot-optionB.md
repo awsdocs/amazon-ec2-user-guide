@@ -32,7 +32,7 @@ You can create the variable store *offline* without a running instance by using 
 Use [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to pass your UEFI variable store data\. For the `--uefi-data` parameter, specify your binary blob, and for the `--boot-mode` parameter, specify `uefi`\.
 
 ```
-aws register-image \
+aws ec2 register-image \
     --name uefi_sb_tpm_register_image_test \
     --uefi-data $(cat your_binary_blob.bin) \
     --block-device-mappings "DeviceName=/dev/sda1,Ebs= {SnapshotId=snap-0123456789example,DeleteOnTermination=true}" \
