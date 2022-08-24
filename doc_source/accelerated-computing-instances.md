@@ -27,7 +27,7 @@ If you require high processing capability, you'll benefit from using accelerated
 GPU\-based instances provide access to NVIDIA GPUs with thousands of compute cores\. You can use these instances to accelerate scientific, engineering, and rendering applications by leveraging the CUDA or Open Computing Language \(OpenCL\) parallel computing frameworks\. You can also use them for graphics applications, including game streaming, 3\-D application streaming, and other graphics workloads\.
 
 **G5 instances**  
-G5 instances use NVIDIA A10G GPUs and provide high performance for graphics\-intensive applications such as remote workstations, video rendering, and cloud gaming, and deep learning models for applications such as natural language processing, computer vision, and recommendation engines\. These instances feature up to 8 NVIDIA A10G GPUs, second generation AMD EPY processors, up to 100 Gbps of network bandwidth, and up to 7\.6 TB of local NVMe SSD storage\.
+G5 instances use NVIDIA A10G GPUs and provide high performance for graphics\-intensive applications such as remote workstations, video rendering, and cloud gaming, and deep learning models for applications such as natural language processing, computer vision, and recommendation engines\. These instances feature up to 8 NVIDIA A10G GPUs, second generation AMD EPYC processors, up to 100 Gbps of network bandwidth, and up to 7\.6 TB of local NVMe SSD storage\.
 
 For more information, see [Amazon EC2 G5 Instances](http://aws.amazon.com/ec2/instance-types/g5/)\.
 
