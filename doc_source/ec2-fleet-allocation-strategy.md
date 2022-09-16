@@ -1,9 +1,13 @@
 # Allocation strategies for Spot Instances<a name="ec2-fleet-allocation-strategy"></a>
 
-The allocation strategy for your EC2 Fleet determines how it fulfills your request for Spot Instances from the possible Spot capacity pools represented by its launch specifications\. The following are the allocation strategies that you can specify in your fleet:
+Your launch configuration determines all the possible Spot capacity pools \(instance types and Availability Zones\) from which EC2 Fleet can launch Spot Instances\. However, when launching instances, EC2 Fleet uses the allocation strategy that you specify to pick the specific pools from all your possible pools\.
+
+You can specify one of the following allocation strategies:
 
 `lowest-price`  
-The Spot Instances come from the Spot capacity pool with the lowest price\. This is the default strategy\.
+The Spot Instances come from the lowest\-price pool that has available capacity\. This is the default strategy\.  
+If the cheapest pool doesn't have available capacity, the Spot Instances come from the next cheapest pool that has available capacity\.  
+If a pool runs out of capacity before fulfilling your desired capacity, EC2 Fleet will continue to fulfill your request by drawing from the next cheapest pool\. To ensure that your desired capacity is met, you might receive Spot Instances from several pools\.
 
 `diversified`  
 The Spot Instances are distributed across all Spot capacity pools\.
@@ -14,7 +18,8 @@ With Spot Instances, pricing changes slowly over time based on long\-term trends
 Alternatively, you can use the `capacity-optimized-prioritized` allocation strategy with a priority parameter to order instance types from highest to lowest priority\. You can set the same priority for different instance types\. EC2 Fleet will optimize for capacity first, but will honor instance type priorities on a best\-effort basis \(for example, if honoring the priorities will not significantly affect EC2 Fleet's ability to provision optimal capacity\)\. This is a good option for workloads where the possibility of disruption must be minimized and the preference for certain instance types matters\. Using priorities is supported only if your fleet uses a launch template\. Note that when you set the priority for `capacity-optimized-prioritized`, the same priority is also applied to your On\-Demand Instances if the On\-Demand `AllocationStrategy` is set to `prioritized`\.
 
 `InstancePoolsToUseCount`  
-The Spot Instances are distributed across the number of Spot capacity pools that you specify\. This parameter is valid only when used in combination with `lowest-price`\.
+The number of Spot pools across which to allocate your target Spot capacity\. Valid only when the allocation strategy is set to `lowest-price`\. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify\.  
+Note that EC2 Fleet attempts to draw Spot Instances from the number of pools that you specify on a best effort basis\. If a pool runs out of Spot capacity before fulfilling your target capacity, EC2 Fleet will continue to fulfill your request by drawing from the next cheapest pool\. To ensure that your target capacity is met, you might receive Spot Instances from more than the number of pools that you specified\. Similarly, if most of the pools have no Spot capacity, you might receive your full target capacity from fewer than the number of pools that you specified\.
 
 ## Maintaining target capacity<a name="ec2-fleet-maintain-fleet-capacity"></a>
 

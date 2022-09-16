@@ -9,5 +9,6 @@ The following tutorials show you how to perform common tasks using EC2 instances
 + [Configure SSL/TLS on Amazon Linux 2022](SSL-on-amazon-linux-2022.md)
 + [Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)
 + [Configure SSL/TLS with the Amazon Linux AMI](SSL-on-amazon-linux-ami.md)
++ [Increase size of Amazon EBS volume](modify-ebs-volume-on-instance.md)
 + [Host a WordPress blog on Amazon Linux 2022](hosting-wordpress-aml-2022.md)
 + [Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)

@@ -1,6 +1,6 @@
 # Set up EC2 Instance Connect<a name="ec2-instance-connect-set-up"></a>
 
-To use EC2 Instance Connect to connect to an instance, you need to configure every instance that will support using Instance Connect \(this is a one\-time requirement for each instance\), and you need to grant permission to every IAM principal that will use Instance Connect\. After completing the following setup tasks, you can [connect to your instance using EC2 Instance Connect](ec2-instance-connect-methods.md)\.
+To use EC2 Instance Connect to connect to an instance, you need to configure every instance that will support a connection using Instance Connect \(this is a one\-time requirement for each instance\), and you need to grant permission to every IAM principal that will use Instance Connect\. After completing the following setup tasks, you can [connect to your instance using EC2 Instance Connect](ec2-instance-connect-methods.md)\.
 
 **Topics**
 + [Task 1: Configure network access to an instance](#ec2-instance-connect-setup-security-group)
@@ -26,7 +26,7 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
 + **Install the AWS CLI on your local computer\.**
 
   To configure the IAM permissions, you must use the AWS CLI\. For more information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
-+ **\[Ubuntu\] Install the AWS CLI on your instance\.**
++ **\(Ubuntu\) Install the AWS CLI on your instance\.**
 
   To install EC2 Instance Connect on an Ubuntu instance, you must use the AWS CLI on the instance\. For more information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 
@@ -36,7 +36,7 @@ You must configure the following network access so that your users can connect t
 + If your users will access your instance over the internet, then your instance must have a public IP address and be in a public subnet\. For more information, see [Enable internet access](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access) in the *Amazon VPC User Guide*\.
 + If your users will access your instance through the instance's private IP address, then you must establish private network connectivity to your VPC, such as by using AWS Direct Connect, AWS Site\-to\-Site VPN, or VPC peering, so that your users can reach the instance's private IP address\.
 + Ensure that the security group associated with your instance [allows inbound SSH traffic](authorizing-access-to-an-instance.md#add-rule-authorize-access) on port 22 from your IP address or from your network\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard allows incoming SSH traffic by default\. For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
-+ \(Amazon EC2 console browser\-based client\) Ensure that the security group associated with your instance allows inbound SSH traffic from the IP address range for this service\. To identify the address range, download the JSON file provided by AWS and filter for the subset for EC2 Instance Connect, using `EC2_INSTANCE_CONNECT` as the service value\. For more information about downloading the JSON file and filtering by service, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
++ \(Amazon EC2 console\) Ensure that the security group associated with your instance allows inbound SSH traffic from the IP address range for this service\. To identify the address range, download the JSON file provided by AWS and filter for the subset for EC2 Instance Connect, using `EC2_INSTANCE_CONNECT` as the service value\. For more information about downloading the JSON file and filtering by service, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
 
 ## Task 2: \(Conditional\) Install EC2 Instance Connect on an instance<a name="ec2-instance-connect-install"></a>
 
@@ -73,11 +73,10 @@ Installing Instance Connect configures the SSH daemon on the instance\. The proc
    [ec2-user ~]$ sudo yum install ec2-instance-connect
    ```
 
-   You should see four new scripts in the `/opt/aws/bin/` folder:
+   You should see three new scripts in the `/opt/aws/bin/` folder:
 
    ```
    eic_curl_authorized_keys
-   eic_harvest_hostkeys
    eic_parse_authorized_keys
    eic_run_authorized_keys
    ```
@@ -138,11 +137,10 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
    ubuntu:~$ sudo apt-get install ec2-instance-connect
    ```
 
-   You should see four new scripts in the `/usr/share/ec2-instance-connect/` folder:
+   You should see three new scripts in the `/usr/share/ec2-instance-connect/` folder:
 
    ```
    eic_curl_authorized_keys
-   eic_harvest_hostkeys
    eic_parse_authorized_keys
    eic_run_authorized_keys
    ```
@@ -175,7 +173,7 @@ For more information about the EC2 Instance Connect package, see [aws/aws\-ec2\-
 The EC2 Instance Connect CLI provides a simplified experience to connect to EC2 instances through a single command, `mssh instance_id`\. For more information, see [Connect using the EC2 Instance Connect CLI](ec2-instance-connect-methods.md#ec2-instance-connect-connecting-ec2-cli)\.
 
 **Note**  
-There is no need to install the EC2 Instance Connect CLI if users will only use the Amazon EC2 console \(browser\-based client\) or an SSH client to connect to an instance\.
+There is no need to install the EC2 Instance Connect CLI if users will only use the Amazon EC2 console or an SSH client to connect to an instance\.
 
 **To install the EC2 Instance Connect CLI package**  
 Use `[pip](https://docs.aws.amazon.com/cli/latest/userguide/install-linux.html#install-linux-pip)` to install the `ec2instanceconnectcli` package\. For more information, see [aws/aws\-ec2\-instance\-connect\-cli ](https://github.com/aws/aws-ec2-instance-connect-cli) on the GitHub website, and [https://pypi\.org/project/ec2instanceconnectcli/](https://pypi.org/project/ec2instanceconnectcli/) on the Python Package Index \(PyPI\) website\.

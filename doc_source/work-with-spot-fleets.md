@@ -483,7 +483,7 @@ You can create a Spot Fleet by using parameters that you define\.
 
    1. If you choose **Manually select instance types**, Spot Fleet provides a default list of instance types\. To select more instance types, choose **Add instance types**, select the instance types to use in your request, and choose **Select**\. To delete instance types, select the instance types and choose **Delete**\.
 
-1. For **Allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation strategy for Spot Instances](spot-fleet-allocation-strategy.md)\.
+1. For **Allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation strategies for Spot Instances](spot-fleet-allocation-strategy.md)\.
 
 1. For **Your fleet request at a glance**, review your fleet configuration, and make any adjustments if necessary\.
 

@@ -270,7 +270,7 @@ The following examples specify a maximum price for the fleet request and maximum
 
 ## Example 5: Launch a Spot Fleet using the diversified allocation strategy<a name="fleet-config5"></a>
 
-The following example uses the `diversified` allocation strategy\. The launch specifications have different instance types but the same AMI and Availability Zone or subnet\. The Spot Fleet distributes the 30 instances across the three launch specifications, such that there are 10 instances of each type\. For more information, see [Allocation strategy for Spot Instances](spot-fleet-allocation-strategy.md)\.
+The following example uses the `diversified` allocation strategy\. The launch specifications have different instance types but the same AMI and Availability Zone or subnet\. The Spot Fleet distributes the 30 instances across the three launch specifications, such that there are 10 instances of each type\. For more information, see [Allocation strategies for Spot Instances](spot-fleet-allocation-strategy.md)\.
 
 **Availability Zone**
 

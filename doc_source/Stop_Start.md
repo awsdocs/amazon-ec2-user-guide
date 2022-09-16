@@ -11,6 +11,7 @@ If you decide that you no longer need an instance, you can terminate it\. As soo
 **Topics**
 + [Overview](#instance_stop)
 + [What happens when you stop an instance](#what-happens-stop)
++ [What happens when you start an instance](#what-happens-start)
 + [Stop and start your instances](#starting-stopping-instances)
 + [Stop and start your instances on a schedule](#stop-start-ec2-instances-on-a-schedule)
 + [Enable stop protection](#Using_StopProtection)
@@ -29,14 +30,23 @@ You can modify the following attributes of an instance only when it is stopped:
 
 If you try to modify these attributes while the instance is running, Amazon EC2 returns the `IncorrectInstanceState` error\.
 
-The following happens when you stop and start an instance\.
+## What happens when you stop an instance<a name="what-happens-stop"></a>
 
-### When you stop an instance<a name="when-instance-stops"></a>
-+ The instance performs a normal shutdown and stops running\.
+When you stop an EC2 instance by using the StopInstances API \(for example, by choosing **Instance state**, **Stop instance** in the Amazon EC2 console, or by using the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) AWS CLI command\), the following is registered at the OS level:
++ The API request sends a button press event to the guest\.
++ Various system services are stopped as a result of the button press event\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
++ ACPI shutdown is initiated\.
++ The instance shuts down when the graceful shutdown process exits\. There is no configurable OS shutdown time\.
++ If the instance OS does not shut down cleanly within a few minutes, a hard shutdown is performed\.
++ The instance stops running\.
 + The instance status changes to `stopping` and then `stopped`\.
 +  \(Auto Scaling group\) If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and might terminate it and launch a replacement instance\. For more information, see [Health checks for Auto Scaling instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + \(Windows\) When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configure a Windows instance using the EC2Config service](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2config-service.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 + \(ClassicLink\) When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after starting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
+
+By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(for example, using the shutdown or poweroff command\), the instance stops\. You can change this behavior so that it terminates instead\. For more information, see [Change the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
+
+Using the halt command from an instance does not initiate a shutdown\. If used, the instance does not terminate; instead, it places the CPU into `HLT` and the instance remains running\.
 
 **When you stop an instance, the following is *lost*:**
 + Data stored in the RAM\.
@@ -50,24 +60,15 @@ The following happens when you stop and start an instance\.
 + IPv6 addresses\.
 + Elastic IP addresses associated with the instance\. Note that when the instance is stopped, we [start charging you for the associated Elastic IP addresses](elastic-ip-addresses-eip.md#eip-pricing)\.
 
-### When you start an instance<a name="when-instance-starts"></a>
+For more information, see [Differences between reboot, stop, hibernate, and terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
+
+## What happens when you start an instance<a name="what-happens-start"></a>
+
+When you start an EC2 instance by using the StartInstances API \(for example, by choosing **Instance state**, **Start instance** in the Amazon EC2 console, or by using the [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) AWS CLI command\), the following happens:
 + In most cases, the instance is migrated to a new underlying host computer \(though in some cases, it remains on the current host\)\.
 + Amazon EC2 assigns a new public IPv4 address to the instance if the instance is configured to receive a public IPv4 address\. \(To retain a public IPv4 address that never changes, you can associate an [Elastic IP address](elastic-ip-addresses-eip.md) with your instance\.\)
 
 For more information, see [Differences between reboot, stop, hibernate, and terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
-
-## What happens when you stop an instance<a name="what-happens-stop"></a>
-
-When you stop an EC2 instance by using the StopInstances API \(for example, by choosing **Instance state**, **Stop instance** in the Amazon EC2 console, or by using the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) AWS CLI command\), the following is registered at the OS level:
-+ The API request sends a button press event to the guest\.
-+ Various system services are stopped as a result of the button press event\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
-+ ACPI shutdown is initiated\.
-+ The instance shuts down when the graceful shutdown process exits\. There is no configurable OS shutdown time\.
-+ If the instance OS does not shut down cleanly within a few minutes, a hard shutdown is performed\.
-
-By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(for example, using the shutdown or poweroff command\), the instance stops\. You can change this behavior so that it terminates instead\. For more information, see [Change the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
-
-Using the halt command from an instance does not initiate a shutdown\. If used, the instance does not terminate; instead, it places the CPU into `HLT` and the instance remains running\.
 
 ## Stop and start your instances<a name="starting-stopping-instances"></a>
 

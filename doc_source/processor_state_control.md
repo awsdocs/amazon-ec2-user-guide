@@ -5,7 +5,7 @@ C\-states control the sleep levels that a core can enter when it is idle\. C\-st
 P\-states control the desired performance \(in CPU frequency\) from a core\. P\-states are numbered starting from P0 \(the highest performance setting where the core is allowed to use Intel Turbo Boost Technology to increase frequency if possible\), and they go from P1 \(the P\-state that requests the maximum baseline frequency\) to P15 \(the lowest possible frequency\)\.
 
 The following instance types provide the ability for an operating system to control processor C\-states and P\-states:
-+ General purpose: `m4.10xlarge` \| `m4.16xlarge` \| `m5.metal` \| `m5d.metal` \| `m5zn.metal` \| `m6i.metal` \| `m6id.metal`
++ General purpose: `m4.10xlarge` \| `m4.16xlarge` \| `m5.metal` \| `m5d.metal` \| `m5n.metal` \| `m5zn.metal` \| `m6i.metal` \| `m6id.metal`
 + Compute optimized: `c4.8xlarge` \| `c5.metal` \| `c5n.metal` \| `c6i.metal` \| `c6id.metal`
 + Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `r5.metal` \| `r5b.metal` \| `r5d.metal` \| `r6i.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `u-18tb1.metal` \| `u-24tb1.metal` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.metal`
 + Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `i3en.metal` \| `h1.8xlarge` \| `h1.16xlarge`

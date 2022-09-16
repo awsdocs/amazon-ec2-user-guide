@@ -4,13 +4,13 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
@@ -25,6 +25,12 @@ Amazon's trademarks and trade dress may not be used in
    + [Tutorial: Configure SSL/TLS on Amazon Linux 2022](SSL-on-amazon-linux-2022.md)
    + [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)
    + [Tutorial: Configure SSL/TLS with the Amazon Linux AMI](SSL-on-amazon-linux-ami.md)
+   + [Tutorial: Increase the size of an Amazon EBS volume on an EC2 instance](modify-ebs-volume-on-instance.md)
+      + [Step 1: Launch an EC2 instance with an added EBS volume](step1-launch-instance-with-ebs-volume.md)
+      + [Step 2: Make the data volume available for use](step2-make-data-volume-available.md)
+      + [Step 3: Increase the size of the data volume](step3-increase-size-of-data-volume.md)
+      + [Step 4: Extend the file system](step4-extend-file-system.md)
+      + [Step 5: Clean up unneeded resources](step5-clean-up.md)
    + [Tutorial: Host a WordPress blog on Amazon Linux 2022](hosting-wordpress-aml-2022.md)
    + [Tutorial: Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)
 + [Amazon Machine Images (AMI)](AMIs.md)
@@ -130,7 +136,7 @@ Amazon's trademarks and trade dress may not be used in
          + [How Spot Instances work](how-spot-instances-work.md)
          + [Spot Instance pricing history](using-spot-instances-history.md)
          + [Savings from purchasing Spot Instances](spot-savings.md)
-         + [Spot Instance requests](spot-requests.md)
+         + [Working with Spot Instances](spot-requests.md)
             + [Spot Instance request example launch specifications](spot-request-examples.md)
          + [Spot request status](spot-request-status.md)
          + [EC2 instance rebalance recommendations](rebalance-recommendations.md)
@@ -255,7 +261,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Spot Fleet request types](spot-fleet-requests.md)
       + [Spot Fleet configuration strategies](how-spot-fleet-works.md)
          + [Plan a Spot Fleet request](plan-spot-fleet.md)
-         + [Allocation strategy for Spot Instances](spot-fleet-allocation-strategy.md)
+         + [Allocation strategies for Spot Instances](spot-fleet-allocation-strategy.md)
          + [Attribute-based instance type selection for Spot Fleet](spot-fleet-attribute-based-instance-type-selection.md)
          + [On-Demand in Spot Fleet](on-demand-in-spot.md)
          + [Capacity Rebalancing](spot-fleet-capacity-rebalance.md)

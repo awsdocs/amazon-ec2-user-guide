@@ -18,6 +18,7 @@ You can't exchange Standard Reserved Instances, but you can modify them\. For mo
 If the following conditions are met, Amazon EC2 processes your exchange request\. Your Convertible Reserved Instance must be:
 + Active
 + Not pending a previous exchange request
++ Have at least 24 hours remaining before it expires
 
 The following rules apply:
 + Convertible Reserved Instances can only be exchanged for other Convertible Reserved Instances currently offered by AWS\.

@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-| We are retiring EC2\-Classic on August 15, 2022\. We recommend that you [migrate from EC2\-Classic to a VPC](vpc-migrate.md)\. | 
+| We are retiring EC2\-Classic\. We recommend that you [migrate from EC2\-Classic to a VPC](vpc-migrate.md)\. | 
 
 ClassicLink allows you to link EC2\-Classic instances to a VPC in your account, within the same Region\. If you associate the VPC security groups with a EC2\-Classic instance, this enables communication between your EC2\-Classic instance and instances in your VPC using private IPv4 addresses\. ClassicLink removes the need to make use of public IPv4 addresses or Elastic IP addresses to enable communication between instances in these platforms\.
 

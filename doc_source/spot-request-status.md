@@ -8,6 +8,7 @@ At each step of the process—also called the Spot request *lifecycle*—specifi
 + [Lifecycle of a Spot request](#spot-instances-request-status-lifecycle)
 + [Get request status information](#get-spot-instance-request-status)
 + [Spot request status codes](#spot-instance-request-status-understand)
++ [EC2 Spot Instance Request Fulfillment event](#spot-request-fulfillment-event)
 
 ## Lifecycle of a Spot request<a name="spot-instances-request-status-lifecycle"></a>
 
@@ -215,3 +216,28 @@ The Spot request expired because it was not fulfilled before the specified date\
 
 `system-error`  
 There was an unexpected system error\. If this is a recurring issue, please contact AWS Support for assistance\.
+
+## EC2 Spot Instance Request Fulfillment event<a name="spot-request-fulfillment-event"></a>
+
+When a Spot Instance request is fulfilled, Amazon EC2 sends an EC2 Spot Instance Request Fulfillment event to Amazon EventBridge\. You can create a rule to take an action whenever this event occurs, such as invoking a Lambda function or notifying an Amazon SNS topic\.
+
+The following is example data for this event\.
+
+```
+{
+    "version": "0",
+    "id": "01234567-1234-0123-1234-012345678901",
+    "detail-type": "EC2 Spot Instance Request Fulfillment",
+    "source": "aws.ec2",
+    "account": "123456789012",
+    "time": "yyyy-mm-ddThh:mm:ssZ",
+    "region": "us-east-2",
+    "resources": ["arn:aws:ec2:us-east-2:123456789012:instance/i-1234567890abcdef0"],
+    "detail": {
+        "spot-instance-request-id": "sir-1a2b3c4d",
+        "instance-id": "i-1234567890abcdef0"
+    }
+}
+```
+
+For more information, see the [Amazon EventBridge User Guide](https://docs.aws.amazon.com/eventbridge/latest/userguide/)\.

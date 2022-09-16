@@ -1,6 +1,6 @@
 # Change the hostname of your Amazon Linux instance<a name="set-hostname"></a>
 
-When you launch an instance, it is assigned a hostname\. For more information about EC2 hostnames, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\. 
+When you launch an instance into a private VPC, Amazon EC2 assigns a guest OS hostname\. The type of hostname that Amazon EC2 assigns depends on your subnet settings\. For more information about EC2 hostnames, see [Amazon EC2 instance hostname types](ec2-instance-naming.md)\.
 
 A typical Amazon EC2 private DNS name for an EC2 instance configured to use IP\-based naming with an IPv4 address looks something like this: `ip-12-34-56-78.us-west-2.compute.internal`, where the name consists of the internal domain, the service \(in this case, `compute`\), the region, and a form of the private IPv4 address\. Part of this hostname is displayed at the shell prompt when you log into your instance \(for example, `ip-12-34-56-78`\)\. Each time you stop and restart your Amazon EC2 instance \(unless you are using an Elastic IP address\), the public IPv4 address changes, and so does your public DNS name, system hostname, and shell prompt\.
 
@@ -88,6 +88,8 @@ Follow this procedure if you already have a public DNS name registered\.
    [ec2-user@webserver ~]$ hostname
    webserver.localdomain
    ```
+
+You can also implement more programmatic solutions, such as specifying user data to configure your instance\. If your instance is part of an Auto Scaling group, you can use lifecycle hooks to define user data\. For more information, see [Run commands on your Linux instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) and [Lifecycle hook for instance launch](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-lifecyclehook.html#aws-resource-autoscaling-lifecyclehook--examples--Lifecycle_hook_for_instance_launch) in the *AWS CloudFormation User Guide*\.
 
 ## Change the shell prompt without affecting the hostname<a name="set-hostname-shell"></a>
 

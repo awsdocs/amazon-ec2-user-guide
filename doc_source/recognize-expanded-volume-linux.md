@@ -39,7 +39,7 @@ Use the following procedure to extend the file system for a resized volume\. Not
       In the following example output, the root volume \(`nvme0n1`\) has two partitions \(`nvme0n1p1` and `nvme0n1p128`\), while the additional volume \(`nvme1n1`\) has no partitions\.
 
       ```
-      [ec2-user ~]$ lsblk
+      [ec2-user ~]$ sudo lsblk
       NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
       nvme1n1       259:0    0  30G  0 disk /data
       nvme0n1       259:1    0  16G  0 disk
@@ -53,7 +53,7 @@ Use the following procedure to extend the file system for a resized volume\. Not
       In the following example output, the root volume \(`xvda`\) has a partition \(`xvda1`\), while the additional volume \(`xvdf`\) has no partition\.
 
       ```
-      [ec2-user ~]$ lsblk                
+      [ec2-user ~]$ sudo lsblk                
       NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
       xvda    202:0    0  16G  0 disk
       └─xvda1 202:1    0   8G  0 part /
@@ -89,8 +89,9 @@ Note the space between the device name \(`nvme0n1`\) and the partition number \(
 ------
 #### [ Xen instance example ]
 
+      For example, to extend a partition named `xvda1`, use the following command\.
+
 **Important**  
-For example, to extend a partition named `xvda1`, use the following command\.  
 Note the space between the device name \(`xvda`\) and the partition number \(`1`\)\.
 
       ```
@@ -111,7 +112,7 @@ Note the space between the device name \(`xvda`\) and the partition number \(`1`
       The following example output shows that both the volume \(`nvme0n1`\) and the partition \(`nvme0n1p1`\) are the same size \(`16 GB`\)\.
 
       ```
-      [ec2-user ~]$ lsblk
+      [ec2-user ~]$ sudo lsblk
       NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
       nvme1n1       259:0    0  30G  0 disk /data
       nvme0n1       259:1    0  16G  0 disk
@@ -125,7 +126,7 @@ Note the space between the device name \(`xvda`\) and the partition number \(`1`
       The following example output shows that both the volume \(`xvda`\) and the partition \(`xvda1`\) are the same size \(`16 GB`\)\.
 
       ```
-      [ec2-user ~]$ lsblk               
+      [ec2-user ~]$ sudo lsblk               
       NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
       xvda    202:0    0  16G  0 disk
       └─xvda1 202:1    0  16G  0 part /

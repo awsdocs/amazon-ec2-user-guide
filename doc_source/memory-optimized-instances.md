@@ -313,7 +313,7 @@ Memory optimized instances have high memory and require 64\-bit HVM AMIs to take
 
 ## Instance performance<a name="memory-compute-perf"></a>
 
-Memory optimized instances enable increased cryptographic performance through the latest Intel AES\-NI feature, support Intel Transactional Synchronization Extensions \(TSX\) to boost the performance of in\-memory transactional data processing, and support Advanced Vector Extensions 2 \(Intel AVX2\) processor instructions to expand most integer commands to 256 bits\.
+Memory optimized instances enable increased cryptographic performance through the latest Intel AES\-NI feature and support Advanced Vector Extensions 2 \(Intel AVX2\) processor instructions to expand most integer commands to 256 bits\.
 
 Some memory optimized instances provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(measured by CPU frequency\) from a core\. For more information, see [Processor state control for your EC2 instance](processor_state_control.md)\.
 

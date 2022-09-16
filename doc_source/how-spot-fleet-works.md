@@ -10,7 +10,7 @@ A *Spot capacity pool* is a set of unused EC2 instances with the same instance t
 
 **Topics**
 + [Plan a Spot Fleet request](plan-spot-fleet.md)
-+ [Allocation strategy for Spot Instances](spot-fleet-allocation-strategy.md)
++ [Allocation strategies for Spot Instances](spot-fleet-allocation-strategy.md)
 + [Attribute\-based instance type selection for Spot Fleet](spot-fleet-attribute-based-instance-type-selection.md)
 + [On\-Demand in Spot Fleet](on-demand-in-spot.md)
 + [Capacity Rebalancing](spot-fleet-capacity-rebalance.md)

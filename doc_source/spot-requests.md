@@ -1,4 +1,4 @@
-# Spot Instance requests<a name="spot-requests"></a>
+# Working with Spot Instances<a name="spot-requests"></a>
 
 To use Spot Instances, you create a Spot Instance request that includes the desired number of instances, the instance type, and the Availability Zone\. If capacity is available, Amazon EC2 fulfills your request immediately\. Otherwise, Amazon EC2 waits until your request can be fulfilled or until you cancel the request\.
 
@@ -170,38 +170,38 @@ If you choose the **Proceed without key pair \(Not recommended\)** option, you w
 
       When you choose **Customize**, the following fields appear\.
 
-   1. **Maximum price**: You can request Spot Instances at the Spot price, capped at the On\-Demand price, or you can specify the maximum amount you're willing to pay\.
+      1. **Maximum price**: You can request Spot Instances at the Spot price, capped at the On\-Demand price, or you can specify the maximum amount you're willing to pay\.
 **Warning**  
 If you specify a maximum price, your instances will be interrupted more frequently than if you choose **No maximum price**\. 
-      + **No maximum price**: Your Spot Instance will launch at the current Spot price\. The price will never exceed the On\-Demand price\. \(Recommended\)
-      + **Set your maximum price \(per instance/hour\)**: You can specify the maximum amount you're willing pay\.
-        + If you specify a maximum price that is less than the current Spot price, your Spot Instance will not launch\.
-        + If you specify a maximum price that is more than the current Spot price, your Spot Instance will launch and be charged at the current Spot price\. After your Spot Instance is running, if the Spot price rises above your maximum price, Amazon EC2 interrupts your Spot Instance\.
-        + Regardless of the maximum price you specify, you will always be charged the current Spot price\.
+         + **No maximum price**: Your Spot Instance will launch at the current Spot price\. The price will never exceed the On\-Demand price\. \(Recommended\)
+         + **Set your maximum price \(per instance/hour\)**: You can specify the maximum amount you're willing pay\.
+           + If you specify a maximum price that is less than the current Spot price, your Spot Instance will not launch\.
+           + If you specify a maximum price that is more than the current Spot price, your Spot Instance will launch and be charged at the current Spot price\. After your Spot Instance is running, if the Spot price rises above your maximum price, Amazon EC2 interrupts your Spot Instance\.
+           + Regardless of the maximum price you specify, you will always be charged the current Spot price\.
 
-        To review Spot price trends, see [Spot Instance pricing history](using-spot-instances-history.md)\.
+           To review Spot price trends, see [Spot Instance pricing history](using-spot-instances-history.md)\.
 
-   1. **Request type**: The Spot Instance request type that you choose determines what happens if your Spot Instance is interrupted\.
-      + **One\-time**: Amazon EC2 places a one\-time request for your Spot Instance\. If your Spot Instance is interrupted, the request is not resubmitted\.
-      + **Persistent request**: Amazon EC2 places a persistent request for your Spot Instance\. If your Spot Instance is interrupted, the request is resubmitted to replenish the interrupted Spot Instance\.
+      1. **Request type**: The Spot Instance request type that you choose determines what happens if your Spot Instance is interrupted\.
+         + **One\-time**: Amazon EC2 places a one\-time request for your Spot Instance\. If your Spot Instance is interrupted, the request is not resubmitted\.
+         + **Persistent request**: Amazon EC2 places a persistent request for your Spot Instance\. If your Spot Instance is interrupted, the request is resubmitted to replenish the interrupted Spot Instance\.
 
-      If you do not specify a value, the default is a one\-time request\.
+         If you do not specify a value, the default is a one\-time request\.
 
-   1. **Valid to**: The expiration date of a *persistent* Spot Instance request\.
+      1. **Valid to**: The expiration date of a *persistent* Spot Instance request\.
 
-      This field is not supported for one\-time requests\. A *one\-time* request remains active until all the instances in the request launch or you cancel the request\. 
-      + **No request expiry date**: The request remains active until you cancel it\.
-      + **Set your request expiry date**: The persistent request remains active until the date that you specify, or until you cancel it\.
+         This field is not supported for one\-time requests\. A *one\-time* request remains active until all the instances in the request launch or you cancel the request\. 
+         + **No request expiry date**: The request remains active until you cancel it\.
+         + **Set your request expiry date**: The persistent request remains active until the date that you specify, or until you cancel it\.
 
-   1. **Interruption behavior**: The behavior that you choose determines what happens when a Spot Instance is interrupted\.
-      + For persistent requests, valid values are **Stop** and **Hibernate**\. When an instance is stopped, charges for EBS volume storage apply\.
-      + For one\-time requests, only **Terminate** is valid\.
+      1. **Interruption behavior**: The behavior that you choose determines what happens when a Spot Instance is interrupted\.
+         + For persistent requests, valid values are **Stop** and **Hibernate**\. When an instance is stopped, charges for EBS volume storage apply\.
+         + For one\-time requests, only **Terminate** is valid\.
 
-      If you do not specify a value, the default is **Terminate**, which is not valid for a persistent Spot Instance request\. If you keep the default and try to launch a persistent Spot Instance request, you'll get an error\.
+         If you do not specify a value, the default is **Terminate**, which is not valid for a persistent Spot Instance request\. If you keep the default and try to launch a persistent Spot Instance request, you'll get an error\.
 
-      For more information, see [Interruption behavior](interruption-behavior.md)\.
+         For more information, see [Interruption behavior](interruption-behavior.md)\.
 
-   1. **Block duration \(minutes\)** 
+      1. **Block duration \(minutes\)** 
 **Note**  
 Spot Instances with a defined duration \(also known as Spot blocks\) are no longer available to new customers from July 1, 2021\. For customers who have previously used the feature, we will continue to support Spot Instances with a defined duration until December 31, 2022\.
 
@@ -500,7 +500,9 @@ aws ec2 request-spot-instances \
 
 After you have created a Spot Instance request, you can add tags to the Spot Instance request using the console\.
 
-1. Open the Spot console at [https://console\.aws\.amazon\.com/ec2spot](https://console.aws.amazon.com/ec2spot)\.
+Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Spot Requests**\.
 
 1. Select your Spot Instance request\.
 
@@ -522,7 +524,9 @@ aws ec2 create-tags \
 
 **To view Spot Instance request tags using the console**
 
-1. Open the Spot console at [https://console\.aws\.amazon\.com/ec2spot](https://console.aws.amazon.com/ec2spot)\.
+Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Spot Requests**\.
 
 1. Select your Spot Instance request and choose the **Tags** tab\.
 

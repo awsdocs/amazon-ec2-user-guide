@@ -274,6 +274,10 @@ The following considerations apply to AMI policies and **AMI deprecation:**
 + If an AMI is created by multiple conflicting schedules, and one or more of those schedules do not have an AMI deprecation rule, Amazon Data Lifecycle Manager will not deprecate that AMI\.
 + If an AMI is created by multiple conflicting schedules, and all of those schedules have an AMI deprecation rule, Amazon Data Lifecycle Manager will use the deprecation rule that results in the latest deprecation date\.
 
+The following considerations apply to AMI lifecycle policies that are in the **error** state:
++ For policies with age\-based retention schedules, AMIs that are set to expire while the policy is in the `error` state are retained indefinitely\. You must deregister the AMIs manually\. When you re\-enable the policy, Amazon Data Lifecycle Manager resumes deregistering AMIs as their retention periods expire\.
++ For policies with count\-based retention schedules, the policy stops creating and deregistering AMIs while it is in the `error` state\. When you re\-enable the policy, Amazon Data Lifecycle Manager resumes creating AMIs, and it resumes deregistering AMIs as the retention threshold is met\.
+
 ## Additional resources<a name="ami-additional-resources"></a>
 
 For more information, see the [ Automating Amazon EBS snapshot and AMI management using Amazon Data Lifecycle Manager](https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/) AWS storage blog\.

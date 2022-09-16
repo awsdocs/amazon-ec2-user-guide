@@ -2,8 +2,14 @@
 
 You can launch an instance in UEFI or Legacy BIOS boot mode\.
 
-**Limitations**  
-UEFI boot isn't supported in Local Zones, Wavelength Zones, or with AWS Outposts\. 
+**Topics**
++ [Limitations](#boot-limitations)
++ [Considerations](#boot-considerations)
++ [Requirements for launching an instance with UEFI](#uefi-requirements)
+
+## Limitations<a name="boot-limitations"></a>
+
+UEFI boot is not supported in Local Zones, Wavelength Zones, or with AWS Outposts\. 
 
 ## Considerations<a name="boot-considerations"></a>
 
@@ -12,7 +18,7 @@ Consider the following when launching an instance:
   + Graviton instance types: UEFI
   + Intel and AMD instance types: Legacy BIOS
 + Intel and AMD instance types that support UEFI, in addition to Legacy BIOS:
-  + All instances built on the AWS Nitro System, except: bare metal instances, DL1, G4ad, P4, u\-3tb1, u\-6tb1, u\-9tb1, u\-12tb1 and VT1
+  + All instances built on the AWS Nitro System, except: bare metal instances, DL1, G4ad, P4, u\-3tb1, u\-6tb1, u\-9tb1, u\-12tb1, and VT1
 
    
 

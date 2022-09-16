@@ -83,7 +83,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
    1. Choose **Yes**\. A window opens and you are connected to your instance\.
 **Note**  
-If you specified a passphrase when you converted your private key to PuTTY's format, you must provide that passphrase when you log in to the instance\.
+If you specified a passphrase when you converted your private key to the PuTTY format, you must provide that passphrase when you log in to the instance\.
 
 If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 

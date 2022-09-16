@@ -280,7 +280,7 @@ The Common Name is not needed for AWS provisioning\. It can be any internal or p
 Add the certificate that you previously created to the RDAP record for your RIR\. Be sure to include the `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` strings before and after the encoded portion\. All of this content must be on a single, long line\. The procedure for updating RDAP depends on your RIR:
 + For ARIN, add the certificate in the "Public Comments" section for your address range\. Do not add it to the comments section for your organization\.
 + For RIPE, add the certificate as a new "descr" field for your address range\. Do not add it to the comments section for your organization\.
-+ For APNIC, email the public key to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field for your address range\. Send the email using the APNIC authorized contact for the IP addresses\.
++ For APNIC, email the certificate to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field for your address range\. Send the email using the APNIC authorized contact for the IP addresses\.
 
 ### 3\. Create an ROA object in your RIR<a name="byoip-create-roa-object"></a>
 

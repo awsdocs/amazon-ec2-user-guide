@@ -81,5 +81,5 @@ Before you create Capacity Reservations, take note of the following limitations 
 + Capacity Reservations are not transferable from one AWS account to another\. However, you can share Capacity Reservations with other AWS accounts\. For more information, see [Work with shared Capacity Reservations](capacity-reservation-sharing.md)\.
 + Zonal Reserved Instance billing discounts do not apply to Capacity Reservations\.
 + Capacity Reservations can be created in cluster placement groups\. Spread and partition placement groups are not supported\.
-+ Capacity Reservations can't be used with Dedicated Hosts\.
++ Capacity Reservations can't be used with Dedicated Hosts\. Capacity Reservations can be used with Dedicated Instances\.
 + Capacity Reservations do not ensure that a hibernated instance can resume after you try to start it\.

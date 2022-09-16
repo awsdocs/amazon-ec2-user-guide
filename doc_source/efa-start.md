@@ -162,7 +162,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.17.2.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.18.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -190,7 +190,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.17.2.tar.gz.sig && gpg --verify ./aws-efa-installer-1.17.2.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.18.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.18.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -208,7 +208,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.17.2.tar.gz && cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.18.0.tar.gz && cd aws-efa-installer
    ```
 
 1. Install the EFA software\. Do one of the following depending on your use case\.

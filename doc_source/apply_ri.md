@@ -129,7 +129,7 @@ The Reserved Instance benefits are applied in the following way:
 
   An `m4.large` is equivalent to 4 normalized units/hour\.
 
-  You've purchased four `m4.large` regional Reserved Instances, and in total, they are equal to 16 normalized units/hour \(4x4\)\. Account A has two `m4.xlarge` instances running, which is equivalent to 16 normalized units/hour \(2x8\)\. In this case, the four `m4.large` regional Reserved Instances provide the billing benefit to an entire hour of usage of the two `m4.xlarge` instances\.
+  You've purchased four `m4.large` regional Reserved Instances, and in total, they are equal to 16 normalized units/hour \(4x4\)\. Account A has two `m4.xlarge` instances running, which is equivalent to 16 normalized units/hour \(2x8\)\. In this case, the four `m4.large` regional Reserved Instances provide the full billing benefit to the usage of the two `m4.xlarge` instances\.
 + The `c4.large` regional Reserved Instance in us\-east\-1 provides Availability Zone and instance size flexibility, because it is a regional Amazon Linux Reserved Instance with default tenancy, and applies to the `c4.xlarge` instance\. A `c4.large` instance is equivalent to 4 normalized units/hour and a `c4.xlarge` is equivalent to 8 normalized units/hour\.
 
   In this case, the `c4.large` regional Reserved Instance provides partial benefit to `c4.xlarge` usage\. This is because the `c4.large` Reserved Instance is equivalent to 4 normalized units/hour of usage, but the `c4.xlarge` instance requires 8 normalized units/hour\. Therefore, the `c4.large` Reserved Instance billing discount applies to 50% of `c4.xlarge` usage\. The remaining `c4.xlarge` usage is charged at the On\-Demand rate\.

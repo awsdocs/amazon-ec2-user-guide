@@ -47,11 +47,11 @@ If you perform a restart from the operating system on a bare metal instance, the
 
 ## View status checks<a name="viewing_status"></a>
 
-Amazon EC2 provides you with several ways to view and work with status checks\.
+You can view and work with status checks using the Amazon EC2 console or the AWS CLI\. 
 
 ### View status using the console<a name="viewing_status-new-console"></a>
 
-You can view status checks by using the AWS Management Console\.
+To view status checks using the Amazon EC2 console, perform the following steps\.
 
 ------
 #### [ New console ]

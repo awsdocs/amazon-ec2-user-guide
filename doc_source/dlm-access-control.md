@@ -4,6 +4,8 @@ An IAM user must have the following permissions to use Amazon Data Lifecycle Man
 
 **Note**  
 The `ec2:DescribeAvailabilityZones`, `ec2:DescribeRegions`, `kms:ListAliases`, and `kms:DescribeKey` permissions are required for console users only\. If console access is not required, you can remove the permissions\.
+The ARN format of the *AWSDataLifecycleManagerDefaultRole* role differs depending on whether it was created using the console or the AWS CLI\. If the role was created using the console, the ARN format is `arn:aws:iam::account_id:role/service-role/AWSDataLifecycleManagerDefaultRole`\. If the role was created using the AWS CLI, the ARN format is `arn:aws:iam::account_id:role/AWSDataLifecycleManagerDefaultRole` The following policy assumes the role was created using the AWS CLI\.
+
 
 ```
 {

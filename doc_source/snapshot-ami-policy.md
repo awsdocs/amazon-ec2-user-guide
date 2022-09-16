@@ -437,6 +437,10 @@ The following considerations apply to snapshot policies and **[Recycle Bin](recy
 
   If the snapshot is restored from the Recycle Bin after the policy's retention threshold is reached, Amazon Data Lifecycle Manager will no longer delete the snapshot\. You must manually delete the snapshot when it is no longer needed\.
 
+The following considerations apply to snapshot lifecycle policies that are in the **error** state:
++ For policies with age\-based retention schedules, snapshots that are set to expire while the policy is in the `error` state are retained indefinitely\. You must delete the snapshots manually\. When you re\-enable the policy, Amazon Data Lifecycle Manager resumes deleting snapshots as their retention periods expire\.
++ For policies with count\-based retention schedules, the policy stops creating and deleting snapshots while it is in the `error` state\. When you re\-enable the policy, Amazon Data Lifecycle Manager resumes creating snapshots, and it resumes deleting snapshots as the retention threshold is met\.
+
 ## Additional resources<a name="snapshot-additional-resources"></a>
 
 For more information, see the [ Automating Amazon EBS snapshot and AMI management using Amazon Data Lifecycle Manager](https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/) AWS storage blog\.

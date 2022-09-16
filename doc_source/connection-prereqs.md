@@ -6,6 +6,8 @@
 + [Locate the private key and set the permissions](#connection-prereqs-private-key)
 + [\(Optional\) Get the instance fingerprint](#connection-prereqs-fingerprint)
 
+For the prerequisites for connecting to a Windows instance, see [Prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html#rdp-prereqs) in the *Amazon EC2 User Guide for Windows Instances*\.
+
 ## Get information about your instance<a name="connection-prereqs-get-info-about-instance"></a>
 + **Get the ID of the instance\.**
 
@@ -55,9 +57,9 @@
 
 ## \(Optional\) Get the instance fingerprint<a name="connection-prereqs-fingerprint"></a>
 
-To protect yourself from man\-in\-the\-middle attacks, you can verify the key fingerprint when you connect to your instance\. Verifying the fingerprint is useful if you've launched your instance from a public AMI from a third party\.
+To protect yourself from man\-in\-the\-middle attacks, you can verify the key fingerprint when you connect to your instance\. Verifying the fingerprint is useful if you've launched your instance from a public AMI provided by a third party\.
 
-First you get the instance fingerprint\. Then, when you connect to the instance, you are prompted to verify the fingerprint\. You can compare the fingerprint you obtained with the fingerprint displayed for verification\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, you can confidently connect to your instance\.
+First, you get the instance fingerprint\. Then, when you connect to the instance, you are prompted to verify the fingerprint\. You can compare the fingerprint you obtained with the fingerprint displayed for verification\. If these fingerprints don't match, someone might be attempting a *man\-in\-the\-middle* attack\. If they match, you can confidently connect to your instance\.
 
 **Prerequisites for getting the instance fingerprint:**
 + To get the instance fingerprint, you must use the AWS CLI\. For information about installing the AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.

@@ -236,16 +236,18 @@ The following is a summary of network performance for accelerated computing inst
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge and smaller \| g5\.2xlarge and smaller \| g5g\.4xlarge and smaller \|  p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| vt1\.3xlarge | 3\.125 Gbps | [ENA](enhanced-networking-ena.md) | 
+| vt1\.6xlarge | 6\.25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge and smaller \| g5\.2xlarge and smaller \| g5g\.4xlarge and smaller \|  p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g5g\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g4ad\.8xlarge | 15 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  g4dn\.4xlarge and smaller \| g5\.4xlarge  \| inf1\.2xlarge and smaller  \| vt1\.3xlarge  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| g5\.8xlarge \| g5\.16xlarge \| g5g\.16xlarge \| g5g\.metal \|  inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  \| vt1\.6xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| g4dn\.4xlarge and smaller \| g5\.4xlarge  \| inf1\.2xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| g5\.8xlarge \| g5\.16xlarge \| g5g\.16xlarge \| g5g\.metal \|  inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge \| vt1\.24xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g5\.12xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g5\.24xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  g4dn\.metal \| g5\.48xlarge \| inf1\.24xlarge \| p3dn\.24xlarge  \| vt1\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  dl1\.24xlarge \|  p4d\.24xlarge \| p4de\.24xlarge | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g5\.24xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  g4dn\.metal \| g5\.48xlarge \| inf1\.24xlarge \| p3dn\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| dl1\.24xlarge \|  p4d\.24xlarge \| p4de\.24xlarge | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
 

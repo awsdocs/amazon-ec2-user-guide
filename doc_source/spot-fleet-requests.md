@@ -14,4 +14,4 @@ To specify the type of request in the Amazon EC2 console, do the following when 
 
 For more information, see [Create a Spot Fleet request using defined parameters \(console\)](work-with-spot-fleets.md#create-spot-fleet-advanced)\.
 
-Both types of requests benefit from an allocation strategy\. For more information, see [Allocation strategy for Spot Instances](spot-fleet-allocation-strategy.md)\.
+Both types of requests benefit from an allocation strategy\. For more information, see [Allocation strategies for Spot Instances](spot-fleet-allocation-strategy.md)\.

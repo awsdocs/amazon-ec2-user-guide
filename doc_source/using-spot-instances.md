@@ -4,6 +4,8 @@ A Spot Instance is an instance that uses spare EC2 capacity that is available fo
 
 Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if your applications can be interrupted\. For example, Spot Instances are well\-suited for data analysis, batch jobs, background processing, and optional tasks\. For more information, see [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot-instances/)\.
 
+For a comparison of the different purchasing options for EC2 instances, see [Instance purchasing options](instance-purchasing-options.md)\.
+
 **Topics**
 + [Concepts](#spot-features)
 + [How to get started](#spot-get-started)
@@ -83,7 +85,7 @@ We independently map Availability Zones to codes for each AWS account\. Therefor
 
 ### View savings<a name="spot-pricing-view-savings"></a>
 
-You can view the savings made from using Spot Instances for a single Spot Fleet or for all Spot Instances\. You can view the savings made in the last hour or the last three days, and you can view the average cost per vCPU hour and per memory \(GiB\) hour\. Savings are estimated and may differ from actual savings because they do not include the billing adjustments for your usage\. For more information about viewing savings information, see [Savings from purchasing Spot Instances](spot-savings.md)\.
+You can view the savings made from using Spot Instances for a single [Spot Fleet](spot-fleet.md) or for all Spot Instances\. You can view the savings made in the last hour or the last three days, and you can view the average cost per vCPU hour and per memory \(GiB\) hour\. Savings are estimated and may differ from actual savings because they do not include the billing adjustments for your usage\. For more information about viewing savings information, see [Savings from purchasing Spot Instances](spot-savings.md)\.
 
 ### View billing<a name="spot-pricing-view-billing"></a>
 

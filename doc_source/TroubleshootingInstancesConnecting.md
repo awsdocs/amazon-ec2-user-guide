@@ -436,7 +436,9 @@ The appropriate user names are as follows:
 + For a Bitnami AMI, the user name is `bitnami`\.
 + Otherwise, check with the AMI provider\.
 
-You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connect to your Linux instance from Windows using PuTTY](putty.md)\.
+You should also verify:
++ You are using the latest version of PuTTY\. For more information, see the [PuTTY web page](https://www.chiark.greenend.org.uk/~sgtatham/putty/)\.
++ Your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connect to your Linux instance from Windows using PuTTY](putty.md)\.
 
 ## Cannot ping instance<a name="troubleshoot-instance-ping"></a>
 

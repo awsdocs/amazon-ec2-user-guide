@@ -146,7 +146,33 @@ AMIs and Systems Manager parameters are Region specific\. To use the same System
 
 ### Launch an instance using a Systems Manager parameter<a name="systems-manager-parameter-launch-instance"></a>
 
-You can launch an instance using the console or the AWS CLI\. Instead of specifying an AMI ID, you can specify an AWS Systems Manager parameter that points to an AMI ID\. Currently, only the old launch instance wizard supports specifying a Systems Manager parameter\.
+You can launch an instance using the console or the AWS CLI\. Instead of specifying an AMI ID, you can specify an AWS Systems Manager parameter that points to an AMI ID\.
+
+------
+#### [ New console ]
+
+**To find a Linux AMI using a Systems Manager parameter \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. From the navigation bar, select the Region in which to launch your instances\. You can select any Region that's available to you, regardless of your location\.
+
+1. From the console dashboard, choose **Launch instance**\.
+
+1. Under **Application and OS Images \(Amazon Machine Image\)**, choose **Browse more AMIs**\.
+
+1. Choose the arrow button to the right of the search bar, and then choose **Search by Systems Manager parameter**\.
+
+1. For **Systems Manager parameter**, select a parameter\. The corresponding AMI ID appears below **Currently resolves to**\.
+
+1. Choose **Search**\. The AMIs that match the AMI ID appear in the list\.
+
+1. Select the AMI from the list, and choose **Select**\.
+
+For more information about launching an instance using the launch instance wizard, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\.
+
+------
+#### [ Old console ]
 
 **To find a Linux AMI using a Systems Manager parameter \(console\)**
 
@@ -165,6 +191,8 @@ You can launch an instance using the console or the AWS CLI\. Instead of specify
 1. Select the AMI from the list, and choose **Select**\.
 
 For more information about launching an instance from an AMI using the launch instance wizard, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
+
+------
 
 **To launch an instance using an AWS Systems Manager parameter instead of an AMI ID \(AWS CLI\)**  
 The following example uses the Systems Manager parameter `golden-ami` to launch an `m5.xlarge` instance\. The parameter points to an AMI ID\.

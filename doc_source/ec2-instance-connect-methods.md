@@ -12,8 +12,8 @@ The following instructions explain how to connect to your Linux instance using E
 + Supported Linux distributions:
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
-+ Supported in all AWS Regions except Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Osaka\), China \(Beijing\), China \(Ningxia\), Europe \(Milan\), and Middle East \(Bahrain\)\.
-+ To connect using the Amazon EC2 console \(browser\-based client\), the instance must have a public IPv4 address\.
++ Supported in all AWS Regions except Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Jakarta\), Asia Pacific \(Osaka\), China \(Beijing\), China \(Ningxia\), Europe \(Milan\), Middle East \(Bahrain\), and Middle East \(UAE\)\.
++ To connect using the Amazon EC2 console, the instance must have a public IPv4 address\.
 + If the instance does not have a public IP address, you can connect to the instance over a private network using an SSH client or the EC2 Instance Connect CLI\. For example, you can connect from within the same VPC or through a VPN connection, transit gateway, or AWS Direct Connect\.
 + EC2 Instance Connect does not support connecting using an IPv6 address\.
 
@@ -23,21 +23,21 @@ The following instructions explain how to connect to your Linux instance using E
   For more information, see [Set up EC2 Instance Connect](ec2-instance-connect-set-up.md)\.
 + **\(Optional\) Install an SSH client on your local computer\.**
 
-  There is no need to install an SSH client if users only use the Amazon EC2 console \(browser\-based client\) or the EC2 Instance Connect CLI to connect to an instance\. Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
+  There is no need to install an SSH client if users only use the Amazon EC2 console or the EC2 Instance Connect CLI to connect to an instance\. Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
 + **\(Optional\) Install the EC2 Instance Connect CLI on your local computer\.**
 
-  There is no need to install the EC2 Instance Connect CLI if users only use the Amazon EC2 console \(browser\-based client\) or an SSH client to connect to an instance\. For more information, see [Task 3: \(Optional\) Install the EC2 Instance Connect CLI on your computer](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\. This connection method works for instances with public IP addresses\.
+  There is no need to install the EC2 Instance Connect CLI if users only use the Amazon EC2 console or an SSH client to connect to an instance\. For more information, see [Task 3: \(Optional\) Install the EC2 Instance Connect CLI on your computer](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\. This connection method works for instances with public IP addresses\.
 
 ## Connect using EC2 Instance Connect<a name="connect-options"></a>
 
 **Topics**
-+ [Connect using the Amazon EC2 console \(browser\-based client\)](#ec2-instance-connect-connecting-console)
++ [Connect using the Amazon EC2 console](#ec2-instance-connect-connecting-console)
 + [Connect using the EC2 Instance Connect CLI](#ec2-instance-connect-connecting-ec2-cli)
 + [Connect using your own key and SSH client](#ec2-instance-connect-connecting-aws-cli)
 
-### Connect using the Amazon EC2 console \(browser\-based client\)<a name="ec2-instance-connect-connecting-console"></a>
+### Connect using the Amazon EC2 console<a name="ec2-instance-connect-connecting-console"></a>
 
-You can connect to an instance using the Amazon EC2 console \(browser\-based client\) by selecting the instance from the console and choosing to connect using EC2 Instance Connect\. Instance Connect handles the permissions and provides a successful connection\.
+You can connect to an instance using the Amazon EC2 console by selecting the instance from the console and choosing to connect using EC2 Instance Connect\. Instance Connect handles the permissions and provides a successful connection\.
 
 **To connect to your instance using the browser\-based client from the Amazon EC2 console**
 

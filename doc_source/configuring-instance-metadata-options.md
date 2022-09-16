@@ -25,7 +25,17 @@ For IMDSv2, you must use `/latest/api/token` when retrieving the token\.
 You can require the use of IMDSv2 on an instance when you launch it\. You can also create an IAM policy that prevents users from launching new instances unless they require IMDSv2 on the new instance\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To require the use of IMDSv2 on a new instance**
++ When launching a new instance in the Amazon EC2 console, expand **Advanced details**, and do the following:
+  + For **Metadata accessible**, choose **Enabled**\.
+  + For **Metadata version**, choose **V2 only \(token required\)**\.
+
+For more information, see [Advanced details](ec2-launch-instance-wizard.md#liw-advanced-details)\.
+
+------
+#### [ Old console ]
 
 **To require the use of IMDSv2 on a new instance**
 + When launching a new instance in the Amazon EC2 console, select the following options on the **Configure Instance Details** page:
@@ -59,7 +69,7 @@ To specify the metadata options for an instance using AWS CloudFormation, see th
 To ensure that IAM users can only launch instances that require the use of IMDSv2 when requesting instance metadata, you can specify that the condition to require IMDSv2 must be met before an instance can be launched\. For the example IAM policy, see [Work with instance metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
 
 **Configure IPv4 and IPv6 endpoints**  
-By default, the IPv6 endpoint is disabled\. This is true even if you are launching an instance into an IPv6\-only subnet\. You can choose to enable this endpoint at instance launch\. The IPv6 endpoint for IMDS is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\. For more information about the metadata options, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) in the *AWS CLI command reference*\. The following example shows you how to enable the IPv6 endpoint for IMDS:
+By default, the IPv6 endpoint is disabled\. This is true even if you are launching an instance into an IPv6\-only subnet\. You can choose to enable this endpoint at instance launch\. The IPv6 endpoint for IMDS is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\. For more information about the metadata options, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) in the *AWS CLI command reference*\. The following example shows you how to enable the IPv6 endpoint for IMDS\.
 
 ```
 aws ec2 run-instances
@@ -70,7 +80,16 @@ aws ec2 run-instances
 ```
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To turn off access to instance metadata**
++ To ensure that access to your instance metadata is turned off, regardless of which version of the instance metadata service you are using, launch the instance in the Amazon EC2 console with the following specified under **Advanced details**:
+  + For **Metadata accessible**, choose **Disabled**\.
+
+For more information, see [Advanced details](ec2-launch-instance-wizard.md#liw-advanced-details)\.
+
+------
+#### [ Old console ]
 
 **To turn off access to instance metadata**
 + To ensure that access to your instance metadata is turned off, regardless of which version of the instance metadata service you are using, launch the instance in the Amazon EC2 console with the following option selected on the **Configure Instance Details** page:

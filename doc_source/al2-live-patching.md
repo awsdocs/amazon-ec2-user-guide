@@ -113,7 +113,11 @@ $ sudo yum install binutils
 
 **To enable Kernel Live Patching**
 
-1. Kernel live patches are available for Amazon Linux 2 with kernel version `5.10` or later\. To check your kernel version, run the following command\.
+1. Kernel live patches are available for the following Amazon Linux 2 kernel versions:
+   + Kernel version `4.14` or `5.10` on the `x86_64` architecture
+   + Kernel version `5.10` on the `ARM64` architecture
+
+   To check your kernel version, run the following command\.
 
    ```
    $ sudo yum list kernel

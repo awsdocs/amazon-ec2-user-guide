@@ -71,40 +71,80 @@ You can write an EventBridge rule and automate what actions to take when the eve
 
 The following example creates an EventBridge rule to send an email, text message, or mobile push notification every time Amazon EC2 emits a rebalance recommendation signal\. The signal is emitted as an `EC2 Instance Rebalance Recommendation` event, which triggers the action defined by the rule\.
 
+Before creating the EventBridge rule, you must create the Amazon SNS topic for the email, text message, or mobile push notification\.
+
 **To create an EventBridge rule for a rebalance recommendation event**
 
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
 
 1. Choose **Create rule**\.
 
-1. Enter a **Name** for the rule, and, optionally, a description\.
+1. For **Define rule detail**, do the following:
 
-   A rule can't have the same name as another rule in the same Region and on the same event bus\.
+   1. Enter a **Name** for the rule, and, optionally, a description\.
 
-1. For **Define pattern**, choose **Event pattern**\.
+      A rule can't have the same name as another rule in the same Region and on the same event bus\.
 
-1. Under **Event matching pattern**, choose **Custom pattern**\.
+   1. For **Event bus**, choose **default**\. When an AWS service in your account generates an event, it always goes to your account's default event bus\.
 
-1. In the **Event pattern** box, add the following pattern to match the `EC2 Instance Rebalance Recommendation` event, and then choose **Save**\.
+   1. For **Rule type**, choose **Rule with an event pattern**\.
 
-   ```
-   {
-       "source": [ "aws.ec2" ],
-       "detail-type": [ "EC2 Instance Rebalance Recommendation" ]
-   }
-   ```
+   1. Choose **Next**\.
 
-1. For **Select event bus**, choose **AWS default event bus**\. When an AWS service in your account emits an event, it always goes to your account's default event bus\.
+1. For **Build event pattern**, do the following:
 
-1. Confirm that **Enable the rule on the selected event bus** is toggled on\. 
+   1. For **Event source**, choose **AWS events or EventBridge partner events**\.
 
-1. For **Target**, choose **SNS topic** to send an email, text message, or mobile push notification when the event occurs\.
+   1. For **Event pattern**, for this example you’ll specify the following event pattern to match the `EC2 Instance Rebalance Recommendation` event, and then choose **Save**\.
 
-1. For **Topic**, choose an existing topic\. You first need to create an Amazon SNS topic using the Amazon SNS console\. For more information, see [Using Amazon SNS for application\-to\-person \(A2P\) messaging](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) in the *Amazon Simple Notification Service Developer Guide*\.
+      ```
+      {
+       "source": ["aws.ec2"],
+       "detail-type": ["EC2 Instance Rebalance Recommendation"]
+      }
+      ```
 
-1. For **Configure input**, choose the input for the email, text message, or mobile push notification\.
+      To add the event pattern, you can either use a template by choosing **Event pattern form**, or specify your own pattern by choosing **Custom pattern \(JSON editor\)**, as follows:
 
-1. Choose **Create**\.
+      1. To use a template to create the event pattern, do the following:
+
+         1. Choose **Event pattern form**\.
+
+         1. For **Event source**, choose **AWS services**\.
+
+         1. For **AWS Service**, choose **EC2 Spot Fleet**\.
+
+         1. For **Event type**, choose **EC2 Instance Rebalance Recommendation**\.
+
+         1. To customize the template, choose **Edit pattern** and make your changes to match the example event pattern\.
+
+      1. \(Alternative\) To specify a custom event pattern, do the following:
+
+         1. Choose **Custom pattern \(JSON editor\)**\.
+
+         1. In the **Event pattern** box, add the event pattern for this example\.
+
+   1. Choose **Next**\.
+
+1. For **Select target\(s\)**, do the following:
+
+   1. For **Target types**, choose **AWS service**\.
+
+   1. For **Select a target**, choose **SNS topic** to send an email, text message, or mobile push notification when the event occurs\.
+
+   1. For **Topic**, choose an existing topic\. You first need to create an Amazon SNS topic using the Amazon SNS console\. For more information, see [Using Amazon SNS for application\-to\-person \(A2P\) messaging](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) in the *Amazon Simple Notification Service Developer Guide*\.
+
+   1. \(Optional\) Under **Additional settings**, you can optionally configure additional settings\. For more information, see [Creating Amazon EventBridge rules that react to events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule.html) \(step 16\) in the *Amazon EventBridge User Guide*\.
+
+   1. Choose **Next**\.
+
+1. \(Optional\) For **Tags**, you can optionally assign one or more tags to your rule, and then choose **Next**\.
+
+1. For **Review and create**, do the following:
+
+   1. Review the details of the rule and modify them as necessary\.
+
+   1. Choose **Create rule**\.
 
 For more information, see [Creating a rule for an AWS service](https://docs.aws.amazon.com/eventbridge/latest/userguide/create-eventbridge-rule.html) and [Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/filtering-examples-structure.html) in the *Amazon EventBridge User Guide*
 

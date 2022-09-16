@@ -36,7 +36,8 @@ Examples:
 1 CPU credit = 2 vCPU \* 25% utilization \* 2 minutes
 
 **Baseline utilization**  
-The baseline utilization is the level at which the CPU can be utilized for a net credit balance of zero, when the number CPU credits being earned matches the number of CPU credits being used\. Baseline utilization is also known as the baseline\. Baseline utilization is expressed as a percentage of vCPU utilization, which is calculated as follows: Baseline utilization % = \(number of credits earned/number of vCPUs\)/60 minutes
+The baseline utilization is the level at which the CPU can be utilized for a net credit balance of zero, when the number of CPU credits being earned matches the number of CPU credits being used\. Baseline utilization is also known as the baseline\. Baseline utilization is expressed as a percentage of vCPU utilization, which is calculated as follows: Baseline utilization % = \(number of credits earned/number of vCPUs\)/60 minutes\.  
+For the baseline utilization of each burstable performance instance type, see the [credit table](#burstable-performance-instances-credit-table)\.
 
 **Earned credits**  
 Credits earned continuously by an instance when it is running\.  

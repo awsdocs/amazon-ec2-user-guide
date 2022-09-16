@@ -12,7 +12,7 @@ These instances provide an ideal cloud infrastructure, offering a balance of com
 
 For more information, see [Amazon EC2 M5 Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
 
-Bare metal instances, such as `m5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+Bare metal instances, such as `m5.metal`, `m5n.metal`, and `m5zn.metal `provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
 **M5zn**
 
@@ -23,8 +23,6 @@ These instances are ideal for applications that benefit from extremely high sing
 
 For more information, see [Amazon EC2 M5 Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
 
-Bare metal instances, such as `m5zn.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
-
 **M6g and M6gd instances**
 
 These instances are powered by AWS Graviton2 processors and deliver balanced compute, memory, and networking for a broad range a general purpose workloads\. They are well suited for the following:
@@ -34,9 +32,7 @@ These instances are powered by AWS Graviton2 processors and deliver balanced com
 + Midsize data stores
 + Caching fleets
 
-Bare metal instances, such as `m6g.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
-
-For more information, see [Amazon EC2 M6g Instances](https://aws.amazon.com/ec2/instance-types/m6)\.
+Bare metal instances such as `m6g.metal` provide your applications with direct access to physical resources of the host server, such as processors and memory\. For more information, see [Amazon EC2 M6g Instances](https://aws.amazon.com/ec2/instance-types/m6)\.
 
 **M6i and M6id instances**
 
@@ -48,7 +44,7 @@ These instances are well suited for general\-purpose workloads such as the follo
 + Small and midsize databases
 + Caching fleets
 
-Bare metal instances, such as `m6i.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+Bare metal instances such as `m6i.metal` provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
 For more information, see [Amazon EC2 M6i Instances](http://aws.amazon.com/ec2/instance-types/m6i)\.
 

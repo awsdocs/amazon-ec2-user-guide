@@ -2,7 +2,7 @@
 
 The maximum transmission unit \(MTU\) of a network connection is the size, in bytes, of the largest permissible packet that can be passed over the connection\. The larger the MTU of a connection, the more data that can be passed in a single packet\. Ethernet frames consist of the packet, or the actual data you are sending, and the network overhead information that surrounds it\.
 
-Ethernet frames can come in different formats, and the most common format is the standard Ethernet v2 frame format\. It supports 1500 MTU, which is the largest Ethernet packet size supported over most of the internet\. The maximum supported MTU for an instance depends on its instance type\. All Amazon EC2 instance types support 1500 MTU, and many current instance sizes support 9001 MTU, or jumbo frames\.
+Ethernet frames can come in different formats, and the most common format is the standard Ethernet v2 frame format\. It supports 1500 MTU, which is the largest Ethernet packet size supported over most of the internet\. The maximum supported MTU for an instance depends on its instance type\.
 
 The following rules apply to instances that are in Wavelength Zones:
 + Traffic that goes from one instance to another within a VPC in the same Wavelength Zone has an MTU of 1300\.
@@ -35,7 +35,7 @@ For instances that are collocated inside a cluster placement group, jumbo frames
 
 You can use jumbo frames for traffic between your VPCs and your on\-premises networks over AWS Direct Connect\. For more information, and for how to verify Jumbo Frame capability, see [Setting Network MTU](https://docs.aws.amazon.com/directconnect/latest/UserGuide/set-jumbo-frames-vif.html) in the *AWS Direct Connect User Guide*\.
 
-All [current generation instances](instance-types.md#instance-type-summary-table) support jumbo frames\. The following previous generation instances support jumbo frames: A1, C3, G2, I2, M3, and R3\.
+All Amazon EC2 instance types support 1500 MTU and all [current generation instance types](instance-types.md#instance-type-summary-table) support jumbo frames\. The following previous generation instance types support jumbo frames: A1, C3, G2, I2, M3, and R3\.
 
 For more information about supported MTU sizes for transit gateways, see [MTU](https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-quotas.html#mtu-quota) in *Amazon VPC Transit Gateways*\.
 

@@ -17,11 +17,11 @@ When you restore the root volume for an instance, a new volume is restored to th
 + The instance is automatically rebooted during the process\. The contents of the memory \(RAM\) is erased during the reboot\.
 + You can't restore the root volume if it is an instance store volume\.
 + You can't restore the root volume for metal instances\.
-+ You can only use snapshots that belong to the same lineage as the instance's current root volume\. You can't use snapshot copies created from snapshots that were taken from the root volume\. Additionally, after successfully restoring the root volume, snapshots taken from the original root volume can't be used to restore the new \(restored\) root volume\.
++ You can use any snapshot that belongs to the same lineage as any of the instance's previous root volumes\.
 
 ## Restore a root volume<a name="replace"></a>
 
-When you restore the root volume for an instance, you can choose to restore the volume to its initial launch state, or you can choose to restore the volume to a specific snapshot\. If you choose to restore the volume to a specific snapshot, then you must select a snapshot that was taken of that root volume\. If you choose to restore the root volume to its initial launch state, the root volume is restored from the snapshot that was used to create the volume during instance launch\.
+When you restore the root volume for an instance, you can choose to restore the volume to its initial launch state, or you can choose to restore the volume to a specific snapshot\. If you choose to restore the volume to a specific snapshot, then you must select a snapshot that was created from any of the instance's previous root volumes\. If you choose to restore the root volume to its initial launch state, the root volume is restored from the snapshot that was used to create the volume during instance launch\.
 
 When you restore the root volume for an instance, a *root volume replacement task* is created\. You can use the root volume replacement task to monitor the progress and outcome of the restore process\. For more information, see [View root volume replacement tasks](#view-replacement-tasks)\.
 

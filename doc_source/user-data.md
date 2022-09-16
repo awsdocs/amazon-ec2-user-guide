@@ -25,7 +25,7 @@ In the following examples, the commands from the [Install a LAMP Web Server on A
 
 The examples in this topic assume the following:
 + Your instance has a public DNS name that is reachable from the internet\. For more information, see **Auto\-assign Public IP** in the [Network settings](ec2-launch-instance-wizard.md#liw-network-settings) section and [Create a security group](get-set-up-for-amazon-ec2.md#create-a-base-security-group)\. 
-+ Your security group is configured to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information, see [Create a security group](get-set-up-for-amazon-ec2.md#create-a-base-security-group)\.
++ The security group associated with your instance is configured to allow SSH \(port 22\) traffic so that you can connect to the instance to view the output log files\. For more information, see [Create a security group](get-set-up-for-amazon-ec2.md#create-a-base-security-group)\.
 + Your instance is launched with an Amazon Linux 2 AMI\. These instructions are intended for use with Amazon Linux 2, and the commands and directives may not work for other Linux distributions\. For more information about other distributions, such as their support for cloud\-init, see their specific documentation\.
 
 ## User data and shell scripts<a name="user-data-shell-scripts"></a>
@@ -41,7 +41,7 @@ Scripts entered as user data are run as the `root` user, so do not use the sudo 
 
 If you use an AWS API, including the AWS CLI, in a user data script, you must use an instance profile when launching the instance\. An instance profile provides the appropriate AWS credentials required by the user data script to issue the API call\. For more information, see [Using instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) in the IAM User Guide\. The permissions you assign to the IAM role depend on which services you are calling with the API\. For more information, see [IAM roles for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)\.
 
-The cloud\-init output log file \(`/var/log/cloud-init-output.log`\) captures console output so it is easy to debug your scripts following a launch if the instance does not behave the way you intended\.
+The cloud\-init output log file captures console output so it is easy to debug your scripts following a launch if the instance does not behave the way you intended\. To view the log file, [connect to the instance](AccessingInstances.md) and open `/var/log/cloud-init-output.log`\.
 
 When a user data script is processed, it is copied to and run from `/var/lib/cloud/instances/instance-id/`\. The script is not deleted after it is run\. Be sure to delete the user data scripts from `/var/lib/cloud/instances/instance-id/` before you create an AMI from the instance\. Otherwise, the script will exist in this directory on any instance launched from the AMI\.
 
@@ -80,7 +80,7 @@ http://my.public.dns.amazonaws.com/phpinfo.php
 
 You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
-\(Optional\) If your script did not accomplish the tasks you were expecting it to, or if you just want to verify that your script completed without errors, examine the cloud\-init output log file at `/var/log/cloud-init-output.log` and look for error messages in the output\. 
+\(Optional\) If your script did not accomplish the tasks you were expecting it to, or if you just want to verify that your script completed without errors, [connect to the instance](AccessingInstances.md), examine the cloud\-init output log file \(`/var/log/cloud-init-output.log`\), and look for error messages in the output\. 
 
 For additional debugging information, you can create a Mime multipart archive that includes a cloud\-init data section with the following directive:
 
@@ -185,7 +185,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
    You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
-1. \(Optional\) If your directives did not accomplish the tasks you were expecting them to, or if you just want to verify that your directives completed without errors, examine the output log file at `/var/log/cloud-init-output.log` and look for error messages in the output\. For additional debugging information, you can add the following line to your directives:
+1. \(Optional\) If your directives did not accomplish the tasks you were expecting them to, or if you just want to verify that your directives completed without errors, [connect to the instance](AccessingInstances.md), examine the output log file \(`/var/log/cloud-init-output.log`\), and look for error messages in the output\. For additional debugging information, you can add the following line to your directives:
 
    ```
    output : { all : '| tee -a /var/log/cloud-init-output.log' }

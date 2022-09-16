@@ -12,9 +12,9 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
 1. Follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-quickly-launch-instance)\.
 
-1. Under **Application and OS Images \(Amazon Machine Image\)**, select an AMI that supports hibernation\. For more information about supported AMIs, see [Hibernation prerequisites](hibernating-prerequisites.md)\.
+1. Under **Application and OS Images \(Amazon Machine Image\)**, select an AMI that supports hibernation\. For more information, see [Supported Linux AMIs](hibernating-prerequisites.md#hibernation-prereqs-supported-amis)\.
 
-1. Under **Instance type**, select a supported instance type\. For information about supported instance types, see [Hibernation prerequisites](hibernating-prerequisites.md)\.
+1. Under **Instance type**, select a supported instance type\. For more information, see [Supported instance families](hibernating-prerequisites.md#hibernation-prereqs-supported-instance-families)\.
 
 1. Under **Configure storage**, choose **Advanced** \(at the right\), and specify the following information for the root volume:
    + For **Size \(GiB\)**, enter the EBS root volume size\. The volume must be large enough to store the RAM contents and accommodate your expected usage\.

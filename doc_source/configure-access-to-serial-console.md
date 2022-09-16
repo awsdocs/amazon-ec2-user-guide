@@ -261,7 +261,7 @@ You can set the password for any OS user, including the root user\. Note that th
 You must set a user password for every instance for which you will use the serial console\. This is a one\-time requirement for each instance\.
 
 **Note**  
-The following instructions are applicable only if you launched your instance using an AWS\-provided AMI because, by default, AWS\-provided AMIs are not configured with a password\-based user\. If you launched your instance using an AMI that already has the root user password configured, you can skip these instructions\.
+The following instructions are applicable only if you launched your instance using an AMI provided by AWS because, by default, AMIs provided by AWS are not configured with a password\-based user\. If you launched your instance using an AMI that already has the root user password configured, you can skip these instructions\.
 
 **To set an OS user password**
 

@@ -254,7 +254,7 @@ Amazon EBS emits Amazon CloudWatch events when the fast snapshot restore state f
 
 ## Fast snapshot restore quotas<a name="limits"></a>
 
-You can enable up to 50 snapshots for fast snapshot restore per Region\. The quota applies to snapshots that you own and snapshots that are shared with you\. If you enable fast snapshot restore for a snapshot that is shared with you, it counts towards your fast snapshot restore quota\. It does not count towards the snapshot owner's fast snapshot restore quota\.
+You can enable up to 5 snapshots for fast snapshot restore per Region\. The quota applies to snapshots that you own and snapshots that are shared with you\. If you enable fast snapshot restore for a snapshot that is shared with you, it counts towards your fast snapshot restore quota\. It does not count towards the snapshot owner's fast snapshot restore quota\.
 
 ## Pricing and Billing<a name="fsr-pricing"></a>
 

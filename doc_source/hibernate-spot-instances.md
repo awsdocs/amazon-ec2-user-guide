@@ -33,7 +33,7 @@ The following supported AMIs include the hibernation agent\. To use an earlier v
 + Amazon Linux 2 2019\.08\.29 or later
 + Amazon Linux AMI 2017\.09\.1 or later
 + Ubuntu Xenial 16\.04 20171121 or later ¹
-¹ To use an earlier version of the Ubuntu Xenial AMI, it must have an AWS\-tuned Ubuntu kernel \(`linux-aws`\) greater than 4\.4\.0\-1041\.  
+¹ To use an earlier version of the Ubuntu Xenial AMI, it must have a Ubuntu kernel tuned by AWS\(`linux-aws`\) greater than 4\.4\.0\-1041\.  
 For information about the supported Windows AMIs, see the [prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/hibernate-spot-instances.html#spot-instance-hibernation-prerequisites) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Start the hibernation agent**  

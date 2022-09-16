@@ -123,6 +123,7 @@ First select the OS that you need, and then, from **Amazon Machine Image \(AMI\)
 **Browse more AMIs**  
 Choose **Browse more AMIs** to browse the full AMI catalog\.  
 + To search through all available AMIs, enter a keyword in the search bar and then press **Enter**\.
++ To find an AMI using a Systems Manager parameter, choose the arrow button to the right of the search bar, and then choose **Search by Systems Manager parameter**\. For more information, see [Use a Systems Manager parameter to find an AMI](finding-an-ami.md#using-systems-manager-parameter-to-find-AMI)\.
 + To search by category, choose **Quickstart AMIs**, **My AMIs**, **AWS Marketplace AMIs**, or **Community AMIs**\.
 
   The AWS Marketplace is an online store where you can buy software that runs on AWS, including AMIs\. For more information about launching an instance from the AWS Marketplace, see [Launch an AWS Marketplace instance](launch-marketplace-console.md)\. In **Community AMIs**, you can find AMIs that AWS community members have made available for others to use\. AMIs from Amazon or a verified partner are marked **Verified provider**\.

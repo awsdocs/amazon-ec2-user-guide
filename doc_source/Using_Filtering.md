@@ -249,7 +249,7 @@ For examples of how to filter a list of resources according to their tags, see [
 
 ## List and filter resources across Regions using Amazon EC2 Global View<a name="global-view"></a>
 
-Amazon EC2 Global View enables you to view some of your Amazon EC2 and Amazon VPC resources across a single AWS Region, or across multiple Regions in a single console\. Using Amazon EC2 Global View, you can view a summary of all of your VPCs, subnets, instances, security groups, and volumes across all of the Regions for which your AWS account is enabled\. Amazon EC2 Global View also provides *global search* functionality that lets you search for specific resources or specific resource types across multiple Regions simultaneously\. 
+Amazon EC2 Global View enables you to view some of your Amazon EC2 and Amazon VPC resources across a single AWS Region, or across multiple Regions in a single console\. Using Amazon EC2 Global View, you can view a summary of all of your VPCs, subnets, instances, security groups, volumes, and Auto Scaling groups across all of the Regions for which your AWS account is enabled\. Amazon EC2 Global View also provides *global search* functionality that lets you search for specific resources or specific resource types across multiple Regions simultaneously\. 
 
 Amazon EC2 Global View does not let you modify resources in any way\.
 
@@ -268,7 +268,8 @@ An IAM user must have the following permissions to use Amazon EC2 Global View\.
     "ec2:DescribeRegions",
     "ec2:DescribeVolumes",
     "ec2:DescribeSubnets",
-    "ec2:DescribeSecurityGroups"
+    "ec2:DescribeSecurityGroups",
+    "autoscaling:DescribeAutoScalingGroups"
   ],
   "Resource": "*"
   }]
@@ -278,6 +279,9 @@ An IAM user must have the following permissions to use Amazon EC2 Global View\.
 **To use Amazon EC2 Global View**  
 Open the Amazon EC2 Global View console at [ https://console\.aws\.amazon\.com/ec2globalview/home](https://console.aws.amazon.com/ec2globalview/home)\.
 
+**Important**  
+You cannot use a private window in Firefox to access Amazon EC2 Global View\.
+
 The console consists of two tabs:
 + **Region explorer**—This tab includes the following sections:
   + **Resource summary**—Provides a high\-level overview of your resources across all Regions\.
@@ -285,7 +289,7 @@ The console consists of two tabs:
     **Enabled Regions** indicates the number of Regions for which your AWS account is enabled\. The remaining fields indicate the number of resources that you currently have in those Regions\. Choose any of the links to view the resources of that type across all Regions\. For example, if the link below the **Instances** label is **29 in 10 Regions**, it indicates that you currently have `29` instances across `10` Regions\. Choose the link to view a list of all 29 instances\.
   + **Resource counts per Region**—Lists all of the AWS Regions \(including those for which your account is not enabled\) and provides totals for each resource type for each Region\.
 
-    Choose a Region name to view all resources of all types for that specific Region\. For example, choose **Africa \(Cape Town\) af\-south\-1** to view all VPCs, subnets, instances, security groups, and volumes in that Region\. Alternatively, select a Region and choose **View resources for selected Region**\.
+    Choose a Region name to view all resources of all types for that specific Region\. For example, choose **Africa \(Cape Town\) af\-south\-1** to view all VPCs, subnets, instances, security groups, volumes, and Auto Scaling groups in that Region\. Alternatively, select a Region and choose **View resources for selected Region**\.
 
     Choose the value for a specific resource type in a specific Region to view only resources of that type in that Region\. For example, choose the value for Instances for **Africa \(Cape Town\) af\-south\-1** to view only the instances in that Region\.
 + **Global search**—This tab enables you to search for specific resources or specific resource types across a single Region or across multiple Regions\. It also enables you to view details for a specific resource\.

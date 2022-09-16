@@ -265,7 +265,7 @@ Amazon EC2 macOS is designed to provide a stable, secure, and high\-performance 
 + Command Line Tools for Xcode
 + Homebrew
 
-AWS provides updated EC2 macOS AMIs on a regular basis that include updates to AWS\-owned packages and the latest fully\-tested macOS version\. Additionally, AWS provides updated AMIs with the latest minor version updates or major version updates as soon as they can be fully tested and vetted\. If you do not need to preserve data or customizations to your Mac instances, you can get the latest updates by launching a new instance using the current AMI and then terminating the previous instance\. Otherwise, you can choose which updates to apply to your Mac instances\.
+AWS provides updated EC2 macOS AMIs on a regular basis that include updates to packages owned by AWS and the latest fully\-tested macOS version\. Additionally, AWS provides updated AMIs with the latest minor version updates or major version updates as soon as they can be fully tested and vetted\. If you do not need to preserve data or customizations to your Mac instances, you can get the latest updates by launching a new instance using the current AMI and then terminating the previous instance\. Otherwise, you can choose which updates to apply to your Mac instances\.
 
 ## Update the operating system and software<a name="mac-instance-updates"></a>
 

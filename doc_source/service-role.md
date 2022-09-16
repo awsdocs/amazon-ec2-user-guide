@@ -12,6 +12,8 @@ The role that you pass to Amazon Data Lifecycle Manager must have an IAM policy 
 
 Amazon Data Lifecycle Manager uses the following default service roles:
 + **AWSDataLifecycleManagerDefaultRole**—default role for managing snapshots\. It trusts only the `dlm.amazonaws.com` service to assume the role and it allows Amazon Data Lifecycle Manager to perform the actions required by snapshot and cross\-account snapshot copy policies on your behalf\. This role uses the ` AWSDataLifecycleManagerServiceRole` AWS managed policy\.
+**Note**  
+The ARN format of the role differs depending on whether it was created using the console or the AWS CLI\. If the role was created using the console, the ARN format is `arn:aws:iam::account_id:role/service-role/AWSDataLifecycleManagerDefaultRole`\. If the role was created using the AWS CLI, the ARN format is `arn:aws:iam::account_id:role/AWSDataLifecycleManagerDefaultRole`\.
 + **AWSDataLifecycleManagerDefaultRoleForAMIManagement**—default role for managing AMIs\. It trusts only the `dlm.amazonaws.com` service to assume the role and it allows Amazon Data Lifecycle Manager to perform the actions required by EBS\-backed AMI policies on your behalf\. This role uses the `AWSDataLifecycleManagerServiceRoleForAMIManagement` AWS managed policy\.
 
 If you are using the Amazon Data Lifecycle Manager console, Amazon Data Lifecycle Manager automatically creates the ** AWSDataLifecycleManagerDefaultRole** service role the first time you create a snapshot or cross\-account snapshot copy policy, and it automatically creates the ** AWSDataLifecycleManagerDefaultRoleForAMIManagement** service role the first time you create an EBS\-backed AMI policy\.

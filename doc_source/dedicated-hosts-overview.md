@@ -32,6 +32,7 @@ There are no performance, security, or physical differences between Dedicated In
 | Targeted instance placement | Provides additional visibility and control over how instances are placed on a physical server | Not supported | 
 | Automatic instance recovery | Supported\. For more information, see [Host recovery](dedicated-hosts-recovery.md)\. | Supported | 
 | Bring Your Own License \(BYOL\) | Supported | Not supported | 
+| Capacity Reservations | Not supported | Supported | 
 
 ## Bring your own license<a name="dedicated-hosts-BYOL"></a>
 

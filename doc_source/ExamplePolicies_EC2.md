@@ -795,7 +795,7 @@ The following policy allows users to launch instances using only the specified A
 }
 ```
 
-Alternatively, the following policy allows users to launch instances from all AMIs owned by Amazon\. The `Condition` element of the first statement tests whether `ec2:Owner` is `amazon`\. The users can't launch an instance using other AMIs \(unless another statement grants the users permission to do so\)\.
+Alternatively, the following policy allows users to launch instances from all AMIs owned by Amazon, or certain trusted and verified partners\. The `Condition` element of the first statement tests whether `ec2:Owner` is `amazon`\. The users can't launch an instance using other AMIs \(unless another statement grants the users permission to do so\)\.
 
 ```
 {
@@ -1939,7 +1939,7 @@ The following policy allows users to add, remove, and replace routes for route t
 
 The following is an example of a policy that you might attach to an IAM role\. The policy allows an instance to view resources in various AWS services\. It uses the `ec2:SourceInstanceARN` condition key to specify that the instance from which the request is made must be instance `i-093452212644b0dd6`\. If the same IAM role is associated with another instance, the other instance cannot perform any of these actions\.
 
-The `ec2:SourceInstanceARN` key is an AWS\-wide condition key, therefore it can be used for other service actions, not just Amazon EC2\.
+The `ec2:SourceInstanceARN` key is an AWS global condition key, therefore it can be used for other service actions, not just Amazon EC2\.
 
 ```
 {

@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-| We are retiring EC2\-Classic on August 15, 2022\. To avoid interruptions to your workloads, we recommend that you migrate from EC2\-Classic to a VPC prior to August 15, 2022\. For more information, see the blog post [EC2\-Classic Networking is Retiring \- Here's How to Prepare](http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/)\. | 
+| We are retiring EC2\-Classic\. For more information, see the blog post [EC2\-Classic Networking is Retiring \- Here's How to Prepare](http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/)\. | 
 
 To migrate from EC2\-Classic to a VPC, you must migrate or recreate your EC2\-Classic resources in a VPC\.
 
@@ -33,7 +33,7 @@ If you want your instances in your VPC to have the same security group rules as 
 You can only copy security group rules to a new security group in the same AWS account in the same Region\. If you are using a different Region or a different AWS account, you must create a new security group and manually add the rules yourself\. For more information, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
 
 **Prerequisites**  
-Before you begin copying your security groups, you should check for rules in which your EC2\-Classic security groups reference another security group in EC2\-Classic\. These rules should be removed as they cannot be copied into a VPC\.
+Before you begin copying your security groups, you should check for rules in which your EC2\-Classic security groups reference another security group in EC2\-Classic\. You should remove these rules as they can't be copied into a VPC\. For more information, see [Delete rules from a security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-security-groups.html#deleting-security-group-rule)\.
 
 **To copy your security group rules to a new security group**
 

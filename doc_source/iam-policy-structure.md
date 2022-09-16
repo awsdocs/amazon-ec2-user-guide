@@ -134,9 +134,9 @@ For a list of ARNs for Amazon EC2 resources, see [Resource types defined by Amaz
 
 ## Condition keys for Amazon EC2<a name="amazon-ec2-keys"></a>
 
-In a policy statement, you can optionally specify conditions that control when it is in effect\. Each condition contains one or more key\-value pairs\. Condition keys are not case\-sensitive\. We've defined AWS\-wide condition keys, plus additional service\-specific condition keys\.
+In a policy statement, you can optionally specify conditions that control when it is in effect\. Each condition contains one or more key\-value pairs\. Condition keys are not case\-sensitive\. We've defined AWS global condition keys, plus additional service\-specific condition keys\.
 
-For a list of service\-specific condition keys for Amazon EC2, see [Condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html#amazonec2-policy-keys)\. Amazon EC2 also implements the AWS\-wide condition keys\. For more information, see [Information available in all requests](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#policy-vars-infoallreqs) in the *IAM User Guide*\. 
+For a list of service\-specific condition keys for Amazon EC2, see [Condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html#amazonec2-policy-keys)\. Amazon EC2 also implements the AWS global condition keys\. For more information, see [Information available in all requests](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#policy-vars-infoallreqs) in the *IAM User Guide*\. 
 
 To use a condition key in your IAM policy, use the `Condition` statement\. For example, the following policy grants users permission to add and remove inbound and outbound rules for any security group\. It uses the `ec2:Vpc` condition key to specify that these actions can only be performed on security groups in a specific VPC\.
 
@@ -172,7 +172,7 @@ All Amazon EC2 actions support the `aws:RequestedRegion` and `ec2:Region` condit
 
 ### `ec2:SourceInstanceARN` condition key<a name="SourceInstanceARN"></a>
 
-The `ec2:SourceInstanceARN` condition key can be used for conditions that specify the ARN of the instance from which a request is made\. This condition key is available AWS\-wide and is not service\-specific\. For policy examples, see [Amazon EC2: Attach or detach volumes to an EC2 instance](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [Example: Allow a specific instance to view resources in other AWS services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
+The `ec2:SourceInstanceARN` condition key can be used for conditions that specify the ARN of the instance from which a request is made\. This is an AWS global condition key and is not service\-specific\. For policy examples, see [Amazon EC2: Attach or detach volumes to an EC2 instance](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [Example: Allow a specific instance to view resources in other AWS services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
 
 For example policy statements for Amazon EC2, see [Example policies for working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\.
 

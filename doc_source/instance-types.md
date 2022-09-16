@@ -2,6 +2,12 @@
 
 When you launch an instance, the *instance type* that you specify determines the hardware of the host computer used for your instance\. Each instance type offers different compute, memory, and storage capabilities, and is grouped in an instance family based on these capabilities\. Select an instance type based on the requirements of the application or software that you plan to run on your instance\.
 
+**Instance structure**
+
+Amazon EC2 provides a variety of instance types so you can choose the type that best meets your requirements\. Instance types are named based on their generation, family, additional capabilities, and size\. The first position indicates the instance family, for example c\. The second position indicates the instance generation, for example 5\. The remaining letters before the period indicate additional capabilities, such local NVMe storage and full control over c\-states\. After the period \(\.\) is the instance size, which is either a number followed by a size, such as 9xlarge or, for metal instances the word metal: 
+
+![\[Instance components of type and family.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/c5d-instance-example.png)
+
 Amazon EC2 provides each instance with a consistent and predictable amount of CPU capacity, regardless of its underlying hardware\.
 
 Amazon EC2 dedicates some resources of the host computer, such as CPU, memory, and instance storage, to a particular instance\. Amazon EC2 shares other resources of the host computer, such as the network and the disk subsystem, among instances\. If each instance on a host computer tries to use as much of one of these shared resources as possible, each receives an equal share of that resource\. However, when a resource is underused, an instance can consume a higher share of that resource while it's available\.
@@ -138,7 +144,9 @@ To determine which instance type best meets your needs, we recommend that you la
 
 ### Naming conventions<a name="instance-naming-conventions"></a>
 
-Instance type names combine the instance family, generation, and size\. They can also indicate additional capabilities, such as:
+Instance type names combine the instance family, generation, and size\. 
+
+They can also indicate additional capabilities, such as:
 + **a** – AMD processors
 + **g** – AWS Graviton processors
 + **i** – Intel processors
@@ -169,7 +177,7 @@ For best performance, we recommend that you use an HVM AMI\. In addition, HVM AM
 
 ## Instances built on the Nitro System<a name="ec2-nitro-instances"></a>
 
-The Nitro System is a collection of AWS\-built hardware and software components that enable high performance, high availability, and high security\. For more information, see [AWS Nitro System](http://aws.amazon.com/ec2/nitro/)\.
+The Nitro System is a collection of hardware and software components built by AWS that enable high performance, high availability, and high security\. For more information, see [AWS Nitro System](http://aws.amazon.com/ec2/nitro/)\.
 
 The Nitro System provides bare metal capabilities that eliminate virtualization overhead and support workloads that require full access to host hardware\. Bare metal instances are well suited for the following:
 + Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments

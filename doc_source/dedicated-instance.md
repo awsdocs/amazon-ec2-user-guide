@@ -41,7 +41,7 @@ Dedicated Instances support the following features and AWS service integrations:
 
 ### Reserved Instances<a name="dedicatedreservedinstances"></a>
 
-To guarantee that sufficient capacity is available to launch Dedicated Instances, you can purchase Dedicated Reserved Instances\. For more information, see [Reserved Instances](ec2-reserved-instances.md)\. 
+To guarantee that sufficient capacity is available to launch Dedicated Instances, you can purchase Dedicated Reserved Instances or Capacity Reservations\. For more information, see [Reserved Instances](ec2-reserved-instances.md) and [On\-Demand Capacity Reservations](ec2-capacity-reservations.md)\. 
 
 When you purchase a Dedicated Reserved Instance, you are purchasing the capacity to launch a Dedicated Instance into a VPC at a much reduced usage fee; the price break in the usage charge applies only if you launch an instance with dedicated tenancy\. When you purchase a Reserved Instance with default tenancy, it applies only to a running instance with `default` tenancy; it does not apply to a running instance with `dedicated` tenancy\.
 

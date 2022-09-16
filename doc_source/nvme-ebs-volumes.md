@@ -4,6 +4,8 @@ EBS volumes are exposed as NVMe block devices on instances built on the [Nitro S
 
 The EBS performance guarantees stated in [Amazon EBS Product Details](http://aws.amazon.com/ebs/details/) are valid regardless of the block\-device interface\.
 
+For information about EBS volumes and NVME on Windows instances, see the [https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/nvme-ebs-volumes.html](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/nvme-ebs-volumes.html)\.
+
 **Topics**
 + [Install or upgrade the NVMe driver](#install-nvme-driver)
 + [Identify the EBS device](#identify-nvme-ebs-device)

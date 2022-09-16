@@ -1,6 +1,7 @@
 # Regions and Zones<a name="using-regions-availability-zones"></a>
 
-Amazon EC2 is hosted in multiple locations world\-wide\. These locations are composed of Regions, Availability Zones, Local Zones, AWS Outposts, and Wavelength Zones\. Each *Region* is a separate geographic area\. 
+Amazon EC2 is hosted in multiple locations world\-wide\. These locations are composed of AWS Regions, Availability Zones, Local Zones, AWS Outposts, and Wavelength Zones\.
++ Each Region is a separate geographic area\.
 + Availability Zones are multiple, isolated locations within each Region\.
 + Local Zones provide you the ability to place resources, such as compute and storage, in multiple locations closer to your end users\.
 + AWS Outposts brings native AWS services, infrastructure, and operating models to virtually any data center, co\-location space, or on\-premises facility\.
@@ -19,7 +20,7 @@ To help you determine which deployment is best for you, see [AWS Wavelength FAQs
 
 ## Regions<a name="concepts-regions"></a>
 
-Each Amazon EC2 Region is designed to be isolated from the other Amazon EC2 Regions\. This achieves the greatest possible fault tolerance and stability\.
+Each Region is designed to be isolated from the other Regions\. This achieves the greatest possible fault tolerance and stability\.
 
 When you view your resources, you see only the resources that are tied to the Region that you specified\. This is because Regions are isolated from each other, and we don't automatically replicate resources across Regions\.
 
@@ -39,11 +40,9 @@ Note that there is a charge for data transfer between Regions\. For more informa
 Your account determines the Regions that are available to you\.
 + An AWS account provides multiple Regions so that you can launch Amazon EC2 instances in locations that meet your requirements\. For example, you might want to launch instances in Europe to be closer to your European customers or to meet legal requirements\.
 + An AWS GovCloud \(US\-West\) account provides access to the AWS GovCloud \(US\-West\) Region and the AWS GovCloud \(US\-East\) Region\. For more information, see [AWS GovCloud \(US\)](https://aws.amazon.com/govcloud-us/)\.
-+ An Amazon AWS \(China\) account provides access to the Beijing and Ningxia Regions only\. For more information, see [AWS in China](https://www.amazonaws.cn/about-aws/china/)\.
++ An Amazon AWS \(China\) account provides access to the Beijing and Ningxia Regions only\. For more information, see [Amazon Web Services in China](https://www.amazonaws.cn/about-aws/china/)\.
 
 The following table lists the Regions provided by an AWS account\. You can't describe or access additional Regions from an AWS account, such as AWS GovCloud \(US\) Region or the China Regions\. To use a Region introduced after March 20, 2019, you must enable the Region\. For more information, see [Managing AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html) in the *AWS General Reference*\.
-
-For information about available Wavelength Zones, see [Available Wavelength Zones](https://docs.aws.amazon.com/wavelength/latest/developerguide/wavelength-quotas.html#concepts-available-zones) in the *AWS Wavelength Developer Guide*\. For information about available Local Zones, see [Available Local Zones](#local-zones-available)\.
 
 
 | Code | Name | Opt\-in Status | 
@@ -69,6 +68,7 @@ For information about available Wavelength Zones, see [Available Wavelength Zone
 | eu\-west\-3 | Europe \(Paris\) | Not required | 
 | eu\-north\-1 | Europe \(Stockholm\) | Not required | 
 | me\-south\-1 | Middle East \(Bahrain\) | Required | 
+| me\-central\-1 | Middle East \(UAE\) | Required | 
 | sa\-east\-1 | South America \(São Paulo\) | Not required | 
 
 For more information, see [AWS Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)\.
@@ -79,7 +79,7 @@ The number and mapping of Availability Zones per Region may vary between AWS acc
 
 When you work with an instance using the command line interface or API actions, you must specify its Regional endpoint\. For more information about the Regions and endpoints for Amazon EC2, see [Amazon EC2 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html) in the *Amazon Web Services General Reference*\.
 
-For more information about endpoints and protocols in AWS GovCloud \(US\-West\), see [AWS GovCloud \(US\-West\) Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\.
+For more information about endpoints and protocols in AWS GovCloud \(US\-West\), see [Service Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\.
 
 ### Describe your Regions<a name="using-regions-availability-zones-describe"></a>
 
@@ -158,7 +158,7 @@ You can set the value of an environment variable to the desired Regional endpoin
 
 Alternatively, you can use the `--region` \(AWS CLI\) or `-Region` \(AWS Tools for Windows PowerShell\) command line option with each individual command\. For example, `--region us-east-2`\.
 
-For more information about the endpoints for Amazon EC2, see [Amazon Elastic Compute Cloud Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region)\.
+For more information about the endpoints for Amazon EC2, see [Service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region) in the *AWS General Reference*\.
 
 ## Availability Zones<a name="concepts-availability-zones"></a>
 
@@ -294,7 +294,7 @@ The following table lists Local Zones in US East \(N\. Virginia\):
 | US East \(N\. Virginia\) | us\-east\-1\-nyc\-1a | New York City \* | 
 | US East \(N\. Virginia\) | us\-east\-1\-phl\-1a | Philadelphia | 
 
-\*Located in New Jersey\.
+\*Located in New Jersey
 
 **US West \(Oregon\) Local Zones**  
 The following table lists Local Zones in US West \(Oregon\):
@@ -379,7 +379,7 @@ When you launch an instance, you can specify a subnet that is in a Local Zone\. 
 
 You can allocate the following IP addresses from a network border group:
 + Amazon\-provided Elastic IPv4 addresses
-+ Amazon\-provided IPv6 VPC addresses
++ Amazon\-provided IPv6 VPC addresses \(available only in the Los Angeles zones\)
 
 **To launch an instance in a Local Zone:**
 

@@ -19,9 +19,9 @@ To locate the private key that is required to connect to your instance, and to s
 
 **Install an SSH client on your local computer as needed**  
 Your local computer might have an SSH client installed by default\. You can verify this by typing ssh at the command line\. If your computer doesn't recognize the command, you can install an SSH client\.  
-+ Recent versions of Windows Server 2019 and Windows 10 \- OpenSSH is included as an installable component\. For more information, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
-+ Earlier versions of Windows \- Download and install OpenSSH\. For more information, see [Win32\-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/wiki)\.
-+ Linux and macOS X \- Download and install OpenSSH\. For more information, see [https://www\.openssh\.com](https://www.openssh.com/)\.
++ Recent versions of Windows Server 2019 and Windows 10 – OpenSSH is included as an installable component\. For more information, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
++ Earlier versions of Windows – Download and install OpenSSH\. For more information, see [Win32\-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/wiki)\.
++ Linux and macOS X – Download and install OpenSSH\. For more information, see [https://www\.openssh\.com](https://www.openssh.com/)\.
 
 ## Connect to your Linux instance using an SSH client<a name="AccessingInstancesLinuxSSHClient"></a>
 
@@ -49,7 +49,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    Are you sure you want to continue connecting (yes/no)?
    ```
 
-1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the instance fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
+1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the instance fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a man\-in\-the\-middle attack\. If they match, continue to the next step\.
 
 1. Enter **yes**\.
 

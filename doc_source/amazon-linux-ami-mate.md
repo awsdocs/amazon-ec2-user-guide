@@ -1,6 +1,10 @@
 # Configure the Amazon Linux 2 MATE desktop connection<a name="amazon-linux-ami-mate"></a>
 
-The [MATE desktop environment](https://mate-desktop.org/) is pre\-installed and pre\-configured in the AMI with the following description: "Amazon Linux 2 with \.NET `X` , Mono 6\.12, and MATE DE pre\-installed to run your \.NET applications on Amazon Linux 2 with Long Term Support \(LTS\)\." The environment provides an intuitive graphical user interface for administering Amazon Linux 2 instances with minimal use of the command line\. The interface uses graphical representations, such as icons, windows, toolbars, folders, wallpapers, and desktop widgets\. Built\-in, GUI\-based tools are available to perform common tasks\. For example, there are tools for adding and removing software, applying updates, organizing files, launching programs, and monitoring system health\.
+The [MATE desktop environment](https://mate-desktop.org/) is pre\-installed and pre\-configured in AMIs with the following description:
+
+"`.NET Core x.x, Mono x.xx, PowerShell x.x, and MATE DE pre-installed to run your .NET applications on Amazon Linux 2 with Long Term Support (LTS).`"
+
+The environment provides an intuitive graphical user interface for administering Amazon Linux 2 instances with minimal use of the command line\. The interface uses graphical representations, such as icons, windows, toolbars, folders, wallpapers, and desktop widgets\. Built\-in, GUI\-based tools are available to perform common tasks\. For example, there are tools for adding and removing software, applying updates, organizing files, launching programs, and monitoring system health\.
 
 **Important**  
 `xrdp` is the remote desktop software bundled in the AMI\. By default, `xrdp` uses a self\-signed TLS certificate to encrypt remote desktop sessions\. Neither AWS nor the `xrdp` maintainers recommend using self\-signed certificates in production\. Instead, obtain a certificate from an appropriate certificate authority \(CA\) and install it on your instances\. For more information about TLS configuration, see [TLS security layer](https://github.com/neutrinolabs/xrdp/wiki/TLS-security-layer) on the `xrdp` wiki\.
@@ -41,7 +45,21 @@ Follow these steps to set up a Remote Desktop Protocol \(RDP\) connection from y
 
 1. Launch an EC2 instance with the AMI that you located in the previous step\. Configure the security group to allow for inbound TCP traffic to port 3389\. For more information about configuring security groups, see [Security groups for your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)\. This configuration enables you to use an RDP client to connect to the instance\.
 
-1. Connect to the instance using [SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)\. Run the following command on your Linux instance to set the password for `ec2-user`\.
+1. Connect to the instance using [SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)\.
+
+1. Update the software and kernel on the instance\.
+
+   ```
+   [ec2-user ~]$ sudo yum update
+   ```
+
+   After the update completes, reboot the instance to ensure that it is using the latest packages and libraries from the update; kernel updates are not loaded until a reboot occurs\.
+
+   ```
+   [ec2-user ~]$ sudo reboot
+   ```
+
+1. Reconnect to the instance and run the following command on your Linux instance to set the password for `ec2-user`\.
 
    ```
    [ec2-user ~]$ sudo passwd ec2-user

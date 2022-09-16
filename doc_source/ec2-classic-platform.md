@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-| We are retiring EC2\-Classic on August 15, 2022\. We recommend that you [migrate from EC2\-Classic to a VPC](vpc-migrate.md)\. | 
+| We are retiring EC2\-Classic\. We recommend that you [migrate from EC2\-Classic to a VPC](vpc-migrate.md)\. | 
 
 With EC2\-Classic, your instances run in a single, flat network that you share with other customers\. With Amazon VPC, your instances run in a virtual private cloud \(VPC\) that's logically isolated to your AWS account\.
 
