@@ -237,9 +237,9 @@ There are multiple `AllowOverride` lines in this file; be sure you change the li
 1. Save the file and exit your text editor\.
 
 **To install the PHP graphics drawing library on Amazon Linux 2022**  
-The GD library for PHP enables you to modify images\. Install this library if you need to crop the header image for your blog\. The version of phpMyAdmin that you install might require a specific minimum version of this library \(for example, version 7\.2\)\.
+The GD library for PHP enables you to modify images\. Install this library if you need to crop the header image for your blog\. The version of phpMyAdmin that you install might require a specific minimum version of this library \(for example, version 8\.1\)\.
 
-Use the following command to install the PHP graphics drawing library on Amazon Linux 2022\. For example, if you installed php7\.2 from amazon\-linux\-extras as part of installing the LAMP stack, this command installs version 7\.2 of the PHP graphics drawing library\.
+Use the following command to install the PHP graphics drawing library on Amazon Linux 2022\. For example, if you installed php8\.1 from source as part of installing the LAMP stack, this command installs version 8\.1 of the PHP graphics drawing library\.
 
 ```
 [ec2-user ~]$ sudo dnf install php-gd
@@ -254,28 +254,33 @@ To verify the installed version, use the following command:
 The following is example output:
 
 ```
-php-gd.x86_64                     7.2.30-1.amzn2             @amzn2extra-php7.2
+php-gd.x86_64                     8.1.30-1.amzn2             @amazonlinux
 ```
 
 **To install the PHP graphics drawing library on the Amazon Linux AMI**  
-The GD library for PHP enables you to modify images\. Install this library if you need to crop the header image for your blog\. The version of phpMyAdmin that you install might require a specific minimum version of this library \(for example, version 7\.2\)\.
+The GD library for PHP enables you to modify images\. Install this library if you need to crop the header image for your blog\. The version of phpMyAdmin that you install might require a specific minimum version of this library \(for example, version 8\.1\)\.
 
 To verify which versions are available, use the following command:
 
 ```
-[ec2-user ~]$ dnf list | grep php-gd
+[ec2-user ~]$ dnf list | grep php
 ```
 
-The following is an example line from the output for the PHP graphics drawing library \(version 7\.2\):
+The following is example lines from the output for the PHP graphics drawing library \(version 8\.1\):
 
 ```
-php72-gd.x86_64                   7.2.30-1.22.amzn1         amzn-updates
+php8.1.aarch64                                                    8.1.7-1.amzn2022.0.1                        @amazonlinux
+php8.1-cli.aarch64                                                8.1.7-1.amzn2022.0.1                        @amazonlinux
+php8.1-common.aarch64                                             8.1.7-1.amzn2022.0.1                        @amazonlinux
+php8.1-devel.aarch64                                              8.1.7-1.amzn2022.0.1                        @amazonlinux
+php8.1-fpm.aarch64                                                8.1.7-1.amzn2022.0.1                        @amazonlinux
+php8.1-gd.aarch64                                                 8.1.7-1.amzn2022.0.1                        @amazonlinux
 ```
 
-Use the following command to install a specific version of the PHP graphics drawing library \(for example, version 7\.2\) on the Amazon Linux AMI:
+Use the following command to install a specific version of the PHP graphics drawing library \(for example, version php8\.1\) on the Amazon Linux AMI:
 
 ```
-[ec2-user ~]$ sudo dnf install php72-gd
+[ec2-user ~]$ sudo dnf install -y php8.1-gd
 ```
 
 **To fix file permissions for the Apache web server**

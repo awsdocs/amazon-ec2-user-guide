@@ -203,19 +203,17 @@ Each subnet has an attribute that determines whether instances launched into tha
 + You cannot auto\-assign a public IP address if you specify more than one network interface\. Additionally, you cannot override the subnet setting using the auto\-assign public IP feature if you specify an existing network interface for eth0\. 
 + The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the public IPv4 addressing attribute for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip)\.
 
-**To enable or disable the public IP addressing feature using the console**
+------
+#### [ New console ]
 
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+To assign a public IPv4 address during instance launch, follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters), and when you configure [Network Settings](ec2-launch-instance-wizard.md#liw-network-settings), choose the option to **Auto\-assign Public IP**\.
 
-1. Choose **Launch Instance**\.
+------
+#### [ Old console ]
 
-1. Select an AMI and an instance type, and then choose **Next: Configure Instance Details**\.
+To assign a public IPv4 address during instance launch, follow the procedure to [launch an instance](launching-instance.md) and, in [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step), choose the option to **Auto\-assign Public IP**\.
 
-1. On the **Configure Instance Details** page, for **Network**, select a VPC\. The **Auto\-assign Public IP** list is displayed\. Choose **Enable** or **Disable** to override the default setting for the subnet\. 
-
-1. Follow the steps on the next pages of the wizard to complete your instance's setup\. For more information about the wizard configuration options, see [Launch an instance using the old launch instance wizard](launching-instance.md)\. On the final **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\.
-
-1. On the **Instances** page, select your new instance and view its public IP address in **IPv4 Public IP** field in the details pane\.<a name="publicip-cli"></a>
+------<a name="publicip-cli"></a>
 
 **To enable or disable the public IP addressing feature using the command line**
 
@@ -301,17 +299,14 @@ You can use one of the following commands\. For more information about these com
 
 If your VPC and subnet have IPv6 CIDR blocks associated with them, you can assign an IPv6 address to your instance during or after launch\. The IPv6 address is assigned from the IPv6 address range of the subnet, and is assigned to the network interface with the device index of eth0\.
 
-**To assign an IPv6 address to an instance during launch**
+------
+#### [ New console ]
 
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+**At launch:**
 
-1. Select an AMI and an instance type that supports IPv6, and choose **Next: Configure Instance Details**\.
+To assign an IPv6 address during instance launch, follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters), and when you configure [Network Settings](ec2-launch-instance-wizard.md#liw-network-settings), choose the option to **Auto\-assign IPv6 IP**\.
 
-1. On the **Configure Instance Details** page, for **Network**, select a VPC and for **Subnet**, select a subnet\. For **Auto\-assign IPv6 IP**, choose **Enable**\.
-
-1. Follow the remaining steps in the wizard to launch your instance\.
-
-**To assign an IPv6 address to an instance after launch**
+**After launch:**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -321,7 +316,28 @@ If your VPC and subnet have IPv6 CIDR blocks associated with them, you can assig
 
 1. Expand the network interface\. Under **IPv6 addresses**, choose **Assign new IP address**\. Enter an IPv6 address from the range of the subnet or leave the field blank to let Amazon choose an IPv6 address for you\.
 
-1. Choose **Save**\.<a name="assign-ipv6-cli"></a>
+1. Choose **Save**\.
+
+------
+#### [ Old console ]
+
+**At launch:**
+
+To assign an IPv6 address during instance launch, follow the procedure to [launch an instance](launching-instance.md) and, in [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step), choose the option to **Auto\-assign IPv6 IP**\.
+
+**After launch:**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select your instance, and choose **Actions**, **Networking**, **Manage IP addresses**\.
+
+1. Expand the network interface\. Under **IPv6 addresses**, choose **Assign new IP address**\. Enter an IPv6 address from the range of the subnet or leave the field blank to let Amazon choose an IPv6 address for you\.
+
+1. Choose **Save**\.
+
+------<a name="assign-ipv6-cli"></a>
 
 **To assign an IPv6 address using the command line**
 

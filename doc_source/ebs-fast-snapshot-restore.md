@@ -89,7 +89,7 @@ If you enabled fast snapshot restore for a snapshot that is shared with you, and
 Use one of the following methods to enable or disable fast snapshot restore for a snapshot that you own or for a snapshot that is shared with you\. 
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To enable or disable fast snapshot restore**
 
@@ -106,23 +106,6 @@ Use one of the following methods to enable or disable fast snapshot restore for 
    To disable fast snapshot restore in a zone where it is currently enabled, select the zone, and then choose **Disable**\.
 
 1. After you have made the required changes, choose **Close**\.
-
-------
-#### [ Old console ]
-
-**To enable or disable fast snapshot restore**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Snapshots**\.
-
-1. Select the snapshot\.
-
-1. Choose **Actions**, **Manage Fast Snapshot Restore**\.
-
-1. Select or deselect Availability Zones, and then choose **Save**\.
-
-1. To track the state of fast snapshot restore as it is enabled, see **Fast Snapshot Restore** on the **Description** tab\.
 
 ------
 #### [ AWS CLI ]
@@ -149,7 +132,7 @@ Fast snapshot restore for a snapshot can be in one of the following states\.
 Use one of the following methods to view the state of fast snapshot restore for a snapshot that you own or for a snapshot that is shared with you\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To view the state of fast snapshot restore using the console**
 
@@ -160,19 +143,6 @@ Use one of the following methods to view the state of fast snapshot restore for 
 1. Select the snapshot\.
 
 1. On the **Details** tab, **Fast snapshot restore**, indicates the state of fast snapshot restore\.
-
-------
-#### [ Old console ]
-
-**To view the state of fast snapshot restore using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Snapshots**\.
-
-1. Select the snapshot\.
-
-1. On the **Description** tab, see **Fast Snapshot Restore**, which indicates the state of fast snapshot restore\. For example, it might show a state of "2 Availability Zones optimizing" or "2 Availability Zones enabled"\.
 
 ------
 #### [ AWS CLI ]

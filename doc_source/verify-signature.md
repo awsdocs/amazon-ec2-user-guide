@@ -254,4 +254,16 @@ This topic explains how to verify the instance identity document using the base6
    $ openssl dgst -sha256 -verify key -signature signature document
    ```
 
-   If the signature is valid, the `Verified OK` message appears\. If the signature cannot be verified, contact AWS Support\.
+   If the signature is valid, the `Verification successful` message appears\.
+
+   The command also writes the contents of the instance identity document to a new file named `document`\. You can compare the contents of the of the instance identity document from the instance metadata with the contents of this file using the following commands\.
+
+   ```
+   $ openssl dgst -sha256 < document
+   ```
+
+   ```
+   $ curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/dynamic/instance-identity/document | openssl dgst -sha256
+   ```
+
+    If the signature cannot be verified, contact AWS Support\.

@@ -4,6 +4,12 @@ After you launch your instance, you can connect to it and use it the way that yo
 
 The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\. For more connection options, see [Connect to your Linux instance](AccessingInstances.md)\.
 
+**Contents**
++ [Prerequisites](#ssh-prereqs)
++ [Connect to your Linux instance using an SSH client](#AccessingInstancesLinuxSSHClient)
++ [Transfer files to Linux instances using an SCP client](#AccessingInstancesLinuxSCP)
++ [Troubleshoot](#AccessingInstancesLinux-troubleshoot)
+
 ## Prerequisites<a name="ssh-prereqs"></a>
 
 Before you connect to your Linux instance, complete the following prerequisites\.

@@ -51,7 +51,7 @@ The following considerations apply to creating snapshots:
 To create a snapshot from the specified volume, use one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To create a snapshot using the console**
 
@@ -70,27 +70,6 @@ To create a snapshot from the specified volume, use one of the following methods
 1. \(Optional\) To assign custom tags to the snapshot, in the **Tags** section, choose **Add tag**, and then enter the key\-value pair\. You can add up to 50 tags\.
 
 1. Choose **Create snapshot**\.
-
-------
-#### [ Old console ]
-
-**To create a snapshot using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. Choose **Snapshots** under **Elastic Block Store** in the navigation pane\.
-
-1. Choose **Create Snapshot**\.
-
-1. For **Select resource type**, choose **Volume**\.
-
-1. For **Volume**, select the volume\.
-
-1. \(Optional\) Enter a description for the snapshot\.
-
-1. \(Optional\) Choose **Add Tag** to add tags to your snapshot\. For each tag, provide a tag key and a tag value\.
-
-1. Choose **Create Snapshot**\.
 
 ------
 #### [ AWS CLI ]
@@ -113,7 +92,7 @@ When you create a multi\-volume snapshot set from an instance, you can choose wh
 To create a snapshot from the volumes of an instance, use one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To create multi\-volume snapshots using the console**
 
@@ -138,32 +117,6 @@ To create a snapshot from the volumes of an instance, use one of the following m
 1. Choose **Create snapshot**\.
 
    During snapshot creation, the snapshots are managed together\. If one of the snapshots in the volume set fails, the other snapshots are moved to error status for the volume set\. You can monitor the progress of your snapshots using [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)\. After the snapshot creation process completes, CloudWatch generates an event that contains the status and all of the relevant snapshot details for the affected instance\.
-
-------
-#### [ Old console ]
-
-**Note**  
-You can't exclude data volumes from a multi\-volume snapshot set when using the old console\.
-
-**To create multi\-volume snapshots using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. Choose **Snapshots** under **Elastic Block Store** in the navigation pane\.
-
-1. Choose **Create Snapshot**\.
-
-1. For **Select resource type**, choose **Instance**\.
-
-1. Select the instance ID for which you want to create simultaneous backups for all of the attached EBS volumes\. Multi\-volume snapshots support up to 40 EBS volumes per instance\.
-
-1. \(Optional\) Set **Exclude root volume**\.
-
-1. \(Optional\) Set **Copy tags from volume** flag to automatically copy tags from the source volume to the corresponding snapshots\. This sets snapshot metadata—such as access policies, attachment information, and cost allocation—to match the source volume\.
-
-1. \(Optional\) Choose **Add Tag** to add tags to your snapshot\. For each tag, provide a tag key and a tag value\.
-
-1. Choose **Create Snapshot**\.
 
 ------
 #### [ Command line ]

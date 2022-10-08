@@ -31,25 +31,6 @@ This topic explains how to verify the instance identity document using the PKCS7
 
 ------
 
-1. Add the contents of the instance identity document from the instance metadata to a file named `document`\. Use one of the following commands depending on the IMDS version used by the instance\.
-
-------
-#### [ IMDSv2 ]
-
-   ```
-   $ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
-   && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/dynamic/instance-identity/document >> document
-   ```
-
-------
-#### [ IMDSv1 ]
-
-   ```
-   $ curl -s http://169.254.169.254/latest/dynamic/instance-identity/document >> document
-   ```
-
-------
-
 1. Add the AWS DSA public certificate to a new file named `certificate`\. Use one of the following commands depending on the Region of your instance\.
 
 ------
@@ -267,7 +248,19 @@ This topic explains how to verify the instance identity document using the PKCS7
 1. Use the **OpenSSL smime** command to verify the signature\. Include the `-verify` option to indicate that the signature needs to be verified, and the `-noverify` option to indicate that the certificate does not need to be verified\.
 
    ```
-   $ openssl smime -verify -in pkcs7 -inform PEM -content document -certfile certificate -noverify
+   $ openssl smime -verify -in pkcs7 -inform PEM -certfile certificate -noverify | tee document
    ```
 
-   If the signature is valid, the `Verification successful` message appears\. If the signature cannot be verified, contact AWS Support\.
+   If the signature is valid, the `Verification successful` message appears\.
+
+   The command also writes the contents of the instance identity document to a new file named `document`\. You can compare the contents of the of the instance identity document from the instance metadata with the contents of this file using the following commands\.
+
+   ```
+   $ openssl dgst -sha256 < document
+   ```
+
+   ```
+   $ curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/dynamic/instance-identity/document | openssl dgst -sha256
+   ```
+
+    If the signature cannot be verified, contact AWS Support\.

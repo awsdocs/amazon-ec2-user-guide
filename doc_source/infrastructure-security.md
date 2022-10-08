@@ -1,6 +1,6 @@
 # Infrastructure security in Amazon EC2<a name="infrastructure-security"></a>
 
-You use AWS published API calls to access Amazon EC2 through the network\. Clients must support Transport Layer Security \(TLS\) 1\.0 or later\. Clients must support Transport Layer Security \(TLS\) 1\.2 or later by June 28, 2023\. Clients must also support cipher suites with perfect forward secrecy \(PFS\) such as Ephemeral Diffie\-Hellman \(DHE\) or Elliptic Curve Ephemeral Diffie\-Hellman \(ECDHE\)\. Most modern systems such as Java 7 and later support these modes\.
+You use AWS published API calls to access Amazon EC2 through the network\. Clients must support Transport Layer Security \(TLS\) 1\.1 or later\. [Clients must support TLS 1\.2 or later by June 28, 2023](https://aws.amazon.com/blogs/security/tls-1-2-required-for-aws-endpoints/)\. Clients must also support cipher suites with perfect forward secrecy \(PFS\) such as Ephemeral Diffie\-Hellman \(DHE\) or Elliptic Curve Ephemeral Diffie\-Hellman \(ECDHE\)\. Most modern systems such as Java 7 and later support these modes\.
 
 Additionally, requests must be signed using an access key ID and a secret access key that is associated with an IAM principal\. Or you can use the [AWS Security Token Service](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) \(AWS STS\) to generate temporary security credentials to sign requests\.
 

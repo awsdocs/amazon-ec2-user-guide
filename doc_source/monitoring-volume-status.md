@@ -8,7 +8,7 @@ Amazon Web Services \(AWS\) automatically provides data that you can use to moni
 + [Work with an impaired volume](#work_volumes_impaired)
 + [Work with the Auto\-Enabled IO volume attribute](#volumeIO)
 
-For additional monitoring information, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md) and [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
+For additional monitoring information, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md) and [EventBridge for Amazon EBS](ebs-cloud-watch-events.md)\.
 
 ## EBS volume status checks<a name="monitoring-volume-checks"></a>
 
@@ -41,7 +41,7 @@ The following table lists statuses for Amazon EBS volumes\.
 You can view and work with status checks using the following methods\.
 
 ------
-#### [ New console and Old console ]
+#### [ Console ]
 
 **To view status checks**
 
@@ -104,7 +104,7 @@ For `io1`, `io2`, and `gp3` volumes only\. Volume performance is severely impact
 You can view events for your volumes using the following methods\. 
 
 ------
-#### [ New console and Old console ]
+#### [ Console ]
 
 **To view events for your volumes**
 
@@ -151,7 +151,7 @@ The simplest option is to enable I/O and then perform a data consistency check o
 1. Enable I/O on the volume\. Use one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
    1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -160,18 +160,6 @@ The simplest option is to enable I/O and then perform a data consistency check o
    1. Select the volume on which to enable I/O operations\. 
 
    1. Choose **Actions**, **Enable I/O**\.
-
-------
-#### [ Old console ]
-
-   1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-   1. In the navigation pane, choose **Volumes**\.
-
-   1. Select the volume on which to enable I/O operations\. 
-
-   1. In the details pane, choose **Enable Volume IO**, and then choose **Yes, Enable**\.  
-![\[Enable IO\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EnableIO_volumepage_gwt.png)
 
 ------
 #### [ AWS CLI ]
@@ -208,7 +196,7 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
 1. Enable I/O on the volume\. Use one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
    1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -217,16 +205,6 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
    1. Select the volume that you detached in the previous step\.
 
    1. Choose **Actions**, **Enable I/O**\.
-
-------
-#### [ Old console ]
-
-   1. In the navigation pane, choose **Volumes**\. 
-
-   1. Select the volume that you detached in the previous step\.
-
-   1. In the details pane, choose **Enable Volume IO**, and then choose **Yes, Enable**\.   
-![\[Enable IO\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EnableIO_volumepage_gwt.png)
 
 ------
 #### [ AWS CLI ]
@@ -285,32 +263,6 @@ You can view and modify the **Auto\-Enabled IO** attribute of a volume using one
 1. To automatically enable I/O for an impaired volume, select the **Auto\-enable I/O for impaired volumes** check box\. To disable the feature, clear the check box\.
 
 1. Choose **Update**\.
-
-------
-#### [ Old console ]
-
-**To view the Auto\-Enabled IO attribute of a volume**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Volumes**\. 
-
-1. Select the volume and choose **Status Checks**\. **Auto\-Enabled IO** displays the current setting \(**Enabled** or **Disabled**\) for your volume\.  
-![\[View Auto-Enable IO\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/AutoEnableSetting_statustab_gwt.png)
-
-**To modify the Auto\-Enabled IO attribute of a volume**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Volumes**\. 
-
-1. Select the volume and choose **Actions**, **Change Auto\-Enable IO Setting**\. Alternatively, choose the **Status Checks** tab, and for **Auto\-Enabled IO**, choose **Edit**\.  
-![\[Change Auto-Enable IO setting\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ChangeAutoEnable-gwt.png)
-
-1. Select the **Auto\-Enable Volume IO** check box to automatically enable I/O for an impaired volume\. To disable the feature, clear the check box\.  
-![\[Modify Auto-Enable IO setting\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ModifyAutoIO-gwt.png)
-
-1. Choose **Save**\.
 
 ------
 #### [ AWS CLI ]

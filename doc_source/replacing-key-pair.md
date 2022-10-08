@@ -12,7 +12,7 @@ The public keys are located in the `.ssh/authorized_keys` file on the instance\.
 To add or replace a key pair, you must be able to connect to your instance\. If you've lost your existing private key or you launched your instance without a key pair, you won't be able connect to your instance and therefore won't be able to add or replace a key pair\. If you've lost your private key, you might be able to retrieve it\. For more information, see [I've lost my private key\. How can I connect to my Linux instance?](TroubleshootingInstancesConnecting.md#replacing-lost-key-pair) If you launched your instance without a key pair, you won't be able to connect to the instance unless you chose an AMI that is configured to allow users another way to log in\.
 
 **Note**  
-These procedures are for modifying the key pair for the default user account, such as `ec2-user`\. For information about adding user accounts to your instance, see [Manage user accounts on your Amazon Linux instance](managing-users.md)\.
+These procedures are for modifying the key pair for the default user account, such as `ec2-user`\. For information about adding user accounts to your instance, see [Manage user accounts on your Linux instance](managing-users.md)\.
 
 **To add or replace a key pair**
 

@@ -53,7 +53,9 @@ As an alternative to using the default service roles, you can create custom IAM 
                      "ec2:DisableFastSnapshotRestores",
                      "ec2:CopySnapshot",
                      "ec2:ModifySnapshotAttribute",
-                     "ec2:DescribeSnapshotAttribute"
+                     "ec2:DescribeSnapshotAttribute",
+                     "ec2:ModifySnapshotTier",
+                     "ec2:DescribeSnapshotTierStatus"
                  ],
                  "Resource": "*"
              },

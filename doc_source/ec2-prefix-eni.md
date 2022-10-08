@@ -26,6 +26,7 @@ Assigning prefixes has the following benefits:
   + The prefix is in the subnet CIDR of the network interface, and does not overlap with other prefixes or IP addresses assigned to existing resources in the subnet\.
 + You can assign a prefix to the primary or secondary network interface\.
 + You can assign an Elastic IP address to a network interface that has a prefix assigned to it\.
++ You can also assign an Elastic IP address to the IP address part of the assigned prefix\.
 + We resolve the private DNS host name of an instance to the primary private IPv4 address\.
 + We assign each private IPv4 address for a network interface, including those from prefixes, using the following format:
   + `us-east-1` Region

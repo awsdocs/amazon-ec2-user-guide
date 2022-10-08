@@ -20,7 +20,7 @@ If you attach an `io2` volume to an instance that supports Block Express, the vo
 You can attach a volume to an instance using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To attach an EBS volume to an instance using the console**
 
@@ -42,25 +42,6 @@ If the volume is encrypted, it can only be attached to instance types that suppo
 1. Choose **Attach volume**\.
 
 1. Connect to the instance and mount the volume\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
-
-------
-#### [ Old console ]
-
-**To attach an EBS volume to an instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic Block Store**, **Volumes**\.
-
-1. Select an available volume and choose **Actions**, **Attach Volume**\.
-
-1. For **Instance**, start typing the name or ID of the instance\. Select the instance from the list of options \(only instances that are in the same Availability Zone as the volume are displayed\)\.
-
-1. For **Device**, you can keep the suggested device name, or type a different supported device name\. For more information, see [Device names on Linux instances](device_naming.md)\.
-
-1. Choose **Attach**\.
-
-1. Connect to your instance and mount the volume\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
 ------
 #### [ AWS CLI ]

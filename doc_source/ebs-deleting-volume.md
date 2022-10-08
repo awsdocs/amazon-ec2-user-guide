@@ -11,7 +11,7 @@ If a volume is detached from an instance, it’s in the `available` state\. You 
 You can delete an EBS volume using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To delete an EBS volume using the console**
 
@@ -24,19 +24,6 @@ You can delete an EBS volume using one of the following methods\.
 If **Delete volume** is greyed out, the volume is attached to an instance\. You must detach the volume from the instance before it can be deleted\.
 
 1. In the confirmation dialog box, choose **Delete**\.
-
-------
-#### [ Old console ]
-
-**To delete an EBS volume using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Volumes**\. 
-
-1. Select a volume and choose **Actions**, **Delete Volume**\. If **Delete Volume** is greyed out, the volume is attached to an instance\.
-
-1. In the confirmation dialog box, choose **Yes, Delete**\. 
 
 ------
 #### [ AWS CLI ]

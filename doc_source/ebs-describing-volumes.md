@@ -9,7 +9,7 @@ You can get additional information about your EBS volumes, such as how much disk
 You can view information about a volume using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To view information about a volume using the console**
 
@@ -30,43 +30,6 @@ You can view information about a volume using one of the following methods\.
 1. Select the instance\.
 
 1. On the **Storage** tab, the **Block devices** section lists the volumes that are attached to the instance\. To view information about a specific volume, choose its ID in the **Volume ID** column\.
-
-------
-#### [ Old console ]
-
-**To view information about an EBS volume using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Volumes**\.
-
-1. \(Optional\) Use the filter options in the search field to display only the volumes that interest you\. For example, if you know the instance ID, choose **Instance ID** from the search field menu, and then choose the instance ID from the list provided\. To remove a filter, choose it again\.
-
-1. Select the volume\.
-
-1. In the details pane, you can inspect the information provided about the volume\. **Attachment information** shows the instance ID this volume is attached to and the device name under which it is attached\.
-
-1. \(Optional\) Choose the **Attachment information** link to view additional details about the instance\.
-
-**To view the EBS volumes that are attached to an instance using the **new console****
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance\.
-
-1. In the **Description** tab, view the information provided for **Block devices**\. To view information about a specific volume, choose a link next to Block devices and then choose the volume ID\.
-
-**To view the EBS volumes that are attached to an instance using the **old console****
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance\.
-
-1. In the **Description** tab, for **Block devices**, select the block device mapping and then choose the **EBS ID** to view additional details for the volume\.
 
 ------
 #### [ AWS CLI ]

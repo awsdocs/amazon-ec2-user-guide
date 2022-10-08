@@ -1,8 +1,15 @@
 # Connect to your Linux instance from Windows using PuTTY<a name="putty"></a>
 
-After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
+If you are running Windows Server 2019 or later, we recommend using OpenSSH, which is an open source connectivity tool for remote login with the SSH protocol\. For steps to connect to a Linux instance from Windows using OpenSSH, see [Connect to your Linux instance from Windows using OpenSSH](openssh.md)\.
 
 The following instructions explain how to connect to your instance using PuTTY, a free SSH client for Windows\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
+
+**Contents**
++ [Prerequisites](#putty-prereqs)
+  + [Convert your private key using PuTTYgen](#putty-private-key)
++ [Connect to your Linux instance](#putty-ssh)
++ [Transfer files to your Linux instance using the PuTTY Secure Copy client](#putty-scp)
++ [Transfer files to your Linux instance using WinSCP](#Transfer_WinSCP)
 
 ## Prerequisites<a name="putty-prereqs"></a>
 

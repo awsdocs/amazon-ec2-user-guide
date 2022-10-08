@@ -49,7 +49,21 @@ You can assign the secondary private IPv4 address to the network interface for a
 + [To assign a secondary private IPv4 address when launching an instance](#assignIP-launch)
 + [To assign a secondary IPv4 address during launch using the command line](#assignIP-launch-cmd)
 + [To assign a secondary private IPv4 address to a network interface](#assignIP-existing)
-+ [To assign a secondary private IPv4 to an existing instance using the command line](#assignIP-existing-cmd)<a name="assignIP-launch"></a>
++ [To assign a secondary private IPv4 to an existing instance using the command line](#assignIP-existing-cmd)
+
+------
+#### [ New console ]<a name="assignIP-launch"></a>
+
+**To assign a secondary private IPv4 address when launching an instance**
+
+1. Follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters), and when you configure [Network Settings](ec2-launch-instance-wizard.md#liw-network-settings), choose **Advanced network configuration**\.
+
+1. Under **Secondary IP**, choose **Automatically assign** to have Amazon automatically assign a secondary IPv4 address or choose **Manually assign** to manually enter a CIDR\.
+
+1. Complete the remaining steps to [launch the instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters)\.
+
+------
+#### [ Old console ]
 
 **To assign a secondary private IPv4 address when launching an instance**
 
@@ -76,7 +90,9 @@ When you add a second network interface, the system can no longer auto\-assign a
 1. On the **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\. If you're new to Amazon EC2 and haven't created any key pairs, the wizard prompts you to create one\.
 
 **Important**  
-After you have added a secondary private IP address to a network interface, you must connect to the instance and configure the secondary private IP address on the instance itself\. For more information, see [Configure the operating system on your instance to recognize secondary private IPv4 addresses](#StepTwoConfigOS)\.<a name="assignIP-launch-cmd"></a>
+After you have added a secondary private IP address to a network interface, you must connect to the instance and configure the secondary private IP address on the instance itself\. For more information, see [Configure the operating system on your instance to recognize secondary private IPv4 addresses](#StepTwoConfigOS)\.
+
+------<a name="assignIP-launch-cmd"></a>
 
 **To assign a secondary IPv4 address during launch using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
@@ -201,6 +217,20 @@ You can assign multiple IPv6 addresses to your instance, view the IPv6 addresses
 
 You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\. For more information, see [IPv6 addresses](https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html#vpc-ipv6-addresses) in the *Amazon VPC User Guide*\.
 
+------
+#### [ New console ]
+
+**To assign multiple IPv6 addresses during launch**
+
+1. Follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters), and when you configure [Network Settings](ec2-launch-instance-wizard.md#liw-network-settings), choose **Advanced network configuration**\.
+
+1. To assign a secondary IPv6 address, under **IPv6 IPs**, choose **Automatically assign** to have Amazon automatically assign a secondary IPv6 address or choose **Manually assign** to manually enter a CIDR\.
+
+1. Complete the remaining steps to [launch the instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters)\.
+
+------
+#### [ Old console ]
+
 **To assign multiple IPv6 addresses during launch**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -220,6 +250,8 @@ You can assign one or more IPv6 addresses to your instance during launch or afte
 1. On the **Configure Security Group** page, select an existing security group or create a new one\. If you want your instance to be reachable over IPv6, ensure that your security group has rules that allow access from IPv6 addresses\. For more information, see [Security group rules for different use cases](security-group-rules-reference.md)\. Choose **Review and Launch**\. 
 
 1. On the **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\. If you're new to Amazon EC2 and haven't created any key pairs, the wizard prompts you to create one\.
+
+------
 
 You can use the **Instances** screen Amazon EC2 console to assign multiple IPv6 addresses to an existing instance\. This assigns the IPv6 addresses to the primary network interface \(eth0\) for the instance\. To assign a specific IPv6 address to the instance, ensure that the IPv6 address is not already assigned to another instance or network interface\.
 

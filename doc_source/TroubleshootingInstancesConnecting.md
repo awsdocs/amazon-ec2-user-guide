@@ -25,7 +25,7 @@ We recommend that you begin troubleshooting by checking some common causes for i
 You can connect to your instance using the user name for your user account or the default user name for the AMI that you used to launch your instance\.  
 + **Get the user name for your user account\.**
 
-  For more information about how to create a user account, see [Manage user accounts on your Amazon Linux instance](managing-users.md)\.
+  For more information about how to create a user account, see [Manage user accounts on your Linux instance](managing-users.md)\.
 + **Get the default user name for the AMI that you used to launch your instance:**
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a CentOS AMI, the user name is `centos` or `ec2-user`\.

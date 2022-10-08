@@ -36,6 +36,6 @@ aws ec2 register-image \
     --name uefi_sb_tpm_register_image_test \
     --uefi-data $(cat your_binary_blob.bin) \
     --block-device-mappings "DeviceName=/dev/sda1,Ebs= {SnapshotId=snap-0123456789example,DeleteOnTermination=true}" \
-    --architecture x86_64 --root-device-name /dev/sda1 --virtualization-type hvm —ena-support
+    --architecture x86_64 --root-device-name /dev/sda1 --virtualization-type hvm —ena-support \
     --boot-mode uefi
 ```

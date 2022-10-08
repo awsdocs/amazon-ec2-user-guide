@@ -48,35 +48,6 @@ The **Replace root volume** action is disabled if the selected instance is not i
    + To restore the instance's root volume to a specific snapshot, for **Snapshot**, select the snapshot to use, and then choose **Create replacement task**\.
 
 ------
-#### [ AWS CLI ]
-
-**To restore the root volume to the initial launch state**  
-Use the [ create\-replace\-root\-volume\-task](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-replace-root-volume-task.html) command\. Specify the ID of the instance for which to restore the root volume and omit the `--snapshot-id` parameter\.
-
-```
-$ aws ec2 create-replace-root-volume-task --instance-id instance_id
-```
-
-For example:
-
-```
-$ aws ec2 create-replace-root-volume-task --instance-id i-1234567890abcdef0
-```
-
-**To restore the root volume to a specific snapshot**  
-Use the [create\-replace\-root\-volume\-task](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-replace-root-volume-task.html) command\. Specify the ID of the instance for which to restore the root volume and the ID of the snapshot to use\.
-
-```
-$ aws ec2 create-replace-root-volume-task --instance-id instance_id --snapshot-id snapshot_id
-```
-
-For example:
-
-```
-$ aws ec2 create-replace-root-volume-task --instance-id i-1234567890abcdef0 --snapshot-id snap-9876543210abcdef0
-```
-
-------
 
 ## View root volume replacement tasks<a name="view-replacement-tasks"></a>
 
@@ -106,49 +77,5 @@ If you use the Amazon EC2 console, the functionality is available in the new con
 1. Select the instance for which to view the root volume replacement tasks, and then choose the **Storage** tab\.
 
 1. In the **Storage** tab, expand **Recent root volume replacement tasks**\.
-
-------
-#### [ AWS CLI ]
-
-**To view the status of a root volume replacement task**  
-Use the [describe\-replace\-root\-volume\-tasks](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-replace-root-volume-tasks.html) command and specify the IDs of the root volume replacement tasks to view\.
-
-```
-$ aws ec2 describe-replace-root-volume-tasks --replace-root-volume-task-ids task_id_1 task_id_2
-```
-
-For example:
-
-```
-$ aws ec2 describe-replace-root-volume-tasks --replace-root-volume-task-ids replacevol-1234567890abcdef0 
-```
-
-```
-{
-  "ReplaceRootVolumeTasks": [
-  {   
-    "ReplaceRootVolumeTaskId": "replacevol-1234567890abcdef0",
-    "InstanceId": "i-1234567890abcdef0",
-    "TaskState": "succeeded",
-    "StartTime": "2020-11-06 13:09:54.0",
-    "CompleteTime": "2020-11-06 13:10:14.0"
-  }]
-}
-```
-
-****  
-
-
-Alternatively, specify the `instance-id` filter to filter the results by instance\.
-
-```
-$ aws ec2 describe-replace-root-volume-tasks --filters Name=instance-id,Values=instance_id
-```
-
-For example:
-
-```
-$ aws ec2 describe-replace-root-volume-tasks --filters Name=instance-id,Values=i-1234567890abcdef0
-```
 
 ------

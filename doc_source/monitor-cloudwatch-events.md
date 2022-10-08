@@ -6,7 +6,7 @@ The following events are available:
 
 **Note**  
 No events are emitted for AMI lifecycle policy actions\.
-+ `createSnapshot`—An Amazon EBS event emitted when a `CreateSnapshot` action succeeds or fails\. For more information, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
++ `createSnapshot`—An Amazon EBS event emitted when a `CreateSnapshot` action succeeds or fails\. For more information, see [EventBridge for Amazon EBS](ebs-cloud-watch-events.md)\.
 + `DLM Policy State Change`—An Amazon Data Lifecycle Manager event emitted when a lifecycle policy enters an error state\. The event contains a description of what caused the error\. The following is an example of an event when the permissions granted by the IAM role are insufficient\.
 
   ```

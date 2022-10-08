@@ -5,7 +5,7 @@ After you have successfully launched and logged into your Amazon Linux instance,
 **Topics**
 + [Common configuration scenarios](#configuration-scenarios)
 + [Manage software on your Amazon Linux instance](managing-software.md)
-+ [Manage user accounts on your Amazon Linux instance](managing-users.md)
++ [Manage user accounts on your Linux instance](managing-users.md)
 + [Processor state control for your EC2 instance](processor_state_control.md)
 + [I/O scheduler](io-scheduler.md)
 + [Set the time for your Linux instance](set-time.md)
@@ -19,7 +19,7 @@ After you have successfully launched and logged into your Amazon Linux instance,
 
 The base distribution of Amazon Linux contains many software packages and utilities that are required for basic server operations\. However, many more software packages are available in various software repositories, and even more packages are available for you to build from source code\. For more information on installing and building software from these locations, see [Manage software on your Amazon Linux instance](managing-software.md)\.
 
-Amazon Linux instances come pre\-configured with an `ec2-user` account, but you may want to add other user accounts that do not have super\-user privileges\. For more information on adding and removing user accounts, see [Manage user accounts on your Amazon Linux instance](managing-users.md)\.
+Amazon Linux instances come pre\-configured with an `ec2-user` account, but you may want to add other user accounts that do not have super\-user privileges\. For more information on adding and removing user accounts, see [Manage user accounts on your Linux instance](managing-users.md)\.
 
 The default time configuration for Amazon Linux instances uses Amazon Time Sync Service to set the system time on an instance\. The default time zone is UTC\. For more information on setting the time zone for an instance or using your own time server, see [Set the time for your Linux instance](set-time.md)\.
 

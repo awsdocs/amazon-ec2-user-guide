@@ -20,6 +20,7 @@ In the following examples, the commands from the [Install a LAMP Web Server on A
 + [User data and the console](#user-data-console)
 + [User data and cloud\-init directives](#user-data-cloud-init)
 + [User data and the AWS CLI](#user-data-api-cli)
++ [Combine shell scripts and cloud\-init directives](#user-data-mime-multi)
 
 ## Prerequisites<a name="user-data-requirements"></a>
 
@@ -291,4 +292,66 @@ The following is example output\.
 yum update -y
 service httpd start
 chkconfig httpd on
+```
+
+## Combine shell scripts and cloud\-init directives<a name="user-data-mime-multi"></a>
+
+By default, you can include only one content type in user data at a time\. However, you can use the `text/cloud-config` and `text/x-shellscript` content\-types in a mime\-multi part file to include both a shell script and cloud\-init directives in your user data\.
+
+The following shows the mime\-multi part format\.
+
+```
+Content-Type: multipart/mixed; boundary="//"
+MIME-Version: 1.0
+
+--//
+Content-Type: text/cloud-config; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config.txt"
+
+#cloud-config
+cloud-init directives
+
+--//
+Content-Type: text/x-shellscript; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="userdata.txt"
+
+#!/bin/bash
+shell script commands
+--//--
+```
+
+For example, the following user data includes cloud\-init directives and a bash shell script\. The cloud\-init directives creates a file \(`/test-cloudinit/cloud-init.txt`\), and writes `Created by cloud-init` to that file\. The bash shell script creates a file \(`/test-userscript/userscript.txt`\) and writes `Created by bash shell script` to that file\.
+
+```
+Content-Type: multipart/mixed; boundary="//"
+MIME-Version: 1.0
+
+--//
+Content-Type: text/cloud-config; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config.txt"
+
+#cloud-config
+runcmd:
+ - [ mkdir, /test-cloudinit ]
+write_files:
+ - path: /test-cloudinit/cloud-init.txt
+   content: Created by cloud-init
+
+--//
+Content-Type: text/x-shellscript; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="userdata.txt"
+
+#!/bin/bash
+  mkdir test-userscript
+  touch /test-userscript/userscript.txt
+  echo "Created by bash shell script" >> /test-userscript/userscript.txt
+--//--
 ```

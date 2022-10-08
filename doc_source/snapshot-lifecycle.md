@@ -51,11 +51,12 @@ You can't use the `\` or `=` characters in a tag key\. Target resource tags are 
 
 ### Amazon Data Lifecycle Manager tags<a name="dlm-tagging-snapshots"></a>
 
-Amazon Data Lifecycle Manager applies the following tags to all snapshots and AMIs created by a policy, to distinguish them from snapshots and AMIs created by any other means:
+Amazon Data Lifecycle Manager applies the following system tags to all snapshots and AMIs created by a policy, to distinguish them from snapshots and AMIs created by any other means:
 + `aws:dlm:lifecycle-policy-id`
 + `aws:dlm:lifecycle-schedule-name`
-+ `aws:dlm:expirationTime` — For policies with age\-based retention schedules only\.
-+ `dlm:managed`
++ `aws:dlm:expirationTime` — For snapshots created by an age\-based schedule\. Indicates when the snapshot is to be deleted from the standard tier\. 
++ `aws:dlm:managed`
++ `aws:dlm:archived` — For snapshots that were archived by a schedule\.
 
 You can also specify custom tags to be applied to snapshots and AMIs on creation\. You can't use the `\` or `=` characters in a tag key\.
 

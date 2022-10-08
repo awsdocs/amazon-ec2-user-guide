@@ -35,7 +35,7 @@ The following considerations apply to deleting snapshots:
 To delete a snapshot, use one of the following methods\. 
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To delete a snapshot using the console**
 
@@ -46,19 +46,6 @@ To delete a snapshot, use one of the following methods\.
 1. Select the snapshot to delete, and then choose **Actions**, **Delete snapshot**\.
 
 1. Choose **Delete**\.
-
-------
-#### [ Old console ]
-
-**To delete a snapshot using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. Choose **Snapshots** in the navigation pane\. 
-
-1. Select a snapshot and then choose **Delete** from the **Actions** list\.
-
-1. Choose **Yes, Delete**\.
 
 ------
 #### [ AWS CLI ]

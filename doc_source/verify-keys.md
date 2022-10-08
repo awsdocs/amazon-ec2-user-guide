@@ -4,7 +4,7 @@
 
 On the **Key Pairs** page in the Amazon EC2 console, the **Fingerprint** column displays the fingerprints generated from your key pairs\.
 
-You can use the fingerprint that's displayed on the **Key Pairs** page to verify that the private key you have on your local machine matches the public key stored in Amazon EC2\. From the computer where you downloaded the private key file, generate a fingerprint from the private key file\. The output should match the fingerprint that's displayed in the console\.
+You can use the fingerprint that's displayed on the **Key Pairs** page to verify that the private key you have on your local machine matches the public key stored in Amazon EC2\. From the computer where you downloaded the private key file, generate a fingerprint from the private key file\. The output should match the fingerprint that's displayed in the console\. When Amazon EC2 calculates a fingerprint, Amazon EC2 might append padding to the fingerprint with `=` characters\. Other tools, such as ssh\-keygen, might omit this padding\.
 
 ### How the fingerprints are calculated<a name="how-ec2-key-fingerprints-are-calculated"></a>
 
@@ -18,9 +18,9 @@ The following table lists the hash functions that are used to calculate the fing
 | Key pair source | RSA key pairs | ED25519 key pairs | 
 | --- | --- | --- | 
 | Created by Amazon EC2 | SHA\-1 | SHA\-256 | 
-| Imported to Amazon EC2 | MD5\* | SHA\-256 | 
+| Imported to Amazon EC2 | MD5¹ | SHA\-256 | 
 
-\* If you import a public RSA key to Amazon EC2, the fingerprint is calculated using an MD5 hash function\. This is true regardless of how you created the key pair, for example, by using a third\-party tool or by generating a new public key from an existing private key created using Amazon EC2\.
+¹ If you import a public RSA key to Amazon EC2, the fingerprint is calculated using an MD5 hash function\. This is true regardless of how you created the key pair, for example, by using a third\-party tool or by generating a new public key from an existing private key created using Amazon EC2\.
 
 ### When using the same key pair in different Regions<a name="when-using-same-key-pair-in-different-regions"></a>
 
@@ -51,7 +51,9 @@ If you're using a Windows local machine, you can run the following commands usin
   ```
   $ ssh-keygen -l -f path_to_private_key
   ```
-+ **\(RSA key pairs only\) If you imported the public key to Amazon EC2** \(regardless of how you created the key pair, for example, by using a third\-party tool or by generating a new public key from an existing private key created using Amazon EC2\)
++ **\(RSA key pairs only\) If you imported the public key to Amazon EC2**
+
+   You can follow this procedure regardless of how you created the key pair, for example, by using a third\-party tool or by generating a new public key from an existing private key created using Amazon EC2
 
   Use the OpenSSL tools to generate the fingerprint as shown in the following example\.
 

@@ -14,8 +14,8 @@ The operating system of your local computer determines the options that you have
 + [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)
 
 **If your local computer operating system is Windows**  
++ [OpenSSH](openssh.md)
 + [PuTTY](putty.md)
-+ [SSH client](AccessingInstancesLinux.md)
 + [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)
 + [Windows Subsystem for Linux](WSL.md)
 

@@ -2,17 +2,15 @@
 
 When you launch an instance, the *instance type* that you specify determines the hardware of the host computer used for your instance\. Each instance type offers different compute, memory, and storage capabilities, and is grouped in an instance family based on these capabilities\. Select an instance type based on the requirements of the application or software that you plan to run on your instance\.
 
-**Instance structure**
-
-Amazon EC2 provides a variety of instance types so you can choose the type that best meets your requirements\. Instance types are named based on their generation, family, additional capabilities, and size\. The first position indicates the instance family, for example c\. The second position indicates the instance generation, for example 5\. The remaining letters before the period indicate additional capabilities, such local NVMe storage and full control over c\-states\. After the period \(\.\) is the instance size, which is either a number followed by a size, such as 9xlarge or, for metal instances the word metal: 
-
-![\[Instance components of type and family.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/c5d-instance-example.png)
-
-Amazon EC2 provides each instance with a consistent and predictable amount of CPU capacity, regardless of its underlying hardware\.
-
 Amazon EC2 dedicates some resources of the host computer, such as CPU, memory, and instance storage, to a particular instance\. Amazon EC2 shares other resources of the host computer, such as the network and the disk subsystem, among instances\. If each instance on a host computer tries to use as much of one of these shared resources as possible, each receives an equal share of that resource\. However, when a resource is underused, an instance can consume a higher share of that resource while it's available\.
 
 Each instance type provides higher or lower minimum performance from a shared resource\. For example, instance types with high I/O performance have a larger allocation of shared resources\. Allocating a larger share of shared resources also reduces the variance of I/O performance\. For most applications, moderate I/O performance is more than enough\. However, for applications that require greater or more consistent I/O performance, consider an instance type with higher I/O performance\.
+
+**Instance type names**
+
+Amazon EC2 provides a variety of instance types so you can choose the type that best meets your requirements\. Instance types are named based on their family, generation, additional capabilities, and size\. The first position of the instance type name indicates the instance family, for example `c`\. The second position indicates the instance generation, for example `5`\. The remaining letters before the period indicate [additional capabilities](#instance-naming-conventions), such as local NVMe storage or full control over c\-states\. After the period \(`.`\) is the instance size, which is either a number followed by a size, such as `9xlarge`, or for metal instances the word `metal`\.
+
+![\[The image shows the instance type c5n.xlarge, with a label for each part of the instance name.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/final_instance_ex.png)
 
 **Topics**
 + [Available instance types](#AvailableInstanceTypes)

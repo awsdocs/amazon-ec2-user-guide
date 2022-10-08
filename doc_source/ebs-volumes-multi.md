@@ -53,7 +53,7 @@ You can enable Multi\-Attach for `io1` and `io2` volumes during creation\.
 Use one of the following methods to enable Multi\-Attach for an `io1` or `io2` volume during creation\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To enable Multi\-Attach during volume creation**
 
@@ -86,27 +86,6 @@ You can attach encrypted volumes only to instances that support Amazon EBS encry
 1. Choose **Create volume**\.
 
 ------
-#### [ Old console ]
-
-**To enable Multi\-Attach during volume creation**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Volumes**\.
-
-1. Choose **Create Volume**\.
-
-1. For **Volume Type**, choose **Provisioned IOPS SSD \(io1\)** or **Provisioned IOPS SSD \(io2\)**\.
-
-1. For **Size** and **IOPS**, choose the required volume size and the number of IOPS to provision\.
-
-1. For **Availability Zone**, choose the same Availability Zone that the instances are in\.
-
-1. For **Multi\-Attach**, choose **Enable**\.
-
-1. Choose **Create Volume**\.
-
-------
 #### [ Command line ]
 
 **To enable Multi\-Attach during volume creation**  
@@ -126,7 +105,7 @@ You can't enable Multi\-Attach for `io1` volumes after creation\.
 Use one of the following methods to enable Multi\-Attach for an Amazon EBS volume after it has been created\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To enable Multi\-Attach after creation**
 
@@ -137,21 +116,6 @@ Use one of the following methods to enable Multi\-Attach for an Amazon EBS volum
 1. Select the volume and choose **Actions**, **Modify volume**\.
 
 1. For **Amazon EBS Multi\-Attach**, choose **Enable Multi\-Attach**\.
-
-1. Choose **Modify**\.
-
-------
-#### [ Old console ]
-
-**To enable Multi\-Attach after creation**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Volumes**\.
-
-1. Select the volume and choose **Actions**, **Modify Volume**\.
-
-1. For **Multi\-Attach**, choose **Enable**\.
 
 1. Choose **Modify**\.
 
@@ -177,7 +141,7 @@ You can't disable Multi\-Attach for `io1` volumes after creation\.
 Use one of the following methods to disable Multi\-Attach for an `io2` volume\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To disable Multi\-Attach after creation**
 
@@ -188,21 +152,6 @@ Use one of the following methods to disable Multi\-Attach for an `io2` volume\.
 1. Select the volume and choose **Actions**, **Modify volume**\.
 
 1. For **Amazon EBS Multi\-Attach**, clear **Enable Multi\-Attach**\.
-
-1. Choose **Modify**\.
-
-------
-#### [ Old console ]
-
-**To disable Multi\-Attach**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Volumes**\.
-
-1. Select the volume and choose **Actions**, **Modify Volume**\.
-
-1. For **Multi\-Attach**, clear **Enable**\.
 
 1. Choose **Modify**\.
 

@@ -31,7 +31,9 @@ The **AWSDataLifecycleManagerServiceRole** policy provides appropriate permissio
                 "ec2:DisableFastSnapshotRestores",
                 "ec2:CopySnapshot",
                 "ec2:ModifySnapshotAttribute",
-                "ec2:DescribeSnapshotAttribute"
+                "ec2:DescribeSnapshotAttribute",
+                "ec2:ModifySnapshotTier",
+                "ec2:DescribeSnapshotTierStatus"
             ],
             "Resource": "*"
         },
@@ -122,5 +124,6 @@ The following table provides details about updates to AWS managed policies for A
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| AWSDataLifecycleManagerServiceRole — Added permissions to support snapshot archiving\. | Amazon Data Lifecycle Manager added the ec2:ModifySnapshotTier and ec2:DescribeSnapshotTierStatus actions to the grant snapshot policies permission to archive snapshots and to check the archive status for snapshots\. | September 30, 2022 | 
 | AWSDataLifecycleManagerServiceRoleForAMIManagement — Added permissions to support AMI deprecation\. | Amazon Data Lifecycle Manager added the ec2:EnableImageDeprecation and ec2:DisableImageDeprecation actions to grant EBS\-backed AMI policies permission to enable and disable AMI deprecation\. | August 23, 2021 | 
 | Amazon Data Lifecycle Manager started tracking changes | Amazon Data Lifecycle Manager started tracking changes for its AWS managed policies\. | August 23, 2021 | 

@@ -2,6 +2,10 @@
 
 Applications must sign their API requests with AWS credentials\. Therefore, if you are an application developer, you need a strategy for managing credentials for your applications that run on EC2 instances\. For example, you can securely distribute your AWS credentials to the instances, enabling the applications on those instances to use your credentials to sign requests, while protecting your credentials from other users\. However, it's challenging to securely distribute credentials to each instance, especially those that AWS creates on your behalf, such as Spot Instances or instances in Auto Scaling groups\. You must also be able to update the credentials on each instance when you rotate your AWS credentials\.
 
+**Note**  
+For your Amazon EC2 workloads, we recommend that you retrieve session credentials using the method described below\. These credentials should enable your workload to make AWS API requests, without needing to use `sts:AssumeRole` to assume the same role that is already associated with the instance\. Unless you need to pass session tags for attribute\-based access control \(ABAC\) or pass a session policy to further restrict permissions of the role, such role assumption calls are unnecessary as they create a new set of the same temporary role session credentials\.  
+If your workload uses a role to assume itself, you must create a trust policy that explicitly allows that role to assume itself\. If you do not create the trust policy, you get the `AccessDenied` error\. For more information, see [ Modifying a role trust policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-console.html#roles-managingrole_edit-trust-policy) in the *IAM User Guide*\.
+
 We designed IAM roles so that your applications can securely make API requests from your instances, without requiring you to manage the security credentials that the applications use\. Instead of creating and distributing your AWS credentials, you can delegate permission to make API requests using IAM roles as follows:
 
 1. Create an IAM role\.

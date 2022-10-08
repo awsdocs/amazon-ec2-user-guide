@@ -57,6 +57,9 @@ Support for multiple instance sizes on the same Dedicated Host is available for 
 
 For example, when you allocate an `R5` Dedicated Host, it has 2 sockets and 48 physical cores on which you can run different instance sizes, such as `r5.2xlarge` and `r5.4xlarge`, up to the core capacity associated with the host\. However, for each instance family, there is a limit on the number of instances that can be run for each instance size\. For example, an `R5` Dedicated Host supports up to 2 `r5.8xlarge` instances, which uses 32 of the physical cores\. Additional `R5` instances of another size can then be used to fill the host to core capacity\. For the supported number of instance sizes for each instance family, see [Dedicated Hosts Configuration](http://aws.amazon.com/ec2/dedicated-hosts/pricing/#host-configuration)\.
 
+**Note**  
+For Dedicated Hosts that support multiple instance sizes, we recommend that you launch the larger instance sizes first, and then fill the remaining instance capacity with the smaller instance sizes as needed\.
+
 The following table shows examples of different instance size combinations that you can run on a Dedicated Host\.
 
 

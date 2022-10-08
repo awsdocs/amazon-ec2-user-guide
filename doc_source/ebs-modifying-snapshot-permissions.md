@@ -26,7 +26,7 @@ The following considerations apply to sharing snapshots:
 You can share a snapshot using one of the methods described in the section\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To share a snapshot**
 
@@ -41,23 +41,6 @@ You can share a snapshot using one of the methods described in the section\.
    + To share the snapshot privately with specific AWS accounts, choose **Private**\. Then, in the **Sharing accounts** section, choose **Add account**, and enter the 12\-digit account ID \(without hyphens\) of the account to share with\.
 
 1. Choose **Save changes**\.
-
-------
-#### [ Old console ]
-
-**To share a snapshot**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. Choose **Snapshots** in the navigation pane\.
-
-1. Select the snapshot and then choose **Actions**, **Modify Permissions**\.
-
-1. Make the snapshot public or share it with specific AWS accounts as follows:
-   + To make the snapshot public, choose **Public**\.
-   + To share the snapshot with one or more AWS accounts, choose **Private**, enter the AWS account ID \(without hyphens\) in **AWS Account Number**, and choose **Add Permission**\. Repeat for any additional AWS accounts\.
-
-1. Choose **Save**\.
 
 ------
 #### [ AWS CLI ]
@@ -170,7 +153,7 @@ For more information about controlling access to a customer managed key, see [ U
 You can view snapshots that are shared with you using one of the following methods\.
 
 ------
-#### [ New console and Old console ]
+#### [ Console ]
 
 **To view shared snapshots using the console**
 

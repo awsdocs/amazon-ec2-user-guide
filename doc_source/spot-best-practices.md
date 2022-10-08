@@ -33,7 +33,7 @@ For more information, see [EC2 instance rebalance recommendations](rebalance-rec
 
 ## Be flexible about instance types and Availability Zones<a name="be-instance-type-flexible"></a>
 
-A Spot capacity pool is a set of unused EC2 instances with the same instance type \(for example, m5\.large\) and Availability Zone \(for example, us\-east\-1a\)\. You should be flexible about which instance types you request and in which Availability Zones you can deploy your workload\. This gives Spot a better chance to find and allocate your required amount of compute capacity\. For example, don't just ask for `c5.large` if you'd be willing to use larges from the c4, m5, and m4 families\.
+A Spot capacity pool is a set of unused EC2 instances with the same instance type \(for example, `m5.large`\) and Availability Zone \(for example, us\-east\-1a\)\. You should be flexible about which instance types you request and in which Availability Zones you can deploy your workload\. This gives Spot a better chance to find and allocate your required amount of compute capacity\. For example, don't just ask for `c5.large` if you'd be willing to use larges from the c4, m5, and m4 families\.
 
 Depending on your specific needs, you can evaluate which instance types you can be flexible across to fulfill your compute requirements\. If a workload can be vertically scaled, you should include larger instance types \(more vCPUs and memory\) in your requests\. If you can only scale horizontally, you should include older generation instance types because they are less in demand from On\-Demand customers\.
 

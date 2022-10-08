@@ -3,7 +3,7 @@
 You can view detailed information about your snapshots using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To view snapshot information using the console**
 
@@ -14,19 +14,6 @@ You can view detailed information about your snapshots using one of the followin
 1. To view only your snapshots that you own, in the top\-left corner of the screen, choose **Owned by me**\. You can also filter the list of snapshots using tags and other snapshot attributes\. In the **Filter** field, select the attribute field, and then select or enter the attribute value\. For example, to view only encrypted snapshots, select **Encryption**, and then enter `true`\.
 
 1. To view more information about a specific snapshot, choose its ID in the list\.
-
-------
-#### [ Old console ]
-
-**To view snapshot information using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. Choose **Snapshots** in the navigation pane\. 
-
-1. To reduce the list, choose an option from the **Filter** list\. For example, to view only your snapshots, choose **Owned By Me**\. You can also filter your snapshots using tags and snapshot attributes\. Choose the search bar to view the available tags and attributes\.
-
-1. To view more information about a snapshot, select it\.
 
 ------
 #### [ AWS CLI ]

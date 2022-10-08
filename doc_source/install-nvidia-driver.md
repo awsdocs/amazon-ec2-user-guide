@@ -106,7 +106,7 @@ These downloads are available to AWS customers only\. By downloading, in order t
 
 **Prerequisites**
 + Install the AWS CLI on your Linux instance and configure default credentials\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
-+ IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
++ IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\. For more information, see [AWS managed policy: AmazonS3ReadOnlyAccess](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-amazons3readonlyaccess) in the *Amazon Simple Storage Service User Guide*\.
 + G5 instances require GRID 13\.1 or later \(or GRID 12\.4 or later\)\.
 + G3 instances require AWS provided DNS resolution for GRID licensing to work\.
 + [IMDSv2](configuring-instance-metadata-service.md) is only supported with NVIDIA driver version 14\.0 or greater\. 
@@ -599,7 +599,7 @@ These drivers are available to AWS customers only\. By downloading them, you agr
 
 **Prerequisites**
 + Install the AWS CLI on your Linux instance and configure default credentials\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
-+ IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
++ IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\. For more information, see [AWS managed policy: AmazonS3ReadOnlyAccess](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-amazons3readonlyaccess) in the *Amazon Simple Storage Service User Guide*\.
 + G3 instances require AWS provided DNS resolution for GRID licensing to work\.
 + [IMDSv2](configuring-instance-metadata-service.md) is only supported with NVIDIA driver version 495\.x or greater\. 
 

@@ -77,7 +77,7 @@ The following tables describe the encryption outcome for each possible combinati
 To copy a snapshot, use one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To copy a snapshot using the console**
 
@@ -100,31 +100,6 @@ To copy a snapshot, use one of the following methods\.
    If the source snapshot is unencrypted and your account is not enabled for encryption by default, encryption is optional\. To encrypt the snapshot copy, for **Encryption**, select **Encrypt this snapshot**\. Then, for **KMS key**, select the KMS key to use to encrypt the snapshot in the destination Region\.
 
 1. Choose **Copy snapshot**\.
-
-------
-#### [ Old console ]
-
-**To copy a snapshot using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Snapshots**\.
-
-1. Select the snapshot to copy, and then choose **Copy** from the **Actions** list\.
-
-1. In the **Copy Snapshot** dialog box, update the following as necessary:
-   + **Destination region**: Select the Region where you want to write the copy of the snapshot\.
-   + **Description**: By default, the description includes information about the source snapshot so that you can identify a copy from the original\. You can change this description as necessary\.
-   + **Encryption**: If the source snapshot is not encrypted, you can choose to encrypt the copy\. If you have enabled [encryption by default](EBSEncryption.md#encryption-by-default), the **Encryption** option is set and cannot be unset from the snapshot console\. If the **Encryption** option is set, you can choose to encrypt it to a customer managed CMK by selecting one in the field, described below\.
-
-     You cannot strip encryption from an encrypted snapshot\.
-   + **Master Key**: The customer master key \(CMK\) to be used to encrypt this snapshot\. The default key for your account is displayed initially, but you can optionally select from the master keys in your account or type/paste the ARN of a key from a different account\. You can create new master encryption keys in the [AWS KMS console](https://console.aws.amazon.com/kms)\. 
-
-1. Choose **Copy**\.
-
-1. In the **Copy Snapshot** confirmation dialog box, choose **Snapshots** to go to the **Snapshots** page in the Region specified, or choose **Close**\.
-
-   To view the progress of the copy process, switch to the destination Region, and then refresh the **Snapshots** page\. Copies in progress are listed at the top of the page\.
 
 ------
 #### [ AWS CLI ]

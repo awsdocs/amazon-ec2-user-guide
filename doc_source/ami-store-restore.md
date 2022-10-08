@@ -4,7 +4,9 @@ You can store an Amazon Machine Image \(AMI\) in an Amazon S3 bucket, copy the A
 
 The supported APIs for storing and restoring an AMI using S3 are `CreateStoreImageTask`, `DescribeStoreImageTasks`, and `CreateRestoreImageTask`\.
 
-`CopyImage` is the recommended API to use for copying AMIs *within* an AWS [partition](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)\. However, `CopyImage` can’t copy an AMI to *another* partition\.
+`CopyImage` is the recommended API to use for copying AMIs *within* an AWS partition\. However, `CopyImage` can’t copy an AMI to *another* partition\.
+
+For information about the AWS partitions, see *partition* on the [Amazon Resource Names \(ARNs\)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) page in the *AWS General Reference*\.
 
 **Warning**  
 Ensure that you comply with all applicable laws and business requirements when moving data between AWS partitions or AWS Regions, including, but not limited to, any applicable government regulations and data residency requirements\.

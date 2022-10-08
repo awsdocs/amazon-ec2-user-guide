@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Configure AMI for IMDSv2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration) | Configure your AMI so that instances launched from the AMI require IMDSv2 by default\. | October 3, 2022 | 
+| [Initiate Spot Instance interruption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/initiate-a-spot-instance-interruption.html) | You can select a Spot Instance in the Amazon EC2 console and initiate an interruption so that you can test how the applications on your Spot Instances handle being interrupted\. | September 26, 2022 | 
 | [Verified AMI provider](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharing-amis.html#verified-ami-provider) | In the Amazon EC2 console, public AMIs that are owned by Amazon or a verified Amazon partner are marked **Verified provider**\. | July 22, 2022 | 
 | [R6a instances](#DocumentHistory) | New memory optimized instances featuring 3rd generation AMD EPYC processors\. | July 19, 2022 | 
 | [Placement groups on AWS Outposts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups-outpost.html) | Added a host spread strategy for placement groups on an Outpost\. | June 30, 2022 | 

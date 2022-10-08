@@ -26,17 +26,21 @@ You can launch a Dedicated Instance using the Amazon EC2 launch instance wizard\
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. Choose **Launch Instance**\.
+1. In the navigation pane, choose **Instances**, **Launch instance**\.
 
-1. On the **Choose an Amazon Machine Image \(AMI\)** page, select an AMI and choose **Select**\.
+1. In the **Application and OS Images** section, select an AMI from the list\.
 
-1. On the **Choose an Instance Type** page, select the instance type and choose **Next: Configure Instance Details**\.
+1. In the **Instance type** section, select the instance type to launch\.
 **Note**  
 Ensure that you choose an instance type that's supported as a Dedicated Instance\. For more information, see [Amazon EC2 Dedicated Instances](https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/)\.
 
-1. On the **Configure Instance Details** page, select a VPC and subnet\. For **Tenancy**, choose **Dedicated \- Run a dedicated instance**, and then choose **Next: Add Storage**\.
+1. In the **Key pair** section, select the key pair to associate with the instance\.
 
-1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch** to choose a key pair and launch the Dedicated Instance\.
+1. In the **Advanced details** section, for **Tenancy**, select **Dedicated**\.
+
+1. Configure the remaining instance options as needed\. For more information, see [Launch an instance using defined parameters](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters)\.
+
+1. Choose **Launch instance**\.
 
 ------
 #### [ Command line ]

@@ -1,6 +1,27 @@
-# Manage user accounts on your Amazon Linux instance<a name="managing-users"></a>
+# Manage user accounts on your Linux instance<a name="managing-users"></a>
 
-Each Linux instance launches with a default Linux system user account\. The default user name is determined by the AMI that was specified when you launched the instance\.
+Each Linux instance launches with a default Linux system user account\. You can add user accounts to your instance, and delete user accounts\.
+
+For the default user account, the [default user name](#ami-default-user-names) is determined by the AMI that was specified when you launched the instance\. 
+
+**Note**  
+By default, password authentication and root login are disabled, and sudo is enabled\. To log in to your instance, you must use a key pair\. For more information about logging in, see [Connect to your Linux instance](AccessingInstances.md)\.  
+You can allow password authentication and root login for your instance\. For more information, see the documentation for your operating system\.
+
+**Note**  
+Linux system users should not be confused with AWS Identity and Access Management \(IAM\) users\. For more information, see [IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html#id_iam-users) in the *IAM User Guide*\.
+
+**Topics**
++ [Default user names](#ami-default-user-names)
++ [Considerations](#add-user-best-practice)
++ [Create a user account](#create-user-account)
++ [Remove a user account](#delete-user-acount)
+
+## Default user names<a name="ami-default-user-names"></a>
+
+The default user name for your EC2 instance is determined by the AMI that was specified when you launched the instance\.
+
+The default user names are:
 + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
 + For a CentOS AMI, the user name is `centos` or `ec2-user`\.
 + For a Debian AMI, the user name is `admin`\.
@@ -11,14 +32,6 @@ Each Linux instance launches with a default Linux system user account\. The defa
 + For an Oracle AMI, the user name is `ec2-user`\.
 + For a Bitnami AMI, the user name is `bitnami`\.
 + Otherwise, check with the AMI provider\.
-
-**Note**  
-Linux system users should not be confused with AWS Identity and Access Management \(IAM\) users\. For more information, see [IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html#id_iam-users) in the *IAM User Guide*\.
-
-**Topics**
-+ [Considerations](#add-user-best-practice)
-+ [Create a user account](#create-user-account)
-+ [Remove a user account](#delete-user-acount)
 
 ## Considerations<a name="add-user-best-practice"></a>
 
@@ -51,12 +64,14 @@ First create the user account, and then add the SSH public key that allows the u
 1. Use the adduser command to create the user account and add it to the system \(with an entry in the `/etc/passwd` file\)\. The command also creates a group and a home directory for the account\. In this example, the user account is named `newuser`\.
    + Amazon Linux and Amazon Linux 2
 
+     With Amazon Linux and Amazon Linux 2, the user account is created with password authentication disabled by default\.
+
      ```
      [ec2-user ~]$ sudo adduser newuser
      ```
    + Ubuntu
 
-     Include the `--disabled-password` parameter to create the user account without a password\.
+     Include the `--disabled-password` parameter to create the user account with password authentication disabled\.
 
      ```
      [ubuntu ~]$ sudo adduser newuser --disabled-password

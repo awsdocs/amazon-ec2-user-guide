@@ -96,7 +96,7 @@ This section describes the default quotas for archived and in\-progress snapshot
 | Quota | Default quota | 
 | --- | --- | 
 | Archived snapshots per volume | 25 | 
-| Concurrent in\-progress snapshot archives per account | 5 | 
+| Concurrent in\-progress snapshot archives per account | 25 | 
 | Concurrent in\-progress snapshot restores per account | 5 | 
 
 If you need more than the default limits, complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ebs) form to request a limit increase\. 

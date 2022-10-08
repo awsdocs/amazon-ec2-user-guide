@@ -16,7 +16,7 @@ With Amazon EBS, you pay only for what you use\. For more information about Amaz
 + [Amazon EBS–optimized instances](ebs-optimized.md)
 + [Amazon EBS volume performance on Linux instances](EBSPerformance.md)
 + [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)
-+ [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)
++ [EventBridge for Amazon EBS](ebs-cloud-watch-events.md)
 + [Amazon EBS quotas](ebs-resource-quotas.md)
 
 ## Features of Amazon EBS<a name="ebs-features"></a>

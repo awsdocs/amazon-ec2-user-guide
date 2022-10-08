@@ -182,7 +182,7 @@ If your server is installed and running, and your file permissions are set corre
    [ec2-user ~]$ sudo yum list installed httpd mariadb-server php-mysqlnd
    ```
 
-   If any of the required packages are not listed in your output, install them with the sudo yum install *package* command\. Also verify that the `php7.2` and `lamp-mariadb10.2-php7.2` extras are enabled in the output of the amazon\-linux\-extras command\.
+   If any of the required packages are not listed in your output, install them with the sudo yum install *package* command\.
 
 1. Delete the `phpinfo.php` file\. Although this can be useful information, it should not be broadcast to the internet for security reasons\.
 

@@ -32,7 +32,7 @@ Keep the following in mind when modifying volumes:
 To modify an EBS volume, use one of the following methods\.
 
 ------
-#### [ New console ]<a name="console-modify-size"></a>
+#### [ Console ]<a name="console-modify-size"></a>
 
 **To modify an EBS volume using the console**
 
@@ -49,27 +49,6 @@ To modify an EBS volume, use one of the following methods\.
    + \(`gp3` only\) To modify the throughput, enter a new value for **Throughput**\.
 
 1. After you have finished changing the volume settings, choose **Modify**\. When prompted for confirmation, choose **Modify**\.
-
-1. 
-**Important**  
-If you've increased the size of your volume, then you must also extend the volume's partition to make use of the additional storage capacity\. For more information, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
-
-------
-#### [ Old console ]<a name="console-modify-size"></a>
-
-**To modify an EBS volume using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. Choose **Volumes**, select the volume to modify, and then choose **Actions**, **Modify Volume**\.
-
-1. The **Modify Volume** window displays the volume ID and the volume's current configuration, including type, size, IOPS, and throughput\. Set new configuration values as follows:
-   + To modify the type, choose a value for **Volume Type**\.
-   + To modify the size, enter a new value for **Size**\.
-   + To modify the IOPS, if the volume type is `gp3`, `io1`, or `io2`, enter a new value for **IOPS**\.
-   + To modify the throughput, if the volume type is `gp3`, enter a new value for **Throughput**\.
-
-1. After you have finished changing the volume settings, choose **Modify**\. When prompted for confirmation, choose **Yes**\.
 
 1. 
 **Important**  
@@ -118,7 +97,7 @@ Before you can modify a volume that was attached to an instance before November 
 Use one of the following procedures to determine whether your instances are ready for volume modification\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To determine whether your instances are ready using the console**
 
@@ -129,20 +108,6 @@ Use one of the following procedures to determine whether your instances are read
 1. Choose the **Show/Hide Columns** icon \(the gear\)\. Select the **Launch time** attribute column and then choose **Confirm**\.
 
 1. Sort the list of instances by the **Launch Time** column\. For each instance that was started before the cutoff date, choose the **Storage** tab and check the **Attachment time** column to see when its volumes were attached\.
-
-------
-#### [ Old console ]
-
-**To determine whether your instances are ready using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. On the navigation pane, choose **Instances**\.
-
-1. Choose the **Show/Hide Columns** icon \(the gear\)\. Select the **Launch Time** and **Block Devices** attributes and then choose **Close**\.
-
-1. Sort the list of instances by the **Launch Time** column\. For instances that were started before the cutoff date, check when the devices were attached\. In the following example, you must initialize volume modification for the first instance because it was started before the cutoff date and its root volume was attached before the cutoff date\. The other instances are ready because they were started after the cutoff date\.  
-![\[Check the Launch Time and Block Devices columns.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/check-volume-modification-support.png)
 
 ------
 #### [ AWS CLI ]

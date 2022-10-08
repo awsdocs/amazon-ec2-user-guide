@@ -130,9 +130,9 @@ To link an EC2\-Classic instance to a VPC, you must first enable the VPC for Cla
 
 1. Select the VPC\.
 
-1. Choose **Actions**, **Enable ClassicLink**\.
+1. Choose **Actions**, **Edit VPC settings**\.
 
-1. When prompted for confirmation, choose **Enable ClassicLink**\.
+1. For **ClassicLink**, select **Enable**\.
 
 1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enable ClassicLink DNS support](#classiclink-enable-dns-support)\.
 
@@ -207,7 +207,7 @@ If you enable ClassicLink DNS support for your VPC, your linked EC2\-Classic ins
 
 1. Select the VPC\.
 
-1. Choose **Actions**, **Edit ClassicLink DNS Support**\.
+1. Choose **Actions**, **Edit VPC settings**\.
 
 1. For **ClassicLink DNS support**, select **Enable**\.
 
@@ -225,7 +225,7 @@ You can disable ClassicLink DNS support for your VPC so that DNS hostnames that 
 
 1. Select the VPC\.
 
-1. Choose **Actions**, **Edit ClassicLink DNS Support**\.
+1. Choose **Actions**, **Edit VPC settings**\.
 
 1. For **ClassicLink DNS Support**, clear **Enable**\.
 
@@ -261,9 +261,9 @@ If you no longer require a connection between EC2\-Classic instances and your VP
 
 1. Select your VPC\.
 
-1. Choose **Actions**, **Disable ClassicLink**\.
+1. Choose **Actions**, **Edit VPC settings**\.
 
-1. When prompted for confirmation, choose **Disable ClassicLink**\.
+1. For **ClassicLink**, deselect **Enable**\.
 
 ## Example IAM policies for ClassicLink<a name="iam-example-classiclink"></a>
 

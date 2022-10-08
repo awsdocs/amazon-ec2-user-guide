@@ -26,13 +26,13 @@ AWS offers different Amazon Machine Images \(AMI\) that come with the AMD driver
 
 ## AMD driver download<a name="download-amd-driver"></a>
 
-If you aren't using an AMI with the AMD driver installed, you can download the AMD driver and install it on your instance\.
+If you aren't using an AMI with the AMD driver installed, you can download the AMD driver and install it on your instance\. 
 
 These downloads are available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the AMD Radeon Pro V520 hardware\. Upon installation of the software, you are bound by the terms of the [AMD Software End User License Agreement](https://www.amd.com/en/support/eula)\.
 
 **Prerequisites**
 + Install the AWS CLI on your Linux instance and configure default credentials\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
-+ IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
++ IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\. For more information, see [AWS managed policy: AmazonS3ReadOnlyAccess](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-amazons3readonlyaccess) in the *Amazon Simple Storage Service User Guide*\.
 
 **To install the AMD driver on your Linux instance**
 

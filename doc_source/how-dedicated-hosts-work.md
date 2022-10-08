@@ -135,8 +135,8 @@ PS C:\> New-EC2Host -InstanceType m4.large -AvailabilityZone eu-west-1a -AutoPla
 
 After you have allocated a Dedicated Host, you can launch instances onto it\. You can't launch instances with `host` tenancy if you do not have active Dedicated Hosts with enough available capacity for the instance type that you are launching\.
 
-**Note**  
-The instances launched onto Dedicated Hosts can only be launched in a VPC\. For more information, see [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)\.
+**Tip**  
+For Dedicated Hosts that support multiple instance sizes, we recommend that you launch the larger instance sizes first, and then fill the remaining instance capacity with the smaller instance sizes as needed\.
 
 Before you launch your instances, take note of the limitations\. For more information, see [Dedicated Hosts restrictions](dedicated-hosts-overview.md#dedicated-hosts-limitations)\.
 
@@ -151,56 +151,62 @@ You can launch an instance onto a Dedicated Host using the following methods\.
 
 1. Choose **Dedicated Hosts** in the navigation pane\.
 
-1. On the **Dedicated Hosts** page, select a host and choose **Actions**, **Launch Instance\(s\) onto Host**\.
+1. On the **Dedicated Hosts** page, select a host and choose **Actions**, **Launch Instance\(s\) onto host**\.
 
-1. Select an AMI from the list\. SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+1. In the **Application and OS Images** section, select an AMI from the list\.
+**Note**  
+SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
 
-1. On the **Choose an Instance Type** page, select the instance type to launch and then choose **Next: Configure Instance Details**\. 
+1. In the **Instance type** section, select the instance type to launch\.
+**Note**  
+If the Dedicated Host supports a single instance type only, the supported instance type is selected by default and can't be changed\.  
+If the Dedicated Host supports multiple instance types, you must select an instance type within the supported instance family based on the available instance capacity of the Dedicated Host\. We recommend that you launch the larger instance sizes first, and then fill the remaining instance capacity with the smaller instance sizes as needed\.
 
-   If the Dedicated Host supports a single instance type only, the supported instance type is selected by default and can't be changed\.
+1. In the **Key pair** section, select the key pair to associate with the instance\.
 
-   If the Dedicated Host supports multiple instance types, you must select an instance type within the supported instance family based on the available instance capacity of the Dedicated Host\. We recommend that you launch the larger instance sizes first, and then fill the remaining instance capacity with the smaller instance sizes as needed\.
-
-1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then for **Affinity**, choose one of the following options:
-   + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.
-   + **Host**—If stopped, the instance always restarts on this specific host\.
+1. In the **Advanced details** section, for **Tenancy affinity**, do one of the following:
+   + Select **Off** — The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.
+   + Select the Dedicated Host ID — If stopped, the instance always restarts on this specific host\. 
 
    For more information about Affinity, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
+**Note**  
+The **Tenancy** and **Host** options are pre\-configured based on the host that you selected\.
 
-   The **Tenancy** and **Host** options are pre\-configured based on the host that you selected\.
+1. Configure the remaining instance options as needed\. For more information, see [Launch an instance using defined parameters](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters)\.
 
-1. Choose **Review and Launch**\.
-
-1. On the **Review Instance Launch** page, choose **Launch**\.
-
-1. When prompted, select an existing key pair or create a new one, and then choose **Launch Instances**\.
+1. Choose **Launch instance**\.
 
 **To launch an instance onto a Dedicated Host using the Launch Instance wizard**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**, **Launch Instance**\.
+1. In the navigation pane, choose **Instances**, **Launch instance**\.
 
-1. Select an AMI from the list\. SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+1. In the **Application and OS Images** section, select an AMI from the list\.
+**Note**  
+SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
 
-1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
+1. In the **Instance type** section, select the instance type to launch\.
 
-1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then configure the following settings, which are specific to a Dedicated Host:
-   + Tenancy—Choose **Dedicated Host \- Launch this instance on a Dedicated Host**\.
-   + Host—Choose either **Use auto\-placement** to launch the instance on any Dedicated Host that has auto\-placement enabled, or select a specific Dedicated Host in the list\. The list displays only Dedicated Hosts that support the selected instance type\.
-   + Affinity—Choose one of the following options:
-     + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on it if stopped\.
-     + **Host**—If stopped, the instance always restarts on the specified host\.
+1. In the **Key pair** section, select the key pair to associate with the instance\.
 
-   For more information, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
+1. In the **Advanced details** section, do the following:
 
-   If you are unable to see these settings, check that you have selected a VPC in the **Network** menu\.
+   1. For **Tenancy**, select **Dedicated Host**\.
 
-1. Choose **Review and Launch**\.
+   1. For **Target host by**, select **Host ID**\.
 
-1. On the **Review Instance Launch** page, choose **Launch**\.
+   1. For **Target host ID**, select the host onto which to launch the instance\.
 
-1. When prompted, select an existing key pair or create a new one, and then choose **Launch Instances**\.
+   1. For **Tenancy affinity**, do one of the following:
+      + Select **Off** — The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.
+      + Select the Dedicated Host ID — If stopped, the instance always restarts on this specific host\. 
+
+      For more information about Affinity, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
+
+1. Configure the remaining instance options as needed\. For more information, see [Launch an instance using defined parameters](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters)\.
+
+1. Choose **Launch instance**\.
 
 ------
 #### [ AWS CLI ]
@@ -228,58 +234,39 @@ When you launch an instance into a host resource group that has a Dedicated Host
 You can launch an instance into a host resource group using the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To launch an instance into a host resource group**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**, **Launch Instances**\.
+1. In the navigation pane, choose **Instances**, **Launch instance**\.
 
-1. Select an AMI\.
+1. In the **Application and OS Images** section, select an AMI from the list\.
+**Note**  
+SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
 
-1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
+1. In the **Instance type** section, select the instance type to launch\.
 
-1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then do the following:
+1. In the **Key pair** section, select the key pair to associate with the instance\.
 
-   1. For **Tenancy**, choose **Dedicated Host**\.
+1. In the **Advanced details** section, do the following:
 
-   1. For **Host resource group**, choose **Launch instance into a host resource group**\.
+   1. For **Tenancy**, select **Dedicated Host**\.
 
-   1. For **Host resource group name**, choose the host resource group in which to launch the instance\.
+   1. For **Target host by**, select **Host resource group**\.
 
-1. Choose **Review and Launch**\.
+   1. For **Tenancy host resource group**, select the host resource group into which to launch the instance\.
 
-1. On the **Review Instance Launch** page, choose **Launch**\.
+   1. For **Tenancy affinity**, do one of the following:
+      + Select **Off** — The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.
+      + Select the Dedicated Host ID — If stopped, the instance always restarts on this specific host\. 
 
-1. When prompted, select an existing key pair or create a new one, and then choose **Launch Instances**\.
+      For more information about Affinity, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
-------
-#### [ Old console ]
+1. Configure the remaining instance options as needed\. For more information, see [Launch an instance using defined parameters](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters)\.
 
-**To launch an instance into a host resource group**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**, **Launch Instance**\.
-
-1. Select an AMI\.
-
-1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
-
-1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then do the following:
-
-   1. For **Tenancy**, choose **Dedicated Host**\.
-
-   1. For **Host resource group**, choose **Launch instance into a host resource group**\.
-
-   1. For **Host resource group name**, choose the host resource group in which to launch the instance\.
-
-1. Choose **Review and Launch**\.
-
-1. On the **Review Instance Launch** page, choose **Launch**\.
-
-1. When prompted, select an existing key pair or create a new one, and then choose **Launch Instances**\.
+1. Choose **Launch instance**\.
 
 ------
 #### [ AWS CLI ]

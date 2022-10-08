@@ -1,10 +1,10 @@
-# Amazon CloudWatch Events for Amazon EBS<a name="ebs-cloud-watch-events"></a>
+# EventBridge for Amazon EBS<a name="ebs-cloud-watch-events"></a>
 
-Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of volume, snapshot, and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in volume, snapshot, or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another Region for disaster\-recovery purposes\.
+Amazon EBS sends events to Amazon EventBridge \(formerly called Amazon CloudWatch Events\) for a variety of volume, snapshot, and encryption status changes\. With EventBridge, you can establish rules that trigger programmatic actions in response to a change in volume, snapshot, or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another Region for disaster\-recovery purposes\.
 
-Events in CloudWatch are represented as JSON objects\. The fields that are unique to the event are contained in the "detail" section of the JSON object\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\. For more information, see [Event Patterns in CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
+Events in EventBridge are represented as JSON objects\. The fields that are unique to the event are contained in the "detail" section of the JSON object\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\. For more information, see [Amazon EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*\.
 
-For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\.
+For more information, see [ What Is Amazon EventBridge?](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html) in the *Amazon EventBridge User Guide*\.
 
 **Topics**
 + [EBS volume events](#volume-events)
@@ -12,11 +12,11 @@ For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloud
 + [EBS snapshot events](#snapshot-events)
 + [EBS Snapshots Archive events](#snapshot-archive-events)
 + [EBS fast snapshot restore events](#fast-snapshot-restore-events)
-+ [Using AWS Lambda to handle CloudWatch events](#using_lambda)
++ [Using AWS Lambda to handle EventBridge events](#using_lambda)
 
 ## EBS volume events<a name="volume-events"></a>
 
-Amazon EBS sends events to CloudWatch Events when the following volume events occur\.
+Amazon EBS sends events to EventBridge when the following volume events occur\.
 
 **Topics**
 + [createVolume](#create-volume)
@@ -185,7 +185,7 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 
 ## EBS volume modification events<a name="volume-modification-events"></a>
 
-Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is modified\. However it is not saved, logged, or archived\.
+Amazon EBS sends `modifyVolume` events to EventBridge when a volume is modified\. However it is not saved, logged, or archived\.
 
 ```
 {
@@ -210,7 +210,7 @@ Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is mod
 
 ## EBS snapshot events<a name="snapshot-events"></a>
 
-Amazon EBS sends events to CloudWatch Events when the following volume events occur\.
+Amazon EBS sends events to EventBridge when the following volume events occur\.
 
 **Topics**
 + [createSnapshot](#create-snapshot-complete)
@@ -428,7 +428,7 @@ Amazon EBS emits events related to snapshot archiving actions\. For more informa
 
 ## EBS fast snapshot restore events<a name="fast-snapshot-restore-events"></a>
 
-Amazon EBS sends events to CloudWatch Events when the state of fast snapshot restore for a snapshot changes\. Events are emitted on a best effort basis\.
+Amazon EBS sends events to EventBridge when the state of fast snapshot restore for a snapshot changes\. Events are emitted on a best effort basis\.
 
 The following is example data for this event\.
 
@@ -475,15 +475,15 @@ A request to enable fast snapshot restore failed due to an internal error, and t
 `Client.InvalidSnapshot.InvalidState - The requested snapshot was deleted or access permissions were revoked`  
 The fast snapshot restore state for the snapshot has transitioned to `disabling` or `disabled` because the snapshot was deleted or unshared by the snapshot owner\. Fast snapshot restore cannot be enabled for a snapshot that has been deleted or is no longer shared with you\.
 
-## Using AWS Lambda to handle CloudWatch events<a name="using_lambda"></a>
+## Using AWS Lambda to handle EventBridge events<a name="using_lambda"></a>
 
-You can use Amazon EBS and CloudWatch Events to automate your data\-backup workflow\. This requires you to create an IAM policy, a AWS Lambda function to handle the event, and an Amazon CloudWatch Events rule that matches incoming events and routes them to the Lambda function\.
+You can use Amazon EBS and Amazon EventBridge to automate your data\-backup workflow\. This requires you to create an IAM policy, a AWS Lambda function to handle the event, and an EventBridge rule that matches incoming events and routes them to the Lambda function\.
 
 The following procedure uses the `createSnapshot` event to automatically copy a completed snapshot to another Region for disaster recovery\. 
 
 **To copy a completed snapshot to another Region**
 
-1. Create an IAM policy, such as the one shown in the following example, to provide permissions to use the `CopySnapshot` action and write to the CloudWatch Events log\. Assign the policy to the IAM user that will handle the CloudWatch event\.
+1. Create an IAM policy, such as the one shown in the following example, to provide permissions to use the `CopySnapshot` action and write to the EventBridge log\. Assign the policy to the IAM user that will handle the EventBridge event\.
 
    ```
    {
@@ -509,7 +509,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
    }
    ```
 
-1. Define a function in Lambda that will be available from the CloudWatch console\. The sample Lambda function below, written in Node\.js, is invoked by CloudWatch when a matching `createSnapshot` event is emitted by Amazon EBS \(signifying that a snapshot was completed\)\. When invoked, the function copies the snapshot from `us-east-2` to `us-east-1`\.
+1. Define a function in Lambda that will be available from the EventBridge console\. The sample Lambda function below, written in Node\.js, is invoked by EventBridge when a matching `createSnapshot` event is emitted by Amazon EBS \(signifying that a snapshot was completed\)\. When invoked, the function copies the snapshot from `us-east-2` to `us-east-1`\.
 
    ```
    // Sample Lambda function to copy an EBS snapshot to a different Region
@@ -525,7 +525,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
    //main function
    exports.handler = (event, context, callback) => {
     
-       // Get the EBS snapshot ID from the CloudWatch event details
+       // Get the EBS snapshot ID from the event details
        var snapshotArn = event.detail.snapshot_id.split('/');
        const snapshotId = snapshotArn[1];
        const description = `Snapshot copy from ${snapshotId} in ${sourceRegion}.`;
@@ -560,24 +560,46 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
    };
    ```
 
-   To ensure that your Lambda function is available from the CloudWatch console, create it in the Region where the CloudWatch event will occur\. For more information, see the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\.
+   To ensure that your Lambda function is available from the EventBridge console, create it in the Region where the EventBridge event will occur\. For more information, see the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\.
 
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
 
-1. In the navigation panel, expand **Events** and choose **Rules**, and then choose **Create rule**\.
+1. In the navigation panel, choose **Rules**, and then choose **Create rule**\.
 
-1. Select **Event Pattern\.**\. For **Service Name**, choose **EC2**, and for **Event Type**, choose **EBS Snapshot Notification**\.
+1. For **Step 1: Define rule detail**, do the following:
 
-1. Select **Specific event\(s\)** and then choose **createSnapshot**\.
+   1. Enter values for **Name** and **Description**\.
 
-1. Select **Specific result\(s\)** and then choose **succeeded**\.
+   1. For **Event bus**, keep **default**\.
 
-1. In the **Targets** section, choose **Add target**, and then for **Function**, choose the Lambda function that you created previously\.
+   1. Ensure that **Enable the rule on the selected event bus** is toggled on\.
 
-1. Choose **Configure details**\.
+   1. For **Event type**, select **Rule with an event pattern**\.
 
-1. On the **Configure rule details** page, enter values for **Name** and **Description**\. Select the **State** check box to activate the function\.
+   1. Choose **Next**\.
 
-1. Choose **Create rule**\.
+1. For **Step 2: Build event pattern**, do the following:
+
+   1. For **Event source**, select **AWS events or EventBridge partner events**\.
+
+   1. In the **Event pattern** section, for **Event source**, ensure that **AWS service** is selected, and for **AWS service**, select **EC2**\.
+
+   1. For **Event type**, select **EBS Snapshot Notification**, select **Specific event\(s\)**, and then choose **createSnapshot**\.
+
+   1. Select **Specific result\(s\)** and then choose **succeeded**\.
+
+   1. Choose **Next**\.
+
+1. For **Step 3: Select targets**, do the following:
+
+   1. For **Target types**, choose **AWS service**\.
+
+   1. For **Select target**, choose **Lambda function**, and for **Function** select the function that you created earlier\.
+
+   1. Choose **Next**
+
+1. For **Step 4: Configure tags**, specify tags for the rule if needed, and then choose **Next**\.
+
+1. For **Step 5: Review and create**, review the rule and then choose **Create rule**\.
 
 Your rule should now appear on the **Rules** tab\. In the example shown, the event that you configured should be emitted by EBS the next time you copy a snapshot\.

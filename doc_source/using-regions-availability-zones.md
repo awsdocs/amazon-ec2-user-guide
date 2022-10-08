@@ -89,53 +89,46 @@ You can use the Amazon EC2 console or the command line interface to determine wh
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, view the options in the Region selector\.  
+1. From the navigation bar, choose the **Regions** selector\.  
 ![\[View your Regions\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EC2_select_region.png)
 
 1. Your EC2 resources for this Region are displayed on the **EC2 Dashboard** in the **Resources** section\.
 
-**To find your Regions using the AWS CLI**
-+ Use the [describe\-regions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html) command as follows to describe the Regions that are enabled for your account\.
+**To find your Regions using the AWS CLI**  
+Use the [describe\-regions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html) command as follows to describe the Regions that are enabled for your account\.
 
-  ```
-  aws ec2 describe-regions
-  ```
+```
+aws ec2 describe-regions
+```
 
-  To describe all Regions, including any Regions that are disabled for your account, add the `--all-regions` option as follows\.
+To describe all Regions, including any Regions that are disabled for your account, add the `--all-regions` option as follows\.
 
-  ```
-  aws ec2 describe-regions --all-regions
-  ```
-
-**To find your Regions using the AWS Tools for Windows PowerShell**
-+ Use the [Get\-EC2Region](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Region.html) command as follows to describe the Regions for your account\.
-
-  ```
-  PS C:\> Get-EC2Region
-  ```
+```
+aws ec2 describe-regions --all-regions
+```
 
 ### Get the Region name<a name="region-name"></a>
 
 You can use the Amazon Lightsail API to view the name of a Region\.
 
-**To view the Region name using the AWS CLI**
-+ Use the [get\-regions](https://docs.aws.amazon.com/cli/latest/reference/lightsail/get-regions.html) command as follows to describe the name of the specified Region\.
+**To view the Region name using the AWS CLI**  
+Use the [get\-regions](https://docs.aws.amazon.com/cli/latest/reference/lightsail/get-regions.html) command as follows to describe the name of the specified Region\.
 
-  ```
-  aws lightsail get-regions --query "regions[?name=='region-name'].displayName" --output text
-  ```
+```
+aws lightsail get-regions --query "regions[?name=='region-name'].displayName" --output text
+```
 
-  The following example returns the name of the `us-east-2` Region\.
+The following example returns the name of the `us-east-2` Region\.
 
-  ```
-  aws lightsail get-regions --query "regions[?name=='us-east-2'].displayName" --output text
-  ```
+```
+aws lightsail get-regions --query "regions[?name=='us-east-2'].displayName" --output text
+```
 
-  The following is the output:
+The following is the output:
 
-  ```
-  Ohio
-  ```
+```
+Ohio
+```
 
 ### Specify the Region for a resource<a name="using-regions-availability-zones-setup"></a>
 
@@ -148,7 +141,8 @@ Some AWS resources might not be available in all Regions\. Ensure that you can c
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. Use the Region selector in the navigation bar\.
+1. From the navigation bar, choose the **Regions** selector and then choose the Region\.  
+![\[View your Regions\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EC2_select_region.png)
 
 **To specify the default Region using the command line**
 
@@ -196,32 +190,23 @@ You can use the Amazon EC2 console or the command line interface to determine wh
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, view the options in the Region selector\.
+1. From the navigation bar, choose the **Regions** selector and then choose the Region\.
 
 1. On the navigation pane, choose **EC2 Dashboard**\.
 
 1. The Availability Zones are listed in the **Service health** pane\.
 
 **To find your Availability Zones using the AWS CLI**
++ Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Availability Zones within the specified Region that are enabled for your account\.
 
-1. Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Availability Zones within the specified Region\.
+  ```
+  aws ec2 describe-availability-zones --region region-name
+  ```
++ Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Availability Zones regardless of the opt\-in status\.
 
-   ```
-   aws ec2 describe-availability-zones --region region-name
-   ```
-
-1. Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Availability Zones regardless of the opt\-in status\.
-
-   ```
-   aws ec2 describe-availability-zones --all-availability-zones
-   ```
-
-**To find your Availability Zones using the AWS Tools for Windows PowerShell**  
-Use the [Get\-EC2AvailabilityZone](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2AvailabilityZone.html) command as follows to describe the Availability Zones within the specified Region\.
-
-```
-PS C:\> Get-EC2AvailabilityZone -Region region-name
-```
+  ```
+  aws ec2 describe-availability-zones --all-availability-zones
+  ```
 
 ### Launch instances in an Availability Zone<a name="using-regions-availability-zones-launching"></a>
 
@@ -259,90 +244,38 @@ The migration process involves:
 
 A Local Zone is an extension of an AWS Region in geographic proximity to your users\. Local Zones have their own connections to the internet and support AWS Direct Connect, so that resources created in a Local Zone can serve local users with low\-latency communications\. For more information, see [AWS Local Zones](http://aws.amazon.com/about-aws/global-infrastructure/localzones/)\.
 
-The code for a Local Zone is its Region code followed by an identifier that indicates its physical location\. For example, `us-west-2-lax-1` in Los Angeles\. For more information, see [Available Local Zones](#local-zones-available)\.
+The code for a Local Zone is its Region code followed by an identifier that indicates its physical location\. For example, `us-west-2-lax-1` in Los Angeles\.
 
 The following diagram illustrates the AWS Region `us-west-2`, two of its Availability Zones, and two of its Local Zones\. The VPC spans the Availability Zones and one of the Local Zones\. Each zone in the VPC has one subnet, and each subnet has an instance\.
 
 ![\[A VPC with Availability Zones and Local Zones.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/region-with-lzs.png)
 
-To use a Local Zone, you must first enable it\. For more information, see [Opt in to Local Zones](#opt-in-local-zone)\. Next, create a subnet in the Local Zone\. Finally, launch resources in the Local Zone subnet, such as instances, so that your applications are close to your end users\.
+To use a Local Zone, you must first enable it\. For more information, see [Opt in to Local Zones](#opt-in-local-zone)\. Next, create a subnet in the Local Zone\. Finally, launch resources in the Local Zone subnet, such as instances, so that your applications are close to your users\.
 
 **Topics**
 + [Available Local Zones](#local-zones-available)
-+ [Describe your Local Zones](#local-zones-describe)
 + [Opt in to Local Zones](#opt-in-local-zone)
 + [Launch instances in a Local Zone](#local-zones-launching)
 
 ### Available Local Zones<a name="local-zones-available"></a>
 
-The following tables list the available Local Zones by parent Regions\. For information about how to opt in, see [Opt in to Local Zones](#opt-in-local-zone)\.
-
-**US East \(N\. Virginia\) Local Zones**  
-The following table lists Local Zones in US East \(N\. Virginia\):
-
-
-| Parent Region | Zone Name | Location \(metro area\) | 
-| --- | --- | --- | 
-| US East \(N\. Virginia\) | us\-east\-1\-atl\-1a | Atlanta | 
-| US East \(N\. Virginia\) | us\-east\-1\-bos\-1a | Boston | 
-| US East \(N\. Virginia\) | us\-east\-1\-chi\-1a | Chicago | 
-| US East \(N\. Virginia\) | us\-east\-1\-dfw\-1a | Dallas | 
-| US East \(N\. Virginia\) | us\-east\-1\-iah\-1a | Houston | 
-| US East \(N\. Virginia\) | us\-east\-1\-mci\-1a | Kansas City | 
-| US East \(N\. Virginia\) | us\-east\-1\-mia\-1a | Miami | 
-| US East \(N\. Virginia\) | us\-east\-1\-msp\-1a | Minneapolis | 
-| US East \(N\. Virginia\) | us\-east\-1\-nyc\-1a | New York City \* | 
-| US East \(N\. Virginia\) | us\-east\-1\-phl\-1a | Philadelphia | 
-
-\*Located in New Jersey
-
-**US West \(Oregon\) Local Zones**  
-The following table lists Local Zones in US West \(Oregon\):
-
-
-| Parent Region | Zone Name | Location \(metro area\) | 
-| --- | --- | --- | 
-| US West \(Oregon\) | us\-west\-2\-den\-1a | Denver | 
-| US West \(Oregon\) | us\-west\-2\-las\-1a | Las Vegas | 
-| US West \(Oregon\) | us\-west\-2\-lax\-1a | Los Angeles | 
-| US West \(Oregon\) | us\-west\-2\-lax\-1b | Los Angeles | 
-| US West \(Oregon\) | us\-west\-2\-phx\-1a | Phoenix | 
-| US West \(Oregon\) | us\-west\-2\-pdx\-1a | Portland | 
-| US West \(Oregon\) | us\-west\-2\-sea\-1a | Seattle | 
-
-### Describe your Local Zones<a name="local-zones-describe"></a>
-
-You can use the Amazon EC2 console or the command line interface to determine which Local Zones are available for your account\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
+You can use the Amazon EC2 console or a command line interface to determine which Local Zones are available for your account\. For a complete list, see [AWS Local Zones Locations](http://aws.amazon.com/about-aws/global-infrastructure/localzones/locations/)\.
 
 **To find your Local Zones using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, view the options in the Region selector\.
+1. From the navigation bar, choose the **Regions** selector and then choose the parent Region\.
 
 1. On the navigation pane, choose **EC2 Dashboard**\.
 
-1. The Local Zones are listed under **Service health**, **Zone status**\.
+1. In the upper\-right corner of the page, choose **Account attributes**, **Zones**\.
 
-**To find your Local Zones using the AWS CLI**
-
-1. Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Local Zones in the specified Region\.
-
-   ```
-   aws ec2 describe-availability-zones --region region-name
-   ```
-
-1. Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Local Zones regardless of whether they are enabled\.
-
-   ```
-   aws ec2 describe-availability-zones --all-availability-zones
-   ```
-
-**To find your Local Zones using the AWS Tools for Windows PowerShell**  
-Use the [Get\-EC2AvailabilityZone](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2AvailabilityZone.html) command as follows to describe the Local Zones in the specified Region\.
+**To find your Local Zones using the AWS CLI**  
+Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe all Local Zones in the specified Region, even if they are not enabled\. To describe only the Local Zones that you've enabled, omit the `--all-availability-zones` option\.
 
 ```
-PS C:\> Get-EC2AvailabilityZone -Region region-name
+aws ec2 describe-availability-zones --region region-name --filters Name=zone-type,Values=local-zone --all-availability-zones
 ```
 
 ### Opt in to Local Zones<a name="opt-in-local-zone"></a>
@@ -350,7 +283,7 @@ PS C:\> Get-EC2AvailabilityZone -Region region-name
 Before you can specify a Local Zone for a resource or service, you must opt in to Local Zones\.
 
 **Consideration**  
-Some AWS resources might not be available in all Regions\. Make sure that you can create the resources that you need in the desired Regions or Local Zones before launching an instance in a specific Local Zone\.
+Some AWS resources might not be available in all Regions\. Make sure that you can create the resources that you need in the desired Regions or Local Zones before launching an instance in a specific Local Zone\. For a list of services supported in each Local Zone see [AWS Local Zones Features](http://aws.amazon.com/about-aws/global-infrastructure/localzones/features/)\.
 
 **To opt in to Local Zones using the console**
 
@@ -358,20 +291,20 @@ Some AWS resources might not be available in all Regions\. Make sure that you ca
 
 1. In the upper\-left corner of the page, select **New EC2 Experience**\. You cannot complete this task using the old console experience\.
 
-1. From the Region selector in the navigation bar, select the Region for the Local Zone\.
+1. From the navigation bar, choose the **Regions** selector and then choose the parent Region\.
 
 1. On the navigation pane, choose **EC2 Dashboard**\.
 
 1. In the upper\-right corner of the page, choose **Account attributes**, **Zones**\.
 
-1. Choose **Manage**\.
+1. For the Local Zone to enable, choose **Manage**\.
 
 1. For **Zone group**, choose **Enabled**\.
 
 1. Choose **Update zone group**\.
 
-**To opt in to Local Zones using the AWS CLI**
-+ Use the [modify\-availability\-zone\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-availability-zone-group.html) command\.
+**To opt in to Local Zones using the AWS CLI**  
+Use the [modify\-availability\-zone\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-availability-zone-group.html) command\.
 
 ### Launch instances in a Local Zone<a name="local-zones-launching"></a>
 
@@ -385,7 +318,7 @@ You can allocate the following IP addresses from a network border group:
 
 1. Enable Local Zones\. For more information, see [Opt in to Local Zones](#opt-in-local-zone)\.
 
-1. Create a VPC in a Region that supports the Local Zone\. For more information, see [Creating a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC) in the *Amazon VPC User Guide*\.
+1. Create a VPC in the parent Region for the Local Zone\. For more information, see [Creating a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC) in the *Amazon VPC User Guide*\.
 
 1. Create a subnet\. Select the Local Zone when you create the subnet\. For more information, see [Creating a subnet in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#AddaSubnet) in the *Amazon VPC User Guide*\.
 
@@ -420,32 +353,23 @@ You can use the Amazon EC2 console or the command line interface to determine wh
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, view the options in the Region selector\.
+1. From the navigation bar, choose the **Regions** selector and then choose the Region\.
 
 1. On the navigation pane, choose **EC2 Dashboard**\.
 
-1. The Wavelength Zones are listed under **Service health**, **Zone status**\.
+1. In the upper\-right corner of the page, choose **Account attributes**, **Zones**\.
 
 **To find your Wavelength Zones using the AWS CLI**
++ Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Wavelength Zones within the specified Region that are enabled for your account\.
 
-1. Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Wavelength Zones within the specified Region\.
+  ```
+  aws ec2 describe-availability-zones --region region-name
+  ```
++ Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Wavelength Zones regardless of the opt\-in status\.
 
-   ```
-   aws ec2 describe-availability-zones --region region-name
-   ```
-
-1. Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Wavelength Zones regardless of the opt\-in status\.
-
-   ```
-   aws ec2 describe-availability-zones --all-availability-zones
-   ```
-
-**To find your Wavelength Zone using the AWS Tools for Windows PowerShell**  
-Use the [Get\-EC2AvailabilityZone](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2AvailabilityZone.html) command as follows to describe the Wavelength Zone within the specified Region\.
-
-```
-PS C:\> Get-EC2AvailabilityZone -Region region-name
-```
+  ```
+  aws ec2 describe-availability-zones --all-availability-zones
+  ```
 
 ### Enable Wavelength Zones<a name="opt-in-wavelength-zone"></a>
 
@@ -460,7 +384,7 @@ Before you specify a Wavelength Zone for a resource or service, you must opt in 
 
 1. In the upper\-left corner of the page, select **New EC2 Experience**\. You cannot complete this task using the old console experience\.
 
-1. From the Region selector in the navigation bar, select the Region for the Wavelength Zone\.
+1. From the navigation bar, choose the **Regions** selector and then choose the Region\.
 
 1. On the navigation pane, choose **EC2 Dashboard**\.
 

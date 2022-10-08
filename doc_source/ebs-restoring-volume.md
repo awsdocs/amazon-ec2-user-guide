@@ -8,7 +8,7 @@ You can use one of the following procedure to replace an Amazon EBS volume with 
 Amazon EBS volumes can only be attached to instances in the same Availability Zone\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To replace a volume**
 
@@ -25,21 +25,6 @@ Amazon EBS volumes can only be attached to instances in the same Availability Zo
 1. Select the new volume that you created in step 1 and choose **Actions**, **Attach volume**\.
 
    For **Instance** and **Device name**, enter the instance ID and device name that you wrote down in Step 2, and then choose **Attach volume**\.
-
-1. Connect to your instance and mount the volume\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
-
-------
-#### [ Old console ]
-
-**To replace a volume**
-
-1. Create a volume from the snapshot and write down the ID of the new volume\. For more information, see [Create a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
-
-1. On the volumes page, select the check box for the volume to replace\. On the **Description** tab, find **Attachment information** and write down the device name of the volume \(for example, `/dev/sda1`\) and the ID of the instance\. 
-
-1. With the volume still selected, choose **Actions**, **Detach Volume**\. When prompted for confirmation, choose **Yes, Detach**\. Clear the check box for this volume\.
-
-1. Select the check box for the new volume that you created in step 1\. Choose **Actions**, **Attach Volume**\. Enter the instance ID and device name that you wrote down in step 2, and then choose **Attach**\.
 
 1. Connect to your instance and mount the volume\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 

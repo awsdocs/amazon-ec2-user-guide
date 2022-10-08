@@ -26,9 +26,9 @@ Use one of the following procedures to create a snapshot lifecycle policy\.
 
    1. For **Target resource types**, choose the type of resource to back up\. Choose `Volume` to create snapshots of individual volumes, or choose `Instance` to create multi\-volume snapshots from the volumes attached to an instance\.
 
-   1. \(For AWS Outpost customers only\) For **Target resource location**, specify where the source resources are located\.
-      + If the source resources are located in an AWS Region, choose **AWS Region**\. Amazon Data Lifecycle Manager backs up all resources of the specified type that have matching target tags in the current Region only\. If the resource is located in a Region, snapshots created by the policy will be stored in the same Region\. 
-      + If the source resources are located on an Outpost in your account, choose **AWS Outpost**\. Amazon Data Lifecycle Manager backs up all resources of the specified type that have matching target tags across all of the Outposts in your account\. If the resource is located on an Outpost, snapshots created by the policy can be stored in the same Region or on the same Outpost as the resource\.
+   1. \(For AWS Outpost customers only\) For **Target resource location**, specify where the target resources are located\.
+      + If the target resources are located in an AWS Region, choose **AWS Region**\. Amazon Data Lifecycle Manager backs up all resources of the specified type that have matching target tags in the current Region only\. If the resource is located in a Region, snapshots created by the policy will be stored in the same Region\. 
+      + If the target resources are located on an Outpost in your account, choose **AWS Outpost**\. Amazon Data Lifecycle Manager backs up all resources of the specified type that have matching target tags across all of the Outposts in your account\. If the resource is located on an Outpost, snapshots created by the policy can be stored in the same Region or on the same Outpost as the resource\.
       + If you do not have any Outposts in your account, this option is hidden and AWS Region is selected for you\.
 
    1. For **Target resource tags**, choose the resource tags that identify the volumes or instances to back up\. Only resources that have the specified tag key and value pairs are backed up by the policy\.
@@ -54,29 +54,44 @@ Use one of the following procedures to create a snapshot lifecycle policy\.
       1. For **Schedule name**, specify a descriptive name for the schedule\.
 
       1. For **Frequency** and the related fields, configure the interval between policy runs\. You can configure policy runs on a daily, weekly, monthly, or yearly schedule\. Alternatively, choose **Custom cron expression** to specify an interval of up to one year\. For more information, see [Cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\.
+**Note**  
+If you need to enable **snapshot archiving** for the schedule, then you must select either the **monthly** or **yearly** frequency, or you must specify a cron expression with a creation frequency of at least 28 days\.  
+If specify a monthly frequency that creates snapshots on a specific day in a specific week \(for example, the second Thursday of the month\), then for count\-based schedule, the retention count for the archive tier must be 4 or more\.
 
       1. For **Starting at**, specify the time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\. The time must be entered in the `hh:mm` UTC format\.
 
       1. For **Retention type**, specify the retention policy for snapshots created by the schedule\. You can retain snapshots based on either their total count or their age\.
-
-         For count\-based retention, the range is `1` to `1000`\. After the maximum count is reached, the oldest snapshot is deleted when a new one is created\.
-
-         For age\-based retention, the range is `1` day to `100` years\. After the retention period of each snapshot expires, it is deleted\.
+         + \(Count\-based retention\) If you do not enable snapshot archiving, the range is `1` to `1000`\. If you enable snapshot archiving, the range is `0` to `1000`\. If you specify a count of `0`, snapshots are archived immediately after creation\.
+         + \(Age\-based retention\) If you do not enable snapshot archiving, the range is `1` day to `100` years\. If you enable snapshot archiving, the range is `0` days to `100` years\. If you specify `0` days, snapshots are archived immediately after creation\.
 **Note**  
-All schedules must have the same retention type\. You can specify the retention type for Schedule 1 only\. Schedules 2, 3, and 4 inherit the retention type from Schedule 1\. Each schedule can have its own retention count or period\.
+All schedules must have the same retention type \(age\-based or count\-based\)\. You can specify the retention type for Schedule 1 only\. Schedules 2, 3, and 4 inherit the retention type from Schedule 1\. Each schedule can have its own retention count or period\.
+If you enable fast snapshot restore, cross\-Region copy, or snapshot sharing, then you must specify a retention count of `1` or more, or a retention period of `1` day or longer\.
+If you enable snapshot archiving, this retention rule determines how long the snapshot remains in the standard tier before being archived\. Once the standard tier retention threshold is met, the snapshot is converted to a full snapshot and it is moved to the archive tier\.
 
       1. \(For AWS Outposts customers only\) For **Snapshot destination**, specify the destination for snapshots created by the policy\.
          + If the policy targets resources in a Region, snapshots must be created in the same Region\. AWS Region is selected for you\.
          + If the policy targets resources on an Outpost, you can choose to create snapshots on the same Outpost as the source resource, or in the Region that is associated with the Outpost\.
          + If you do not have any Outposts in your account, this option is hidden and AWS Region is selected for you\.
 
-          
-
    1. In the **Tagging** section, do the following:
 
       1. To copy all of the user\-defined tags from the source volume to the snapshots created by the schedule, select **Copy tags from source**\.
 
       1. To specify additional tags to assign to snapshots created by this schedule, choose **Add tags**\.
+
+   1. \(Only for policies that target volumes\) In the **Snapshot archiving** section, do the following:
+**Note**  
+You can enable snapshot archiving for only one schedule in a policy\.
+
+      1. To enable snapshot archiving for the schedule, select **Archive snapshots created by this schedule**\.
+**Note**  
+You can enable snapshot archiving only if the snapshot creation frequency is monthly or yearly, or if you specify a cron expression with a creation frequency of at least 28 days\.
+
+      1. Specify the retention rule for snapshots in the archive tier\.
+         + For **count\-based schedules**, specify the number of snapshots to retain in the archive tier\. When the retention threshold is reached, the oldest snapshot is permanently deleted from the archive tier\. For example, if you specify 3, the schedule will retain a maximum of 3 snapshots in the archive tier\. When the fourth snapshot is archived, the oldest of the three existing snapshots in the archive tier is deleted\.
+         + For **age\-based schedules**, specify the time period for which to retain snapshots in the archive tier\. When the retention threshold is reached, the oldest snapshot is permanently deleted from the archive tier\. For example, if you specify 120 days, the schedule will automatically delete snapshots from the archive tier when they reach that age\.
+**Important**  
+The minimum retention period for archived snapshots is 90 days\. You must specify a retention rule that retains the snapshot for at least 90 days\.
 
    1. To enable fast snapshot restore for snapshots created by the schedule, in the **Fast snapshot restore** section, select **Enable fast snapshot restore**\. If you enable fast snapshot restore, you must choose the Availability Zones in which to enable it\. If the schedule uses an age\-based retention schedule, you must specify the period for which to enable fast snapshot restore for each snapshot\. If the schedule uses count\-based retention, you must specify the maximum number of snapshots to enable for fast snapshot restore\.
 
@@ -128,7 +143,7 @@ You can't exclude data volumes using the old console\.
    + **Description**—A description of the policy\.
    + **Policy type**—The type of policy to create\. Choose **EBS snapshot policy**\.
    + **Resource type**—The type of resource to back up\. Choose `Volume` to create snapshots of individual volumes, or choose `Instance` to create multi\-volume snapshots from the volumes attached to an instance\.
-   + **Resource location**— The location of the resources to backup\. If the source resources are located in an AWS Region, choose **AWS Region**\. If the source resources are located on an Outpost in your account, choose **AWS Outpost**\. If you choose AWS Outpost, Amazon Data Lifecycle Manager backs up all resources of the specified type that have matching target tags across all of the Outposts in your account\.
+   + **Resource location**— The location of the resources to backup\. If the target resources are located in an AWS Region, choose **AWS Region**\. If the target resources are located on an Outpost in your account, choose **AWS Outpost**\. If you choose AWS Outpost, Amazon Data Lifecycle Manager backs up all resources of the specified type that have matching target tags across all of the Outposts in your account\.
 
      If you do not have any Outposts in your account, then **AWS Region** is selected by default\.
 **Note**  
@@ -178,7 +193,7 @@ Use the [create\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/refer
 **Note**  
 To simplify the syntax, the following examples use a JSON file, `policyDetails.json`, that includes the policy details\.
 
-**Example 1—Snapshot lifecycle policy**  
+**Example 1—Snapshot lifecycle policy with two schedules**  
 This example creates a snapshot lifecycle policy that creates snapshots of all volumes that have a tag key of `costcenter` with a value of `115`\. The policy includes two schedules\. The first schedule creates a snapshot every day at 03:00 UTC\. The second schedule creates a weekly snapshot every Friday at 17:00 UTC\.
 
 ```
@@ -390,6 +405,102 @@ The following is an example of the `policyDetails.json` file\.
 ]}
 ```
 
+**Example 5—Snapshot lifecycle policy with an archive\-enabled, age\-based shcedule**  
+This example creates a snapshot lifecycle policy that targets volumes tagged with `Name=Prod`\. The policy has one age\-based schedule that creates snapshots on the first day of each month at 09:00\. The schedule retains each snapshot in the standard tier for one day, after which it moves them to the archive tier\. Snapshots are stored in the archive tier for 90 days before being deleted\.
+
+```
+aws dlm create-lifecycle-policy \
+--description "Copy snapshots to Outpost" \
+--state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+--policy-details file://policyDetails.json
+```
+
+The following is an example of the `policyDetails.json` file\.
+
+```
+{
+    "ResourceTypes": [ "VOLUME"],
+    "PolicyType": "EBS_SNAPSHOT_MANAGEMENT",
+    "Schedules" : [
+      {
+        "Name": "sched1",
+        "TagsToAdd": [
+          {"Key":"createdby","Value":"dlm"}
+        ],
+        "CreateRule": {
+          "CronExpression": "cron(0 9 1 * ? *)"
+        },
+        "CopyTags": true,
+        "RetainRule":{
+          "Interval": 1,
+          "IntervalUnit": "DAYS"
+        },
+        "ArchiveRule": {
+            "RetainRule":{
+              "RetentionArchiveTier": {
+                 "Interval": 90,
+                 "IntervalUnit": "DAYS"
+              }
+            }
+        }
+      }
+    ],
+    "TargetTags": [
+      {
+        "Key": "Name",
+        "Value": "Prod"
+      }
+    ]
+}
+```
+
+**Example 6—Snapshot lifecycle policy with an archive\-enabled, count\-based shcedule**  
+This example creates a snapshot lifecycle policy that targets volumes tagged with `Purpose=Test`\. The policy has one count\-based schedule that creates snapshots on the first day of each month at 09:00\. The schedule archives snapshots immediately after creation and retains a maximum of three snapshots in the archive tier\.
+
+```
+aws dlm create-lifecycle-policy \
+--description "Copy snapshots to Outpost" \
+--state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+--policy-details file://policyDetails.json
+```
+
+The following is an example of the `policyDetails.json` file\.
+
+```
+{
+    "ResourceTypes": [ "VOLUME"],
+    "PolicyType": "EBS_SNAPSHOT_MANAGEMENT",
+    "Schedules" : [
+      {
+        "Name": "sched1",
+        "TagsToAdd": [
+          {"Key":"createdby","Value":"dlm"}
+        ],
+        "CreateRule": {
+          "CronExpression": "cron(0 9 1 * ? *)"
+        },
+        "CopyTags": true,
+        "RetainRule":{
+          "Count": 0
+        },
+        "ArchiveRule": {
+            "RetainRule":{
+              "RetentionArchiveTier": {
+                 "Count": 3
+              }
+            }
+        }
+      }
+    ],
+    "TargetTags": [
+      {
+        "Key": "Purpose",
+        "Value": "Test"
+      }
+    ]
+}
+```
+
 ------
 
 ## Considerations for snapshot lifecycle policies<a name="snapshot-considerations"></a>
@@ -401,12 +512,29 @@ The following considerations apply when **creating snapshot lifecycle policies**
 + If you create a policy that targets instances, and new volumes are attached to a target instance after the policy has been created, the newly\-added volumes are included in the backup at the next policy run\. All volumes attached to the instance at the time of the policy run are included\.
 + If you create a policy with a custom cron\-based schedule that is configured to create only one snapshot, the policy will not automatically delete that snapshot when the retention threshold is reached\. You must manually delete the snapshot if it is no longer needed\.
 
+The following considerations apply to **[snapshot archiving](snapshot-archive.md)**:
++ You can enable snapshot archiving only for snapshot policies that target volumes\.
++ You can specify an archiving rule for only one schedule for each policy\.
++ If you are using the console, you can enable snapshot archiving only if the schedule has a monthly or yearly creation frequency, or if the schedule has a cron expression with a creation frequency of at least 28 days\.
+
+  If you are using the AWS CLI, AWS API, or AWS SDK, you can enable snapshot archiving only if the schedule has a cron expression with a creation frequency of at least 28 days\.
++ The minimum retention period in the archive tier is 90 days\.
++ When a snapshot is archived, it is converted to a full snapshot when it is moved to the archive tier\. This could result in higher snapshot storage costs\. For more information, see [Pricing and billing](snapshot-archive.md#snapshot-archive-pricing)\.
++ Fast snapshot restore and snapshot sharing are disabled for snapshots when they are archived\.
++ If, in the case of a leap year, your retention rule results in an archive retention period of less than 90 days, Amazon Data Lifecycle Manager ensures that snapshots are retained for the minimum 90\-day period\.
++ If you manually archive a snapshot created by Amazon Data Lifecycle Manager, and the snapshot is still archived when the schedule's retention threshold is reached, Amazon Data Lifecycle Manager no longer manages that snapshot\. However, if you restore the snapshot to the standard tier before the schedule's retention threshold is reached, the schedule will continue to manage the snapshot as per the retention rules\.
++ If you permanently or temporarily restore a snapshot archived by Amazon Data Lifecycle Manager to the standard tier, and the snapshot is still in the standard tier when the schedule's retention threshold is reached, Amazon Data Lifecycle Manager no longer manages the snapshot\. However, if you re\-archive the snapshot before the schedule's retention threshold is reached, the schedule will delete the snapshot when the retention threshold is met\.
++ Snapshots archived by Amazon Data Lifecycle Manager count towards your `Archived snapshots per volume` and `In-progress snapshot archives per account` quotas\.
++ If a schedule is unable to archive a snapshot after retrying for 24 hours, the snapshot remains in the standard tier and it is scheduled for deletion based on the time that it would have been deleted from the archive tier\. For example, if the schedule archives snapshots for 120 days, it remains in the standard tier for 120 days after the failed archiving before being permanently deleted\. For count\-based schedules, the snapshot does not count towards the schedule's retention count\.
++ Snapshots must be archived in the same Region in which they were created\. If you enabled, cross\-Region copy and snapshot archiving, Amazon Data Lifecycle Manager does not archive the snapshot copy\.
++ Snapshots archived Amazon Data Lifecycle Manager are tagged with the `aws:dlm:archived=true` system tag\. Additionally, snapshots created by an archive\-enabled, age\-based schedule are tagged with the `aws:dlm:expirationTime` system tag, which indicates the date and time at which the snapshot is scheduled to be archived\.
+
 The following considerations apply to **excluding root volumes and data \(non\-root\) volumes**:
 + If you choose to exclude boot volumes and you specify tags that consequently exclude all of the additional data volumes attached to an instance, then Amazon Data Lifecycle Manager will not create any snapshots for the affected instance, and it will emit a `SnapshotsCreateFailed` CloudWatch metric\. For more information, see [Monitor your policies using CloudWatch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-dlm-cw-metrics.html)\.
 
 The following considerations apply to **deleting volumes or terminating instances targeted by snapshot lifecycle policies**:
-+ If you delete a volume or terminate an instance targeted by a policy with a count\-based retention schedule, the policy no longer manages the snapshots that it previously created from the deleted volume or terminated instance\. You must manually delete those earlier snapshots if they are no longer needed\.
-+ If you delete a volume or terminate an instance targeted by a policy with an age\-based retention schedule, the policy continues to delete the snapshots that were previously created from the deleted volume or terminated instance on the defined schedule, up to, but not including, the last snapshot\. You must manually delete the last snapshot if it is no longer needed\.
++ If you delete a volume or terminate an instance targeted by a policy with a count\-based retention schedule, Amazon Data Lifecycle Manager no longer manages snapshots in the standard tier and archive tier that were created from the deleted volume or instance\. You must manually delete those earlier snapshots if they are no longer needed\.
++ If you delete a volume or terminate an instance targeted by a policy with an age\-based retention schedule, the policy continues to delete snapshots from the standard tier and archive tier that were created from the deleted volume or instance on the defined schedule, up to, but not including, the last snapshot\. You must manually delete the last snapshot if it is no longer needed\.
 
 The following considerations apply to snapshot lifecycle policies and ** [fast snapshot restore](ebs-fast-snapshot-restore.md)**:
 + Amazon Data Lifecycle Manager can enable fast snapshot restore only for snapshots with a size of 16 TiB or less\. For more information, see [Amazon EBS fast snapshot restore](ebs-fast-snapshot-restore.md)\.

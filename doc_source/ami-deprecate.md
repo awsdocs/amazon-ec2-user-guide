@@ -14,7 +14,7 @@ You can deprecate both private and public AMIs\.
 You can also create Amazon Data Lifecycle Manager EBS\-backed AMI policies to automate the deprecation of EBS\-backed AMIs\. For more information, see [Automate AMI lifecycles](ami-policy.md)\.
 
 **Note**  
-We have released a new feature where, by default, the deprecation date of all public AMIs is set to two years from the AMI creation date\. Initially, all public AMIs that are older than two years will be deprecated on July 30, 2022\. You can set the deprecation date to earlier than two years\. To cancel the deprecation date, or to move the deprecation to a later date, you must make the AMI private by only [sharing it with specific AWS accounts](sharingamis-explicit.md)\.
+By default, the deprecation date of all public AMIs is set to two years from the AMI creation date\. You can set the deprecation date to earlier than two years\. To cancel the deprecation date, or to move the deprecation to a later date, you must make the AMI private by only [sharing it with specific AWS accounts](sharingamis-explicit.md)\.
 
 **Topics**
 + [Costs](#ami-deprecate-costs)
@@ -47,7 +47,9 @@ You can deprecate an AMI on a specific date and time\. You must be the AMI owner
 
 1. Select the AMI, and then choose **Actions**, **Manage AMI Deprecation**\. You can select multiple AMIs to set the same deprecation date of several AMIs at once\.
 
-1. Select the **Enable** check box, and then enter the deprecation date and time\.
+1. Select the **Enable** check box, and then enter the deprecation date and time\. 
+
+   The upper limit for the deprecation date is 10 years from now, except for public AMIs, where the upper limit is 2 years from the creation date\. You can’t specify a date in the past\.
 
 1. Choose **Save**\.
 
@@ -56,6 +58,8 @@ You can deprecate an AMI on a specific date and time\. You must be the AMI owner
 
 **To deprecate an AMI on a specific date**  
 Use the [enable\-image\-deprecation](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-image-deprecation.html) command\. Specify the ID of the AMI and the date and time on which to deprecate the AMI\. If you specify a value for seconds, Amazon EC2 rounds the seconds to the nearest minute\.
+
+The upper limit for `deprecate-at` is 10 years from now, except for public AMIs, where the upper limit is 2 years from the creation date\. You can’t specify a date in the past\. 
 
 ```
 aws ec2 enable-image-deprecation \

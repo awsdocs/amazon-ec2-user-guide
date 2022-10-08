@@ -86,6 +86,9 @@ The following AMIs support EFAs with Intel x86\-based instance types:
 + SUSE Linux Enterprise 15 SP2 and later
 + openSUSE Leap 15\.3 and later
 
+**Note**  
+Ubuntu 20\.04 supports peer direct support when used with `dl1.24xlarge` instances\.
+
 The following AMIs support EFAs with Arm\-based \(Graviton 2\) instance types:
 + Amazon Linux 2
 + RHEL 8

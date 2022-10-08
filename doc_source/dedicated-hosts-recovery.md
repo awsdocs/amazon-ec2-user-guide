@@ -18,6 +18,9 @@ Dedicated Hosts and the host resource groups recovery process use host\-level he
 + Loss of system power
 + Hardware or software issues on the physical host
 
+**Important**  
+Dedicated Host auto recovery does not occur when the host is scheduled for retirement\.
+
 ### Dedicated Host auto recovery<a name="dedicated-hosts-recovery-basics-auto-recovery"></a>
 
 When a system power or network connectivity failure is detected on your Dedicated Host, Dedicated Host auto recovery is initiated and Amazon EC2 **automatically allocates a replacement Dedicated Host**\. The replacement Dedicated Host receives a new host ID, but retains the same attributes as the original Dedicated Host, including:
@@ -49,7 +52,7 @@ If you are using AWS License Manager to track your licenses, AWS License Manager
 
 ### Scenarios without Dedicated Host auto recovery<a name="dedicated-hosts-recovery-basics-non-auto"></a>
 
-**Dedicated Host auto recovery does not occur when hardware or software issues impact the physical host** and manual intervention is required\. You will receive a retirement notification in the AWS Health Dashboard, an Amazon CloudWatch event, and the AWS account owner email address receives a message regarding the Dedicated Host failure\.
+**Dedicated Host auto recovery does not occur when the host is scheduled for retirement**\. You will receive a retirement notification in the AWS Health Dashboard, an Amazon CloudWatch event, and the AWS account owner email address receives a message regarding the Dedicated Host failure\. Follow the remedial steps described in the retirement notification within the specified time period to manually recover the instances on the retiring host\.
 
 **Stopped instances are not recovered** on to the replacement Dedicated Host\. If you attempt to start a stopped instance that targets the impaired Dedicated Host, the instance start fails\. We recommend that you modify the stopped instance to either target a different Dedicated Host, or to launch on any available Dedicated Host with matching configurations and auto\-placement enabled\.
 
