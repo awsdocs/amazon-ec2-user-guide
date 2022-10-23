@@ -278,7 +278,7 @@ Currently, Amazon Linux 2 \(AL2\) AMIs are available with kernel versions 4\.14 
 + [OverlayFS](https://www.kernel.org/doc/html/latest/filesystems/overlayfs.html) has improved performance and now also handles copying immutable/append/sync/noatime attributes\.
 + New optimizations and improvements for EXT4 are added, such as addition of a new orphan\_file feature to eliminate bottlenecks in cases of large parallel truncates, file deletions and moving the DISCARD work out of the JBD2 commit thread to help with devices having slow DISCARD behavior and not blocking the JBD2 commit KThread\.
 + New optimizations and improvements for XFS are added, such as batch inode activations in per\-CPU background threads that improve directory tree deletion times and enablement of pipelining to help with performance around handling lots of metadata updates\.
-+ [DAMON](https://www.kernel.org/doc/html/v5.15-rc1/vm/damon/index.html) is better supported as the data access monitoring framework for proactive memory reclamation and performance analysis\.
++ [DAMON](https://www.kernel.org/doc/html/v5.15/vm/damon/index.html) is better supported as the data access monitoring framework for proactive memory reclamation and performance analysis\.
 
 **Limitations for kernel 5\.15**
 + LustreFSx is not supported \(support will be added later\)\.
