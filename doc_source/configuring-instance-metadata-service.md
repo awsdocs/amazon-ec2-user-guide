@@ -129,7 +129,7 @@ When the CloudWatch metric `MetadataNoToken` records zero IMDSv1 usage, your ins
   + AWS CLI: Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) CLI command to specify that only IMDSv2 is to be used\.
 + **Existing instances**
 
-  : You can require IMDSv2 use through the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command\. You can make these changes on running instances; you don't need to restart your instances\. 
+  You can require IMDSv2 use through the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command\. You can make these changes on running instances; you don't need to restart your instances\. 
 
 **Note**  
 Updating instance metadata options for existing instances is available only through the API or AWS CLI\. It is currently not available in the Amazon EC2 console\. For more information, see [Configure the instance metadata options](configuring-instance-metadata-options.md)\.

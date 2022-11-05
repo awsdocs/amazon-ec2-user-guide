@@ -2,6 +2,9 @@
 
 The following examples show launch configurations that you can use with the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command to create a Spot Instance request\. For more information, see [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
 
+**Note**  
+We strongly discourage using the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command to request a Spot Instance because it is a legacy API with no planned investment\. For more information, see [Which is the best Spot request method to use?](spot-best-practices.md#which-spot-request-method-to-use)
+
 **Topics**
 + [Example 1: Launch Spot Instances](#spot-launch-specification1)
 + [Example 2: Launch Spot Instances in the specified Availability Zone](#spot-launch-specification2)
@@ -14,10 +17,10 @@ The following example does not include an Availability Zone or subnet\. Amazon E
 
 ```
 {
-  "ImageId": "ami-1a2b3c4d",
+  "ImageId": "ami-0abcdef1234567890",
   "KeyName": "my-key-pair",
-  "SecurityGroupIds": [ "sg-1a2b3c4d" ],
-  "InstanceType": "m3.medium",
+  "SecurityGroupIds": [ "sg-1a2b3c4d5e6f7g8h9" ],
+  "InstanceType": "m5.medium",
   "IamInstanceProfile": {
       "Arn": "arn:aws:iam::123456789012:instance-profile/my-iam-role"
   }
@@ -30,10 +33,10 @@ The following example includes an Availability Zone\. Amazon EC2 launches the in
 
 ```
 {
-  "ImageId": "ami-1a2b3c4d",
+  "ImageId": "ami-0abcdef1234567890",
   "KeyName": "my-key-pair",
-  "SecurityGroupIds": [ "sg-1a2b3c4d" ],
-  "InstanceType": "m3.medium",
+  "SecurityGroupIds": [ "sg-1a2b3c4d5e6f7g8h9" ],
+  "InstanceType": "m5.medium",
   "Placement": {
     "AvailabilityZone": "us-west-2a"
   },
@@ -49,9 +52,9 @@ The following example includes a subnet\. Amazon EC2 launches the instances in t
 
 ```
 {
-  "ImageId": "ami-1a2b3c4d",
-  "SecurityGroupIds": [ "sg-1a2b3c4d" ],
-  "InstanceType": "m3.medium",
+  "ImageId": "ami-0abcdef1234567890",
+  "SecurityGroupIds": [ "sg-1a2b3c4d5e6f7g8h9" ],
+  "InstanceType": "m5.medium",
   "SubnetId": "subnet-1a2b3c4d",
   "IamInstanceProfile": {
       "Arn": "arn:aws:iam::123456789012:instance-profile/my-iam-role"
@@ -63,14 +66,14 @@ To assign a public IPv4 address to an instance in a nondefault VPC, specify the 
 
 ```
 {
-  "ImageId": "ami-1a2b3c4d",
+  "ImageId": "ami-0abcdef1234567890",
   "KeyName": "my-key-pair",
-  "InstanceType": "m3.medium",
+  "InstanceType": "m5.medium",
   "NetworkInterfaces": [
     {
       "DeviceIndex": 0,
-      "SubnetId": "subnet-1a2b3c4d",
-      "Groups": [ "sg-1a2b3c4d" ],
+      "SubnetId": "subnet-1a2b3c4d5e6f7g8h9",
+      "Groups": [ "sg-1a2b3c4d5e6f7g8h9" ],
       "AssociatePublicIpAddress": true
     }
   ],
@@ -86,11 +89,11 @@ The following example requests Spot Instance with a tenancy of `dedicated`\. A D
 
 ```
 {
-  "ImageId": "ami-1a2b3c4d",
+  "ImageId": "ami-0abcdef1234567890",
   "KeyName": "my-key-pair",
-  "SecurityGroupIds": [ "sg-1a2b3c4d" ],
-  "InstanceType": "c3.8xlarge",
-  "SubnetId": "subnet-1a2b3c4d",
+  "SecurityGroupIds": [ "sg-1a2b3c4d5e6f7g8h9" ],
+  "InstanceType": "c5.8xlarge",
+  "SubnetId": "subnet-1a2b3c4d5e6f7g8h9",
   "Placement": {
     "Tenancy": "dedicated"
   }

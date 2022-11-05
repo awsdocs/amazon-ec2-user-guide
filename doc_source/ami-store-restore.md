@@ -100,7 +100,7 @@ The sum of the sizes of all of the AMIs in progress is limited to 300 GB \(based
 ## Limitations<a name="limitations"></a>
 + Only EBS\-backed AMIs can be stored using these APIs\.
 + Paravirtual \(PV\) AMIs are not supported\.
-+ The size of an AMI \(before compression\) that can be stored is limited to 1 TB\.
++ The size of an AMI \(before compression\) that can be stored is limited to 5,000 GB\.
 + Quota on [store image](#store-ami) requests: 600 GB of storage work \(snapshot data\) in progress\.
 + Quota on [restore image](#restore-ami) requests: 300 GB of restore work \(snapshot data\) in progress\.
 + For the duration of the store task, the snapshots must not be deleted and the IAM principal doing the store must have access to the snapshots, otherwise the store process will fail\.

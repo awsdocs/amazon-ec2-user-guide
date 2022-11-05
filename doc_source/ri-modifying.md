@@ -1,6 +1,6 @@
 # Modify Reserved Instances<a name="ri-modifying"></a>
 
-When your needs change, you can modify your Standard or Convertible Reserved Instances and continue to benefit from the billing benefit\. You can modify attributes such as the Availability Zone, instance size \(within the same instance family\), and scope of your Reserved Instance\.
+When your needs change, you can modify your Standard or Convertible Reserved Instances and continue to benefit from the billing benefit\. You can modify attributes such as the Availability Zone, instance size \(within the same instance family and generation\), and scope of your Reserved Instance\.
 
 **Note**  
 You can also exchange a Convertible Reserved Instance for another Convertible Reserved Instance with a different configuration\. For more information, see [Exchange Convertible Reserved Instances](ri-convertible-exchange.md)\.
@@ -38,7 +38,7 @@ You can modify these attributes as follows\.
 | --- | --- | --- | 
 |  Change **Availability Zones** within the same Region  |  Linux and Windows  | \- | 
 |  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  A zonal Reserved Instance is scoped to an Availability Zone and reserves capacity in that Availability Zone\. If you change the scope from Availability Zone to Region \(in other words, from zonal to regional\), you lose the capacity reservation benefit\. A regional Reserved Instance is scoped to a Region\. Your Reserved Instance discount can apply to instances running in any Availability Zone in that Region\. Furthermore, the Reserved Instance discount applies to instance usage across all sizes in the selected instance family\. If you change the scope from Region to Availability Zone \(in other words, from regional to zonal\), you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances are applied](apply_ri.md)\. | 
-|  Change the **instance size** within the same instance family  |  Linux/UNIX only Instance size flexibility is not available for Reserved Instances on the other platforms, which include Linux with SQL Server Standard, Linux with SQL Server Web, Linux with SQL Server Enterprise, Red Hat Enterprise Linux, SUSE Linux, Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, and Windows with SQL Server Web\.  |  The reservation must use default tenancy\. Some instance families are not supported, because there are no other sizes available\. For more information, see [Support for modifying instance sizes](#ri-modification-instancemove)\.  | 
+|  Change the **instance size** within the same instance family and generation  |  Linux/UNIX only Instance size flexibility is not available for Reserved Instances on the other platforms, which include Linux with SQL Server Standard, Linux with SQL Server Web, Linux with SQL Server Enterprise, Red Hat Enterprise Linux, SUSE Linux, Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, and Windows with SQL Server Web\.  |  The reservation must use default tenancy\. Some instance families are not supported, because there are no other sizes available\. For more information, see [Support for modifying instance sizes](#ri-modification-instancemove)\.  | 
 |  Change the **network** from EC2\-Classic to Amazon VPC and vice versa  |  Linux and Windows  |  The network platform must be available in your AWS account\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic\.  | 
 
 **Requirements**
@@ -59,13 +59,20 @@ You can modify the instance size of a Reserved Instance if the following require
 
 **Requirements**
 + The platform is Linux/UNIX\.
-+ You must select another instance size in the same instance family\. For example, you cannot modify an Reserved Instance from `t2` to `t3`, whether you use the same size or a different size\.
++ You must select another instance size in the same [instance family](instance-types.md#instance-type-names) \(indicated by a letter, for example, T\) and [generation](instance-types.md#instance-type-names) \(indicated by a number, for example, 2\)\.
 
-  You cannot modify the instance size of Reserved Instances for the following instances, because each of these instance families has only one size:
+  For example, you can modify a Reserved Instance from `t2.small` to `t2.large` because they're both in the same T2 family and generation\. But you can't modify a Reserved Instance from T2 to M2 or from T2 to T3, because in both these examples, the target instance family and generation are not the same as the original Reserved Instance\.
++ You can't modify the instance size of Reserved Instances for the following instances, because each of the following has only one size:
   + `cc2.8xlarge`
   + `cr1.8xlarge`
   + `hs1.8xlarge`
   + `t1.micro`
++ You can't modify the instance size of Reserved Instances for the following [instance family, generation, and attribute](instance-types.md#instance-type-names) combinations:
+  + G4ad
+  + G4dn
+  + G5
+  + G5g
+  + Inf1
 + The original and new Reserved Instance must have the same instance size footprint\.
 
 **Topics**

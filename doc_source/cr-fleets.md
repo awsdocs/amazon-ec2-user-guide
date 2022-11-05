@@ -2,7 +2,7 @@
 
 An *On\-Demand Capacity Reservation Fleet* is a group of Capacity Reservations\.
 
-A Capacity Reservation Fleet request contains all of the configuration information that's needed to launch a Capacity Reservation Fleet\. Using a single request, you can reserve large amounts of Amazon EC2 capacity for your workload across multiple instance types, up to a target capacity that you specify\.
+A Capacity Reservation Fleet request contains all of the configuration information that's needed to launch a Capacity Reservation Fleet\. Using a single request, you can reserve large amounts of Amazon EC2 capacity for your workload across multiple instance types, up to a target capacity that yo specify\.
 
 After you create a Capacity Reservation Fleet, you can manage the Capacity Reservations in the fleet collectively by modifying or canceling the Capacity Reservation Fleet\.
 

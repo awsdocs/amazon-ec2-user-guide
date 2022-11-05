@@ -53,7 +53,7 @@ The following instance types support EFAs:
 + Compute optimized: `c5n.18xlarge` \| `c5n.9xlarge` \| `c5n.metal` \| `c6a.32xlarge` \| `c6a.48xlarge` \| `c6a.metal` \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal` \| `c6id.32xlarge` \| `c6id.metal` \| `c7g.16xlarge` \| `hpc6a.48xlarge`
 + Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6a.48xlarge` \| `r6a.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `r6id.32xlarge` \| `r6id.metal` \| `x2d.32xlarge` \| `x2d.metal` \| `x2ed.32xlarge` \| `x2ed.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal` \| `x2idn.32xlarge` \| `x2iedn.32xlarge`
 + Storage optimized: `i3en.24xlarge` \| `i3en.12xlarge` \| `i3en.metal` \| `i4i.32xlarge` \| `i4i.metal` \| `im4gn.16xlarge`
-+ Accelerated computing: `dl1.24xlarge` \| `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
++ Accelerated computing: `dl1.24xlarge` \| `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge` \| `trn1.32xlarge`
 
 **To see the available instance types that support EFAs in a specific Region**  
 The available instance types vary by Region\. To see the available instance types that support EFAs in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` parameter\. Include the `--filters` parameter to scope the results to the instance types that support EFA and the `--query` parameter to scope the output to the value of `InstanceType`\.
@@ -82,7 +82,7 @@ The following AMIs support EFAs with Intel x86\-based instance types:
 + Amazon Linux 2
 + CentOS 7
 + RHEL 7 and 8
-+ Ubuntu 18\.04 and 20\.04
++ Ubuntu 18\.04, 20\.04, and 22\.04
 + SUSE Linux Enterprise 15 SP2 and later
 + openSUSE Leap 15\.3 and later
 
@@ -92,7 +92,7 @@ Ubuntu 20\.04 supports peer direct support when used with `dl1.24xlarge` instanc
 The following AMIs support EFAs with Arm\-based \(Graviton 2\) instance types:
 + Amazon Linux 2
 + RHEL 8
-+ Ubuntu 18\.04 and 20\.04
++ Ubuntu 18\.04, 20\.04, and 22\.04
 + SUSE Linux Enterprise 15 SP2 and later
 
 ## EFA limitations<a name="efa-limits"></a>

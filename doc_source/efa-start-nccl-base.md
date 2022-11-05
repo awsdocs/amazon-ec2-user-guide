@@ -10,16 +10,17 @@ Only Amazon Linux 2, RHEL 7/8, CentOS 7, and Ubuntu 18\.04/20\.04 base AMIs are 
 + [Step 1: Prepare an EFA\-enabled security group](#nccl-start-base-setup)
 + [Step 2: Launch a temporary instance](#nccl-start-base-temp)
 + [Step 3: Install Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN](#nccl-start-base-drivers)
-+ [Step 4: Install the EFA software](#nccl-start-base-enable)
-+ [Step 5: Install NCCL](#nccl-start-base-nccl)
-+ [Step 6: Install the aws\-ofi\-nccl plugin](#nccl-start-base-plugin)
-+ [Step 7: Install the NCCL tests](#nccl-start-base-tests)
-+ [Step 8: Test your EFA and NCCL configuration](#nccl-start-base-test)
-+ [Step 9: Install your machine learning applications](#nccl-start-base-app)
-+ [Step 10: Create an EFA and NCCL\-enabled AMI](#nccl-start-base-ami)
-+ [Step 11: Terminate the temporary instance](#nccl-start-base-terminate)
-+ [Step 12: Launch EFA and NCCL\-enabled instances into a cluster placement group](#nccl-start-base-cluster)
-+ [Step 13: Enable passwordless SSH](#nccl-start-base-passwordless)
++ [Step 4: Install GDRCopy](#nccl-start-base-gdrcopy)
++ [Step 5: Install the EFA software](#nccl-start-base-enable)
++ [Step 6: Install NCCL](#nccl-start-base-nccl)
++ [Step 7: Install the aws\-ofi\-nccl plugin](#nccl-start-base-plugin)
++ [Step 8: Install the NCCL tests](#nccl-start-base-tests)
++ [Step 9: Test your EFA and NCCL configuration](#nccl-start-base-test)
++ [Step 10: Install your machine learning applications](#nccl-start-base-app)
++ [Step 11: Create an EFA and NCCL\-enabled AMI](#nccl-start-base-ami)
++ [Step 12: Terminate the temporary instance](#nccl-start-base-terminate)
++ [Step 13: Launch EFA and NCCL\-enabled instances into a cluster placement group](#nccl-start-base-cluster)
++ [Step 14: Enable passwordless SSH](#nccl-start-base-passwordless)
 
 ## Step 1: Prepare an EFA\-enabled security group<a name="nccl-start-base-setup"></a>
 
@@ -145,6 +146,14 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 #### [ Amazon Linux 2 ]
 
 **To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
+
+1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\.
+
+   ```
+   $ sudo yum upgrade -y && sudo reboot
+   ```
+
+   After the instance has rebooted, reconnect to it\.
 
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
 
@@ -390,6 +399,14 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 
 **To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
 
+1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\.
+
+   ```
+   $ sudo yum upgrade -y && sudo reboot
+   ```
+
+   After the instance has rebooted, reconnect to it\.
+
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
 
    ```
@@ -501,6 +518,10 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 
 **To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
 
+1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\.
+
+   sudo apt\-get update && sudo apt\-get upgrade \-y
+
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
 
    ```
@@ -543,37 +564,33 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 
 1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
 
-   1. Download and install the additional dependencies and add the CUDA repository\.
-      + Ubuntu 18\.04
+   1. Add the CUDA repository and install the CUDA driver\.
+     + Ubuntu 18\.04
 
-        ```
-        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub \
-        && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb \
-        && sudo dpkg -i /tmp/deeplearning.deb \
-        && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin \
-        && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
-        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub \
-        && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /' \
-        && sudo apt update
-        ```
-      + Ubuntu 20\.04
+       ```
+       $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub \
+       && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb \
+       && sudo dpkg -i /tmp/deeplearning.deb \
+       && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin \
+       && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
+       && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub \
+       && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /' \
+       && sudo apt update \ 
+       && sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
+       ```
+     + Ubuntu 20\.04
 
-        ```
-        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/7fa2af80.pub \
-        && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/nvidia-machine-learning-repo-ubuntu2004_1.0.0-1_amd64.deb \
-        && sudo dpkg -i /tmp/deeplearning.deb \
-        && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin \
-        && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
-        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub \
-        && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /' \
-        && sudo apt update
-        ```
-
-   1. Install the NVIDIA, CUDA drivers and cuDNN\.
-
-      ```
-      $ sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
-      ```
+       ```
+       $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/7fa2af80.pub \
+       && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/nvidia-machine-learning-repo-ubuntu2004_1.0.0-1_amd64.deb \
+       && sudo dpkg -i /tmp/deeplearning.deb \
+       && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin \
+       && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
+       && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub \
+       && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /' \
+       && sudo apt update \
+       && sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
+       ```
 
 1. Reboot the instance and reconnect to it\.
 
@@ -637,25 +654,84 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 
 ------
 
-## Step 4: Install the EFA software<a name="nccl-start-base-enable"></a>
+## Step 4: Install GDRCopy<a name="nccl-start-base-gdrcopy"></a>
+
+Install GDRCopy to improve the performance of Libfabric\. For more information about GDRCopy, see the [GDRCopy repository](https://github.com/NVIDIA/gdrcopy)\.
+
+------
+#### [ Amazon Linux 2, CentOS 7, and RHEL 7/8 ]
+
+**To install GDRCopy**
+
+1. Install the required dependencies\.
+
+   ```
+   $ sudo yum -y install dkms rpm-build make check check-devel subunit subunit-devel
+   ```
+
+1. Download and extract the GDRCopy package\.
+
+   ```
+   $ wget https://github.com/NVIDIA/gdrcopy/archive/refs/tags/v2.3.tar.gz \
+   && tar xf v2.3.tar.gz ; cd gdrcopy-2.3/packages
+   ```
+
+1. Build the GDRCopy RPM package\.
+
+   ```
+   $ CUDA=/usr/local/cuda ./build-rpm-packages.sh
+   ```
+
+1. Install the GDRCopy RPM package\.
+
+   ```
+   $ sudo rpm -Uvh gdrcopy-kmod-2.3-1dkms.noarch*.rpm \
+   && sudo rpm -Uvh gdrcopy-2.3-1.x86_64*.rpm \
+   && sudo rpm -Uvh gdrcopy-devel-2.3-1.noarch*.rpm
+   ```
+
+------
+#### [ Ubuntu 18\.04/20\.04 ]
+
+**To install GDRCopy**
+
+1. Install the required dependencies\.
+
+   ```
+   $ sudo apt -y install build-essential devscripts debhelper check libsubunit-dev fakeroot pkg-config dkms
+   ```
+
+1. Download and extract the GDRCopy package\.
+
+   ```
+   $ wget https://github.com/NVIDIA/gdrcopy/archive/refs/tags/v2.3.tar.gz \
+   && tar xf v2.3.tar.gz ; cd gdrcopy-2.3/packages
+   ```
+
+1. Build the GDRCopy RPM package\.
+
+   ```
+   $ CUDA=/usr/local/cuda ./build-deb-packages.sh
+   ```
+
+1. Install the GDRCopy RPM package\.
+
+   ```
+   $ sudo dpkg -i gdrdrv-dkms_2.3-1_amd64.*.deb \
+   && sudo dpkg -i libgdrapi_2.3-1_amd64.*.deb \
+   && sudo dpkg -i gdrcopy-tests_2.3-1_amd64.*.deb \
+   && sudo dpkg -i gdrcopy_2.3-1_amd64.*.deb
+   ```
+
+------
+
+## Step 5: Install the EFA software<a name="nccl-start-base-enable"></a>
 
 Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that is required to support EFA on your temporary instance\.
 
 **To install the EFA software**
 
 1. Connect to the instance you launched\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
-
-1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
-   + Amazon Linux 2, RHEL 7/8, and CentOS 7
-
-     ```
-     $ sudo yum update -y
-     ```
-   + Ubuntu 18\.04/20\.04
-
-     ```
-     $ sudo apt-get update && sudo apt-get upgrade -y
-     ```
 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
@@ -765,7 +841,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
      protocol: FI_PROTO_EFA
      ```
 
-## Step 5: Install NCCL<a name="nccl-start-base-nccl"></a>
+## Step 6: Install NCCL<a name="nccl-start-base-nccl"></a>
 
 Install NCCL\. For more information about NCCL, see the [NCCL repository](https://github.com/NVIDIA/nccl)\.
 
@@ -789,7 +865,7 @@ Install NCCL\. For more information about NCCL, see the [NCCL repository](https:
    $ sudo make -j src.build CUDA_HOME=/usr/local/cuda
    ```
 
-## Step 6: Install the aws\-ofi\-nccl plugin<a name="nccl-start-base-plugin"></a>
+## Step 7: Install the aws\-ofi\-nccl plugin<a name="nccl-start-base-plugin"></a>
 
 The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Libfabric's connection\-less reliable interface\. This enables you to use Libfabric as a network provider while running NCCL\-based applications\. For more information about the aws\-ofi\-nccl plugin, see the [aws\-ofi\-nccl repository](https://github.com/aws/aws-ofi-nccl)\.
 
@@ -839,7 +915,7 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
    $ make && sudo make install
    ```
 
-## Step 7: Install the NCCL tests<a name="nccl-start-base-tests"></a>
+## Step 8: Install the NCCL tests<a name="nccl-start-base-tests"></a>
 
 Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is properly installed and that it is operating as expected\. For more information about the NCCL tests, see the [nccl\-tests repository](https://github.com/NVIDIA/nccl-tests)\.
 
@@ -875,7 +951,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
    $ make MPI=1 MPI_HOME=/opt/amazon/openmpi NCCL_HOME=/opt/nccl/build CUDA_HOME=/usr/local/cuda
    ```
 
-## Step 8: Test your EFA and NCCL configuration<a name="nccl-start-base-test"></a>
+## Step 9: Test your EFA and NCCL configuration<a name="nccl-start-base-test"></a>
 
 Run a test to ensure that your temporary instance is properly configured for EFA and NCCL\. 
 
@@ -934,14 +1010,14 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    ip-192-168-2-54:14:14 [0] NCCL INFO NET/OFI Running on P4d platform, Setting NCCL_TOPO_FILE environment variable to /home/ec2-user/install/plugin/share/aws-ofi-nccl/xml/p4d-24xl-topo.xml
    ```
 
-## Step 9: Install your machine learning applications<a name="nccl-start-base-app"></a>
+## Step 10: Install your machine learning applications<a name="nccl-start-base-app"></a>
 
 Install the machine learning applications on the temporary instance\. The installation procedure varies depending on the specific machine learning application\. For more information about installing software on your Linux instance, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\.
 
 **Note**  
 You might need to refer to your machine learning application’s documentation for installation instructions\.
 
-## Step 10: Create an EFA and NCCL\-enabled AMI<a name="nccl-start-base-ami"></a>
+## Step 11: Create an EFA and NCCL\-enabled AMI<a name="nccl-start-base-ami"></a>
 
 After you have installed the required software components, you create an AMI that you can reuse to launch your EFA\-enabled instances\.
 
@@ -965,7 +1041,7 @@ After you have installed the required software components, you create an AMI tha
 
 1. Locate the AMI tht you created in the list\. Wait for the status to change from `pending` to `available` before continuing to the next step\.
 
-## Step 11: Terminate the temporary instance<a name="nccl-start-base-terminate"></a>
+## Step 12: Terminate the temporary instance<a name="nccl-start-base-terminate"></a>
 
 At this point, you no longer need the temporary instance that you launched\. You can terminate the instance to stop incurring charges for it\.
 
@@ -979,7 +1055,7 @@ At this point, you no longer need the temporary instance that you launched\. You
 
 1. When prompted for confirmation, choose **Terminate**\.
 
-## Step 12: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-base-cluster"></a>
+## Step 13: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-base-cluster"></a>
 
 Launch your EFA and NCCL\-enabled instances into a cluster placement group using the EFA\-enabled AMI and the EFA\-enabled security group that you created earlier\.
 
@@ -1059,7 +1135,7 @@ To ensure that capacity is available as you scale your cluster’s instances, yo
 
 ------
 
-## Step 13: Enable passwordless SSH<a name="nccl-start-base-passwordless"></a>
+## Step 14: Enable passwordless SSH<a name="nccl-start-base-passwordless"></a>
 
 To enable your applications to run across all of the instances in your cluster, you must enable passwordless SSH access from the leader node to the member nodes\. The leader node is the instance from which you run your applications\. The remaining instances in the cluster are the member nodes\.
 

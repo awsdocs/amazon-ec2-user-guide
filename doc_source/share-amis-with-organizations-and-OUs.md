@@ -13,10 +13,10 @@ When you share an AMI with an organization or an OU, all of the children account
 ## Considerations<a name="considerations-org-ou"></a>
 
 Consider the following when sharing AMIs with specific organizations or organizational units\.
-+ **No sharing limits** – The AMI owner can share an AMI with any organization or OU, including organizations and OUs that they’re not a member of\.
++ **Sharing limits** – The AMI owner can share an AMI with any organization or OU, including organizations and OUs that they’re not a member of\.
 
-  There is no limit to the number of organizations or OUs with which an AMI can be shared\.
-+ **Tags** – User\-defined tags that you attach to a shared AMI are available only to your AWS account, and not to the AWS accounts in the other organizations and OUs with which the AMI is shared\. 
+  For the maximum number of entities to which an AMI can be shared within a Region, see the [Amazon EC2 service quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html#limits_ec2)\.
++ **Tags** – User\-defined tags that you attach to a shared AMI are available only to your AWS accounts, and not to the AWS accounts in the other organizations and OUs with which the AMI is shared\. 
 + **ARN format** – When you specify an organization or OU in a command, make sure to use the correct ARN format\. You'll get an error if you specify only the ID, for example, if you specify only `o-123example` or `ou-1234-5example`\.
 
   Correct ARN formats:
@@ -38,9 +38,9 @@ Consider the following when sharing AMIs with specific organizations or organiza
 
 ## Allow organizations and OUs to use a KMS key<a name="allow-org-ou-to-use-key"></a>
 
-If you share an AMI that is backed by encrypted snapshots, you must also allow the organizations or OUs to use the customer managed keys that were used to encrypt the snapshots\.
+If you share an AMI that is backed by encrypted snapshots, you must also allow the organizations or OUs to use the AWS KMS keysthat were used to encrypt the snapshots\.
 
-Use the `aws:PrincipalOrgID` and `aws:PrincipalOrgPaths` keys to compare the AWS Organizations path for the principal who is making the request to the path in the policy\. That principal can be an IAM user, IAM role, federated user, or AWS account root user\. In a policy, this condition key ensures that the requester is an account member within the specified organization root or OUs in AWS Organizations\. For more example condition statements, see [aws:PrincipalOrgID](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid) and [aws:PrincipalOrgPaths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths) in the *IAM User Guide*\.
+Use the `aws:PrincipalOrgID` and `aws:PrincipalOrgPaths` keys to compare the AWS Organizations path for the principal who is making the request to the path in the policy\. That principal can be an IAM user, IAM role, federated user, or AWS account root user\. In a policy, this condition key ensures that the requester is an account member within the specified organization root or OUs in AWS Organizations\. For more example condition statements, see [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid) and [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths) in the *IAM User Guide*\.
 
 For information about editing a key policy, see [Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide* and [Share a KMS key](ebs-modifying-snapshot-permissions.md#share-kms-key)\.
 
@@ -130,10 +130,10 @@ You do not need to share the Amazon EBS snapshots that an AMI references in orde
 
 ### Share an AMI \(AWS CLI\)<a name="share-amis-org-ou-aws-cli"></a>
 
-Use the [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command \(AWS CLI\) to share an AMI\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command \(AWS CLI\) to share an AMI\.
 
 **To share an AMI with an organization using the AWS CLI**  
-The [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command grants launch permissions for the specified AMI to the specified organization\. Note that you must specify the full ARN, not just the ID\.
+The [https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command grants launch permissions for the specified AMI to the specified organization\. Note that you must specify the full ARN, not just the ID\.
 
 ```
 aws ec2 modify-image-attribute \
@@ -187,7 +187,7 @@ aws ec2 modify-image-attribute \
 ```
 
 **To stop sharing an AMI with all organizations, OUs, and AWS accounts using the AWS CLI**  
-The [reset\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/reset-image-attribute.html) command removes all public and explicit launch permissions from the specified AMI\. Note that the owner of the AMI always has launch permissions and is therefore unaffected by this command\.
+The [https://docs.aws.amazon.com/cli/latest/reference/ec2/reset-image-attribute.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/reset-image-attribute.html) command removes all public and explicit launch permissions from the specified AMI\. Note that the owner of the AMI always has launch permissions and is therefore unaffected by this command\.
 
 ```
 aws ec2 reset-image-attribute \
@@ -216,10 +216,10 @@ You can use the Amazon EC2 console or the AWS CLI to check with which organizati
 
 ### View the organizations and OUs with which an AMI is shared \(AWS CLI\)<a name="decribe-ami-launch-permissions-aws-cli"></a>
 
-You can check with which organizations and OUs you've shared your AMI by using the [describe\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html) command \(AWS CLI\) and the `launchPermission` attribute\.
+You can check which organizations and OUs you've shared your AMI with by using the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html) command \(AWS CLI\) and the `launchPermission` attribute\.
 
 **To check with which organizations and OUs you've shared your AMI using the AWS CLI**  
-The [describe\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html) command describes the `launchPermission` attribute for the specified AMI, and returns the organizations and OUs with which you've shared the AMI\.
+The [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html) command describes the `launchPermission` attribute for the specified AMI, and returns the organizations and OUs with which you've shared the AMI\.
 
 ```
 aws ec2 describe-image-attribute \
@@ -262,7 +262,7 @@ Before you can get the ARNs, you must have the permission to describe organizati
 ```
 
 **To get the ARN of an organization**  
-Use the [describe\-organization](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-organization.html) command and the `--query` parameter set to `'Organization.Arn'` to return only the organization ARN\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-organization.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-organization.html) command and the `--query` parameter set to `'Organization.Arn'` to return only the organization ARN\.
 
 ```
 aws organizations describe-organization --query 'Organization.Arn'
@@ -275,7 +275,7 @@ Example response
 ```
 
 **To get the ARN of an organizational unit**  
-Use the [describe\-organizational\-unit](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-organizational-unit.html) command, specify the OU ID, and set the `--query` parameter to `'OrganizationalUnit.Arn'` to return only the organizational unit ARN\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-organizational-unit.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-organizational-unit.html) command, specify the OU ID, and set the `--query` parameter to `'OrganizationalUnit.Arn'` to return only the organizational unit ARN\.
 
 ```
 aws organizations describe-organizational-unit --organizational-unit-id ou-1234-5example --query 'OrganizationalUnit.Arn'

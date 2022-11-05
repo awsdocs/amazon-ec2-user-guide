@@ -82,10 +82,10 @@ Remove all of the following key files that are present on your system\.
 +  ssh\_host\_key\.pub 
 +  ssh\_host\_rsa\_key 
 +  ssh\_host\_rsa\_key\.pub 
-+  ssh\_host\_ecdsa\_key
-+  ssh\_host\_ecdsa\_key\.pub
-+  ssh\_host\_ed25519\_key
-+  ssh\_host\_ed25519\_key\.pub
++ ssh\_host\_ecdsa\_key
++ ssh\_host\_ecdsa\_key\.pub
++ ssh\_host\_ed25519\_key
++ ssh\_host\_ed25519\_key\.pub
 
 You can securely remove all of these files with the following command\.
 

@@ -1,6 +1,9 @@
 # Launch an instance using the old launch instance wizard<a name="launching-instance"></a>
 
-You can launch an instance using the old launch instance wizard\. The launch instance wizard specifies all the launch parameters required for launching an instance\. Where the launch instance wizard provides a default value, you can accept the default or specify your own value\. You must specify an AMI and a key pair to launch an instance\.
+**Important**  
+You can't use the old launch instance wizard in AWS Regions that support the new launch instance wizard\. Each Region either supports the new launch experience or the old launch experience, but not both\.
+
+You can launch an instance using the old launch instance wizard only if your Region supports the old launch experience\. The launch instance wizard specifies all the launch parameters required for launching an instance\. Where the launch instance wizard provides a default value, you can accept the default or specify your own value\. You must specify an AMI and a key pair to launch an instance\.
 
 For the instructions to use the *new* launch instance wizard, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\.
 

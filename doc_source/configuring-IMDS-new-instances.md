@@ -47,9 +47,9 @@ For more information, see [Step 3: Configure Instance Details](launching-instanc
 The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) example launches a `c3.large` instance with `--metadata-options` set to `HttpTokens=required`\. When you specify a value for `HttpTokens`, you must also set `HttpEndpoint` to `enabled`\. Because the secure token header is set to `required` for metadata retrieval requests, this requires the instance to use IMDSv2 when requesting instance metadata\.
 
 ```
-aws ec2 run-instances 
-    --image-id ami-0abcdef1234567890 
-    --instance-type c3.large 
+aws ec2 run-instances \
+    --image-id ami-0abcdef1234567890 \
+    --instance-type c3.large \
 	...
     --metadata-options "HttpEndpoint=enabled,HttpTokens=required"
 ```
@@ -74,7 +74,7 @@ The following [register\-image](https://docs.aws.amazon.com/cli/latest/reference
 aws ec2 register-image \
     --name my-image \
     --root-device-name /dev/xvda \
-    --block-device-mappings DeviceName=/dev/xvda,Ebs={SnapshotId=snap-0123456789example}
+    --block-device-mappings DeviceName=/dev/xvda,Ebs={SnapshotId=snap-0123456789example} \
     --imds-support v2.0
 ```
 
@@ -95,9 +95,9 @@ The IPv6 endpoint for the instance metadata service is only accessible on [Insta
 The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) example launches a `t3.large` instance with the IPv6 endpoint enabled for the instance metadata service\. To enable the IPv6 endpoint, for the `--metadata-options` parameter, specify `HttpProtocolIpv6=enabled`\. When you specify a value for `HttpProtocolIpv6`, you must also set `HttpEndpoint` to `enabled`\.
 
 ```
-aws ec2 run-instances
-    --image-id ami-0abcdef1234567890
-    --instance-type t3.large
+aws ec2 run-instances \
+    --image-id ami-0abcdef1234567890 \
+    --instance-type t3.large \
     ...
     --metadata-options "HttpEndpoint=enabled,HttpProtocolIpv6=enabled"
 ```
@@ -131,9 +131,9 @@ For more information, see [Step 3: Configure Instance Details](launching-instanc
 Launch the instance with `--metadata-options` set to `HttpEndpoint=disabled`\.
 
 ```
-aws ec2 run-instances 
-    --image-id ami-0abcdef1234567890 
-    --instance-type c3.large 
+aws ec2 run-instances \
+    --image-id ami-0abcdef1234567890 \
+    --instance-type c3.large \
     ... 
     --metadata-options "HttpEndpoint=disabled"
 ```

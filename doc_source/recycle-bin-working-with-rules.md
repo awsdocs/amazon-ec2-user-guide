@@ -25,6 +25,8 @@ After you create a retention rule, resources that match its criteria are automat
 To create a retention rule, you must specify:
 + An optional name for the retention rule\. The name can be up to 255 characters long\.
 + An optional description for the retention rule\. The description can be up to 255 characters long\.
+**Note**  
+We recommend that you do not include personally identifying, confidential, or sensitive information in the retention rule description\.
 + The resource type that is to be protected by the retention rule\.
 + Resource tags that identify the resources that are to be retained in the Recycle Bin\. You can specify up to 50 tags for each rule\. However, you can add the same tag key and value pair to up to 5 retention rules only\.
   + To create a tag\-level retention rule, specify at least one tag key and value pair\.
@@ -155,6 +157,9 @@ $ aws rbin get-rule --identifier pwxIkFcvge4
 ## Update retention rules<a name="recycle-bin-update-rule"></a>
 
 You can update a retention rule's description, resource tags, and retention period at any time after creation\. You can't update a rule's resource type after creation\.
+
+**Note**  
+We recommend that you do not include personally identifying, confidential, or sensitive information in the retention rule description\.
 
 After you update a retention rule, the changes only apply to new resources that it retains\. The changes do not affect resources that it previously sent to the Recycle Bin\. For example, if you update a retention rule's retention period, only snapshots that are deleted after the update are retained for the new retention period\. Snapshots that it sent to the Recycle Bin before the update are still retained for the previous \(old\) retention period\.
 

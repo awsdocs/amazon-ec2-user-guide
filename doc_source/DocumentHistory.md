@@ -4,6 +4,12 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Cancel having an AMI shared with your account](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cancel-sharing-an-AMI.html) | If an AMI has been shared with your AWS account and you no longer want it shared with your account, you can remove your account from the AMI's launch permissions\. | November 4, 2022 | 
+| [Transfer Elastic IP addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#transfer-EIPs-intro-ec2) | You can now transfer Elastic IP addresses from one AWS account to another\. | October 31, 2022 | 
+| [Replace root volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/replace-root.html) | You can replace the root Amazon EBS volume for a running instance using an AMI\. | October 27, 2022 | 
+| [Trn1 instances](#DocumentHistory) | New accelerated computing instances optimized for deep learning powered by AWS Trainium chips\. | October 10, 2022 | 
+| [Automatically connect instance to database](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-instance-to-resources.html#connect-ec2-instance-to-rds-database) | Use the automatic connection feature to quickly connect one or more EC2 instances to an RDS database to allow traffic between them\. | October 10, 2022 | 
+| [AMI quotas](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-quotas.html) | Quotas now apply to creating and sharing AMIs\. | October 10, 2022 | 
 | [Configure AMI for IMDSv2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration) | Configure your AMI so that instances launched from the AMI require IMDSv2 by default\. | October 3, 2022 | 
 | [Initiate Spot Instance interruption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/initiate-a-spot-instance-interruption.html) | You can select a Spot Instance in the Amazon EC2 console and initiate an interruption so that you can test how the applications on your Spot Instances handle being interrupted\. | September 26, 2022 | 
 | [Verified AMI provider](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharing-amis.html#verified-ami-provider) | In the Amazon EC2 console, public AMIs that are owned by Amazon or a verified Amazon partner are marked **Verified provider**\. | July 22, 2022 | 

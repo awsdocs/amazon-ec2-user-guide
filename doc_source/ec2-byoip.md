@@ -48,10 +48,10 @@ The onboarding process for BYOIP has two phases, for which you must perform thre
 
 2\. [Upload the self\-signed certificate](#byoip-add-certificate) to your RDAP record comments\.
 
-3\. [Create an ROA object](#byoip-create-roa-object) in your RIR\. The ROA defines the desired address range, the Autonomous System Numbers \(ASNs\) allowed to advertise the address range, and an expiration date to register with the Resource Public Key Infrastructure \(RPKI\) of your RIR\.
+3\. [Create a ROA object](#byoip-create-roa-object) in your RIR\. The ROA defines the desired address range, the Autonomous System Numbers \(ASNs\) allowed to advertise the address range, and an expiration date to register with the Resource Public Key Infrastructure \(RPKI\) of your RIR\.
 
 **Note**  
-An ROA is not required for non\-publicly advertised IPv6 address space\.
+A ROA is not required for non\-publicly advertised IPv6 address space\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/byoip-preonboarding.png)
 
@@ -282,14 +282,19 @@ Add the certificate that you previously created to the RDAP record for your RIR\
 + For RIPE, add the certificate as a new "descr" field for your address range\. Do not add it to the comments section for your organization\.
 + For APNIC, email the certificate to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field for your address range\. Send the email using the APNIC authorized contact for the IP addresses\.
 
-### 3\. Create an ROA object in your RIR<a name="byoip-create-roa-object"></a>
+### 3\. Create a ROA object in your RIR<a name="byoip-create-roa-object"></a>
 
-Create an ROA object to authorize the Amazon ASNs 16509 and 14618 to advertise your address range, as well as the ASNs that are currently authorized to advertise the address range\. For the AWS GovCloud \(US\) Region, authorize ASN 8987\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, consult your RIR:
+Create a ROA object to authorize the Amazon ASNs 16509 and 14618 to advertise your address range, as well as the ASNs that are currently authorized to advertise the address range\. For the AWS GovCloud \(US\) Region, authorize ASN 8987\. You must set the maximum length to the size of the CIDR that you are bringing in\. The most specific IPv4 prefix you can bring is /24\. The most specific IPv6 address range that you can bring is /48 for CIDRs that are publicly advertised and /56 for CIDRs that are not publicly advertised\.
+
+**Important**  
+If you are creating a ROA object for Amazon VPC IP Address Manager \(IPAM\), when you create the ROAs, for IPv4 CIDRs you must set the maximum length of an IP address prefix to `/24`\. For IPv6 CIDRs, if you are adding them to an advertisable pool, the maximum length of an IP address prefix must be `/48`\. This ensures that you have full flexibility to divide your public IP address across AWS Regions\. IPAM enforces the maximum length you set\. For more information about BYOIP addresses to IPAM, see [Tutorial: BYOIP address CIDRs to IPAM](https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoip-ipam.html) in the *Amazon VPC IPAM User Guide*\.
+
+It might take up to 24 hours for the ROA to become available to Amazon\. For more information, consult your RIR:
 + ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
 + RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
 + APNIC — [Route Management](https://www.apnic.net/wp-content/uploads/2017/01/route-roa-management-guide.pdf)
 
-When you migrate advertisements from an on\-premises workload to AWS, you must create an ROA for your existing ASN before creating the ROAs for Amazon's ASNs\. Otherwise, you might see an impact to your existing routing and advertisements\.
+When you migrate advertisements from an on\-premises workload to AWS, you must create a ROA for your existing ASN before creating the ROAs for Amazon's ASNs\. Otherwise, you might see an impact to your existing routing and advertisements\.
 
 **Note**  
 This step is not required for non\-publicly advertised IPv6 address space\.
@@ -326,7 +331,7 @@ When you provision an address range for use with AWS, you are confirming that yo
    text_message="1|aws|0123456789AB|198.51.100.0/24|20211231|SHA256|RSAPSS"
    ```
 
-   This is not to be confused with an ROA message, which has a similar appearance\.
+   This is not to be confused with a ROA message, which has a similar appearance\.
 
 1. 
 
@@ -370,7 +375,7 @@ You must specify the AWS Region where the BYOIP range should be provisioned if i
 
 By default, an address range is provisioned to be publicly advertised to the internet\. You can provision an IPv6 address range that will not be publicly advertised\. For routes that are not publicly advertisable, the provisioning process generally completes within minutes\. When you associate an IPv6 CIDR block from a non\-public address range with a VPC, the IPv6 CIDR can only be accessed through hybrid connectivity options that support IPv6, such as [AWS Direct Connect](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html), [AWS Site\-to\-Site VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html), or [Amazon VPC Transit Gateways](https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html)\.
 
-An ROA is not required to provision a non\-public address range\.
+A ROA is not required to provision a non\-public address range\.
 
 **Important**  
 You can only specify whether an address range is publicly advertised during provisioning\. You cannot change the advertisable status later on\.
@@ -602,7 +607,7 @@ For more information about working with IPv6 CIDR blocks in the VPC console, see
    -----END CERTIFICATE-----
    ```
 
-1. Validate the creation of an ROA object
+1. Validate the creation of a ROA object
 
    Validate the successful creation of the ROA objects using a `whois` command\. Be sure to test your address range against the Amazon ASNs 16509 and 14618, plus the ASNs that are currently authorized to advertise the address range\.
 

@@ -151,6 +151,8 @@ There are no additional charges for sharing Capacity Reservations\.
 
 The Capacity Reservation owner is billed for instances that they run inside the Capacity Reservation and for unused reserved capacity\. Consumers are billed for the instances that they run inside the shared Capacity Reservation\.
 
+If the Capacity Reservation owner belongs to a different payer account and the Capacity Reservation is covered by a Regional Reserved Instance or a Savings Plan, the Capacity Reservation owner continues to be billed for the Regional Reserved Instance or Savings Plan\. In these cases, the Capacity Reservation owner pays for the Regional Reserved Instance or Savings Plan, and consumers are billed for the instances that the run in the shared Capacity Reservation\.
+
 ## Instance limits<a name="shared-cr-limits"></a>
 
 All Capacity Reservation usage counts toward the Capacity Reservation owner's On\-Demand Instance limits\. This includes:

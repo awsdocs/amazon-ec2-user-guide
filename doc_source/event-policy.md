@@ -141,7 +141,7 @@ This policy runs in the target account only when one of the specified source acc
 Use one of the following methods to create the cross\-account copy event policy\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -178,39 +178,6 @@ Use one of the following methods to create the cross\-account copy event policy\
 1. For **Policy status after creation**, choose **Enable policy** to start the policy runs at the next scheduled time, or **Disable policy** to prevent the policy from running\. If you do not enable the policy now, it will not start copying snapshots until you manually enable it after creation\.
 
 1. Choose **Create policy**\.
-
-------
-#### [ Old console ]
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Lifecycle Manager** and then choose **Create Lifecycle Policy**\.
-
-1. For **Policy Type**, choose **Cross\-account copy event policy**\. For **Description**, enter a brief description for the policy\.
-
-1. In the **Cross\-account copy event settings** section, for **Copy snapshots shared by**, enter the source AWS accounts from which you want to copy the shared snapshots\.
-
-1. For **Snapshot description filter**, enter the required snapshot description using a regular expression\. Only snapshots that are shared by the specified sources accounts and that have descriptions that match the specified filter are copied by the policy\. For more information, see [Specify snapshot description filters](#snapshot-descr-filters)\. 
-
-1. For **IAM role**, choose the IAM role that has permissions to perform the snapshot copy action\. AWS provides a default role, or you can create a custom IAM role\.
-
-   If you are copying encrypted snapshots, you must grant the selected IAM role permissions to use the encryption KMS key used to encrypt the source volume\. Similarly, if you are encrypting the snapshot in the destination Region using a different KMS key, you must grant the IAM role permission to use the destination KMS key\. For more information, see [Step 4: Allow IAM role to use the required KMS keys \(*Target account*\)](#target_iam-role)\.
-
-1. In the **Copy settings** section, you can configure the policy to copy snapshots to up to three Regions in the target account\. Do the following:
-
-   1. For **Name**, enter a descriptive name for the copy action\.
-
-   1. For **Target Region**, select the Region to which to copy the snapshots\.
-
-   1. For **Retain copy for**, specify how long to retain the snapshot copies in the target Region after creation\.
-
-   1. For **Encryption**, select **Enable** to encrypt the snapshot copy in the target Region\. If the source snapshot is encrypted, or if encryption by default is enabled for your account, the snapshot copy is always encrypted, even if you do not enable encryption here\. If the source snapshot is unencrypted and encryption by default is not enabled for your account, you can choose to enable or disable encryption\. If you enable encryption, but do not specify a KMS key, the snapshots are encrypted using the default encryption KMS key in each destination Region\. If you specify a KMS key for the destination Region, you must have access to the KMS key\.
-
-   1. \(Optional\) To copy the snapshot to additional Regions, choose **Add additional region**, and then complete the required fields\.
-
-1. For **Policy status after creation**, choose **Enable** policy to start the policy runs at the next scheduled time\.
-
-1. Choose **Create Policy**\.
 
 ------
 #### [ Command line ]

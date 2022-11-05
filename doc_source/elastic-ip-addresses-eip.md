@@ -8,7 +8,6 @@ An Elastic IP address is a public IPv4 address, which is reachable from the inte
 + [Elastic IP address pricing](#eip-pricing)
 + [Elastic IP address basics](#eip-basics)
 + [Work with Elastic IP addresses](#working-with-eips)
-+ [Use reverse DNS for email applications](#Using_Elastic_Addressing_Reverse_DNS)
 + [Elastic IP address limit](#using-instance-addressing-limit)
 
 ## Elastic IP address pricing<a name="eip-pricing"></a>
@@ -44,8 +43,10 @@ The following sections describe how you can work with Elastic IP addresses\.
 + [Tag an Elastic IP address](#using-instance-addressing-eips-tagging)
 + [Associate an Elastic IP address with an instance or network interface](#using-instance-addressing-eips-associating)
 + [Disassociate an Elastic IP address](#using-instance-addressing-eips-associating-different)
++ [Transfer Elastic IP addresses](#transfer-EIPs-intro-ec2)
 + [Release an Elastic IP address](#using-instance-addressing-eips-releasing)
 + [Recover an Elastic IP address](#using-eip-recovering)
++ [Use reverse DNS for email applications](#Using_Elastic_Addressing_Reverse_DNS)
 
 ### Allocate an Elastic IP address<a name="using-instance-addressing-eips-allocating"></a>
 
@@ -338,6 +339,168 @@ Use the [Unregister\-EC2Address](https://docs.aws.amazon.com/powershell/latest/r
 
 ------
 
+### Transfer Elastic IP addresses<a name="transfer-EIPs-intro-ec2"></a>
+
+This section describes how to transfer Elastic IP addresses from one AWS account to another\. Transferring Elastic IP addresses can be helpful in the following situations:
++ *Organizational restructuring*: Use Elastic IP address transfers to quickly move workloads from one AWS account to another\. You don't have to wait for new Elastic IP addresses to be allow\-listed in your security groups and NACLs\.
++ *Centralized security administration:* Use a centralized AWS security account to track and transfer Elastic IP addresses that have been vetted for security compliance\.
++ *Disaster recovery*: Use Elastic IP address transfers to quickly remap IPs for public\-facing internet workloads during emergency events\.
+
+There is no charge for transferring Elastic IP addresses\.
+
+**Topics**
++ [Enable Elastic IP address transfer](#using-instance-addressing-eips-transfer-enable-ec2)
++ [Disable Elastic IP address transfer](#using-instance-addressing-eips-transfer-disable-ec2)
++ [Accept a transferred Elastic IP address](#using-instance-addressing-eips-transfer-accept-ec2)
+
+#### Enable Elastic IP address transfer<a name="using-instance-addressing-eips-transfer-enable-ec2"></a>
+
+This section describes how to accept a transferred Elastic IP address\. Note the following limitations related to enabling Elastic IP addresses for transfer:
++ You can transfer Elastic IP addresses to accounts within the same AWS Organization or to standalone AWS accounts outside of an organization\. You cannot transfer Elastic IP addresses between AWS Organizations\. 
++ You can transfer Elastic IP addresses only within the same AWS Region\.
++ When you transfer an Elastic IP address, there is a two\-step handshake between AWS accounts: the source account \(either a standard AWS account or an AWS Organizations account\) and the transfer accounts\. When the source account starts the transfer, the transfer accounts have seven hours to accept the Elastic IP address transfer, or the Elastic IP address will return to its original owner\. 
++ AWS does not inform the transfer account about pending Elastic IP address transfer requests\. The source account owner has to communicate to the transfer account owner that an Elastic IP address has been transferred so that the owner of the transfer account can accept the Elastic IP address transfer\.
++ Any tags that are associated with the Elastic IP address being transferred are reset when the Elastic IP address transfer is complete\.
++ You cannot transfer Elastic IP addresses allocated from public IPv4 address pools that you bring to your AWS account \(commonly referred to as Bring Your Own IP \(BYOIP\) address pools\)\. 
++ If you have enabled and configured AWS Outposts, you may have allocated Elastic IP addresses from Customer\-owned pools of IPv4 addresses \(COIPs\)\. You cannot transfer Elastic IP addresses allocated from COIPs\. You can, however, use AWS RAM to move COIP addresses from one account to another\. For more information, see [Customer\-owned IP addresses](https://docs.aws.amazon.com/outposts/latest/userguide/how-racks-work.html#ip-addressing) in the *AWS Outposts User Guide*\.
++ You can use Amazon VPC IPAM to track the transfer of Elastic IP addresses to accounts in an AWS Organization\. For more information, see [View IP address history](https://docs.aws.amazon.com/vpc/latest/ipam/view-history-cidr-ipam.html)\. If an Elastic IP address is transferred to an AWS account outside of the organization, however, the IPAM audit history of the Elastic IP address will be lost\.
+
+This section must be completed by the source account\.
+
+------
+#### [ Console ]
+
+**To enable Elastic IP address transfer**
+
+1. Ensure that you're using the source AWS account\.
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\.
+
+1. Select one or more Elastic IP address to enable for transfer and choose **Actions**, **Enable transfer**\.
+
+1. If you are transferring multiple Elastic IP addresses, you’ll see the **Transfer type** option\. Choose one of the following options:
+   + Choose **Single account** if you are transferring the Elastic IP addresses to a single AWS account\.
+   + Choose **Multiple accounts** if you are transferring the Elastic IP addresses to multiple AWS accounts\.
+
+1. Under **Transfer account ID**, enter the IDs of the AWS accounts that you want to transfer the Elastic IP addresses to\.
+
+1. Confirm the transfer by entering **enable** in the text box\.
+
+1. Choose **Submit**\.
+
+1. To accept the transfer, see [Accept a transferred Elastic IP address](#using-instance-addressing-eips-transfer-accept-ec2)\. To disable the transfer, see [Disable Elastic IP address transfer](#using-instance-addressing-eips-transfer-disable-ec2)\.
+
+------
+#### [ AWS CLI ]
+
+**To enable Elastic IP address transfer**
+
+Use the [enable\-address\-transfer](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-address-transfer.html) command\.
+
+------
+#### [ PowerShell ]
+
+**To enable Elastic IP address transfer**
+
+Use the [Enable\-EC2AddressTransfer](https://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2AddressTransfer.html) command\.
+
+------
+
+#### Disable Elastic IP address transfer<a name="using-instance-addressing-eips-transfer-disable-ec2"></a>
+
+This section describes how to disable an Elastic IP transfer after the transfer has been enabled\. These steps must be completed by the source account that enabled the transfer\.
+
+This section must be completed by the source account\.
+
+------
+#### [ Console ]
+
+**To disable an Elastic IP address transfer**
+
+1. Ensure that you're using the source AWS account\.
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\.
+
+1. In the resource list of Elastic IPs, ensure that you have the property enabled that shows the column **Transfer status**\.
+
+1. Select one or more Elastic IP address that have a **Transfer status** of **Pending**, and choose **Actions**, **Disable transfer**\.
+
+1. Confirm by entering **disable** in the text box\.
+
+1. Choose **Submit**\.
+
+------
+#### [ AWS CLI ]
+
+**To disable Elastic IP address transfer**
+
+Use the [disable\-address\-transfer](https://docs.aws.amazon.com/cli/latest/reference/ec2/disable-address-transfer.html) command\.
+
+------
+#### [ PowerShell ]
+
+**To disable Elastic IP address transfer**
+
+Use the [Disable\-EC2AddressTransfer](https://docs.aws.amazon.com/powershell/latest/reference/items/Disable-EC2AddressTransfer.html) command\.
+
+------
+
+#### Accept a transferred Elastic IP address<a name="using-instance-addressing-eips-transfer-accept-ec2"></a>
+
+This section describes how to accept a transferred Elastic IP address\.
+
+When you transfer an Elastic IP address, there is a two\-step handshake between AWS accounts: the source account \(either a standard AWS account or an AWS Organizations account\) and the transfer accounts\. When the source account starts the transfer, the transfer accounts have seven hours to accept the Elastic IP address transfer, or the Elastic IP address will return to its original owner\. 
+
+When accepting transfers, note the following exceptions that might occur and how to resolve them:
++ **AddressLimitExceeded**: If your transfer account has exceeded the Elastic IP address quota, the source account can enable Elastic IP address transfer, but this exception occurs when the transfer account tries to accept the transfer\. By default, all AWS accounts are limited to 5 Elastic IP addresses per Region\. See [Elastic IP address limit](#using-instance-addressing-limit) for instructions on increasing the limit\.
++ **InvalidTransfer\.AddressCustomPtrSet**: If you or someone in your organization has configured the Elastic IP address that you are attempting to transfer to use reverse DNS lookup, the source account can enable transfer for the Elastic IP address, but this exception occurs when the transfer account tries to accept the transfer\. To resolve this issue, the source account must remove the DNS record for the Elastic IP address\. For more information, see [Use reverse DNS for email applications](#Using_Elastic_Addressing_Reverse_DNS)\.
++ **InvalidTransfer\.AddressAssociated**: If an Elastic IP address is associated with an ENI or EC2 instance, the source account can enable transfer for the Elastic IP address, but this exception occurs when the transfer account tries to accept the transfer\. To resolve this issue, the source account must disassociate the Elastic IP address\. For more information, see [Disassociate an Elastic IP address](#using-instance-addressing-eips-associating-different)\.
+
+For any other exceptions, [contact AWS Support](https://aws.amazon.com/contact-us/)\.
+
+This section must be completed by the transfer account\.
+
+------
+#### [ Console ]
+
+**To accept an Elastic IP address transfer**
+
+1. Ensure that you're using the transfer account\.
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\.
+
+1. Choose **Actions**, **Accept transfer**\.
+
+1. No tags that are associated with the Elastic IP address being transferred are transferred with the Elastic IP address when you accept the transfer\. If you want to define a **Name** tag for the Elastic IP address that you are accepting, select **Create a tag with a key of 'Name' and a value that you specify**\.
+
+1. Enter the Elastic IP address that you want to transfer\.
+
+1. If you are accepting multiple transferred Elastic IP addresses, choose **Add address** to enter an additional Elastic IP address\.
+
+1. Choose **Submit**\.
+
+------
+#### [ AWS CLI ]
+
+**To accept an Elastic IP address transfer**
+
+Use the [accept\-address\-transfer](https://docs.aws.amazon.com/cli/latest/reference/ec2/accept-address-transfer.html) command\.
+
+------
+#### [ PowerShell ]
+
+**To accept an Elastic IP address transfer**
+
+Use the [Approve\-EC2AddressTransfer](https://docs.aws.amazon.com/powershell/latest/reference/items/Approve-EC2AddressTransfer.html) command\.
+
+------
+
 ### Release an Elastic IP address<a name="using-instance-addressing-eips-releasing"></a>
 
 If you no longer need an Elastic IP address, we recommend that you release it using one of the following methods\. The address to release must not be currently associated with an AWS resource, such as an EC2 instance, NAT gateway, or Network Load Balancer\.
@@ -412,7 +575,7 @@ PS C:\> New-EC2Address -Address 203.0.113.3 -Domain vpc -Region us-east-1
 
 ------
 
-## Use reverse DNS for email applications<a name="Using_Elastic_Addressing_Reverse_DNS"></a>
+### Use reverse DNS for email applications<a name="Using_Elastic_Addressing_Reverse_DNS"></a>
 
 If you intend to send email to third parties from an instance, we recommend that you provision one or more Elastic IP addresses and assign static reverse DNS records to the Elastic IP addresses that you use to send email\. This can help you avoid having your email flagged as spam by some anti\-spam organizations\. AWS works with ISPs and internet anti\-spam organizations to reduce the chance that your email sent from these addresses will be flagged as spam\.
 
@@ -424,7 +587,7 @@ If you intend to send email to third parties from an instance, we recommend that
 **AWS GovCloud \(US\) Region**  
 You can't create a reverse DNS record using the console or AWS CLI\. AWS must assign the static reverse DNS records for you\. Open [Request to remove reverse DNS and email sending limitations](https://console.aws.amazon.com/support/contacts?#/rdns-limits) and provide us with your Elastic IP addresses and reverse DNS records\.
 
-### Create a reverse DNS record<a name="eip-create-rdns-record"></a>
+#### Create a reverse DNS record<a name="eip-create-rdns-record"></a>
 
 To create a reverse DNS record, choose the tab that matches your preferred method\.
 
@@ -466,7 +629,7 @@ aws ec2 modify-address-attribute --allocation-id eipalloc-abcdef01234567890  --d
 
 ------
 
-### Remove a reverse DNS record<a name="w1678aac23c21c15b9"></a>
+#### Remove a reverse DNS record<a name="eip-remove-rdns-record"></a>
 
 To remove a reverse DNS record, choose the tab that matches your preferred method\.
 

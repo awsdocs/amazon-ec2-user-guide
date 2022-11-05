@@ -22,7 +22,7 @@ For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.c
 + [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)
 + [View information about an Amazon EBS volume](ebs-describing-volumes.md)
 + [Replace a volume using a previous snapshot](ebs-restoring-volume.md)
-+ [Restore a root volume](replace-root.md)
++ [Replace a root volume](replace-root.md)
 + [Monitor the status of your volumes](monitoring-volume-status.md)
 + [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)
 + [Delete an Amazon EBS volume](ebs-deleting-volume.md)

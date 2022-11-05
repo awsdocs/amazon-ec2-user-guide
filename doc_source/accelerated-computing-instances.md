@@ -6,9 +6,10 @@ If you require high processing capability, you'll benefit from using accelerated
 
 **Topics**
 + [GPU instances](#gpu-instances)
-+ [Video transcoding instances](#video-transcoding)
++ [Instances with AWS Trainium](#aws-trainium-instances)
 + [Instances with AWS Inferentia](#aws-inferentia-instances)
 + [Instances with Habana accelerators](#habana-instances)
++ [Video transcoding instances](#video-transcoding)
 + [FPGA instances](#fpga-instances)
 + [Hardware specifications](#gpu-instance-specifications)
 + [Instance performance](#gpu-instance-performance)
@@ -76,27 +77,18 @@ P2 instances use NVIDIA Tesla K80 GPUs and are designed for general purpose GPU 
 
 P2 instances support NVIDIA GPUDirect peer to peer transfers\. For more information, see [NVIDIA GPUDirect](https://developer.nvidia.com/gpudirect)\.
 
-## Video transcoding instances<a name="video-transcoding"></a>
+## Instances with AWS Trainium<a name="aws-trainium-instances"></a>
 
-These instances are designed to accelerate video transcoding workloads, such as live broadcast, video conferencing, and just\-in\-time transcoding\.
-<a name="vt1-instances"></a>
-**VT1 instances**  
-VT1 instances feature Xilinx Alveo U30 media accelerators and are designed for live video transcoding workloads\. These instances offer up to 8 Xilinx Alveo U30 acceleration cards, provide up to 192 GB of system memory, and up to 25 Gbps of network bandwidth\. VT1 instances feature H\.264/AVC and H\.265/HEVC codecs and support up to 4K UHD resolutions for multi\-stream video transcoding\.
+Amazon EC2 Trn1 instances, powered by [AWS Trainium](http://aws.amazon.com/machine-learning/trainium/), are purpose built for high\-performance, cost\-effective deep learning training\. You can use Trn1 instances to train natural language processing, computer vision, and recommender models used across a broad set of applications, such as speech recognition, recommendation, fraud detection, and image and video classification\. Use your existing workflows in popular ML frameworks, such as PyTorch and TensorFlow\. [AWS Neuron SDK](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/) integrates seamlessly with these frameworks so that you can get started with only a few lines of code changes\.
 
-There are a variety of ways that you can get started:
-+ Launch a VT1 instance using the Xilinx U30 AMIs on AWS Marketplace\.
-+ Launch a VT1 instance using your own AMI and install the [Xilinx U30 drivers and Xilinx Video SDK](https://xilinx.github.io/video-sdk/)\.
-+ Launch a container instance using a VT1 instance and an Amazon ECS\-optimized AMI\.
-+ Create an Amazon EKS cluster with nodes running VT1 instances\.
-
-For more information, see [Amazon EC2 VT1 Instances](https://aws.amazon.com/ec2/instance-types/vt1/)\.
+For more information, see [Amazon EC2 Trn1 Instances](https://aws.amazon.com/ec2/instance-types/trn1/)\.
 
 ## Instances with AWS Inferentia<a name="aws-inferentia-instances"></a>
 
 These instances are designed to accelerate machine learning using [AWS Inferentia](http://aws.amazon.com/machine-learning/inferentia/), a custom AI/ML chip from Amazon that provides high performance and low latency machine learning inference\. These instances are optimized for deploying deep learning \(DL\) models for applications, such as natural language processing, object detection and classification, content personalization and filtering, and speech recognition\.
 
 There are a variety of ways that you can get started:
-+ Use SageMaker, a fully\-managed service that is the easiest way to get started with machine learning models\. For more information, see [Compile and deploy a TensorFlow model on Inf1 using Sagemaker Neo](https://introduction-to-inferentia.workshop.aws/inf1onsage/02sageintro.html)\.
++ Use SageMaker, a fully\-managed service that is the easiest way to get started with machine learning models\. For more information, see [Get Started with SageMaker](https://docs.aws.amazon.com/sagemaker/latest/dg/gs.html) in the *Amazon SageMaker Developer Guide*\.
 + Launch an Inf1 instance using the Deep Learning AMI\. For more information, see [AWS Inferentia with DLAMI](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-inferentia.html) in the *AWS Deep Learning AMI Developer Guide*\.
 + Launch an Inf1 instance using your own AMI and install the [AWS Neuron SDK](https://github.com/aws/aws-neuron-sdk), which enables you to compile, run, and profile deep learning models for AWS Inferentia\.
 + Launch a container instance using an Inf1 instance and an Amazon ECS\-optimized AMI\. For more information, see [Amazon Linux 2 \(Inferentia\) AMIs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*\.
@@ -125,6 +117,21 @@ There are a variety of ways that you can get started:
 + Create an Amazon EKS cluster with nodes running DL1 instances\.
 
 For more information, see [Amazon EC2 DL1 Instances](https://aws.amazon.com/ec2/instance-types/dl1/)\.
+
+## Video transcoding instances<a name="video-transcoding"></a>
+
+These instances are designed to accelerate video transcoding workloads, such as live broadcast, video conferencing, and just\-in\-time transcoding\.
+<a name="vt1-instances"></a>
+**VT1 instances**  
+VT1 instances feature Xilinx Alveo U30 media accelerators and are designed for live video transcoding workloads\. These instances offer up to 8 Xilinx Alveo U30 acceleration cards, provide up to 192 GB of system memory, and up to 25 Gbps of network bandwidth\. VT1 instances feature H\.264/AVC and H\.265/HEVC codecs and support up to 4K UHD resolutions for multi\-stream video transcoding\.
+
+There are a variety of ways that you can get started:
++ Launch a VT1 instance using the Xilinx U30 AMIs on AWS Marketplace\.
++ Launch a VT1 instance using your own AMI and install the [Xilinx U30 drivers and Xilinx Video SDK](https://xilinx.github.io/video-sdk/)\.
++ Launch a container instance using a VT1 instance and an Amazon ECS\-optimized AMI\.
++ Create an Amazon EKS cluster with nodes running VT1 instances\.
+
+For more information, see [Amazon EC2 VT1 Instances](https://aws.amazon.com/ec2/instance-types/vt1/)\.
 
 ## FPGA instances<a name="fpga-instances"></a>
 
@@ -198,6 +205,8 @@ The following is a summary of the hardware specifications for accelerated comput
 | p4d\.24xlarge | 96 | 1,152 | 8 | 
 | p4d\.24xlarge | 96 | 1,152 | 8 | 
 | p4de\.24xlarge | 96 | 1,152 | 8 | 
+| trn1\.2xlarge | 8 | 32 | 1 | 
+| trn1\.32xlarge | 128 | 512 | 16 | 
 | vt1\.3xlarge | 12 | 24 | 2 | 
 | vt1\.6xlarge | 24 | 48 | 4 | 
 | vt1\.24xlarge | 96 | 192 | 16 | 
@@ -248,6 +257,8 @@ The following is a summary of network performance for accelerated computing inst
 | g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g5\.24xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.metal \| g5\.48xlarge \| inf1\.24xlarge \| p3dn\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | dl1\.24xlarge \|  p4d\.24xlarge \| p4de\.24xlarge | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| trn1\.2xlarge | Up to 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| trn1\.32xlarge | 800 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
 
@@ -271,6 +282,8 @@ The following is a summary of network performance for accelerated computing inst
 | g5g\.2xlarge | 2\.5 | 10 | 
 | g5g\.4xlarge | 5 | 10 | 
 | p3\.2xlarge | 2\.5 | 10 | 
+| Trn1\.2xlarge | 3\.125 | 12\.5 | 
+| Trn1\.32xlarge | 800 | N/A | 
 | vt1\.3xlarge | 12\.5 | 25 | 
 
 ## Amazon EBS I/O performance<a name="accelerated-ebs-perf"></a>

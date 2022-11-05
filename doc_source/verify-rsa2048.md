@@ -721,7 +721,7 @@ This topic explains how to verify the instance identity document using the RSA\-
 1. Use the **OpenSSL smime** command to verify the signature\. Include the `-verify` option to indicate that the signature needs to be verified, and the `-noverify` option to indicate that the certificate does not need to be verified\.
 
    ```
-   $ openssl smime -verify -in pkcs7 -inform PEM -certfile certificate -noverify | tee document
+   $ openssl smime -verify -in rsa2048 -inform PEM -certfile certificate -noverify | tee document
    ```
 
    If the signature is valid, the `Verification successful` message appears\. If the signature cannot be verified, contact AWS Support\.

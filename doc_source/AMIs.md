@@ -26,6 +26,7 @@ An AMI includes the following:
 + [Amazon Linux](amazon-linux-ami-basics.md)
 + [User provided kernels](UserProvidedKernels.md)
 + [Configure the Amazon Linux 2 MATE desktop connection](amazon-linux-ami-mate.md)
++ [AMI quotas](ami-quotas.md)
 
 ## Use an AMI<a name="ami-using"></a>
 

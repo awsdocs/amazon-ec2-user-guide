@@ -119,7 +119,7 @@ To ensure that you don't accidentally lose access to your instance, we recommend
 
 1. Check for open ports that you aren't using and running network services listening for incoming connections\.
 
-1. To prevent preconfigured remote logging, you should delete the existing configuration file and restart the rsyslog service\. For example:
+1. To prevent preconfigured remote logging, you should delete the existing configuration file and restart the `rsyslog` service\. For example:
 
    ```
    [ec2-user ~]$ sudo rm /etc/rsyslog.conf

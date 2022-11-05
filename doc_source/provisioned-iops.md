@@ -25,7 +25,7 @@ The following table provides a summary of the use cases, characteristics, and pe
 | Amazon EBS Multi\-attach | Supported | 
 | Boot volume | Supported | 
 
-\* `io2` Block Express volumes are supported with C7g, R5b, X2idn, and X2iedn instances only\. `io2` volumes attached to these instances, during or after launch, automatically run on Block Express\. For more information, see [`io2` Block Express volumes](#io2-block-express)\.
+\* `io2` Block Express volumes are supported with C7g, R5b, Trn1, X2idn, and X2iedn instances only\. `io2` volumes attached to these instances, during or after launch, automatically run on Block Express\. For more information, see [`io2` Block Express volumes](#io2-block-express)\.
 
 † To achieve maximum throughput of 1,000 MiB/s, the volume must be provisioned with 64,000 IOPS and it must be attached to an [instance built on the Nitro System](instance-types.md#ec2-nitro-instances)\. `io1` volumes created before December 6, 2017 and that have not been modified since creation, might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
 
@@ -69,7 +69,7 @@ Your per\-I/O latency experience depends on the provisioned IOPS and on your wor
 ## `io2` Block Express volumes<a name="io2-block-express"></a>
 
 **Note**  
-`io2` Block Express volumes are supported with C7g, R5b, X2idn, and X2iedn instances only\.
+`io2` Block Express volumes are supported with C7g, R5b, Trn1, X2idn, and X2iedn instances only\.
 
 `io2` Block Express volumes is the next generation of Amazon EBS storage server architecture\. It has been built for the purpose of meeting the performance requirements of the most demanding I/O intensive applications that run on Nitro\-based Amazon EC2 instances\. 
 
@@ -89,7 +89,7 @@ You can't attach a Multi\-Attach enabled `io2` volume to instance types that sup
 + [Pricing and billing](#io2-bx-pricing)
 
 ### Considerations<a name="io2-bx-considerations"></a>
-+ `io2` Block Express volumes are currently supported with C7g, R5b, X2idn, and X2iedn instances only\.
++ `io2` Block Express volumes are currently supported with C7g, R5b, Trn1, X2idn, and X2iedn instances only\.
 + `io2` Block Express volumes are currently available in all Regions where supported instances are available, including US East \(Ohio\), US East \(N\. Virginia\), US West \(Oregon\), Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Canada \(Central\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), and Europe \(Stockholm\)\. Instance availability might vary by Availability Zone\. For more information, see [Find an Amazon EC2 instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-discovery.html)\.
 
 ### Performance<a name="io2-bx-perf"></a>

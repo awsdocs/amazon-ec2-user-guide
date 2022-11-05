@@ -23,8 +23,6 @@ For other instances, the following limits apply:
 + High memory virtualized instances support a maximum of 27 EBS volumes\.
 + High memory bare metal instances support a maximum of 19 EBS volumes\.
 
-  If you launched a `u-6tb1.metal`, `u-9tb1.metal`, or `u-12tb1.metal` high memory bare metal instance before March 12, 2020, it supports a maximum of 14 EBS volumes\. To attach up to 19 EBS volumes to these instances, contact your account team to upgrade the instance at no additional cost\.
-
 ## Linux\-specific volume limits<a name="linux-specific-volume-limits"></a>
 
 Attaching more than 40 volumes can cause boot failures\. This number includes the root volume, plus any attached instance store volumes and EBS volumes\. If you experience boot problems on an instance with a large number of volumes, stop the instance, detach any volumes that are not essential to the boot process, and then reattach the volumes after the instance is running\.

@@ -287,6 +287,8 @@ The following table provides the quantity, size, type, and performance optimizat
 | r6id\.24xlarge | 4 x 1,425 GB \(5\.7 TB\) | NVMe SSD |  | ✔ | 
 | r6id\.32xlarge | 4 x 1,900 GB \(7\.6 TB\) | NVMe SSD |  | ✔ | 
 | r6id\.metal | 4 x 1,900 GB \(7\.6 TB\) | NVMe SSD |  | ✔ | 
+| trn1\.2xlarge | 1 x 474 GB | SSD |  | ✔ | 
+| trn1\.32xlarge | 4 x 1900 GB | SSD |  | ✔ | 
 | x1\.16xlarge | 1 x 1,920 GB | SSD |  |  | 
 | x1\.32xlarge | 2 x 1,920 GB \(3\.84 TB\) | SSD |  |  | 
 | x1e\.xlarge | 1 x 120 GB | SSD |  |  | 

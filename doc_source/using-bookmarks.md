@@ -1,6 +1,6 @@
 # Use bookmarks<a name="using-bookmarks"></a>
 
-If you have created a public AMI, or shared an AMI with another AWS user, you can create a *bookmark* that allows a user to access your AMI and launch an instance in their own account immediately\. This is an easy way to share AMI references, so users don't have to spend time finding your AMI in order to use it\.
+If you have created a public AMI, or shared an AMI with another AWS account, you can create a *bookmark* that allows a user to access your AMI and launch an instance in their own account immediately\. This is an easy way to share AMI references, so users don't have to spend time finding your AMI in order to use it\.
 
 Note that your AMI must be public, or you must have shared it with the user to whom you want to send the bookmark\.
 
@@ -12,7 +12,7 @@ Note that your AMI must be public, or you must have shared it with the user to w
    https://console.aws.amazon.com/ec2/v2/home?region=region#LaunchInstanceWizard:ami=ami_id
    ```
 
-   For example, this URL launches an instance from the ami\-0abcdef1234567890 AMI in the us\-east\-1 Region:
+   For example, this URL launches an instance from the ami\-0abcdef1234567890 AMI in the US East \(N\. Virginia\) `us-east-1` Region:
 
    ```
    https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0abcdef1234567890

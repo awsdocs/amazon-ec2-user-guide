@@ -26,7 +26,7 @@ If you don't already have a domain name for your blog, you can register a domain
 1. Download and install these packages using the following command\.
 
    ```
-   dnf install wget php-mysqlnd httpd mysql php-fpm php-mysqli php-json php php-devel -y
+   dnf install wget php-mysqlnd httpd php-fpm php-mysqli mariadb105-server php-json php php-devel -y
    ```
 
 1. You may notice a warning displayed with similar verbiage in the output \(the versions may vary over time\):

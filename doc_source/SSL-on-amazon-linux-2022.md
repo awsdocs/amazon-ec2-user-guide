@@ -481,7 +481,7 @@ Complete the following procedures before you install Certbot\.
       [ec2-user ~]$ sudo /opt/certbot/bin/pip install certbot
       ```
 
-      A a symbolic link\.
+      Add a symbolic link\.
 
       ```
       [ec2-user ~]$ sudo ln -s /opt/certbot/bin/certbot /usr/bin/certbot

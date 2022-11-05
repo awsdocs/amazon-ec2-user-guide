@@ -500,6 +500,8 @@ Other instances can sustain the maximum performance indefinitely\. If you have a
 | t4g\.large \* | 2,780 | 434\.37 | 15,700 | 
 | t4g\.xlarge \* | 2,780 | 434\.37 | 15,700 | 
 | t4g\.2xlarge \* | 2,780 | 434\.37 | 15,700 | 
+| trn1\.2xlarge \* | 20,000 | 2,500 | 65,000 | 
+| trn1\.32xlarge | 80,000 | 10,000 | 260,000 | 
 | u\-3tb1\.56xlarge | 19,000 | 2,375 | 80,000 | 
 | u\-6tb1\.56xlarge | 38,000 | 4,750 | 160,000 | 
 | u\-6tb1\.112xlarge | 38,000 | 4,750 | 160,000 | 
@@ -748,6 +750,7 @@ The following table shows the baseline performance for those instance types that
 | t4g\.large | 695 | 86\.88 | 4,000 | 
 | t4g\.xlarge | 1,024 | 128 | 4,000 | 
 | t4g\.2xlarge | 2,048 | 256 | 4,000 | 
+| trn1\.2xlarge | 5,000 | 625 | 16,250 | 
 | vt1\.3xlarge | 2,375 | 296\.875 | 10,000 | 
 | x2iedn\.xlarge | 2,500 | 312\.5 | 8,125 | 
 | x2iedn\.2xlarge | 5,000 | 625 | 16,250 | 

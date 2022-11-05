@@ -144,7 +144,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
      ```
      $ sudo yum update -y
      ```
-   + Ubuntu 18\.04 and 20\.04
+   + Ubuntu 18\.04/20\.04/22\.04
 
      ```
      $ sudo apt-get update

@@ -92,14 +92,14 @@ Using `0.0.0.0/0` allows all IPv4 addresses to access your instance using SSH\. 
       + **Port Range**: 80
       + **Source**: Custom
 
-1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. If there is no content in `/var/www/html`, you should see the Apache test page\.
+1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. If there is no content in `/var/www/html`, you should see the Apache test page, which will display the message "**It works\!**"\.
 
    You can get the public DNS for your instance using the Amazon EC2 console \(check the **Public IPv4 DNS** column; if this column is hidden, choose **Preferences** \(the gear\-shaped icon\) and toggle on **Public IPv4 DNS**\)\.
 
    Verify that the security group for the instance contains a rule to allow HTTP traffic on port 80\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 **Important**  
 If you are not using Amazon Linux, you might also need to configure the firewall on your instance to allow these connections\. For more information about how to configure the firewall, see the documentation for your specific distribution\.  
-![\[Apache test page\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/apache_test_page_al2_2.4.png)
+
 
 Apache httpd serves files that are kept in a directory called the Apache document root\. The Amazon Linux Apache document root is `/var/www/html`, which by default is owned by root\.
 
@@ -174,7 +174,7 @@ If your server is installed and running, and your file permissions are set corre
    ```
 
    You should see the PHP information page:  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/phpinfo7.2.10.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/php-8.1.7-2022.png)
 
    If you do not see this page, verify that the `/var/www/html/phpinfo.php` file was created properly in the previous step\. You can also verify that all of the required packages were installed with the following command\.
 

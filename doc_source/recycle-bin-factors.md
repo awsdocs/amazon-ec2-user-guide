@@ -10,6 +10,7 @@ When you create your first retention rule, it can take up to 30 minutes for the 
 + If a resource matches a Region\-level rule and a tag\-level rule, then the tag\-level rule takes precedence\.
 + You can't manually delete a resource from the Recycle Bin\. The resource will be automatically deleted when its retention period expires\.
 + While a resource is in the Recycle Bin, you can only view it, restore it, or modify its tags\. To use the resource in any other way, you must first restore it\.
++ If any AWS service, such as AWS Backup or Amazon Data Lifecycle Manager, deletes a resource that matches a retention rule, that resource is automatically retained by Recycle Bin\.
 + When a resource is sent to the Recycle Bin, the following system\-generate tag is assigned to the resource:
   + Tag key — `aws:recycle-bin:resource-in-bin`
   + Tag value — `true`
@@ -43,3 +44,6 @@ If you have retention rules for AMIs and for their associated snapshots, make th
   If the snapshot is restored from the Recycle Bin before the policy's retention threshold is reached, Amazon Data Lifecycle Manager will delete the snapshot when the policy's retention threshold is reached\.
 
   If the snapshot is restored from the Recycle Bin after the policy's retention threshold is reached, Amazon Data Lifecycle Manager will no longer delete the snapshot\. You must manually delete the snapshot when it is no longer needed\.
+
+**Considerations for AWS Backup:**
++ If AWS Backup deletes a snapshot that matches a retention rule, that snapshot is automatically retained by Recycle Bin\.

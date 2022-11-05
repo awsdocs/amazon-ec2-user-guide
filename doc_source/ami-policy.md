@@ -12,7 +12,7 @@ The following procedure shows you how to use Amazon Data Lifecycle Manager to au
 Use one of the following procedures to create an AMI lifecycle policy\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To create an AMI policy**
 
@@ -83,45 +83,6 @@ Do not exceed the number of concurrent AMI copies per Region\.
    1. After you have added the required schedules, choose **Review policy**\.
 
 1. Review the policy summary, and then choose **Create policy**\.
-
-------
-#### [ Console ]
-
-**To create an AMI lifecycle policy**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic Block Store**, **Lifecycle Manager**, and then choose **Create lifecycle policy**\.
-
-1. Provide the following information for your policy as needed:
-   + **Description**—A description of the policy\.
-   + **Policy type**—The type of policy to create\. Choose **EBS\-backed AMI policy**\.
-   + **Target with these tags**—The resource tags that identify the instances to back up\. Only instances that have the specified tag key and value pairs are backed up by the policy\.
-   + **Policy tags**—The tags to apply to the lifecycle policy\.
-
-1. For **IAM role**, choose the IAM role that has permissions to manage images\. AWS provides a default roles, or you can create a custom IAM role\.
-
-1. Add the policy schedules\. Schedule 1 is mandatory\. Schedules 2, 3, and 4 are optional\. For each policy schedule that you add, specify the following information:
-   + **Schedule name**—A name for the schedule\.
-   + **Frequency**—The interval between policy runs\. You can configure policy runs on a daily, weekly, monthly, or yearly schedule\. Alternatively, choose **Custom cron expression** to specify an interval of up to one year\. For more information, see [ Cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\.
-   + **Starting at ***hh*:*mm* **UTC**— The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
-   + **Retention type**—You can retain AMIs based on either their total count or their age\. For count\-based retention, the range is 1 to 1000\. After the maximum count is reached, the oldest AMI is deleted when a new one is created\. For age\-based retention, the range is 1 day to 100 years\. After the retention period of each AMI expires, it is deleted\. The retention period should be greater than or equal to the interval\.
-**Note**  
-All schedules must have the same retention type\. You can specify the retention type for Schedule 1 only\. Schedules 2, 3, and 4 inherit the retention type from Schedule 1\. Each schedule can have its own retention count or period\.
-   + **Copy tags from source**—Choose whether to copy all of the user\-defined tags from the source instance to the AMIs created by the schedule\. 
-   + **Dynamic tags**—You can choose to automatically tag your AMIs with the ID of the source instance\.
-   + **Additional tags**—Specify any additional tags to assign to the AMIs created by this schedule\.
-   + **Enable cross Region copy**— You can copy AMIs to up to three additional Regions\.
-
-     For each Region, you can choose different retention policies and you can choose whether to copy all tags or no tags\. If the source AMI is encrypted, or if encryption by default is enabled, the copied AMIs are encrypted\. If the AMI is unencrypted, you can enable encryption\. If you do not specify a KMS key, the AMIs are encrypted using the default KMS key for EBS encryption in each destination Region\. If you specify a KMS key for the destination Region, then the selected IAM role must have access to the KMS key\.
-
-     Do not exceed the number of concurrent AMI copies per Region\.
-
-1. Indicate whether instances should be rebooted before AMI creation\. To prevent the targeted instances from being rebooted, for **Reboot Instance at policy run**, choose **No**\. Choosing this option could cause data consistency issues\. To reboot instances before AMI creation, for **Reboot Instance at policy run**, choose **Yes**\. Choosing this ensures data consistency but could result in multiple targeted instances rebooting simultaneously\. 
-
-1. For **Policy status after creation**, choose **Enable policy** to start the policy runs at the next scheduled time, or **Disable policy** to prevent the policy from running\.
-
-1. Choose **Create Policy**\.
 
 ------
 #### [ Command line ]
