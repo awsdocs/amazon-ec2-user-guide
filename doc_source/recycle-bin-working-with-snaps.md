@@ -75,7 +75,7 @@ You can view the snapshots in the Recycle Bin using one of the following methods
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Recycle Bin**\.
+1. In the navigation pane, choose **Recycle Bin**\.
 
 1. The grid lists all of the snapshots that are currently in the Recycle Bin\. To view the details for a specific snapshot, select it in the grid and choose **Actions**, **View details**\.
 
@@ -126,7 +126,7 @@ You can restore a snapshot from the Recycle Bin using one of the following metho
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Recycle Bin**\.
+1. In the navigation pane, choose **Recycle Bin**\.
 
 1. The grid lists all of the snapshots that are currently in the Recycle Bin\. Select the snapshot to restore and and choose **Recover**\.
 

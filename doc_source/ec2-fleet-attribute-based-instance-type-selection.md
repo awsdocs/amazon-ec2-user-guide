@@ -37,12 +37,11 @@ There are several instance attributes that you can specify to express your compu
 
 Depending on whether you use the console or the AWS CLI, you can specify the instance attributes for attribute\-based instance type selection as follows:
 
-In the console, you can specify the instance attributes in one or both of the following fleet configuration components:
-+ In a launch template, and reference the launch template in the fleet request
-+ In the fleet request
+In the console, you can specify the instance attributes in the following fleet configuration component:
++ In a launch template, and then reference the launch template in the fleet request
 
 In the AWS CLI, you can specify the instance attributes in one or all of the following fleet configuration components:
-+ In a launch template, and reference the launch template in the fleet request
++ In a launch template, and then reference the launch template in the fleet request
 + In a launch template override
 
   If you want a mix of instances that use different AMIs, you can specify instance attributes in multiple launch template overrides\. For example, different instance types can use x86 and Arm\-based processors\.
@@ -59,7 +58,7 @@ EC2 Fleet provisions a fleet in the following way:
   Note that attribute\-based instance type selection does not pick the capacity pools from which to provision the fleet; that's the job of the allocation strategies\. There might be a large number of instance types with the specified attributes, and some of them might be expensive\. The default allocation strategy of `lowest-price` for Spot and On\-Demand guarantees that EC2 Fleet will launch instances from the least expensive capacity pools\.
 
   If you specify an allocation strategy, EC2 Fleet will launch instances according to the specified allocation strategy\.
-  + For Spot Instances, attribute\-based instance type selection supports the `capacity-optimized` and `lowest-price` allocation strategies\.
+  + For Spot Instances, attribute\-based instance type selection supports the `price-capacity-optimized`, `capacity-optimized`, and `lowest-price` allocation strategies\.
   + For On\-Demand Instances, attribute\-based instance type selection supports the `lowest-price` allocation strategy\.
 + If there is no capacity for the instance types with the specified instance attributes, no instances can be launched, and the fleet returns an error\.
 
@@ -93,10 +92,8 @@ When creating the EC2 Fleet, if you set `TargetCapacityUnitType` to `vcpu` or `m
 
 You can configure a fleet to use attribute\-based instance type selection by using the AWS CLI\.
 
-### Create an EC2 Fleet using the AWS CLI<a name="abs-create-ec2-fleet-cli"></a>
-
-**To create an EC2 Fleet \(AWS CLI\)**
-+ Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet\. Specify the fleet configuration in a JSON file\.
+**To create an EC2 Fleet with attribute\-based instance type selection \(AWS CLI\)**  
+Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet\. Specify the fleet configuration in a JSON file\.
 
 ```
 aws ec2 create-fleet \
@@ -104,156 +101,56 @@ aws ec2 create-fleet \
     --cli-input-json file://file_name.json
 ```
 
-The following JSON file contains all of the parameters that can be specified when configuring an EC2 Fleet\. The parameters for attribute\-based instance type selection are located in the `InstanceRequirements` structure\. For a description of each attribute and the default values, see [InstanceRequirements](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_InstanceRequirements.html) in the *Amazon EC2 API Reference*\.
+Example `file_name.json` file
+
+The following example contains the parameters that configure an EC2 Fleet to use attribute\-based instance type selection, and is followed by a text explanation\.
+
+```
+{
+	"SpotOptions": {
+		"AllocationStrategy": "price-capacity-optimized"
+	},
+	"LaunchTemplateConfigs": [{
+		"LaunchTemplateSpecification": {
+			"LaunchTemplateName": "my-launch-template",
+			"Version": "1"
+		},
+		"Overrides": [{
+			"InstanceRequirements": {
+				"VCpuCount": {
+					"Min": 2
+				},
+				"MemoryMiB": {
+					"Min": 4
+				}
+			}
+		}]
+	}],
+	"TargetCapacitySpecification": {
+		"TotalTargetCapacity": 20,
+		"DefaultTargetCapacityType": "spot"
+	},
+	"Type": "instant"
+}
+```
+
+The attributes for attribute\-based instance type selection are specified in the `InstanceRequirements` structure\. In this example, two attributes are specified:
++ `VCpuCount` – A minimum of 2 vCPUs is specified\. Because no maximum is specified, there is no maximum limit\.
++ `MemoryMiB` – A minimum of 4 MiB of memory is specified\. Because no maximum is specified, there is no maximum limit\.
+
+Any instance types that have 2 or more vCPUs and 4 MiB or more of memory will be identified\. However, price protection and the allocation strategy might exclude some instance types when [EC2 Fleet provisions the fleet](#how-ef-uses-abs)\.
+
+For a list and descriptions of all the possible attributes that you can specify, see [InstanceRequirements](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_InstanceRequirements.html) in the *Amazon EC2 API Reference*\.
 
 **Note**  
 When `InstanceRequirements` is included in the fleet configuration, `InstanceType` and `WeightedCapacity` must be excluded; they cannot determine the fleet configuration at the same time as instance attributes\.
 
-```
-{
-    "DryRun": true,
-    "ClientToken": "",
-    "SpotOptions": {
-        "AllocationStrategy": "capacity-optimized",
-        "MaintenanceStrategies": {
-            "CapacityRebalance": {
-                "ReplacementStrategy": "launch"
-            }
-        },
-        "InstanceInterruptionBehavior": "stop",
-        "InstancePoolsToUseCount": 0,
-        "SingleInstanceType": true,
-        "SingleAvailabilityZone": true,
-        "MinTargetCapacity": 0,
-        "MaxTotalPrice": ""
-    },
-    "OnDemandOptions": {
-        "AllocationStrategy": "prioritized",
-        "CapacityReservationOptions": {
-            "UsageStrategy": "use-capacity-reservations-first"
-        },
-        "SingleInstanceType": true,
-        "SingleAvailabilityZone": true,
-        "MinTargetCapacity": 0,
-        "MaxTotalPrice": ""
-    },
-    "ExcessCapacityTerminationPolicy": "no-termination",
-    "LaunchTemplateConfigs": [
-        {
-            "LaunchTemplateSpecification": {
-                "LaunchTemplateId": "",
-                "LaunchTemplateName": "",
-                "Version": ""
-            },
-            "Overrides": [
-                {
-                    "InstanceType": "r5ad.large",
-                    "MaxPrice": "",
-                    "SubnetId": "",
-                    "AvailabilityZone": "",
-                    "WeightedCapacity": 0.0,
-                    "Priority": 0.0,
-                    "Placement": {
-                        "AvailabilityZone": "",
-                        "Affinity": "",
-                        "GroupName": "",
-                        "PartitionNumber": 0,
-                        "HostId": "",
-                        "Tenancy": "host",
-                        "SpreadDomain": "",
-                        "HostResourceGroupArn": ""
-                    },
-                    "InstanceRequirements": {
-                        "VCpuCount": {
-                            "Min": 0,
-                            "Max": 0
-                        },
-                        "MemoryMiB": {
-                            "Min": 0,
-                            "Max": 0
-                        },
-                        "CpuManufacturers": [
-                            "amd"
-                        ],
-                        "MemoryGiBPerVCpu": {
-                            "Min": 0.0,
-                            "Max": 0.0
-                        },
-                        "ExcludedInstanceTypes": [
-                            ""
-                        ],
-                        "InstanceGenerations": [
-                            "previous"
-                        ],
-                        "SpotMaxPricePercentageOverLowestPrice": 0,
-                        "OnDemandMaxPricePercentageOverLowestPrice": 0,
-                        "BareMetal": "excluded",
-                        "BurstablePerformance": "required",
-                        "RequireHibernateSupport": true,
-                        "NetworkInterfaceCount": {
-                            "Min": 0,
-                            "Max": 0
-                        },
-                        "LocalStorage": "required",
-                        "LocalStorageTypes": [
-                            "hdd"
-                        ],
-                        "TotalLocalStorageGB": {
-                            "Min": 0.0,
-                            "Max": 0.0
-                        },
-                        "BaselineEbsBandwidthMbps": {
-                            "Min": 0,
-                            "Max": 0
-                        },
-                        "AcceleratorTypes": [
-                            "fpga"
-                        ],
-                        "AcceleratorCount": {
-                            "Min": 0,
-                            "Max": 0
-                        },
-                        "AcceleratorManufacturers": [
-                            "xilinx"
-                        ],
-                        "AcceleratorNames": [
-                            "vu9p"
-                        ],
-                        "AcceleratorTotalMemoryMiB": {
-                            "Min": 0,
-                            "Max": 0
-                        }
-                    }
-                }
-            ]
-        }
-    ],
-    "TargetCapacitySpecification": {
-        "TotalTargetCapacity": 0,
-        "OnDemandTargetCapacity": 0,
-        "SpotTargetCapacity": 0,
-        "DefaultTargetCapacityType": "spot",
-        "TargetCapacityUnitType": "vcpu"
-    },
-    "TerminateInstancesWithExpiration": true,
-    "Type": "instant",
-    "ValidFrom": "1970-01-01T00:00:00",
-    "ValidUntil": "1970-01-01T00:00:00",
-    "ReplaceUnhealthyInstances": true,
-    "TagSpecifications": [
-        {
-            "ResourceType": "route-table",
-            "Tags": [
-                {
-                    "Key": "",
-                    "Value": ""
-                }
-            ]
-        }
-    ],
-    "Context": ""
-}
-```
+The JSON also contains the following fleet configuration:
++ `"AllocationStrategy": "price-capacity-optimized"` – The allocation strategy for the Spot Instances in the fleet\.
++ `"LaunchTemplateName": "my-launch-template", "Version": "1"` – The launch template contains some instance configuration information, but if any instance types are specified, they will be overridden by the attributes that are specified in `InstanceRequirements`\.
++ `"TotalTargetCapacity": 20` – The target capacity is 20 instances\.
++ `"DefaultTargetCapacityType": "spot"` – The default capacity is Spot Instances\.
++ `"Type": "instant"` – The request type for the fleet is `instant`\.
 
 ## Examples of configurations that are valid and not valid<a name="ec2fleet-abs-example-configs"></a>
 
@@ -266,11 +163,11 @@ Configurations are considered not valid when they contain the following:
 
 **Topics**
 + [Valid configuration: Single launch template with overrides](#ef-abs-example-config1)
-+ [Valid configuration: Single launch template with multiple InstanceRequirements](#ef-abs-example-config3)
-+ [Valid configuration: Two launch templates, each with overrides](#ef-abs-example-config2)
-+ [Configuration not valid: `Overrides` contain `InstanceRequirements` and `InstanceType`](#ef-abs-example-config4)
-+ [Configuration not valid: Two `Overrides` contain `InstanceRequirements` and `InstanceType`](#ef-abs-example-config5)
-+ [Valid configuration: Only `InstanceRequirements` specified, no overlapping attribute values](#ef-abs-example-config6)
++ [Valid configuration: Single launch template with multiple InstanceRequirements](#ef-abs-example-config2)
++ [Valid configuration: Two launch templates, each with overrides](#ef-abs-example-config3)
++ [Valid configuration: Only `InstanceRequirements` specified, no overlapping attribute values](#ef-abs-example-config4)
++ [Configuration not valid: `Overrides` contain `InstanceRequirements` and `InstanceType`](#ef-abs-example-config5)
++ [Configuration not valid: Two `Overrides` contain `InstanceRequirements` and `InstanceType`](#ef-abs-example-config6)
 + [Configuration not valid: Overlapping attribute values](#ef-abs-example-config7)
 
 ### Valid configuration: Single launch template with overrides<a name="ef-abs-example-config1"></a>
@@ -325,7 +222,7 @@ In the preceding example, the following instance attributes are specified:
 **`TargetCapacityUnitType`**  
 The `TargetCapacityUnitType` parameter specifies the unit for the target capacity\. In the example, the target capacity is `5000` and the target capacity unit type is `vcpu`, which together specify a desired target capacity of 5,000 vCPUs\. EC2 Fleet will launch enough instances so that the total number of vCPUs in the fleet is 5,000 vCPUs\.
 
-### Valid configuration: Single launch template with multiple InstanceRequirements<a name="ef-abs-example-config3"></a>
+### Valid configuration: Single launch template with multiple InstanceRequirements<a name="ef-abs-example-config2"></a>
 
 The following configuration is valid\. It contains one launch template and one `Overrides` structure containing two `InstanceRequirements` structures\. The attributes specified in `InstanceRequirements` are valid because the values do not overlap—the first `InstanceRequirements` structure specifies a `VCpuCount` of 0\-2 vCPUs, while the second `InstanceRequirements` structure specifies 4\-8 vCPUs\.
 
@@ -371,7 +268,7 @@ The following configuration is valid\. It contains one launch template and one `
 }
 ```
 
-### Valid configuration: Two launch templates, each with overrides<a name="ef-abs-example-config2"></a>
+### Valid configuration: Two launch templates, each with overrides<a name="ef-abs-example-config3"></a>
 
 The following configuration is valid\. It contains two launch templates, each with one `Overrides` structure containing one `InstanceRequirements` structure\. This configuration is useful for `arm` and `x86` architecture support in the same fleet\.
 
@@ -423,91 +320,7 @@ The following configuration is valid\. It contains two launch templates, each wi
 }
 ```
 
-### Configuration not valid: `Overrides` contain `InstanceRequirements` and `InstanceType`<a name="ef-abs-example-config4"></a>
-
-The following configuration is not valid\. The `Overrides` structure contains both `InstanceRequirements` and `InstanceType`\. For the `Overrides`, you can specify either `InstanceRequirements` or `InstanceType`, but not both\.
-
-```
-{
-        "LaunchTemplateConfigs": [
-            {
-                "LaunchTemplateSpecification": {
-                    "LaunchTemplateName": "MyLaunchTemplate",
-                    "Version": "1"
-                },
-                "Overrides": [
-                {
-                    "InstanceRequirements": {
-                        "VCpuCount": {
-                            "Min": 0,
-                            "Max": 2
-                        },
-                        "MemoryMiB": {
-                            "Min": 0
-                        }
-                    }
-                },
-                {
-                    "InstanceType": "m5.large"
-                }
-              ]
-            }
-        ],
-        "TargetCapacitySpecification": {
-            "TotalTargetCapacity": 1,
-            "DefaultTargetCapacityType": "spot"
-        }
-    }
-}
-```
-
-### Configuration not valid: Two `Overrides` contain `InstanceRequirements` and `InstanceType`<a name="ef-abs-example-config5"></a>
-
-The following configuration is not valid\. The `Overrides` structures contain both `InstanceRequirements` and `InstanceType`\. You can specify either `InstanceRequirements` or `InstanceType`, but not both, even if they're in different `Overrides` structures\.
-
-```
-{
-        "LaunchTemplateConfigs": [
-            {
-                "LaunchTemplateSpecification": {
-                    "LaunchTemplateName": "MyLaunchTemplate",
-                    "Version": "1"
-                },
-                "Overrides": [
-                {
-                    "InstanceRequirements": {
-                        "VCpuCount": {
-                            "Min": 0,
-                            "Max": 2
-                        },
-                        "MemoryMiB": {
-                            "Min": 0
-                        }
-                    }
-                }
-              ]
-            },
-            {
-                "LaunchTemplateSpecification": {
-                    "LaunchTemplateName": "MyOtherLaunchTemplate",
-                    "Version": "1"
-                },
-                "Overrides": [
-                {
-                    "InstanceType": "m5.large"
-                }
-              ]
-            }
-        ],
-         "TargetCapacitySpecification": {
-            "TotalTargetCapacity": 1,
-            "DefaultTargetCapacityType": "spot"
-        }
-    }
-}
-```
-
-### Valid configuration: Only `InstanceRequirements` specified, no overlapping attribute values<a name="ef-abs-example-config6"></a>
+### Valid configuration: Only `InstanceRequirements` specified, no overlapping attribute values<a name="ef-abs-example-config4"></a>
 
 The following configuration is valid\. It contains two `LaunchTemplateSpecification` structures, each with a launch template and an `Overrides` structure containing an `InstanceRequirements` structure\. The attributes specified in `InstanceRequirements` are valid because the values do not overlap—the first `InstanceRequirements` structure specifies a `VCpuCount` of 0\-2 vCPUs, while the second `InstanceRequirements` structure specifies 4\-8 vCPUs\.
 
@@ -554,6 +367,90 @@ The following configuration is valid\. It contains two `LaunchTemplateSpecificat
             }
         ],
         "TargetCapacitySpecification": {
+            "TotalTargetCapacity": 1,
+            "DefaultTargetCapacityType": "spot"
+        }
+    }
+}
+```
+
+### Configuration not valid: `Overrides` contain `InstanceRequirements` and `InstanceType`<a name="ef-abs-example-config5"></a>
+
+The following configuration is not valid\. The `Overrides` structure contains both `InstanceRequirements` and `InstanceType`\. For the `Overrides`, you can specify either `InstanceRequirements` or `InstanceType`, but not both\.
+
+```
+{
+        "LaunchTemplateConfigs": [
+            {
+                "LaunchTemplateSpecification": {
+                    "LaunchTemplateName": "MyLaunchTemplate",
+                    "Version": "1"
+                },
+                "Overrides": [
+                {
+                    "InstanceRequirements": {
+                        "VCpuCount": {
+                            "Min": 0,
+                            "Max": 2
+                        },
+                        "MemoryMiB": {
+                            "Min": 0
+                        }
+                    }
+                },
+                {
+                    "InstanceType": "m5.large"
+                }
+              ]
+            }
+        ],
+        "TargetCapacitySpecification": {
+            "TotalTargetCapacity": 1,
+            "DefaultTargetCapacityType": "spot"
+        }
+    }
+}
+```
+
+### Configuration not valid: Two `Overrides` contain `InstanceRequirements` and `InstanceType`<a name="ef-abs-example-config6"></a>
+
+The following configuration is not valid\. The `Overrides` structures contain both `InstanceRequirements` and `InstanceType`\. You can specify either `InstanceRequirements` or `InstanceType`, but not both, even if they're in different `Overrides` structures\.
+
+```
+{
+        "LaunchTemplateConfigs": [
+            {
+                "LaunchTemplateSpecification": {
+                    "LaunchTemplateName": "MyLaunchTemplate",
+                    "Version": "1"
+                },
+                "Overrides": [
+                {
+                    "InstanceRequirements": {
+                        "VCpuCount": {
+                            "Min": 0,
+                            "Max": 2
+                        },
+                        "MemoryMiB": {
+                            "Min": 0
+                        }
+                    }
+                }
+              ]
+            },
+            {
+                "LaunchTemplateSpecification": {
+                    "LaunchTemplateName": "MyOtherLaunchTemplate",
+                    "Version": "1"
+                },
+                "Overrides": [
+                {
+                    "InstanceType": "m5.large"
+                }
+              ]
+            }
+        ],
+         "TargetCapacitySpecification": {
             "TotalTargetCapacity": 1,
             "DefaultTargetCapacityType": "spot"
         }
@@ -627,10 +524,10 @@ You can use the [get\-instance\-types\-from\-instance\-requirements](https://doc
    {
        "DryRun": true,
        "ArchitectureTypes": [
-           "x86_64_mac"
+           "i386"
        ],
        "VirtualizationTypes": [
-           "paravirtual"
+           "hvm"
        ],
        "InstanceRequirements": {
            "VCpuCount": {
@@ -657,13 +554,13 @@ You can use the [get\-instance\-types\-from\-instance\-requirements](https://doc
            "SpotMaxPricePercentageOverLowestPrice": 0,
            "OnDemandMaxPricePercentageOverLowestPrice": 0,
            "BareMetal": "included",
-           "BurstablePerformance": "excluded",
+           "BurstablePerformance": "included",
            "RequireHibernateSupport": true,
            "NetworkInterfaceCount": {
                "Min": 0,
                "Max": 0
            },
-           "LocalStorage": "required",
+           "LocalStorage": "included",
            "LocalStorageTypes": [
                "hdd"
            ],
@@ -676,22 +573,29 @@ You can use the [get\-instance\-types\-from\-instance\-requirements](https://doc
                "Max": 0
            },
            "AcceleratorTypes": [
-               "inference"
+               "gpu"
            ],
            "AcceleratorCount": {
                "Min": 0,
                "Max": 0
            },
            "AcceleratorManufacturers": [
-               "xilinx"
+               "nvidia"
            ],
            "AcceleratorNames": [
-               "t4"
+               "a100"
            ],
            "AcceleratorTotalMemoryMiB": {
                "Min": 0,
                "Max": 0
-           }
+           },
+           "NetworkBandwidthGbps": {
+               "Min": 0.0,
+               "Max": 0.0
+           },
+           "AllowedInstanceTypes": [
+               ""
+           ]
        },
        "MaxResults": 0,
        "NextToken": ""

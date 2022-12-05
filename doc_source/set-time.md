@@ -8,13 +8,54 @@ The Amazon Time Sync Service is available through NTP at the `169.254.169.123` I
 
 Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\. Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\.
 
-For Windows instances, see [Set the time for a Windows instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-set-time.html)\.
+For Windows instances, see [ Set the time for a Windows instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-set-time.html)\.
+
+For a backup to the Amazon Time Sync link\-local service, and to connect resources outside of Amazon EC2 to the Amazon Time Sync Service, you can use the Amazon Time Sync Public NTP pool located at **time\.aws\.com**\. Amazon Time Sync Public NTP, like the Amazon Time Sync service, automatically smooths any leap seconds that are added to UTC\. The Amazon Time Sync Service Public NTP is supported globally by our fleet of satellite\-connected and atomic reference clocks in each AWS Region\. For the configuration instructions, see [Configure the time for clients with Amazon Time Sync Public NTP ](#configure-time-sync)\.
 
 **Topics**
++ [Configure the time for clients with Amazon Time Sync Public NTP](#configure-time-sync)
 + [Configure the time for EC2 instances with IPv4 addresses](#configure-amazon-time-service-amazon-linux-IPv4)
 + [Configure the time for EC2 instances with IPv6 addresses](#configure-amazon-time-service-amazon-linux-IPv6)
 + [Change the time zone on Amazon Linux](#change_time_zone)
 + [Compare timestamps](#compare-timestamps-with-clockbound)
+
+## Configure the time for clients with Amazon Time Sync Public NTP<a name="configure-time-sync"></a>
+
+You can configure your client machine to use Amazon Time Sync\.
+
+**To configure Amazon Time Sync Public NTP for Apple macOS**
+
+1. On your client machine, open **System Preferences**\. 
+
+1. Choose **Date & Time**, and then choose the **Date & Time** tab\.
+
+1. To make changes, choose the lock icon, and enter your password when prompted\.
+
+1. For **Set date and time automatically**, enter **time\.aws\.com**\. 
+
+**To configure Amazon Time Sync Public NTP for Linux:chrony or ntpd**
+
+1. Edit `/etc/chrony/chrony.conf` \(if you use chrony\) or `/etc/ntp.conf` \(if you are using ntpd\) using your favorite text editor\.
+
+   Do not edit the line `server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4` to ensure your EC2 instance stays connected to the local Amazon Time Sync service\. 
+
+   Remove or comment out other lines starting with `server` to prevent your machine from trying to mix smeared and non\-smeared servers\.
+
+   Add the line `pool time.aws.com iburst`\.
+
+1. Choose **NAME**\.
+
+1. Restart the daemon using `sudo service chrony force-reload` \(for chrony\) or `sudo service ntp reload` \(for ntpd\)
+
+   **systemd\-timesyncd**
+
+   Within the same configuration file, set the content of the `[Time]` block to `[Time] NTP=FallbackNTP=time.aws.com`\.
+
+   This prevents inadvertently moving between smeared and un\-smeared time servers\. Configuring the Amazon Time Sync Service Public NTP as the fallback server will cause it to be selected as the only NTP server\.
+
+   1. Restart`systemd-timesyncd` using the `systemctl restart systemd-timesyncd.service` command as a user with appropriate permissions 
+
+   Verify that your system is using the Amazon Time Sync Public NTP pool with `timedatectl show-timesync | grep ServerName`\. If successfully configured, the output will show `ServerName=time.aws.com`\.
 
 ## Configure the time for EC2 instances with IPv4 addresses<a name="configure-amazon-time-service-amazon-linux-IPv4"></a>
 
@@ -182,7 +223,7 @@ If necessary, update your instance first by running `sudo apt update`\.
                ^? bray.walcz.net                0   6     0   10y     +0ns[   +0ns] +/-    0ns
    ```
 
-   In the output that's returned, `^*` indicates the preferred time source\.
+   In the output that's returned, on the line starting with `^*` indicates the preferred time source\.
 
 1. Verify the time synchronization metrics that are reported by `chrony`\.
 

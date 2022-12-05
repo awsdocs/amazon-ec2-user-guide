@@ -15,8 +15,8 @@ Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(`
 + Multi\-Attach for `io1` volumes is available in the following Regions only: US East \(N\. Virginia\), US West \(N\. California\), US West \(Oregon\), and Asia Pacific \(Seoul\)\.
 
   Multi\-Attach for `io2` and `io2` Block Express volumes is available in all Regions that support those volumes types\.
-+ You can't attach a Multi\-Attach enabled `io2` volume to instance types that support Block Express and instance types that do not support Block Express at the same time\. C7g, R5b, Trn1, X2idn, and X2iedn instances types support Block Express\.
-+ `io1` volumes with Multi\-Attach enabled are not supported with the R5b instance type\. To use Multi\-Attach with R5b instance types, you must use io2 volumes\.
++ You can't attach a Multi\-Attach enabled `io2` volume to instance types that support Block Express and instance types that do not support Block Express at the same time\. For more information, see [`io2` Block Express volumes](provisioned-iops.md#io2-block-express)\.
++ `io1` volumes with Multi\-Attach enabled are not supported with instance types that support io2 Block Express\. To use Multi\-Attach with these instance types, you must use io2 volumes\.
 + Standard file systems, such as XFS and EXT4, are not designed to be accessed simultaneously by multiple servers, such as EC2 instances\. Using Multi\-Attach with a standard file system can result in data corruption or loss, so this is not safe for production workloads\. You can use a clustered file system to ensure data resiliency and reliability for production workloads\.
 + Multi\-Attach enabled volumes do not support I/O fencing\. I/O fencing protocols control write access in a shared storage environment to maintain data consistency\. Your applications must provide write ordering for the attached instances to maintain data consistency\.
 + Multi\-Attach enabled volumes can't be created as boot volumes\.

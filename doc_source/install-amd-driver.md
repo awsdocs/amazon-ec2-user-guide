@@ -86,17 +86,14 @@ These downloads are available to AWS customers only\. By downloading, you agree 
 
 1. Change to the folder for the extracted driver\.
 
-1. Add the GPG keys for the driver installation\.
+1. Add the missing modules for the driver installation\.
    + For Amazon Linux 2 and CentOS:
 
-     ```
-     $ sudo rpm --import RPM-GPG-KEY-amdgpu
-     ```
+     Skip this step\.
    + For Ubuntu:
 
      ```
      $ sudo apt install linux-modules-extra-$(uname -r) -y
-     $ cat RPM-GPG-KEY-amdgpu | sudo apt-key add -
      ```
 
 1. Run the self install script to install the full graphics stack\.

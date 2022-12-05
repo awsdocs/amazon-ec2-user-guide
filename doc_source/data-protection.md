@@ -53,9 +53,9 @@ All cross\-Region traffic that uses Amazon VPC and Transit Gateway peering is au
 **Encryption between instances**  
 AWS provides secure and private connectivity between EC2 instances of all types\. In addition, some instance types use the offload capabilities of the underlying Nitro System hardware to automatically encrypt in\-transit traffic between instances, using AEAD algorithms with 256\-bit encryption\. There is no impact on network performance\. To support this additional in\-transit traffic encryption between instances, the following requirements must be met:
 + The instances use the following instance types:
-  + General purpose: M5dn \| M5n \| M5zn \| M6a \| M6i \| M6id
-  + Compute optimized: C5a \| C5ad \| C5n \| C6a \| C6gn \|  C6i \| C6id \| C7g \| Hpc6a
-  + Memory optimized: R5dn \| R5n \| R6a \| R6i \| R6id \| high memory \(u\-\*\), virtualized only \| X2idn \| X2iedn \| X2iezn
+  + General purpose: M5dn \| M5n \| M5zn \| M6a \| M6i \| M6id \| M6in \| M6idn
+  + Compute optimized: C5a \| C5ad \| C5n \| C6a \| C6gn \|  C6i \| C6id \| C6in \| C7g \| Hpc6a
+  + Memory optimized: Hpc6id \| R5dn \| R5n \| R6a \| R6i \| R6id \| high memory \(u\-\*\), virtualized only \| X2idn \| X2iedn \| X2iezn
   + Storage optimized: D3 \| D3en \| I3en \| I4i \| Im4gn \| Is4gen
   + Accelerated computing: DL1 \| G4ad \| G4dn \| G5 \| Inf1 \| P3dn \| P4d \|  P4de \| VT1
 + The instances are in the same Region\.

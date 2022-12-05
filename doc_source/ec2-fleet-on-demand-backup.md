@@ -8,18 +8,18 @@ If you have urgent, unpredictable scaling needs, such as a news website that mus
 
 ## Prioritize instance types for On\-Demand capacity<a name="ec2-fleet-on-demand-priority"></a>
 
-When EC2 Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `AllocationStrategy` is set to `prioritized`, EC2 Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\.
+When EC2 Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest priced instance type first\. If `AllocationStrategy` is set to `prioritized`, EC2 Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\.
 
 **Example: Prioritize instance types**
 
 In this example, you configure three launch template overrides, each with a different instance type\.
 
-The On\-Demand price for the instance types range in price\. The following are the instance types used in this example, listed in order of price, starting with the cheapest instance type:
-+ `m4.large` – cheapest
+The On\-Demand price for the instance types range in price\. The following are the instance types used in this example, listed in order of price, starting with the least expensive instance type:
++ `m4.large` – least expensive
 + `m5.large`
 + `m5a.large`
 
-If you do not use priority to determine the order, the fleet fulfills the On\-Demand capacity by starting with the cheapest instance type\.
+If you do not use priority to determine the order, the fleet fulfills the On\-Demand capacity by starting with the least expensive instance type\.
 
 However, say you have unused `m5.large` Reserved Instances that you want to use first\. You can set the launch template override priority so that the instance types are used in the order of priority, as follows:
 + `m5.large` – priority 1

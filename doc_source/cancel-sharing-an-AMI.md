@@ -7,6 +7,7 @@ You might cancel having an AMI shared with your account, for example, to reduce 
 **Topics**
 + [Limitations](#cancel-sharing-an-AMI-limitations)
 + [Cancel having an AMI shared with your account](#cancel-image-launch-permission)
++ [Find AMIs that are shared with your account](#find-amis-shared-with-your-account)
 
 ## Limitations<a name="cancel-sharing-an-AMI-limitations"></a>
 + You can remove your account from the launch permissions of an AMI that is shared with your AWS account only\. You can't use `cancel-image-launch-permission` to remove your account from the launch permissions of an [AMI shared with an organization or organizational unit \(OU\)](share-amis-with-organizations-and-OUs.md) or to remove access to public AMIs\.
@@ -35,3 +36,7 @@ Expected output
     "Return": true
 }
 ```
+
+## Find AMIs that are shared with your account<a name="find-amis-shared-with-your-account"></a>
+
+To find the AMIs that are shared with your AWS account, see [Find shared AMIs](usingsharedamis-finding.md)\.

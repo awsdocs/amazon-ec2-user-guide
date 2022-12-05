@@ -98,7 +98,7 @@ To create a snapshot from the volumes of an instance, use one of the following m
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation panel, choose **Snapshots**, **Create snapshot**\.
+1. In the navigation pane, choose **Snapshots**, **Create snapshot**\.
 
 1. For **Resource type**, choose **Instance**\.
 

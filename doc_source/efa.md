@@ -13,7 +13,7 @@ The OS\-bypass capabilities of EFAs are not supported on Windows instances\. If 
 + [EFA basics](#efa-basics)
 + [Supported interfaces and libraries](#efa-mpi)
 + [Supported instance types](#efa-instance-types)
-+ [Supported OS](#efa-os)
++ [Supported AMIs](#efa-amis)
 + [EFA limitations](#efa-limits)
 + [Get started with EFA and MPI](efa-start.md)
 + [Get started with EFA and NCCL](efa-start-nccl.md)
@@ -51,7 +51,7 @@ EFAs support the following interfaces and libraries:
 The following instance types support EFAs:
 + General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5n.metal` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.32xlarge` \| `m6a.48xlarge` \| `m6a.metal` \| `m6i.32xlarge` \| `m6i.metal` \| `m6id.32xlarge` \| `m6id.metal`
 + Compute optimized: `c5n.18xlarge` \| `c5n.9xlarge` \| `c5n.metal` \| `c6a.32xlarge` \| `c6a.48xlarge` \| `c6a.metal` \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal` \| `c6id.32xlarge` \| `c6id.metal` \| `c7g.16xlarge` \| `hpc6a.48xlarge`
-+ Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6a.48xlarge` \| `r6a.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `r6id.32xlarge` \| `r6id.metal` \| `x2d.32xlarge` \| `x2d.metal` \| `x2ed.32xlarge` \| `x2ed.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal` \| `x2idn.32xlarge` \| `x2iedn.32xlarge`
++ Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6a.48xlarge` \| `r6a.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `r6id.32xlarge` \| `r6id.metal` \| `x2d.32xlarge` \| `x2d.metal` \| `x2ed.32xlarge` \| `x2ed.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal` \| `x2idn.32xlarge` \| `x2iedn.32xlarge` \| `hpc6id.32xlarge`
 + Storage optimized: `i3en.24xlarge` \| `i3en.12xlarge` \| `i3en.metal` \| `i4i.32xlarge` \| `i4i.metal` \| `im4gn.16xlarge`
 + Accelerated computing: `dl1.24xlarge` \| `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge` \| `trn1.32xlarge`
 
@@ -76,9 +76,9 @@ c6i.32xlarge
 ...
 ```
 
-## Supported OS<a name="efa-os"></a>
+## Supported AMIs<a name="efa-amis"></a>
 
-The following OS support EFAs with Intel/AMD x86\-based instance types:
+The following AMIs support EFAs with Intel x86\-based instance types:
 + Amazon Linux 2
 + CentOS 7
 + RHEL 7 and 8
@@ -90,17 +90,16 @@ The following OS support EFAs with Intel/AMD x86\-based instance types:
 **Note**  
 Ubuntu 20\.04 supports peer direct support when used with `dl1.24xlarge` instances\.
 
-The following OS support EFAs with Arm\-based \(Graviton\) instance types:
+The following AMIs support EFAs with Arm\-based \(Graviton 2\) instance types:
 + Amazon Linux 2
-+ RHEL 8
-+ Rocky Linux 8
++ RHEL 8 and Rocky Linux 8
 + Ubuntu 18\.04, 20\.04, and 22\.04
 + SUSE Linux Enterprise 15 SP2 and later
 
 ## EFA limitations<a name="efa-limits"></a>
 
 EFAs have the following limitations:
-+ `p4d.24xlarge` and `dl1.24xlarge` instances support up to four EFAs\. All other supported instance types support only one EFA per instance\.
++ All `p4d` instance types support NVIDIA GPUDirect Remote Direct Memory Access \(RDMA\); `p4d.24xlarge` and `dl1.24xlarge` instances support up to four EFAs\. All other supported instance types support only one EFA per instance\.
 + For `c7g.16xlarge` Dedicated Instances and Dedicated Hosts are not supported when an EFA is attached\.
 + EFA OS\-bypass traffic is limited to a single subnet\. In other words, EFA traffic cannot be sent from one subnet to another\. Normal IP traffic from the EFA can be sent from one subnet to another\.
 + EFA OS\-bypass traffic is not routable\. Normal IP traffic from the EFA remains routable\.

@@ -75,7 +75,8 @@ The new AMI ID is also reflected in the instance metadata\.
 + If you use an AMI that has multiple block device mappings, only the root volume of the AMI is used\. The other \(non\-root\) volumes are ignored\.
 + You can only use AMIs for which your account has launch permissions\.
 + You can only use an AMI without a product code only if the instance does not have a product code\.
-+ You can't change the encryption status\. If the original root volume is encrypted, the new root volume is encrypted\. If the original root volume is unencrypted and the selected AMI's block device mapping for the root volume is encrypted, the new root volume is encrypted\. If the original root volume and the selected AMI's block device mapping for the root volume are unencrypted, the new root volume is unencrypted\.
++ You can't specify the encryption status for the replacement root volume\. The following table summarizes the possible encryption outcomes\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/replace-root.html)
 + The instance identity documents for the instance are automatically updated\.
 + If the instance supports NitroTPM, the NitroTPM data for the instance is reset and new keys are generated\.
 
@@ -109,6 +110,48 @@ The **Replace root volume** action is disabled if the selected instance is not i
 1. To delete the original root volume after the replacement task completes, select **Delete replaced root volume**\.
 
 ------
+#### [ AWS CLI ]
+
+**To restore the replacement root volume to the launch state**  
+Use the [ create\-replace\-root\-volume\-task](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-replace-root-volume-task.html) command\. For `--instance-id`, specify the ID of the instance for which to replace the root volume\. Omit the `--snapshot-id` `--image-id` parameters\. To delete the original root volume after it has been replaced, include `--delete-replaced-root-volume` and specify `true`\.
+
+```
+$ aws ec2 create-replace-root-volume-task --instance-id instance_id --delete-replaced-root-volume true
+```
+
+For example:
+
+```
+$ aws ec2 create-replace-root-volume-task --instance-id i-1234567890abcdef0 --delete-replaced-root-volume true
+```
+
+**To restore the replacement root volume to a specific snapshot**  
+Use the [create\-replace\-root\-volume\-task](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-replace-root-volume-task.html) command\. For `--instance-id`, specify the ID of the instance for which to replace the root volume\. For `--snapshot-id`, specify the ID of the snapshot to use\. To delete the original root volume after it has been replaced, include `--delete-replaced-root-volume` and specify `true`\.
+
+```
+$ aws ec2 create-replace-root-volume-task --instance-id instance_id --snapshot-id snapshot_id --delete-replaced-root-volume true
+```
+
+For example:
+
+```
+$ aws ec2 create-replace-root-volume-task --instance-id i-1234567890abcdef0 --snapshot-id snap-9876543210abcdef0 --delete-replaced-root-volume true
+```
+
+**To restore the replacement root volume using an AMI**  
+Use the [ create\-replace\-root\-volume\-task](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-replace-root-volume-task.html) command\. For `--instance-id`, specify the ID of the instance for which to replace the root volume\. For `--image-id`, specify the ID of the AMI to use\. To delete the original root volume after it has been replaced, include `--delete-replaced-root-volume` and specify `true`\.
+
+```
+$ aws ec2 create-replace-root-volume-task --instance-id instance_id --image-id ami_id --delete-replaced-root-volume true
+```
+
+For example:
+
+```
+$ aws ec2 create-replace-root-volume-task --instance-id i-01234567890abcdef --image-id ami-09876543210abcdef --delete-replaced-root-volume true
+```
+
+------
 
 ## View root volume replacement tasks<a name="view-replacement-tasks"></a>
 
@@ -127,7 +170,7 @@ You can view the root volume replacement tasks for an instance using one of the 
 If you use the Amazon EC2 console, the functionality is available in the new console only\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To view the root volume replacement tasks**
 
@@ -138,5 +181,51 @@ If you use the Amazon EC2 console, the functionality is available in the new con
 1. Select the instance for which to view the root volume replacement tasks, and then choose the **Storage** tab\.
 
 1. In the **Storage** tab, expand **Recent root volume replacement tasks**\.
+
+------
+#### [ AWS CLI ]
+
+**To view the status of a root volume replacement task**  
+Use the [describe\-replace\-root\-volume\-tasks](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-replace-root-volume-tasks.html) command and specify the IDs of the root volume replacement tasks to view\.
+
+```
+$ aws ec2 describe-replace-root-volume-tasks --replace-root-volume-task-ids task_id_1 task_id_2
+```
+
+For example:
+
+```
+$ aws ec2 describe-replace-root-volume-tasks --replace-root-volume-task-ids replacevol-1234567890abcdef0 
+```
+
+```
+{
+  "ReplaceRootVolumeTasks": [
+  {
+    "ReplaceRootVolumeTaskId": "replacevol-1234567890abcdef0",
+    "InstanceId": "i-1234567890abcdef0",
+    "TaskState": "succeeded",
+    "StartTime": "2020-11-06 13:09:54.0",
+    "CompleteTime": "2020-11-06 13:10:14.0",
+    "SnapshotId": "snap-01234567890abcdef",
+    "DeleteReplacedRootVolume": "True"
+  }]
+}
+```
+
+****  
+
+
+Alternatively, specify the `instance-id` filter to filter the results by instance\.
+
+```
+$ aws ec2 describe-replace-root-volume-tasks --filters Name=instance-id,Values=instance_id
+```
+
+For example:
+
+```
+$ aws ec2 describe-replace-root-volume-tasks --filters Name=instance-id,Values=i-1234567890abcdef0
+```
 
 ------

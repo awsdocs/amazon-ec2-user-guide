@@ -4,7 +4,7 @@ To ensure that you always have instance capacity, you can include a request for 
 
 ## Prioritize instance types for On\-Demand capacity<a name="spot-fleet-on-demand-priority"></a>
 
-When Spot Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `OnDemandAllocationStrategy` is set to `prioritized`, Spot Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\.
+When Spot Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest priced instance type first\. If `OnDemandAllocationStrategy` is set to `prioritized`, Spot Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\.
 
 The priority is assigned to the launch template override, and the highest priority is launched first\.
 

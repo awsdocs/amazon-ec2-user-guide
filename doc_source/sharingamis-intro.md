@@ -10,6 +10,7 @@ You can share your AMIs with other AWS accounts\. To allow all AWS accounts to u
 ## Considerations<a name="considerations-for-sharing-public-AMIs"></a>
 
 Consider the following before making an AMI public\.
++ **Ownership** – To make an AMI public, your AWS account must own the AMI\.
 + **Some AMIs can't be made public** – If your AMI includes one of the following components, you can't make it public \(but you can [share the AMI with specific AWS accounts](sharingamis-explicit.md)\):
   + Encrypted volumes
   + Snapshots of encrypted volumes

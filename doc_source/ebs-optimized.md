@@ -25,7 +25,7 @@ Choose an EBS–optimized instance that provides more dedicated Amazon EBS throu
 The following table lists the instance types that support EBS optimization and EBS optimization is enabled by default\. There is no need to enable EBS optimization and no effect if you disable EBS optimization\.
 
 **Important**  
-**\*** These instances can support maximum performance for 30 minutes at least once every 24 hours\.  
+**\*** These instances can support maximum performance for 30 minutes at least once every 24 hours, after which they revert to their baseline performance\.  
 Other instances can sustain the maximum performance indefinitely\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select one of these instances\.
 
 
@@ -148,6 +148,15 @@ Other instances can sustain the maximum performance indefinitely\. If you have a
 | c7g\.8xlarge | 10,000 |  1,250  | 40,000 | 
 | c7g\.12xlarge | 15,000 | 1875 | 60,000 | 
 | c7g\.16xlarge | 20,000 | 2,500 | 80,000 | 
+| c6in\.large | 20,000 | 2,500 | 87,500 | 
+| c6in\.xlarge | 20,000 | 2,500 | 87,500 | 
+| c6in\.2xlarge | 20,000 | 2,500 | 87,500 | 
+| c6in\.4xlarge | 20,000 | 2,500 | 87,500 | 
+| c6in\.8xlarge | 20,000 | 2,500 | 87,500 | 
+| c6in\.12xlarge | 30,000 | 3,750 | 131,250 | 
+| c6in\.16xlarge | 40,000 | 5,000 | 175,000 | 
+| c6in\.24xlarge | 60,000 | 7,500 | 262,500 | 
+| c6in\.32xlarge | 80,000 | 10,000 | 350,000 | 
 | d2\.xlarge | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
@@ -200,6 +209,7 @@ Other instances can sustain the maximum performance indefinitely\. If you have a
 | h1\.8xlarge | 7,000 | 875 | 40,000 | 
 | h1\.16xlarge | 14,000 | 1,750 | 80,000 | 
 | hpc6a\.48xlarge | 2,085 | 260\.625 | 11,000 | 
+| hpc6id\.32xlarge | 2,085 | 260\.625 | 11,000 | 
 | i3\.large | 425 | 53\.13 | 3000 | 
 | i3\.xlarge | 850 | 106\.25 | 6000 | 
 | i3\.2xlarge | 1,700 | 212\.5 | 12,000 | 
@@ -353,7 +363,25 @@ Other instances can sustain the maximum performance indefinitely\. If you have a
 | m6id\.24xlarge | 30,000 | 3,750 | 120,000 | 
 | m6id\.32xlarge | 40,000 | 5,000 | 160,000 | 
 | m6id\.metal | 40,000 | 5,000 | 160,000 | 
-| mac1\.metal | 8,000 | 1,000 | 55,000 | 
+| m6in\.large | 20,000 | 2,500 | 87,500 | 
+| m6in\.xlarge | 20,000 | 2,500 | 87,500 | 
+| m6in\.2xlarge | 20,000 | 2,500 | 87,500 | 
+| m6in\.4xlarge | 20,000 | 2,500 | 87,500 | 
+| m6in\.8xlarge | 20,000 | 2,500 | 87,500 | 
+| m6in\.12xlarge | 30,000 | 3,750 | 131,250 | 
+| m6in\.16xlarge | 40,000 | 5,000 | 175,000 | 
+| m6in\.24xlarge | 60,000 | 7,500 | 262,500 | 
+| m6in\.32xlarge | 80,000 | 10,000 | 350,000 | 
+| m6idn\.large | 20,000 | 2,500 | 87,500 | 
+| m6idn\.xlarge | 20,000 | 2,500 | 87,500 | 
+| m6idn\.2xlarge | 20,000 | 2,500 | 87,500 | 
+| m6idn\.4xlarge | 20,000 | 2,500 | 87,500 | 
+| m6idn\.8xlarge | 20,000 | 2,500 | 87,500 | 
+| m6idn\.12xlarge | 30,000 | 3,750 | 131,250 | 
+| m6idn\.16xlarge | 40,000 | 5,000 | 175,000 | 
+| m6idn\.24xlarge | 60,000 | 7,500 | 262,500 | 
+| m6idn\.32xlarge | 80,000 | 10,000 | 350,000 | 
+| mac1\.metal | 14,000 | 1,750 | 80,000 | 
 | p2\.xlarge | 750 | 93\.75 | 6,000 | 
 | p2\.8xlarge | 5,000 | 625 | 32,500 | 
 | p2\.16xlarge | 10,000 | 1,250 | 65,000 | 
@@ -479,6 +507,24 @@ Other instances can sustain the maximum performance indefinitely\. If you have a
 | r6id\.24xlarge | 30,000 | 3,750 | 120,000 | 
 | r6id\.32xlarge | 40,000 | 5,000 | 160,000 | 
 | r6id\.metal | 40,000 | 5,000 | 160,000 | 
+| r6in\.large | 20,000 | 2,500 | 87,500 | 
+| r6in\.xlarge | 20,000 | 2,500 | 87,500 | 
+| r6in\.2xlarge | 20,000 | 2,500 | 87,500 | 
+| r6in\.4xlarge | 20,000 | 2,500 | 87,500 | 
+| r6in\.8xlarge | 20,000 | 2,500 | 87,500 | 
+| r6in\.12xlarge | 30,000 | 3,750 | 131,250 | 
+| r6in\.16xlarge | 40,000 | 5,000 | 175,000 | 
+| r6in\.24xlarge | 60,000 | 7,500 | 262,500 | 
+| r6in\.32xlarge | 80,000 | 10,000 | 350,000 | 
+| r6idn\.large | 20,000 | 2,500 | 87,500 | 
+| r6idn\.xlarge | 20,000 | 2,500 | 87,500 | 
+| r6idn\.2xlarge | 20,000 | 2,500 | 87,500 | 
+| r6idn\.4xlarge | 20,000 | 2,500 | 87,500 | 
+| r6idn\.8xlarge | 20,000 | 2,500 | 87,500 | 
+| r6idn\.12xlarge | 30,000 | 3,750 | 131,250 | 
+| r6idn\.16xlarge | 40,000 | 5,000 | 175,000 | 
+| r6idn\.24xlarge | 60,000 | 7,500 | 262,500 | 
+| r6idn\.32xlarge | 80,000 | 10,000 | 350,000 | 
 | t3\.nano \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.micro \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.small \* | 2,085 | 260\.57 | 11,800 | 
@@ -608,6 +654,10 @@ The following table shows the baseline performance for those instance types that
 | c6id\.xlarge | 1,250 | 156\.25 | 6,000 | 
 | c6id\.2xlarge | 2,500 | 312\.5 | 12,000 | 
 | c6id\.4xlarge | 5,000 | 625 | 20,000 | 
+| c6in\.large | 1,250 | 156\.25 | 5,468 | 
+| c6in\.xlarge | 2,500 | 312\.5 | 10,937 | 
+| c6in\.2xlarge | 5,000 | 625 | 21,875 | 
+| c6in\.4xlarge | 10,000 | 1,250 | 43,750 | 
 |  `c7g.medium`  |  315  | 39\.375  |  2,500  | 
 |  `c7g.large`  | 630 | 78\.75 |  3,600  | 
 | c7g\.xlarge | 1,250 | 156\.25 | 6,000 | 
@@ -688,6 +738,14 @@ The following table shows the baseline performance for those instance types that
 | m6id\.xlarge | 1,250 | 156\.25 | 6,000 | 
 | m6id\.2xlarge | 2,500 | 312\.5 | 12,000 | 
 | m6id\.4xlarge | 5,000 | 625 | 20,000 | 
+| m6in\.large | 1,250 | 156\.25 | 5,468 | 
+| m6in\.xlarge | 2,500 | 312\.5 | 10,937 | 
+| m6in\.2xlarge | 5,000 | 625 | 21,875 | 
+| m6in\.4xlarge | 10,000 | 1,250 | 43,750 | 
+| m6idn\.large | 1,250 | 156\.25 | 5,468 | 
+| m6idn\.xlarge | 2,500 | 312\.5 | 10,937 | 
+| m6idn\.2xlarge | 5,000 | 625 | 21,875 | 
+| m6idn\.4xlarge | 10,000 | 1,250 | 43,750 | 
 | r5\.large | 650 | 81\.25 | 3,600 | 
 | r5\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | r5\.2xlarge | 2,300 | 287\.5 | 12,000 | 
@@ -729,6 +787,14 @@ The following table shows the baseline performance for those instance types that
 | r6id\.xlarge | 1,250 | 156\.25 | 6,000 | 
 | r6id\.2xlarge | 2,500 | 312\.5 | 12,000 | 
 | r6id\.4xlarge | 5,000 | 625 | 20,000 | 
+| r6in\.large | 1,250 | 156\.25 | 5,468 | 
+| r6in\.xlarge | 2,500 | 312\.5 | 10,937 | 
+| r6in\.2xlarge | 5,000 | 625 | 21,875 | 
+| r6in\.4xlarge | 10,000 | 1,250 | 43,750 | 
+| r6idn\.large | 1,250 | 156\.25 | 5,468 | 
+| r6idn\.xlarge | 2,500 | 312\.5 | 10,937 | 
+| r6idn\.2xlarge | 5,000 | 625 | 21,875 | 
+| r6idn\.4xlarge | 10,000 | 1,250 | 43,750 | 
 | t3\.nano | 43 | 5\.43 | 250 | 
 | t3\.micro | 87 | 10\.86 | 500 | 
 | t3\.small | 174 | 21\.71 | 1,000 | 

@@ -1,6 +1,6 @@
 # EventBridge for Amazon EBS<a name="ebs-cloud-watch-events"></a>
 
-Amazon EBS sends events to Amazon EventBridge \(formerly called Amazon CloudWatch Events\) for a variety of volume, snapshot, and encryption status changes\. With EventBridge, you can establish rules that trigger programmatic actions in response to a change in volume, snapshot, or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another Region for disaster\-recovery purposes\.
+Recycle Bin sends events to Amazon EventBridge for actions performed on retention rules\. With EventBridge, you can establish rules that trigger programmatic actions in response to these events\. For example, you can create a rule that sends a notification to your email when a retention rule is unlocked and it enters its unlock delay period\.
 
 Events in EventBridge are represented as JSON objects\. The fields that are unique to the event are contained in the "detail" section of the JSON object\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\. For more information, see [Amazon EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*\.
 
@@ -564,7 +564,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
 
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
 
-1. In the navigation panel, choose **Rules**, and then choose **Create rule**\.
+1. In the navigation pane, choose **Rules**, and then choose **Create rule**\.
 
 1. For **Step 1: Define rule detail**, do the following:
 

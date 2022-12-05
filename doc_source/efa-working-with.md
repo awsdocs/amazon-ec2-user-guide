@@ -83,7 +83,7 @@ You can create a launch template that contains the configuration information nee
 
 You can leverage launch templates to launch EFA\-enabled instances with other AWS services, such as [AWS Batch](https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html) or [AWS ParallelCluster](https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html)\.
 
-For more information about creating launch templates, see [Create a launch template](ec2-launch-templates.md#create-launch-template)\.
+For more information about creating launch templates, see [Create a launch template](create-launch-template.md)\.
 
 ## Manage IP addresses for an EFA<a name="efa-manage-ip-address"></a>
 

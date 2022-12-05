@@ -41,6 +41,7 @@ Some typical use cases include:
 + You can't share archived snapshots\. If you archive a snapshot that you have shared with other accounts, the accounts with which the snapshot is shared lose access after the snapshot is archived\.
 + You can't copy an archived snapshot\. If you need to copy an archived snapshot, you must first restore it\.
 + You can't enable fast snapshot restore for an archived snapshot\. Fast snapshot restore is automatically disabled when a snapshot is archived\. If you need to use fast snapshot restore, you must manually enable it after restoring the snapshot\.
++ You can’t archive snapshots that were created by AWS Backup\.
 
 ## Pricing and billing<a name="snapshot-archive-pricing"></a>
 

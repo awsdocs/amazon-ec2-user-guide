@@ -6,20 +6,25 @@ Copying a source AMI results in an identical but distinct target AMI with its ow
 
 With an Amazon EBS\-backed AMI, each of its backing snapshots is copied to an identical but distinct target snapshot\. If you copy an AMI to a new Region, the snapshots are complete \(non\-incremental\) copies\. If you encrypt unencrypted backing snapshots or encrypt them to a new KMS key, the snapshots are complete \(non\-incremental\) copies\. Subsequent copy operations of an AMI result in incremental copies of the backing snapshots\.
 
-There are no charges for copying an AMI\. However, standard storage and data transfer rates apply\. If you copy an EBS\-backed AMI, you will incur charges for the storage of any additional EBS snapshots\.
-
-**Considerations**
-+ You can use IAM policies to grant or deny users permissions to copy AMIs\. Resource\-level permissions specified for the `CopyImage` action apply only to the new AMI\. You cannot specify resource\-level permissions for the source AMI\.
-+ AWS does not copy launch permissions, user\-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI\. After the copy operation is complete, you can apply launch permissions, user\-defined tags, and Amazon S3 bucket permissions to the new AMI\.
-+ If you are using an AWS Marketplace AMI, or an AMI that was directly or indirectly derived from an AWS Marketplace AMI, you cannot copy it across accounts\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
-
 **Topics**
++ [Considerations](#copy-ami-considerations)
++ [Costs](#copy-ami-costs)
 + [Permissions for copying an instance store\-backed AMI](#copy-ami-permissions)
 + [Copy an AMI](#ami-copy-steps)
 + [Stop a pending AMI copy operation](#ami-copy-stop)
 + [Cross\-Region copying](#copy-amis-across-regions)
 + [Cross\-account copying](#copy-ami-across-accounts)
 + [Encryption and copying](#ami-copy-encryption)
+
+## Considerations<a name="copy-ami-considerations"></a>
++ You can use IAM policies to grant or deny users permissions to copy AMIs\. Resource\-level permissions specified for the `CopyImage` action apply only to the new AMI\. You cannot specify resource\-level permissions for the source AMI\.
++ AWS does not copy launch permissions or Amazon S3 bucket permissions from the source AMI to the new AMI\. After the copy operation is complete, you can apply launch permissions and Amazon S3 bucket permissions to the new AMI\.
++ You can only copy user\-defined AMI tags that you attached to the AMI\. System tags \(prefixed with `aws:`\) and user\-defined tags that are attached by other AWS accounts will not be copied\.
++ If you are using an AWS Marketplace AMI, or an AMI that was directly or indirectly derived from an AWS Marketplace AMI, you cannot copy it across accounts\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
+
+## Costs<a name="copy-ami-costs"></a>
+
+There are no charges for copying an AMI\. However, standard storage and data transfer rates apply\. If you copy an EBS\-backed AMI, you will incur charges for the storage of any additional EBS snapshots\.
 
 ## Permissions for copying an instance store\-backed AMI<a name="copy-ami-permissions"></a>
 
@@ -90,6 +95,7 @@ Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use
    + **AMI copy name**: A name for the new AMI\. You can include operating system information in the name, as we do not provide this information when displaying details about the AMI\.
    + **AMI copy description**: By default, the description includes information about the source AMI so that you can distinguish a copy from its original\. You can change this description as needed\.
    + **Destination Region**: The Region in which to copy the AMI\. For more information, see [Cross\-Region copying](#copy-amis-across-regions)\.
+   + **Copy tags**: Select this check box to include your user\-defined AMI tags when copying the AMI\. System tags \(prefixed with `aws:`\) and user\-defined tags that are attached by other AWS accounts will not be copied\.
    + **Encrypt EBS snapshots of AMI copy**: Select this check box to encrypt the target snapshots, or to re\-encrypt them using a different key\. If you have enabled [encryption by default](EBSEncryption.md#encryption-by-default), the **Encrypt EBS snapshots of AMI copy** check box is selected and cannot be cleared\. For more information, see [Encryption and copying](#ami-copy-encryption)\.
    + **KMS key**: The KMS key to used to encrypt the target snapshots\.
 
@@ -127,6 +133,8 @@ Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use
 You can copy an AMI using the [copy\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html) command\. You must specify both the source and destination Regions\. You specify the source Region using the `--source-region` parameter\. You can specify the destination Region using either the `--region` parameter or an environment variable\. For more information, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
 When you encrypt a target snapshot during copying, you must specify these additional parameters: `--encrypted` and `--kms-key-id`\.
+
+For example commands, see the [Examples](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html#examples) under [copy\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html) in the *AWS CLI Command Reference*\.
 
 **To copy an AMI using the Tools for Windows PowerShell**  
 You can copy an AMI using the [Copy\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Image.html) command\. You must specify both the source and destination Regions\. You specify the source Region using the `-SourceRegion` parameter\. You can specify the destination Region using either the `-Region` parameter or the `Set-AWSDefaultRegion` command\. For more information, see [Specifying AWS Regions](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-installing-specifying-region.html)\.
@@ -202,8 +210,11 @@ You can share an AMI with another AWS account\. Sharing an AMI does not affect t
 
 If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account\. The owner of the source AMI is charged standard Amazon EBS or Amazon S3 transfer fees, and you are charged for the storage of the target AMI in the destination Region\.
 
-**Resource Permissions**  
+**Resource permissions**  
 To copy an AMI that was shared with you from another account, the owner of the source AMI must grant you read permissions for the storage that backs the AMI, either the associated EBS snapshot \(for an Amazon EBS\-backed AMI\) or an associated S3 bucket \(for an instance store\-backed AMI\)\. If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well\.
+
+**Note**  
+To copy an AMI with its tags, you must have launch permissions for the source AMI\.
 
 ## Encryption and copying<a name="ami-copy-encryption"></a>
 

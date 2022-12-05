@@ -13,6 +13,8 @@ The following examples show launch configurations that you can use with the [cre
 + [Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances](#ec2-fleet-config9)
 + [Example 9: Launch Spot Instances in a capacity\-optimized fleet](#ec2-fleet-config10)
 + [Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities](#ec2-fleet-config11)
++ [Example 11: Launch Spot Instances in a price\-capacity\-optimized fleet](#ec2-fleet-config12)
++ [Example 13: Configure attribute\-based instance type selection](#ec2-fleet-config13)
 
 ## Example 1: Launch Spot Instances as the default purchasing option<a name="ec2-fleet-config1"></a>
 
@@ -643,5 +645,100 @@ In the following example, the three launch specifications specify three Spot cap
     "TargetCapacitySpecification": {
             "TotalTargetCapacity": 50,
             "DefaultTargetCapacityType": "spot"
+}
+```
+
+## Example 11: Launch Spot Instances in a price\-capacity\-optimized fleet<a name="ec2-fleet-config12"></a>
+
+The following example demonstrates how to configure an EC2 Fleet with a Spot allocation strategy that optimizes for both capacity and lowest price\. To optimize for capacity while taking price into consideration, you must set the Spot `AllocationStrategy` to `price-capacity-optimized`\.
+
+In the following example, the three launch specifications specify three Spot capacity pools\. The target capacity is 50 Spot Instances\. The EC2 Fleet attempts to launch 50 Spot Instances into the Spot capacity pool with optimal capacity for the number of instances that are launching while also choosing the pool that is the lowest priced\.
+
+```
+{
+    "SpotOptions": {
+        "AllocationStrategy": "price-capacity-optimized",
+        "MinTargetCapacity": 2,
+        "SingleInstanceType": true
+    },
+    "OnDemandOptions": {
+        "AllocationStrategy": "lowest-price"
+    },
+    "LaunchTemplateConfigs": [
+        {
+            "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "my-launch-template",
+                "Version": "1"
+            },
+                 "Overrides": [
+                       {
+                           "InstanceType": "r4.2xlarge",
+                           "Placement": {
+                               "AvailabilityZone": "us-west-2a"
+                           },
+                      },
+                       {
+                           "InstanceType": "m4.2xlarge",
+                           "Placement": {
+                               "AvailabilityZone": "us-west-2b"
+                           },
+                       }, 
+                       {
+                           "InstanceType": "c5.2xlarge",
+                           "Placement": {
+                               "AvailabilityZone": "us-west-2b"
+                           }
+                       }
+                 ] 
+           }
+    ],
+    "TargetCapacitySpecification": {
+        "TotalTargetCapacity": 50,
+        "OnDemandTargetCapacity":0,
+        "SpotTargetCapacity":50,
+        "DefaultTargetCapacityType": "spot"
+    },
+    "Type": "instant"
+}
+```
+
+## Example 13: Configure attribute\-based instance type selection<a name="ec2-fleet-config13"></a>
+
+The following example demonstrates how to configure an EC2 Fleet to use attribute\-based instance type selection for identifying instance types\. To specify the required instance attributes, you specify the attributes in the `InstanceRequirements` structure\.
+
+In the following example, two instance attributes are specified:
++ `VCpuCount` – A minimum of 2 vCPUs is specified\. Because no maximum is specified, there is no maximum limit\.
++ `MemoryMiB` – A minimum of 4 MiB of memory is specified\. Because no maximum is specified, there is no maximum limit\.
+
+Any instance types that have 2 or more vCPUs and 4 MiB or more of memory will be identified\. However, price protection and the allocation strategy might exclude some instance types when [EC2 Fleet provisions the fleet](ec2-fleet-attribute-based-instance-type-selection.md#how-ef-uses-abs)\.
+
+For a list and descriptions of all the possible attributes that you can specify, see [InstanceRequirements](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_InstanceRequirements.html) in the *Amazon EC2 API Reference*\.
+
+```
+{
+	"SpotOptions": {
+		"AllocationStrategy": "price-capacity-optimized"
+	},
+	"LaunchTemplateConfigs": [{
+		"LaunchTemplateSpecification": {
+			"LaunchTemplateName": "my-launch-template",
+			"Version": "1"
+		},
+		"Overrides": [{
+			"InstanceRequirements": {
+				"VCpuCount": {
+					"Min": 2
+				},
+				"MemoryMiB": {
+					"Min": 4
+				}
+			}
+		}]
+	}],
+	"TargetCapacitySpecification": {
+		"TotalTargetCapacity": 20,
+		"DefaultTargetCapacityType": "spot"
+	},
+	"Type": "instant"
 }
 ```

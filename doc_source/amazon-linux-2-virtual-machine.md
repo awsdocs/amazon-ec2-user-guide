@@ -15,8 +15,8 @@ The `seed.iso` boot image includes the initial configuration information that is
 The `seed.iso` boot image includes only the configuration information required to boot the VM\. It does not include the Amazon Linux 2 operating system files\.
 
 To generate the `seed.iso` boot image, you need two configuration files:
-+ `meta-data`> – This file includes the hostname and static network settings for the VM\.
-+ `user-data` – This file configures user accounts, and specifies their passwords, key pairs, and access mechanisms\. By default, the Amazon Linux 2 VM image creates a `ec2-user` user account\. You use the `user-data` configuration file to set the password for the default user account\.
++ `meta-data` – This file includes the hostname and static network settings for the VM\.
++ `user-data` – This file configures user accounts, and specifies their passwords, key pairs, and access mechanisms\. By default, the Amazon Linux 2 VM image creates an `ec2-user` user account\. You use the `user-data` configuration file to set the password for the default user account\.
 
 **To create the `seed.iso` boot disc**
 
@@ -196,4 +196,4 @@ The VM image for Microsoft Hyper\-V is compressed into a zip file\. You must ext
 
 ------
 
-After the VM has booted, log in using one of the user accounts that is defined in the `user-data` configuration file\. After you have logged in for the first time, you can then disconnect the seed\.iso boot image from the VM\.
+After the VM has booted, log in using one of the user accounts that is defined in the `user-data` configuration file\. After you have logged in for the first time, you can then disconnect the `seed.iso` boot image from the VM\.

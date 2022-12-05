@@ -18,7 +18,7 @@ Before creating an EC2 Fleet, ABC Online verifies that it has an IAM role with t
 
 ## Create a launch template<a name="ec2-fleet-on-demand-walkthrough-create-launch-template"></a>
 
-Next, ABC Online creates a launch template\. The launch template ID is used in the following step\. For more information, see [Create a launch template](ec2-launch-templates.md#create-launch-template)\.
+Next, ABC Online creates a launch template\. The launch template ID is used in the following step\. For more information, see [Create a launch template](create-launch-template.md)\.
 
 ## Create the EC2 Fleet<a name="ec2-fleet-on-demand-walkthrough-request"></a>
 

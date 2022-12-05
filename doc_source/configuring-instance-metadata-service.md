@@ -80,7 +80,8 @@ If your software uses IMDSv1, use the following tools to help reconfigure your s
 
 **AWS software**  
 The latest versions of the AWS CLI and AWS SDKs support IMDSv2\. To use IMDSv2, make sure that your EC2 instances have the latest versions of the CLI and SDKs\. For information about updating the CLI, see [Installing, updating, and uninstalling the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.  
-All Amazon Linux 2 software packages support IMDSv2\.
+All Amazon Linux 2 software packages support IMDSv2\.  
+For the minimum AWS SDK versions that support IMDSv2, see [Use a supported AWS SDK](#use-a-supported-sdk-version-for-imdsv2)\.
 
 **CloudWatch**  
 IMDSv2 uses token\-backed sessions, while IMDSv1 does not\. The `MetadataNoToken` CloudWatch metric tracks the number of calls to the instance metadata service that are using IMDSv1\. By tracking this metric to zero, you can determine if and when all of your software has been upgraded to use IMDSv2\. For more information, see [Instance metrics](viewing_metrics_with_cloudwatch.md#ec2-cloudwatch-metrics)\.
@@ -137,3 +138,23 @@ Updating instance metadata options for existing instances is available only thro
 ### Step 4: When all of your instances are transitioned to IMDSv2<a name="path-step-4"></a>
 
 The `ec2:MetadataHttpTokens`, `ec2:MetadataHttpPutResponseHopLimit`, and `ec2:MetadataHttpEndpoint` IAM condition keys can be used to control the use of the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) and the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API and corresponding CLI\. If a policy is created, and a parameter in the API call does not match the state specified in the policy using the condition key, the API or CLI call fails with an `UnauthorizedOperation` response\. For example IAM policies, see [Work with instance metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
+
+## Use a supported AWS SDK<a name="use-a-supported-sdk-version-for-imdsv2"></a>
+
+To use IMDSv2, your EC2 instances must use an AWS SDK version that supports using IMDSv2\. The latest versions of the all AWS SDKs support using IMDSv2\.
+
+**Important**  
+We recommend that you to stay up to date with SDK releases to keep up with the latest features, security updates, and underlying dependencies\. Continued use of an unsupported SDK version is not recommended and is done at your discretion\. For more information, see the [AWS SDKs and Tools maintenance policy](https://docs.aws.amazon.com/sdkref/latest/guide/maint-policy.html) in the *AWS SDKs and Tools Reference Guide*\.
+
+The following are the minimum versions that support using IMDSv2:
++ [AWS CLI](https://github.com/aws/aws-cli) – 1\.13\.23
++ [AWS SDK for \.NET](https://github.com/aws/aws-sdk-net) – 3\.3\.634\.1
++ [AWS SDK for C\+\+](https://github.com/aws/aws-sdk-cpp) – 1\.7\.229
++ [AWS SDK for Go](https://github.com/aws/aws-sdk-go) – 1\.25\.38
++ [AWS SDK for Java](https://github.com/aws/aws-sdk-java) – 1\.11\.678
++ [AWS SDK for Java 2\.x](https://github.com/aws/aws-sdk-java-v2) – 2\.10\.21
++ [AWS SDK for JavaScript in Node\.js](https://github.com/aws/aws-sdk-js) – 2\.722\.0
++ [AWS SDK for PHP](https://github.com/aws/aws-sdk-php) – 3\.147\.7
++ [AWS SDK for Python \(Boto\)](https://github.com/boto/botocore) – 1\.13\.23
++ [AWS SDK for Python \(Boto3\)](https://github.com/boto/boto3) – 1\.12\.6
++ [AWS SDK for Ruby](https://github.com/aws/aws-sdk-ruby) – 3\.79\.0

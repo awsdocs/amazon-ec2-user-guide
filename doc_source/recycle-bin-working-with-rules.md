@@ -15,6 +15,8 @@ After you create a retention rule, resources that match its criteria are automat
 + [Create a retention rule](#recycle-bin-create-rule)
 + [View Recycle Bin retention rules](#recycle-bin-view-rule)
 + [Update retention rules](#recycle-bin-update-rule)
++ [Lock retention rules](#recycle-bin-lock)
++ [Unlock retention rules](#recycle-bin-unlock)
 + [Tag retention rules](#recycle-bin-tag-resource)
 + [View retention rule tags](#recycle-bin-view-resource-tag)
 + [Remove tags from retention rules](#recycle-bin-untag-resource)
@@ -22,17 +24,21 @@ After you create a retention rule, resources that match its criteria are automat
 
 ## Create a retention rule<a name="recycle-bin-create-rule"></a>
 
-To create a retention rule, you must specify:
+When you create a retention rule, you must specify the following required parameters:
++ The resource type that is to be protected by the retention rule\.
++ The resources that are to be protected by the retention rule\. You can create retention rules at the tag level and the Region level\.
+  + To create a tag\-level retention rule, specify the resource tags that identify the resources to protect\. You can specify up to 50 tags for each rule, and add the same tag key and value pair to a maximum of five retention rules\.
+  + To create a Region\-level retention rule, do not specify any tag key and value pairs\. In this case, all resources of the specified type are protected\.
++ The period to retain the resources in the Recycle Bin after they are deleted\. The period can be up to 1 year \(365 days\)\.
+
+You can also specify the following optional parameters:
 + An optional name for the retention rule\. The name can be up to 255 characters long\.
 + An optional description for the retention rule\. The description can be up to 255 characters long\.
 **Note**  
 We recommend that you do not include personally identifying, confidential, or sensitive information in the retention rule description\.
-+ The resource type that is to be protected by the retention rule\.
-+ Resource tags that identify the resources that are to be retained in the Recycle Bin\. You can specify up to 50 tags for each rule\. However, you can add the same tag key and value pair to up to 5 retention rules only\.
-  + To create a tag\-level retention rule, specify at least one tag key and value pair\.
-  + To create an Region\-level retention rule, do not specify any tag key and value pairs\.
-+ The period for which the resources are to be retained in the Recycle Bin after deletion\. The period can be up to 1 year \(365 days\)\.
 + Optional retention rule tags to help identify and organize your retention rules\. You can assign up to 50 tags to each rule\.
+
+You can also optionally lock retention rules on creation\. If you lock a retention rule on creation, you must also specify the unlock delay period, which can be 7 to 30 days\. Retention rules remain unlocked by default unless you explicitly lock them\.
 
 Retention rules function only in the Regions in which they are created\. If you intend to use Recycle Bin in other Regions, you must create additional retention rules in those Regions\.
 
@@ -45,7 +51,7 @@ You can create a Recycle Bin retention rule using one of the following methods\.
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Retention rules**, and then choose **Create retention rule**\.
+1. In the navigation pane, choose **Retention rules**, and then choose **Create retention rule**\.
 
 1. In the **Rule details** section, do the following:
 
@@ -63,6 +69,10 @@ You can create a Recycle Bin retention rule using one of the following methods\.
 
    1. For **Retention period**, enter the number of days for which the retention rule is to retain resources in the Recycle Bin\.
 
+1. \(*Optional*\) To lock the retention rule, for **Rule lock settings**, select **Lock**, and then for **Unlock delay period**, specify the unlock delay period in days\. A locked retention rule can't be modified or deleted\. To modify or delete the rule, you must first unlock it and then wait for the unlock delay period to expire\. For more information, see [Lock retention rules](#recycle-bin-lock)
+
+   To leave the retention rule unlocked, for **Rule lock settings**, keep **Unlock** selected\. An unlocked retention rule can be modified or deleted at any time\. For more information, see [Unlock retention rules](#recycle-bin-unlock)\.
+
 1. \(*Optional*\) In the **Tags** section, do the following:
 
    1. To tag the rule with custom tags, choose **Add tag** and then enter the tag key and value pair\.
@@ -73,35 +83,47 @@ You can create a Recycle Bin retention rule using one of the following methods\.
 #### [ AWS CLI ]
 
 **To create a retention rule**  
-Use the [create\-rule](https://docs.aws.amazon.com/cli/latest/reference/rbin/create-rule.html) AWS CLI command\. For `--retention-period`, specify the number of days to retain deleted snapshots in the Recycle Bin\. For `--resource-type`, specify `EBS_SNAPSHOT` for snapshots or `EC2_IMAGE` for AMIs\. To create a tag\-level retention rule, for `--resource-tags`, specify the tags to use to identify the snapshots that are to be retained\. To create a Region\-level retention rule, omit `--resource-tags`\.
+Use the [create\-rule](https://docs.aws.amazon.com/cli/latest/reference/rbin/create-rule.html) AWS CLI command\. For `--retention-period`, specify the number of days to retain deleted snapshots in the Recycle Bin\. For `--resource-type`, specify `EBS_SNAPSHOT` for snapshots or `EC2_IMAGE` for AMIs\. To create a tag\-level retention rule, for `--resource-tags`, specify the tags to use to identify the snapshots that are to be retained\. To create a Region\-level retention rule, omit `--resource-tags`\. To lock a retention rule, include `--lock-configuration`, and specify the unlock delay period in days\.
 
 ```
 $ aws rbin create-rule \
 --retention-period RetentionPeriodValue=number_of_days,RetentionPeriodUnit=DAYS \
 --resource-type EBS_SNAPSHOT|EC2_IMAGE \
 --description "rule_description" \
+--lock-configuration 'UnlockDelay={UnlockDelayUnit=DAYS,UnlockDelayValue=unlock_delay_in_days}' \
 --resource-tags ResourceTagKey=tag_key,ResourceTagValue=tag_value
 ```
 
 **Example 1**  
-The following example command creates a Region\-level retention rule that retains all deleted snapshots for a period of `8` days\.
+The following example command creates an unlocked Region\-level retention rule that retains all deleted snapshots for a period of `7` days\.
 
 ```
 $ aws rbin create-rule \
---retention-period RetentionPeriodValue=8,RetentionPeriodUnit=DAYS \
+--retention-period RetentionPeriodValue=7,RetentionPeriodUnit=DAYS \
 --resource-type EBS_SNAPSHOT \
 --description "Match all snapshots"
 ```
 
 **Example 2**  
-The following example command creates a tag\-level rule that retains deleted snapshots that are tagged with `purpose=production` for a period of `14` days\.
+The following example command creates a tag\-level rule that retains deleted snapshots that are tagged with `purpose=production` for a period of `7` days\.
 
 ```
 $ aws rbin create-rule \
---retention-period RetentionPeriodValue=14,RetentionPeriodUnit=DAYS \
+--retention-period RetentionPeriodValue=7,RetentionPeriodUnit=DAYS \
 --resource-type EBS_SNAPSHOT \
 --description "Match snapshots with a specific tag" \
 --resource-tags ResourceTagKey=purpose,ResourceTagValue=production
+```
+
+**Example 3**  
+The following example command creates a locked Region\-level retention rule that retains all deleted snapshots for a period of `7` days\. The retention rule is locked with an unlock delay period of 7 days\.
+
+```
+$ aws rbin create-rule \
+--retention-period RetentionPeriodValue=7,RetentionPeriodUnit=DAYS \
+--resource-type EBS_SNAPSHOT \
+--description "Match all snapshots" \
+--lock-configuration 'UnlockDelay={UnlockDelayUnit=DAYS,UnlockDelayValue=7}'
 ```
 
 ------
@@ -117,7 +139,7 @@ You can view Recycle Bin retention rules using one of the following methods\.
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Retention rules**\.
+1. In the navigation pane, choose **Retention rules**\.
 
 1. The grid lists all of the retention rules for the selected Region\. To view more information about a specific retention rule, select it in the grid\.
 
@@ -156,7 +178,11 @@ $ aws rbin get-rule --identifier pwxIkFcvge4
 
 ## Update retention rules<a name="recycle-bin-update-rule"></a>
 
-You can update a retention rule's description, resource tags, and retention period at any time after creation\. You can't update a rule's resource type after creation\.
+You can update an unlocked retention rule's description, resource tags, and retention period at any time after creation\. You can't update a retention rule's resource type or unlock delay period, even if the retention rule is unlocked\.
+
+You can't update a locked retention rule in any way\. If you need to modify a locked retention rule, you must first unlock it and wait for the unlock delay period to expire\.
+
+If you need to modify the unlock delay period for a locked retention rule, you must [unlock the retention rule](#recycle-bin-unlock), and wait for the current unlock delay period to expire\. When the unlock delay period is expired, you must [relock the retention rule](#recycle-bin-lock) and specify the new unlock delay period\.
 
 **Note**  
 We recommend that you do not include personally identifying, confidential, or sensitive information in the retention rule description\.
@@ -172,7 +198,7 @@ You can update a retention rule using one of the following methods\.
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Retention rules**\.
+1. In the navigation pane, choose **Retention rules**\.
 
 1. In the grid, select the retention rule to update, and choose **Actions**, **Edit retention rule**\.
 
@@ -199,14 +225,127 @@ $ aws rbin update-rule \
 ```
 
 **Example**  
-The following example command updates retention rule `6lsJ2Fa9nh9` to retain all snapshots for `21` days and updates its description\.
+The following example command updates retention rule `6lsJ2Fa9nh9` to retain all snapshots for `7` days and updates its description\.
 
 ```
 $ aws rbin update-rule \
 --identifier 6lsJ2Fa9nh9 \
---retention-period RetentionPeriodValue=21,RetentionPeriodUnit=DAYS \
+--retention-period RetentionPeriodValue=7,RetentionPeriodUnit=DAYS \
 --resource-type EBS_SNAPSHOT \
 --description "Retain for three weeks"
+```
+
+------
+
+## Lock retention rules<a name="recycle-bin-lock"></a>
+
+Recycle Bin lets you lock Region\-level retention rules at any time\.
+
+**Note**  
+You can't lock tag\-level retention rules\.
+
+A locked retention rule can't be modified or deleted, even by users who have the required IAM permissions\. Lock your retention rules to help protect them against accidental or malicious modifications and deletions\.
+
+When you lock a retention rule, you must specify an unlock delay period\. This is the period of time that you must wait after unlocking the retention rule before you can modify or delete it\. You cannot modify or delete the retention rule during the unlock delay period\. You can modify or delete the retention rule only after the unlock delay period has expired\. 
+
+You can't change the unlock delay period after the retention rule has been locked\. If your account permissions have been compromised, the unlock delay period gives you additional time to detect and respond to security threats\. The length of this period should be longer than the time it takes for you to identify and respond to security breaches\. To set the right duration, you can review previous security incidents and the time needed to identify and remediate an account breach\.
+
+
+
+We recommend that you use Amazon EventBridge rules to notify you of retention rule lock state changes\. For more information, see [Monitor Recycle Bin using Amazon EventBridge](rbin-eventbridge.md)\.
+
+**Considerations**
++ You can lock Region\-level retention rules only\.
++ You can lock an unlocked retention rule at any time\.
++ The unlock delay period must be 7 to 30 days\.
++ You can re\-lock a retention rule during the unlock delay period\. Relocking the retention rule resets the unlock delay period\.
+
+You can lock a Region\-level retention rule using one of the following methods\.
+
+------
+#### [ Recycle Bin console ]
+
+**To lock a retention rule**
+
+1. Open the Recycle Bin console at [ https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
+
+1. In the navigation panel, choose **Retention rules**\.
+
+1. In the grid, select the unlocked retention rule to lock, and choose **Actions**, **Edit retention rule lock**\.
+
+1. In the Edit retention rule lock screen, choose **Lock**, and then for **Unlock delay period**, specify the unlock delay period in days\.
+
+1. Select the **I acknowledge that locking the retention rule will prevent it from being modified or deleted** check box, and then choose **Save**\.
+
+------
+#### [ AWS CLI ]
+
+**To lock an unlocked retention rule**  
+Use the [lock\-rule](https://docs.aws.amazon.com/cli/latest/reference/rbin/lock-rule.html) AWS CLI command\. For `--identifier`, specify the ID of the retention rule to lock\. For `--lock-configuration`, specify the unlock delay period in days\.
+
+```
+$ aws rbin lock-rule \
+--identifier rule_ID \
+--lock-configuration 'UnlockDelay={UnlockDelayUnit=DAYS,UnlockDelayValue=number_of_days}'
+```
+
+**Example**  
+The following example command locks retention rule `6lsJ2Fa9nh9` and sets the unlock delay period to 15 days\.
+
+```
+$ aws rbin lock-rule \
+--identifier 6lsJ2Fa9nh9 \
+--lock-configuration 'UnlockDelay={UnlockDelayUnit=DAYS,UnlockDelayValue=15}'
+```
+
+------
+
+## Unlock retention rules<a name="recycle-bin-unlock"></a>
+
+You can't modify or delete a locked retention rule\. If you need to modify a locked retention rule, you must first unlock it\. After you have unlocked the retention rule, you must wait for the unlock delay period to expire before you modify or delete it\. You can't modify or delete a retention rule during the unlock delay period\.
+
+An unlocked retention rule can be modified and deleted at any time by a user who has the required IAM permissions\. Leaving your retention rules unlocked could expose them to accidental or malicious modifications and deletions\.
+
+**Considerations**
++ You can re\-lock a retention rule during the unlock delay period\.
++ You can re\-lock a retention rule after the unlock delay period has expired\.
++ You can't bypass the unlock delay period\.
++ You can't change the unlock delay period after the initial lock\.
+
+We recommend that you use Amazon EventBridge rules to notify you of retention rule lock state changes\. For more information, see [Monitor Recycle Bin using Amazon EventBridge](rbin-eventbridge.md)\.
+
+You can unlock a locked Region\-level retention rule using one of the following methods\.
+
+------
+#### [ Recycle Bin console ]
+
+**To unlock a retention rule**
+
+1. Open the Recycle Bin console at [ https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
+
+1. In the navigation panel, choose **Retention rules**\.
+
+1. In the grid, select the locked retention rule to unlock, and choose **Actions**, **Edit retention rule lock**\.
+
+1. On the Edit retention rule lock screen, choose **Unlock**, and then choose **Save**\.
+
+------
+#### [ AWS CLI ]
+
+**To unlock a locked retention rule**  
+Use the [unlock\-rule](https://docs.aws.amazon.com/cli/latest/reference/rbin/unlock-rule.html) AWS CLI command\. For `--identifier`, specify the ID of the retention rule to unlock\.
+
+```
+$ aws rbin unlock-rule \
+--identifier rule_ID
+```
+
+**Example**  
+The following example command unlocks retention rule `6lsJ2Fa9nh9`
+
+```
+$ aws rbin unlock-rule \
+--identifier 6lsJ2Fa9nh9
 ```
 
 ------
@@ -224,7 +363,7 @@ You can assign a tag to a retention rule using one of the following methods\.
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Retention rules**\.
+1. In the navigation pane, choose **Retention rules**\.
 
 1. Select the retention rule to tag, choose the **Tags** tab, and then choose **Manage tags**\.
 
@@ -266,7 +405,7 @@ You can view the tags assigned to a retention rule using one of the following me
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Retention rules**\.
+1. In the navigation pane, choose **Retention rules**\.
 
 1. Select the retention rule for which to view the tags, and choose the **Tags** tab\.
 
@@ -302,7 +441,7 @@ You can remove tags from a retention rule using one of the following methods\.
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Retention rules**\.
+1. In the navigation pane, choose **Retention rules**\.
 
 1. Select the retention rule from which to remove the tag, choose the **Tags** tab, and then choose **Manage tags**\.
 
@@ -346,7 +485,7 @@ You can delete a retention rule using one of the following methods\.
 
 1. Open the Recycle Bin console at [https://console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
-1. In the navigation panel, choose **Retention rules**\.
+1. In the navigation pane, choose **Retention rules**\.
 
 1. In the grid, select the retention rule to delete, and choose **Actions**, **Delete retention rule**\.
 

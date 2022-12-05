@@ -605,7 +605,7 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 **To launch a temporary instance**
 
-1. In the navigation panel, choose **Instances**, and then choose **Launch instances**\.
+1. In the navigation pane, choose **Instances**, and then choose **Launch instances**\.
 
 1. In the **Name and tags** section, for **Name**, enter **Temporary**\.
 

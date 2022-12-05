@@ -644,10 +644,10 @@ To tag a Spot Fleet request when you create it, and to tag the instances and vol
 + For `ResourceType`, specify `instance`\. If you specify another value, the fleet request will fail\.
 + For `Tags`, specify the key\-value pair\. You can specify more than one key\-value pair\.
 
-  Alternatively, you can specify the tags for the instance in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request\.
+  Alternatively, you can specify the tags for the instance in the [launch template](create-launch-template.md) that is referenced in the Spot Fleet request\.
 
 **Volume tags:**
-+ Specify the tags for the volumes in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request\. Volume tagging in `LaunchSpecifications` is not supported\.
++ Specify the tags for the volumes in the [launch template](create-launch-template.md) that is referenced in the Spot Fleet request\. Volume tagging in `LaunchSpecifications` is not supported\.
 
 In the following example, the Spot Fleet request is tagged with two tags: Key=Environment and Value=Production, and Key=Cost\-Center and Value=123\. The instances that are launched by the fleet are tagged with one tag \(which is the same as one of the tags for the Spot Fleet request\): Key=Cost\-Center and Value=123\.
 
@@ -701,7 +701,7 @@ In the following example, the Spot Fleet request is tagged with two tags: Key=En
 ```
 
 **To tag instances launched by a Spot Fleet using the AWS CLI**  
-To tag instances when they are launched by the fleet, you can either specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request, or you can specify the tags in the Spot Fleet request configuration as follows:
+To tag instances when they are launched by the fleet, you can either specify the tags in the [launch template](create-launch-template.md) that is referenced in the Spot Fleet request, or you can specify the tags in the Spot Fleet request configuration as follows:
 + Specify the tags for the instances in `LaunchSpecifications`\.
 + For `ResourceType`, specify `instance`\. If you specify another value, the fleet request will fail\.
 + For `Tags`, specify the key\-value pair\. You can specify more than one key\-value pair\.
@@ -743,7 +743,7 @@ In the following example, the instances that are launched by the fleet are tagge
 ```
 
 **To tag volumes attached to On\-Demand Instances launched by a Spot Fleet using the AWS CLI**  
-To tag volumes when they are created by the fleet, you must specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request\.
+To tag volumes when they are created by the fleet, you must specify the tags in the [launch template](create-launch-template.md) that is referenced in the Spot Fleet request\.
 
 **Note**  
 Volume tags are only supported for volumes that are attached to On\-Demand Instances\. You can't tag volumes that are attached to Spot Instances\.  
@@ -905,7 +905,7 @@ You can't modify a one\-time Spot Fleet request\. You can only modify a Spot Fle
 
 When you increase the target capacity, the Spot Fleet launches additional Spot Instances\. When you increase the On\-Demand portion, the Spot Fleet launches additional On\-Demand Instances\.
 
-When you increase the target capacity, the Spot Fleet launches the additional Spot Instances according to the allocation strategy for its Spot Fleet request\. If the allocation strategy is `lowestPrice`, the Spot Fleet launches the instances from the lowest\-priced Spot capacity pool in the Spot Fleet request\. If the allocation strategy is `diversified`, the Spot Fleet distributes the instances across the pools in the Spot Fleet request\.
+When you increase the target capacity, the Spot Fleet launches the additional Spot Instances according to the allocation strategy for its Spot Fleet request\. If the allocation strategy is `lowestPrice`, the Spot Fleet launches the instances from the lowest priced Spot capacity pool in the Spot Fleet request\. If the allocation strategy is `diversified`, the Spot Fleet distributes the instances across the pools in the Spot Fleet request\.
 
 When you decrease the target capacity, the Spot Fleet cancels any open requests that exceed the new target capacity\. You can request that the Spot Fleet terminate Spot Instances until the size of the fleet reaches the new target capacity\. If the allocation strategy is `lowestPrice`, the Spot Fleet terminates the instances with the highest price per unit\. If the allocation strategy is `diversified`, the Spot Fleet terminates instances across the pools\. Alternatively, you can request that the Spot Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or that you terminate manually\.
 

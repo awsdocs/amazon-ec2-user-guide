@@ -7,8 +7,9 @@ For information about the supported network speed for each instance type, see [A
 **Topics**
 + [Enhanced networking support](#supported_instances)
 + [Enable enhanced networking on your instance](#enabling_enhanced_networking)
-+ [Enhanced networking: ENA](enhanced-networking-ena.md)
-+ [Enhanced networking: Intel 82599 VF](sriov-networking.md)
++ [Elastic Network Adapter \(ENA\)](enhanced-networking-ena.md)
++ [ENA Express](ena-express.md)
++ [Intel 82599 VF](sriov-networking.md)
 + [Operating system optimizations](enhanced-networking-os.md)
 + [Network performance metrics](monitoring-network-performance-ena.md)
 + [Troubleshoot ENA](troubleshooting-ena.md)

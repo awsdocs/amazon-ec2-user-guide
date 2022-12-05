@@ -1,4 +1,4 @@
-# Monitoring Recycle Bin using AWS CloudTrail<a name="recycle-bin-ct"></a>
+# Monitor Recycle Bin using AWS CloudTrail<a name="recycle-bin-ct"></a>
 
 The Recycle Bin service is integrated with AWS CloudTrail\. CloudTrail is a service that provides a record of actions taken by a user, role, or an AWS service\. CloudTrail captures all API calls performed in Recycle Bin as events\. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon Simple Storage Service \(Amazon S3\) bucket\. If you don't configure a trail, you can still view the most recent management events in the CloudTrail console in **Event history**\. You can use the information collected by CloudTrail to determine the request that was made to Recycle Bin, the IP address from which the request was made, who made the request, when it was made, and additional details\.
 
@@ -21,6 +21,8 @@ For Recycle Bin, you can use CloudTrail to log the following API actions as *man
 + TagResource
 + UntagResource
 + ListTagsForResource
++ LockRule
++ UnlockRule
 
 For more information about logging management events, see [Logging management events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html) in the *CloudTrail User Guide*\.
 
@@ -74,7 +76,7 @@ The following are example CloudTrail log entries\.
   "userAgent": "aws-cli/1.20.9 Python/3.6.14 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 botocore/1.21.9",
   "requestParameters": {
     "retentionPeriod": {
-      "retentionPeriodValue": 8,
+      "retentionPeriodValue": 7,
       "retentionPeriodUnit": "DAYS"
     },
     "description": "Match all snapshots",
@@ -325,7 +327,7 @@ The following are example CloudTrail log entries\.
   "eventVersion": "1.08",
   "userIdentity": {
     "type": "AssumedRole",
-    "principalId": "123456789012:cheluyao-Isengard",
+    "principalId": "123456789012",
     "arn": "arn:aws:iam::123456789012:root",
     "accountId": "123456789012",
     "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
@@ -370,7 +372,7 @@ The following are example CloudTrail log entries\.
   "tlsDetails": {
     "tlsVersion": "TLSv1.2",
     "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
-    "clientProvidedHostHeader": "beta.us-west-2.api.rbs.aws.dev"
+    "clientProvidedHostHeader": "rbin.us-west-2.amazonaws.com"
   }
 }
 ```
@@ -383,7 +385,7 @@ The following are example CloudTrail log entries\.
   "eventVersion": "1.08",
   "userIdentity": {
     "type": "AssumedRole",
-    "principalId": "123456789012:cheluyao-Isengard",
+    "principalId": "123456789012",
     "arn": "arn:aws:iam::123456789012:root",
     "accountId": "123456789012",
     "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
@@ -425,7 +427,7 @@ The following are example CloudTrail log entries\.
   "tlsDetails": {
     "tlsVersion": "TLSv1.2",
     "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
-    "clientProvidedHostHeader": "beta.us-west-2.api.rbs.aws.dev"
+    "clientProvidedHostHeader": "rbin.us-west-2.amazonaws.com"
   }
 }
 ```
@@ -438,7 +440,7 @@ The following are example CloudTrail log entries\.
   "eventVersion": "1.08",
   "userIdentity": {
     "type": "AssumedRole",
-    "principalId": "123456789012:cheluyao-Isengard",
+    "principalId": "123456789012",
     "arn": "arn:aws:iam::123456789012:root",
     "accountId": "123456789012",
     "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
@@ -477,7 +479,152 @@ The following are example CloudTrail log entries\.
   "tlsDetails": {
     "tlsVersion": "TLSv1.2",
     "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
-    "clientProvidedHostHeader": "beta.us-west-2.api.rbs.aws.dev"
+    "clientProvidedHostHeader": "rbin.us-west-2.amazonaws.com"
+  }
+}
+```
+
+------
+#### [ LockRule ]
+
+```
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "123456789012",
+    "arn": "arn:aws:iam::123456789012:root",
+    "accountId": "123456789012",
+    "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "123456789012",
+        "arn": "arn:aws:iam::123456789012:role/Admin",
+        "accountId": "123456789012",
+        "userName": "Admin"
+      },
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2022-10-25T00:45:11Z",
+        "mfaAuthenticated": "false"
+      }
+    }
+  },
+  "eventTime": "2022-10-25T00:45:19Z",
+  "eventSource": "rbin.amazonaws.com",
+  "eventName": "LockRule",
+  "awsRegion": "us-west-2",
+  "sourceIPAddress": "123.123.123.123",
+  "userAgent": "python-requests/2.25.1",
+  "requestParameters": {
+    "identifier": "jkrnexample",
+    "lockConfiguration": {
+      "unlockDelay": {
+        "unlockDelayValue": 7,
+        "unlockDelayUnit": "DAYS"
+      }
+    }
+  },
+  "responseElements": {
+    "identifier": "jkrnexample",
+    "description": "",
+    "resourceType": "EBS_SNAPSHOT",
+    "retentionPeriod": {
+      "retentionPeriodValue": 7,
+      "retentionPeriodUnit": "DAYS"
+    },
+    "resourceTags": [],
+    "status": "available",
+    "lockConfiguration": {
+      "unlockDelay": {
+        "unlockDelayValue": 7,
+        "unlockDelayUnit": "DAYS"
+      }
+    },
+    "lockState": "locked"
+  },
+  "requestID": "ex0577a5-amc4-pl4f-ef51-50fdexample",
+  "eventID": "714fafex-2eam-42pl-913e-926d4example",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "123456789012",
+  "eventCategory": "Management",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "clientProvidedHostHeader": "rbin.us-west-2.amazonaws.com"
+  }
+}
+```
+
+------
+#### [ UnlockRule ]
+
+```
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "AssumedRole",
+    "principalId": "123456789012",
+    "arn": "arn:aws:iam::123456789012:root",
+    "accountId": "123456789012",
+    "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+    "sessionContext": {
+      "sessionIssuer": {
+        "type": "Role",
+        "principalId": "123456789012",
+        "arn": "arn:aws:iam::123456789012:role/Admin",
+        "accountId": "123456789012",
+        "userName": "Admin"
+      },
+      "webIdFederationData": {},
+      "attributes": {
+        "creationDate": "2022-10-25T00:45:11Z",
+        "mfaAuthenticated": "false"
+      }
+    }
+  },
+  "eventTime": "2022-10-25T00:46:17Z",
+  "eventSource": "rbin.amazonaws.com",
+  "eventName": "UnlockRule",
+  "awsRegion": "us-west-2",
+  "sourceIPAddress": "123.123.123.123",
+  "userAgent": "python-requests/2.25.1",
+  "requestParameters": {
+    "identifier": "jkrnexample"
+  },
+  "responseElements": {
+    "identifier": "jkrnexample",
+    "description": "",
+    "resourceType": "EC2_IMAGE",
+    "retentionPeriod": {
+      "retentionPeriodValue": 7,
+      "retentionPeriodUnit": "DAYS"
+    },
+    "resourceTags": [],
+    "status": "available",
+    "lockConfiguration": {
+      "unlockDelay": {
+        "unlockDelayValue": 7,
+        "unlockDelayUnit": "DAYS"
+      }
+    },
+    "lockState": "pending_unlock",
+    "lockEndTime": "Nov 1, 2022, 12:46:17 AM"
+  },
+  "requestID": "ex0577a5-amc4-pl4f-ef51-50fdexample",
+  "eventID": "714fafex-2eam-42pl-913e-926d4example",
+  "readOnly": false,
+  "eventType": "AwsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "123456789012",
+  "eventCategory": "Management",
+  "tlsDetails": {
+    "tlsVersion": "TLSv1.2",
+    "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "clientProvidedHostHeader": "rbin.us-west-2.amazonaws.com"
   }
 }
 ```

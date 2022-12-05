@@ -73,7 +73,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation panel, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
+1. In the navigation pane, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
 
 1. \(*Optional*\) In the **Name and tags** section, provide a name for the instance, such as `EFA-instance`\. The name is assigned to the instance as a resource tag \(`Name=EFA-instance`\)\.
 
@@ -139,7 +139,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Connect to the instance you launched\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
-   + Amazon Linux 2, RHEL 7/8, and CentOS 7
+   + Amazon Linux 2, RHEL 7/8, CentOS 7, Rocky Linux 8
 
      ```
      $ sudo yum update -y
@@ -162,7 +162,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.19.0.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.20.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -190,7 +190,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.19.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.19.0.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.20.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.20.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -208,7 +208,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.19.0.tar.gz && cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.20.0.tar.gz && cd aws-efa-installer
    ```
 
 1. Install the EFA software\. Do one of the following depending on your use case\.
@@ -453,7 +453,7 @@ If you no longer want to use Intel MPI, remove the environment variables from th
 Install the HPC application on the temporary instance\. The installation procedure varies depending on the specific HPC application\. For more information, see [Manage software on your Amazon Linux instance](managing-software.md)\.
 
 **Note**  
-You might need to refer to your HPC application’s documentation for installation instructions\.
+Refer to your HPC application’s documentation for installation instructions\.
 
 ## Step 7: Create an EFA\-enabled AMI<a name="efa-start-ami"></a>
 
@@ -494,7 +494,7 @@ To ensure that capacity is available as you scale your cluster’s instances, yo
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation panel, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
+1. In the navigation pane, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
 
 1. \(*Optional*\) In the **Name and tags** section, provide a name for the instance, such as `EFA-instance`\. The name is assigned to the instance as a resource tag \(`Name=EFA-instance`\)\.
 

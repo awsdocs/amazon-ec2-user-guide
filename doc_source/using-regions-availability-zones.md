@@ -53,6 +53,7 @@ The following table lists the Regions provided by an AWS account\. You can't des
 | us\-west\-2 | US West \(Oregon\) | Not required | 
 | af\-south\-1 | Africa \(Cape Town\) | Required | 
 | ap\-east\-1 | Asia Pacific \(Hong Kong\) | Required | 
+| ap\-south\-2 | Asia Pacific \(Hyderabad\) | Required | 
 | ap\-southeast\-3 | Asia Pacific \(Jakarta\) | Required | 
 | ap\-south\-1 | Asia Pacific \(Mumbai\) | Not required | 
 | ap\-northeast\-3 | Asia Pacific \(Osaka\) | Not required | 
@@ -66,7 +67,9 @@ The following table lists the Regions provided by an AWS account\. You can't des
 | eu\-west\-2 | Europe \(London\) | Not required | 
 | eu\-south\-1 | Europe \(Milan\) | Required | 
 | eu\-west\-3 | Europe \(Paris\) | Not required | 
+| eu\-south\-2 | Europe \(Spain\) | Required | 
 | eu\-north\-1 | Europe \(Stockholm\) | Not required | 
+| eu\-central\-2 | Europe \(Zurich\) | Required | 
 | me\-south\-1 | Middle East \(Bahrain\) | Required | 
 | me\-central\-1 | Middle East \(UAE\) | Required | 
 | sa\-east\-1 | South America \(São Paulo\) | Not required | 
@@ -314,15 +317,7 @@ You can allocate the following IP addresses from a network border group:
 + Amazon\-provided Elastic IPv4 addresses
 + Amazon\-provided IPv6 VPC addresses \(available only in the Los Angeles zones\)
 
-**To launch an instance in a Local Zone:**
-
-1. Enable Local Zones\. For more information, see [Opt in to Local Zones](#opt-in-local-zone)\.
-
-1. Create a VPC in the parent Region for the Local Zone\. For more information, see [Creating a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC) in the *Amazon VPC User Guide*\.
-
-1. Create a subnet\. Select the Local Zone when you create the subnet\. For more information, see [Creating a subnet in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#AddaSubnet) in the *Amazon VPC User Guide*\.
-
-1. Launch an instance, and select the subnet that you created in the Local Zone\. For more information, see [Launch your instance](LaunchingAndUsingInstances.md)\.
+For more information about how to launch an instance in a Local Zone, see [Getting started with AWS Local Zones](https://docs.aws.amazon.com/local-zones/latest/ug/getting-started.html) in the *AWS Local Zones User Guide*\.
 
 ## Wavelength Zones<a name="concepts-wavelength-zones"></a>
 

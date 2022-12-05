@@ -13,6 +13,7 @@ When you share an AMI with an organization or an OU, all of the children account
 ## Considerations<a name="considerations-org-ou"></a>
 
 Consider the following when sharing AMIs with specific organizations or organizational units\.
++ **Ownership** – To share an AMI, your AWS account must own the AMI\.
 + **Sharing limits** – The AMI owner can share an AMI with any organization or OU, including organizations and OUs that they’re not a member of\.
 
   For the maximum number of entities to which an AMI can be shared within a Region, see the [Amazon EC2 service quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html#limits_ec2)\.

@@ -460,7 +460,7 @@ Use one of the following commands\.
 
 You can assign one or more security groups to an instance when you launch the instance\. You can also specify one or more security groups in a launch template\. The security groups are assigned to all instances that are launched using the launch template\.
 + To assign a security group to an instance when you launch the instance, see [Step 6: Configure Security Group](launching-instance.md#step-6-configure-security-group)\.
-+ To specify a security group in a launch template, see Step 6 of [Create a new launch template using parameters you define](ec2-launch-templates.md#create-launch-template-define-parameters)\.
++ To specify a security group in a launch template, see Step 6 of [Create a new launch template using parameters you define](create-launch-template.md#create-launch-template-define-parameters)\.
 
 ## Change an instance's security group<a name="changing-security-group"></a>
 

@@ -16,7 +16,7 @@ Using Recycle Bin helps to ensure business continuity by protecting your busines
 + [Required IAM permissions](recycle-bin-perms.md)
 + [Work with retention rules](recycle-bin-working-with-rules.md)
 + [Work with resources in the Recycle Bin](recycle-bin-work-with-resources.md)
-+ [Monitoring Recycle Bin using AWS CloudTrail](recycle-bin-ct.md)
++ [Monitor Recycle Bin](rbin-monitor.md)
 
 ## How does it work?<a name="recycle-bin-concepts"></a>
 
@@ -41,6 +41,9 @@ Recycle Bin supports the following resource types:
 + Amazon EBS snapshots
 + Amazon EBS\-backed Amazon Machine Images \(AMIs\)
 
+**Note**  
+You can't create retention rules for AMIs in Asia Pacific \(Hyderabad\)\.
+
 ## Quotas<a name="recycle-bin-quotas"></a>
 
 The following quotas apply to Recycle Bin\.
@@ -54,7 +57,7 @@ The following quotas apply to Recycle Bin\.
 ## Related services<a name="recycle-bin-integrations"></a>
 
 Recycle Bin works with the following services:
-+ **AWS CloudTrail** — Enables you to record events that occur in Recycle Bin\. For more information, see [Monitoring Recycle Bin using AWS CloudTrail](recycle-bin-ct.md)\.
++ **AWS CloudTrail** — Enables you to record events that occur in Recycle Bin\. For more information, see [Monitor Recycle Bin using AWS CloudTrailMonitor using CloudTrail](recycle-bin-ct.md)\.
 
 ## Pricing<a name="recycle-bin-pricing"></a>
 
@@ -67,4 +70,4 @@ You can use the following AWS generated cost allocation tags for cost tracking a
 + Key: `aws:recycle-bin:resource-in-bin`
 + Value: `true`
 
-For more information, see [AWS\-Generated Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+For more information, see [AWS\-generated cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html) in the *AWS Billing and Cost Management User Guide*\.

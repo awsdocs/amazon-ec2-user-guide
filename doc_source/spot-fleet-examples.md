@@ -16,6 +16,8 @@ For Spot Fleet, you can't specify an network interface ID in a launch specificat
 + [Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances](#fleet-config8)
 + [Example 9: Launch Spot Instances in a capacity\-optimized fleet](#fleet-config9)
 + [Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities](#fleet-config10)
++ [Example 11: Launch Spot Instances in a priceCapacityOptimized fleet](#fleet-config11)
++ [Example 12: Configure attribute\-based instance type selection](#fleet-config12)
 
 ## Example 1: Launch Spot Instances using the lowest\-priced Availability Zone or subnet in the Region<a name="fleet-config1"></a>
 
@@ -632,5 +634,82 @@ In the following example, the three launch specifications specify three Spot cap
                   ] 
              }
        ]
+}
+```
+
+## Example 11: Launch Spot Instances in a priceCapacityOptimized fleet<a name="fleet-config11"></a>
+
+The following example demonstrates how to configure a Spot Fleet with a Spot allocation strategy that optimizes for both capacity and lowest price\. To optimize for capacity while taking price into consideration, you must set the Spot `AllocationStrategy` to `priceCapacityOptimized`\.
+
+In the following example, the three launch specifications specify three Spot capacity pools\. The target capacity is 50 Spot Instances\. The Spot Fleet attempts to launch 50 Spot Instances into the Spot capacity pool with optimal capacity for the number of instances that are launching while also choosing the pool that is the lowest priced\.
+
+```
+{
+    "SpotFleetRequestConfig": {
+        "AllocationStrategy": "priceCapacityOptimized",
+        "OnDemandAllocationStrategy": "lowestPrice",
+        "ExcessCapacityTerminationPolicy": "default",
+        "IamFleetRole": "arn:aws:iam::111111111111:role/aws-ec2-spot-fleet-tagging-role",
+        "LaunchTemplateConfigs": [
+            {
+                "LaunchTemplateSpecification": {
+                    "LaunchTemplateId": "lt-0123456789example",
+                    "Version": "1"
+                },
+                "Overrides": [
+                     {
+                           "InstanceType": "r4.2xlarge",  
+                           "AvailabilityZone": "us-west-2a"
+                      },
+                      {
+                           "InstanceType": "m4.2xlarge",
+                           "AvailabilityZone": "us-west-2b"
+                      }, 
+                      {
+                           "InstanceType": "c5.2xlarge",
+                           "AvailabilityZone": "us-west-2b"
+                      }
+                ]
+            }
+        ],
+        "TargetCapacity": 50,
+        "Type": "request"
+    }
+}
+```
+
+## Example 12: Configure attribute\-based instance type selection<a name="fleet-config12"></a>
+
+The following example demonstrates how to configure a Spot Fleet to use attribute\-based instance type selection for identifying instance types\. To specify the required instance attributes, you specify the attributes in the `InstanceRequirements` structure\.
+
+In the following example, two instance attributes are specified:
++ `VCpuCount` – A minimum of 2 vCPUs is specified\. Because no maximum is specified, there is no maximum limit\.
++ `MemoryMiB` – A minimum of 4 MiB of memory is specified\. Because no maximum is specified, there is no maximum limit\.
+
+Any instance types that have 2 or more vCPUs and 4 MiB or more of memory will be identified\. However, price protection and the allocation strategy might exclude some instance types when [Spot Fleet provisions the fleet](spot-fleet-attribute-based-instance-type-selection.md#how-sf-uses-abs)\.
+
+For a list and descriptions of all the possible attributes that you can specify, see [InstanceRequirements](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_InstanceRequirements.html) in the *Amazon EC2 API Reference*\.
+
+```
+{
+	"AllocationStrategy": "priceCapacityOptimized",
+	"TargetCapacity": 20,
+	"Type": "request",
+	"LaunchTemplateConfigs": [{
+		"LaunchTemplateSpecification": {
+			"LaunchTemplateName": "my-launch-template",
+			"Version": "1"
+		},
+		"Overrides": [{
+			"InstanceRequirements": {
+				"VCpuCount": {
+					"Min": 2
+				},
+				"MemoryMiB": {
+					"Min": 4
+				}
+			}
+		}]
+	}]
 }
 ```

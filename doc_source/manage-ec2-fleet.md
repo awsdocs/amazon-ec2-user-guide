@@ -564,7 +564,7 @@ We currently do not support resource\-level permissions for the `create-fleet` r
 To tag an EC2 Fleet request when you create it, specify the key\-value pair in the [JSON file](#ec2-fleet-cli-skeleton) used to create the fleet\. The value for `ResourceType` must be `fleet`\. If you specify another value, the fleet request fails\.
 
 **To tag instances and volumes launched by an EC2 Fleet**  
-To tag instances and volumes when they are launched by the fleet, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the EC2 Fleet request\.
+To tag instances and volumes when they are launched by the fleet, specify the tags in the [launch template](create-launch-template.md) that is referenced in the EC2 Fleet request\.
 
 **Note**  
 You can't tag volumes attached to Spot Instances that are launched by a `request` or `maintain` fleet type\.
@@ -736,7 +736,7 @@ You can modify the following parameters of an EC2 Fleet:
 
 When you increase the target capacity, the EC2 Fleet launches the additional instances according to the instance purchasing option specified for `DefaultTargetCapacityType`, which are either On\-Demand Instances or Spot Instances\.
 
-If the `DefaultTargetCapacityType` is `spot`, the EC2 Fleet launches the additional Spot Instances according to its allocation strategy\. If the allocation strategy is `lowest-price`, the fleet launches the instances from the lowest\-priced Spot capacity pool in the request\. If the allocation strategy is `diversified`, the fleet distributes the instances across the pools in the request\.
+If the `DefaultTargetCapacityType` is `spot`, the EC2 Fleet launches the additional Spot Instances according to its allocation strategy\. If the allocation strategy is `lowest-price`, the fleet launches the instances from the lowest priced Spot capacity pool in the request\. If the allocation strategy is `diversified`, the fleet distributes the instances across the pools in the request\.
 
 When you decrease the target capacity, the EC2 Fleet deletes any open requests that exceed the new target capacity\. You can request that the fleet terminate instances until the size of the fleet reaches the new target capacity\. If the allocation strategy is `lowest-price`, the fleet terminates the instances with the highest price per unit\. If the allocation strategy is `diversified`, the fleet terminates instances across the pools\. Alternatively, you can request that EC2 Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or any instances that you terminate manually\.
 

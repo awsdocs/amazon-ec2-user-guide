@@ -88,12 +88,9 @@ You can assign a public IPv4 address to your instance when you launch it\. You c
 
 ### View the IPv4 addresses<a name="using-instance-addressing-common"></a>
 
-You can use the Amazon EC2 console to view the private IPv4 addresses, public IPv4 addresses, and Elastic IP addresses of your instances\. You can also determine the public IPv4 and private IPv4 addresses of your instance from within your instance by using instance metadata\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md)\.
+You can use the Amazon EC2 console to view the public and private IPv4 addresses of your instances\. You can also determine the public IPv4 and private IPv4 addresses of your instance from within your instance by using instance metadata\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md)\.
 
 The public IPv4 address is displayed as a property of the network interface in the console, but it's mapped to the primary private IPv4 address through NAT\. Therefore, if you inspect the properties of your network interface on your instance, for example, through `ifconfig` \(Linux\) or `ipconfig` \(Windows\), the public IPv4 address is not displayed\. To determine your instance's public IPv4 address from an instance, use instance metadata\.
-
-------
-#### [ New console ]
 
 **To view the IPv4 addresses for an instance using the console**
 
@@ -103,46 +100,13 @@ The public IPv4 address is displayed as a property of the network interface in t
 
 1. The following information is available on the **Networking** tab:
    + **Public IPv4 address** — The public IPv4 address\. If you associated an Elastic IP address with the instance or the primary network interface, this is the Elastic IP address\.
-   + **Public IPv4 DNS** — The external DNS hostname\.
-   + **Private IP DNS name \(IPv4 only\)** — The private IPv4 address\.
-   + **Private IPv4 DNS** — The internal DNS hostname\.
+   + **Private IPv4 addresses** — The private IPv4 address\.
    + **Secondary private IPv4 addresses** — Any secondary private IPv4 addresses\.
-   + **Elastic IP addresses** — Any associated Elastic IP addresses\.
 
 1. Alternatively, under **Network interfaces** on the **Networking** tab, choose the interface ID for the primary network interface \(for example, eni\-123abc456def78901\)\. The following information is available:
-   + **Private DNS \(IPv4\)** — The internal DNS hostname\.
-   + **Primary private IPv4 IP** — The primary private IPv4 address\.
-   + **Secondary private IPv4 IPs** — Any secondary private IPv4 addresses\.
-   + **Public DNS** — The external DNS hostname\.
-   + **IPv4 Public IP** — The public IPv4 address\. If you associated an Elastic IP address with the instance or the primary network interface, this is the Elastic IP address\.
-   + **Elastic IPs** — Any associated Elastic IP addresses\.
-
-------
-#### [ Old console ]
-
-**To view the IPv4 addresses for an instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances** and select your instance\.
-
-1. The following information is available on the **Description** tab:
-   + **Private DNS** — The internal DNS hostname\.
-   + **Private IPs** — The private IPv4 address\.
-   + **Secondary private IPs** — Any secondary private IPv4 addresses\.
-   + **Public DNS** — The external DNS hostname\.
-   + **IPv4 Public IP** — The public IPv4 address\. If you associated an Elastic IP address with the instance or the primary network interface, this is the Elastic IP address\.
-   + **Elastic IPs** — Any associated Elastic IP addresses\.
-
-1. Alternatively, you can view the IPv4 addresses for the instance using the primary network interface\. Under **Network interfaces** on the **Description** tab, choose **eth0**, and then choose the interface ID \(for example, eni\-123abc456def78901\)\. The following information is available:
-   + **Private Ipv4 DNS** — The internal DNS hostname\.
    + **Private IPv4 address** — The primary private IPv4 address\.
    + **Public IPv4 address** — The public IPv4 address\. If you associated an Elastic IP address with the instance or the primary network interface, this is the Elastic IP address\.
-   + **Public IPv4 DNS** — The external DNS hostname\.
-   + **Secondary private IPv4 IPs** — Any secondary private IPv4 addresses\.
-   + **Elastic IPs** — Any associated Elastic IP addresses\.
-
-------
+   + **Secondary private IPv4 addresses** — Any secondary private IPv4 addresses\.
 
 **To view the IPv4 addresses for an instance using the command line**
 
@@ -203,17 +167,8 @@ Each subnet has an attribute that determines whether instances launched into tha
 + You cannot auto\-assign a public IP address if you specify more than one network interface\. Additionally, you cannot override the subnet setting using the auto\-assign public IP feature if you specify an existing network interface for eth0\. 
 + The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the public IPv4 addressing attribute for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip)\.
 
-------
-#### [ New console ]
-
-To assign a public IPv4 address during instance launch, follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters), and when you configure [Network Settings](ec2-launch-instance-wizard.md#liw-network-settings), choose the option to **Auto\-assign Public IP**\.
-
-------
-#### [ Old console ]
-
-To assign a public IPv4 address during instance launch, follow the procedure to [launch an instance](launching-instance.md) and, in [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step), choose the option to **Auto\-assign Public IP**\.
-
-------<a name="publicip-cli"></a>
+**To assign a public IPv4 address during instance launch using the console**  
+Follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters), and when you configure [Network Settings](ec2-launch-instance-wizard.md#liw-network-settings), choose the option to **Auto\-assign Public IP**\.<a name="publicip-cli"></a>
 
 **To enable or disable the public IP addressing feature using the command line**
 
@@ -234,9 +189,6 @@ You can view the IPv6 addresses assigned to your instance, assign a public IPv6 
 
 You can use the Amazon EC2 console, AWS CLI, and instance metadata to view the IPv6 addresses for your instances\.
 
-------
-#### [ New console ]
-
 **To view the IPv6 addresses for an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -247,24 +199,7 @@ You can use the Amazon EC2 console, AWS CLI, and instance metadata to view the I
 
 1. On the **Networking** tab, locate **IPv6 addresses**\.
 
-1. Alternatively, under **Network interfaces** on the **Networking** tab, choose the interface ID for the network interface \(for example, eni\-123abc456def78901\)\. Locate **IPv6 IPs**\.
-
-------
-#### [ Old console ]
-
-**To view the IPv6 addresses for an instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance\.
-
-1. On the **Networking** tab, locate **IPv6 IPs**\.
-
-1. Alternatively, under **Network interfaces** on the **Description** tab, choose **eth0**, and then choose the interface ID \(for example, eni\-123abc456def78901\)\. Locate **IPv6 IPs**\.
-
-------
+1. Alternatively, under **Network interfaces** on the **Networking** tab, choose the interface ID for the network interface \(for example, eni\-123abc456def78901\)\. Locate **IPv6 addresses**\.
 
 **To view the IPv6 addresses for an instance using the command line**
 
@@ -299,14 +234,10 @@ You can use one of the following commands\. For more information about these com
 
 If your VPC and subnet have IPv6 CIDR blocks associated with them, you can assign an IPv6 address to your instance during or after launch\. The IPv6 address is assigned from the IPv6 address range of the subnet, and is assigned to the network interface with the device index of eth0\.
 
-------
-#### [ New console ]
+**To assign an IPv6 address during instance launch**  
+Follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters), and when you configure [Network Settings](ec2-launch-instance-wizard.md#liw-network-settings), choose the option to **Auto\-assign IPv6 IP**\.
 
-**At launch:**
-
-To assign an IPv6 address during instance launch, follow the procedure to [launch an instance](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters), and when you configure [Network Settings](ec2-launch-instance-wizard.md#liw-network-settings), choose the option to **Auto\-assign IPv6 IP**\.
-
-**After launch:**
+**To assign an IPv6 address after launch**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -316,28 +247,7 @@ To assign an IPv6 address during instance launch, follow the procedure to [launc
 
 1. Expand the network interface\. Under **IPv6 addresses**, choose **Assign new IP address**\. Enter an IPv6 address from the range of the subnet or leave the field blank to let Amazon choose an IPv6 address for you\.
 
-1. Choose **Save**\.
-
-------
-#### [ Old console ]
-
-**At launch:**
-
-To assign an IPv6 address during instance launch, follow the procedure to [launch an instance](launching-instance.md) and, in [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step), choose the option to **Auto\-assign IPv6 IP**\.
-
-**After launch:**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select your instance, and choose **Actions**, **Networking**, **Manage IP addresses**\.
-
-1. Expand the network interface\. Under **IPv6 addresses**, choose **Assign new IP address**\. Enter an IPv6 address from the range of the subnet or leave the field blank to let Amazon choose an IPv6 address for you\.
-
-1. Choose **Save**\.
-
-------<a name="assign-ipv6-cli"></a>
+1. Choose **Save**\.<a name="assign-ipv6-cli"></a>
 
 **To assign an IPv6 address using the command line**
 

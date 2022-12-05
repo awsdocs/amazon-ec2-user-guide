@@ -16,7 +16,7 @@ You can connect to the serial console of your EC2 instance by using the Amazon E
 + When you connect to the serial console, you might observe a slight drop in your instance’s throughput\.
 
 ## Prerequisites<a name="sc-prerequisites"></a>
-+ Supported in all AWS Regions except Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Osaka\), China \(Beijing\), China \(Ningxia\), Europe \(Milan\), and Middle East \(Bahrain\)\.
++ Supported in all AWS Regions except Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Hyderabad\), Asia Pacific \(Osaka\), China \(Beijing\), China \(Ningxia\), Europe \(Milan\), and Middle East \(Bahrain\)\.
 + Not supported in Local Zones, Wavelength Zones, or AWS Outposts\.
 + Supported for all virtualized instances built on the [Nitro System](instance-types.md#nitro-instance-types)\.
 + Not supported on bare metal instances\.

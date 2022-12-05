@@ -64,7 +64,7 @@ The following example response for the previous command lists the block indexes 
 ------
 #### [ AWS API ]
 
-The following [ListChangedBlocks](https://docs.aws.amazon.com/ebs/latest/APIReference/API_ListSnapshotBlocks.html) example request returns the block indexes and block tokens of blocks that are in snapshot `snap-0acEXAMPLEcf41648`\. The `startingBlockIndex` parameter limits the results to block indexes greater than `1000`, and the `maxResults` parameter limits the results to the first `100` blocks\.
+The following [ListSnapshotBlocks](https://docs.aws.amazon.com/ebs/latest/APIReference/API_ListSnapshotBlocks.html) example request returns the block indexes and block tokens of blocks that are in snapshot `snap-0acEXAMPLEcf41648`\. The `startingBlockIndex` parameter limits the results to block indexes greater than `1000`, and the `maxResults` parameter limits the results to the first `100` blocks\.
 
 ```
 GET /snapshots/snap-0acEXAMPLEcf41648/blocks?maxResults=100&startingBlockIndex=1000 HTTP/1.1

@@ -38,7 +38,7 @@ There are several instance attributes that you can specify to express your compu
 Depending on whether you use the console or the AWS CLI, you can specify the instance attributes for attribute\-based instance type selection as follows:
 
 In the console, you can specify the instance attributes in one or both of the following fleet configuration components:
-+ In a launch template, and reference the launch template in the fleet request
++ In a launch template, and then reference the launch template in the fleet request
 + In the fleet request
 
 In the AWS CLI, you can specify the instance attributes in one or all of the following fleet configuration components:
@@ -56,11 +56,11 @@ Spot Fleet provisions a fleet in the following way:
 + Spot Fleet determines the capacity pools from which it will consider launching the instances based on the AWS Regions or Availability Zones that have matching instance types\.
 + Spot Fleet applies the specified allocation strategy to determine from which capacity pools to launch the instances\.
 
-  Note that attribute\-based instance type selection does not pick the capacity pools from which to provision the fleet; that's the job of the allocation strategies\. There might be a large number of instance types with the specified attributes, and some of them might be expensive\. The default allocation strategy of `lowest-price` for Spot and On\-Demand guarantees that Spot Fleet will launch instances from the least expensive capacity pools\.
+  Note that attribute\-based instance type selection does not pick the capacity pools from which to provision the fleet; that's the job of the allocation strategies\. There might be a large number of instance types with the specified attributes, and some of them might be expensive\. The default allocation strategy of `lowestPrice` for Spot and On\-Demand guarantees that Spot Fleet will launch instances from the least expensive capacity pools\.
 
   If you specify an allocation strategy, Spot Fleet will launch instances according to the specified allocation strategy\.
-  + For Spot Instances, attribute\-based instance type selection supports the `capacity-optimized` and `lowest-price` allocation strategies\.
-  + For On\-Demand Instances, attribute\-based instance type selection supports the `lowest-price` allocation strategy\.
+  + For Spot Instances, attribute\-based instance type selection supports the `capacityOptimizedPrioritized`, `capacityOptimized` and `lowestPrice` allocation strategies\.
+  + For On\-Demand Instances, attribute\-based instance type selection supports the `lowestPrice` allocation strategy\.
 + If there is no capacity for the instance types with the specified instance attributes, no instances can be launched, and the fleet returns an error\.
 
 ### Price protection<a name="spotfleet-abs-price-protection"></a>
@@ -129,325 +129,59 @@ You can configure a fleet to use attribute\-based instance type selection by usi
 
 ### Create a Spot Fleet using the AWS CLI<a name="abs-create-spot-fleet-cli"></a>
 
-**To create a Spot Fleet \(AWS CLI\)**
-+ Use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) \(AWS CLI\) command to create a Spot Fleet\. Specify the fleet configuration in a JSON file\.
+**To configure a Spot Fleet for attribute\-based instance type selection \(AWS CLI\)**  
+Use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) \(AWS CLI\) command to create a Spot Fleet\. Specify the fleet configuration in a JSON file\.
 
 ```
 aws ec2 request-spot-fleet \
     --region us-east-1 \
-    --cli-input-json file://file_name.json
+    --spot-fleet-request-config file://file_name.json
 ```
 
-The following JSON file contains all of the parameters that can be specified when configuring a Spot Fleet\. The parameters for attribute\-based instance type selection are located in the `InstanceRequirements` structure\. For a description of each attribute and the default values, see [InstanceRequirements](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_InstanceRequirements.html) in the *Amazon EC2 API Reference*\.
+Example `file_name.json` file
+
+The following example contains the parameters that configure a Spot Fleet to use attribute\-based instance type selection, and is followed by a text explanation\.
+
+```
+{
+	"AllocationStrategy": "priceCapacityOptimized",
+	"TargetCapacity": 20,
+	"Type": "request",
+	"LaunchTemplateConfigs": [{
+		"LaunchTemplateSpecification": {
+			"LaunchTemplateName": "my-launch-template",
+			"Version": "1"
+		},
+		"Overrides": [{
+			"InstanceRequirements": {
+				"VCpuCount": {
+					"Min": 2
+				},
+				"MemoryMiB": {
+					"Min": 4
+				}
+			}
+		}]
+	}]
+}
+```
+
+The attributes for attribute\-based instance type selection are specified in the `InstanceRequirements` structure\. In this example, two attributes are specified:
++ `VCpuCount` – A minimum of 2 vCPUs is specified\. Because no maximum is specified, there is no maximum limit\.
++ `MemoryMiB` – A minimum of 4 MiB of memory is specified\. Because no maximum is specified, there is no maximum limit\.
+
+Any instance types that have 2 or more vCPUs and 4 MiB or more of memory will be identified\. However, price protection and the allocation strategy might exclude some instance types when [Spot Fleet provisions the fleet](#how-sf-uses-abs)\.
+
+For a list and descriptions of all the possible attributes that you can specify, see [InstanceRequirements](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_InstanceRequirements.html) in the *Amazon EC2 API Reference*\.
 
 **Note**  
 When `InstanceRequirements` is included in the fleet configuration, `InstanceType` and `WeightedCapacity` must be excluded; they cannot determine the fleet configuration at the same time as instance attributes\.
 
-```
-{
-    "DryRun": true,
-    "SpotFleetRequestConfig": {
-        "AllocationStrategy": "diversified",
-        "OnDemandAllocationStrategy": "lowestPrice",
-        "SpotMaintenanceStrategies": {
-            "CapacityRebalance": {
-                "ReplacementStrategy": "launch"
-            }
-        },
-        "ClientToken": "",
-        "ExcessCapacityTerminationPolicy": "default",
-        "FulfilledCapacity": 0.0,
-        "OnDemandFulfilledCapacity": 0.0,
-        "IamFleetRole": "",
-        "LaunchSpecifications": [
-            {
-                "SecurityGroups": [
-                    {
-                        "GroupName": "",
-                        "GroupId": ""
-                    }
-                ],
-                "AddressingType": "",
-                "BlockDeviceMappings": [
-                    {
-                        "DeviceName": "",
-                        "VirtualName": "",
-                        "Ebs": {
-                            "DeleteOnTermination": true,
-                            "Iops": 0,
-                            "SnapshotId": "",
-                            "VolumeSize": 0,
-                            "VolumeType": "st1",
-                            "KmsKeyId": "",
-                            "Throughput": 0,
-                            "OutpostArn": "",
-                            "Encrypted": true
-                        },
-                        "NoDevice": ""
-                    }
-                ],
-                "EbsOptimized": true,
-                "IamInstanceProfile": {
-                    "Arn": "",
-                    "Name": ""
-                },
-                "ImageId": "",
-                "InstanceType": "vt1.24xlarge",
-                "KernelId": "",
-                "KeyName": "",
-                "Monitoring": {
-                    "Enabled": true
-                },
-                "NetworkInterfaces": [
-                    {
-                        "AssociatePublicIpAddress": true,
-                        "DeleteOnTermination": true,
-                        "Description": "",
-                        "DeviceIndex": 0,
-                        "Groups": [
-                            ""
-                        ],
-                        "Ipv6AddressCount": 0,
-                        "Ipv6Addresses": [
-                            {
-                                "Ipv6Address": ""
-                            }
-                        ],
-                        "NetworkInterfaceId": "",
-                        "PrivateIpAddress": "",
-                        "PrivateIpAddresses": [
-                            {
-                                "Primary": true,
-                                "PrivateIpAddress": ""
-                            }
-                        ],
-                        "SecondaryPrivateIpAddressCount": 0,
-                        "SubnetId": "",
-                        "AssociateCarrierIpAddress": true,
-                        "InterfaceType": "",
-                        "NetworkCardIndex": 0,
-                        "Ipv4Prefixes": [
-                            {
-                                "Ipv4Prefix": ""
-                            }
-                        ],
-                        "Ipv4PrefixCount": 0,
-                        "Ipv6Prefixes": [
-                            {
-                                "Ipv6Prefix": ""
-                            }
-                        ],
-                        "Ipv6PrefixCount": 0
-                    }
-                ],
-                "Placement": {
-                    "AvailabilityZone": "",
-                    "GroupName": "",
-                    "Tenancy": "dedicated"
-                },
-                "RamdiskId": "",
-                "SpotPrice": "",
-                "SubnetId": "",
-                "UserData": "",
-                "WeightedCapacity": 0.0,
-                "TagSpecifications": [
-                    {
-                        "ResourceType": "placement-group",
-                        "Tags": [
-                            {
-                                "Key": "",
-                                "Value": ""
-                            }
-                        ]
-                    }
-                ],
-                "InstanceRequirements": {
-                    "VCpuCount": {
-                        "Min": 0,
-                        "Max": 0
-                    },
-                    "MemoryMiB": {
-                        "Min": 0,
-                        "Max": 0
-                    },
-                    "CpuManufacturers": [
-                        "intel"
-                    ],
-                    "MemoryGiBPerVCpu": {
-                        "Min": 0.0,
-                        "Max": 0.0
-                    },
-                    "ExcludedInstanceTypes": [
-                        ""
-                    ],
-                    "InstanceGenerations": [
-                        "previous"
-                    ],
-                    "SpotMaxPricePercentageOverLowestPrice": 0,
-                    "OnDemandMaxPricePercentageOverLowestPrice": 0,
-                    "BareMetal": "included",
-                    "BurstablePerformance": "excluded",
-                    "RequireHibernateSupport": true,
-                    "NetworkInterfaceCount": {
-                        "Min": 0,
-                        "Max": 0
-                    },
-                    "LocalStorage": "required",
-                    "LocalStorageTypes": [
-                        "ssd"
-                    ],
-                    "TotalLocalStorageGB": {
-                        "Min": 0.0,
-                        "Max": 0.0
-                    },
-                    "BaselineEbsBandwidthMbps": {
-                        "Min": 0,
-                        "Max": 0
-                    },
-                    "AcceleratorTypes": [
-                        "fpga"
-                    ],
-                    "AcceleratorCount": {
-                        "Min": 0,
-                        "Max": 0
-                    },
-                    "AcceleratorManufacturers": [
-                        "amd"
-                    ],
-                    "AcceleratorNames": [
-                        "t4"
-                    ],
-                    "AcceleratorTotalMemoryMiB": {
-                        "Min": 0,
-                        "Max": 0
-                    }
-                }
-            }
-        ],
-        "LaunchTemplateConfigs": [
-            {
-                "LaunchTemplateSpecification": {
-                    "LaunchTemplateId": "",
-                    "LaunchTemplateName": "",
-                    "Version": ""
-                },
-                "Overrides": [
-                    {
-                        "InstanceType": "t4g.large",
-                        "SpotPrice": "",
-                        "SubnetId": "",
-                        "AvailabilityZone": "",
-                        "WeightedCapacity": 0.0,
-                        "Priority": 0.0,
-                        "InstanceRequirements": {
-                            "VCpuCount": {
-                                "Min": 0,
-                                "Max": 0
-                            },
-                            "MemoryMiB": {
-                                "Min": 0,
-                                "Max": 0
-                            },
-                            "CpuManufacturers": [
-                                "amd"
-                            ],
-                            "MemoryGiBPerVCpu": {
-                                "Min": 0.0,
-                                "Max": 0.0
-                            },
-                            "ExcludedInstanceTypes": [
-                                ""
-                            ],
-                            "InstanceGenerations": [
-                                "current"
-                            ],
-                            "SpotMaxPricePercentageOverLowestPrice": 0,
-                            "OnDemandMaxPricePercentageOverLowestPrice": 0,
-                            "BareMetal": "excluded",
-                            "BurstablePerformance": "excluded",
-                            "RequireHibernateSupport": true,
-                            "NetworkInterfaceCount": {
-                                "Min": 0,
-                                "Max": 0
-                            },
-                            "LocalStorage": "included",
-                            "LocalStorageTypes": [
-                                "ssd"
-                            ],
-                            "TotalLocalStorageGB": {
-                                "Min": 0.0,
-                                "Max": 0.0
-                            },
-                            "BaselineEbsBandwidthMbps": {
-                                "Min": 0,
-                                "Max": 0
-                            },
-                            "AcceleratorTypes": [
-                                "gpu"
-                            ],
-                            "AcceleratorCount": {
-                                "Min": 0,
-                                "Max": 0
-                            },
-                            "AcceleratorManufacturers": [
-                                "xilinx"
-                            ],
-                            "AcceleratorNames": [
-                                "vu9p"
-                            ],
-                            "AcceleratorTotalMemoryMiB": {
-                                "Min": 0,
-                                "Max": 0
-                            }
-                        }
-                    }
-                ]
-            }
-        ],
-        "SpotPrice": "",
-        "TargetCapacity": 0,
-        "OnDemandTargetCapacity": 0,
-        "OnDemandMaxTotalPrice": "",
-        "SpotMaxTotalPrice": "",
-        "TerminateInstancesWithExpiration": true,
-        "Type": "request",
-        "ValidFrom": "1970-01-01T00:00:00",
-        "ValidUntil": "1970-01-01T00:00:00",
-        "ReplaceUnhealthyInstances": true,
-        "InstanceInterruptionBehavior": "hibernate",
-        "LoadBalancersConfig": {
-            "ClassicLoadBalancersConfig": {
-                "ClassicLoadBalancers": [
-                    {
-                        "Name": ""
-                    }
-                ]
-            },
-            "TargetGroupsConfig": {
-                "TargetGroups": [
-                    {
-                        "Arn": ""
-                    }
-                ]
-            }
-        },
-        "InstancePoolsToUseCount": 0,
-        "Context": "",
-        "TargetCapacityUnitType": "memory-mib",
-        "TagSpecifications": [
-            {
-                "ResourceType": "instance",
-                "Tags": [
-                    {
-                        "Key": "",
-                        "Value": ""
-                    }
-                ]
-            }
-        ]
-    }
-}
-```
+The JSON also contains the following fleet configuration:
++ `"AllocationStrategy": "priceCapacityOptimized"` – The allocation strategy for the Spot Instances in the fleet\.
++ `"LaunchTemplateName": "my-launch-template", "Version": "1"` – The launch template contains some instance configuration information, but if any instance types are specified, they will be overridden by the attributes that are specified in `InstanceRequirements`\.
++ `"TargetCapacity": 20` – The target capacity is 20 instances\.
++ `"Type": "request"` – The request type for the fleet is `request`\.
 
 ## Examples of configurations that are valid and not valid<a name="spotfleet-abs-example-configs"></a>
 
@@ -460,11 +194,11 @@ Configurations are considered not valid when they contain the following:
 
 **Topics**
 + [Valid configuration: Single launch template with overrides](#sf-abs-example-config1)
-+ [Valid configuration: Single launch template with multiple InstanceRequirements](#sf-abs-example-config3)
-+ [Valid configuration: Two launch templates, each with overrides](#sf-abs-example-config2)
-+ [Configuration not valid: `Overrides` contain `InstanceRequirements` and `InstanceType`](#sf-abs-example-config4)
-+ [Configuration not valid: Two `Overrides` contain `InstanceRequirements` and `InstanceType`](#sf-abs-example-config5)
-+ [Valid configuration: Only `InstanceRequirements` specified, no overlapping attribute values](#sf-abs-example-config6)
++ [Valid configuration: Single launch template with multiple InstanceRequirements](#sf-abs-example-config2)
++ [Valid configuration: Two launch templates, each with overrides](#sf-abs-example-config3)
++ [Valid configuration: Only `InstanceRequirements` specified, no overlapping attribute values](#sf-abs-example-config4)
++ [Configuration not valid: `Overrides` contain `InstanceRequirements` and `InstanceType`](#sf-abs-example-config5)
++ [Configuration not valid: Two `Overrides` contain `InstanceRequirements` and `InstanceType`](#sf-abs-example-config6)
 + [Configuration not valid: Overlapping attribute values](#sf-abs-example-config7)
 
 ### Valid configuration: Single launch template with overrides<a name="sf-abs-example-config1"></a>
@@ -521,7 +255,7 @@ In the preceding example, the following instance attributes are specified:
 **`TargetCapacityUnitType`**  
 The `TargetCapacityUnitType` parameter specifies the unit for the target capacity\. In the example, the target capacity is `5000` and the target capacity unit type is `vcpu`, which together specify a desired target capacity of 5,000 vCPUs\. Spot Fleet will launch enough instances so that the total number of vCPUs in the fleet is 5,000 vCPUs\.
 
-### Valid configuration: Single launch template with multiple InstanceRequirements<a name="sf-abs-example-config3"></a>
+### Valid configuration: Single launch template with multiple InstanceRequirements<a name="sf-abs-example-config2"></a>
 
 The following configuration is valid\. It contains one launch template and one `Overrides` structure containing two `InstanceRequirements` structures\. The attributes specified in `InstanceRequirements` are valid because the values do not overlap—the first `InstanceRequirements` structure specifies a `VCpuCount` of 0\-2 vCPUs, while the second `InstanceRequirements` structure specifies 4\-8 vCPUs\.
 
@@ -570,7 +304,7 @@ The following configuration is valid\. It contains one launch template and one `
 }
 ```
 
-### Valid configuration: Two launch templates, each with overrides<a name="sf-abs-example-config2"></a>
+### Valid configuration: Two launch templates, each with overrides<a name="sf-abs-example-config3"></a>
 
 The following configuration is valid\. It contains two launch templates, each with one `Overrides` structure containing one `InstanceRequirements` structure\. This configuration is useful for `arm` and `x86` architecture support in the same fleet\.
 
@@ -625,97 +359,7 @@ The following configuration is valid\. It contains two launch templates, each wi
 }
 ```
 
-### Configuration not valid: `Overrides` contain `InstanceRequirements` and `InstanceType`<a name="sf-abs-example-config4"></a>
-
-The following configuration is not valid\. The `Overrides` structure contains both `InstanceRequirements` and `InstanceType`\. For the `Overrides`, you can specify either `InstanceRequirements` or `InstanceType`, but not both\.
-
-```
-{
-    "SpotFleetRequestConfig": {
-        "AllocationStrategy": "lowestPrice",
-        "ExcessCapacityTerminationPolicy": "default",
-        "IamFleetRole": "arn:aws:iam::000000000000:role/aws-ec2-spot-fleet-tagging-role",
-        "LaunchTemplateConfigs": [
-            {
-                "LaunchTemplateSpecification": {
-                    "LaunchTemplateName": "MyLaunchTemplate",
-                    "Version": "1"
-                },
-                "Overrides": [
-                {
-                    "InstanceRequirements": {
-                        "VCpuCount": {
-                            "Min": 0,
-                            "Max": 2
-                        },
-                        "MemoryMiB": {
-                            "Min": 0
-                        }
-                    }
-                },
-                {
-                    "InstanceType": "m5.large"
-                }
-              ]
-            }
-        ],
-        "TargetCapacity": 1,
-        "OnDemandTargetCapacity": 0,
-        "Type": "maintain"
-    }
-}
-```
-
-### Configuration not valid: Two `Overrides` contain `InstanceRequirements` and `InstanceType`<a name="sf-abs-example-config5"></a>
-
-The following configuration is not valid\. The `Overrides` structures contain both `InstanceRequirements` and `InstanceType`\. You can specify either `InstanceRequirements` or `InstanceType`, but not both, even if they're in different `Overrides` structures\.
-
-```
-{
-    "SpotFleetRequestConfig": {
-        "AllocationStrategy": "lowestPrice",
-        "ExcessCapacityTerminationPolicy": "default",
-        "IamFleetRole": "arn:aws:iam::000000000000:role/aws-ec2-spot-fleet-tagging-role",
-        "LaunchTemplateConfigs": [
-            {
-                "LaunchTemplateSpecification": {
-                    "LaunchTemplateName": "MyLaunchTemplate",
-                    "Version": "1"
-                },
-                "Overrides": [
-                {
-                    "InstanceRequirements": {
-                        "VCpuCount": {
-                            "Min": 0,
-                            "Max": 2
-                        },
-                        "MemoryMiB": {
-                            "Min": 0
-                        }
-                    }
-                }
-              ]
-            },
-            {
-                "LaunchTemplateSpecification": {
-                    "LaunchTemplateName": "MyOtherLaunchTemplate",
-                    "Version": "1"
-                },
-                "Overrides": [
-                {
-                    "InstanceType": "m5.large"
-                }
-              ]
-            }
-        ],
-        "TargetCapacity": 1,
-        "OnDemandTargetCapacity": 0,
-        "Type": "maintain"
-    }
-}
-```
-
-### Valid configuration: Only `InstanceRequirements` specified, no overlapping attribute values<a name="sf-abs-example-config6"></a>
+### Valid configuration: Only `InstanceRequirements` specified, no overlapping attribute values<a name="sf-abs-example-config4"></a>
 
 The following configuration is valid\. It contains two `LaunchTemplateSpecification` structures, each with a launch template and an `Overrides` structure containing an `InstanceRequirements` structure\. The attributes specified in `InstanceRequirements` are valid because the values do not overlap—the first `InstanceRequirements` structure specifies a `VCpuCount` of 0\-2 vCPUs, while the second `InstanceRequirements` structure specifies 4\-8 vCPUs\.
 
@@ -761,6 +405,96 @@ The following configuration is valid\. It contains two `LaunchTemplateSpecificat
                             "Min": 0
                         }
                     }
+                }
+              ]
+            }
+        ],
+        "TargetCapacity": 1,
+        "OnDemandTargetCapacity": 0,
+        "Type": "maintain"
+    }
+}
+```
+
+### Configuration not valid: `Overrides` contain `InstanceRequirements` and `InstanceType`<a name="sf-abs-example-config5"></a>
+
+The following configuration is not valid\. The `Overrides` structure contains both `InstanceRequirements` and `InstanceType`\. For the `Overrides`, you can specify either `InstanceRequirements` or `InstanceType`, but not both\.
+
+```
+{
+    "SpotFleetRequestConfig": {
+        "AllocationStrategy": "lowestPrice",
+        "ExcessCapacityTerminationPolicy": "default",
+        "IamFleetRole": "arn:aws:iam::000000000000:role/aws-ec2-spot-fleet-tagging-role",
+        "LaunchTemplateConfigs": [
+            {
+                "LaunchTemplateSpecification": {
+                    "LaunchTemplateName": "MyLaunchTemplate",
+                    "Version": "1"
+                },
+                "Overrides": [
+                {
+                    "InstanceRequirements": {
+                        "VCpuCount": {
+                            "Min": 0,
+                            "Max": 2
+                        },
+                        "MemoryMiB": {
+                            "Min": 0
+                        }
+                    }
+                },
+                {
+                    "InstanceType": "m5.large"
+                }
+              ]
+            }
+        ],
+        "TargetCapacity": 1,
+        "OnDemandTargetCapacity": 0,
+        "Type": "maintain"
+    }
+}
+```
+
+### Configuration not valid: Two `Overrides` contain `InstanceRequirements` and `InstanceType`<a name="sf-abs-example-config6"></a>
+
+The following configuration is not valid\. The `Overrides` structures contain both `InstanceRequirements` and `InstanceType`\. You can specify either `InstanceRequirements` or `InstanceType`, but not both, even if they're in different `Overrides` structures\.
+
+```
+{
+    "SpotFleetRequestConfig": {
+        "AllocationStrategy": "lowestPrice",
+        "ExcessCapacityTerminationPolicy": "default",
+        "IamFleetRole": "arn:aws:iam::000000000000:role/aws-ec2-spot-fleet-tagging-role",
+        "LaunchTemplateConfigs": [
+            {
+                "LaunchTemplateSpecification": {
+                    "LaunchTemplateName": "MyLaunchTemplate",
+                    "Version": "1"
+                },
+                "Overrides": [
+                {
+                    "InstanceRequirements": {
+                        "VCpuCount": {
+                            "Min": 0,
+                            "Max": 2
+                        },
+                        "MemoryMiB": {
+                            "Min": 0
+                        }
+                    }
+                }
+              ]
+            },
+            {
+                "LaunchTemplateSpecification": {
+                    "LaunchTemplateName": "MyOtherLaunchTemplate",
+                    "Version": "1"
+                },
+                "Overrides": [
+                {
+                    "InstanceType": "m5.large"
                 }
               ]
             }
@@ -841,10 +575,10 @@ You can use the [get\-instance\-types\-from\-instance\-requirements](https://doc
    {
        "DryRun": true,
        "ArchitectureTypes": [
-           "x86_64_mac"
+           "i386"
        ],
        "VirtualizationTypes": [
-           "paravirtual"
+           "hvm"
        ],
        "InstanceRequirements": {
            "VCpuCount": {
@@ -871,13 +605,13 @@ You can use the [get\-instance\-types\-from\-instance\-requirements](https://doc
            "SpotMaxPricePercentageOverLowestPrice": 0,
            "OnDemandMaxPricePercentageOverLowestPrice": 0,
            "BareMetal": "included",
-           "BurstablePerformance": "excluded",
+           "BurstablePerformance": "included",
            "RequireHibernateSupport": true,
            "NetworkInterfaceCount": {
                "Min": 0,
                "Max": 0
            },
-           "LocalStorage": "required",
+           "LocalStorage": "included",
            "LocalStorageTypes": [
                "hdd"
            ],
@@ -890,22 +624,29 @@ You can use the [get\-instance\-types\-from\-instance\-requirements](https://doc
                "Max": 0
            },
            "AcceleratorTypes": [
-               "inference"
+               "gpu"
            ],
            "AcceleratorCount": {
                "Min": 0,
                "Max": 0
            },
            "AcceleratorManufacturers": [
-               "xilinx"
+               "nvidia"
            ],
            "AcceleratorNames": [
-               "t4"
+               "a100"
            ],
            "AcceleratorTotalMemoryMiB": {
                "Min": 0,
                "Max": 0
-           }
+           },
+           "NetworkBandwidthGbps": {
+               "Min": 0.0,
+               "Max": 0.0
+           },
+           "AllowedInstanceTypes": [
+               ""
+           ]
        },
        "MaxResults": 0,
        "NextToken": ""
@@ -941,7 +682,6 @@ For a description of each attribute and their default values, see [get\-instance
 
    ```
    {
-       
        "ArchitectureTypes": [
            "x86_64"
        ],
@@ -979,7 +719,7 @@ For a description of each attribute and their default values, see [get\-instance
    ||  c5ad.xlarge                         ||
    ||  c5d.xlarge                          ||
    ||  c5n.xlarge                          ||
-   ||  d2.xlarge                           ||
+   ||  c6a.xlarge                           ||
    ...
    ```
 

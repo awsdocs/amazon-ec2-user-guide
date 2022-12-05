@@ -80,7 +80,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation panel, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
+1. In the navigation pane, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
 
 1. \(*Optional*\) In the **Name and tags** section, provide a name for the instance, such as `EFA-instance`\. The name is assigned to the instance as a resource tag \(`Name=EFA-instance`\)\.
 
@@ -164,25 +164,39 @@ Run a test to ensure that your temporary instance is properly configured for EFA
 
 1. Run the test and specify the host file \(`--hostfile`\) and the number of GPUs to use \(`-n`\)\. The following command runs the `all_reduce_perf` test on 8 GPUs on the instance itself, and specifies the following environment variables\.
    + `FI_PROVIDER="efa"`—specifies the fabric interface provider\. This must be set to `"efa"`\.
-   + `FI_EFA_USE_DEVICE_RDMA=1`—uses the device's RDMA functionality for one\-sided and two\-sided transfer\.
+   + `FI_EFA_USE_DEVICE_RDMA=1`—\(`p4d.24xlarge` only\) uses the device's RDMA functionality for one\-sided and two\-sided transfer\.
    + `NCCL_DEBUG=INFO`—enables detailed debugging output\. You can also specify `VERSION` to print only the NCCL version at the start of the test, or `WARN` to receive only error messages\.
    + `NCCL_ALGO=ring`—enables ring algorithm for collective operations\.
    + `NCCL_PROTO=simple`—instructs NCCL to use a simple protocol for communication\. Currently, the EFA provider does not support LL protocols\. Enabling them could lead to data corruption\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
+   + `p3dn.24xlarge`
 
-   ```
-   $ /opt/amazon/openmpi/bin/mpirun \
-       -x FI_PROVIDER="efa" \
-       -x FI_EFA_USE_DEVICE_RDMA=1 \
-       -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/usr/local/cuda/efa/lib:$LD_LIBRARY_PATH \
-       -x NCCL_DEBUG=INFO \
-       -x NCCL_ALGO=ring \
-       -x NCCL_PROTO=simple \
-       --hostfile my-hosts -n 8 -N 8 \
-       --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
-       $HOME/src/bin/efa-tests/efa-cuda-10.0/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
-   ```
+     ```
+     $ /opt/amazon/openmpi/bin/mpirun \
+         -x FI_PROVIDER="efa" \
+         -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
+         -x NCCL_DEBUG=INFO \
+         -x NCCL_ALGO=ring \
+         -x NCCL_PROTO=simple \
+         --hostfile my-hosts -n 8 -N 8 \
+         --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
+         $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
+     ```
+   + `p4d.24xlarge`
+
+     ```
+     $ /opt/amazon/openmpi/bin/mpirun \
+         -x FI_PROVIDER="efa" \
+         -x FI_EFA_USE_DEVICE_RDMA=1 \
+         -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
+         -x NCCL_DEBUG=INFO \
+         -x NCCL_ALGO=ring \
+         -x NCCL_PROTO=simple \
+         --hostfile my-hosts -n 8 -N 8 \
+         --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
+         $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
+     ```
 
 1. You can confirm that EFA is active as the underlying provider for NCCL when the `NCCL_DEBUG` log is printed\.
 
@@ -201,7 +215,7 @@ Run a test to ensure that your temporary instance is properly configured for EFA
 Install the machine learning applications on the temporary instance\. The installation procedure varies depending on the specific machine learning application\. For more information about installing software on your Linux instance, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\.
 
 **Note**  
-You might need to refer to your machine learning application’s documentation for installation instructions\.
+Refer to your machine learning application’s documentation for installation instructions\.
 
 ## Step 5: Create an EFA and NCCL\-enabled AMI<a name="nccl-start-dlami-ami"></a>
 
@@ -256,7 +270,7 @@ To ensure that capacity is available as you scale your cluster’s instances, yo
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation panel, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
+1. In the navigation pane, choose **Instances**, and then choose **Launch Instances** to open the new launch instance wizard\.
 
 1. \(*Optional*\) In the **Name and tags** section, provide a name for the instance, such as `EFA-instance`\. The name is assigned to the instance as a resource tag \(`Name=EFA-instance`\)\.
 

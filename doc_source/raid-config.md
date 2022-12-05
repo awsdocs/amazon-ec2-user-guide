@@ -49,6 +49,8 @@ You can list the devices on your instance with the lsblk command to find the dev
    ```
    [ec2-user ~]$ sudo mdadm --create --verbose /dev/md0 --level=0 --name=MY_RAID --raid-devices=number_of_volumes device_name1 device_name2
    ```
+**Tip**  
+If you get the `mdadm: command not found` error, use the following command to install mdadm: `sudo yum install mdadm`\.
 
 1.  Allow time for the RAID array to initialize and synchronize\. You can track the progress of these operations with the following command:
 

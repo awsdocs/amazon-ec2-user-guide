@@ -18,10 +18,12 @@ To work with Recycle Bin and retention rules, IAM users need the following permi
 + `rbin:TagResource`
 + `rbin:UntagResource`
 + `rbin:ListTagsForResource`
++ `rbin:LockRule`
++ `rbin:UnlockRule`
 
 To use the Recycle Bin console, IAM users need the `tag:GetResources` permission\.
 
-The following is an example IAM policy\. It includes the `tag:GetResources` permission for console users\. If the permission is not needed, you can remove it from the policy\.
+The following is an example IAM policy that includes the `tag:GetResources` permission for console users\. If some permissions are not needed, you can remove them from the policy\.
 
 ```
 {
@@ -37,6 +39,8 @@ The following is an example IAM policy\. It includes the `tag:GetResources` perm
             "rbin:TagResource",
             "rbin:UntagResource",
             "rbin:ListTagsForResource",
+            "rbin:LockRule",
+            "rbin:UnlockRule",
             "tag:GetResources"
         ],
         "Resource": "*"

@@ -41,7 +41,7 @@ Alternatively, request an increase using Service Quotas\. For more information, 
 
 ## Restriction on email sent using port 25<a name="port-25-throttle"></a>
 
-On all instances, Amazon EC2 restricts outbound traffic to public IP addresses over port 25 by default\. You can request that this restriction be removed\. For more information, see [How do I remove the restriction on port 25 from my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-port-25-throttle/) in the AWS Knowledge Center\.
+On all instances, Amazon EC2 restricts outbound traffic to public IP addresses over port 25 by default\. You can request that this restriction be removed\. For more information, see [How do I remove the restriction on port 25 from my Amazon EC2 instance or AWS Lambda function?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-port-25-throttle/) in the AWS Knowledge Center\.
 
 **Note**  
 This restriction does not apply to outbound traffic sent over port 25 to:  

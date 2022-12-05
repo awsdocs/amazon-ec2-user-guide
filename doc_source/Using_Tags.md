@@ -175,7 +175,7 @@ You can display tags in two different ways in the Amazon EC2 console\. You can d
 **Display tags for individual resources**  
 When you select a resource\-specific page in the Amazon EC2 console, it displays a list of those resources\. For example, if you select **Instances** from the navigation pane, the console displays your Amazon EC2 instances\. When you select a resource from one of these lists \(for example, an instance\), if the resource supports tags, you can view and manage its tags\. On most resource pages, you can view the tags by choosing the **Tags** tab\.
 
-You can add a column to the resource list that displays all values for tags with the same key\. You can use this column sort and filter the resource list by the tag\.
+You can add a column to the resource list that displays all values for tags with the same key\. You can use this column to sort and filter the resource list by the tag\.
 
 ------
 #### [ New console ]
@@ -203,7 +203,7 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
+1. From the navigation bar, select the Region where the resource to tag is located\. For more information, see [Resource locations](resources.md)\.
 
 1. In the navigation pane, select a resource type \(for example, **Instances**\)\.
 
@@ -215,7 +215,7 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
+1. From the navigation bar, select the Region where the resource to untag is located\. For more information, see [Resource locations](resources.md)\.
 
 1. In the navigation pane, choose a resource type \(for example, **Instances**\)\.
 
@@ -229,7 +229,7 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
+1. From the navigation bar, select the Region where the resources to tag are located\. For more information, see [Resource locations](resources.md)\.
 
 1. In the navigation pane, choose **Tags**\.
 
@@ -247,7 +247,7 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
+1. From the navigation bar, select the Region where the resources to untag are located\. For more information, see [Resource locations](resources.md)\.
 
 1. In the navigation pane, choose **Tags**, **Manage Tags**\.
 
@@ -261,7 +261,35 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 ### Add a tag when you launch an instance<a name="instance-details-tags"></a>
 
-**To add a tag using the Launch Wizard**
+------
+#### [ New console ]
+
+**To add a tag using the launch instance wizard**
+
+1. From the navigation bar, select the Region for the instance\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. Select the Region that meets your needs\. For more information, see [Resource locations](resources.md)\.
+
+1. Choose **Launch instance**\.
+
+1. Under **Name and tags**, you can enter a descriptive name for your instance and specify tags\.
+
+   The instance name is a tag, where the key is **Name**, and the value is the name that you specify\. You can tag the instance, volumes, elastic graphics, and network interfaces\. For Spot Instances, you can tag the Spot Instance request only\.
+
+   Specifying an instance name and additional tags is optional\.
+   + For **Name**, enter a descriptive name for the instance\. If you don't specify a name, the instance can be identified by its ID, which is automatically generated when you launch the instance\.
+   + To add additional tags, choose **Add additional tags**\. Choose **Add tag**, and then enter a key and value, and select the resource type to tag\. Choose **Add tag** again for each additional tag to add\.
+
+1. Under **Application and OS Images \(Amazon Machine Image\)**, choose the operating system \(OS\) for your instance and an AMI\. For more information, see [Application and OS Images \(Amazon Machine Image\)](ec2-launch-instance-wizard.md#liw-ami)\.
+
+1. Under **Key pair \(login\)**, for **Key pair name**, choose an existing key pair or create a new one\.
+
+1. Either keep all the other fields at their default values or choose specific values for your desired instance configuration\. For information about the fields, see [Launch an instance using defined parameters](ec2-launch-instance-wizard.md#liw-launch-instance-with-defined-parameters)\.
+
+1. In the **Summary** panel, review your settings, and then choose **Launch instance**\.
+
+------
+#### [ Old console ]
+
+**To add a tag using the launch instance wizard**
 
 1. From the navigation bar, select the Region for the instance\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. Select the Region that meets your needs\. For more information, see [Resource locations](resources.md)\.
 
@@ -278,6 +306,8 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 1. On the **Configure Security Group** page, you can choose from an existing security group that you own, or let the wizard create a new security group for you\. Choose **Review and Launch** when you are done\.
 
 1. Review your settings\. When you're satisfied with your selections, choose **Launch**\. Select an existing key pair or create a new one, select the acknowledgment check box, and then choose **Launch Instances**\.
+
+------
 
 ### Filter a list of resources by tag<a name="filtering-the-list-by-tag"></a>
 

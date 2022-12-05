@@ -57,7 +57,7 @@ For the prerequisites for connecting to a Windows instance, see [Prerequisites](
 
 ## \(Optional\) Get the instance fingerprint<a name="connection-prereqs-fingerprint"></a>
 
-To protect yourself from man\-in\-the\-middle attacks, you can verify the key fingerprint when you connect to your instance\. Verifying the fingerprint is useful if you've launched your instance from a public AMI provided by a third party\.
+To protect yourself from man\-in\-the\-middle attacks, you can verify the fingerprint of your instance when you connect to it\. Verifying the fingerprint is useful if you've launched your instance from a public AMI provided by a third party\.
 
 First, you get the instance fingerprint\. Then, when you connect to the instance, you are prompted to verify the fingerprint\. You can compare the fingerprint you obtained with the fingerprint displayed for verification\. If these fingerprints don't match, someone might be attempting a *man\-in\-the\-middle* attack\. If they match, you can confidently connect to your instance\.
 
@@ -67,10 +67,10 @@ First, you get the instance fingerprint\. Then, when you connect to the instance
 
 **To get the instance fingerprint**
 
-1. On your local computer \(not on the instance\), use the [get\-console\-output](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\) command as follows to obtain the fingerprint:
+1. On your local computer \(not on the instance\), use the [get\-console\-output](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\) command as follows to obtain the fingerprint of the instance\. If the output is large, you can pipe the output to a text file where it might be easier to read\.
 
    ```
-   aws ec2 get-console-output --instance-id instance_id --output text
+   aws ec2 get-console-output --instance-id instance_id --output text > temp.txt
    ```
 
 1. Here is an example of what you should look for in the output\. The exact output can vary by the operating system, AMI version, and whether you had AWS create the key\.

@@ -54,60 +54,61 @@ You can create an AMI using the AWS Management Console or the command line\.
 
 **To create an AMI from an instance using the console**
 
-1. Start with an existing AMI\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-   1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+1. In the navigation pane, choose **Instances**\.
 
-   1. In the navigation pane, under **Images**, choose **AMIs**\.
-
-   1. Select an appropriate EBS\-backed AMI to serve as a starting point for your new AMI\.
-
-1. Launch an instance from the AMI\.
-
-   Choose **Launch instance from image** \(new console\) or **Launch** \(old console\) to launch an instance of the EBS\-backed AMI that you've selected\. Accept the default values in the wizard\. For more information, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\.
-
-1. Customize the instance\.
-
-   While the instance is running, connect to it\. You can perform any of the following actions on your instance to customize it for your needs:
-   + Install software and applications
-   + Copy data
-   + Reduce start time by deleting temporary files, defragmenting your hard drive, and zeroing out free space
-   + Attach additional EBS volumes
-
-   \(Optional\) Create snapshots of all the volumes attached to your instance\. For more information about creating snapshots, see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\.
-
-1. Create an AMI from the instance\.
-
-   1. In the navigation pane, choose **Instances**, select your instance, and then choose **Actions**, **Image and templates**, **Create image**\.
+1. Select the instance from which to create the AMI, and then choose **Actions**, **Image and templates**, **Create image**\.
 **Tip**  
 If this option is disabled, your instance isn't an Amazon EBS\-backed instance\.
 
-   1. On the **Create image** page, specify the following information, and then choose **Create image**\.
-      + **Image name** – A unique name for the image\.
-      + **Image description** – An optional description of the image, up to 255 characters\.
-      + **No reboot** – By default, when Amazon EC2 creates the new AMI, it reboots the instance so that it can take snapshots of the attached volumes while data is at rest, in order to ensure a consistent state\. For the **No reboot** setting, you can select the **Enable** check box to prevent Amazon EC2 from shutting down and rebooting the instance\.
+1. On the **Create image** page, specify the following information:
+
+   1. For **Image name**, enter a unique name for the image, up to 127 characters\.
+
+   1. For **Image description**, enter an optional description of the image, up to 255 characters\.
+
+   1. For **No reboot**, either keep the **Enable** check box cleared \(the default\), or select it\.
+      + If **Enable** is cleared, when Amazon EC2 creates the new AMI, it reboots the instance so that it can take snapshots of the attached volumes while data is at rest, in order to ensure a consistent state\.
+      + If **Enable** is selected, when Amazon EC2 creates the new AMI, it does not shut down and reboot the instance\.
 **Warning**  
 If you choose to enable **No reboot**, we can't guarantee the file system integrity of the created image\.
-      + **Instance volumes** – The fields in this section enable you to modify the root volume, and add additional Amazon EBS and instance store volumes\.
-        + The root volume is defined in the first row\. To change the size of the root volume, for **Size**, enter the required value\.
-        + If you select **Delete on termination**, when you terminate the instance created from this AMI, the EBS volume is deleted\. If you clear **Delete on termination**, when you terminate the instance, the EBS volume is not deleted\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
-        + To add an EBS volume, choose **Add volume** \(which adds a new row\)\. For **Volume type**, choose **EBS**, and fill in the fields in the row\. When you launch an instance from your new AMI, additional volumes are automatically attached to the instance\. Empty volumes must be formatted and mounted\. Volumes based on a snapshot must be mounted\.
-        + To add an instance store volume, see [Add instance store volumes to an AMI](add-instance-store-volumes.md#adding-instance-storage-ami)\. When you launch an instance from your new AMI, additional volumes are automatically initialized and mounted\. These volumes do not contain data from the instance store volumes of the running instance on which you based your AMI\.
-      + **Tags** – You can tag the AMI and the snapshots with the same tags, or you can tag them with different tags\.
-        + To tag the AMI and the snapshots with the *same* tags, choose **Tag image and snapshots together**\. The same tags are applied to the AMI and every snapshot that is created\.
-        + To tag the AMI and the snapshots with *different* tags, choose **Tag image and snapshots separately**\. Different tags are applied to the AMI and the snapshots that are created\. However, all the snapshots get the same tags; you can't tag each snapshot with a different tag\.
 
-        To add a tag, choose **Add tag**, and enter the key and value for the tag\. Repeat for each tag\.
+   1. **Instance volumes** – You can modify the root volume, and add additional Amazon EBS and instance store volumes, as follows:
 
-   1. To view the status of your AMI while it is being created, in the navigation pane, choose **AMIs**\. Initially, the status is `pending` but should change to `available` after a few minutes\.
+      1. The root volume is defined in the first row\.
+         + To change the size of the root volume, for **Size**, enter the required value\.
+         + If you select **Delete on termination**, when you terminate the instance created from this AMI, the EBS volume is deleted\. If you clear **Delete on termination**, when you terminate the instance, the EBS volume is not deleted\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
 
-1. \(Optional\) To view the snapshot that was created for the new AMI, choose **Snapshots**\. When you launch an instance from this AMI, we use this snapshot to create its root device volume\.
+      1. To add an EBS volume, choose **Add volume** \(which adds a new row\)\. For **Volume type**, choose **EBS**, and fill in the fields in the row\. When you launch an instance from your new AMI, additional volumes are automatically attached to the instance\. Empty volumes must be formatted and mounted\. Volumes based on a snapshot must be mounted\.
 
-1. Launch an instance from your new AMI\.
+      1. To add an instance store volume, see [Add instance store volumes to an AMI](add-instance-store-volumes.md#adding-instance-storage-ami)\. When you launch an instance from your new AMI, additional volumes are automatically initialized and mounted\. These volumes do not contain data from the instance store volumes of the running instance on which you based your AMI\.
 
-   For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
+   1. **Tags** – You can tag the AMI and the snapshots with the same tags, or you can tag them with different tags\.
+      + To tag the AMI and the snapshots with the *same* tags, choose **Tag image and snapshots together**\. The same tags are applied to the AMI and every snapshot that is created\.
+      + To tag the AMI and the snapshots with *different* tags, choose **Tag image and snapshots separately**\. Different tags are applied to the AMI and the snapshots that are created\. However, all the snapshots get the same tags; you can't tag each snapshot with a different tag\.
 
-   The new running instance contains all of the customizations that you applied in the previous steps\.
+      To add a tag, choose **Add tag**, and enter the key and value for the tag\. Repeat for each tag\.
+
+   1. When you're ready to create your AMI, choose **Create image**\. 
+
+1. To view the status of your AMI while it is being created:
+
+   1. In the navigation pane, choose **AMIs**\.
+
+   1. Set the filter to **Owned by me**, and find your AMI in the list\.
+
+      Initially, the status is `pending` but should change to `available` after a few minutes\.
+
+1. \(Optional\) To view the snapshot that was created for the new AMI:
+
+   1. Note the ID of your AMI that you located in the previous step\.
+
+   1. In the navigation pane, choose **Snapshots**\.
+
+   1. Set the filter to **Owned by me**, and then find the snapshot with the new AMI ID in the **Description** column\.
+
+      When you launch an instance from this AMI, Amazon EC2 uses this snapshot to create its root device volume\.
 
 ------
 #### [ AWS CLI ]
@@ -131,7 +132,7 @@ If you have a snapshot of the root device volume of an instance, you can create 
 
 1. In the navigation pane, choose **Snapshots**\.
 
-1. Select the snapshot from which to create the AMI and choose **Actions**, **Create image from snapshot**\.
+1. Select the snapshot from which to create the AMI, and then choose **Actions**, **Create image from snapshot**\.
 
 1. For **Image name**, enter a descriptive name for the image\.
 

@@ -56,8 +56,6 @@ To set up an instance quickly for testing purposes, follow these steps\. You'll 
 
 1. From the Amazon EC2 console dashboard, choose **Launch instance**\. 
 
-   If you see the old launch wizard, the new launch instance wizard is not yet the default view in the currently selected Region\. To open the new launch instance wizard, choose **Opt in to the new experience** at the top right of the screen\.
-
 1. \(Optional\) Under **Name and tags**, for **Name**, enter a descriptive name for your instance\.
 
 1. Under **Application and OS Images \(Amazon Machine Image\)**, choose **Quick Start**, and then choose the operating system \(OS\) for your instance\.
@@ -88,8 +86,6 @@ Except for the key pair, the launch instance wizard provides default values for 
 1. In the navigation bar at the top of the screen, the current AWS Region is displayed \(for example, US East \(Ohio\)\)\. Select a Region in which to launch the instance\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
 
 1. From the Amazon EC2 console dashboard, choose **Launch instance**\.
-
-   If you see the old launch wizard, the new launch instance wizard is not yet the default view in the currently selected Region\. To open the new launch instance wizard, choose **Opt in to the new experience** at the top right of the screen\.
 
 ### Name and tags<a name="liw-name-and-tags"></a>
 
@@ -123,7 +119,7 @@ First select the OS that you need, and then, from **Amazon Machine Image \(AMI\)
 **Browse more AMIs**  
 Choose **Browse more AMIs** to browse the full AMI catalog\.  
 + To search through all available AMIs, enter a keyword in the search bar and then press **Enter**\.
-+ To find an AMI using a Systems Manager parameter, choose the arrow button to the right of the search bar, and then choose **Search by Systems Manager parameter**\. For more information, see [Use a Systems Manager parameter to find an AMI](finding-an-ami.md#using-systems-manager-parameter-to-find-AMI)\.
++ To find an AMI by using a Systems Manager parameter, choose the arrow button to the right of the search bar, and then choose **Search by Systems Manager parameter**\. For more information, see [Use a Systems Manager parameter to find an AMI](finding-an-ami.md#using-systems-manager-parameter-to-find-AMI)\.
 + To search by category, choose **Quickstart AMIs**, **My AMIs**, **AWS Marketplace AMIs**, or **Community AMIs**\.
 
   The AWS Marketplace is an online store where you can buy software that runs on AWS, including AMIs\. For more information about launching an instance from the AWS Marketplace, see [Launch an AWS Marketplace instance](launch-marketplace-console.md)\. In **Community AMIs**, you can find AMIs that AWS community members have made available for others to use\. AMIs from Amazon or a verified partner are marked **Verified provider**\.
@@ -154,8 +150,7 @@ If you choose the **Proceed without key pair \(Not recommended\)** option, you w
 ### Network settings<a name="liw-network-settings"></a>
 
 Configure the network settings, as necessary\.
-+ **Networking platform**: If applicable, whether to launch the instance into a VPC or EC2\-Classic\. If you choose **Virtual Private Cloud \(VPC\)**, specify the subnet in the **Network interfaces** section\. If you choose **EC2\-Classic**, ensure that the specified instance type is supported in EC2\-Classic and then specify the Availability Zone for the instance\. Note that we are retiring EC2\-Classic on August 15, 2022\.
-+ **VPC**: Select an existing VPC in which to create the security group\.
++ **VPC**: Choose an existing VPC for your instance\. You can choose the default VPC or a VPC that you created\. For more information, see [Virtual private clouds](using-vpc.md)\.
 + **Subnet**: You can launch an instance in a subnet associated with an Availability Zone, Local Zone, Wavelength Zone, or Outpost\.
 
   To launch the instance in an Availability Zone, select the subnet in which to launch your instance\. To create a new subnet, choose **Create new subnet** to go to the Amazon VPC console\. When you are done, return to the launch instance wizard and choose the Refresh icon to load your subnet in the list\.
@@ -169,8 +164,8 @@ Configure the network settings, as necessary\.
   If you add a network interface, you must specify the same security group in the network interface\.
 
   Select or create a security group as follows:
-  + To select an existing security group, choose **Select existing security group**, and select your security group from **Common security groups**\.
-  + To create a new security group, choose **Create security group**\. The launch instance wizard automatically defines the **launch\-wizard\-*x*** security group and provides the following check boxes for quickly adding security group rules:
+  + To select an existing security group for your VPC, choose **Select existing security group**, and select your security group from **Common security groups**\.
+  + To create a new security group for your VPC, choose **Create security group**\. The launch instance wizard automatically defines the **launch\-wizard\-*x*** security group and provides the following check boxes for quickly adding security group rules:
 
     **Allow SSH traffic from** – Creates an inbound rule to allow you to connect to your instance over SSH \(port 22\)\. Specify whether the traffic comes from **Anywhere**, **Custom**, or **My IP**\.
 

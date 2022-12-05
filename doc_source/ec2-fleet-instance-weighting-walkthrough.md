@@ -49,7 +49,7 @@ Before creating an EC2 Fleet, Example Corp verifies that it has an IAM role with
 
 ## Create a launch template<a name="ec2-fleet-instance-weighting-create-launch-template"></a>
 
-Next, Example Corp creates a launch template\. The launch template ID is used in the following step\. For more information, see [Create a launch template](ec2-launch-templates.md#create-launch-template)\.
+Next, Example Corp creates a launch template\. The launch template ID is used in the following step\. For more information, see [Create a launch template](create-launch-template.md)\.
 
 ## Create the EC2 Fleet<a name="ec2-fleet-instance-weighting-walkthrough-request"></a>
 

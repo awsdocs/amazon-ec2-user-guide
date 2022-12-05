@@ -43,7 +43,16 @@ These instances are ideal for running advanced, compute\-intensive workloads, su
 + Distributed analytics
 + Highly scalable multiplayer gaming
 
-For more information, see [Amazon EC2 C6i Instances](http://aws.amazon.com/ec2/instance-types/c6i)\.
+**C6in instances**
+
+These instances are well suited for compute\-intensive workloads such as the following:
++ Distributed computing applications
++ Network virtual appliances
++ Data analytics
++ High Performance Computing \(HPC\)
++ CPU\-based AI/ML
+
+For more information, see [Amazon EC2 C6i Instances](http://aws.amazon.com/ec2/instance-types/C6i)\.
 
 **Hpc6a instances**
 
@@ -176,6 +185,15 @@ The following is a summary of the hardware specifications for compute optimized 
 | c6id\.24xlarge | 96 | 192 | 
 | c6id\.32xlarge | 128 | 256 | 
 | c6id\.metal | 128 | 256 | 
+| c6in\.large | 2 | 4 | 
+| c6in\.xlarge | 4 | 8 | 
+| c6in\.2xlarge | 8 | 16 | 
+| c6in\.4xlarge | 16 | 32 | 
+| c6in\.8xlarge | 32 | 64 | 
+| c6in\.12xlarge | 48 | 96 | 
+| c6in\.16xlarge | 64 | 128 | 
+| c6in\.24xlarge | 96 | 192 | 
+| c6in\.32xlarge | 128 | 256 | 
 | c7g\.medium | 1 | 2 | 
 | c7g\.large | 2 | 4 | 
 | c7g\.xlarge | 4 | 8 | 
@@ -233,15 +251,23 @@ The following is a summary of network performance for compute optimized instance
 | c6a\.12xlarge \| c6i\.12xlarge \| c6id\.12xlarge | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5a\.16xlarge \| c5a\.24xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge \| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c7g\.12xlarge | 22\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.4xlarge and smaller  \| c6gn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal \| c6a\.16xlarge  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge \| c6i\.16xlarge \| c6id\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.4xlarge and smaller  \| c6gn\.4xlarge and smaller \| c6in\.large | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal \| c6a\.16xlarge  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge \| c6i\.16xlarge \| c6id\.16xlarge \| c6id\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c7g\.16xlarge | 30 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6in\.xlarge | Up to 30 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | c6a\.24xlarge \| c6i\.24xlarge \| c6id\.24xlarge | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.9xlarge \| c6a\.32xlarge \| c6a\.48xlarge \| c6a\.metal  \| c6gn\.8xlarge \| c6i\.32xlarge \| c6i\.metal \| c6id\.32xlarge \| c6id\.metal  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c6gn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  \| hpc6a\.48xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
+| c6in\.2xlarge  | Up to 40 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c6in\.4xlarge | Up to 50 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c5n\.9xlarge \| c6a\.32xlarge \| c6a\.48xlarge \| c6a\.metal  \| c6gn\.8xlarge \| c6i\.32xlarge \| c6i\.metal \| c6id\.32xlarge \| c6id\.metal \| c6in\.8xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6gn\.12xlarge \| c6in\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  \| hpc6a\.48xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
+| c6in\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6in\.24xlarge  | 150 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6in\.32xlarge | 200 Gbps \* | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
-† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
+† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.
+
+\* For 32xlarge and metal sizes, at least 2 ENIs, each attached to a different network card, are required on the instance to achieve 200 Gbps throughput\. Each ENI attached to a network card can achieve a max of 170 Gbps\.<a name="baseline-bandwidth"></a>
 
 
 | Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 

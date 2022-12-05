@@ -1,20 +1,21 @@
 # Amazon EC2 Mac instances<a name="ec2-mac-instances"></a>
 
-**Introduction**
+Amazon EC2 Mac instances natively support the macOS operating system\.
++ EC2 x86 Mac instances \(`mac1.metal`\) are built on 2018 Mac mini hardware powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. 
++ EC2 M1 Mac instances \(`mac2.metal`\) are built on 2020 Mac mini hardware powered by Apple Silicon M1 processors\. 
 
-Amazon EC2 Mac instances natively support the macOS operating system\. EC2 x86 Mac instances are built on Mac mini hardware powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. EC2 M1 Mac instances are built on Mac mini hardware powered by Apple Silicon M1 processors\. These instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
+EC2 Mac instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
 
 **Note**  
-The **unit of billing** is the **dedicated host**\. The instances running on top of that host have no additional charge\.
+The **unit of billing** is the **dedicated host**\. The instances running on that host have no additional charge\.
 
 For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac) and [Pricing](https://aws.amazon.com/mac/#Pricing)\.
 
 **Topics**
 + [Considerations](#mac-instance-considerations)
-+ [Launch a Mac instance using the console](#mac-instance-launch)
-+ [Launch a Mac instance using the AWS CLI](#mac-instance-launch-cli)
-+ [Connect to your instance using SSH](#mac-instance-ssh)
-+ [Connect to your instance using Apple Remote Desktop](#mac-instance-vnc)
++ [Instance readiness](#mac-instance-readiness)
++ [Launch a Mac instance](#mac-instance-launch)
++ [Connect to your Mac instance](#connect-to-mac-instance)
 + [Modify macOS screen resolution on Mac instances](#mac-screen-resolution)
 + [EC2 macOS AMIs](#ec2-macos-images)
 + [Update the operating system and software](#mac-instance-updates)
@@ -35,76 +36,97 @@ The following considerations apply to Mac instances:
   + macOS Catalina \(version 10\.15\) \(x86 Mac Instances only\)
   + macOS Big Sur \(version 11\)
   + macOS Monterey \(version 12\)
-+ EBS hotplug is now supported
++ EBS hotplug is supported\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
-+ [Mac instances now support Amazon EC2 Auto Scaling\.](http://aws.amazon.com/blogs/compute/implementing-autoscaling-for-ec2-mac-instances/) 
++ [Mac instances support Amazon EC2 Auto Scaling\.](http://aws.amazon.com/blogs/compute/implementing-autoscaling-for-ec2-mac-instances/) 
 + On x86 Mac instances, automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
 + On M1 Mac instances, in\-place software updates are currently unsupported\. We will distribute new Amazon Machine Images \(AMIs\) for major, minor, and patch versions of macOS\.
 + When you stop or terminate a Mac instance, a scrubbing workflow is performed on the Dedicated Host\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
-+ 
+
 **Warning**  
-Do not use FileVault\. If data\-at\-rest and data\-in\-transit is required, use [EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) to avoid boot issues and performance impact\. Enabling FileVault will result in the host failing to boot due to the partitions being locked\. 
+Do not use FileVault\. If data\-at\-rest and data\-in\-transit is required, use [EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) to avoid boot issues and performance impact\. Enabling FileVault will result in the host failing to boot due to the partitions being locked\.
 
-## Launch a Mac instance using the console<a name="mac-instance-launch"></a>
+## Instance readiness<a name="mac-instance-readiness"></a>
 
+After you launch a Mac instance, you'll need to wait till the instance is ready before you can connect to it\. The approximate times you might wait are as follows:
++ x86 Mac instances – up to 15 minutes from launch
++ M1 Mac instances – up to 40 minutes from launch
 
+You can use a small shell script, like the one below, to poll the describe\-instance\-status API to know when the instance is ready to be connected to\. In the following command, replace the example instance ID with your own\.
 
-You can launch a Mac instance using the AWS Management Console as described in the following procedure\. EC2 Mac instances require a [Dedicated Host](dedicated-hosts-overview.md)\. There are two families of EC2 Mac instances:
+```
+for i in seq 1 200; do aws ec2 describe-instance-status --instance-ids=i-0123456789example \
+    --query='InstanceStatuses[0].InstanceStatus.Status'; sleep 5; done;
+```
 
-    mac1, based on the 2018 Mac mini and powered by the Intel Core i7 processor   mac2, based on the 2020 Mac mini and powered by the Apple Silicon M1 processor    
+## Launch a Mac instance<a name="mac-instance-launch"></a>
 
-The procedure to launch either family is the same\. To launch a Mac instance onto a Dedicated Host:
+EC2 Mac instances require a [Dedicated Host](dedicated-hosts-overview.md)\. You first need to allocate a host to your account, and then launch the instance onto the host\.
+
+You can launch a Mac instance using the AWS Management Console or the AWS CLI\. 
+
+### Launch a Mac instance using the console<a name="mac-instance-launch-console"></a>
+
+**To launch a Mac instance onto a Dedicated Host**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Dedicated Hosts**\.
+1. Allocate the Dedicated Host, as follows:
 
-1. Choose **Allocate Dedicated Host** and then do the following:
+   1. In the navigation pane, choose **Dedicated Hosts**\.
 
-   1. For **Instance family**, choose **mac1** or **mac2**\. If the instance family doesn’t appear in the list, it’s not supported in the currently selected Region\.
+   1. Choose **Allocate Dedicated Host** and then do the following:
 
-   1. For **Instance type**, select **mac1\.metal** or **mac2\.metal** based on the instance family chosen\.
+      1. For **Instance family**, choose **mac1** or **mac2**\. If the instance family doesn’t appear in the list, it’s not supported in the currently selected Region\.
 
-   1. For **Availability Zone**, choose the Availability Zone for the Dedicated Host\.
+      1. For **Instance type**, choose **mac1\.metal** or **mac2\.metal** based on the instance family chosen\.
 
-   1. For **Quantity**, keep **1**\.
+      1. For **Availability Zone**, choose the Availability Zone for the Dedicated Host\.
 
-   1. Choose **Allocate**\.
+      1. For **Quantity**, keep **1**\.
 
-1. Select the Dedicated Host that you created and then do the following:
+      1. Choose **Allocate**\.
 
-   1. Choose **Actions**, **Launch instances onto host**\.
+1. Launch the instance on the host, as follows:
 
-   1. Select a macOS AMI\.
+   1. Select the Dedicated Host that you created and then do the following:
 
-   1. Select the appropriate instance type \(mac1\.metal or mac2\.metal\)\.
+      1. Choose **Actions**, **Launch instance\(s\) onto host**\.
 
-   1. On the **Configure Instance Details page**, verify that **Tenancy** and **Host** are preconfigured based on the Dedicated Host you created\.
+      1. Under **Application and OS Images \(Amazon Machine Image\)**, select a macOS AMI\.
 
-   1. Select the `mac1.metal` instance type\.
+      1. Under **Instance type**, select the appropriate instance type \(**mac1\.metal** or **mac2\.metal**\)\.
 
-   1. On the **Configure Instance Details page**, verify that **Tenancy** and **Host** are preconfigured based on the Dedicated Host you created\. Update **Affinity** as needed\.
+      1. Under **Advanced details**, verify that **Tenancy**, **Tenancy host by**, and **Tenancy host ID** are preconfigured based on the Dedicated Host you created\. Update **Tenancy affinity** as needed\.
 
-   1. Complete the wizard, specifying EBS volumes, security groups, and key pairs as needed\.
+      1. Complete the wizard, specifying EBS volumes, security groups, and key pairs as needed\.
 
-1. A confirmation page lets you know that your instance is launching\. Choose **View Instances** to close the confirmation page and return to the console\. The initial state of an instance is `pending`\. The instance is ready when its state changes to `running` and it passes status checks\.
+      1. In the **Summary** panel, choose **Launch instance**\.
 
-## Launch a Mac instance using the AWS CLI<a name="mac-instance-launch-cli"></a>
+   1. A confirmation page lets you know that your instance is launching\. Choose **View all instances** to close the confirmation page and return to the console\. The initial state of an instance is `pending`\. The instance is ready when its state changes to `running` and it passes status checks\.
+**Note**  
+Mac instances can take up to 15\-40 minutes to be ready\. For more information, see [Instance readiness](#mac-instance-readiness)\.
 
-Use the following [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) command to allocate a Dedicated Host for your Mac instance, replacing the instance\-type with either mac1\.metal or mac2\.metal, and the region and availability zone with the appropriate ones for your environment\.
+### Launch a Mac instance using the AWS CLI<a name="mac-instance-launch-cli"></a>
+
+**Allocate the Dedicated Host**
+
+Use the following [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) command to allocate a Dedicated Host for your Mac instance, replacing the `instance-type` with either `mac1.metal` or `mac2.metal`, and the `region` and `availability-zone` with the appropriate ones for your environment\.
 
 ```
 aws ec2 allocate-hosts --region us-east-1 --instance-type mac1.metal --availability-zone us-east-1b --auto-placement "on" --quantity 1
 ```
 
-Use the following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch a Mac instance, again replacing the instance\-type with either mac1\.metal or mac2\.metal, and the region and availability zone with the ones used previously\.
+**Launch the instance on the host**
+
+Use the following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch a Mac instance, again replacing the `instance-type` with either `mac1.metal` or `mac2.metal`, and the `region` and `availability-zone` with the ones used previously\.
 
 ```
 aws ec2 run-instances --region us-east-1 --instance-type mac1.metal --placement Tenancy=host --image-id ami_id --key-name my-key-pair
 ```
 
-The initial state of an instance is `pending`\. The instance is ready when its state changes to `running` and it passes status checks\. Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command to display status information for your instance:
+The initial state of an instance is `pending`\. The instance is ready when its state changes to `running` and it passes status checks\. Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command to display status information for your instance\.
 
 ```
 aws ec2 describe-instance-status --instance-ids i-017f8354e2dc69c4f
@@ -145,19 +167,20 @@ The following is example output for an instance that is running and has passed s
 }
 ```
 
-**Instance Readiness**
+**Note**  
+Mac instances can take up to 15\-40 minutes to be ready\. For more information, see [Instance readiness](#mac-instance-readiness)\.
 
-You can use a small shell script, like the one below, to poll the describe\-instance\-status API to know when the instance is ready for SSH access\. For x86 Mac instances, this may take up to 15 minutes from launch\. For M1 Mac instances, this may take up to 40 minutes from launch\. Replace the example Instance ID with your own\.
+## Connect to your Mac instance<a name="connect-to-mac-instance"></a>
 
-```
-for i in seq 1 200; do aws ec2 describe-instance-status --instance-ids=i-017f8354e2dc69c4f \
---query='InstanceStatuses[0].InstanceStatus.Status'; sleep 5; done;
-```
+You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
 
-## Connect to your instance using SSH<a name="mac-instance-ssh"></a>
+**Note**  
+After you launch a Mac instance, it can take up to 15\-40 minutes to be ready before you can connect to it\. For more information, see [Instance readiness](#mac-instance-readiness)\.
+
+### Connect to your instance using SSH<a name="mac-instance-ssh"></a>
 
 **Important**  
-Multiple users can access the OS simultaneously, however please review the appropriate [macOS SLA](https://www.apple.com/legal/sla/) with your counsel to confirm workload compliance\. Typically there is a 1:1 user:GUI session due to the built\-in Screen Sharing service on port 5900\. Using SSH within macOS supports multiple sessions up until the "Max Sessions" limit in sshd\_config file\.
+Multiple users can access the OS simultaneously; however, please review the appropriate [macOS SLA](https://www.apple.com/legal/sla/) with your counsel to confirm workload compliance\. Typically there is a 1:1 user:GUI session due to the built\-in Screen Sharing service on port 5900\. Using SSH within macOS supports multiple sessions up until the "Max Sessions" limit in sshd\_config file\.
 
 Amazon EC2 Mac instances do not allow remote root SSH by default\. Password authentication is disabled to prevent brute\-force password attacks\. The ec2\-user account is configured to log in remotely using SSH\. The ec2\-user account also has sudo privileges\. After you connect to your instance, you can add other users\.
 
@@ -179,7 +202,7 @@ Use the following procedure to connect to your Mac instance using an SSH client\
    ssh -i /path/key-pair-name.pem ec2-user@instance-public-dns-name
    ```
 
-## Connect to your instance using Apple Remote Desktop<a name="mac-instance-vnc"></a>
+### Connect to your instance using Apple Remote Desktop<a name="mac-instance-vnc"></a>
 
 Use the following procedure to connect to your instance using Apple Remote Desktop \(ARD\)\.
 
@@ -222,12 +245,12 @@ macOS 10\.14 and later only allows control if Screen Sharing is enabled through 
 
 ## Modify macOS screen resolution on Mac instances<a name="mac-screen-resolution"></a>
 
-Once you connect to your EC2 Mac instance using ARD or a VNC client that supports ARD installed, you can modify the screen resolution of your macOS environment using any of the publicly available macOS tools or utilities, such as [displayplacer](https://github.com/jakehilborn/displayplacer)
+After you connect to your EC2 Mac instance using ARD or a VNC client that supports ARD installed, you can modify the screen resolution of your macOS environment using any of the publicly available macOS tools or utilities, such as [displayplacer](https://github.com/jakehilborn/displayplacer)\.
 
 **Note**  
-The current build of displayplacer is not supported on M1 Mac instances
+The current build of displayplacer is not supported on M1 Mac instances\.
 
-**Modifying screen resolution using displayplacer**
+**To modify the screen resolution using displayplacer**
 
 1. Install displayplacer\.
 
@@ -235,13 +258,13 @@ The current build of displayplacer is not supported on M1 Mac instances
    brew tap jakehilborn/jakehilborn && brew install displayplacer
    ```
 
-1. Show current screen info and possible screen resolutions\.
+1. Show the current screen information and possible screen resolutions\.
 
    ```
    displayplacer list
    ```
 
-1. Apply desired screen resolution\.
+1. Apply the desired screen resolution\.
 
    ```
    displayplacer "id:<screenID> res:<width>x<height> origin:(0,0) degree:0"
@@ -256,7 +279,9 @@ The current build of displayplacer is not supported on M1 Mac instances
 
 ## EC2 macOS AMIs<a name="ec2-macos-images"></a>
 
-Amazon EC2 macOS is designed to provide a stable, secure, and high\-performance environment for developer workloads running on Amazon EC2 Mac instances\. EC2 macOS AMIs includes packages that enable easy integration with AWS, such as launch configuration tools and popular AWS libraries and tools\. EC2 macOS AMIs include the following by default:
+Amazon EC2 macOS is designed to provide a stable, secure, and high\-performance environment for developer workloads running on Amazon EC2 Mac instances\. EC2 macOS AMIs includes packages that enable easy integration with AWS, such as launch configuration tools and popular AWS libraries and tools\.
+
+EC2 macOS AMIs include the following by default:
 + ENA drivers
 + EC2 macOS Init
 + SSM Agent for macOS

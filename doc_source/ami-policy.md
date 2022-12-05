@@ -213,13 +213,18 @@ The following is an example of the `policyDetails.json` file\.
 
 ## Considerations for AMI lifecycle policies<a name="ami-considerations"></a>
 
-The following considerations apply when **creating AMI lifecycle policies**:
+The following **general considerations** apply to creating AMI lifecycle policies:
 + The first AMI creation operation starts within one hour after the specified start time\. Subsequent AMI creation operations start within one hour of their scheduled time\.
 + When Amazon Data Lifecycle Manager deregisters an AMI, it automatically deletes it backing snapshots\.
 + Target resource tags are case sensitive\.
++ If you remove the target tags from an instance that is targeted by a policy, Amazon Data Lifecycle Manager no longer manages existing AMIs in the standard; you must manually delete them if they are no longer needed\.
 + You can create multiple policies to back up an instance\. For example, if an instance has two tags, where tag *A* is the target for policy *A* to create an AMI every 12 hours,and tag *B* is the target for policy *B* to create an AMI every 24 hours, Amazon Data Lifecycle Manager creates AMIs according to the schedules for both policies\. Alternatively, you can achieve the same result by creating a single policy that has multiple schedules\. For example, you can create a single policy that targets only tag *A*, and specify two schedules — one for every 12 hours and one for every 24 hours\.
 + New volumes that are attached to a target instance after the policy has been created are automatically included in the backup at the next policy run\. All volumes attached to the instance at the time of the policy run are included\.
 + If you create a policy with a custom cron\-based schedule that is configured to create only one AMI, the policy will not automatically deregister that AMI when the retention threshold is reached\. You must manually deregister the AMI if it is no longer needed\.
++ If you create an age\-based policy where the retention period is shorter than the creation frequency, Amazon Data Lifecycle Manager will always retain the last AMI until the next one is created\. For example, if an age\-based policy creates one AMI every month with a retention period of seven days, Amazon Data Lifecycle Manager will retain each AMI for one month, even though the retention period is seven days\.
++ For count\-based policies, Amazon Data Lifecycle Manager always creates AMIs according to the creation frequency before attempting to deregister the oldest AMI according to the retention policy\.
+
+  It can take several hours to successfully deregister an AMI and to delete its associated backing snapshots\. If Amazon Data Lifecycle Manager creates the next AMI before the previously created AMI is successfully deregistered, you could temporarily retain a number of AMIs that is greater than your retention count\. 
 
 The following considerations apply to **terminating instances targeted by a policy:**
 + If you terminate an instance that was targeted by a policy with a count\-based retention schedule, the policy no longer manages the AMIs that it previously created from the terminated instance\. You must manually deregister those earlier AMIs if they are no longer needed\.

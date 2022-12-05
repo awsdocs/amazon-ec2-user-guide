@@ -7,6 +7,7 @@ You can share an AMI with specific AWS accounts without making the AMI public\. 
 ## Considerations<a name="considerations-for-sharing-AMI-with-accounts"></a>
 
 Consider the following when sharing AMIs with specific AWS accounts\.
++ **Ownership** – To share an AMI, your AWS account must own the AMI\.
 + **Sharing limits** – For the maximum number of entities to which an AMI can be shared within a Region, see the [Amazon EC2 service quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html#limits_ec2)\.
 + **Tags** – User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the other accounts that the AMI is shared with\.
 + **Encryption and keys** – You can share AMIs that are backed by unencrypted and encrypted snapshots\.
