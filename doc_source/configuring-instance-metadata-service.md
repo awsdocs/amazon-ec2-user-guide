@@ -158,4 +158,4 @@ The following are the minimum versions that support using IMDSv2:
 + [AWS SDK for PHP](https://github.com/aws/aws-sdk-php) – 3\.147\.7
 + [AWS SDK for Python \(Boto\)](https://github.com/boto/botocore) – 1\.13\.23
 + [AWS SDK for Python \(Boto3\)](https://github.com/boto/boto3) – 1\.12\.6
-+ [AWS SDK for Ruby](https://github.com/aws/aws-sdk-ruby) – 3\.79\.0 
++ [AWS SDK for Ruby](https://github.com/aws/aws-sdk-ruby) – 3\.79\.0
