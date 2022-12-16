@@ -20,6 +20,7 @@ For other instances, the following limits apply:
 + `inf1.xlarge` and `inf1.2xlarge` instances support a maximum of 26 EBS volumes\.
 + `inf1.6xlarge` instances support a maximum of 23 EBS volumes\.
 + `mac1.metal` instances support a maximum of 16 EBS volumes\.
++ `mac2.metal` instances support a maximum of 10 EBS volumes\.
 + `inf1.24xlarge` instances support a maximum of 11 EBS volumes\.
 + `g5.48xlarge` instances support a maximum of 9 EBS volumes\.
 + `d3.8xlarge` and `d3en.12xlarge` instances support a maximum of 3 EBS volumes\.
