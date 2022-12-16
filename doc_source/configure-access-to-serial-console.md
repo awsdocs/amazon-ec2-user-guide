@@ -175,18 +175,26 @@ The following policy allows access to the serial console of a specific instance,
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "AllowSerialConsoleAccess",
+            "Sid": "AllowDescribeInstances",
             "Effect": "Allow",
             "Action": [
-                "ec2-instance-connect:SendSerialConsoleSSHPublicKey",
                 "ec2:DescribeInstances",
                 "ec2:DescribeInstanceTypes",
                 "ec2:GetSerialConsoleAccessStatus"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowinstanceBasedSerialConsoleAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ec2-instance-connect:SendSerialConsoleSSHPublicKey"
             ],
             "Resource": "arn:aws:ec2:region:account-id:instance/i-0598c7d356eba48d7"
         }
     ]
 }
+
 ```
 
 ### Explicitly deny access to the serial console<a name="serial-console-IAM-policy"></a>
@@ -233,15 +241,22 @@ For more information about using tags to control access to your AWS resources, s
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "AllowTagBasedSerialConsoleAccess",
+            "Sid": "AllowDescribeInstances",
             "Effect": "Allow",
             "Action": [
-                "ec2-instance-connect:SendSerialConsoleSSHPublicKey",
                 "ec2:DescribeInstances",
                 "ec2:DescribeInstanceTypes",
                 "ec2:GetSerialConsoleAccessStatus"
             ],
-            "Resource": "*",
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowTagBasedSerialConsoleAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ec2-instance-connect:SendSerialConsoleSSHPublicKey"
+            ],
+            "Resource": "arn:aws:ec2:eu-west-1:<accountID>:instance/*",
             "Condition": {
                 "StringEquals": {
                     "aws:ResourceTag/SerialConsole": "${aws:PrincipalTag/SerialConsole}"
@@ -250,6 +265,7 @@ For more information about using tags to control access to your AWS resources, s
         }
     ]
 }
+
 ```
 
 ## Set an OS user password<a name="set-user-password"></a>
