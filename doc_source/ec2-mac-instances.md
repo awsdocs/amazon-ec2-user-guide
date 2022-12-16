@@ -218,15 +218,14 @@ macOS 10\.14 and later only allows control if Screen Sharing is enabled through 
 1. Set up a password for the ec2\-user account using the passwd command as follows\.
 
    ```
-   [ec2-user ~]$ sudo passwd ec2-user
+   [ec2-user ~]$ sudo /usr/bin/dscl . -passwd /Users/ec2-user
    ```
 
 1. Start the Apple Remote Desktop agent and enable remote desktop access as follows\.
 
    ```
-   [ec2-user ~]$ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
-   -activate -configure -access -on \
-   -restart -agent -privs -all
+   [ec2-user ~]$ sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
+   [ec2-user ~]$ sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist
    ```
 
 1. From your computer, connect to your instance using the following ssh command\. In addition to the options shown in the previous section, use the \-L option to enable port forwarding and forward all traffic on local port 5900 to the ARD server on the instance\.
