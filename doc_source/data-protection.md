@@ -7,7 +7,7 @@ For data protection purposes, we recommend that you protect AWS account credenti
 + Use SSL/TLS to communicate with AWS resources\. We recommend TLS 1\.2 or later\.
 + Set up API and user activity logging with AWS CloudTrail\.
 + Use AWS encryption solutions, along with all default security controls within AWS services\.
-+ Use advanced managed security services such as Amazon Macie, which assists in discovering and securing personal data that is stored in Amazon S3\.
++ Use advanced managed security services such as Amazon Macie, which assists in discovering and securing sensitive data that is stored in Amazon S3\.
 + If you require FIPS 140\-2 validated cryptographic modules when accessing AWS through a command line interface or an API, use a FIPS endpoint\. For more information about the available FIPS endpoints, see [Federal Information Processing Standard \(FIPS\) 140\-2](http://aws.amazon.com/compliance/fips/)\.
 
 We strongly recommend that you never put confidential or sensitive information, such as your customers' email addresses, into tags or free\-form fields such as a **Name** field\. This includes when you work with Amazon EC2 or other AWS services using the console, API, AWS CLI, or AWS SDKs\. Any data that you enter into tags or free\-form fields used for names may be used for billing or diagnostic logs\. If you provide a URL to an external server, we strongly recommend that you do not include credentials information in the URL to validate your request to that server\.
@@ -38,7 +38,7 @@ When you stop, hibernate, or terminate an instance, every block of storage in th
 **Memory**
 
 Memory encryption is enabled on the following instances:
-+ Instances with AWS Graviton 2 processors, such as M6g instances\. These processors support always\-on memory encryption\. The encryption keys are securely generated within the host system, do not leave the host system, and are destroyed when the host is rebooted or powered down\.
++ Instances with AWS Graviton processors\. AWS Graviton2, AWS Graviton3, and AWS Graviton3E support always\-on memory encryption\. The encryption keys are securely generated within the host system, do not leave the host system, and are destroyed when the host is rebooted or powered down\. For more information, see [AWS Graviton Processors\.](http://aws.amazon.com/ec2/graviton)
 + Instances with Intel Xeon Scalable processors \(Ice Lake\), such as M6i instances\. These processors support always\-on memory encryption using Intel Total Memory Encryption \(TME\)\. 
 + Instances with 3rd generation AMD EPYC processors \(Milan\), such as M6a instances\. These processors support always\-on memory encryption using AMD Transparent Single Key Memory Encryption \(TSME\)\.
 

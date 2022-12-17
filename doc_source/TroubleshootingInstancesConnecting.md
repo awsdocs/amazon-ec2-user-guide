@@ -633,9 +633,9 @@ Choose **Launch instances**, and then use the launch wizard to launch a *tempora
 
 ### Step 5: Detach the root volume from the original instance and attach it to the temporary instance<a name="step-5-detach-root-volume-and-attach-to-temp-instance"></a>
 
-1. In the navigation pane, choose **Volumes** and select the root device volume for the original instance \(you made note of its volume ID in a previous step\)\. Choose **Actions**, **Detach Volume**, and then select **Yes, Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
+1. In the navigation pane, choose **Volumes** and select the root device volume for the original instance \(you made note of its volume ID in a previous step\)\. Choose **Actions**, **Detach volume**, and then choose **Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the Refresh icon\.\)
 
-1. With the volume still selected, choose **Actions**, and then select **Attach Volume**\. Select the instance ID of the temporary instance, make note of the device name specified under **Device** \(for example, `/dev/sdf`\), and then choose **Attach**\.
+1. With the volume still selected, choose **Actions**, and then choose **Attach volume**\. Select the instance ID of the temporary instance, make note of the device name specified under **Device name** \(for example, `/dev/sdf`\), and then choose **Attach volume**\.
 **Note**  
 If you launched your original instance from an AWS Marketplace AMI and your volume contains AWS Marketplace codes, you must first stop the temporary instance before you can attach the volume\.
 
@@ -667,7 +667,7 @@ The device name might appear differently on your instance\. For example, devices
       [ec2-user ~]$ sudo mkdir /mnt/tempvol
       ```
 
-   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name that you identified earlier\. The required command depends on your operating system's file system\. Note that the device name might appear differently on your instance\. See [note](#device-name) in this section for more information\.
+   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name that you identified earlier\. The required command depends on your operating system's file system\. Note that the device name might appear differently on your instance\. See the [note](#device-name) in Step 6 for more information\.
       + Amazon Linux, Ubuntu, and Debian
 
         ```
@@ -729,9 +729,9 @@ The following examples use the Amazon Linux user name `ec2-user`\. You might nee
    [ec2-user ~]$ sudo umount /mnt/tempvol
    ```
 
-1. Detach the volume from the temporary instance \(you unmounted it in the previous step\): From the Amazon EC2 console, select the root device volume for the original instance \(you made note of the volume ID in a previous step\), choose **Actions**, **Detach Volume**, and then choose **Yes, Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
+1. Detach the volume from the temporary instance \(you unmounted it in the previous step\): From the Amazon EC2 console, choose **Volumes** in the navigation pane, select the root device volume for the original instance \(you made note of the volume ID in a previous step\), choose **Actions**, **Detach volume**, and then choose **Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the Refresh icon\.\)
 
-1. Reattach the volume to the original instance: With the volume still selected, choose **Actions**, **Attach Volume**\. Select the instance ID of the original instance, specify the device name that you noted earlier in [Step 2](#step-2-get-info-about-original-instance) for the original root device attachment \(`/dev/sda1` or `/dev/xvda`\), and then choose **Attach**\.
+1. Reattach the volume to the original instance: With the volume still selected, choose **Actions**, **Attach volume**\. Select the instance ID of the original instance, specify the device name that you noted earlier in [Step 2](#step-2-get-info-about-original-instance) for the original root device attachment \(`/dev/sda1` or `/dev/xvda`\), and then choose **Attach volume**\.
 **Important**  
 If you don't specify the same device name as the original attachment, you cannot start the original instance\. Amazon EC2 expects the root device volume at `sda1` or `/dev/xvda`\.
 

@@ -5,28 +5,11 @@ The HDD\-backed volumes provided by Amazon EBS fall into these categories:
 + Cold HDD — The lowest\-cost HDD design for less frequently accessed workloads\.
 
 **Topics**
-+ [Overview of HDD\-backed volumes](#hdd-overview)
 + [Limitations on per\-instance throughput](#throughput-limitations)
 + [Throughput Optimized HDD volumes](#EBSVolumeTypes_st1)
 + [Cold HDD volumes](#EBSVolumeTypes_sc1)
 + [Performance considerations when using HDD volumes](#EBSVolumeTypes_considerations)
 + [Monitor the burst bucket balance for volumes](#monitoring_burstbucket-hdd)
-
-## Overview of HDD\-backed volumes<a name="hdd-overview"></a>
-
-The following is a summary of the use cases and characteristics of HDD\-backed volumes\. For information about the maximum IOPS and throughput per instance, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
-
-
-|  | Throughput Optimized HDD | Cold HDD | 
-| --- | --- | --- | 
-| Volume type | st1 | sc1 | 
-| Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
-| Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hdd-vols.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hdd-vols.html)  | 
-| Volume size | 125 GiB \- 16 TiB | 125 GiB \- 16 TiB  | 
-| Max IOPS per volume \(1 MiB I/O\) | 500 | 250 | 
-| Max throughput per volume | 500 MiB/s | 250 MiB/s | 
-| Amazon EBS Multi\-attach | Not supported | Not supported | 
-| Boot volume | Not supported | Not supported | 
 
 ## Limitations on per\-instance throughput<a name="throughput-limitations"></a>
 

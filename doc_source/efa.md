@@ -13,7 +13,7 @@ The OS\-bypass capabilities of EFAs are not supported on Windows instances\. If 
 + [EFA basics](#efa-basics)
 + [Supported interfaces and libraries](#efa-mpi)
 + [Supported instance types](#efa-instance-types)
-+ [Supported AMIs](#efa-amis)
++ [Supported operating systems](#efa-os)
 + [EFA limitations](#efa-limits)
 + [Get started with EFA and MPI](efa-start.md)
 + [Get started with EFA and NCCL](efa-start-nccl.md)
@@ -76,9 +76,9 @@ c6i.32xlarge
 ...
 ```
 
-## Supported AMIs<a name="efa-amis"></a>
+## Supported operating systems<a name="efa-os"></a>
 
-The following AMIs support EFAs with Intel x86\-based instance types:
+The following operating systems support EFAs with Intel/AMD x86\-based instance types:
 + Amazon Linux 2
 + CentOS 7
 + RHEL 7 and 8
@@ -90,7 +90,7 @@ The following AMIs support EFAs with Intel x86\-based instance types:
 **Note**  
 Ubuntu 20\.04 supports peer direct support when used with `dl1.24xlarge` instances\.
 
-The following AMIs support EFAs with Arm\-based \(Graviton 2\) instance types:
+The following operating systems support EFAs with Arm\-based \(Graviton 2\) instance types:
 + Amazon Linux 2
 + RHEL 8 and Rocky Linux 8
 + Ubuntu 18\.04, 20\.04, and 22\.04

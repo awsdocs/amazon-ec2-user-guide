@@ -41,9 +41,6 @@ Recycle Bin supports the following resource types:
 + Amazon EBS snapshots
 + Amazon EBS\-backed Amazon Machine Images \(AMIs\)
 
-**Note**  
-You can't create retention rules for AMIs in Asia Pacific \(Hyderabad\)\.
-
 ## Quotas<a name="recycle-bin-quotas"></a>
 
 The following quotas apply to Recycle Bin\.

@@ -1,6 +1,6 @@
 # EventBridge for Amazon EBS<a name="ebs-cloud-watch-events"></a>
 
-Recycle Bin sends events to Amazon EventBridge for actions performed on retention rules\. With EventBridge, you can establish rules that trigger programmatic actions in response to these events\. For example, you can create a rule that sends a notification to your email when a retention rule is unlocked and it enters its unlock delay period\.
+Amazon EBS sends events to Amazon EventBridge for actions performed on volumes and snapshots\. With EventBridge, you can establish rules that trigger programmatic actions in response to these events\. For example, you can create a rule that sends a notification to your email when a snapshot is enabled for fast snapshot restore\.
 
 Events in EventBridge are represented as JSON objects\. The fields that are unique to the event are contained in the "detail" section of the JSON object\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\. For more information, see [Amazon EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*\.
 

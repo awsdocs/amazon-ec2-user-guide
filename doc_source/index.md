@@ -456,6 +456,7 @@ sponsored by Amazon.
                + [Idempotency for StartSnapshot API](ebs-direct-api-idempotency.md)
                + [Error retries](error-retries.md)
                + [Optimize performance](ebsapi-performance.md)
+               + [EBS direct APIs service endpoints](using-endpoints.md)
             + [Using interface VPC endpoints with EBS direct APIs](ebs-apis-vpc-endpoints.md)
             + [Log API Calls for EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)
             + [Frequently asked questions](ebsapi-faq.md)

@@ -11,24 +11,6 @@ Amazon EBS offers three types of Provisioned IOPS SSD volumes:
 + [Provisioned IOPS SSD \(io1 and io2\) volumes](#EBSVolumeTypes_piops)
 + [`io2` Block Express volumes](#io2-block-express)
 
-The following table provides a summary of the use cases, characteristics, and performance of Provisioned IOPS SSD volumes\. For information about the maximum IOPS and throughput per instance type, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
-
-
-|  | Provisioned IOPS SSD | 
-| --- | --- | 
-| Volume type | io2 Block Express \* | io2 | io1 | 
-| Durability | 99\.999% durability \(0\.001% annual failure rate\) | 99\.999% durability \(0\.001% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
-| Use cases |  Workloads that require: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/provisioned-iops.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/provisioned-iops.html)  | 
-| Volume size | 4 GiB \- 64 TiB | 4 GiB \- 16 TiB  | 
-| Max IOPS per volume \(16 KiB I/O\) | 256,000 | 64,000 † | 
-| Max throughput per volume | 4,000 MiB/s | 1,000 MiB/s † | 
-| Amazon EBS Multi\-attach | Supported | 
-| Boot volume | Supported | 
-
-\* `io2` Block Express volumes are supported with C6in, C7g, M6in, M6idn, R5b, R6in, R6idn, Trn1, X2idn, and X2iedn instances\. `io2` volumes attached to these instances, during or after launch, automatically run on Block Express\. For more information, see [`io2` Block Express volumes](#io2-block-express)\.
-
-† To achieve maximum throughput of 1,000 MiB/s, the volume must be provisioned with 64,000 IOPS and it must be attached to an [instance built on the Nitro System](instance-types.md#ec2-nitro-instances)\. `io1` volumes created before December 6, 2017 and that have not been modified since creation, might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
-
 ## Provisioned IOPS SSD \(io1 and io2\) volumes<a name="EBSVolumeTypes_piops"></a>
 
 Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.

@@ -356,8 +356,7 @@ There is no charge for transferring Elastic IP addresses\.
 #### Enable Elastic IP address transfer<a name="using-instance-addressing-eips-transfer-enable-ec2"></a>
 
 This section describes how to accept a transferred Elastic IP address\. Note the following limitations related to enabling Elastic IP addresses for transfer:
-+ You can transfer Elastic IP addresses to accounts within the same AWS Organization or to standalone AWS accounts outside of an organization\. You cannot transfer Elastic IP addresses between AWS Organizations\. 
-+ You can transfer Elastic IP addresses only within the same AWS Region\.
++ You can transfer Elastic IP addresses from any AWS account to any AWS account, whether the accounts are members of AWS Organizations or not\. The source and target accounts, however, must be in the same AWS Region\.
 + When you transfer an Elastic IP address, there is a two\-step handshake between AWS accounts: the source account \(either a standard AWS account or an AWS Organizations account\) and the transfer accounts\. When the source account starts the transfer, the transfer accounts have seven hours to accept the Elastic IP address transfer, or the Elastic IP address will return to its original owner\. 
 + AWS does not inform the transfer account about pending Elastic IP address transfer requests\. The source account owner has to communicate to the transfer account owner that an Elastic IP address has been transferred so that the owner of the transfer account can accept the Elastic IP address transfer\.
 + Any tags that are associated with the Elastic IP address being transferred are reset when the Elastic IP address transfer is complete\.

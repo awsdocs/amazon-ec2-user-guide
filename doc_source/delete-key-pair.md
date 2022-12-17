@@ -21,7 +21,7 @@ You can delete a public key on Amazon EC2 using the following methods\.
 
 1. In the navigation pane, choose **Key Pairs**\.
 
-1. Select the key pair to delete and choose **Delete**\.
+1. Select the key pair to delete and choose **Actions**, **Delete**\.
 
 1. In the confirmation field, enter `Delete` and then choose **Delete**\.
 

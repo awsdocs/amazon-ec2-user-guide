@@ -481,6 +481,7 @@ If you add or remove an instance tag, the instance metadata is updated while the
 **Topics**
 + [Allow access to tags in instance metadata](#allow-access-to-tags-in-IMDS)
 + [Turn off access to tags in instance metadata](#turn-off-access-to-tags-in-IMDS)
++ [View if access to tags in instance metadata is allowed](#view-access-to-tags-in-IMDS)
 + [Retrieve tags from instance metadata](#retrieve-tags-from-IMDS)
 
 ### Allow access to tags in instance metadata<a name="allow-access-to-tags-in-IMDS"></a>
@@ -542,6 +543,51 @@ Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/la
 aws ec2 modify-instance-metadata-options \
     --instance-id i-123456789example \
     --instance-metadata-tags disabled
+```
+
+### View if access to tags in instance metadata is allowed<a name="view-access-to-tags-in-IMDS"></a>
+
+For each instance, you can use the Amazon EC2 console or AWS CLI to view whether access to instance tags from the instance metadata is allowed\.
+
+**To view if access to tags in instance metadata is allowed using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigation pane, choose **Instances**, and then select an instance\.
+
+1. On the **Details** tab, check the **Allow tags in instance metadata** field\. If the value is **Enabled**, tags in instance metadata is allowed\. If the value is **Disabled**, tags in instance metadata is not allowed\.
+
+**To view if access to tags in instance metadata is allowed using the AWS CLI**  
+Use the [describe\-instances ](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the instance ID\.
+
+```
+aws ec2 describe-instances \
+    --instance-ids i-1234567890abcdef0
+```
+
+The following example output is truncated for space\. The `"InstanceMetadataTags"` parameter indicates whether tags in instance metadata is allowed\. If the value is `enabled`, tags in instance metadata is allowed\. If the value is `disabled`, tags in instance metadata is not allowed\.
+
+```
+{
+    "Reservations": [
+        {
+            "Groups": [],
+            "Instances": [
+                {
+                    "AmiLaunchIndex": 0,
+                    "ImageId": "ami-0abcdef1234567890",
+                    "InstanceId": "i-1234567890abcdef0",
+			...
+			
+			"MetadataOptions": {
+			"State": "applied",
+			"HttpTokens": "optional",
+			"HttpPutResponseHopLimit": 1,
+			"HttpEndpoint": "enabled",
+			"HttpProtocolIpv6": "disabled",
+			"InstanceMetadataTags": "enabled"
+			},
+			...
 ```
 
 ### Retrieve tags from instance metadata<a name="retrieve-tags-from-IMDS"></a>

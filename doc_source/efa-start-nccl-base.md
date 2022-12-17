@@ -1,6 +1,6 @@
 # Use a base AMI<a name="efa-start-nccl-base"></a>
 
-The following steps help you to get started with Elastic Fabric Adapter using one of the [supported base AMIs](efa.md#efa-amis)\.
+The following steps help you to get started with Elastic Fabric Adapter using an AMI for one of the [supported base operating systems](efa.md#efa-os)\.
 
 **Note**  
 Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
@@ -85,7 +85,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. \(*Optional*\) In the **Name and tags** section, provide a name for the instance, such as `EFA-instance`\. The name is assigned to the instance as a resource tag \(`Name=EFA-instance`\)\.
 
-1. In the **Application and OS Images** section, select a [supported AMI](efa.md#efa-amis)\.
+1. In the **Application and OS Images** section, select an AMI for one of the [supported operating systems](efa.md#efa-os)\.
 
 1. In the **Instance type** section, select either `p3dn.24xlarge` or `p4d.24xlarge`\.
 
@@ -980,7 +980,6 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    + `FI_PROVIDER="efa"`—specifies the fabric interface provider\. This must be set to `"efa"`\.
    + `FI_EFA_USE_DEVICE_RDMA=1`—\(`p4d.24xlarge` only\) uses the device's RDMA functionality for one\-sided and two\-sided transfer\.
    + `NCCL_DEBUG=INFO`—enables detailed debugging output\. You can also specify `VERSION` to print only the NCCL version at the start of the test, or `WARN` to receive only error messages\.
-   + `NCCL_ALGO=ring`—enables ring algorithm for collective operations\.
    + `NCCL_PROTO=simple`—instructs NCCL to use a simple protocol for communication\. Currently, the EFA provider does not support LL protocols\. Enabling them could lead to data corruption\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
@@ -991,7 +990,6 @@ Run a test to ensure that your temporary instance is properly configured for EFA
          -x FI_PROVIDER="efa" \
          -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
          -x NCCL_DEBUG=INFO \
-         -x NCCL_ALGO=ring \
          -x NCCL_PROTO=simple \
          --hostfile my-hosts -n 8 -N 8 \
          --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
@@ -1005,7 +1003,6 @@ Run a test to ensure that your temporary instance is properly configured for EFA
          -x FI_EFA_USE_DEVICE_RDMA=1 \
          -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
          -x NCCL_DEBUG=INFO \
-         -x NCCL_ALGO=ring \
          -x NCCL_PROTO=simple \
          --hostfile my-hosts -n 8 -N 8 \
          --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \

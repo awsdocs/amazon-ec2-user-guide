@@ -77,7 +77,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. \(*Optional*\) In the **Name and tags** section, provide a name for the instance, such as `EFA-instance`\. The name is assigned to the instance as a resource tag \(`Name=EFA-instance`\)\.
 
-1. In the **Application and OS Images** section, select a [supported AMI](efa.md#efa-amis)\.
+1. In the **Application and OS Images** section, select an AMI for one of the [supported operating systems](efa.md#efa-os)\.
 
 1. In the **Instance type** section, select a [supported instance type](efa.md#efa-instance-types)\.
 
@@ -104,7 +104,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Choose **Launch Instance**\.
 
-1. On the **Choose an AMI** page, choose **Select** for one of the [supported AMIs](efa.md#efa-amis)\.
+1. On the **Choose an AMI** page, choose **Select** for one of the [supported operating systems](efa.md#efa-os)\.
 
 1. On the **Choose an Instance Type** page, select one of the [supported instance types](efa.md#efa-instance-types) and then choose **Next: Configure Instance Details**\.
 

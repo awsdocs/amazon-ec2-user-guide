@@ -1,8 +1,13 @@
 # On\-Demand Capacity Reservations<a name="ec2-capacity-reservations"></a>
 
-On\-Demand Capacity Reservations enable you to reserve compute capacity for your Amazon EC2 instances in a specific Availability Zone for any duration\. This gives you the ability to create and manage Capacity Reservations independently from the billing discounts offered by Savings Plans or Regional Reserved Instances\.
+On\-Demand Capacity Reservations enable you to reserve compute capacity for your Amazon EC2 instances in a specific Availability Zone for any duration\. Capacity Reservations mitigate against the risk of being unable to get On\-Demand capacity in case there are capacity constraints\. If you have strict capacity requirements, and are running business\-critical workloads that require a certain level of long or short\-term capacity assurance, we recommend that you create a Capacity Reservation to ensure that you always have access to Amazon EC2 capacity when you need it, for as long as you need it\.
 
-By creating Capacity Reservations, you ensure that you always have access to EC2 capacity when you need it, for as long as you need it\. You can create Capacity Reservations at any time, without entering into a one\-year or three\-year term commitment\. The capacity becomes available and billing starts as soon as the Capacity Reservation is provisioned in your account\. When you no longer need it, cancel the Capacity Reservation to release the capacity and to stop incurring charges\.
+The following are some common use cases for Capacity Reservations:
++ **Disaster recovery** — you can reserve capacity in a different Availability Zone or Region to ensure that the capacity you need is available during a fail over event\. 
++ **Regulatory requirements** — you can use Capacity Reservations to satisfy regulatory requirements for high availability\. Capacity Reservations ensure that capacity is in place to meet those requirements, even if you aren't utilizing those resources\. 
++ **Events** — you can create Capacity Reservations before your business\-critical events to ensure that you can scale when you need to\.
+
+You can create Capacity Reservations at any time, without entering into a one\-year or three\-year term commitment\. The capacity becomes available and billing starts as soon as the Capacity Reservation is provisioned in your account\. When you no longer need the capacity assurance, cancel the Capacity Reservation to release the capacity and to stop incurring charges\. You can also use the billing discounts offered by Savings Plans and Regional Reserved Instances to reduce the cost of a Capacity Reservation\.
 
 When you create a Capacity Reservation, you specify:
 + The Availability Zone in which to reserve the capacity
@@ -10,8 +15,6 @@ When you create a Capacity Reservation, you specify:
 + The instance attributes, including the instance type, tenancy, and platform/OS
 
 Capacity Reservations can only be used by instances that match their attributes\. By default, they are automatically used by running instances that match the attributes\. If you don't have any running instances that match the attributes of the Capacity Reservation, it remains unused until you launch an instance with matching attributes\.
-
-In addition, you can use Savings Plans and Regional Reserved Instances with your Capacity Reservations to benefit from billing discounts\. AWS automatically applies your discount when the attributes of a Capacity Reservation match the attributes of a Savings Plan or  Regional Reserved Instance\. For more information, see [Billing discounts](capacity-reservations-pricing-billing.md#capacity-reservations-discounts)\.
 
 **Topics**
 + [Differences between Capacity Reservations, Reserved Instances, and Savings Plans](#capacity-reservations-differences)

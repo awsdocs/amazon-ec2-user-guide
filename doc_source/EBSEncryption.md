@@ -76,7 +76,7 @@ Encryption is supported by all EBS volume types\. You can expect the same IOPS p
 
 ### Supported instance types<a name="EBSEncryption_supported_instances"></a>
 
-Amazon EBS encryption is available on all [current generation](instance-types.md#current-gen-instances) instance types and the following [previous generation](instance-types.md#previous-gen-instances) instance types: A1, C3, `cr1.8xlarge`, G2, I2, M3, and R3\.
+Amazon EBS encryption is available on all [current generation](instance-types.md#current-gen-instances) instance types and the following [previous generation](instance-types.md#previous-gen-instances) instance types: A1, C1, C3, `cr1.8xlarge`, G2, I2, M1, M2, M3, and R3\.
 
 ### Permissions for IAM users<a name="ebs-encryption-permissions"></a>
 

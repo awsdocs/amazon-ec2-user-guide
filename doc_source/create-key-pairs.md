@@ -6,6 +6,7 @@ For steps to connect to your Linux instance using SSH after you have created a k
 
 **Topics**
 + [Create a key pair using Amazon EC2](#having-ec2-create-your-key-pair)
++ [Create a key pair using AWS CloudFormation](#create-key-pair-cloudformation)
 + [Create a key pair using a third\-party tool and import the public key to Amazon EC2](#how-to-generate-your-own-key-and-import-it-to-aws)
 
 ## Create a key pair using Amazon EC2<a name="having-ec2-create-your-key-pair"></a>
@@ -102,6 +103,54 @@ PS C:\> (New-EC2KeyPair -KeyName "my-key-pair" -KeyType "rsa" -KeyFormat "pem").
 ```
 
 ------
+
+## Create a key pair using AWS CloudFormation<a name="create-key-pair-cloudformation"></a>
+
+When you create a new key pair using AWS CloudFormation, the private key is saved to AWS Systems Manager Parameter Store\. The parameter name has the following format:
+
+```
+/ec2/keypair/key_pair_id
+```
+
+For more information, see [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) in the *AWS Systems Manager User Guide*\.
+
+**To create a key pair using AWS CloudFormation**
+
+1. Specify the [AWS::EC2::KeyPair](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-keypair.html) resource in your template\.
+
+   ```
+   Resources:
+     NewKeyPair:
+       Type: 'AWS::EC2::KeyPair'
+       Properties: 
+         KeyName: new-key-pair
+   ```
+
+1. Use the [describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command as follows to get the ID of the key pair\.
+
+   ```
+   aws ec2 describe-key-pairs --filters Name=key-name,Values=new-key-pair --query KeyPairs[*].KeyPairId --output text
+   ```
+
+   The following is example output\.
+
+   ```
+   key-05abb699beEXAMPLE
+   ```
+
+1. Use the [get\-parameter](https://docs.aws.amazon.com/cli/latest/reference/ssm/get-parameter.html) command as follows to get the parameter for your key and save the key material in a `.pem` file\.
+
+   ```
+   aws ssm get-parameter --name /ec2/keypair/key-05abb699beEXAMPLE --with-decryption --query Parameter.Value --output text > new-key-pair.pem
+   ```
+
+**Required IAM permissions**
+
+To enable AWS CloudFormation to manage Parameter Store parameters on your behalf, the IAM role assumed by AWS CloudFormation or your IAM user must have the following permissions:
++ `ssm:PutParameter` – Grants permission to create a parameter for the private key material\.
++ `ssm:DeleteParameter` \- Grants permission to delete the parameter that stored the private key material\. This permission is required whether the key pair was imported or created by AWS CloudFormation\.
+
+When AWS CloudFormation deletes a key pair that was created or imported by a stack, it performs a permissions check to determine whether you have permission to delete parameters, even though AWS CloudFormation creates a parameter only when it creates a key pair, not when it imports a key pair\. AWS CloudFormation tests for the required permission using a fabricated parameter name that does not match any parameter in your account\. Therefore, you might see a fabricated parameter name in the `AccessDeniedException` error message\.
 
 ## Create a key pair using a third\-party tool and import the public key to Amazon EC2<a name="how-to-generate-your-own-key-and-import-it-to-aws"></a>
 

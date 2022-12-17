@@ -7,29 +7,8 @@ Amazon EBS offers two types of General Purpose SSD volumes:
 + General Purpose SSD \(`gp2`\) volumes
 
 **Topics**
-+ [Overview of General Purpose SSD volumes](#gp-overview)
 + [General Purpose SSD \(gp3\) volumes](#gp3-ebs-volume-type)
 + [General Purpose SSD \(gp2\) volumes](#EBSVolumeTypes_gp2)
-
-## Overview of General Purpose SSD volumes<a name="gp-overview"></a>
-
-The following table provides a summary of the use cases, characteristics, and performance of General Purpose SSD \(gp2 and gp3\) volumes\. For information about the maximum IOPS and throughput per instance type, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
-
-
-|  | General Purpose SSD | 
-| --- | --- | 
-| Volume type | gp3 | gp2 | 
-| Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
-| Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/general-purpose.html)  | 
-| Volume size | 1 GiB \- 16 TiB  | 
-| Max IOPS per volume \(16 KiB I/O\) \*\* | 16,000 | 
-| Max throughput per volume \*\* | 1,000 MiB/s | 250 MiB/s \* | 
-| Amazon EBS Multi\-attach | Not supported | 
-| Boot volume | Supported | 
-
-\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than or equal to 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. `gp2` volumes that were created before December 3, 2018, and that have not been modified since creation, might not reach full performance unless you [ modify the volume](ebs-modify-volume.md)\.
-
-\*\* For information about the maximum IOPS and throughput per instance type, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
 ## General Purpose SSD \(gp3\) volumes<a name="gp3-ebs-volume-type"></a>
 

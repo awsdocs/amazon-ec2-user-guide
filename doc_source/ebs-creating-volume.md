@@ -85,7 +85,7 @@ You can create a volume from a snapshot using one of the following methods\.
 ------
 #### [ Console ]
 
-**To create an empty EBS volume using the console**
+**To create an EBS volume from a snapshot using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

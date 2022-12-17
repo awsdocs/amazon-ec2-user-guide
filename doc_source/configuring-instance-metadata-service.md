@@ -151,7 +151,7 @@ The following are the minimum versions that support using IMDSv2:
 + [AWS SDK for \.NET](https://github.com/aws/aws-sdk-net) – 3\.3\.634\.1
 + [AWS SDK for C\+\+](https://github.com/aws/aws-sdk-cpp) – 1\.7\.229
 + [AWS SDK for Go](https://github.com/aws/aws-sdk-go) – 1\.25\.38
-+ [AWS SDK for Go](https://github.com/aws/aws-sdk-go-v2) – 0\.19\.0
++ [AWS SDK for Go v2](https://github.com/aws/aws-sdk-go-v2) – 0\.19\.0
 + [AWS SDK for Java](https://github.com/aws/aws-sdk-java) – 1\.11\.678
 + [AWS SDK for Java 2\.x](https://github.com/aws/aws-sdk-java-v2) – 2\.10\.21
 + [AWS SDK for JavaScript in Node\.js](https://github.com/aws/aws-sdk-js) – 2\.722\.0

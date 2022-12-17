@@ -62,7 +62,7 @@ Use the following procedure to extend the file system for a resized volume\. Not
 
 ------
 
-      If the volume has a partition, continue to the next step\. If the volume has no partitions, skip to step 3\.
+      If the volume has a partition, continue the procedure from the following step \(2b\)\. If the volume has no partitions, skip steps 2b, 2c, and 2d, and continue the procedure from step 3\.
 **Troubleshooting tip**  
 If you do not see the volume in the command output, ensure that the volume is [attached to the instance](ebs-attaching-volume.md), and that it is [formatted and mounted](ebs-using-volumes.md#ebs-format-mount-volume)\.
 

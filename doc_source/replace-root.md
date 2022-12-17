@@ -59,7 +59,10 @@ If the instance is enabled for NitroTPM, ENA, or sriov\-net, then you must use a
 
 You can select an AMI with a different boot mode than that of the instance, as long as the instance supports the boot mode of the AMI\. If the instance does not support the boot mode, the request fails\. If the instance supports the boot mode, the new boot mode is propagated to the instance and its UEFI data is updated accordingly\. If you manually modified the boot order or added a private UEFI Secure Boot key to load private kernel modules, the changes are lost during root volume replacement\.
 
-The replacement root volume gets the same volume type and delete on termination attribute as the original root volume\. It gets either the size of the original root volume or the size of the AMI's block device mapping for the root volume, whichever is larger\.
+The replacement root volume gets the same volume type and delete on termination attribute as the original root volume, and it gets the size of the AMI root volume block device mapping\.
+
+**Note**  
+The size of the AMI root volume block device mapping must be equal to or greater than the size of the original root volume\. If the size of the AMI root volume block device mapping is smaller than the size of the original root volume, the request fails\.
 
 After the root volume replacement task completes, the following new and updated information is reflected when you describe the instance using the console, AWS CLI or AWS SDKs:
 + New AMI ID
@@ -77,6 +80,7 @@ The new AMI ID is also reflected in the instance metadata\.
 + You can only use an AMI without a product code only if the instance does not have a product code\.
 + You can't specify the encryption status for the replacement root volume\. The following table summarizes the possible encryption outcomes\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/replace-root.html)
++ The size of the AMI root volume block device mapping must be equal to or greater than the size of the original root volume\. If the size of the AMI root volume block device mapping is smaller than the size of the original root volume, the request fails\.
 + The instance identity documents for the instance are automatically updated\.
 + If the instance supports NitroTPM, the NitroTPM data for the instance is reset and new keys are generated\.
 

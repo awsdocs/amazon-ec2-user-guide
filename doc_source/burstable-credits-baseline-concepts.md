@@ -11,7 +11,7 @@ When the credits earned are greater than credits spent, then the difference is c
 
 In Standard mode, when credits spent are more than credits earned, the instance uses the accrued credits to burst above baseline CPU utilization\. If there are no accrued credits remaining, then the instance gradually comes down to baseline CPU utilization and cannot burst above baseline until it accrues more credits\. 
 
-In Unlimited mode, if the instance bursts above baseline CPU utilization, then the instance first uses the accrued credits to burst\. If there are no accrued credits remaining, then the instance spends surplus credits to burst\. When its CPU utilization falls below the baseline, it uses the CPU credits that it earns to pay down the surplus credits that it spent earlier\. The ability to earn CPU credits to pay down surplus credits enables Amazon EC2 to average the CPU utilization of an instance over a 24\-hour period\. If the average CPU usage over a 24\-hour period exceeds the baseline, the instance is billed for the additional usage at a flat additional rate per vCPU\-hour\.
+In Unlimited mode, if the instance bursts above baseline CPU utilization, then the instance first uses the accrued credits to burst\. If there are no accrued credits remaining, then the instance spends surplus credits to burst\. When its CPU utilization falls below the baseline, it uses the CPU credits that it earns to pay down the surplus credits that it spent earlier\. The ability to earn CPU credits to pay down surplus credits enables Amazon EC2 to average the CPU utilization of an instance over a 24\-hour period\. If the average CPU usage over a 24\-hour period exceeds the baseline, the instance is billed for the additional usage at a [flat additional rate](https://aws.amazon.com/ec2/pricing/on-demand/#T2.2FT3.2FT4g_Unlimited_Mode_Pricing) per vCPU\-hour\.
 
 **Contents**
 + [Key concepts and definitions](#key-concepts)
@@ -71,7 +71,7 @@ Credits that are spent by an instance after it depletes its accrued credit balan
 Credit configuration mode, which allows an instance to burst above the baseline by spending credits it has accrued in its credit balance\.
 
 **Unlimited mode**  
-Credit configuration mode, which allows an instance to burst above the baseline by sustaining high CPU utilization for any period of time whenever required\. The hourly instance price automatically covers all CPU usage spikes if the average CPU utilization of the instance is at or below the baseline over a rolling 24\-hour period or the instance lifetime, whichever is shorter\. If the instance runs at higher CPU utilization for a prolonged period, it can do so for a flat additional rate per vCPU\-hour\.
+Credit configuration mode, which allows an instance to burst above the baseline by sustaining high CPU utilization for any period of time whenever required\. The hourly instance price automatically covers all CPU usage spikes if the average CPU utilization of the instance is at or below the baseline over a rolling 24\-hour period or the instance lifetime, whichever is shorter\. If the instance runs at higher CPU utilization for a prolonged period, it can do so for a [flat additional rate](https://aws.amazon.com/ec2/pricing/on-demand/#T2.2FT3.2FT4g_Unlimited_Mode_Pricing) per vCPU\-hour\.
 
 The following table summarizes the key credit differences between the burstable instance types\.
 

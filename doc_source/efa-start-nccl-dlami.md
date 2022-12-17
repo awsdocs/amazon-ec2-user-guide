@@ -166,7 +166,6 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    + `FI_PROVIDER="efa"`—specifies the fabric interface provider\. This must be set to `"efa"`\.
    + `FI_EFA_USE_DEVICE_RDMA=1`—\(`p4d.24xlarge` only\) uses the device's RDMA functionality for one\-sided and two\-sided transfer\.
    + `NCCL_DEBUG=INFO`—enables detailed debugging output\. You can also specify `VERSION` to print only the NCCL version at the start of the test, or `WARN` to receive only error messages\.
-   + `NCCL_ALGO=ring`—enables ring algorithm for collective operations\.
    + `NCCL_PROTO=simple`—instructs NCCL to use a simple protocol for communication\. Currently, the EFA provider does not support LL protocols\. Enabling them could lead to data corruption\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
@@ -177,7 +176,6 @@ Run a test to ensure that your temporary instance is properly configured for EFA
          -x FI_PROVIDER="efa" \
          -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
          -x NCCL_DEBUG=INFO \
-         -x NCCL_ALGO=ring \
          -x NCCL_PROTO=simple \
          --hostfile my-hosts -n 8 -N 8 \
          --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
@@ -191,7 +189,6 @@ Run a test to ensure that your temporary instance is properly configured for EFA
          -x FI_EFA_USE_DEVICE_RDMA=1 \
          -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
          -x NCCL_DEBUG=INFO \
-         -x NCCL_ALGO=ring \
          -x NCCL_PROTO=simple \
          --hostfile my-hosts -n 8 -N 8 \
          --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
