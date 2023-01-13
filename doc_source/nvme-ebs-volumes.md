@@ -22,6 +22,7 @@ The following AMIs include the required NVMe drivers:
 + Amazon Linux AMI 2018\.03
 + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
 + Red Hat Enterprise Linux 7\.4 or later
++ Red Hat Enterprise Linux 6\.5 or later
 + SUSE Linux Enterprise Server 12 SP2 or later
 + CentOS 7\.4\.1708 or later
 + FreeBSD 11\.1 or later
