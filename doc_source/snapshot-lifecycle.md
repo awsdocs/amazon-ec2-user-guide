@@ -45,7 +45,9 @@ An Amazon Machine Image \(AMI\) provides the information that's required to laun
 
 ### Target resource tags<a name="dlm-tagging-volumes"></a>
 
-Amazon Data Lifecycle Manager uses resource tags to identify the resources to back up\. Tags are customizable metadata that you can assign to your AWS resources \(including Amazon EC2 instances, EBS volumes and snapshots\)\. An Amazon Data Lifecycle Manager policy \(described later\) targets an instance or volume for backup using a single tag\. Multiple tags can be assigned to an instance or volume if you want to run multiple policies on it\.
+Amazon Data Lifecycle Manager uses resource tags to identify the resources to back up\. When you create a snapshot or EBS\-backed AMI policy, you can specify multiple target resource tags\. All resources of the specified type \(instance or volume\) that have at least one of the specified target resource tags will be targeted by the policy\. For example, if you create a snapshot policy that targets volumes and you specify `purpose=prod`, `costcenter=prod`, and `environment=live` as target resource tags, then the policy will target all volumes that have any of those tag\-key value pairs\.
+
+If you want to run multiple policies on a resource, you can assign multiple tags to the target resource, and then create separate policies that each target a specific resource tag\.
 
 You can't use the `\` or `=` characters in a tag key\. Target resource tags are case sensitive\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 

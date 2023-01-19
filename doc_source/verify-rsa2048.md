@@ -35,7 +35,7 @@ This topic explains how to verify the instance identity document using the RSA\-
 
 ------
 #### [ North America Regions ]
-   + Northern Virginia
+   + US East \(N\. Virginia\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -63,7 +63,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      NWIsDEcp3GUB4proOR+C7PNkY+VGODitBOw09qBGosCBstwyEqY=
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Ohio
+   + US East \(Ohio\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -91,7 +91,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      K+cQ90xGxJ+gmlYbLFR5rbJOLfjrgDAb2ogbFy8LzHo2ZtSe60M=
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Oregon
+   + US West \(Oregon\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -119,7 +119,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      QpVoZdt0SfbuNnmwRUMi+QbuccXweav29QeQ3ADqjgB0CZdSRKk=
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Northern California
+   + US West \(N\. California\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -174,7 +174,7 @@ This topic explains how to verify the instance identity document using the RSA\-
 
 ------
 #### [ South America Regions ]
-   + São Paulo
+   + South America \(São Paulo\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -205,7 +205,7 @@ This topic explains how to verify the instance identity document using the RSA\-
 
 ------
 #### [ Europe, Middle East, and Africa Regions ]
-   + Frankfurt
+   + Europe \(Frankfurt\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -233,7 +233,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      Z6fboaHEd4RFamShM8uvSu6eEFD+qRmvqlcodbpsSOhuGNLzhOQ=
      -----END CERTIFICATE-----" >> certificate
      ```
-   + London
+   + Europe \(London\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -257,7 +257,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      pt1RCZe+W7/dF4zsbqwK
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Paris
+   + Europe \(Paris\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -281,7 +281,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      OmY0v/xVmQUQl26jJXaM
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Ireland
+   + Europe \(Ireland\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -309,7 +309,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      4CqoaPR05KWkdNUdGNwXewydb3+agdCgfTs+uAjeXKNdSpbhMYg=
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Milan
+   + Europe \(Milan\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -333,7 +333,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      jgnq1bf+EZEZKvb6UCQV
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Stockholm
+   + Europe \(Stockholm\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -357,7 +357,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      FEyxIdEjoeO1jhTsck3R
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Bahrain
+   + Middle East \(Bahrain\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -381,7 +381,35 @@ This topic explains how to verify the instance identity document using the RSA\-
      KHKgfiigQZ1+gv5FlyXH
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Cape Town
+   + Middle East \(UAE\)
+
+     ```
+     $ echo "-----BEGIN CERTIFICATE-----
+     MIIEEjCCAvqgAwIBAgIJAM4h7b1CVhqqMA0GCSqGSIb3DQEBCwUAMFwxCzAJBgNV
+     BAYTAlVTMRkwFwYDVQQIExBXYXNoaW5ndG9uIFN0YXRlMRAwDgYDVQQHEwdTZWF0
+     dGxlMSAwHgYDVQQKExdBbWF6b24gV2ViIFNlcnZpY2VzIExMQzAgFw0yMjA0MTEx
+     MDE1MDNaGA8yMjAxMDkxNTEwMTUwM1owXDELMAkGA1UEBhMCVVMxGTAXBgNVBAgT
+     EFdhc2hpbmd0b24gU3RhdGUxEDAOBgNVBAcTB1NlYXR0bGUxIDAeBgNVBAoTF0Ft
+     YXpvbiBXZWIgU2VydmljZXMgTExDMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+     CgKCAQEApybTWfMOhSoMpqPo72eqAmnn1dXGZM+G8EoZXzwHwT/+IHEXNB4q5N6k
+     tudYLre1bJxuzEw+iProSHjmb9bB9YscRTofjVhBlt35Fc+i8BaMeH94SR/eE8QO
+     mll8gnLNW3d62lyuhzuyv1e5wVlRqzYw+X2zRH4/wRDOCOpzjKoHIgyPKsMgwsw5
+     aTZhNMsGxZN9dbkf0iCGeQLDytwU/JTh/HqvSr3VfUOapTJJiyAxoCtZWgp1/7wC
+     RvOCSMRJobpUqxZgl/VsttwNkikSFz1wGkcYeSQvk+odbnYQckA8tdddoVI56eD4
+     qtREQvfpMAX5v7fcqLexl5d5vH8uZQIDAQABo4HUMIHRMAsGA1UdDwQEAwIHgDAd
+     BgNVHQ4EFgQUOadrbTs+OhzwoAgUJ7RqQNdwufkwgY4GA1UdIwSBhjCBg4AUOadr
+     bTs+OhzwoAgUJ7RqQNdwufmhYKReMFwxCzAJBgNVBAYTAlVTMRkwFwYDVQQIExBX
+     YXNoaW5ndG9uIFN0YXRlMRAwDgYDVQQHEwdTZWF0dGxlMSAwHgYDVQQKExdBbWF6
+     b24gV2ViIFNlcnZpY2VzIExMQ4IJAM4h7b1CVhqqMBIGA1UdEwEB/wQIMAYBAf8C
+     AQAwDQYJKoZIhvcNAQELBQADggEBAICTdAOGEOnII8HaGCpCB8us/hGFaLptJaAf
+     D5SJAyVy66/mdfjGzE1BKkKxnbxemEVUIzbRidOnyilB+pKwN3edAjTZtWdpVA0V
+     R/G/qQPmcVljtycBz4VC6SuOUYflGzLH1GZ6GJWbuDtFzw8r7HGdRN1wrEPe3UF2
+     sMpuVezqnRUdvVRoVQP4jFgNsE7kNvtn2NiPhb/CtrxpcwIQ7r6YeoHcBSheuV1Z
+     xZDHynC3KUprQGx1+Z9QqPrDf180MaoqAlTl4+W6Pr2NJYrVUFGS/ivYshMg574l
+     CPU6r4wWZSKwEUXq4BInYX6z6iclp/p/J5QnJp2mAwyi6M+I13Y=
+     -----END CERTIFICATE-----" >> certificate
+     ```
+   + Africa \(Cape Town\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -408,7 +436,7 @@ This topic explains how to verify the instance identity document using the RSA\-
 
 ------
 #### [ Asia Pacific Regions ]
-   + Sydney
+   + Asia Pacific \(Sydney\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -436,7 +464,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      2LCawwaWm8FYAFd3IZl04RImNs/IMG7VmH1bf4swHOBHgCN1uYo=
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Tokyo
+   + Asia Pacific \(Tokyo\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -464,7 +492,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      6KR6PNjlhxBsImQhmBvz6j5PLQxOxBZIpDoiK278e/1Wqm9LrBc=
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Seoul
+   + Asia Pacific \(Seoul\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -488,7 +516,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      jmXe0aMy3thyK6g5sJVg
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Osaka
+   + Asia Pacific \(Osaka\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -512,7 +540,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      izPrI09hMypJDP04ugQc
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Mumbai
+   + Asia Pacific \(Mumbai\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -536,7 +564,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      OP2CclCHoZ8XDQcvvKAh
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Hong Kong
+   + Asia Pacific \(Hong Kong\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -560,7 +588,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      tmmEJM7xeURdpBBx36Di
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Singapore
+   + Asia Pacific \(Singapore\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -588,7 +616,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      5WuOr8unKj7YxdL1bv7//RtVYVVi296ldoRUYv4SCvJF11z0OdQ=
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Jakarta
+   + Asia Pacific \(Jakarta\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -616,7 +644,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      XUrLTNWwuhZy88cOlqGPxnoRbw7TmifwPw/cunNrsjUUOgs6ZTk=
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Ningxia
+   + China \(Ningxia\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -640,7 +668,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      YMqfiDtN5cbD8R8ojw9Y
      -----END CERTIFICATE-----" >> certificate
      ```
-   + Beijing
+   + China \(Beijing\)
 
      ```
      $ echo "-----BEGIN CERTIFICATE-----
@@ -666,7 +694,7 @@ This topic explains how to verify the instance identity document using the RSA\-
      ```
 
 ------
-#### [ AWS GovCloud Regions ]
+#### [ AWS GovCloud \(US\) Regions ]
    + AWS GovCloud \(US\-West\) Region
 
      ```

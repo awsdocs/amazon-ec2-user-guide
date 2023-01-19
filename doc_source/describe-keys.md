@@ -23,7 +23,7 @@ You can use the Amazon EC2 console or AWS CLI to view information about your pub
 1. In the left navigator, choose **Key Pairs**\.
 
 1. You can view the information about each public key in the **Key pairs** table\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/key-pairs-describe-console.png)
+![\[Key pairs table.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/key-pairs-describe-console.png)
 
 1. To view a public key's tags, select the check box next to the key, and then choose **Actions**, **Manage tags**\.
 

@@ -2,20 +2,26 @@
 
 Attaching multiple network interfaces to an instance is useful when you want to:
 + Create a management network\.
-+ Use network and security appliances in your VPC\.
++ Use network and security appliances in your Virtual Private Cloud \(VPC\)\.
 + Create dual\-homed instances with workloads/roles on distinct subnets\.
 + Create a low\-budget, high\-availability solution\.
 
 ## Create a management network<a name="creating-a-management-network"></a>
 
-You can create a management network using network interfaces\. In this scenario, as illustrated in the following image:
-+ The primary network interface \(eth0\) on the instance handles public traffic\.
-+ The secondary network interface \(eth1\) handles backend management traffic, and is connected to a separate subnet in your VPC that has more restrictive access controls\.
+This scenario describes how you can create a management network with network interfaces, given the following criteria and settings \(image follows\)\.
 
-The public interface, which may or may not be behind a load balancer, has an associated security group that allows access to the server from the internet \(for example, allow TCP port 80 and 443 from `0.0.0.0/0`, or from the load balancer\)\.
+**Criteria**
++ The primary network interface on the instance \(*eth0*\) handles public traffic\.
++ The secondary network interface on the instance \(*eth1*\) handles backend management traffic\. It's connected to a separate subnet that has more restrictive access controls, and is located within the same Availability Zone \(AZ\) as the primary network interface\.
 
-The private facing interface has an associated security group allowing SSH access only from an allowed range of IP addresses, either within the VPC, or from the internet, a private subnet within the VPC, or a virtual private gateway\.
+**Settings**
++ The primary network interface, which may or may not be behind a load balancer, has an associated security group that allows access to the server from the internet\. For example, allow TCP port 80 and 443 from `0.0.0.0/0` or from the load balancer\.
++ The secondary network interface has an associated security group that allows SSH access only, initiated from one of the following locations:
+  + An allowed range of IP addresses, either within the VPC, or from the internet\.
+  + A private subnet within the same AZ as the primary network interface\.
+  + A virtual private gateway\.
 
+**Note**  
 To ensure failover capabilities, consider using a secondary private IPv4 for incoming traffic on a network interface\. In the event of an instance failure, you can move the interface and/or secondary private IPv4 address to a standby instance\.
 
 ![\[Creating a management network\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EC2_ENI_management_network.png)

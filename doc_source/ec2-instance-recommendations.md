@@ -32,41 +32,19 @@ Compute Optimizer classifies its findings for EC2 instances as follows:
 
 After you opt in to Compute Optimizer, you can view the findings that Compute Optimizer generates for your EC2 instances in the EC2 console\. You can then access the Compute Optimizer console to view the recommendations\. If you recently opted in, findings might not be reflected in the EC2 console for up to 12 hours\. 
 
-------
-#### [ New console ]
-
 **To view a recommendation for an EC2 instance through the EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**, and then choose the instance ID\.
+1. In the navigation pane, choose **Instances**, and then choose the instance ID \.
 
 1. On the instance summary page, in the **AWS Compute Optimizer** banner near the bottom of the page, choose **View detail**\.
 
    The instance opens in Compute Optimizer, where it is labeled as the **Current** instance\. Up to three different instance type recommendations, labeled **Option 1**, **Option 2**, and **Option 3**, are provided\. The bottom half of the window shows recent CloudWatch metric data for the current instance: **CPU utilization**, **Memory utilization**, **Network in**, and **Network out**\. 
 
-1. \(Optional\) In the Compute Optimizer console, choose the settings \(![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png)\) icon to change the visible columns in the table, or to view the public pricing information for a different purchasing option for the current and recommended instance types\.
+1. \(Optional\) In the Compute Optimizer console, choose the settings icon \(![\[Settings icon.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png)\) to change the visible columns in the table, or to view the public pricing information for a different purchasing option for the current and recommended instance types\.
 **Note**  
 If you’ve purchased a Reserved Instance, your On\-Demand Instance might be billed as a Reserved Instance\. Before you change your current instance type, first evaluate the impact on Reserved Instance utilization and coverage\.
-
-------
-#### [ Old console ]
-
-**To view a recommendation for an EC2 instance through the EC2 console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select an instance, and on the **Description** tab, inspect the **Finding** field\. Choose **View detail**\.
-
-   The instance opens in Compute Optimizer, where it is labeled as the **Current** instance\. Up to three different instance type recommendations, labeled **Option 1**, **Option 2**, and **Option 3**, are provided\. The bottom half of the window shows recent CloudWatch metric data for the current instance: **CPU utilization**, **Memory utilization**, **Network in**, and **Network out**\. 
-
-1. \(Optional\) In the Compute Optimizer console, choose the settings \(![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png)\) icon to change the visible columns in the table, or to view the public pricing information for a different purchasing option for the current and recommended instance types\.
-**Note**  
-If you’ve purchased a Reserved Instance, your On\-Demand Instance might be billed as a Reserved Instance\. Before you change your current instance type, first evaluate the impact on Reserved Instance utilization and coverage\.
-
-------
 
 Determine whether you want to use one of the recommendations\. Decide whether to optimize for performance improvement, for cost reduction, or for a combination of the two\. For more information, see [Viewing Resource Recommendations](https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html) in the *AWS Compute Optimizer User Guide*\.
 
@@ -86,7 +64,7 @@ Determine whether you want to use one of the recommendations\. Decide whether to
 
    1. To clear the selected filters, choose **Clear filters**\. 
 
-   1. To change the purchasing option that is displayed for the current and recommended instance types, choose the settings \(![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png)\) icon , and then choose **On\-Demand Instances**, **Reserved Instances, standard 1\-year no upfront**, or **Reserved Instances, standard 3\-year no upfront**\. 
+   1. To change the purchasing option that is displayed for the current and recommended instance types, choose the settings icon \(![\[Settings icon.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png)\) , and then choose **On\-Demand Instances**, **Reserved Instances, standard 1\-year no upfront**, or **Reserved Instances, standard 3\-year no upfront**\. 
 
    1. To view details, such as additional recommendations and a comparison of utilization metrics, choose the finding \(**Under\-provisioned**, **Over\-provisioned**, or **Optimized**\) listed next to the desired instance\. For more information, see [Viewing Resource Details](https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-resource-details.html) in the *AWS Compute Optimizer User Guide*\.
 

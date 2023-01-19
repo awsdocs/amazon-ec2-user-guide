@@ -15,7 +15,7 @@ Use the **Limits** page in the Amazon EC2 console to view the current limits for
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. From the navigation bar, select a Region\.  
-![\[Select a Region\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EC2_select_region.png)
+![\[Select a Region.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EC2_select_region.png)
 
 1. From the navigation pane, choose **Limits**\.
 

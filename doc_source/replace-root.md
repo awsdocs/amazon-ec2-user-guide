@@ -26,7 +26,7 @@ If the root volume replacement task fails, the instance is rebooted and the orig
 + The instance must be in the `running` state\.
 + The instance is automatically rebooted during the process\. The contents of the memory \(RAM\) is erased during the reboot\. No manual reboots are required\.
 + You can't replace the root volume if it is an instance store volume\. Only instances with Amazon EBS root volumes are supported\. 
-+ You can replace the root volume for all virtualized instance types and Amazon EC2 Mac metal instances only\. All other metal instances are not supported\.
++ You can replace the root volume for all virtualized instance types\. All other metal instances are not supported\.
 + You can use any snapshot that belongs to the same lineage as any of the instance's previous root volumes\.
 
 **Topics**

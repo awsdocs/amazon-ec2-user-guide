@@ -70,8 +70,10 @@ For example, the following command retrieves the key policy for a KMS key with a
 
 ```
 $ aws kms get-key-policy \
---policy-name default --key-id 9d5e2b3d-e410-4a27-a958-19e220d83a1e \
---query Policy --output text > snapshotKey.json
+    --policy-name default \
+    --key-id 9d5e2b3d-e410-4a27-a958-19e220d83a1e \
+    --query Policy \
+    --output text > snapshotKey.json
 ```
 
 Open the key policy using your preferred text editor\. Add the ARN of the IAM role that you specified when you created the snapshot policy and the ARNs of the target accounts with which to share the KMS key\.
@@ -126,8 +128,9 @@ Save and close the file\. Then use the [ put\-key\-policy](https://docs.aws.amaz
 
 ```
 $ aws kms put-key-policy \
---policy-name default --key-id 9d5e2b3d-e410-4a27-a958-19e220d83a1e 
---policy file://snapshotKey.json
+    --policy-name default \
+    --key-id 9d5e2b3d-e410-4a27-a958-19e220d83a1e \
+    --policy file://snapshotKey.json
 ```
 
 ------
@@ -188,9 +191,10 @@ For example, the following command creates a cross\-account copy event policy in
 
 ```
 $ aws dlm create-lifecycle-policy \
---description "Copy policy" \
---state ENABLED --execution-role-arn arn:aws:iam::222222222222:role/service-role/AWSDataLifecycleManagerDefaultRole \
---policy-details file://policyDetails.json
+    --description "Copy policy" \
+    --state ENABLED \
+    --execution-role-arn arn:aws:iam::222222222222:role/service-role/AWSDataLifecycleManagerDefaultRole \
+    --policy-details file://policyDetails.json
 ```
 
 The following shows the contents of the `policyDetails.json` file\.
@@ -366,9 +370,9 @@ For example
 
 ```
 $ aws iam put-role-policy \
---role-name AWSDataLifecycleManagerDefaultRole \
---policy-name CopyPolicy \
---policy-document file://AdminPolicy.json
+    --role-name AWSDataLifecycleManagerDefaultRole \
+    --policy-name CopyPolicy \
+    --policy-document file://AdminPolicy.json
 ```
 
 ------

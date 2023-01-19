@@ -29,16 +29,14 @@ For more information, see [ Amazon EventBridge rules](https://docs.aws.amazon.co
 
 Simplified automatic recovery is supported by an instance if the instance has the following characteristics:
 + It uses `default` or `dedicated` instance tenancy\.
-+ It does not use an Elastic Fabric Adaptor\.
++ It does not use an Elastic Fabric Adapter\.
 + It uses one of the following instance types:
-  + General purpose: A1 \| M4 \| M5 \| M5a \| M5n \| M5zn \| M6a \| M6g \| M6i \| T1 \| T2 \| T3 \| T3a \| T4g
-  + Compute optimized: C4 \| C5 \| C5a \| C5n \| C6a \| C6g \| C6gn \| C6i \| C7g \| Hpc6a
-  + Memory optimized: R4 \| R5 \| R5a \| R5b \| R5n \| R6a \| R6g \| R6i \| high memory \(u\-\*\), virtualized only
-  + Accelerated computing: G3 \| G5g \| Inf1 \| P2 \| P3 \| VT1
-+ It uses one of the following instance types, if it does not have instance store volumes:
-  + General purpose: M3
-  + Compute optimized: C3
-  + Memory optimized: R3 \| X1 \| X1e
+  + General purpose: A1, M3, M4, M5, M5a, M5n, M5zn, M6a, M6g, M6i, M6in, T1, T2, T3, T3a, and T4g
+  + Compute optimized: C3, C4, C5, C5a, C5n, C6a, C6g, C6gn, C6i, C6in, C7g, and Hpc6a
+  + Memory optimized: R3, R4, R5, R5a, R5b, R5n, R6a, R6g, R6i, R6in, U\-3tb1, U\-6tb1, U\-9tb1, U\-12tb1, X1, X2idn, X2iedn, X2iezn, and X1e
+  + Storage optimized: I4i
+  + Accelerated computing: G3, G5g, Inf1, P2, P3, and VT1
++ It does not have instance store volumes\.
 
 ### Limitations<a name="limitations-simplified-recovery"></a>
 + Instances with instance store volumes and metal instance types are not supported by simplified automatic recovery\.
@@ -111,7 +109,7 @@ You can set the automatic recovery behavior to `disabled` or `default` during or
 
 1. Select the instance, and then choose **Actions**, **Instance settings**, **Change auto\-recovery behavior**\.
 
-1. Choose **Default**, and then choose **Save**\.
+1. Choose **Default \(On\)**, and then choose **Save**\.
 
 ------
 #### [ AWS CLI ]

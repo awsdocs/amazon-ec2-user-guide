@@ -28,7 +28,7 @@ All ICMP connections are automatically tracked\. Connections made through the fo
 
 ## Throttling<a name="connection-tracking-throttling"></a>
 
-Amazon EC2 defines the maximum number of connections that can be tracked per instance\. After the maximum is reached, any packets that are sent or received are dropped because a new connection cannot be established\. When this happens, applications that send and receive packets cannot communicate properly\.
+Amazon EC2 defines the maximum number of connections that can be tracked per instance\. After the maximum is reached, any packets that are sent or received are dropped because a new connection cannot be established\. When this happens, applications that send and receive packets cannot communicate properly\. Use the `conntrack_allowance_available` network performance metric to determine the number of tracked connections still available for that instance type\.
 
 To determine whether packets were dropped because the network traffic for your instance exceeded the maximum number of connections that can be tracked, use the `conntrack_allowance_exceeded` network performance metric\. For more information, see [Monitor network performance for your EC2 instance](monitoring-network-performance-ena.md)\.
 

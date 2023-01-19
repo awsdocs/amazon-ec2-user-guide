@@ -32,7 +32,7 @@ SSD\-backed volumes are optimized for transactional workloads involving frequent
 
 † To achieve maximum throughput of 1,000 MiB/s, the volume must be provisioned with 64,000 IOPS and it must be attached to an [instance built on the Nitro System](instance-types.md#ec2-nitro-instances)\. `io1` volumes created before **December 6, 2017** and that have not been modified since creation, might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
 
-‡ `io2` Block Express volumes are supported with C6in, C7g, M6in, M6idn, R5b, R6in, R6idn, Trn1, X2idn, and X2iedn instances instances only\. `io2` volumes attached to these instances, during or after launch, automatically run on Block Express\. For more information, see [`io2` Block Express volumes](provisioned-iops.md#io2-block-express)\.
+‡ `io2` Block Express volumes are supported with C6in, C7g, M6in, M6idn, R5b, R6in, R6idn, Trn1, X2idn, and X2iedn instances only\. `io2` volumes attached to these instances, during or after launch, automatically run on Block Express\. For more information, see [`io2` Block Express volumes](provisioned-iops.md#io2-block-express)\.
 
 For more information about the SSD\-backed volume types, see the following:
 + [General Purpose SSD volumes](general-purpose.md)

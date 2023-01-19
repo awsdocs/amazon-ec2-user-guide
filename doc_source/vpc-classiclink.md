@@ -56,7 +56,7 @@ You can use the Amazon EC2 console to find the private IP addresses of your Amaz
 
 ### Control the use of ClassicLink<a name="classiclink-iam"></a>
 
-By default, IAM users do not have permission to work with ClassicLink\. You can create an IAM policy that grants users permissions to enable or disable a VPC for ClassicLink, link or unlink an instance to a ClassicLink\-enabled VPC, and to view ClassicLink\-enabled VPCs and linked EC2\-Classic instances\. For more information about IAM policies for Amazon EC2, see [IAM policies for Amazon EC2](iam-policies-for-amazon-ec2.md)\. 
+By default, users do not have permission to work with ClassicLink\. You can create an IAM role and policy that grants users permissions to enable or disable a VPC for ClassicLink, link or unlink an instance to a ClassicLink\-enabled VPC, and to view ClassicLink\-enabled VPCs and linked EC2\-Classic instances\. For more information about IAM policies for Amazon EC2, see [IAM policies for Amazon EC2](iam-policies-for-amazon-ec2.md)\. 
 
 For more information about policies for working with ClassicLink, see the following example: [Example IAM policies for ClassicLink](#iam-example-classiclink)\.
 

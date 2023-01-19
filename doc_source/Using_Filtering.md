@@ -109,7 +109,7 @@ For example, you can search the **Instance state** attribute for all of your ins
    A list of possible operators for the selected attribute appears\.
 
 1. Choose **\!=** \(Does not equal\), and then choose **terminated**\.
-To filter instances based on an instance state attribute, you can also use the search icons \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/search.png) \) in the **Instance state** column\. The search icon with a plus sign \( **\+** \) displays all the instances that *match* that attribute\. The search icon with a minus sign \( **\-** \) *excludes* all instances that match that attribute\.  
+To filter instances based on an instance state attribute, you can also use the search icons \( ![\[\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/search.png) \) in the **Instance state** column\. The search icon with a plus sign \( **\+** \) displays all the instances that *match* that attribute\. The search icon with a minus sign \( **\-** \) *excludes* all instances that match that attribute\.  
 Here is another example of using the inverse search: To list all instances that are **not** assigned the security group named `launch-wizard-1`, under **Client filters**, search by the **Security group name** attribute, choose **\!=**, and in the search bar, enter `launch-wizard-1`\.
 
 **Partial search**  

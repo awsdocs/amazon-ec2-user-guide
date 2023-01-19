@@ -51,7 +51,7 @@ Allocation strategies in Auto Scaling groups help you to provision your target c
 
 Capacity Rebalancing helps you maintain workload availability by proactively augmenting your fleet with a new Spot Instance before a running Spot Instance receives the two\-minute Spot Instance interruption notice\. When Capacity Rebalancing is enabled, Auto Scaling or Spot Fleet attempts to proactively replace Spot Instances that have received a rebalance recommendation, providing the opportunity to rebalance your workload to new Spot Instances that are not at elevated risk of interruption\.
 
-Capacity Rebalancing complements the `price-capacity-optimized` allocation strategy \(which is designed to help find the most optimal spare capacity\) and the mixed instances policy \(which is designed to enhance availability by deploying instances across multiple instance types running in multiple Availability Zones\)\.
+Capacity Rebalancing complements the price\-capacity\-optimized allocation strategy \(which is designed to help find the most optimal spare capacity\) and the mixed instances policy \(which is designed to enhance availability by deploying instances across multiple instance types running in multiple Availability Zones\)\.
 
 For more information, see [Capacity Rebalancing](spot-fleet-capacity-rebalance.md)\.
 

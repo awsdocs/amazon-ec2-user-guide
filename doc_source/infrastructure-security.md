@@ -12,7 +12,7 @@ A virtual private cloud \(VPC\) is a virtual network in your own logically isola
 
 A subnet is a range of IP addresses in a VPC\. When you launch an instance, you launch it into a subnet in your VPC\. Use subnets to isolate the tiers of your application \(for example, web, application, and database\) within a single VPC\. Use private subnets for your instances if they should not be accessed directly from the internet\.
 
-To call the Amazon EC2 API from your VPC without sending traffic over the public internet, use AWS PrivateLink\.
+To call the Amazon EC2 API from your VPC using private IP addresses, use AWS PrivateLink\. For more information, see [Access Amazon EC2 using an interface VPC endpoint](interface-vpc-endpoints.md)\.
 
 ## Isolation on physical hosts<a name="physical-isolation"></a>
 

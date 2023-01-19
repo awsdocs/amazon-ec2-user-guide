@@ -14,7 +14,7 @@ The following examples show launch configurations that you can use with the [cre
 + [Example 9: Launch Spot Instances in a capacity\-optimized fleet](#ec2-fleet-config10)
 + [Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities](#ec2-fleet-config11)
 + [Example 11: Launch Spot Instances in a price\-capacity\-optimized fleet](#ec2-fleet-config12)
-+ [Example 13: Configure attribute\-based instance type selection](#ec2-fleet-config13)
++ [Example 12: Configure attribute\-based instance type selection](#ec2-fleet-config13)
 
 ## Example 1: Launch Spot Instances as the default purchasing option<a name="ec2-fleet-config1"></a>
 
@@ -702,7 +702,7 @@ In the following example, the three launch specifications specify three Spot cap
 }
 ```
 
-## Example 13: Configure attribute\-based instance type selection<a name="ec2-fleet-config13"></a>
+## Example 12: Configure attribute\-based instance type selection<a name="ec2-fleet-config13"></a>
 
 The following example demonstrates how to configure an EC2 Fleet to use attribute\-based instance type selection for identifying instance types\. To specify the required instance attributes, you specify the attributes in the `InstanceRequirements` structure\.
 

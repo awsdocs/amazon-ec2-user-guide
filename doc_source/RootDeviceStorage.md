@@ -100,7 +100,7 @@ You can use one of the following commands\. For more information about these com
 ## Determine the root device type of your instance<a name="display-instance-root-device-type"></a>
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To determine the root device type of an instance using the console**
 
@@ -111,19 +111,6 @@ You can use one of the following commands\. For more information about these com
 1. On the **Storage** tab, under **Root device details**, check the value of **Root device type** as follows:
    + If the value is `EBS`, this is an Amazon EBS\-backed instance\.
    + If the value is `INSTANCE-STORE`, this is an instance store\-backed instance\.
-
-------
-#### [ Old console ]
-
-**To determine the root device type of an instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**, and select the instance\.
-
-1. On the **Description** tab, check the value of **Root device type** as follows:
-   + If the value is `ebs`, this is an Amazon EBS\-backed instance\.
-   + If the value is `instance store`, this is an instance store\-backed instance\.
 
 ------
 #### [ AWS CLI ]
@@ -255,7 +242,7 @@ C:\> Edit-EC2InstanceAttribute -InstanceId i-1234567890abcdef0 -BlockDeviceMappi
 You can confirm that a root volume is configured to persist using the Amazon EC2 console or the command line tools\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To confirm that a root volume is configured to persist using the Amazon EC2 console**
 
@@ -264,17 +251,6 @@ You can confirm that a root volume is configured to persist using the Amazon EC2
 1. In the navigation pane, choose **Instances** and then select the instance\.
 
 1. In the **Storage** tab, under **Block devices**, locate the entry for the root volume\. If **Delete on termination** is `No`, the volume is configured to persist\.
-
-------
-#### [ Old console ]
-
-**To confirm that a root volume is configured to persist using the Amazon EC2 console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances** and then select the instance\.
-
-1. In the **Description** tab, choose the entry for **Root device**\. If **Delete on termination** is `False`, the volume is configured to persist\.
 
 ------
 #### [ AWS CLI ]

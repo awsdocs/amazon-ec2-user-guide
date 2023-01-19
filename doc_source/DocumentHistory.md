@@ -4,6 +4,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Hibernation support for C6i, I3en, and M6i](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html#hibernation-prereqs-supported-instance-families) | Hibernate your newly\-launched instances running on C6i, I3en, and M6i instance types\. | December 19, 2022 | 
 | [Torn write prevention](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/storage-twp.html) | Improve the performance of your I/O\-intensive relational database workloads and reduce latency without negatively impacting data resiliency with torn write prevention, a block storage feature\. | November 29, 2022 | 
 | [Hpc6id\.32xlarge instance](#DocumentHistory) | New memory optimized instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | November 29, 2022 | 
 | [R6in and R6idn instances](#DocumentHistory) | New memory optimized instances for network\-intensive workloads\. | November 28, 2022 | 

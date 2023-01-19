@@ -40,6 +40,11 @@ Choose a tab to view the metrics supported by that policy type\.
 |  `SnapshotsCopiedRegionFailed`  |  The number of cross\-Region snapshot copies that could not be created by a snapshot policy\. This includes unsuccessful retries within 24 hours from the scheduled time\.  | 
 |  `SnapshotsCopiedRegionDeleteCompleted`  |  The number of cross\-Region snapshot copies deleted, as designated by the retention rule, by a snapshot policy\.  | 
 |  `SnapshotsCopiedRegionDeleteFailed`  |  The number of cross\-Region snapshot copies that could not be deleted, as designated by the retention rule, by a snapshot policy\.  | 
+|  `snapshotsArchiveDeletionFailed`  |  The number of archived snapshots that could not be deleted from the archive tier by a snapshot policy\.  | 
+|  `snapshotsArchiveScheduled`  |  The number of snapshots that were scheduled to be archived by a snapshot policy\.  | 
+|  `snapshotsArchiveCompleted`  |  The number of snapshots that were successfully archived by a snapshot policy\.  | 
+|  `snapshotsArchiveFailed`  |  The number of snapshots that could not be archived by a snapshot policy\.  | 
+|  `snapshotsArchiveDeletionCompleted`  |  The number of archived snapshots that were successfully deleted from the archive tier by a snapshot policy\.  | 
 
 ------
 #### [ EBS\-backed AMI policies ]
@@ -118,21 +123,26 @@ You can use the AWS Management Console or the command line tools to list the met
 Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command\.
 
 ```
-$ aws cloudwatch list-metrics --namespace AWS/EBS
+$ aws cloudwatch list-metrics \
+    --namespace AWS/EBS
 ```
 
 **To list all the metrics for a specific policy**  
 Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command and specify the `DLMPolicyId` dimension\.
 
 ```
-$ aws cloudwatch list-metrics --namespace AWS/EBS --dimensions Name=DLMPolicyId,Value=policy-abcdef01234567890
+$ aws cloudwatch list-metrics \
+    --namespace AWS/EBS \
+    --dimensions Name=DLMPolicyId,Value=policy-abcdef01234567890
 ```
 
 **To list a single metric across all policies**  
 Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command and specify the `--metric-name` option\.
 
 ```
-$ aws cloudwatch list-metrics --namespace AWS/EBS --metric-name SnapshotsCreateCompleted
+$ aws cloudwatch list-metrics \
+    --namespace AWS/EBS \
+    --metric-name SnapshotsCreateCompleted
 ```
 
 ------
@@ -201,17 +211,17 @@ You can use the following command to create this alarm:
 
 ```
 $ aws cloudwatch put-metric-alarm \
---alarm-name resource-targeted-monitor \
---alarm-description "Alarm when policy targets more than 50 resources" \
---metric-name ResourcesTargeted \
---namespace AWS/EBS \
---statistic Sum \
---period 3600 \
---threshold 50 \
---comparison-operator GreaterThanThreshold \
---dimensions "Name=DLMPolicyId,Value=policy_id" \
---evaluation-periods 1 \
---alarm-actions sns_topic_arn
+    --alarm-name resource-targeted-monitor \
+    --alarm-description "Alarm when policy targets more than 50 resources" \
+    --metric-name ResourcesTargeted \
+    --namespace AWS/EBS \
+    --statistic Sum \
+    --period 3600 \
+    --threshold 50 \
+    --comparison-operator GreaterThanThreshold \
+    --dimensions "Name=DLMPolicyId,Value=policy_id" \
+    --evaluation-periods 1 \
+    --alarm-actions sns_topic_arn
 ```
 
 ### Example 2: SnapshotDeleteFailed metric<a name="case2"></a>
@@ -224,17 +234,17 @@ You can use the following command to create this alarm:
 
 ```
 $ aws cloudwatch put-metric-alarm \
---alarm-name snapshot-deletion-failed-monitor \
---alarm-description "Alarm when snapshot deletions fail" \
---metric-name SnapshotsDeleteFailed \
---namespace AWS/EBS \
---statistic Sum \
---period 3600 \
---threshold 0 \
---comparison-operator GreaterThanThreshold \
---dimensions "Name=DLMPolicyId,Value=policy_id" \
---evaluation-periods 1 \
---alarm-actions sns_topic_arn
+    --alarm-name snapshot-deletion-failed-monitor \
+    --alarm-description "Alarm when snapshot deletions fail" \
+    --metric-name SnapshotsDeleteFailed \
+    --namespace AWS/EBS \
+    --statistic Sum \
+    --period 3600 \
+    --threshold 0 \
+    --comparison-operator GreaterThanThreshold \
+    --dimensions "Name=DLMPolicyId,Value=policy_id" \
+    --evaluation-periods 1 \
+    --alarm-actions sns_topic_arn
 ```
 
 ### Example 3: SnapshotsCopiedRegionFailed metric<a name="case3"></a>
@@ -247,17 +257,17 @@ You can use the following command to create this alarm:
 
 ```
 $ aws cloudwatch put-metric-alarm \
---alarm-name snapshot-copy-region-failed-monitor \
---alarm-description "Alarm when snapshot copy fails" \
---metric-name SnapshotsCopiedRegionFailed \
---namespace AWS/EBS \
---statistic Sum \
---period 3600 \
---threshold 0 \
---comparison-operator GreaterThanThreshold \
---dimensions "Name=DLMPolicyId,Value=policy_id" \
---evaluation-periods 1 \
---alarm-actions sns_topic_arn
+    --alarm-name snapshot-copy-region-failed-monitor \
+    --alarm-description "Alarm when snapshot copy fails" \
+    --metric-name SnapshotsCopiedRegionFailed \
+    --namespace AWS/EBS \
+    --statistic Sum \
+    --period 3600 \
+    --threshold 0 \
+    --comparison-operator GreaterThanThreshold \
+    --dimensions "Name=DLMPolicyId,Value=policy_id" \
+    --evaluation-periods 1 \
+    --alarm-actions sns_topic_arn
 ```
 
 ## Managing policies that report failed actions<a name="manage"></a>

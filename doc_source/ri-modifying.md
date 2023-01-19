@@ -113,11 +113,11 @@ You can allocate your reservations into different instance sizes across the same
 
 In the following example, you have a reservation with two `t2.micro` instances \(1 unit\) and a reservation with one `t2.small` instance \(1 unit\)\. If you merge both of these reservations to a single reservation with one `t2.medium` instance \(2 units\), the footprint of the new reservation equals the footprint of the combined reservations\.
 
-![\[Modifying Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-modify-merge.png)
+![\[Modifying Reserved Instances.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-modify-merge.png)
 
 You can also modify a reservation to divide it into two or more reservations\. In the following example, you have a reservation with a `t2.medium` instance \(2 units\)\. You can divide the reservation into two reservations, one with two `t2.nano` instances \(\.5 units\) and the other with three `t2.micro` instances \(1\.5 units\)\.
 
-![\[Modifying Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-modify-divide.png)
+![\[Modifying Reserved Instances.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-modify-divide.png)
 
 ### Normalization factors for bare metal instances<a name="ri-normalization-factor-bare-metal-2"></a>
 

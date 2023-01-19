@@ -39,6 +39,8 @@ The resource remains in the Recycle Bin until one of the following happens:
 
 Recycle Bin supports the following resource types:
 + Amazon EBS snapshots
+**Important**  
+Recycle Bin retention rules also apply to archived snapshots in the archive storage tier\. If you delete an archived snapshot that matches a retention rule, that snapshot is retained in the Recycle Bin for the period defined in the retention rule\. Archived snapshots are billed at the rate for archived snapshots while they are in the Recycle Bin\.
 + Amazon EBS\-backed Amazon Machine Images \(AMIs\)
 
 ## Quotas<a name="recycle-bin-quotas"></a>

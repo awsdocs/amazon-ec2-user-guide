@@ -89,7 +89,7 @@ The tax information you enter as part of the tax interview might differ dependin
 
 Based on your tax interview responses and IRS reporting thresholds, Amazon might file Form 1099\-K\. Amazon mails a copy of your Form 1099\-K on or before January 31 in the year following the year that your tax account reaches the threshold levels\. For example, if your account reaches the threshold in 2018, your Form 1099\-K is mailed on or before January 31, 2019\.
 
-For more information about IRS requirements and Form 1099\-K, see the [IRS](http://www.irs.gov/uac/FAQs-on-New-Payment-Card-Reporting-Requirements) website\.
+For more information about IRS requirements and Form 1099\-K, see the [IRS](http://www.irs.gov/newsroom/form-1099-k-frequently-asked-questions-reporting) website\.
 
 ## Price your Reserved Instances<a name="ri-market-concepts-pricing"></a>
 

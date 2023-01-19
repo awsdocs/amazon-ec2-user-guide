@@ -66,7 +66,7 @@ For more information about launching an instance with a tenancy of `host`, see [
 
 1. Check the instance tenancy of your VPC in the **Tenancy** column\.
 
-1. If the **Tenancy** column is not displayed, choose the settings icon \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \) in the top\-right corner, toggle to choose **Tenancy**, and choose **Confirm**\.
+1. If the **Tenancy** column is not displayed, choose the settings icon \( ![\[Settings icon.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \) in the top\-right corner, toggle to choose **Tenancy**, and choose **Confirm**\.
 
 **To display tenancy information for your instance using the console**
 
@@ -77,7 +77,7 @@ For more information about launching an instance with a tenancy of `host`, see [
 1. Check the tenancy of your instance in the **Tenancy** column\.
 
 1. If the **Tenancy** column is not displayed, do one of the following: 
-   + Choose the settings icon \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \) in the top\-right corner, toggle to choose **Tenancy**, and choose **Confirm**\.
+   + Choose the settings icon \( ![\[Settings icon.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \) in the top\-right corner, toggle to choose **Tenancy**, and choose **Confirm**\.
    + Select the instance\. On the **Details** tab near the bottom of the page, under **Host and placement group**, check the value for **Tenancy**\.
 
 ------

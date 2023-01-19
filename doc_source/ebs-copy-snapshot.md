@@ -46,7 +46,7 @@ To see whether your snapshot copies are incremental, check the [copySnapshot](eb
 
 ## Encryption and snapshot copying<a name="creating-encrypted-snapshots"></a>
 
-When you copy a snapshot, you can encrypt the copy or you can specify a KMS key that is different than the original, and the resulting copied snapshot uses the new KMS key\. However, changing the encryption status of a snapshot during a copy operation results in a full \(not incremental\) copy, which might incur greater data transfer and storage charges\. 
+When you copy a snapshot, you can encrypt the copy or you can specify a KMS key that is different than the original, and the resulting copied snapshot uses the new KMS key\. However, changing the encryption status of a snapshot during a copy operation could result in a full \(not incremental\) copy, which might incur greater data transfer and storage charges\. For more information, see [Incremental snapshot copying](#ebs-incremental-copy)\. 
 
 To copy an encrypted snapshot shared from another AWS account, you must have permissions to use the snapshot and the customer master key \(CMK\) that was used to encrypt the snapshot\. When using an encrypted snapshot that was shared with you, we recommend that you re\-encrypt the snapshot by copying it using a KMS key that you own\. This protects you if the original KMS key is compromised, or if the owner revokes it, which could cause you to lose access to any encrypted volumes that you created using the snapshot\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 

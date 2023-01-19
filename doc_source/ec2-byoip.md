@@ -53,7 +53,7 @@ The onboarding process for BYOIP has two phases, for which you must perform thre
 **Note**  
 A ROA is not required for non\-publicly advertised IPv6 address space\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/byoip-preonboarding.png)
+![\[The 3-step onboarding process for BYOIP.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/byoip-preonboarding.png)
 
 To bring on multiple non\-contiguous address ranges, you must repeat this process with each address range\. However, the preparation and RIR configuration steps don't need to be repeated if splitting a contiguous block across several different Regions\.
 

@@ -65,7 +65,7 @@ To view status checks using the Amazon EC2 console, perform the following steps\
 1. On the **Instances** page, the **Status check** column lists the operational status of each instance\.
 
 1. To view the status of a specific instance, select the instance, and then choose the **Status checks** tab\.  
-![\[View the instance status checks on the Status checks tab\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
+![\[View the instance status checks on the Status checks tab.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
 
    If your instance has a failed status check, you typically must address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\. To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
 
@@ -86,7 +86,7 @@ To view status checks using the Amazon EC2 console, perform the following steps\
 1. On the **Instances** page, the **Status Checks** column lists the operational status of each instance\.
 
 1. To view the status of a specific instance, select the instance, and then choose the **Status Checks** tab\.  
-![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab_old.png)
+![\[Viewing status.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab_old.png)
 
    To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
 

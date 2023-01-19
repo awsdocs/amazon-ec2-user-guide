@@ -32,7 +32,7 @@ The following workflow references the numbered points on the graph:
 
 **P7** – For the last 24 hours in this example, the instance is idle and CPU utilization is 0%\. During this time, the instance earns 144 credits, which it accrues in its `CPUCreditBalance`\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3_standard_graph.png)
+![\[T3 Standard instance CPU utilization.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3_standard_graph.png)
 
 ## Example 2: Explain credit use with T2 Standard<a name="t2-standard-example"></a>
 
@@ -48,7 +48,7 @@ This example describes an instance that remains idle for 24 hours from the time 
 
 At 0 hours on the graph, the T2 instance is launched as `standard` and immediately gets 30 launch credits\. It earns credits while in the running state\. The instance remains idle from the time it is launched—CPU utilization is 0%—and no credits are spent\. All unspent credits are accrued in the credit balance\. At approximately 14 hours after launch, the credit balance is 72 \(30 launch credits \+ 42 earned credits\), which is equivalent to what the instance can earn in 24 hours\. At 24 hours after launch, the credit balance exceeds 72 credits because the unspent launch credits are accrued in the credit balance—the credit balance is 102 credits: 30 launch credits \+ 72 earned credits\. 
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph1.png)
+![\[In period 1 for the T2 standard, the credit balance is 102 credits.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph1.png)
 
 
 |  |  | 
@@ -67,7 +67,7 @@ In a real\-world scenario, an EC2 instance consumes a small number of credits wh
 
 For the next 12 hours, the instance continues to remain idle and earn credits, but the credit balance does not increase\. It plateaus at 102 credits \(30 launch credits \+ 72 earned credits\)\. The credit balance has reached its limit of 72 accrued earned credits, so newly earned credits are discarded\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph2.png)
+![\[The credit balance has reached its limit of 72 accrued earned credits.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph2.png)
 
 
 |  |  | 
@@ -84,7 +84,7 @@ An instance constantly earns credits, but it cannot accrue more earned credits i
 
 For the next 25 hours, the instance uses 2% CPU, which requires 30 credits\. In the same period, it earns 75 credits, but the credit balance decreases\. The balance decreases because the accrued *launch* credits are spent first, while newly earned credits are discarded because the credit balance is already at its limit of 72 earned credits\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph3.png)
+![\[Newly earned credits are discarded because the credit balance is already at its limit.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph3.png)
 
 
 |  |  | 
@@ -103,7 +103,7 @@ For the next 11 hours, the instance uses 2% CPU, which requires 13\.2 credits\. 
 
 The balance does not decrease because the credit earn rate is higher than the credit spend rate\. In the time that the instance spends 13\.2 credits, it also earns 33 credits\. However, the balance limit is 72 credits, so any earned credits that exceed the limit are discarded\. The balance plateaus at 72 credits, which is different from the plateau of 102 credits during Period 2, because there are no accrued launch credits\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph4.png)
+![\[The balance plateaus at 72 credits, because there are no accrued launch credits.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph4.png)
 
 
 |  |  | 
@@ -120,7 +120,7 @@ After launch credits are spent, the credit balance limit is determined by the nu
 
 For the next three hours, the instance bursts at 20% CPU utilization, which requires 36 credits\. The instance earns nine credits in the same three hours, which results in a net balance decrease of 27 credits\. At the end of three hours, the credit balance is 45 accrued earned credits\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph5.png)
+![\[At the end of three hours, the credit balance is 45 accrued earned credits.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph5.png)
 
 
 |  |  | 
@@ -141,7 +141,7 @@ In Period 3, the accrued launch credits were spent, and any earned credits that 
 
 In this period, there are no accrued launch credits, and the number of accrued earned credits in the balance is below the limit\. No earned credits are discarded\. Furthermore, the instance earns more credits than it spends, resulting in an increase in the credit balance\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph6.png)
+![\[The instance earns more credits than it spends.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph6.png)
 
 
 |  |  | 
@@ -160,7 +160,7 @@ For the next six hours, the instance remains idle—CPU utilization is 0%—and 
 
 In Period 2, the credit balance included 30 accrued launch credits\. The launch credits were spent in Period 3\. A running instance cannot get more launch credits\. After its credit balance limit is reached, any earned credits that exceed the limit are discarded\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph7.png)
+![\[Earned credits that exceed the limit are discarded.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph7.png)
 
 
 |  |  | 

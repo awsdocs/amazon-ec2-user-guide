@@ -4,7 +4,7 @@ The following steps help you to get started with Elastic Fabric Adapter using an
 
 **Note**  
 Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
-Only Amazon Linux 2, RHEL 7/8, CentOS 7, Rocky Linux 8, and Ubuntu 18\.04/20\.04 base AMIs are supported\.
+Only Amazon Linux 2, RHEL 7/8, CentOS 7, Rocky Linux 8/9, and Ubuntu 18\.04/20\.04 base AMIs are supported\.
 
 **Topics**
 + [Step 1: Prepare an EFA\-enabled security group](#nccl-start-base-setup)
@@ -246,7 +246,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 
    ```
    $ sudo yum clean all \
-   && sudo yum -y install nvidia-driver-latest-dkms \
+   && sudo yum -y install kmod-nvidia-latest-dkms nvidia-driver-latest-dkms \
    && sudo yum -y install cuda-drivers-fabricmanager cuda libcudnn8-devel
    ```
 
@@ -395,7 +395,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
    The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
 
 ------
-#### [ RHEL 7/8 and Rocky Linux 8 ]
+#### [ RHEL 7/8 and Rocky Linux 8/9 ]
 
 **To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
 
@@ -455,7 +455,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
         ```
         $ sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
         ```
-      + RHEL 8 and Rocky Linux 8
+      + RHEL 8 and Rocky Linux 8/9
 
         ```
         $ sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -576,6 +576,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub \
        && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /' \
        && sudo apt update \ 
+       && sudo apt install nvidia-dkms-515 \
        && sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
        ```
      + Ubuntu 20\.04
@@ -589,6 +590,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub \
        && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /' \
        && sudo apt update \
+       && sudo apt install nvidia-dkms-515 \
        && sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
        ```
 
@@ -659,7 +661,7 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 Install GDRCopy to improve the performance of Libfabric\. For more information about GDRCopy, see the [GDRCopy repository](https://github.com/NVIDIA/gdrcopy)\.
 
 ------
-#### [ Amazon Linux 2, CentOS 7, RHEL 7/8, and Rocky Linux 8 ]
+#### [ Amazon Linux 2, CentOS 7, RHEL 7/8, and Rocky Linux 8/9 ]
 
 **To install GDRCopy**
 
@@ -736,7 +738,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.20.0.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.21.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -764,7 +766,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.20.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.20.0.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.21.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.21.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -782,7 +784,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.20.0.tar.gz && cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.21.0.tar.gz && cd aws-efa-installer
    ```
 
 1. Run the EFA software installation script\.
@@ -899,7 +901,7 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
 
    ```
    $ ./configure --prefix=/opt/aws-ofi-nccl --with-mpi=/opt/amazon/openmpi \
-   --with-libfabric=/opt/amazon/efa --with-nccl=/opt/nccl/build \
+   --with-libfabric=/opt/amazon/efa \
    --with-cuda=/usr/local/cuda
    ```
 
@@ -934,7 +936,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
    ```
 
 1. Add the Libfabric directory to the `LD_LIBRARY_PATH` variable\. 
-   + Amazon Linux, Amazon Linux 2, RHEL , Rocky Linux 8, and CentOS
+   + Amazon Linux, Amazon Linux 2, RHEL , Rocky Linux 8/9, and CentOS
 
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib64:$LD_LIBRARY_PATH

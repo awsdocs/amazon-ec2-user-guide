@@ -103,6 +103,18 @@
            Depth      32
        EndSubSection
    EndSection
+   
+   Section "Screen"
+       Identifier     "Screen1"
+       Device         "Device1"
+       Monitor        "Virtual"
+       DefaultDepth   24
+       Option         "AllowEmptyInitialConfiguration" "True"
+       SubSection "Display"
+           Virtual    3840 2160
+           Depth      32
+       EndSubSection
+   EndSection
    ```
 
 1. Set up DCV by following the instructions in setting up an [interactive desktop](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-amd-driver.html#amd-interactive-desktop)\.

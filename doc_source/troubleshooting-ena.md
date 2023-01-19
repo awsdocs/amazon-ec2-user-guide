@@ -133,6 +133,7 @@ NIC statistics:
     bw_in_allowance_exceeded: 0
     bw_out_allowance_exceeded: 0
     pps_allowance_exceeded: 0
+    conntrack_allowance_available: 450878
     conntrack_allowance_exceeded: 0
     linklocal_allowance_exceeded: 0
     queue_0_tx_cnt: 4329
@@ -173,8 +174,8 @@ The number of tx packets dropped because the bandwidth allowance limit was excee
 `pps_allowance_exceeded`: *N*  
 The number of packets dropped because the pps \(packets per second\) allowance limit was exceeded\.
 
-`conntrack_allowance_exceeded`: *N*  
-The number of packets dropped because the connection count allowance limit was exceeded\.
+`conntrack_allowance_available`: *N*  
+The number of tracked connections that can be established by the instance before exceeding the maximum number of tracked connections for that instance type\. 
 
 `linklocal_allowance_exceeded`: *N*  
 The number of proxy packets dropped because the pps \(packets per second\) allowance limit was exceeded\.

@@ -2,7 +2,7 @@
 
 The AWS [shared responsibility model](http://aws.amazon.com/compliance/shared-responsibility-model/) applies to data protection in Amazon Elastic Compute Cloud\. As described in this model, AWS is responsible for protecting the global infrastructure that runs all of the AWS Cloud\. You are responsible for maintaining control over your content that is hosted on this infrastructure\. This content includes the security configuration and management tasks for the AWS services that you use\. For more information about data privacy, see the [Data Privacy FAQ](http://aws.amazon.com/compliance/data-privacy-faq)\. For information about data protection in Europe, see the [AWS Shared Responsibility Model and GDPR](http://aws.amazon.com/blogs/security/the-aws-shared-responsibility-model-and-gdpr/) blog post on the *AWS Security Blog*\.
 
-For data protection purposes, we recommend that you protect AWS account credentials and set up individual user accounts with AWS Identity and Access Management \(IAM\)\. That way each user is given only the permissions necessary to fulfill their job duties\. We also recommend that you secure your data in the following ways:
+For data protection purposes, we recommend that you protect AWS account credentials and set up individual users with AWS IAM Identity Center \(successor to AWS Single Sign\-On\) or AWS Identity and Access Management \(IAM\)\. That way, each user is given only the permissions necessary to fulfill their job duties\. We also recommend that you secure your data in the following ways:
 + Use multi\-factor authentication \(MFA\) with each account\.
 + Use SSL/TLS to communicate with AWS resources\. We recommend TLS 1\.2 or later\.
 + Set up API and user activity logging with AWS CloudTrail\.
@@ -53,11 +53,11 @@ All cross\-Region traffic that uses Amazon VPC and Transit Gateway peering is au
 **Encryption between instances**  
 AWS provides secure and private connectivity between EC2 instances of all types\. In addition, some instance types use the offload capabilities of the underlying Nitro System hardware to automatically encrypt in\-transit traffic between instances, using AEAD algorithms with 256\-bit encryption\. There is no impact on network performance\. To support this additional in\-transit traffic encryption between instances, the following requirements must be met:
 + The instances use the following instance types:
-  + General purpose: M5dn \| M5n \| M5zn \| M6a \| M6i \| M6id \| M6in \| M6idn
-  + Compute optimized: C5a \| C5ad \| C5n \| C6a \| C6gn \|  C6i \| C6id \| C6in \| C7g \| Hpc6a
-  + Memory optimized: Hpc6id \| R5dn \| R5n \| R6a \| R6i \| R6id \| high memory \(u\-\*\), virtualized only \| X2idn \| X2iedn \| X2iezn
-  + Storage optimized: D3 \| D3en \| I3en \| I4i \| Im4gn \| Is4gen
-  + Accelerated computing: DL1 \| G4ad \| G4dn \| G5 \| Inf1 \| P3dn \| P4d \|  P4de \| VT1
+  + **General purpose**: M5dn, M5n, M5zn, M6a, M6i, M6id, M6idn, and M6in
+  + **Compute optimized:** C5a, C5ad, C5n, C6a, C6gn, C6i, C6id, C6in, C7g, and Hpc6a
+  + **Memory optimized:** Hpc6id, R5dn, R5n, R6a, R6i, R6idn, R6in, R6id, U\-3tb1, U\-6tb1, U\-9tb1, U\-12tb1, U\-18tb1, U\-24tb1, X2idn, X2iedn, and X2iezn
+  + **Storage optimized:** D3, D3en, I3en, I4i, Im4gn, and Is4gen
+  + **Accelerated computing:** DL1, G4ad, G4dn, G5, Inf1, P3dn, P4d, P4de, Trn1, and VT1
 + The instances are in the same Region\.
 + The instances are in the same VPC or peered VPCs, and the traffic does not pass through a virtual network device or service, such as a load balancer or a transit gateway\.
 

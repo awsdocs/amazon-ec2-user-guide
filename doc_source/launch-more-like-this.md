@@ -27,9 +27,6 @@ The following configuration details are not copied from your selected instance\.
 + Number of network interfaces: The default is one network interface, which is the primary network interface \(eth0\)\.
 + Storage: The default storage configuration is determined by the AMI and the instance type\.
 
-------
-#### [ New console ]
-
 **To use your current instance as a template**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -43,22 +40,3 @@ The following configuration details are not copied from your selected instance\.
    When you are ready to launch your instance, choose **Launch instance**\.
 
 1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshoot instance launch issues](troubleshooting-launch.md)\.
-
-------
-#### [ Old console ]
-
-**To use your current instance as a template**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance you want to use, and then choose **Actions**, **Launch More Like This**\.
-
-1. The launch wizard opens on the **Review Instance Launch** page\. You can make any necessary changes by choosing the appropriate **Edit** link\.
-
-   When you are ready, choose **Launch** to select a key pair and launch your instance\.
-
-1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshoot instance launch issues](troubleshooting-launch.md)\.
-
-------

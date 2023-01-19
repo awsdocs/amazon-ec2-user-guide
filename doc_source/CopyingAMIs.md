@@ -20,7 +20,7 @@ With an Amazon EBS\-backed AMI, each of its backing snapshots is copied to an id
 + You can use IAM policies to grant or deny users permissions to copy AMIs\. Resource\-level permissions specified for the `CopyImage` action apply only to the new AMI\. You cannot specify resource\-level permissions for the source AMI\.
 + AWS does not copy launch permissions or Amazon S3 bucket permissions from the source AMI to the new AMI\. After the copy operation is complete, you can apply launch permissions and Amazon S3 bucket permissions to the new AMI\.
 + You can only copy user\-defined AMI tags that you attached to the AMI\. System tags \(prefixed with `aws:`\) and user\-defined tags that are attached by other AWS accounts will not be copied\.
-+ If you are using an AWS Marketplace AMI, or an AMI that was directly or indirectly derived from an AWS Marketplace AMI, you cannot copy it across accounts\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
++ The `CopyImage` action is not supported for copying an AWS Marketplace AMI that was shared from another account\. Instead, if you want to copy an AWS Marketplace AMI in another account, you must do the following: share the AWS Marketplace AMI with the other account and then, in the other account, launch an EC2 instance using the AWS Marketplace AMI\. You can then create an AMI from the instance using the `CreateImage` action\. The new AMI retains all the AWS Marketplace codes\. Note that this process also applies to any AMIs that were directly or indirectly derived from an AWS Marketplace AMI\. For more information about creating an AMI from an instance, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
 ## Costs<a name="copy-ami-costs"></a>
 
@@ -211,7 +211,7 @@ You can share an AMI with another AWS account\. Sharing an AMI does not affect t
 If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account\. The owner of the source AMI is charged standard Amazon EBS or Amazon S3 transfer fees, and you are charged for the storage of the target AMI in the destination Region\.
 
 **Resource permissions**  
-To copy an AMI that was shared with you from another account, the owner of the source AMI must grant you read permissions for the storage that backs the AMI, either the associated EBS snapshot \(for an Amazon EBS\-backed AMI\) or an associated S3 bucket \(for an instance store\-backed AMI\)\. If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well\.
+To copy an AMI that was shared with you from another account, the owner of the source AMI must grant you read permissions for the storage that backs the AMI\. The storage is either the associated EBS snapshot \(for an Amazon EBS\-backed AMI\) or an associated S3 bucket \(for an instance store\-backed AMI\)\. If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well\. For more information about granting resource permissions, for EBS snapshots, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md), and for S3 buckets, see [Identity and access management in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html) in the *Amazon Simple Storage Service User Guide*\.
 
 **Note**  
 To copy an AMI with its tags, you must have launch permissions for the source AMI\.

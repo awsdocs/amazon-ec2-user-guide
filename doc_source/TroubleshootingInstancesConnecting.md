@@ -552,11 +552,9 @@ Update the `ec2-instance-connect` package on the instance to the latest version,
 
 If you lose the private key for an EBS\-backed instance, you can regain access to your instance\. You must stop the instance, detach its root volume and attach it to another instance as a data volume, modify the `authorized_keys` file with a new public key, move the volume back to the original instance, and restart the instance\. For more information about launching, connecting to, and stopping instances, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 
-This procedure is only supported for instances with EBS root volumes\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in one of the following locations:
-+ **New console:** Choose the **Storage** tab\. The value is shown in the **Root device details** section\.
-+ **Old console:** Choose the **Description** tab\.
+This procedure is only supported for instances with EBS root volumes\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, choose the **Storage** tab , and in the **Root device details** section, check the value of **Root device type**\. 
 
-The value is either `ebs` or `instance store`\.
+The value is either `EBS` or `INSTANCE-STORE`\.
 
 In addition to the following steps, there are other ways to connect to your Linux instance if you lose your private key\. For more information, see [How can I connect to my Amazon EC2 instance if I lost my SSH key pair after its initial launch?](http://aws.amazon.com/premiumsupport/knowledge-center/user-data-replace-key-pair-ec2/)
 

@@ -4,7 +4,7 @@ An Amazon EC2 instance transitions through different states from the moment you 
 
 The following illustration represents the transitions between instance states\. Notice that you can't stop and start an instance store\-backed instance\. For more information about instance store\-backed instances, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
 
-![\[The instance lifecycle\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_lifecycle.png)
+![\[The instance lifecycle.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_lifecycle.png)
 
 The following table provides a brief description of each instance state and indicates whether it is billed or not\.
 

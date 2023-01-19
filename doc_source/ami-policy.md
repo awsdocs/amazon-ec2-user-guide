@@ -97,9 +97,10 @@ This example creates an AMI lifecycle policy that creates AMIs of all instances 
 
 ```
 aws dlm create-lifecycle-policy \
---description "My AMI policy" \
---state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRoleForAMIManagement \
---policy-details file://policyDetails.json
+    --description "My AMI policy" \
+    --state ENABLED \
+    --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRoleForAMIManagement \
+    --policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.
@@ -157,10 +158,10 @@ This example creates an AMI lifecycle policy that creates AMIs of all instances 
 
 ```
 aws dlm create-lifecycle-policy \
---description "My AMI policy" \
---state ENABLED \
---execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRoleForAMIManagement \
---policy-details file://policyDetails.json
+    --description "My AMI policy" \
+    --state ENABLED \
+    --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRoleForAMIManagement \
+    --policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.

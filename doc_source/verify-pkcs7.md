@@ -60,9 +60,9 @@ This topic explains how to verify the instance identity document using the PKCS7
    ```
 
 ------
-#### [ Hong Kong Region ]
+#### [ Asia Pacific \(Hong Kong\) ]
 
-   The AWS public certificate for the Hong Kong Region is as follows\.
+   The AWS public certificate for Asia Pacific \(Hong Kong\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -86,9 +86,9 @@ This topic explains how to verify the instance identity document using the PKCS7
    ```
 
 ------
-#### [ Bahrain Region ]
+#### [ Middle East \(Bahrain\) ]
 
-   The AWS public certificate for the Bahrain Region is as follows\.
+   The AWS public certificate for Middle East \(Bahrain\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -112,9 +112,35 @@ This topic explains how to verify the instance identity document using the PKCS7
    ```
 
 ------
-#### [ Cape Town Region ]
+#### [ Middle East \(UAE\) ]
 
-   The AWS public certificate for the Cape Town Region is as follows\.
+   The AWS public certificate for Middle East \(UAE\) is as follows\.
+
+   ```
+   $  echo "-----BEGIN CERTIFICATE-----
+   MIIC7zCCAq+gAwIBAgIGAXjXhqnnMAkGByqGSM44BAMwXDELMAkGA1UEBhMCVVMx
+   GTAXBgNVBAgMEFdhc2hpbmd0b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAe
+   BgNVBAoMF0FtYXpvbiBXZWIgU2VydmljZXMgTExDMB4XDTIxMDQxNTIxNTM1MFoX
+   DTQ3MDQxNTIxNTM1MFowXDELMAkGA1UEBhMCVVMxGTAXBgNVBAgMEFdhc2hpbmd0
+   b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAeBgNVBAoMF0FtYXpvbiBXZWIg
+   U2VydmljZXMgTExDMIIBtzCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9K
+   nC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00
+   b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNa
+   FpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA
+   9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJ
+   FnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7
+   zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYQAAoGAW+csuHsWp/7/
+   pv8CTKFwxsYudxuR6rbWaHCykIeAydXL9AWnphK6yp1ODEMBFl68Xq8Hp23sOWyf
+   8moOhqCom9+0+ovuUFdpvCie86bpEZW5G8QbGebFr1F/TOZU568Ty1ff3dDWbdRz
+   eNQRHodRG+XEQSizMkAreeWt4kBa+PUwCQYHKoZIzjgEAwMvADAsAhQD3Z+XGmzK
+   mgaLgGcVX/Qf1+Tn4QIUH1cgksBSVKbWj81tovBMJeKgdYo=
+   -----END CERTIFICATE-----" >> certificate
+   ```
+
+------
+#### [ Africa \(Cape Town\) ]
+
+   The AWS public certificate for Africa \(Cape Town\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -138,9 +164,9 @@ This topic explains how to verify the instance identity document using the PKCS7
    ```
 
 ------
-#### [ Milan Region ]
+#### [ Europe \(Milan\) ]
 
-   The AWS public certificate for the Milan Region is as follows\.
+   The AWS public certificate for Europe \(Milan\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -164,9 +190,9 @@ This topic explains how to verify the instance identity document using the PKCS7
    ```
 
 ------
-#### [ Jakarta Region ]
+#### [ Asia Pacific \(Jakarta\) ]
 
-   The AWS public certificate for the Jakarta Region is as follows\.
+   The AWS public certificate for Asia Pacific \(Jakarta\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -190,9 +216,9 @@ This topic explains how to verify the instance identity document using the PKCS7
    ```
 
 ------
-#### [ China Regions ]
+#### [ China ]
 
-   The AWS public certificate for the China \(Beijing\) and China \(Ningxia\) Regions is as follows\.
+   The AWS public certificate for China \(Beijing\) and China \(Ningxia\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -218,9 +244,9 @@ This topic explains how to verify the instance identity document using the PKCS7
    ```
 
 ------
-#### [ GovCloud Regions ]
+#### [ AWS GovCloud \(US\) ]
 
-   The AWS public certificate for the AWS GovCloud Regions is as follows\.
+   The AWS public certificate for AWS GovCloud \(US\-East\) and AWS GovCloud \(US\-West\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----

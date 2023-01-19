@@ -72,7 +72,7 @@ By default, the response to `PUT` requests has a response hop limit \(time to li
 
 ## Transition to using Instance Metadata Service Version 2<a name="instance-metadata-transition-to-version-2"></a>
 
-Use of Instance Metadata Service Version 2 \(IMDSv2\) is optional\. Instance Metadata Service Version 1 \(IMDSv1\) will continue to be supported indefinitely\. If you choose to migrate to using IMDSv2, we recommend that you use the following tools and transition path\. 
+When migrating to IMDSv2, we recommend that you use the following tools and transition path\. 
 
 **Tools for helping with the transition to IMDSv2**
 

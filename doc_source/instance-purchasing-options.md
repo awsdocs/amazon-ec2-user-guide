@@ -27,10 +27,7 @@ For more information about Savings Plans, see the [Savings Plans User Guide](htt
 
 The lifecycle of an instance starts when it is launched and ends when it is terminated\. The purchasing option that you choose affects the lifecycle of the instance\. For example, an On\-Demand Instance runs when you launch it and ends when you terminate it\. A Spot Instance runs as long as capacity is available and your maximum price is higher than the Spot price\.
 
-Use the following procedure to determine the lifecycle of an instance\.
-
-------
-#### [ New console ]
+Use one of the following methods to determine the lifecycle of an instance\.
 
 **To determine the instance lifecycle using the console**
 
@@ -45,25 +42,6 @@ Use the following procedure to determine the lifecycle of an instance\.
 1. On the **Details** tab, under **Host and placement group**, find **Tenancy**\. If the value is `host`, the instance is running on a Dedicated Host\. If the value is `dedicated`, the instance is a Dedicated Instance\.
 
 1. \(Optional\) If you have purchased a Reserved Instance and want to verify that it is being applied, you can check the usage reports for Amazon EC2\. For more information, see [Amazon EC2 usage reports](usage-reports.md)\.
-
-------
-#### [ Old console ]
-
-**To determine the instance lifecycle using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance\.
-
-1. On the **Description** tab, find **Tenancy**\. If the value is `host`, the instance is running on a Dedicated Host\. If the value is `dedicated`, the instance is a Dedicated Instance\.
-
-1. On the **Description** tab, find **Lifecycle**\. If the value is `spot`, the instance is a Spot Instance\. If the value is `normal`, the instance is either an On\-Demand Instance or a Reserved Instance\.
-
-1. \(Optional\) If you have purchased a Reserved Instance and want to verify that it is being applied, you can check the usage reports for Amazon EC2\. For more information, see [Amazon EC2 usage reports](usage-reports.md)\.
-
-------
 
 **To determine the instance lifecycle using the AWS CLI**  
 Use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command:

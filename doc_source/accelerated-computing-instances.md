@@ -155,61 +155,68 @@ The following is a summary of the hardware specifications for accelerated comput
 
 | Instance type | Default vCPUs | Memory \(GiB\) | Accelerators | 
 | --- | --- | --- | --- | 
-| dl1\.24xlarge | 96 | 768 | 8 | 
-| f1\.2xlarge | 8 | 122 | 1 | 
-| f1\.4xlarge | 16 | 244 | 2 | 
-| f1\.16xlarge | 64 | 976 | 8 | 
-| g2\.2xlarge | 8 | 15 | 1 | 
-| g2\.8xlarge | 32 | 60 | 4 | 
-| g3s\.xlarge | 4 | 30\.5 | 1 | 
-| g3\.4xlarge | 16 | 122 | 1 | 
-| g3\.8xlarge | 32 | 244 | 2 | 
-| g3\.16xlarge | 64 | 488 | 4 | 
-| g4ad\.xlarge | 4 | 16 | 1 | 
-| g4ad\.2xlarge | 8 | 32 | 1 | 
-| g4ad\.4xlarge | 16 | 64 | 1 | 
-| g4ad\.8xlarge | 32 | 128 | 2 | 
-| g4ad\.16xlarge | 64 | 256 | 4 | 
-| g4dn\.xlarge | 4 | 16 | 1 | 
-| g4dn\.2xlarge | 8 | 32 | 1 | 
-| g4dn\.4xlarge | 16 | 64 | 1 | 
-| g4dn\.8xlarge | 32 | 128 | 1 | 
-| g4dn\.12xlarge | 48 | 192 | 4 | 
-| g4dn\.16xlarge | 64 | 256 | 1 | 
-| g4dn\.metal | 96 | 384 | 8 | 
-| g5\.xlarge | 4 | 16 | 1 | 
-| g5\.2xlarge | 8 | 32 | 1 | 
-| g5\.4xlarge | 16 | 64 | 1 | 
-| g5\.8xlarge | 32 | 128 | 1 | 
-| g5\.12xlarge | 48 | 192 | 4 | 
-| g5\.16xlarge | 64 | 256 | 1 | 
-| g5\.24xlarge | 96 | 384 | 4 | 
-| g5\.48xlarge | 192 | 768 | 8 | 
-| g5g\.xlarge | 4 | 8 | 1 | 
-| g5g\.2xlarge | 8 | 16 | 1 | 
-| g5g\.4xlarge | 16 | 32 | 1 | 
-| g5g\.8xlarge | 32 | 64 | 1 | 
-| g5g\.16xlarge | 64 | 128 | 2 | 
-| g5g\.metal | 64 | 128 | 2 | 
-| inf1\.xlarge | 4 | 8 | 1 | 
-| inf1\.2xlarge | 8 | 16 | 1 | 
-| inf1\.6xlarge | 24 | 48 | 4 | 
-| inf1\.24xlarge | 96 | 192 | 16 | 
-| p2\.xlarge | 4 | 61 | 1 | 
-| p2\.8xlarge | 32 | 488 | 8 | 
-| p2\.16xlarge | 64 | 732 | 16 | 
-| p3\.2xlarge | 8 | 61 | 1 | 
-| p3\.8xlarge | 32 | 244 | 4 | 
-| p3\.16xlarge | 64 | 488 | 8 | 
-| p3dn\.24xlarge | 96 | 768 | 8 | 
-| p4d\.24xlarge | 96 | 1,152 | 8 | 
-| p4d\.24xlarge | 96 | 1,152 | 8 | 
-| p4de\.24xlarge | 96 | 1,152 | 8 | 
-| trn1\.2xlarge | 8 | 32 | 1 | 
-| trn1\.32xlarge | 128 | 512 | 16 | 
-| vt1\.3xlarge | 12 | 24 | 2 | 
-| vt1\.6xlarge | 24 | 48 | 4 | 
-| vt1\.24xlarge | 96 | 192 | 16 | 
+| dl1\.24xlarge | 96 | 768\.00 | 8 GPUs | 
+| f1\.2xlarge | 8 | 122\.00 | 1 FPGAs | 
+| f1\.4xlarge | 16 | 244\.00 | 2 FPGAs | 
+| f1\.16xlarge | 64 | 976\.00 | 8 FPGAs | 
+| g2\.2xlarge | 8 | 15\.00 | 1 GPUs | 
+| g2\.8xlarge | 32 | 60\.00 | 4 GPUs | 
+| g3\.4xlarge | 16 | 122\.00 | 1 GPUs | 
+| g3\.8xlarge | 32 | 244\.00 | 2 GPUs | 
+| g3\.16xlarge | 64 | 488\.00 | 4 GPUs | 
+| g4ad\.xlarge | 4 | 16\.00 | 1 GPUs | 
+| g4ad\.2xlarge | 8 | 32\.00 | 1 GPUs | 
+| g4ad\.4xlarge | 16 | 64\.00 | 1 GPUs | 
+| g4ad\.8xlarge | 32 | 128\.00 | 2 GPUs | 
+| g4ad\.16xlarge | 64 | 256\.00 | 4 GPUs | 
+| g4dn\.xlarge | 4 | 16\.00 | 1 GPUs | 
+| g4dn\.2xlarge | 8 | 32\.00 | 1 GPUs | 
+| g4dn\.4xlarge | 16 | 64\.00 | 1 GPUs | 
+| g4dn\.8xlarge | 32 | 128\.00 | 1 GPUs | 
+| g4dn\.12xlarge | 48 | 192\.00 | 4 GPUs | 
+| g4dn\.16xlarge | 64 | 256\.00 | 1 GPUs | 
+| g4dn\.metal | 96 | 384\.00 | 8 GPUs | 
+| g5\.xlarge | 4 | 16\.00 | 1 GPUs | 
+| g5\.2xlarge | 8 | 32\.00 | 1 GPUs | 
+| g5\.4xlarge | 16 | 64\.00 | 1 GPUs | 
+| g5\.8xlarge | 32 | 128\.00 | 1 GPUs | 
+| g5\.12xlarge | 48 | 192\.00 | 4 GPUs | 
+| g5\.16xlarge | 64 | 256\.00 | 1 GPUs | 
+| g5\.24xlarge | 96 | 384\.00 | 4 GPUs | 
+| g5\.48xlarge | 192 | 768\.00 | 8 GPUs | 
+| g5g\.xlarge | 4 | 8\.00 | 1 GPUs | 
+| g5g\.2xlarge | 8 | 16\.00 | 1 GPUs | 
+| g5g\.4xlarge | 16 | 32\.00 | 1 GPUs | 
+| g5g\.8xlarge | 32 | 64\.00 | 1 GPUs | 
+| g5g\.16xlarge | 64 | 128\.00 | 2 GPUs | 
+| g5g\.metal | 64 | 128\.00 | 2 GPUs | 
+| inf1\.xlarge | 4 | 8\.00 | 1 inference accelerators | 
+| inf1\.2xlarge | 8 | 16\.00 | 1 inference accelerators | 
+| inf1\.6xlarge | 24 | 48\.00 | 4 inference accelerators | 
+| inf1\.24xlarge | 96 | 192\.00 | 16 inference accelerators | 
+| p2\.xlarge | 4 | 61\.00 | 1 GPUs | 
+| p2\.8xlarge | 32 | 488\.00 | 8 GPUs | 
+| p2\.16xlarge | 64 | 732\.00 | 16 GPUs | 
+| p3\.2xlarge | 8 | 61\.00 | 1 GPUs | 
+| p3\.8xlarge | 32 | 244\.00 | 4 GPUs | 
+| p3\.16xlarge | 64 | 488\.00 | 8 GPUs | 
+| p3dn\.24xlarge | 96 | 768\.00 | 8 GPUs | 
+| p4d\.24xlarge | 96 | 1152\.00 | 8 GPUs | 
+| p4de\.24xlarge | 96 | 1152\.00 | 8 GPUs | 
+| trn1\.2xlarge | 8 | 32\.00 | 
+| trn1\.32xlarge | 128 | 512\.00 | 
+| vt1\.3xlarge | 12 | 24\.00 | 
+| vt1\.6xlarge | 24 | 48\.00 | 
+| vt1\.24xlarge | 96 | 192\.00 | 
+
+**Note**  
+**Trn1** instances feature the following number of Trainium Accelerators\.  
+`trn1.2xlarge` — 1
+`trn1.32xlarge` — 16
+**VT1** instances feature the following number of U30 Accelerators\.  
+`vt1.3xlarge` — 1
+`vt1.6xlarge` — 2
+`vt1.24xlarge` — 16
 
 The accelerated computing instances use the following processors\.
 
@@ -243,48 +250,49 @@ You can enable enhanced networking on supported instance types to provide lower 
 The following is a summary of network performance for accelerated computing instances that support enhanced networking\.
 
 
-| Instance type | Network performance | Enhanced networking | 
-| --- | --- | --- | 
-| vt1\.3xlarge | 3\.125 Gbps | [ENA](enhanced-networking-ena.md) | 
-| vt1\.6xlarge | 6\.25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge and smaller \| g5\.2xlarge and smaller \| g5g\.4xlarge and smaller \|  p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-| g5g\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-| g4ad\.8xlarge | 15 Gbps | [ENA](enhanced-networking-ena.md) | 
-| g4dn\.4xlarge and smaller \| g5\.4xlarge  \| inf1\.2xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| g5\.8xlarge \| g5\.16xlarge \| g5g\.16xlarge \| g5g\.metal \|  inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge \| vt1\.24xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| g5\.12xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
-| g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g5\.24xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  g4dn\.metal \| g5\.48xlarge \| inf1\.24xlarge \| p3dn\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
-| dl1\.24xlarge \|  p4d\.24xlarge \| p4de\.24xlarge | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
-| trn1\.2xlarge | Up to 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-| trn1\.32xlarge | 800 Gbps | [ENA](enhanced-networking-ena.md) | 
+| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | Enhanced networking features | 
+| --- | --- | --- | --- | 
+| dl1\.24xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g4ad\.xlarge † | 2\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4ad\.2xlarge † | 4\.167 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4ad\.4xlarge † | 8\.333 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4ad\.8xlarge | 15\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4ad\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4dn\.xlarge † | 5\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4dn\.2xlarge † | 10\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4dn\.4xlarge † | 20\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4dn\.8xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g4dn\.12xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g4dn\.16xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4dn\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g5\.xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.2xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.4xlarge † | 10\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.8xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.12xlarge | 40\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.24xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.48xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g5g\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.8xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf1\.xlarge † | 5\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf1\.2xlarge † | 5\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf1\.6xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf1\.24xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| p3dn\.24xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| p4d\.24xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| p4de\.24xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| trn1\.2xlarge † | 3\.125 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| trn1\.32xlarge | 800\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| vt1\.3xlarge | 3\.125 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| vt1\.6xlarge | 6\.25 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| vt1\.24xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
 
-† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
-
-
-| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
-| --- | --- | --- | 
-| f1\.2xlarge | 2\.5 | 10 | 
-| f1\.4xlarge | 5 | 10 | 
-| g3\.4xlarge | 5 | 10 | 
-| g3s\.xlarge | 1\.25 | 10 | 
-| g4ad\.xlarge | 2 | 10 | 
-| g4ad\.2xlarge | 4\.167 | 10 | 
-| g4ad\.4xlarge | 8\.333 | 10 | 
-| g4dn\.xlarge | 5 | 25 | 
-| g4dn\.2xlarge | 10 | 25 | 
-| g4dn\.4xlarge | 20 | 25 | 
-| g5\.xlarge | 2\.5 | 10 | 
-| g5\.2xlarge | 5 | 10 | 
-| g5\.4xlarge | 10 | 25 | 
-| g5g\.xlarge | 1\.25 | 10 | 
-| g5g\.2xlarge | 2\.5 | 10 | 
-| g5g\.4xlarge | 5 | 10 | 
-| p3\.2xlarge | 2\.5 | 10 | 
-| Trn1\.2xlarge | 3\.125 | 12\.5 | 
-| Trn1\.32xlarge | 800 | N/A | 
-| vt1\.3xlarge | 12\.5 | 25 | 
+† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.
 
 ## Amazon EBS I/O performance<a name="accelerated-ebs-perf"></a>
 
@@ -299,19 +307,32 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| g4ad\.xlarge | 10,417 | 8,333 | 
-| g4ad\.2xlarge | 20,833 | 16,667 | 
-| g4ad\.4xlarge | 41,667 | 33,333 | 
-| g4ad\.8xlarge | 83,333 | 66,667 | 
-| g4ad\.16xlarge | 166,667 | 133,333 | 
-| g5\.xlarge | 40,625 | 20,313 | 
-| g5\.2xlarge | 40,625 | 20,313 | 
-| g5\.4xlarge | 125,000 | 62,500 | 
-| g5\.8xlarge | 250,000 | 125,000 | 
-| g5\.12xlarge | 312,500 | 156,250 | 
-| g5\.16xlarge | 250,000 | 125,000 | 
-| g5\.24xlarge | 312,500 | 156,250 | 
-| g5\.48xlarge | 625,000 | 312,500 | 
+| dl1\.24xlarge | 2000000 | 1600000 | 
+| g4ad\.xlarge | 10417 | 8333 | 
+| g4ad\.2xlarge | 20833 | 16667 | 
+| g4ad\.4xlarge | 41667 | 33333 | 
+| g4ad\.8xlarge | 83333 | 66667 | 
+| g4ad\.16xlarge | 166666 | 133332 | 
+| g4dn\.xlarge | 42500 | 32500 | 
+| g4dn\.2xlarge | 42500 | 32500 | 
+| g4dn\.4xlarge | 85000 | 65000 | 
+| g4dn\.8xlarge | 250000 | 200000 | 
+| g4dn\.12xlarge | 250000 | 200000 | 
+| g4dn\.16xlarge | 250000 | 200000 | 
+| g4dn\.metal | 500000 | 400000 | 
+| g5\.xlarge | 40625 | 20313 | 
+| g5\.2xlarge | 40625 | 20313 | 
+| g5\.4xlarge | 125000 | 62500 | 
+| g5\.8xlarge | 250000 | 125000 | 
+| g5\.12xlarge | 312500 | 156250 | 
+| g5\.16xlarge | 250000 | 125000 | 
+| g5\.24xlarge | 312500 | 156250 | 
+| g5\.48xlarge | 625000 | 312500 | 
+| p3dn\.24xlarge | 700000 | 340000 | 
+| p4d\.24xlarge | 2000000 | 1600000 | 
+| p4de\.24xlarge | 2000000 | 1600000 | 
+| trn1\.2xlarge | 107500 | 45000 | 
+| trn1\.32xlarge | 1720000 | 720000 | 
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
@@ -328,7 +349,9 @@ For instance store volumes that support TRIM, you can use the TRIM command to no
   The following Linux AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
-  + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
+  + Ubuntu 14\.04 or later with `linux-aws` kernel
+**Note**  
+AWS Graviton\-based instance types require Ubuntu 18\.04 or later with `linux-aws` kernel
   + Red Hat Enterprise Linux 7\.4 or later
   + SUSE Linux Enterprise Server 12 SP2 or later
   + CentOS 7\.4\.1708 or later

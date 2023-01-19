@@ -74,9 +74,9 @@ This topic explains how to verify the instance identity document using the base6
    ```
 
 ------
-#### [ Hong Kong Region ]
+#### [ Asia Pacific \(Hong Kong\) ]
 
-   The AWS public certificate for the Hong Kong Region is as follows\.
+   The AWS public certificate for Asia Pacific \(Hong Kong\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -97,9 +97,9 @@ This topic explains how to verify the instance identity document using the base6
    ```
 
 ------
-#### [ Bahrain Region ]
+#### [ Middle East \(Bahrain\) ]
 
-   The AWS public certificate for the Bahrain Region is as follows\.
+   The AWS public certificate for Middle East \(Bahrain\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -125,9 +125,31 @@ This topic explains how to verify the instance identity document using the base6
    ```
 
 ------
-#### [ Cape Town Region ]
+#### [ Middle East \(UAE\) ]
 
-   The AWS public certificate for the Cape Town Region is as follows\.
+   The AWS public certificate for Middle East \(UAE\) is as follows\.
+
+   ```
+   $  echo "-----BEGIN CERTIFICATE-----
+   MIICMzCCAZygAwIBAgIGAXjRrnDjMA0GCSqGSIb3DQEBBQUAMFwxCzAJBgNVBAYT
+   AlVTMRkwFwYDVQQIDBBXYXNoaW5ndG9uIFN0YXRlMRAwDgYDVQQHDAdTZWF0dGxl
+   MSAwHgYDVQQKDBdBbWF6b24gV2ViIFNlcnZpY2VzIExMQzAgFw0yMTA0MTQxODM5
+   MzNaGA8yMjAwMDQxNDE4MzkzM1owXDELMAkGA1UEBhMCVVMxGTAXBgNVBAgMEFdh
+   c2hpbmd0b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAeBgNVBAoMF0FtYXpv
+   biBXZWIgU2VydmljZXMgTExDMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDc
+   aTgW/KyA6zyruJQrYy00a6wqLA7eeUzk3bMiTkLsTeDQfrkaZMfBAjGaaOymRo1C
+   3qzE4rIenmahvUplu9ZmLwL1idWXMRX2RlSvIt+d2SeoKOKQWoc2UOFZMHYxDue7
+   zkyk1CIRaBukTeY13/RIrlc6X61zJ5BBtZXlHwayjQIDAQABMA0GCSqGSIb3DQEB
+   BQUAA4GBABTqTy3R6RXKPW45FA+cgo7YZEj/Cnz5YaoUivRRdX2A83BHuBTvJE2+
+   WX00FTEj4hRVjameE1nENoO8Z7fUVloAFDlDo69fhkJeSvn51D1WRrPnoWGgEfr1
+   +OfK1bAcKTtfkkkP9r4RdwSjKzO5Zu/B+Wqm3kVEz/QNcz6npmA6
+   -----END CERTIFICATE-----" >> certificate
+   ```
+
+------
+#### [ Africa \(Cape Town\) ]
+
+   The AWS public certificate for Africa \(Cape Town\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -147,9 +169,9 @@ This topic explains how to verify the instance identity document using the base6
    ```
 
 ------
-#### [ Milan Region ]
+#### [ Europe \(Milan\) ]
 
-   The AWS public certificate for the Milan Region is as follows\.
+   The AWS public certificate for Europe \(Milan\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -169,9 +191,9 @@ This topic explains how to verify the instance identity document using the base6
    ```
 
 ------
-#### [ Jakarta Region ]
+#### [ Asia Pacific \(Jakarta\) ]
 
-   The AWS public certificate for the Jakarta Region is as follows\.
+   The AWS public certificate for Asia Pacific \(Jakarta\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -191,9 +213,9 @@ This topic explains how to verify the instance identity document using the base6
    ```
 
 ------
-#### [ China Regions ]
+#### [ China ]
 
-   The AWS public certificate for the China \(Beijing\) and China \(Ningxia\) Regions is as follows\.
+   The AWS public certificate for China \(Beijing\) and China \(Ningxia\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -214,9 +236,9 @@ This topic explains how to verify the instance identity document using the base6
    ```
 
 ------
-#### [ GovCloud Regions ]
+#### [ AWS GovCloud \(US\) ]
 
-   The AWS public certificate for the AWS GovCloud Regions is as follows\.
+   The AWS public certificate for AWS GovCloud \(US\-East\) and AWS GovCloud \(US\-West\) is as follows\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----

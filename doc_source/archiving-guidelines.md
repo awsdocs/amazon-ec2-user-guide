@@ -20,7 +20,7 @@ Archiving these snapshots can help you save with lower storage costs\. If you no
 
 When you archive an incremental snapshot, the snapshot is converted to a full snapshot and it is moved to the archive tier\. For example, in the following image, if you archive **Snap B**, the snapshot is converted to a full snapshot that is 10 GiB in size and moved to the archive tier\. Similarly, if you archive **Snap C**, the size of the full snapshot in the archive tier is 14 GiB\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1e.png)
+![\[Archiving incremental snapshots of a volume.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1e.png)
 
 If you are archiving snapshots to reduce your storage costs in the standard tier, you should not archive the first snapshot in a set of incremental snapshots\. These snapshots are referenced by subsequent snapshots in the snapshot lineage\. In most cases, archiving these snapshots will not reduce storage costs\.
 

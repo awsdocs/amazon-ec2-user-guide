@@ -36,10 +36,10 @@ PuTTY does not natively support the PEM format for SSH keys\. PuTTY provides a t
 1. From the **Start** menu, choose **All Programs**, **PuTTY**, **PuTTYgen**\.
 
 1. Under **Type of key to generate**, choose **RSA**\. If your version of PuTTYgen does not include this option, choose **SSH\-2 RSA**\.  
-![\[RSA key in PuTTYgen\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/puttygen-key-type.png)
+![\[RSA key in PuTTYgen.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/puttygen-key-type.png)
 
 1. Choose **Load**\. By default, PuTTYgen displays only files with the extension `.ppk`\. To locate your `.pem` file, choose the option to display files of all types\.  
-![\[Select all file types\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/puttygen-load-key.png)
+![\[Select all file types.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/puttygen-load-key.png)
 
 1. Select your `.pem` file for the key pair that you specified when you launched your instance and choose **Open**\. PuTTYgen displays a notice that the `.pem` file was successfully imported\. Choose **OK**\.
 
@@ -70,7 +70,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
    1. Ensure that the **Port** value is 22\.
 
    1. Under **Connection type**, select **SSH**\.  
-![\[PuTTY configuration - Session\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/putty-session-config.png)
+![\[PuTTY configuration - Session.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/putty-session-config.png)
 
 1. \(Optional\) You can configure PuTTY to automatically send 'keepalive' data at regular intervals to keep the session active\. This is useful to avoid disconnecting from your instance due to session inactivity\. In the **Category** pane, choose **Connection**, and then enter the required interval in the **Seconds between keepalives** field\. For example, if your session disconnects after 10 minutes of inactivity, enter 180 to configure PuTTY to send keepalive data every 3 minutes\.
 
@@ -146,14 +146,14 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
 1. Specify the private key for your instance\. For **Private key**, enter the path to your private key, or choose the "**\.\.\.**" button to browse for the file\. To open the advanced site settings, for newer versions of WinSCP, choose **Advanced**\. To find the **Private key file** setting, under **SSH**, choose **Authentication**\.
 
    Here is a screenshot from WinSCP version 5\.9\.4:  
-![\[WinSCP Advanced screen\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/WinSCP-keypair.png)
+![\[WinSCP Advanced screen.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/WinSCP-keypair.png)
 
    WinSCP requires a PuTTY private key file \(`.ppk`\)\. You can convert a `.pem` security key file to the `.ppk` format using PuTTYgen\. For more information, see [Convert your private key using PuTTYgen](#putty-private-key)\.
 
 1. \(Optional\) In the left panel, choose **Directories**\. For **Remote directory**, enter the path for the directory to which to add files\. To open the advanced site settings for newer versions of WinSCP, choose **Advanced**\. To find the **Remote directory** setting, under **Environment**, choose **Directories**\.
 
 1. Choose **Login**\. To add the host fingerprint to the host cache, choose **Yes**\.  
-![\[WinSCP screen\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/WinSCP-connection.png)
+![\[WinSCP screen.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/WinSCP-connection.png)
 
 1. After the connection is established, in the connection window your Linux instance is on the right and your local machine is on the left\. You can drag and drop files between the remote file system and your local machine\. For more information on WinSCP, see the project documentation at [http://winscp\.net/eng/docs/start](http://winscp.net/eng/docs/start)\.
 

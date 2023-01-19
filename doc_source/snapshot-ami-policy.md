@@ -140,9 +140,10 @@ This example creates a snapshot lifecycle policy that creates snapshots of all v
 
 ```
 aws dlm create-lifecycle-policy \
---description "My volume policy" \
---state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
---policy-details file://policyDetails.json
+    --description "My volume policy" \
+    --state ENABLED \
+    --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+    --policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.
@@ -205,9 +206,10 @@ This example creates a snapshot lifecycle policy that creates multi\-volume snap
 
 ```
 aws dlm create-lifecycle-policy \
---description "My volume policy" \
---state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
---policy-details file://policyDetails.json
+    --description "My volume policy" \
+    --state ENABLED \
+    --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+    --policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.
@@ -262,9 +264,10 @@ This example creates a snapshot lifecycle policy that creates snapshots of volum
 
 ```
 aws dlm create-lifecycle-policy \
---description "My local snapshot policy" \
---state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
---policy-details file://policyDetails.json
+    --description "My local snapshot policy" \
+    --state ENABLED \
+    --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+    --policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.
@@ -303,9 +306,10 @@ The following example policy creates snapshots of volumes that are tagged with `
 
 ```
 aws dlm create-lifecycle-policy \
---description "Copy snapshots to Outpost" \
---state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
---policy-details file://policyDetails.json
+    --description "Copy snapshots to Outpost" \
+    --state ENABLED \
+    --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+    --policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.
@@ -352,9 +356,10 @@ This example creates a snapshot lifecycle policy that targets volumes tagged wit
 
 ```
 aws dlm create-lifecycle-policy \
---description "Copy snapshots to Outpost" \
---state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
---policy-details file://policyDetails.json
+    --description "Copy snapshots to Outpost" \
+    --state ENABLED \
+    --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+    --policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.
@@ -401,9 +406,10 @@ This example creates a snapshot lifecycle policy that targets volumes tagged wit
 
 ```
 aws dlm create-lifecycle-policy \
---description "Copy snapshots to Outpost" \
---state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
---policy-details file://policyDetails.json
+    --description "Copy snapshots to Outpost" \
+    --state ENABLED \
+    --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole \
+    --policy-details file://policyDetails.json
 ```
 
 The following is an example of the `policyDetails.json` file\.

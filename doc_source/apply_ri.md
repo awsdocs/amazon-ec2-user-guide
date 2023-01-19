@@ -72,11 +72,11 @@ The following table lists the different sizes within an instance family, and the
 
 For example, a `t2.medium` instance has a normalization factor of 2\. If you purchase a `t2.medium` default tenancy Amazon Linux/Unix Reserved Instance in the US East \(N\. Virginia\) and you have two running `t2.small` instances in your account in that Region, the billing benefit is applied in full to both instances\. 
 
-![\[Applying a Regional Reserved Instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-instance-flex-full.png)
+![\[Applying a Regional Reserved Instance.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-instance-flex-full.png)
 
 Or, if you have one `t2.large` instance running in your account in the US East \(N\. Virginia\) Region, the billing benefit is applied to 50% of the usage of the instance\.
 
-![\[Applying a Regional Reserved Instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-instance-flex-partial.png)
+![\[Applying a Regional Reserved Instance.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-instance-flex-partial.png)
 
 The normalization factor is also applied when modifying Reserved Instances\. For more information, see [Modify Reserved Instances](ri-modifying.md)\.
 

@@ -64,7 +64,7 @@ Baseline IOPS performance scales linearly between a minimum of 100 and a maximum
 + Volumes larger than 33\.33 GiB are provisioned with 3 IOPS per GiB of volume size up to the maximum of 16,000 IOPS, which is reached at 5,334 GiB \(3 X 5,334\)\.
 + Volumes 5,334 GiB and larger are provisioned with 16,000 IOPS\.
 
-`gp2` volumes smaller than 1 TiB \(and that are provisioned with less than 3,000 IOPS\) can **burst** to 3,000 IOPS when needed for an extended period of time\. A volume's ability to burst is governed by I/O credits\. When I/O demand is greater than baseline performance, the volume **spends I/O credits** to burst to the required performance level \(up to 3,000 IOPS\)\. While bursting, I/O credits are spent at a rate of 3 I/O credits per GiB of volume size per second\. The more I/O credits a volume has accrued, the longer it can sustain its burst performance\. You can calculate **Burst duration** as follows:
+`gp2` volumes smaller than 1 TiB \(and that are provisioned with less than 3,000 IOPS\) can **burst** to 3,000 IOPS when needed for an extended period of time\. A volume's ability to burst is governed by I/O credits\. When I/O demand is greater than baseline performance, the volume **spends I/O credits** to burst to the required performance level \(up to 3,000 IOPS\)\. While bursting, I/O credits are not accumulated and they are spent at the rate of IOPS that is being used above baseline IOPS \(spend rate = burst IOPS \- baseline IOPS\)\. The more I/O credits a volume has accrued, the longer it can sustain its burst performance\. You can calculate **Burst duration** as follows:
 
 ```
                         (I/O credit balance)

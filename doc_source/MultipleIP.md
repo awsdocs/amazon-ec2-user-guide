@@ -115,7 +115,7 @@ After you have added a secondary private IP address to a network interface, you 
 
 1. Choose **Yes, Update**\.
 
-Alternatively, you can assign a secondary private IPv4 address to an instance\. Choose **Instances** in the navigation pane, select the instance, and then choose **Actions**, **Networking**, **Manage IP Addresses**\. You can configure the same information as you did in the steps above\. The IP address is assigned to the primary network interface \(eth0\) for the instance\. <a name="assignIP-existing-cmd"></a>
+Alternatively, you can assign a secondary private IPv4 address to an instance\. Choose **Instances** in the navigation pane, select the instance, and then choose **Actions**, **Networking**, **Manage IP addresses**\. You can configure the same information as you did in the steps above\. The IP address is assigned to the primary network interface \(eth0\) for the instance\. <a name="assignIP-existing-cmd"></a>
 
 **To assign a secondary private IPv4 to an existing instance using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
@@ -181,7 +181,7 @@ If you no longer require a secondary private IPv4 address, you can unassign it f
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select an instance, choose **Actions**, **Networking**, **Manage IP Addresses**\.
+1. Select an instance, choose **Actions**, **Networking**, **Manage IP addresses**\.
 
 1. Under **IPv4 Addresses**, choose **Unassign** for the IPv4 address to unassign\.
 

@@ -8,7 +8,7 @@ If a burstable performance instance configured as `unlimited` depletes its CPU c
 
 The following graph shows the CPU usage of a `t3.large`\. The baseline CPU utilization for a `t3.large` is 30%\. If the instance runs at 30% CPU utilization or less on average over a 24\-hour period, there is no additional charge because the cost is already covered by the instance hourly price\. However, if the instance runs at 40% CPU utilization on average over a 24\-hour period, as shown in the graph, the instance is billed for the additional 10% CPU usage at a [flat additional rate](https://aws.amazon.com/ec2/pricing/on-demand/#T2.2FT3.2FT4g_Unlimited_Mode_Pricing) per vCPU\-hour\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3-cpu-usage.png)
+![\[CPU billing usage of a t3.large instance.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3-cpu-usage.png)
 
 For more information about the baseline utilization per vCPU for each instance type and how many credits each instance type earns, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
 
@@ -20,7 +20,7 @@ When determining whether you should use a burstable performance instance in `unl
 
 The following graph shows the breakeven CPU usage point where a `t3.large` costs the same as an `m5.large`\. The breakeven CPU usage point for a `t3.large` is 42\.5%\. If the average CPU usage is at 42\.5%, the cost of running the `t3.large` is the same as an `m5.large`, and is more expensive if the average CPU usage is above 42\.5%\. If the workload needs less than 42\.5% average CPU usage, you can benefit from the lower price of the `t3.large` while getting the same performance as an `m5.large`\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/T3-unltd-when-to-use.png)
+![\[The breakeven CPU usage point for a t3.large instance is 42.5%.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/T3-unltd-when-to-use.png)
 
 The following table shows how to calculate the breakeven CPU usage threshold so that you can determine when it's less expensive to use a burstable performance instance in `unlimited` mode or a fixed performance instance\. The columns in the table are labeled A through K\.
 

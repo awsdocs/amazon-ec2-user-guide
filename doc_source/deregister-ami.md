@@ -24,7 +24,7 @@ When you deregister an Amazon EBS\-backed AMI, it doesn't affect the snapshot\(s
 
 The following diagram illustrates the process for cleaning up your Amazon EBS\-backed AMI\.
 
-![\[Process to clean up your Amazon EBS-backed AMI\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami_delete_ebs.png)
+![\[Process to clean up your Amazon EBS-backed AMI.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami_delete_ebs.png)
 
 You can use one of the following methods to clean up your Amazon EBS\-backed AMI\.
 
@@ -182,7 +182,7 @@ When you deregister an instance store\-backed AMI, it doesn't affect the files t
 
 The following diagram illustrates the process for cleaning up your instance store\-backed AMI\.
 
-![\[Process to clean up your instance store-backed AMI\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami_delete_instance_store.png)
+![\[Process to clean up your instance store-backed AMI.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami_delete_instance_store.png)
 
 **To clean up your instance store\-backed AMI**
 

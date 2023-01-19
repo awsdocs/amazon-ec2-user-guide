@@ -543,4 +543,5 @@ sponsored by Amazon.
          + [Troubleshoot your Linux instance using GRUB](grub.md)
          + [Troubleshoot your Linux instance using SysRq](SysRq.md)
    + [Send a diagnostic interrupt (for advanced users)](diagnostic-interrupt.md)
++ [Related information](ec2-related-information.md)
 + [Document history](DocumentHistory.md)

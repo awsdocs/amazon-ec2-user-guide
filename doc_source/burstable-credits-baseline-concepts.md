@@ -149,7 +149,7 @@ The number of CPU credits earned per hour is determined by the instance size\. F
 
 While earned credits never expire on a running instance, there is a limit to the number of earned credits that an instance can accrue\. The limit is determined by the CPU credit balance limit\. After the limit is reached, any new credits that are earned are discarded, as indicated by the following image\. The full bucket indicates the CPU credit balance limit, and the spillover indicates the newly earned credits that exceed the limit\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-t3-bucket.png)
+![\[New credits earned are discarded once the limit is exceeded.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-t3-bucket.png)
 
 The CPU credit balance limit differs for each instance size\. For example, a `t3.micro` instance can accrue a maximum of 288 earned CPU credits in the CPU credit balance\. The preceding table lists the maximum number of earned credits that each instance can accrue\.
 
@@ -183,4 +183,4 @@ A `t3.xlarge` instance, with 4 vCPUs, earns 96 credits per hour, resulting in a 
 
 The following graph provides an example of a t3\.large with an average CPU utilization below the baseline\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/baseline-utilization.png)
+![\[A t3.large instance with an average CPU utilization below baseline.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/baseline-utilization.png)

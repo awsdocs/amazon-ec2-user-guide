@@ -23,7 +23,7 @@ Savings Plans also offer significant savings on your Amazon EC2 costs compared t
 
 The following diagram shows a basic overview of purchasing and using Reserved Instances\.
 
-![\[Purchasing Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-basics.png)
+![\[Purchasing Reserved Instances.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-basics.png)
 
 In this scenario, you have a running On\-Demand Instance \(T2\) in your account, for which you're currently paying On\-Demand rates\. You purchase a Reserved Instance that matches the attributes of your running instance, and the billing benefit is immediately applied\. Next, you purchase a Reserved Instance for a C4 instance\. You do not have any running instances in your account that match the attributes of this Reserved Instance\. In the final step, you launch an instance that matches the attributes of the C4 Reserved Instance, and the billing benefit is immediately applied\.
 

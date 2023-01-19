@@ -5,10 +5,10 @@ Memory optimized instances are designed to deliver fast performance for workload
 **R5, R5a, R5b, and R5n instances**
 
 These instances are well suited for the following:
-+ High\-performance, relational \(MySQL\) and NoSQL \(MongoDB, Cassandra\) databases\.
-+ Distributed web scale cache stores that provide in\-memory caching of key\-value type data \(Memcached and Redis\)\.
-+ In\-memory databases using optimized data storage formats and analytics for business intelligence \(for example, SAP HANA\)\.
-+ Applications performing real\-time processing of big unstructured data \(financial services, Hadoop/Spark clusters\)\.
++ High\-performance, including relational MySQL and NoSQL, for example MongoDB and Cassandra databases\.
++ Distributed web scale cache stores that provide in\-memory caching of key\-value type data, for example Memcached and Redis
++ In\-memory databases using optimized data storage formats and analytics for business intelligence; for example, SAP HANA
++ Applications performing real\-time processing of big unstructured data, using Hadoop and Spark clusters
 + High\-performance computing \(HPC\) and Electronic Design Automation \(EDA\) applications\.
 
 Bare metal instances, such as `r5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
@@ -18,7 +18,7 @@ For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/i
 **R6a instances**
 
 These instances are ideal for running memory\-intensive workloads, such as the following:
-+ High\-performance databases \(relational and NoSQL\)
++ High\-performance databases, both relational and NoSQL
 + Distributed web scale in\-memory caches, such as Memcached and Redis
 + Real\-time big data analytics, such as Hadoop and Spark clusters
 
@@ -32,8 +32,8 @@ These instances are ideal for running high performance computing \(HPC\) workloa
 **R6g and R6gd instances**
 
 These instances are powered by AWS Graviton2 processors and are ideal for running memory\-intensive workloads, such as the following:
-+ Open\-source databases \(for example, MySQL, MariaDB, and PostgreSQL\)
-+ In\-memory caches \(for example, Memcached, Redis, and KeyDB\)
++ Open\-source databases; for example, MySQL, MariaDB, and PostgreSQL
++ In\-memory caches; for example, Memcached, Redis, and KeyDB
 
 Bare metal instances, such as `r6g.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
@@ -42,16 +42,18 @@ For more information, see [Amazon EC2 R6g Instances](https://aws.amazon.com/ec2/
 **R6i and R6id instances**
 
 These instances are ideal for running memory\-intensive workloads, such as the following:
-+ High\-performance databases \(relational and NoSQL\)
-+ In\-memory databases, such as SAP HANA
-+ Distributed web scale in\-memory caches, such as Memcached and Redis
-+ Real\-time big data analytics, such as Hadoop and Spark clusters
++ High\-performance databases, relational and NoSQL
++ In\-memory databases, for example SAP HANA
++ Distributed web scale in\-memory caches, for example Memcached and Redis
++ Real\-time big data analytics, including Hadoop and Spark clusters
 
 **R6in and R6idn instances**
 
 These instances are well suited for network\-intensive workloads such as the following:
-+ SQL and NoSQL databases
-+ In\-memory databases, such as SAP HANA
++ High\-performance relational, MySQL and NoSQL\. For example, MongoDB and Cassandra databases
++ Distributed web scale cache stores that provide in\-memory caching of key\-value type data, including Memcached and Redis
++ In\-memory databases using optimized data storage formats and analytics for business intelligence, for example SAP HANA
++ Real\-time big data analytics for financial services, for example Hadoop and Spark clusters
 
 For more information, see [Amazon EC2 R6i Instances](http://aws.amazon.com/ec2/instance-types/r6i)\.
 
@@ -127,191 +129,199 @@ The following is a summary of the hardware specifications for memory optimized i
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
-| hpc6id\.32xlarge | 64 | 1048 | 
+| cr1\.8xlarge | 32 | 243\.76 | 
+| hpc6id\.32xlarge | 64 | 1024\.00 | 
+| r3\.large | 2 | 15\.00 | 
+| r3\.xlarge | 4 | 30\.50 | 
+| r3\.2xlarge | 8 | 61\.00 | 
+| r3\.4xlarge | 16 | 122\.00 | 
+| r3\.8xlarge | 32 | 244\.00 | 
 | r4\.large | 2 | 15\.25 | 
-| r4\.xlarge | 4 | 30\.5 | 
-| r4\.2xlarge | 8 | 61 | 
-| r4\.4xlarge | 16 | 122 | 
-| r4\.8xlarge | 32 | 244 | 
-| r4\.16xlarge | 64 | 488 | 
-| r5\.large | 2 | 16 | 
-| r5\.xlarge | 4 | 32 | 
-| r5\.2xlarge | 8 | 64 | 
-| r5\.4xlarge | 16 | 128 | 
-| r5\.8xlarge | 32 | 256 | 
-| r5\.12xlarge | 48 | 384 | 
-| r5\.16xlarge | 64 | 512 | 
-| r5\.24xlarge | 96 | 768 | 
-| r5\.metal | 96 | 768 | 
-| r5a\.large | 2 | 16 | 
-| r5a\.xlarge | 4 | 32 | 
-| r5a\.2xlarge | 8 | 64 | 
-| r5a\.4xlarge | 16 | 128 | 
-| r5a\.8xlarge | 32 | 256 | 
-| r5a\.12xlarge | 48 | 384 | 
-| r5a\.16xlarge | 64 | 512 | 
-| r5a\.24xlarge | 96 | 768 | 
-| r5ad\.large | 2 | 16 | 
-| r5ad\.xlarge | 4 | 32 | 
-| r5ad\.2xlarge | 8 | 64 | 
-| r5ad\.4xlarge | 16 | 128 | 
-| r5ad\.8xlarge | 32 | 256 | 
-| r5ad\.12xlarge | 48 | 384 | 
-| r5ad\.16xlarge | 64 | 512 | 
-| r5ad\.24xlarge | 96 | 768 | 
-| r5b\.large | 2 | 16 | 
-| r5b\.xlarge | 4 | 32 | 
-| r5b\.2xlarge | 8 | 64 | 
-| r5b\.4xlarge | 16 | 128 | 
-| r5b\.8xlarge | 32 | 256 | 
-| r5b\.12xlarge | 48 | 384 | 
-| r5b\.16xlarge | 64 | 512 | 
-| r5b\.24xlarge | 96 | 768 | 
-| r5b\.metal | 96 | 768 | 
-| r5d\.large | 2 | 16 | 
-| r5d\.xlarge | 4 | 32 | 
-| r5d\.2xlarge | 8 | 64 | 
-| r5d\.4xlarge | 16 | 128 | 
-| r5d\.8xlarge | 32 | 256 | 
-| r5d\.12xlarge | 48 | 384 | 
-| r5d\.16xlarge | 64 | 512 | 
-| r5d\.24xlarge | 96 | 768 | 
-| r5d\.metal | 96 | 768 | 
-| r5dn\.large | 2 | 16 | 
-| r5dn\.xlarge | 4 | 32 | 
-| r5dn\.2xlarge | 8 | 64 | 
-| r5dn\.4xlarge | 16 | 128 | 
-| r5dn\.8xlarge | 32 | 256 | 
-| r5dn\.12xlarge | 48 | 384 | 
-| r5dn\.16xlarge | 64 | 512 | 
-| r5dn\.24xlarge | 96 | 768 | 
-| r5dn\.metal | 96 | 768 | 
-| r5n\.large | 2 | 16 | 
-| r5n\.xlarge | 4 | 32 | 
-| r5n\.2xlarge | 8 | 64 | 
-| r5n\.4xlarge | 16 | 128 | 
-| r5n\.8xlarge | 32 | 256 | 
-| r5n\.12xlarge | 48 | 384 | 
-| r5n\.16xlarge | 64 | 512 | 
-| r5n\.24xlarge | 96 | 768 | 
-| r5n\.metal | 96 | 768 | 
-| r6a\.large | 2 | 16 | 
-| r6a\.xlarge | 4 | 32 | 
-| r6a\.2xlarge | 8 | 64 | 
-| r6a\.4xlarge | 16 | 128 | 
-| r6a\.8xlarge | 32 | 256 | 
-| r6a\.12xlarge | 48 | 384 | 
-| r6a\.16xlarge | 64 | 512 | 
-| r6a\.24xlarge | 96 | 768 | 
-| r6a\.32xlarge | 128 | 1,024 | 
-| r6a\.48xlarge | 192 | 1,536 | 
-| r6a\.metal | 192 | 1,536 | 
-| r6g\.medium | 1 | 8 | 
-| r6g\.large | 2 | 16 | 
-| r6g\.xlarge | 4 | 32 | 
-| r6g\.2xlarge | 8 | 64 | 
-| r6g\.4xlarge | 16 | 128 | 
-| r6g\.8xlarge | 32 | 256 | 
-| r6g\.12xlarge | 48 | 384 | 
-| r6g\.16xlarge | 64 | 512 | 
-| r6gd\.medium | 1 | 8 | 
-| r6gd\.large | 2 | 16 | 
-| r6gd\.xlarge | 4 | 32 | 
-| r6gd\.2xlarge | 8 | 64 | 
-| r6gd\.4xlarge | 16 | 128 | 
-| r6gd\.8xlarge | 32 | 256 | 
-| r6gd\.12xlarge | 48 | 384 | 
-| r6gd\.16xlarge | 64 | 512 | 
-| r6i\.large | 2 | 16 | 
-| r6i\.xlarge | 4 | 32 | 
-| r6i\.2xlarge | 8 | 64 | 
-| r6i\.4xlarge | 16 | 128 | 
-| r6i\.8xlarge | 32 | 256 | 
-| r6i\.12xlarge | 48 | 384 | 
-| r6i\.16xlarge | 64 | 512 | 
-| r6i\.24xlarge | 96 | 768 | 
-| r6i\.32xlarge | 128 | 1,024 | 
-| r6i\.metal | 128 | 1,024 | 
-| r6id\.large | 2 | 16 | 
-| r6id\.xlarge | 4 | 32 | 
-| r6id\.2xlarge | 8 | 64 | 
-| r6id\.4xlarge | 16 | 128 | 
-| r6id\.8xlarge | 32 | 256 | 
-| r6id\.12xlarge | 48 | 384 | 
-| r6id\.16xlarge | 64 | 512 | 
-| r6id\.24xlarge | 96 | 768 | 
-| r6id\.32xlarge | 128 | 1,024 | 
-| r6id\.metal | 128 | 1,024 | 
-|  r6in\.large  |  2  |  4  | 
-| r6in\.xlarge | 4 | 8 | 
-|  r6in\.2xlarge  | 8 | 16 | 
-| r6in\.4xlarge | 16 | 32 | 
-| r6in\.8xlarge | 32 | 64 | 
-| r6in\.12xlarge | 48 | 96 | 
-| r6in\.16xlarge | 64 | 128 | 
-| r6in\.24xlarge | 96 | 192 | 
-| r6in\.32xlarge | 128 | 256 | 
-|  r6idn\.large  | 2 |  4  | 
-|  r6idn\.xlarge  | 4 | 8 | 
-| r6idn\.2xlarge | 8 | 16 | 
-|  r6idn\.4xlarge  | 16 | 32 | 
-| r6idn\.8xlarge | 32 | 64 | 
-| r6idn\.12xlarge | 48 | 96 | 
-| r6idn\.16xlarge | 64 | 128 | 
-| r6idn\.24xlarge | 96 | 192 | 
-| r6idn\.32xlarge | 128 | 256 | 
-| u\-3tb1\.56xlarge | 224 | 3,072 | 
-| u\-6tb1\.56xlarge | 224 | 6,144 | 
-| u\-6tb1\.112xlarge | 448 | 6,144 | 
-| u\-6tb1\.metal | 448 \* | 6,144 | 
-| u\-9tb1\.112xlarge | 448 | 9,216 | 
-| u\-9tb1\.metal | 448 \* | 9,216 | 
-| u\-12tb1\.112xlarge | 448 | 12,288 | 
-| u\-12tb1\.metal | 448 \* | 12,288 | 
-| u\-18tb1\.metal | 448 \* | 18,432 | 
-| u\-24tb1\.metal | 448 \* | 24,576 | 
-| x1\.16xlarge | 64 | 976 | 
-| x1\.32xlarge | 128 | 1,952 | 
-| x1e\.xlarge | 4 | 122 | 
-| x1e\.2xlarge | 8 | 244 | 
-| x1e\.4xlarge | 16 | 488 | 
-| x1e\.8xlarge | 32 | 976 | 
-| x1e\.16xlarge | 64 | 1,952 | 
-| x1e\.32xlarge | 128 | 3,904 | 
-| x2gd\.medium | 1 | 16 | 
-| x2gd\.large | 2 | 32 | 
-| x2gd\.xlarge | 4 | 64 | 
-| x2gd\.2xlarge | 8 | 128 | 
-| x2gd\.4xlarge | 16 | 256 | 
-| x2gd\.8xlarge | 32 | 512 | 
-| x2gd\.12xlarge | 48 | 768 | 
-| x2gd\.16xlarge | 64 | 1,024 | 
-| x2gd\.metal | 64 | 1,024 | 
-| x2idn\.16xlarge | 64 | 1,024 | 
-| x2idn\.24xlarge | 96 | 1,536 | 
-| x2idn\.32xlarge | 128 | 2,048 | 
-| x2idn\.metal | 128 | 2,048 | 
-| x2iedn\.xlarge | 4 | 128 | 
-| x2iedn\.2xlarge | 8 | 256 | 
-| x2iedn\.4xlarge | 16 | 512 | 
-| x2iedn\.8xlarge | 32 | 1,024 | 
-| x2iedn\.16xlarge | 64 | 2,048 | 
-| x2iedn\.24xlarge | 96 | 3,072 | 
-| x2iedn\.32xlarge | 128 | 4,096 | 
-| x2iedn\.metal | 128 | 4,096 | 
-| x2iezn\.2xlarge | 8 | 256 | 
-| x2iezn\.4xlarge | 16 | 512 | 
-| x2iezn\.6xlarge | 24 | 768 | 
-| x2iezn\.8xlarge | 32 | 1,024 | 
-| x2iezn\.12xlarge | 48 | 1,536 | 
-| x2iezn\.metal | 48 | 1,536 | 
-| z1d\.large | 2 | 16 | 
-| z1d\.xlarge | 4 | 32 | 
-| z1d\.2xlarge | 8 | 64 | 
-| z1d\.3xlarge | 12 | 96 | 
-| z1d\.6xlarge | 24 | 192 | 
-| z1d\.12xlarge | 48 | 384 | 
-| z1d\.metal | 48 | 384 | 
+| r4\.xlarge | 4 | 30\.50 | 
+| r4\.2xlarge | 8 | 61\.00 | 
+| r4\.4xlarge | 16 | 122\.00 | 
+| r4\.8xlarge | 32 | 244\.00 | 
+| r4\.16xlarge | 64 | 488\.00 | 
+| r5\.large | 2 | 16\.00 | 
+| r5\.xlarge | 4 | 32\.00 | 
+| r5\.2xlarge | 8 | 64\.00 | 
+| r5\.4xlarge | 16 | 128\.00 | 
+| r5\.8xlarge | 32 | 256\.00 | 
+| r5\.12xlarge | 48 | 384\.00 | 
+| r5\.16xlarge | 64 | 512\.00 | 
+| r5\.24xlarge | 96 | 768\.00 | 
+| r5\.metal | 96 | 768\.00 | 
+| r5a\.large | 2 | 16\.00 | 
+| r5a\.xlarge | 4 | 32\.00 | 
+| r5a\.2xlarge | 8 | 64\.00 | 
+| r5a\.4xlarge | 16 | 128\.00 | 
+| r5a\.8xlarge | 32 | 256\.00 | 
+| r5a\.12xlarge | 48 | 384\.00 | 
+| r5a\.16xlarge | 64 | 512\.00 | 
+| r5a\.24xlarge | 96 | 768\.00 | 
+| r5ad\.large | 2 | 16\.00 | 
+| r5ad\.xlarge | 4 | 32\.00 | 
+| r5ad\.2xlarge | 8 | 64\.00 | 
+| r5ad\.4xlarge | 16 | 128\.00 | 
+| r5ad\.8xlarge | 32 | 256\.00 | 
+| r5ad\.12xlarge | 48 | 384\.00 | 
+| r5ad\.16xlarge | 64 | 512\.00 | 
+| r5ad\.24xlarge | 96 | 768\.00 | 
+| r5b\.large | 2 | 16\.00 | 
+| r5b\.xlarge | 4 | 32\.00 | 
+| r5b\.2xlarge | 8 | 64\.00 | 
+| r5b\.4xlarge | 16 | 128\.00 | 
+| r5b\.8xlarge | 32 | 256\.00 | 
+| r5b\.12xlarge | 48 | 384\.00 | 
+| r5b\.16xlarge | 64 | 512\.00 | 
+| r5b\.24xlarge | 96 | 768\.00 | 
+| r5b\.metal | 96 | 768\.00 | 
+| r5d\.large | 2 | 16\.00 | 
+| r5d\.xlarge | 4 | 32\.00 | 
+| r5d\.2xlarge | 8 | 64\.00 | 
+| r5d\.4xlarge | 16 | 128\.00 | 
+| r5d\.8xlarge | 32 | 256\.00 | 
+| r5d\.12xlarge | 48 | 384\.00 | 
+| r5d\.16xlarge | 64 | 512\.00 | 
+| r5d\.24xlarge | 96 | 768\.00 | 
+| r5d\.metal | 96 | 768\.00 | 
+| r5dn\.large | 2 | 16\.00 | 
+| r5dn\.xlarge | 4 | 32\.00 | 
+| r5dn\.2xlarge | 8 | 64\.00 | 
+| r5dn\.4xlarge | 16 | 128\.00 | 
+| r5dn\.8xlarge | 32 | 256\.00 | 
+| r5dn\.12xlarge | 48 | 384\.00 | 
+| r5dn\.16xlarge | 64 | 512\.00 | 
+| r5dn\.24xlarge | 96 | 768\.00 | 
+| r5dn\.metal | 96 | 768\.00 | 
+| r5n\.large | 2 | 16\.00 | 
+| r5n\.xlarge | 4 | 32\.00 | 
+| r5n\.2xlarge | 8 | 64\.00 | 
+| r5n\.4xlarge | 16 | 128\.00 | 
+| r5n\.8xlarge | 32 | 256\.00 | 
+| r5n\.12xlarge | 48 | 384\.00 | 
+| r5n\.16xlarge | 64 | 512\.00 | 
+| r5n\.24xlarge | 96 | 768\.00 | 
+| r5n\.metal | 96 | 768\.00 | 
+| r6a\.large | 2 | 16\.00 | 
+| r6a\.xlarge | 4 | 32\.00 | 
+| r6a\.2xlarge | 8 | 64\.00 | 
+| r6a\.4xlarge | 16 | 128\.00 | 
+| r6a\.8xlarge | 32 | 256\.00 | 
+| r6a\.12xlarge | 48 | 384\.00 | 
+| r6a\.16xlarge | 64 | 512\.00 | 
+| r6a\.24xlarge | 96 | 768\.00 | 
+| r6a\.32xlarge | 128 | 1024\.00 | 
+| r6a\.48xlarge | 192 | 1536\.00 | 
+| r6a\.metal | 192 | 1536\.00 | 
+| r6g\.medium | 1 | 8\.00 | 
+| r6g\.large | 2 | 16\.00 | 
+| r6g\.xlarge | 4 | 32\.00 | 
+| r6g\.2xlarge | 8 | 64\.00 | 
+| r6g\.4xlarge | 16 | 128\.00 | 
+| r6g\.8xlarge | 32 | 256\.00 | 
+| r6g\.12xlarge | 48 | 384\.00 | 
+| r6g\.16xlarge | 64 | 512\.00 | 
+| r6g\.metal | 64 | 512\.00 | 
+| r6gd\.medium | 1 | 8\.00 | 
+| r6gd\.large | 2 | 16\.00 | 
+| r6gd\.xlarge | 4 | 32\.00 | 
+| r6gd\.2xlarge | 8 | 64\.00 | 
+| r6gd\.4xlarge | 16 | 128\.00 | 
+| r6gd\.8xlarge | 32 | 256\.00 | 
+| r6gd\.12xlarge | 48 | 384\.00 | 
+| r6gd\.16xlarge | 64 | 512\.00 | 
+| r6gd\.metal | 64 | 512\.00 | 
+| r6i\.large | 2 | 16\.00 | 
+| r6i\.xlarge | 4 | 32\.00 | 
+| r6i\.2xlarge | 8 | 64\.00 | 
+| r6i\.4xlarge | 16 | 128\.00 | 
+| r6i\.8xlarge | 32 | 256\.00 | 
+| r6i\.12xlarge | 48 | 384\.00 | 
+| r6i\.16xlarge | 64 | 512\.00 | 
+| r6i\.24xlarge | 96 | 768\.00 | 
+| r6i\.32xlarge | 128 | 1024\.00 | 
+| r6i\.metal | 128 | 1024\.00 | 
+| r6idn\.large | 2 | 16\.00 | 
+| r6idn\.xlarge | 4 | 32\.00 | 
+| r6idn\.2xlarge | 8 | 64\.00 | 
+| r6idn\.4xlarge | 16 | 128\.00 | 
+| r6idn\.8xlarge | 32 | 256\.00 | 
+| r6idn\.12xlarge | 48 | 384\.00 | 
+| r6idn\.16xlarge | 64 | 512\.00 | 
+| r6idn\.24xlarge | 96 | 768\.00 | 
+| r6idn\.32xlarge | 128 | 1024\.00 | 
+| r6in\.large | 2 | 16\.00 | 
+| r6in\.xlarge | 4 | 32\.00 | 
+| r6in\.2xlarge | 8 | 64\.00 | 
+| r6in\.4xlarge | 16 | 128\.00 | 
+| r6in\.8xlarge | 32 | 256\.00 | 
+| r6in\.12xlarge | 48 | 384\.00 | 
+| r6in\.16xlarge | 64 | 512\.00 | 
+| r6in\.24xlarge | 96 | 768\.00 | 
+| r6in\.32xlarge | 128 | 1024\.00 | 
+| r6id\.large | 2 | 16\.00 | 
+| r6id\.xlarge | 4 | 32\.00 | 
+| r6id\.2xlarge | 8 | 64\.00 | 
+| r6id\.4xlarge | 16 | 128\.00 | 
+| r6id\.8xlarge | 32 | 256\.00 | 
+| r6id\.12xlarge | 48 | 384\.00 | 
+| r6id\.16xlarge | 64 | 512\.00 | 
+| r6id\.24xlarge | 96 | 768\.00 | 
+| r6id\.32xlarge | 128 | 1024\.00 | 
+| r6id\.metal | 128 | 1024\.00 | 
+| u\-3tb1\.56xlarge | 224 | 3072\.00 | 
+| u\-6tb1\.56xlarge | 224 | 6144\.00 | 
+| u\-6tb1\.112xlarge | 448 | 6144\.00 | 
+| u\-6tb1\.metal | 448 | 6144\.00 | 
+| u\-9tb1\.112xlarge | 448 | 9216\.00 | 
+| u\-9tb1\.metal | 448 | 9216\.00 | 
+| u\-12tb1\.112xlarge | 448 | 12288\.00 | 
+| u\-12tb1\.metal | 448 | 12288\.00 | 
+| u\-18tb1\.metal | 448 | 18432\.00 | 
+| u\-24tb1\.metal | 448 | 24576\.00 | 
+| x1\.16xlarge | 64 | 976\.00 | 
+| x1\.32xlarge | 128 | 1952\.00 | 
+| x2gd\.medium | 1 | 16\.00 | 
+| x2gd\.large | 2 | 32\.00 | 
+| x2gd\.xlarge | 4 | 64\.00 | 
+| x2gd\.2xlarge | 8 | 128\.00 | 
+| x2gd\.4xlarge | 16 | 256\.00 | 
+| x2gd\.8xlarge | 32 | 512\.00 | 
+| x2gd\.12xlarge | 48 | 768\.00 | 
+| x2gd\.16xlarge | 64 | 1024\.00 | 
+| x2gd\.metal | 64 | 1024\.00 | 
+| x2idn\.16xlarge | 64 | 1024\.00 | 
+| x2idn\.24xlarge | 96 | 1536\.00 | 
+| x2idn\.32xlarge | 128 | 2048\.00 | 
+| x2idn\.metal | 128 | 2048\.00 | 
+| x2iedn\.xlarge | 4 | 128\.00 | 
+| x2iedn\.2xlarge | 8 | 256\.00 | 
+| x2iedn\.4xlarge | 16 | 512\.00 | 
+| x2iedn\.8xlarge | 32 | 1024\.00 | 
+| x2iedn\.16xlarge | 64 | 2048\.00 | 
+| x2iedn\.24xlarge | 96 | 3072\.00 | 
+| x2iedn\.32xlarge | 128 | 4096\.00 | 
+| x2iedn\.metal | 128 | 4096\.00 | 
+| x2iezn\.2xlarge | 8 | 256\.00 | 
+| x2iezn\.4xlarge | 16 | 512\.00 | 
+| x2iezn\.6xlarge | 24 | 768\.00 | 
+| x2iezn\.8xlarge | 32 | 1024\.00 | 
+| x2iezn\.12xlarge | 48 | 1536\.00 | 
+| x2iezn\.metal | 48 | 1536\.00 | 
+| x1e\.xlarge | 4 | 122\.00 | 
+| x1e\.2xlarge | 8 | 244\.00 | 
+| x1e\.4xlarge | 16 | 488\.00 | 
+| x1e\.8xlarge | 32 | 976\.00 | 
+| x1e\.16xlarge | 64 | 1952\.00 | 
+| x1e\.32xlarge | 128 | 3904\.00 | 
+| z1d\.large | 2 | 16\.00 | 
+| z1d\.xlarge | 4 | 32\.00 | 
+| z1d\.2xlarge | 8 | 64\.00 | 
+| z1d\.3xlarge | 12 | 96\.00 | 
+| z1d\.6xlarge | 24 | 192\.00 | 
+| z1d\.12xlarge | 48 | 384\.00 | 
+| z1d\.metal | 48 | 384\.00 | 
 
 \* Each logical processor is a hyperthread on 224 cores\.
 
@@ -356,111 +366,204 @@ You can enable enhanced networking on supported instance types to provide lower 
 The following is a summary of network performance for memory optimized instances that support enhanced networking\.
 
 
-| Instance type | Network performance | Enhanced networking | 
-| --- | --- | --- | 
-|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.8xlarge and smaller \| r5b\.4xlarge and smaller \| r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8xlarge and smaller \| x2gd\.4xlarge and smaller \|  z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5b\.8xlarge \| r5b\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge \| r6gd\.8xlarge  \| x2gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r6a\.4xlarge and smaller \| r6i\.4xlarge and smaller \| r6id\.4xlarge and smaller | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r6a\.8xlarge \| r6i\.8xlarge \| r6id\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r6a\.12xlarge \| r6i\.12xlarge \| r6id\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5b\.16xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  \| x2gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller \| x2iedn\.4xlarge and smaller \| x2iezn\.4xlarge and smaller \| r6in\.large \| r6idn\.large | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6a\.16xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  r6i\.16xlarge \|r6id\.16xlarge \| x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \| x2gd\.metal \|  x2iedn\.8xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r6in\.xlarge \| r6idn\.xlarge | Up to 30 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| r6a\.24xlarge \| r6i\.24xlarge \| r6id\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r6in\.2xlarge \| r6idn\.2xlarge | Up to 40 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| r6in\.4xlarge \| r6idn\.4xlarge | Up to 50 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.12xlarge \| r5n\.12xlarge \| r6a\.32xlarge \| r6a\.48xlarge \| r6a\.metal \| r6i\.32xlarge \| r6i\.metal \| r6id\.32xlarge \| r6id\.metal \| u\-3tb1\.56xlarge \| x2idn\.16xlarge \| x2iedn\.16xlarge \| x2iezn\.6xlarge \| r6in\.8xlarge \| r6idn\.8xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r5dn\.16xlarge \| r5n\.16xlarge \| x2idn\.24xlarge \| x2iedn\.24xlarge \| x2iezn\.8xlarge \| r6in\.12xlarge \| r6idn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal \| x2idn\.32xlarge \| x2idn\.metal \| x2iedn\.32xlarge \| x2iedn\.metal \| x2iezn\.12xlarge \| x2iezn\.metal \| r6in\.16xlarge \| r6idn\.16xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
-| hpc6id\.32xlarge | 200 Gbps \*\* | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
-| r6in\.24xlarge \| r6idn\.24xlarge | 150 Gbps | [ENA](enhanced-networking-ena.md) | 
-| r6in\.32xlarge \| r6idn\.32xlarge | 200 Gbps \*\* | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
+| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | Enhanced networking features | 
+| --- | --- | --- | --- | 
+| hpc6id\.32xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r3\.large † | 0\.5 | 1\.2 | Not supported | 
+| r3\.xlarge † | 0\.7 | 2\.8 | Not supported | 
+| r3\.2xlarge † | 1\.0 | 10\.0 | Not supported | 
+| r3\.4xlarge † | 2\.0 | 10\.0 | Not supported | 
+| r3\.8xlarge † | 5\.0 | 10\.0 | Not supported | 
+| r4\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r4\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r4\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r4\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r4\.8xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r4\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5\.8xlarge | 10\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5\.12xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5\.16xlarge | 20\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5\.24xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5a\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5a\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5a\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5a\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5a\.8xlarge † | 7\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5a\.12xlarge | 10\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5a\.16xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5a\.24xlarge | 20\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5ad\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5ad\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5ad\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5ad\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5ad\.8xlarge † | 7\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5ad\.12xlarge | 10\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5ad\.16xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5ad\.24xlarge | 20\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5b\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5b\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5b\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5b\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5b\.8xlarge | 10\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5b\.12xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5b\.16xlarge | 20\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5b\.24xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5b\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5d\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5d\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5d\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5d\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5d\.8xlarge | 10\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5d\.12xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5d\.16xlarge | 20\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5d\.24xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5d\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5dn\.large † | 2\.1 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5dn\.xlarge † | 4\.1 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5dn\.2xlarge † | 8\.125 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5dn\.4xlarge † | 16\.25 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5dn\.8xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5dn\.12xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5dn\.16xlarge | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5dn\.24xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r5dn\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r5n\.large † | 2\.1 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5n\.xlarge † | 4\.1 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5n\.2xlarge † | 8\.125 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5n\.4xlarge † | 16\.25 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5n\.8xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5n\.12xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5n\.16xlarge | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r5n\.24xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r5n\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r6a\.large † | 0\.781 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6a\.xlarge † | 1\.562 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6a\.2xlarge † | 3\.125 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6a\.4xlarge † | 6\.25 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6a\.8xlarge | 12\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6a\.12xlarge | 18\.75 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6a\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6a\.24xlarge | 37\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6a\.32xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6a\.48xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r6a\.metal | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r6g\.medium † | 0\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6g\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6g\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6g\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6g\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6g\.8xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6g\.12xlarge | 20\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6g\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6g\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6gd\.medium † | 0\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6gd\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6gd\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6gd\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6gd\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6gd\.8xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6gd\.12xlarge | 20\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6gd\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6gd\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6i\.large † | 0\.781 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6i\.xlarge † | 1\.562 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6i\.2xlarge † | 3\.125 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6i\.4xlarge † | 6\.25 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6i\.8xlarge | 12\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6i\.12xlarge | 18\.75 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6i\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6i\.24xlarge | 37\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6i\.32xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r6i\.metal | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r6idn\.large † | 3\.125 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6idn\.xlarge † | 6\.25 | 30\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6idn\.2xlarge † | 12\.5 | 40\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6idn\.4xlarge † | 25\.0 | 50\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6idn\.8xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6idn\.12xlarge | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6idn\.16xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6idn\.24xlarge | 150\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6idn\.32xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r6in\.large † | 3\.125 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6in\.xlarge † | 6\.25 | 30\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6in\.2xlarge † | 12\.5 | 40\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6in\.4xlarge † | 25\.0 | 50\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6in\.8xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6in\.12xlarge | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6in\.16xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6in\.24xlarge | 150\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6in\.32xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r6id\.large † | 0\.781 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6id\.xlarge † | 1\.562 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6id\.2xlarge † | 3\.125 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6id\.4xlarge † | 6\.25 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6id\.8xlarge | 12\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6id\.12xlarge | 18\.75 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6id\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6id\.24xlarge | 37\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r6id\.32xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r6id\.metal | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| u\-3tb1\.56xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| u\-6tb1\.56xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| u\-6tb1\.112xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| u\-6tb1\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| u\-9tb1\.112xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| u\-9tb1\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| u\-12tb1\.112xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| u\-12tb1\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| u\-18tb1\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| u\-24tb1\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x1\.16xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x1\.32xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2gd\.medium † | 0\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2gd\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2gd\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2gd\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2gd\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2gd\.8xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2gd\.12xlarge | 20\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2gd\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2gd\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2idn\.16xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2idn\.24xlarge | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2idn\.32xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| x2idn\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| x2iedn\.xlarge † | 1\.875 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iedn\.2xlarge † | 5\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iedn\.4xlarge † | 12\.5 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iedn\.8xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iedn\.16xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iedn\.24xlarge | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iedn\.32xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| x2iedn\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| x2iezn\.2xlarge † | 12\.5 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iezn\.4xlarge † | 15\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iezn\.6xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iezn\.8xlarge | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x2iezn\.12xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| x2iezn\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| x1e\.xlarge † | 0\.625 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x1e\.2xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x1e\.4xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x1e\.8xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x1e\.16xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| x1e\.32xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| z1d\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| z1d\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| z1d\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| z1d\.3xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| z1d\.6xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| z1d\.12xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| z1d\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 
-\* Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
+`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances launched after March 12, 2020 provide network performance of 100 Gbps\. `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances launched before March 12, 2020 mightonly provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
 
-\*\* For 32xlarge and metal sizes, at least 2 ENIs, each attached to a different network card, are required on the instance to achieve 200 Gbps throughput\. Each ENI attached to a network card can achieve a max of 170 Gbps\. 
-
-† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
-
-
-| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
-| --- | --- | --- | 
-| r4\.large | \.75 | 10 | 
-| r4\.xlarge | 1\.25 | 10 | 
-| r4\.2xlarge | 2\.5 | 10 | 
-| r4\.4xlarge | 5 | 10 | 
-| r5\.large | \.75 | 10 | 
-| r5\.xlarge | 1\.25 | 10 | 
-| r5\.2xlarge | 2\.5 | 10 | 
-| r5\.4xlarge | 5 | 10 | 
-| r5a\.large | \.75 | 10 | 
-| r5a\.xlarge | 1\.25 | 10 | 
-| r5a\.2xlarge | 2\.5 | 10 | 
-| r5a\.4xlarge | 5 | 10 | 
-| r5a\.8xlarge | 7\.5 | 10 | 
-| r5ad\.large | \.75 | 10 | 
-| r5ad\.xlarge | 1\.25 | 10 | 
-| r5ad\.2xlarge | 2\.5 | 10 | 
-| r5ad\.4xlarge | 5 | 10 | 
-| r5ad\.8xlarge | 7\.5 | 10 | 
-| r5b\.large | \.75 | 10 | 
-| r5b\.xlarge | 1\.25 | 10 | 
-| r5b\.2xlarge | 2\.5 | 10 | 
-| r5b\.4xlarge | 5 | 10 | 
-| r5d\.large | \.75 | 10 | 
-| r5d\.xlarge | 1\.25 | 10 | 
-| r5d\.2xlarge | 2\.5 | 10 | 
-| r5d\.4xlarge | 5 | 10 | 
-| r5dn\.large | 2\.1 | 25 | 
-| r5dn\.xlarge | 4\.1 | 25 | 
-| r5dn\.2xlarge | 8\.125 | 25 | 
-| r5dn\.4xlarge | 16\.25 | 25 | 
-| r5n\.large | 2\.1 | 25 | 
-| r5n\.xlarge | 4\.1 | 25 | 
-| r5n\.2xlarge | 8\.125 | 25 | 
-| r5n\.4xlarge | 16\.25 | 25 | 
-| r6a\.large | \.781 | 12\.5 | 
-| r6a\.xlarge | 1\.562 | 12\.5 | 
-| r6a\.2xlarge | 3\.125 | 12\.5 | 
-| r6a\.4xlarge | 6\.25 | 12\.5 | 
-| r6g\.medium | \.5 | 10 | 
-| r6g\.large | \.75 | 10 | 
-| r6g\.xlarge | 1\.25 | 10 | 
-| r6g\.2xlarge | 2\.5 | 10 | 
-| r6g\.4xlarge | 5 | 10 | 
-| r6gd\.medium | \.5 | 10 | 
-| r6gd\.large | \.75 | 10 | 
-| r6gd\.xlarge | 1\.25 | 10 | 
-| r6gd\.2xlarge | 2\.5 | 10 | 
-| r6gd\.4xlarge | 5 | 10 | 
-| r6i\.large | \.781 | 12\.5 | 
-| r6i\.xlarge | 1\.562 | 12\.5 | 
-| r6i\.2xlarge | 3\.125 | 12\.5 | 
-| r6i\.4xlarge | 6\.25 | 12\.5 | 
-| r6id\.large | \.781 | 12\.5 | 
-| r6id\.xlarge | 1\.562 | 12\.5 | 
-| r6id\.2xlarge | 3\.125 | 12\.5 | 
-| r6id\.4xlarge | 6\.25 | 12\.5 | 
-| x1e\.xlarge | \.625 | 10 | 
-| x1e\.2xlarge | 1\.25 | 10 | 
-| x1e\.4xlarge | 2\.5 | 10 | 
-| x1e\.8xlarge | 5 | 10 | 
-| x2iedn\.xlarge | 3\.125 | 25 | 
-| x2iedn\.2xlarge | 6\.25 | 25 | 
-| x2iedn\.4xlarge | 12\.5 | 25 | 
-| x2gd\.medium | \.5 | 10 | 
-| x2gd\.large | \.75 | 10 | 
-| x2gd\.xlarge | 1\.25 | 10 | 
-| x2gd\.2xlarge | 2\.5 | 10 | 
-| x2gd\.4xlarge | 5 | 10 | 
-| x2iezn\.2xlarge | 12\.5 | 25 | 
-| x2iezn\.4xlarge | 15 | 25 | 
-| z1d\.large | \.75 | 10 | 
-| z1d\.xlarge | 1\.25 | 10 | 
-| z1d\.2xlarge | 2\.5 | 10 | 
-| z1d\.3xlarge | 5 | 10 | 
+† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.
 
 ## Amazon EBS I/O performance<a name="memory-ebs-perf"></a>
 
@@ -475,81 +578,102 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| hpc6id\.32xlarge | 2,146,664 | 1,073,336 | 
-| r5ad\.large | 30,000 | 15,000 | 
-| r5ad\.xlarge | 59,000 | 29,000 | 
-| r5ad\.2xlarge  | 117,000 | 57,000 | 
-| r5ad\.4xlarge | 234,000 | 114,000 | 
-| r5ad\.8xlarge | 466,666 | 233,333 | 
-| r5ad\.12xlarge | 700,000 | 340,000 | 
-| r5ad\.16xlarge | 933,333 | 466,666 | 
-| r5ad\.24xlarge | 1,400,000 | 680,000 | 
-| r5d\.large | 30,000 | 15,000 | 
-| r5d\.xlarge | 59,000 | 29,000 | 
-| r5d\.2xlarge | 117,000 | 57,000 | 
-| r5d\.4xlarge | 234,000 | 114,000 | 
-| r5d\.8xlarge | 466,666 | 233,333 | 
-| r5d\.12xlarge | 700,000 | 340,000 | 
-| r5d\.16xlarge  | 933,333 | 466,666 | 
-| r5d\.24xlarge | 1,400,000 | 680,000 | 
-| r5d\.metal | 1,400,000 | 680,000 | 
-| r5dn\.large | 30,000 | 15,000 | 
-| r5dn\.xlarge | 59,000 | 29,000 | 
-| r5dn\.2xlarge | 117,000 | 57,000 | 
-| r5dn\.4xlarge | 234,000 | 114,000 | 
-| r5dn\.8xlarge | 466,666 | 233,333 | 
-| r5dn\.12xlarge | 700,000 | 340,000 | 
-| r5dn\.16xlarge | 933,333 | 466,666 | 
-| r5dn\.24xlarge | 1,400,000 | 680,000 | 
-| r5dn\.metal | 1,400,000 | 680,000 | 
-| r6id\.metal | 3,219,995 | 1,610,005 | 
-| r6gd\.medium | 13,438 | 5,625 | 
-| r6gd\.large | 26,875 | 11,250 | 
-| r6gd\.xlarge | 53,750 | 22,500 | 
-| r6gd\.2xlarge | 107,500 | 45,000 | 
-| r6gd\.4xlarge | 215,000 | 90,000 | 
-| r6gd\.8xlarge | 430,000 | 180,000 | 
-| r6gd\.12xlarge | 645,000 | 270,000 | 
-| r6gd\.16xlarge | 860,000 | 360,000 | 
-| r6gd\.metal | 860,000 | 360,000 | 
-| r6id\.large | 33,542 | 16,771 | 
-| r6id\.xlarge | 67,083 | 33,542 | 
-| r6id\.2xlarge | 134,167 | 67,084 | 
-| r6id\.4xlarge | 268,333 | 134,167 | 
-| r6id\.8xlarge | 536,666 | 268,334 | 
-| r6id\.12xlarge | 804,999 | 402,501 | 
-| r6id\.16xlarge | 1,073,332 | 536,668 | 
-| r6id\.24xlarge | 1,609,998 | 805,002 | 
-| r6id\.32xlarge | 2,146,664 | 1,073,336 | 
-| r6id\.metal | 2,146,664 | 1,073,336 | 
-| x2gd\.medium | 13,438 | 5,625 | 
-| x2gd\.large | 26,875 | 11,250 | 
-| x2gd\.xlarge | 53,750 | 22,500 | 
-| x2gd\.2xlarge | 107,500 | 45,000 | 
-| x2gd\.4xlarge | 215,000 | 90,000 | 
-| x2gd\.8xlarge | 430,000 | 180,000 | 
-| x2gd\.12xlarge | 645,000 | 270,000 | 
-| x2gd\.16xlarge | 860,000 | 360,000 | 
-| x2gd\.metal | 860,000 | 360,000 | 
-| x2idn\.16xlarge | 430,000 | 180,000 | 
-| x2idn\.24xlarge | 645,000 | 270,000 | 
-| x2idn\.32xlarge | 860,000 | 360,000 | 
-| x2idn\.metal | 860,000 | 360,000 | 
-| x2iedn\.xlarge | 26,875 | 11,250 | 
-| x2iedn\.2xlarge | 53,750 | 22,500 | 
-| x2iedn\.4xlarge | 107,500 | 45,000 | 
-| x2iedn\.8xlarge | 215,000 | 90,000 | 
-| x2iedn\.16xlarge | 430,000 | 180,000 | 
-| x2iedn\.24xlarge | 645,000 | 270,000 | 
-| x2iedn\.32xlarge | 860,000 | 360,000 | 
-| x2iedn\.metal | 860,000 | 360,000 | 
-| z1d\.large | 30,000 | 15,000 | 
-| z1d\.xlarge | 59,000 | 29,000 | 
-| z1d\.2xlarge | 117,000 | 57,000 | 
-| z1d\.3xlarge | 175,000 | 75,000 | 
-| z1d\.6xlarge | 350,000 | 170,000 | 
-| z1d\.12xlarge | 700,000 | 340,000 | 
-| z1d\.metal | 700,000 | 340,000 | 
+| hpc6id\.32xlarge | 2146664 | 1073336 | 
+| r3\.large | 16000 | 11200 | 
+| r3\.xlarge | 30400 | 22400 | 
+| r3\.2xlarge | 43200 | 11200 | 
+| r3\.4xlarge | 62400 | 43200 | 
+| r3\.8xlarge | 243200 | 172800 | 
+| r5ad\.large | 30000 | 15000 | 
+| r5ad\.xlarge | 59000 | 29000 | 
+| r5ad\.2xlarge | 117000 | 57000 | 
+| r5ad\.4xlarge | 234000 | 114000 | 
+| r5ad\.8xlarge | 466666 | 233334 | 
+| r5ad\.12xlarge | 700000 | 340000 | 
+| r5ad\.16xlarge | 933332 | 466668 | 
+| r5ad\.24xlarge | 1400000 | 680000 | 
+| r5d\.large | 30000 | 15000 | 
+| r5d\.xlarge | 59000 | 29000 | 
+| r5d\.2xlarge | 117000 | 57000 | 
+| r5d\.4xlarge | 234000 | 114000 | 
+| r5d\.8xlarge | 466666 | 233334 | 
+| r5d\.12xlarge | 700000 | 340000 | 
+| r5d\.16xlarge | 933332 | 466668 | 
+| r5d\.24xlarge | 1400000 | 680000 | 
+| r5d\.metal | 1400000 | 680000 | 
+| r5dn\.large | 29000 | 14500 | 
+| r5dn\.xlarge | 58000 | 29000 | 
+| r5dn\.2xlarge | 116000 | 58000 | 
+| r5dn\.4xlarge | 232000 | 116000 | 
+| r5dn\.8xlarge | 464000 | 232000 | 
+| r5dn\.12xlarge | 700000 | 350000 | 
+| r5dn\.16xlarge | 930000 | 465000 | 
+| r5dn\.24xlarge | 1400000 | 700000 | 
+| r5dn\.metal | 1400000 | 700000 | 
+| r6gd\.medium | 13438 | 5625 | 
+| r6gd\.large | 26875 | 11250 | 
+| r6gd\.xlarge | 53750 | 22500 | 
+| r6gd\.2xlarge | 107500 | 45000 | 
+| r6gd\.4xlarge | 215000 | 90000 | 
+| r6gd\.8xlarge | 430000 | 180000 | 
+| r6gd\.12xlarge | 645000 | 270000 | 
+| r6gd\.16xlarge | 860000 | 360000 | 
+| r6gd\.metal | 860000 | 360000 | 
+| r6idn\.large | 33542 | 16771 | 
+| r6idn\.xlarge | 67083 | 33542 | 
+| r6idn\.2xlarge | 134167 | 67084 | 
+| r6idn\.4xlarge | 268333 | 134167 | 
+| r6idn\.8xlarge | 536666 | 268334 | 
+| r6idn\.12xlarge | 804998 | 402500 | 
+| r6idn\.16xlarge | 1073332 | 536668 | 
+| r6idn\.24xlarge | 1609996 | 805000 | 
+| r6idn\.32xlarge | 2146664 | 1073336 | 
+| r6id\.large | 33542 | 16771 | 
+| r6id\.xlarge | 67083 | 33542 | 
+| r6id\.2xlarge | 134167 | 67084 | 
+| r6id\.4xlarge | 268333 | 134167 | 
+| r6id\.8xlarge | 536666 | 268334 | 
+| r6id\.12xlarge | 804998 | 402500 | 
+| r6id\.16xlarge | 1073332 | 536668 | 
+| r6id\.24xlarge | 1609996 | 805000 | 
+| r6id\.32xlarge | 2146664 | 1073336 | 
+| r6id\.metal | 2146664 | 1073336 | 
+| x1\.16xlarge | 175000 | 75000 | 
+| x1\.32xlarge | 350000 | 150000 | 
+| x2gd\.medium | 13438 | 5625 | 
+| x2gd\.large | 26875 | 11250 | 
+| x2gd\.xlarge | 53750 | 22500 | 
+| x2gd\.2xlarge | 107500 | 45000 | 
+| x2gd\.4xlarge | 215000 | 90000 | 
+| x2gd\.8xlarge | 430000 | 180000 | 
+| x2gd\.12xlarge | 645000 | 270000 | 
+| x2gd\.16xlarge | 860000 | 360000 | 
+| x2gd\.metal | 860000 | 360000 | 
+| x2idn\.16xlarge | 430000 | 180000 | 
+| x2idn\.24xlarge | 645000 | 270000 | 
+| x2idn\.32xlarge | 860000 | 360000 | 
+| x2idn\.metal | 860000 | 360000 | 
+| x2iedn\.xlarge | 26875 | 11250 | 
+| x2iedn\.2xlarge | 53750 | 22500 | 
+| x2iedn\.4xlarge | 107500 | 45000 | 
+| x2iedn\.8xlarge | 215000 | 90000 | 
+| x2iedn\.16xlarge | 430000 | 180000 | 
+| x2iedn\.24xlarge | 645000 | 270000 | 
+| x2iedn\.32xlarge | 860000 | 360000 | 
+| x2iedn\.metal | 860000 | 360000 | 
+| x1e\.xlarge | 175000 | 75000 | 
+| x1e\.2xlarge | 175000 | 75000 | 
+| x1e\.4xlarge | 175000 | 75000 | 
+| x1e\.8xlarge | 175000 | 75000 | 
+| x1e\.16xlarge | 175000 | 75000 | 
+| x1e\.32xlarge | 350000 | 150000 | 
+| z1d\.large | 30000 | 15000 | 
+| z1d\.xlarge | 59000 | 29000 | 
+| z1d\.2xlarge | 117000 | 57000 | 
+| z1d\.3xlarge | 175000 | 75000 | 
+| z1d\.6xlarge | 350000 | 170000 | 
+| z1d\.12xlarge | 700000 | 340000 | 
+| z1d\.metal | 700000 | 340000 | 
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
@@ -582,7 +706,9 @@ The following AMIs support launching memory optimized instances:
   The following Linux AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
-  + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
+  + Ubuntu 14\.04 or later with `linux-aws` kernel
+**Note**  
+AWS Graviton\-based instance types require Ubuntu 18\.04 or later with `linux-aws` kernel
   + Red Hat Enterprise Linux 7\.4 or later
   + SUSE Linux Enterprise Server 12 SP2 or later
   + CentOS 7\.4\.1708 or later
@@ -604,7 +730,7 @@ The following AMIs support launching memory optimized instances:
   + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
   + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.3\.18\-24\.15\.1
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
-+ All `io2` volumes attached to C6in, C7g, M6in, M6idn, R5b, R6in, R6idn, Trn1, X2idn, and X2iedn instances instances, during or after launch, automatically run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
++ All `io2` volumes attached to C6in, C7g, M6in, M6idn, R5b, R6in, R6idn, Trn1, X2idn, and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

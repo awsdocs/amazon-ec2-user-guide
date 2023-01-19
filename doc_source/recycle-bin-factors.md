@@ -37,6 +37,7 @@ If you have retention rules for AMIs and for their associated snapshots, make th
 + If an AMI that was created by another AWS service, such as AWS Backup, is sent to the Recycle Bin and you later restore that AMI from the Recycle Bin, it is no longer managed by the AWS service that created it\. You must manually delete the AMI if it is no longer needed\.
 
 **Considerations for Amazon Data Lifecycle Manager snapshot policies**
++ If Amazon Data Lifecycle Manager deletes a snapshot that matches a retention rule, that snapshot is automatically retained by Recycle Bin\.
 + If Amazon Data Lifecycle Manager deletes a snapshot and sends it to the Recycle Bin when the policy's retention threshold is reached, and you manually restore the snapshot from the Recycle Bin, you must manually delete that snapshot when it is no longer needed\. Amazon Data Lifecycle Manager will no longer manage the snapshot\.
 + If you manually delete a snapshot that was created by a policy, and that snapshot is in the Recycle Bin when the policy’s retention threshold is reached, Amazon Data Lifecycle Manager will not delete the snapshot\. Amazon Data Lifecycle Manager does not manage the snapshots while they are stored in the Recycle Bin\.
 
@@ -46,3 +47,12 @@ If you have retention rules for AMIs and for their associated snapshots, make th
 
 **Considerations for AWS Backup**
 + If AWS Backup deletes a snapshot that matches a retention rule, that snapshot is automatically retained by Recycle Bin\.
+
+**Considerations for archived snapshots**
++ Recycle Bin retention rules also apply to archived snapshots in the archive storage tier\. If you delete an archived snapshot that matches a retention rule, that snapshot is retained in the Recycle Bin for the period defined in the retention rule\.
+
+  Archived snapshots are billed at the rate for archived snapshots while they are in the Recycle Bin\.
+
+  If a retention rule deletes an archived snapshot from the Recycle Bin before the minimum archive period of 90 days, you are billed for the remaining days\. For more information, see [Pricing and billing](snapshot-archive.md#snapshot-archive-pricing)\.
+
+  To use an archived snapshot that is in the Recycle Bin, you must first recover the snapshot from the Recycle Bin and then restore it from the archive tier to the standard tier\.

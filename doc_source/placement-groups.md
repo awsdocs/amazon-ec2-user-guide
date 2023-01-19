@@ -17,7 +17,7 @@ A cluster placement group is a logical grouping of instances within a single Ava
 
 The following image shows instances that are placed into a cluster placement group\.
 
-![\[A cluster placement group\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-cluster.png)
+![\[A cluster placement group.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-cluster.png)
 
 Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both\. They are also recommended when the majority of the network traffic is between the instances in the group\. To provide the lowest latency and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
 
@@ -37,7 +37,7 @@ Partition placement groups help reduce the likelihood of correlated hardware fai
 
 The following image is a simple visual representation of a partition placement group in a single Availability Zone\. It shows instances that are placed into a partition placement group with three partitions—**Partition 1**, **Partition 2**, and **Partition 3**\. Each partition comprises multiple instances\. The instances in a partition do not share racks with the instances in the other partitions, allowing you to contain the impact of a single hardware failure to only the associated partition\.
 
-![\[A partition placement group with three partitions\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-partition.png)
+![\[A partition placement group with three partitions.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-partition.png)
 
 Partition placement groups can be used to deploy large distributed and replicated workloads, such as HDFS, HBase, and Cassandra, across distinct racks\. When you launch instances into a partition placement group, Amazon EC2 tries to distribute the instances evenly across the number of partitions that you specify\. You can also launch instances into a specific partition to have more control over where the instances are placed\.
 
@@ -58,7 +58,7 @@ If you start or launch an instance in a spread placement group and there is insu
 **Rack spread level placement groups**  
 The following image shows seven instances in a single Availability Zone that are placed into a spread placement group\. The seven instances are placed on seven different racks, each rack has its own network and power source\.
 
-![\[A spread placement group\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-spread.png)
+![\[A spread placement group.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-spread.png)
 
 A rack spread placement group can span multiple Availability Zones in the same Region\. For rack spread level placement groups, you can have a maximum of seven running instances per Availability Zone per group\.
 

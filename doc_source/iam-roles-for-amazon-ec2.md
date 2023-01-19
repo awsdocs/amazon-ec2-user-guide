@@ -136,21 +136,27 @@ You can create an IAM role and attach it to an instance during or after launch\.
 
 ### Create an IAM role<a name="create-iam-role"></a>
 
-You must create an IAM role before you can launch an instance with that role or attach it to an instance\.<a name="create-iam-role-console"></a>
+You must create an IAM role before you can launch an instance with that role or attach it to an instance\.
+
+------
+#### [ Console ]<a name="create-iam-role-console"></a>
 
 **To create an IAM role using the IAM console**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles**, **Create role**\.
+1. In the navigation pane, choose **Roles** then choose **Create role**\.
 
-1. On the **Select role type** page, choose **EC2** and the **EC2** use case\. Choose **Next: Permissions**\.
+1. On the **Select trusted entity** page, choose **AWS service**, and then select the **EC2** use case\. Choose **Next**\.
 
-1. On the **Attach permissions policy** page, select an AWS managed policy that grants your instances access to the resources that they need\.
+1. On the **Add permissions** page, select the policies that grants your instances access to the resources that they need\. Choose **Next**\.
 
-1. On the **Review** page, enter a name for the role and choose **Create role**\.
+1. On the **Name, review, and create** page, enter a name and description for the role\. Optionally, add tags to the role\. Choose **Create role**\.
 
-Alternatively, you can use the AWS CLI to create an IAM role\. The following example creates an IAM role with a policy that allows the role to use an Amazon S3 bucket\.<a name="create-iam-role-cli"></a>
+------
+#### [ Command line ]
+
+The followingexample creates an IAM role with a policy that allows the role to use an Amazon S3 bucket\.<a name="create-iam-role-cli"></a>
 
 **To create an IAM role and instance profile \(AWS CLI\)**
 
@@ -261,6 +267,8 @@ Alternatively, you can use the following AWS Tools for Windows PowerShell comman
 + [Register\-IAMRolePolicy](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-IAMRolePolicy.html)
 + [New\-IAMInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/New-IAMInstanceProfile.html)
 
+------
+
 ### Launch an instance with an IAM role<a name="launch-instance-with-role"></a>
 
 After you've created an IAM role, you can launch an instance, and associate that role with the instance during launch\.
@@ -341,8 +349,9 @@ The **IAM role** list displays the name of the instance profile that you created
 ------
 
 ------
+#### [ Command line ]
 
-Alternatively, you can use the AWS CLI to associate a role with an instance during launch\. You must specify the instance profile in the command\.<a name="launch-instance-with-role-cli"></a>
+You can use the AWS CLI to associate a role with an instance during launch\. You must specify the instance profile in the command\.<a name="launch-instance-with-role-cli"></a>
 
 **To launch an instance with an IAM role \(AWS CLI\)**
 
@@ -364,6 +373,8 @@ Alternatively, you can use the AWS CLI to associate a role with an instance duri
    ```
    curl http://169.254.169.254/latest/meta-data/iam/security-credentials/role_name
    ```
+
+------
 
 ### Attach an IAM role to an instance<a name="attach-iam-role"></a>
 
@@ -395,7 +406,8 @@ To attach an IAM role to an instance that has no role, the instance can be in th
 
 1. Select the IAM role to attach to your instance, and choose **Apply**\.
 
-------<a name="attach-iam-role-instance-cli"></a>
+------
+#### [ Command line ]<a name="attach-iam-role-instance-cli"></a>
 
 **To attach an IAM role to an instance \(AWS CLI\)**
 
@@ -433,6 +445,8 @@ Alternatively, use the following Tools for Windows PowerShell commands:
 + [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html)
 + [Register\-EC2IamInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2IamInstanceProfile.html)
 
+------
+
 ### Replace an IAM role<a name="replace-iam-role"></a>
 
 To replace the IAM role on an instance that already has an attached IAM role, the instance must be in the `running` state\. You can do this if you want to change the IAM role for an instance without detaching the existing one first\. For example, you can do this to ensure that API actions performed by applications running on the instance are not interrupted\.
@@ -463,7 +477,8 @@ To replace the IAM role on an instance that already has an attached IAM role, th
 
 1. Select the IAM role to attach to your instance, and choose **Apply**\.
 
-------<a name="replace-iam-role-cli"></a>
+------
+#### [ Command line ]<a name="replace-iam-role-cli"></a>
 
 **To replace an IAM role for an instance \(AWS CLI\)**
 
@@ -501,6 +516,8 @@ Alternatively, use the following Tools for Windows PowerShell commands:
 + [Get\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IamInstanceProfileAssociation.html)
 + [Set\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Set-EC2IamInstanceProfileAssociation.html)
 
+------
+
 ### Detach an IAM role<a name="detach-iam-role"></a>
 
 You can detach an IAM role from a running or stopped instance\.
@@ -535,7 +552,8 @@ You can detach an IAM role from a running or stopped instance\.
 
 1. In the confirmation dialog box, choose **Yes, Detach**\.
 
-------<a name="detach-iam-role-cli"></a>
+------
+#### [ Command line ]<a name="detach-iam-role-cli"></a>
 
 **To detach an IAM role from an instance \(AWS CLI\)**
 
@@ -588,6 +606,8 @@ You can detach an IAM role from a running or stopped instance\.
 Alternatively, use the following Tools for Windows PowerShell commands:
 + [Get\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IamInstanceProfileAssociation.html)
 + [Unregister\-EC2IamInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2IamInstanceProfile.html)
+
+------
 
 ### Generate a policy for your IAM role based on access activity<a name="generate-policy-for-iam-role"></a>
 

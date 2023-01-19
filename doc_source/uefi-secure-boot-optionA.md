@@ -14,7 +14,7 @@ When you [launch an instance](LaunchingAndUsingInstances.md) with the following 
 **Prerequisites**
 + **AMI** \- The Linux AMI must support UEFI boot mode\. To verify that the AMI supports UEFI boot mode, the AMI boot mode parameter must be **uefi**\. For more information, see [Determine the boot mode parameter of an AMI](ami-boot-mode.md)\.
 
-  Note that AWS currently does not provide Linux AMIs that support UEFI boot mode\. To use an AMI that supports UEFI boot mode, you must perform a number of configuration steps on your own AMI\. For more information, see [Set the boot mode of an AMI](set-ami-boot-mode.md)\.
+  Note that AWS only provides Linux AMIs configured to support UEFI for Graviton\-based instance types\. AWS currently does not provide x86\_64 Linux AMIs that support UEFI boot mode\. You can configure your own AMI to support UEFI boot mode for all architectures\. To configure your own AMI to support UEFI boot mode, you must perform a number of configuration steps on your own AMI\. For more information, see [Set the boot mode of an AMI](set-ami-boot-mode.md)\.
 + **Instance type** – All virtualized instance types that support UEFI also support UEFI Secure Boot\. Bare metal instance types do not support UEFI Secure Boot\. For the instance types that support UEFI Secure Boot, see [Considerations](launch-instance-boot-mode.md#boot-considerations)\.
 + Launch your instance after the release of UEFI Secure Boot\. Only instances launched after May 10, 2022 \(when UEFI Secure Boot was released\) can support UEFI Secure Boot\.
 

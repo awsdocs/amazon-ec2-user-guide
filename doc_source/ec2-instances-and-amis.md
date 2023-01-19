@@ -2,7 +2,7 @@
 
 An *Amazon Machine Image \(AMI\)* is a template that contains a software configuration \(for example, an operating system, an application server, and applications\)\. From an AMI, you launch an *instance*, which is a copy of the AMI running as a virtual server in the cloud\. You can launch multiple instances of an AMI, as shown in the following figure\.
 
-![\[Launch multiple instances from an AMI\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/architecture_ami_instance.png)
+![\[Launch multiple instances from an AMI.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/architecture_ami_instance.png)
 
 Your instances keep running until you stop, hibernate, or terminate them, or until they fail\. If an instance fails, you can launch a new one from the AMI\.
 

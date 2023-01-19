@@ -342,9 +342,9 @@ Use the [Unregister\-EC2Address](https://docs.aws.amazon.com/powershell/latest/r
 ### Transfer Elastic IP addresses<a name="transfer-EIPs-intro-ec2"></a>
 
 This section describes how to transfer Elastic IP addresses from one AWS account to another\. Transferring Elastic IP addresses can be helpful in the following situations:
-+ *Organizational restructuring*: Use Elastic IP address transfers to quickly move workloads from one AWS account to another\. You don't have to wait for new Elastic IP addresses to be allow\-listed in your security groups and NACLs\.
-+ *Centralized security administration:* Use a centralized AWS security account to track and transfer Elastic IP addresses that have been vetted for security compliance\.
-+ *Disaster recovery*: Use Elastic IP address transfers to quickly remap IPs for public\-facing internet workloads during emergency events\.
++ **Organizational restructuring** – Use Elastic IP address transfers to quickly move workloads from one AWS account to another\. You don't have to wait for new Elastic IP addresses to be allowlisted in your security groups and NACLs\.
++ **Centralized security administration** – Use a centralized AWS security account to track and transfer Elastic IP addresses that have been vetted for security compliance\.
++ **Disaster recovery** – Use Elastic IP address transfers to quickly remap IPs for public\-facing internet workloads during emergency events\.
 
 There is no charge for transferring Elastic IP addresses\.
 
@@ -356,15 +356,15 @@ There is no charge for transferring Elastic IP addresses\.
 #### Enable Elastic IP address transfer<a name="using-instance-addressing-eips-transfer-enable-ec2"></a>
 
 This section describes how to accept a transferred Elastic IP address\. Note the following limitations related to enabling Elastic IP addresses for transfer:
-+ You can transfer Elastic IP addresses from any AWS account to any AWS account, whether the accounts are members of AWS Organizations or not\. The source and target accounts, however, must be in the same AWS Region\.
-+ When you transfer an Elastic IP address, there is a two\-step handshake between AWS accounts: the source account \(either a standard AWS account or an AWS Organizations account\) and the transfer accounts\. When the source account starts the transfer, the transfer accounts have seven hours to accept the Elastic IP address transfer, or the Elastic IP address will return to its original owner\. 
-+ AWS does not inform the transfer account about pending Elastic IP address transfer requests\. The source account owner has to communicate to the transfer account owner that an Elastic IP address has been transferred so that the owner of the transfer account can accept the Elastic IP address transfer\.
-+ Any tags that are associated with the Elastic IP address being transferred are reset when the Elastic IP address transfer is complete\.
-+ You cannot transfer Elastic IP addresses allocated from public IPv4 address pools that you bring to your AWS account \(commonly referred to as Bring Your Own IP \(BYOIP\) address pools\)\. 
-+ If you have enabled and configured AWS Outposts, you may have allocated Elastic IP addresses from Customer\-owned pools of IPv4 addresses \(COIPs\)\. You cannot transfer Elastic IP addresses allocated from COIPs\. You can, however, use AWS RAM to move COIP addresses from one account to another\. For more information, see [Customer\-owned IP addresses](https://docs.aws.amazon.com/outposts/latest/userguide/how-racks-work.html#ip-addressing) in the *AWS Outposts User Guide*\.
-+ You can use Amazon VPC IPAM to track the transfer of Elastic IP addresses to accounts in an AWS Organization\. For more information, see [View IP address history](https://docs.aws.amazon.com/vpc/latest/ipam/view-history-cidr-ipam.html)\. If an Elastic IP address is transferred to an AWS account outside of the organization, however, the IPAM audit history of the Elastic IP address will be lost\.
++ You can transfer Elastic IP addresses from any AWS account \(source account\) to any other AWS account in the same AWS Region \(transfer account\)\.
++ When you transfer an Elastic IP address, there is a two\-step handshake between the AWS accounts\. When the source account starts the transfer, the transfer accounts have seven hours to accept the Elastic IP address transfer, or the Elastic IP address is returned to its original owner\.
++ AWS does not notify transfer accounts about pending Elastic IP address transfer requests\. The owner of the source account must notify the owner of the transfer account that there is an Elastic IP address transfer request that they must accept\.
++ Any tags that are associated with an Elastic IP address being transferred are reset when the transfer is complete\.
++ You cannot transfer Elastic IP addresses allocated from public IPv4 address pools that you bring to your AWS account – commonly referred to as Bring Your Own IP \(BYOIP\) address pools\.
++ If you have enabled and configured AWS Outposts, you might have allocated Elastic IP addresses from a customer\-owned IP address pool \(CoIP\)\. You cannot transfer Elastic IP addresses allocated from a CoIP\. However, you can use AWS RAM to share a CoIP with another account\. For more information, see [Customer\-owned IP addresses](https://docs.aws.amazon.com/outposts/latest/userguide/routing.html#ip-addressing) in the *AWS Outposts User Guide*\.
++ You can use Amazon VPC IPAM to track the transfer of Elastic IP addresses to accounts in an organization from AWS Organizations\. For more information, see [View IP address history](https://docs.aws.amazon.com/vpc/latest/ipam/view-history-cidr-ipam.html)\. If an Elastic IP address is transferred to an AWS account outside of the organization, the IPAM audit history of the Elastic IP address is lost\.
 
-This section must be completed by the source account\.
+These steps must be completed by the source account\.
 
 ------
 #### [ Console ]
@@ -409,9 +409,9 @@ Use the [Enable\-EC2AddressTransfer](https://docs.aws.amazon.com/powershell/late
 
 #### Disable Elastic IP address transfer<a name="using-instance-addressing-eips-transfer-disable-ec2"></a>
 
-This section describes how to disable an Elastic IP transfer after the transfer has been enabled\. These steps must be completed by the source account that enabled the transfer\.
+This section describes how to disable an Elastic IP transfer after the transfer has been enabled\.
 
-This section must be completed by the source account\.
+These steps must be completed by the source account that enabled the transfer\.
 
 ------
 #### [ Console ]
@@ -461,7 +461,7 @@ When accepting transfers, note the following exceptions that might occur and how
 
 For any other exceptions, [contact AWS Support](https://aws.amazon.com/contact-us/)\.
 
-This section must be completed by the transfer account\.
+These steps must be completed by the transfer account\.
 
 ------
 #### [ Console ]

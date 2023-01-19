@@ -20,7 +20,9 @@ To access NVMe volumes, the NVMe drivers must be installed\. Instances can suppo
 The following AMIs include the required NVMe drivers:
 + Amazon Linux 2
 + Amazon Linux AMI 2018\.03
-+ Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
++ Ubuntu 14\.04 or later with `linux-aws` kernel
+**Note**  
+AWS Graviton\-based instance types require Ubuntu 18\.04 or later with `linux-aws` kernel
 + Red Hat Enterprise Linux 7\.4 or later
 + SUSE Linux Enterprise Server 12 SP2 or later
 + CentOS 7\.4\.1708 or later

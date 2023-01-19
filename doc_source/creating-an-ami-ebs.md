@@ -80,7 +80,7 @@ If you choose to enable **No reboot**, we can't guarantee the file system integr
          + To change the size of the root volume, for **Size**, enter the required value\.
          + If you select **Delete on termination**, when you terminate the instance created from this AMI, the EBS volume is deleted\. If you clear **Delete on termination**, when you terminate the instance, the EBS volume is not deleted\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
 
-      1. To add an EBS volume, choose **Add volume** \(which adds a new row\)\. For **Volume type**, choose **EBS**, and fill in the fields in the row\. When you launch an instance from your new AMI, additional volumes are automatically attached to the instance\. Empty volumes must be formatted and mounted\. Volumes based on a snapshot must be mounted\.
+      1. To add an EBS volume, choose **Add volume** \(which adds a new row\)\. For **Storage type**, choose **EBS**, and fill in the fields in the row\. When you launch an instance from your new AMI, additional volumes are automatically attached to the instance\. Empty volumes must be formatted and mounted\. Volumes based on a snapshot must be mounted\.
 
       1. To add an instance store volume, see [Add instance store volumes to an AMI](add-instance-store-volumes.md#adding-instance-storage-ami)\. When you launch an instance from your new AMI, additional volumes are automatically initialized and mounted\. These volumes do not contain data from the instance store volumes of the running instance on which you based your AMI\.
 

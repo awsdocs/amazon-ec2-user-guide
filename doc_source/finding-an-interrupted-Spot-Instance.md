@@ -6,7 +6,7 @@ In the console, the **Instances** pane displays all instances, including Spot In
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**\. In the top right corner, choose the settings icon \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \), and under **Attribute columns**, select **Instance lifecycle**\. For Spot Instances, **Instance lifecycle** is `spot`\.
+1. In the navigation pane, choose **Instances**\. In the top right corner, choose the settings icon \( ![\[Settings icon.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \), and under **Attribute columns**, select **Instance lifecycle**\. For Spot Instances, **Instance lifecycle** is `spot`\.
 
    Alternatively, in the navigation pane, choose **Spot Requests**\. You can see both Spot Instance requests and Spot Fleet requests\. To view the IDs of the instances, select a Spot Instance request or a Spot Fleet request and choose the **Instances** tab\. Choose an instance ID to display the instance in the **Instances** pane\.
 

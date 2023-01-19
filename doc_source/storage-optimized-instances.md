@@ -1,6 +1,6 @@
 # Storage optimized instances<a name="storage-optimized-instances"></a>
 
-Storage optimized instances are designed for workloads that require high, sequential read and write access to very large data sets on local storage\. They are optimized to deliver tens of thousands of low\-latency, random I/O operations per second \(IOPS\) to applications\.<a name="d2-instances"></a>
+Storage optimized instances are designed for workloads that require high, sequential read and write access to very large data sets on local storage\. They are optimized to deliver tens of thousands of low\-latency, random I/O operations per second \(IOPS\) to applications\. For more information, including the technology used, see the [Amazon EC2 Instance Type Details](http://aws.amazon.com/ec2/instance-types/) page\.<a name="d2-instances"></a>
 
 **D2 instances**
 
@@ -79,60 +79,64 @@ The following is a summary of the hardware specifications for storage optimized 
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
-| d2\.xlarge | 4 | 30\.5 | 
-| d2\.2xlarge | 8 | 61 | 
-| d2\.4xlarge | 16 | 122 | 
-| d2\.8xlarge | 36 | 244 | 
-| d3\.xlarge | 4 | 32 | 
-| d3\.2xlarge | 8 | 64 | 
-| d3\.4xlarge | 16 | 128 | 
-| d3\.8xlarge | 32 | 256 | 
-| d3en\.large | 2 | 8 | 
-| d3en\.xlarge | 4 | 16 | 
-| d3en\.2xlarge | 8 | 32 | 
-| d3en\.4xlarge | 16 | 64 | 
-| d3en\.6xlarge | 24 | 96 | 
-| d3en\.8xlarge | 32 | 128 | 
-| d3en\.12xlarge | 48 | 192 | 
-| h1\.2xlarge | 8 | 32 | 
-| h1\.4xlarge | 16 | 64 | 
-| h1\.8xlarge | 32 | 128 | 
-| h1\.16xlarge | 64 | 256 | 
+| d2\.xlarge | 4 | 30\.50 | 
+| d2\.2xlarge | 8 | 61\.00 | 
+| d2\.4xlarge | 16 | 122\.00 | 
+| d2\.8xlarge | 36 | 244\.00 | 
+| d3\.xlarge | 4 | 32\.00 | 
+| d3\.2xlarge | 8 | 64\.00 | 
+| d3\.4xlarge | 16 | 128\.00 | 
+| d3\.8xlarge | 32 | 256\.00 | 
+| d3en\.xlarge | 4 | 16\.00 | 
+| d3en\.2xlarge | 8 | 32\.00 | 
+| d3en\.4xlarge | 16 | 64\.00 | 
+| d3en\.6xlarge | 24 | 96\.00 | 
+| d3en\.8xlarge | 32 | 128\.00 | 
+| d3en\.12xlarge | 48 | 192\.00 | 
+| h1\.2xlarge | 8 | 32\.00 | 
+| h1\.4xlarge | 16 | 64\.00 | 
+| h1\.8xlarge | 32 | 128\.00 | 
+| h1\.16xlarge | 64 | 256\.00 | 
+| hs1\.8xlarge | 16 | 117\.00 | 
+| i2\.xlarge | 4 | 30\.50 | 
+| i2\.2xlarge | 8 | 61\.00 | 
+| i2\.4xlarge | 16 | 122\.00 | 
+| i2\.8xlarge | 32 | 244\.00 | 
 | i3\.large | 2 | 15\.25 | 
-| i3\.xlarge | 4 | 30\.5 | 
-| i3\.2xlarge | 8 | 61 | 
-| i3\.4xlarge | 16 | 122 | 
-| i3\.8xlarge | 32 | 244 | 
-| i3\.16xlarge | 64 | 488 | 
-| i3\.metal | 72 | 512 | 
-| i3en\.large | 2 | 16 | 
-| i3en\.xlarge | 4 | 32 | 
-| i3en\.2xlarge | 8 | 64 | 
-| i3en\.3xlarge | 12 | 96 | 
-| i3en\.6xlarge | 24 | 192 | 
-| i3en\.12xlarge | 48 | 384 | 
-| i3en\.24xlarge | 96 | 768 | 
-| i3en\.metal | 96 | 768 | 
-| i4i\.large | 2 | 16 | 
-| i4i\.xlarge | 4 | 32 | 
-| i4i\.2xlarge | 8 | 64 | 
-| i4i\.4xlarge | 16 | 128 | 
-| i4i\.8xlarge | 32 | 256 | 
-| i4i\.16xlarge | 64 | 512 | 
-| i4i\.32xlarge | 128 | 1,024 | 
-| i4i\.metal | 128 | 1,024 | 
-| im4gn\.large | 2 | 8 | 
-| im4gn\.xlarge | 4 | 16 | 
-| im4gn\.2xlarge | 8 | 32 | 
-| im4gn\.4xlarge | 16 | 64 | 
-| im4gn\.8xlarge | 32 | 128 | 
-| im4gn\.16xlarge | 64 | 256 | 
-| is4gen\.medium | 1 | 6 | 
-| is4gen\.large | 2 | 12 | 
-| is4gen\.xlarge | 4 | 24 | 
-| is4gen\.2xlarge | 8 | 48 | 
-| is4gen\.4xlarge | 16 | 96 | 
-| is4gen\.8xlarge | 32 | 192 | 
+| i3\.xlarge | 4 | 30\.50 | 
+| i3\.2xlarge | 8 | 61\.00 | 
+| i3\.4xlarge | 16 | 122\.00 | 
+| i3\.8xlarge | 32 | 244\.00 | 
+| i3\.16xlarge | 64 | 488\.00 | 
+| i3\.metal | 72 | 512\.00 | 
+| i3en\.large | 2 | 16\.00 | 
+| i3en\.xlarge | 4 | 32\.00 | 
+| i3en\.2xlarge | 8 | 64\.00 | 
+| i3en\.3xlarge | 12 | 96\.00 | 
+| i3en\.6xlarge | 24 | 192\.00 | 
+| i3en\.12xlarge | 48 | 384\.00 | 
+| i3en\.24xlarge | 96 | 768\.00 | 
+| i3en\.metal | 96 | 768\.00 | 
+| i4i\.large | 2 | 16\.00 | 
+| i4i\.xlarge | 4 | 32\.00 | 
+| i4i\.2xlarge | 8 | 64\.00 | 
+| i4i\.4xlarge | 16 | 128\.00 | 
+| i4i\.8xlarge | 32 | 256\.00 | 
+| i4i\.16xlarge | 64 | 512\.00 | 
+| i4i\.32xlarge | 128 | 1024\.00 | 
+| i4i\.metal | 128 | 1024\.00 | 
+| im4gn\.large | 2 | 8\.00 | 
+| im4gn\.xlarge | 4 | 16\.00 | 
+| im4gn\.2xlarge | 8 | 32\.00 | 
+| im4gn\.4xlarge | 16 | 64\.00 | 
+| im4gn\.8xlarge | 32 | 128\.00 | 
+| im4gn\.16xlarge | 64 | 256\.00 | 
+| is4gen\.medium | 1 | 6\.00 | 
+| is4gen\.large | 2 | 12\.00 | 
+| is4gen\.xlarge | 4 | 24\.00 | 
+| is4gen\.2xlarge | 8 | 48\.00 | 
+| is4gen\.4xlarge | 16 | 96\.00 | 
+| is4gen\.8xlarge | 32 | 192\.00 | 
 
 The storage optimized instances use the following processors\.
 
@@ -167,54 +171,67 @@ You can enable enhanced networking on supported instance types to provide lower 
 The following is a summary of network performance for storage optimized instances that support enhanced networking\.
 
 
-| Instance type | Network performance | Enhanced networking | 
-| --- | --- | --- | 
-| d2\.xlarge | Moderate | [Intel 82599 VF](sriov-networking.md) | 
-| d2\.2xlarge \| d2\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
-| i3\.4xlarge and smaller \| i4i\.xlarge and smaller | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| d2\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
-| i3\.8xlarge \| h1\.8xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-| i4i\.2xlarge | Up to 12 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| d3\.4xlarge and smaller | Up to 15 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| i4i\.8xlarge | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
-| d3en\.2xlarge and smaller \| i3en\.3xlarge and smaller \| i4i\.4xlarge  \| im4gn\.2xlarge and smaller  \| is4gen\.2xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| d3\.8xlarge \| d3en\.4xlarge \| h1\.16xlarge \| i3\.16xlarge \| i3\.metal \| i3en\.6xlarge  \| im4gn\.4xlarge  \| is4gen\.4xlarge | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| i4i\.16xlarge | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
-| d3en\.6xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
-| d3\.8xlarge \| d3en\.8xlarge \| i3en\.12xlarge  \| im4gn\.8xlarge  \| is4gen\.8xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| d3en\.12xlarge \| i4i\.32xlarge \| i4i\.metal | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  i3en\.24xlarge \| i3en\.metal  \| im4gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
+| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | Enhanced networking features | 
+| --- | --- | --- | --- | 
+| d2\.xlarge † | 1\.25 | 2\.8 | Not supported | 
+| d2\.2xlarge † | 2\.5 | 10\.0 | Not supported | 
+| d2\.4xlarge † | 5\.0 | 10\.0 | Not supported | 
+| d2\.8xlarge † | 5\.0 | 10\.0 | Not supported | 
+| d3\.xlarge † | 3\.0 | 15\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| d3\.2xlarge † | 6\.0 | 15\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| d3\.4xlarge † | 12\.5 | 15\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| d3\.8xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| d3en\.xlarge † | 6\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| d3en\.2xlarge † | 12\.5 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| d3en\.4xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| d3en\.6xlarge | 40\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| d3en\.8xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| d3en\.12xlarge | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| h1\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| h1\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| h1\.8xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| h1\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i2\.xlarge † | 0\.7 | 2\.8 | Not supported | 
+| i2\.2xlarge † | 1\.0 | 10\.0 | Not supported | 
+| i2\.4xlarge † | 2\.0 | 10\.0 | Not supported | 
+| i2\.8xlarge † | 5\.0 | 10\.0 | Not supported | 
+| i3\.large † | 0\.75 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3\.8xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3en\.large † | 2\.1 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3en\.xlarge † | 4\.2 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3en\.2xlarge † | 8\.4 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3en\.3xlarge † | 12\.5 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3en\.6xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i3en\.12xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| i3en\.24xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| i3en\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| i4i\.large † | 0\.781 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i4i\.xlarge † | 1\.875 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i4i\.2xlarge † | 4\.687 | 12\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i4i\.4xlarge † | 9\.375 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i4i\.8xlarge | 18\.75 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i4i\.16xlarge | 37\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| i4i\.32xlarge | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| i4i\.metal | 75\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| im4gn\.large † | 3\.125 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| im4gn\.xlarge † | 6\.25 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| im4gn\.2xlarge † | 12\.5 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| im4gn\.4xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| im4gn\.8xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| im4gn\.16xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| is4gen\.medium † | 1\.562 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| is4gen\.large † | 3\.125 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| is4gen\.xlarge † | 6\.25 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| is4gen\.2xlarge † | 12\.5 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| is4gen\.4xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| is4gen\.8xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 
-† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
-
-
-| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
-| --- | --- | --- | 
-| d3\.xlarge | 3 | 15 | 
-| d3\.2xlarge | 6 | 15 | 
-| d3\.4xlarge | 12\.5 | 15 | 
-| d3en\.large | 3 | 25 | 
-| d3en\.xlarge | 6 | 25 | 
-| d3en\.2xlarge | 12\.5 | 25 | 
-| i3\.large | \.75 | 10 | 
-| i3\.xlarge | 1\.25 | 10 | 
-| i3\.2xlarge | 2\.5 | 10 | 
-| i3\.4xlarge | 5 | 10 | 
-| i3en\.large | 2\.1 | 25 | 
-| i3en\.xlarge | 4\.2 | 25 | 
-| i3en\.2xlarge | 8\.4 | 25 | 
-| i3en\.3xlarge | 12\.5 | 25 | 
-| i4i\.large | \.78125 | 10 | 
-| i4i\.xlarge | 1\.875 | 10 | 
-| i4i\.2xlarge | 4\.687 | 12 | 
-| i4i\.4xlarge | 9\.375 | 25 | 
-| im4gn\.large | 3\.125 | 25 | 
-| im4gn\.xlarge | 6\.250 | 25 | 
-| im4gn\.2xlarge | 12\.5 | 25 | 
-| is4gen\.medium | 1\.563 | 25 | 
-| is4gen\.large | 3\.125 | 25 | 
-| is4gen\.xlarge | 6\.25 | 25 | 
-| is4gen\.2xlarge | 12\.5 | 25 | 
+† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.
 
 ## Amazon EBS I/O performance<a name="storage-ebs-perf"></a>
 
@@ -233,47 +250,71 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| i3\.large | 100,125 | 35,000 | 
-| i3\.xlarge | 206,250 | 70,000 | 
-| i3\.2xlarge | 412,500 | 180,000 | 
-| i3\.4xlarge | 825,000 | 360,000 | 
-| i3\.8xlarge | 1,650,000 | 720,000 | 
-| i3\.16xlarge | 3,300,000 | 1,400,000 | 
-| i3\.metal | 3,300,000 | 1,400,000 | 
-| i3en\.large | 42,500 | 32,500 | 
-| i3en\.xlarge | 85,000 | 65,000 | 
-| i3en\.2xlarge | 170,000 | 130,000 | 
-| i3en\.3xlarge | 250,000 | 200,000 | 
-| i3en\.6xlarge | 500,000 | 400,000 | 
-| i3en\.12xlarge | 1,000,000 | 800,000 | 
-| i3en\.24xlarge | 2,000,000 | 1,600,000 | 
-| i3en\.metal | 2,000,000 | 1,600,000 | 
-| i4i\.large | 50,000 | 27,500 | 
-| i4i\.xlarge | 100,000 | 55,000 | 
-| i4i\.2xlarge | 200,000 | 110,000 | 
-| i4i\.4xlarge | 400,000 | 220,000 | 
-| i4i\.8xlarge | 800,000 | 440,000 | 
-| i4i\.16xlarge | 1,600,000 | 880,000 | 
-| i4i\.32xlarge | 3,200,000 | 1,760,000 | 
-| i4i\.metal | 3,200,000 | 1,760,000 | 
-| im4gn\.large | 31,250 | 25,000 | 
-| im4gn\.xlarge | 62,000 | 50,000 | 
-| im4gn\.2xlarge | 125,000 | 100,000 | 
-| im4gn\.4xlarge | 250,000 | 200,000 | 
-| im4gn\.8xlarge | 500,000 | 400,000 | 
-| im4gn\.16xlarge | 1,000,000 | 800,000 | 
-| is4gen\.medium | 31,250 | 25,000 | 
-| is4gen\.large | 62,000 | 50,000 | 
-| is4gen\.xlarge | 125,000 | 100,000 | 
-| is4gen\.2xlarge | 250,000 | 200,000 | 
-| is4gen\.4xlarge | 500,000 | 400,000 | 
-| is4gen\.8xlarge | 1,000,000 | 800,000 | 
+| d2\.xlarge | 144000 | 115200 | 
+| d2\.2xlarge | 268800 | 230400 | 
+| d2\.4xlarge | 499200 | 460800 | 
+| d2\.8xlarge | 998400 | 921600 | 
+| d3\.xlarge | 450000 | 450000 | 
+| d3\.2xlarge | 1800000 | 1800000 | 
+| d3\.4xlarge | 7200000 | 7200000 | 
+| d3\.8xlarge | 28800000 | 28800000 | 
+| d3en\.xlarge | 200000 | 200000 | 
+| d3en\.2xlarge | 800000 | 800000 | 
+| d3en\.4xlarge | 3200000 | 3200000 | 
+| d3en\.6xlarge | 7200000 | 7200000 | 
+| d3en\.8xlarge | 12800000 | 12800000 | 
+| d3en\.12xlarge | 28800000 | 28800000 | 
+| h1\.2xlarge | 2100 | 1350 | 
+| h1\.4xlarge | 3300 | 2800 | 
+| h1\.8xlarge | 6400 | 5200 | 
+| h1\.16xlarge | 12800 | 10400 | 
+| i2\.xlarge | 118400 | 113600 | 
+| i2\.2xlarge | 256800 | 227200 | 
+| i2\.4xlarge | 513600 | 454400 | 
+| i2\.8xlarge | 947200 | 908800 | 
+| i3\.large | 124800 | 49600 | 
+| i3\.xlarge | 248000 | 99200 | 
+| i3\.2xlarge | 492800 | 198400 | 
+| i3\.4xlarge | 982400 | 396800 | 
+| i3\.8xlarge | 1964800 | 793600 | 
+| i3\.16xlarge | 3929600 | 1587200 | 
+| i3\.metal | 3300000 | 1440000 | 
+| i3en\.large | 42500 | 32500 | 
+| i3en\.xlarge | 85000 | 65000 | 
+| i3en\.2xlarge | 170000 | 130000 | 
+| i3en\.3xlarge | 250000 | 200000 | 
+| i3en\.6xlarge | 500000 | 400000 | 
+| i3en\.12xlarge | 1000000 | 800000 | 
+| i3en\.24xlarge | 2000000 | 1600000 | 
+| i3en\.metal | 2000000 | 1600000 | 
+| i4i\.large | 50000 | 27500 | 
+| i4i\.xlarge | 100000 | 55000 | 
+| i4i\.2xlarge | 200000 | 110000 | 
+| i4i\.4xlarge | 400000 | 220000 | 
+| i4i\.8xlarge | 800000 | 440000 | 
+| i4i\.16xlarge | 1600000 | 880000 | 
+| i4i\.32xlarge | 3200000 | 1760000 | 
+| i4i\.metal | 3200000 | 1760000 | 
+| im4gn\.large | 31250 | 25000 | 
+| im4gn\.xlarge | 62500 | 50000 | 
+| im4gn\.2xlarge | 125000 | 100000 | 
+| im4gn\.4xlarge | 250000 | 200000 | 
+| im4gn\.8xlarge | 500000 | 400000 | 
+| im4gn\.16xlarge | 1000000 | 800000 | 
+| is4gen\.medium | 31250 | 25000 | 
+| is4gen\.large | 62500 | 50000 | 
+| is4gen\.xlarge | 125000 | 100000 | 
+| is4gen\.2xlarge | 250000 | 200000 | 
+| is4gen\.4xlarge | 500000 | 400000 | 
+| is4gen\.8xlarge | 1000000 | 800000 | 
 
 As you fill your SSD\-based instance store volumes, the I/O performance that you get decreases\. This is due to the extra work that the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
 For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
+
+For a comparison of the volume size across all instance types that support instance store volumes, see the [Available instance store volumes](InstanceStorage.md#instance-store-volumes) table\.
 
 ## Support for vCPUs<a name="d2-instances-cpu-support"></a>
 
@@ -339,7 +380,9 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
   The following Linux AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
-  + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
+  + Ubuntu 14\.04 or later with `linux-aws` kernel
+**Note**  
+AWS Graviton\-based instance types require Ubuntu 18\.04 or later with `linux-aws` kernel
   + Red Hat Enterprise Linux 7\.4 or later
   + SUSE Linux Enterprise Server 12 SP2 or later
   + CentOS 7\.4\.1708 or later

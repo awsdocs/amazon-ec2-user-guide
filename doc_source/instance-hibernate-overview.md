@@ -2,7 +2,7 @@
 
 The following diagram shows a basic overview of the hibernation process\.
 
-![\[Overview of the hibernation flow\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/hibernation-flow.png)
+![\[Overview of the hibernation flow.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/hibernation-flow.png)
 
 When you hibernate a running instance, the following happens:
 + When you initiate hibernation, the instance moves to the `stopping` state\. Amazon EC2 signals the operating system to perform hibernation \(suspend\-to\-disk\)\. The hibernation freezes all of the processes, saves the contents of the RAM to the EBS root volume, and then performs a regular shutdown\.

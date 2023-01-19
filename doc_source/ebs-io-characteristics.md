@@ -57,7 +57,9 @@ HDD\-backed `st1` and `sc1` volumes are designed to perform best with workloads 
 **Note**  
 If average I/O size is at or near 44 KiB, you might be using an instance or kernel without support for indirect descriptors\. Any Linux kernel 3\.8 and above has this support, as well as any current\-generation instance\.
 
-If your I/O latency is higher than you require, check `VolumeQueueLength` to make sure your application is not trying to drive more IOPS than you have provisioned\. If your application requires a greater number of IOPS than your volume can provide, you should consider using a larger `gp2` volume with a higher base performance level or an `io1` or `io2` volume with more provisioned IOPS to achieve faster latencies\.
+If your I/O latency is higher than you require, check `VolumeQueueLength` to make sure your application is not trying to drive more IOPS than you have provisioned\. If your application requires a greater number of IOPS than your volume can provide, you should consider using one of the following:
++ A larger `gp2` volume that provides enough baseline IOPS performance
++ A `gp3`, `io1`, or `io2` volume that is provisioned with enough IOPS to achieve the required latency
 
 ## Related resources<a name="ebs-io-resources"></a>
 

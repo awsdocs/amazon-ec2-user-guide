@@ -28,7 +28,7 @@ The intent of the example, illustrated by the following graph, is to show how an
 
 **P7** – For the last 24 hours in this example, the instance is idle and CPU utilization is 0%\. During this time, the instance earns 144 credits, which it uses to pay down the `CPUSurplusCreditBalance`\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3_unlimited_graph.png)
+![\[The t3 instance earned 144 credits after 24 hours.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3_unlimited_graph.png)
 
 ## Example 2: Explain credit use with T2 Unlimited<a name="t2_unlimited_example"></a>
 
@@ -48,7 +48,7 @@ The intent of the example, illustrated by the following graph, is to show how an
 
 **5** – The instance continues to spend surplus credits until around 02:20\. At this time, CPU utilization falls below the baseline, and the instance starts to earn credits at 3 credits per hour \(or 0\.25 credits every 5 minutes\), which it uses to pay down the `CPUSurplusCreditBalance`\. After the `CPUSurplusCreditBalance` value reduces to 0, the instance starts to accrue earned credits in its `CPUCreditBalance` at 0\.25 credits every 5 minutes\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2_unlimited_graph.png)
+![\[Graphed CPU utilization of a t2.nano instance launched as unlimited.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2_unlimited_graph.png)
 
 **Calculating the bill**  
 Surplus credits cost $0\.05 per vCPU\-hour\. The instance spent approximately 25 surplus credits between 01:55 and 02:20, which is equivalent to 0\.42 vCPU\-hours\.
@@ -57,6 +57,6 @@ Additional charges for this instance are 0\.42 vCPU\-hours x $0\.05/vCPU\-hour =
 
 Here is the month\-end bill for this T2 Unlimited instance:
 
-![\[Example bill for a T2 Unlimited instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2_unlimited_bill_linux.png)
+![\[Example bill for a T2 Unlimited instance.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2_unlimited_bill_linux.png)
 
 You can set billing alerts to be notified every hour of any accruing charges, and take action if required\.
