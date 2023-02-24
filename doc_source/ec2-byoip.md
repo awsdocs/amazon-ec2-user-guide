@@ -42,7 +42,7 @@ The onboarding process for BYOIP has two phases, for which you must perform thre
 
 **Preparation phase**
 
-1\. [Create an RSA key pair](#byoip-certificate), and use it to generate a self\-signed X\.509 certificate for authentication purposes\.
+1\. [Create an RSA key pair](#byoip-certificate), and use it to generate a self\-signed X\.509 certificate for authentication purposes\. This certificate is only used during the provisioning phase. 
 
 **RIR configuration phase**
 
@@ -281,6 +281,8 @@ Add the certificate that you previously created to the RDAP record for your RIR\
 + For ARIN, add the certificate in the "Public Comments" section for your address range\. Do not add it to the comments section for your organization\.
 + For RIPE, add the certificate as a new "descr" field for your address range\. Do not add it to the comments section for your organization\.
 + For APNIC, email the certificate to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field for your address range\. Send the email using the APNIC authorized contact for the IP addresses\.
+
+You can remove the certificate from your RIR's record after the provisioning stage below has been completed. 
 
 ### 3\. Create a ROA object in your RIR<a name="byoip-create-roa-object"></a>
 
