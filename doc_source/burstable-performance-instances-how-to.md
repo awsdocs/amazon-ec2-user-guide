@@ -1,9 +1,13 @@
 # Work with burstable performance instances<a name="burstable-performance-instances-how-to"></a>
 
-The steps for launching, monitoring, and modifying these instances are similar\. The key difference is the default credit specification when they launch\. If you do not change the default credit specification, the default is that:
+The steps for launching, monitoring, and modifying these instances are similar\. The key difference is the default credit specification when they launch\.
+
+Each burstable performance instance family comes with the following *default credit specification*:
 + T4g, T3a and T3 instances launch as `unlimited`
-+ T3 instances on a Dedicated Host launch as `standard`
++ T3 instances on a Dedicated Host can only launch as `standard`
 + T2 instances launch as `standard`
+
+You can [change the default credit specification](#burstable-performance-instance-set-default-credit-specification-for-account) for the account\.
 
 **Topics**
 + [Launch a burstable performance instance as Unlimited or Standard](#launch-burstable-performance-instances)
@@ -234,7 +238,7 @@ The following is example output\.
 
 ## Set the default credit specification for the account<a name="burstable-performance-instance-set-default-credit-specification-for-account"></a>
 
-You can set the default credit specification for each burstable performance instance family at the account level per AWS Region\.
+Each burstable performance instance family comes with a [default credit specification](#default-credit-spec)\. You can change the default credit specification for each burstable performance instance family at the account level per AWS Region\.
 
 If you use the launch instance wizard in the EC2 console to launch instances, the value you select for the credit specification overrides the account\-level default credit specification\. If you use the AWS CLI to launch instances, all new burstable performance instances in the account launch using the default credit specification\. The credit specification for existing running or stopped instances is not affected\.
 
@@ -244,9 +248,11 @@ The default credit specification for an instance family can be modified only onc
 ------
 #### [ Console ]
 
-**To set the default credit specification at the account level**
+**To set the default credit specification at the account level per Region**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. To change the AWS Region, use the Region selector in the upper\-right corner of the page\.
 
 1. On the left navigation pane, choose **EC2 Dashboard**\.
 
@@ -281,6 +287,8 @@ You can view the default credit specification of a burstable performance instanc
 **To view the default credit specification at the account level \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. To change the AWS Region, use the Region selector in the upper\-right corner of the page\.
 
 1. On the left navigation pane, choose **EC2 Dashboard**\.
 

@@ -79,7 +79,7 @@ For more information, see [Amazon EC2 T2 Instances](http://aws.amazon.com/ec2/in
 + [Instance performance](#general-purpose-performance)
 + [Network performance](#general-purpose-network-performance)
 + [Amazon EBS I/O performance](#general-purpose-ebs-perf)
-+ [Instance store volume I/O performance](#general-purpose-ssd-perf)
++ [SSD\-based instance store volume I/O performance](#general-purpose-ssd-perf)
 + [Release notes](#general-purpose-instances-release-notes)
 + [Burstable performance instances](burstable-performance-instances.md)
 
@@ -239,6 +239,15 @@ The following is a summary of the hardware specifications for general purpose in
 | m6in\.16xlarge | 64 | 256\.00 | 
 | m6in\.24xlarge | 96 | 384\.00 | 
 | m6in\.32xlarge | 128 | 512\.00 | 
+| m7g\.medium | 1 | 4\.00 | 
+| m7g\.large | 2 | 8\.00 | 
+| m7g\.xlarge | 4 | 16\.00 | 
+| m7g\.2xlarge | 8 | 32\.00 | 
+| m7g\.4xlarge | 16 | 64\.00 | 
+| m7g\.8xlarge | 32 | 128\.00 | 
+| m7g\.12xlarge | 48 | 192\.00 | 
+| m7g\.16xlarge | 64 | 256\.00 | 
+| m7g\.metal | 64 | 256\.00 | 
 | mac1\.metal | 12 | 32\.00 | 
 | mac2\.metal | 8 | 16\.00 | 
 | t1\.micro | 1 | 0\.61 | 
@@ -453,6 +462,15 @@ The following is a summary of network performance for general purpose instances 
 | m6in\.16xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 | m6in\.24xlarge | 150\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 | m6in\.32xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| m7g\.medium † | 0\.52 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| m7g\.large † | 0\.937 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| m7g\.xlarge † | 1\.876 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| m7g\.2xlarge † | 3\.75 | 15\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| m7g\.4xlarge † | 7\.5 | 15\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| m7g\.8xlarge | 15\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| m7g\.12xlarge | 22\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| m7g\.16xlarge | 30\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| m7g\.metal | 30\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
 | mac1\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 | mac2\.metal | 10\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 | t1\.micro † | 0\.07 | 0\.28 | Not supported | 
@@ -493,78 +511,67 @@ Amazon EBS optimized instances use an optimized configuration stack and provide 
 
 For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-## Instance store volume I/O performance<a name="general-purpose-ssd-perf"></a>
+## SSD\-based instance store volume I/O performance<a name="general-purpose-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| m1\.small | 14400 | 4800 | 
-| m1\.medium | 28800 | 8000 | 
-| m1\.large | 57600 | 16000 | 
-| m1\.xlarge | 115200 | 32000 | 
-| m2\.xlarge | 36800 | 4800 | 
-| m2\.2xlarge | 75200 | 11200 | 
-| m2\.4xlarge | 166400 | 21440 | 
-| m3\.medium | 9600 | 6400 | 
-| m3\.large | 19200 | 12800 | 
-| m3\.xlarge | 38400 | 22400 | 
-| m3\.2xlarge | 73600 | 51200 | 
-| m5ad\.large | 30000 | 15000 | 
-| m5ad\.xlarge | 59000 | 29000 | 
-| m5ad\.2xlarge | 117000 | 57000 | 
-| m5ad\.4xlarge | 234000 | 114000 | 
-| m5ad\.8xlarge | 466666 | 233334 | 
-| m5ad\.12xlarge | 700000 | 340000 | 
-| m5ad\.16xlarge | 933332 | 466668 | 
-| m5ad\.24xlarge | 1400000 | 680000 | 
-| m5d\.large | 30000 | 15000 | 
-| m5d\.xlarge | 59000 | 29000 | 
-| m5d\.2xlarge | 117000 | 57000 | 
-| m5d\.4xlarge | 234000 | 114000 | 
-| m5d\.8xlarge | 466666 | 233334 | 
-| m5d\.12xlarge | 700000 | 340000 | 
-| m5d\.16xlarge | 933332 | 466668 | 
-| m5d\.24xlarge | 1400000 | 680000 | 
-| m5d\.metal | 1400000 | 680000 | 
-| m5dn\.large | 29000 | 14500 | 
-| m5dn\.xlarge | 58000 | 29000 | 
-| m5dn\.2xlarge | 116000 | 58000 | 
-| m5dn\.4xlarge | 232000 | 116000 | 
-| m5dn\.8xlarge | 464000 | 232000 | 
-| m5dn\.12xlarge | 700000 | 350000 | 
-| m5dn\.16xlarge | 930000 | 465000 | 
-| m5dn\.24xlarge | 1400000 | 700000 | 
-| m5dn\.metal | 1400000 | 700000 | 
-| m6gd\.medium | 13438 | 5625 | 
-| m6gd\.large | 26875 | 11250 | 
-| m6gd\.xlarge | 53750 | 22500 | 
-| m6gd\.2xlarge | 107500 | 45000 | 
-| m6gd\.4xlarge | 215000 | 90000 | 
-| m6gd\.8xlarge | 430000 | 180000 | 
-| m6gd\.12xlarge | 645000 | 270000 | 
-| m6gd\.16xlarge | 860000 | 360000 | 
-| m6gd\.metal | 860000 | 360000 | 
-| m6id\.large | 33542 | 16771 | 
-| m6id\.xlarge | 134167 | 67084 | 
-| m6id\.2xlarge | 134167 | 45000 | 
-| m6id\.4xlarge | 268333 | 134167 | 
-| m6id\.8xlarge | 536666 | 268334 | 
-| m6id\.12xlarge | 804998 | 402500 | 
-| m6id\.16xlarge | 1073332 | 536668 | 
-| m6id\.24xlarge | 1609996 | 805000 | 
-| m6id\.32xlarge | 2146664 | 1073336 | 
-| m6id\.metal | 2146664 | 1073336 | 
-| m6idn\.large | 33542 | 16771 | 
-| m6idn\.xlarge | 67083 | 33542 | 
-| m6idn\.2xlarge | 134167 | 67084 | 
-| m6idn\.4xlarge | 268333 | 134167 | 
-| m6idn\.8xlarge | 536666 | 268334 | 
-| m6idn\.12xlarge | 804998 | 402500 | 
-| m6idn\.16xlarge | 1073332 | 536668 | 
-| m6idn\.24xlarge | 1609996 | 805000 | 
-| m6idn\.32xlarge | 2146664 | 1073336 | 
+| m5ad\.large | 30,000 | 15,000 | 
+| m5ad\.xlarge | 59,000 | 29,000 | 
+| m5ad\.2xlarge | 117,000 | 57,000 | 
+| m5ad\.4xlarge | 234,000 | 114,000 | 
+| m5ad\.8xlarge | 466,666 | 233,333 | 
+| m5ad\.12xlarge | 700,000 | 340,000 | 
+| m5ad\.16xlarge  | 933,333 | 466,666 | 
+| m5ad\.24xlarge | 1,400,000 | 680,000 | 
+| m5d\.large | 30,000 | 15,000 | 
+| m5d\.xlarge | 59,000 | 29,000 | 
+| m5d\.2xlarge | 117,000 | 57,000 | 
+| m5d\.4xlarge | 234,000 | 114,000 | 
+| m5d\.8xlarge | 466,666 | 233,333 | 
+| m5d\.12xlarge  | 700,000 | 340,000 | 
+| m5d\.16xlarge | 933,333 | 466,666 | 
+| m5d\.24xlarge | 1,400,000 | 680,000 | 
+| m5d\.metal | 1,400,000 | 680,000 | 
+| m5dn\.large | 30,000 | 15,000 | 
+| m5dn\.xlarge | 59,000 | 29,000 | 
+| m5dn\.2xlarge  | 117,000 | 57,000 | 
+| m5dn\.4xlarge | 234,000 | 114,000 | 
+| m5dn\.8xlarge | 466,666 | 233,333 | 
+| m5dn\.12xlarge | 700,000 | 340,000 | 
+| m5dn\.16xlarge | 933,333 | 466,666 | 
+| m5dn\.24xlarge  | 1,400,000 | 680,000 | 
+| m5dn\.metal  | 1,400,000 | 680,000 | 
+| m6gd\.medium | 13,438 | 5,625 | 
+| m6gd\.large | 26,875 | 11,250 | 
+| m6gd\.xlarge | 53,750 | 22,500 | 
+| m6gd\.2xlarge | 107,500 | 45,000 | 
+| m6gd\.4xlarge | 215,000 | 90,000 | 
+| m6gd\.8xlarge | 430,000 | 180,000 | 
+| m6gd\.12xlarge | 645,000 | 270,000 | 
+| m6gd\.16xlarge | 860,000 | 360,000 | 
+| m6gd\.metal | 860,000 | 360,000 | 
+| m6id\.large | 33,542 | 16,771 | 
+| m6id\.xlarge | 67,083 | 33,542 | 
+| m6id\.2xlarge | 134,167 | 67,084 | 
+| m6id\.4xlarge | 268,333 | 134,167 | 
+| m6id\.8xlarge | 536,666 | 268,334 | 
+| m6id\.12xlarge | 804,999 | 402,501 | 
+| m6id\.16xlarge | 1,073,332 | 536,668 | 
+| m6id\.24xlarge | 1,609,998 | 805,002 | 
+| m6id\.32xlarge | 2,146,664 | 1,073,336 | 
+| m6id\.metal | 2,146,664 | 1,073,336 | 
+| m6idn\.large | 33,542 | 16,771 | 
+| m6idn\.xlarge | 67,083 | 33,542 | 
+| m6idn\.2xlarge | 134,167 | 67,084 | 
+| m6idn\.4xlarge | 268,333 | 134,167 | 
+| m6idn\.8xlarge | 536,666 | 268,334 | 
+| m6idn\.12xlarge | 804,999 | 402,501 | 
+| m6idn\.16xlarge | 1,073,332 | 536,668 | 
+| m6idn\.24xlarge | 1,609,998 | 805,002 | 
+| m6idn\.32xlarge | 2,146,664 | 1,073,336 | 
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 

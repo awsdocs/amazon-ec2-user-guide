@@ -57,9 +57,9 @@ You can terminate an instance using the AWS Management Console or the command li
 By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using the shutdown or poweroff commands\), the instance stops\. The halt command does not initiate a shutdown\. If used, the instance does not terminate; instead, it places the CPU into `HLT` and the instance remains running\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
-**To terminate an instance using the console**
+**To terminate an instance**
 
 1. Before you terminate an instance, verify that you won't lose any data by checking that your Amazon EBS volumes won't be deleted on termination and that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
 
@@ -72,24 +72,9 @@ By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(u
 1. Choose **Terminate** when prompted for confirmation\.
 
 ------
-#### [ Old console ]
+#### [ Command line ]
 
-**To terminate an instance using the console**
-
-1. Before you terminate an instance, verify that you won't lose any data by checking that your Amazon EBS volumes won't be deleted on termination and that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance, and choose **Actions**, **Instance State**, **Terminate**\.
-
-1. Choose **Yes, Terminate** when prompted for confirmation\.
-
-------
-#### [ AWS CLI ]
-
-**To terminate an instance using the command line**
+**To terminate an instance**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\)
@@ -162,7 +147,7 @@ You can update the `InstanceInitiatedShutdownBehavior` attribute using the Amazo
 1. To change the behavior, select **Stop** or **Terminate** from **Shutdown behavior** and then choose **Apply**\.
 
 ------
-#### [ AWS CLI ]
+#### [ Command line ]
 
 **To change the shutdown behavior of an instance using the command line**
 

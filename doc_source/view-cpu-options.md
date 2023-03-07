@@ -3,7 +3,7 @@
 You can view the CPU options for an existing instance in the Amazon EC2 console or by describing the instance using the AWS CLI\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To view the CPU options for an instance using the console**
 
@@ -13,22 +13,8 @@ You can view the CPU options for an existing instance in the Amazon EC2 console 
 
 1. On the **Details** tab, under **Host and placement group**, find **Number of vCPUs**\.
 
-1. To view core count and threads per core, choose the value for **Number of vCPUs**\.
-
 ------
-#### [ Old console ]
-
-**To view the CPU options for an instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the left navigation pane, choose **Instances** and select the instance\.
-
-1. Choose **Description** and find **Number of vCPUs**\.
-
-1. To view core count and threads per core, choose the value for **Number of vCPUs**\.
-
-------
+#### [ AWS CLI ]
 
 **To view the CPU options for an instance \(AWS CLI\)**  
 Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
@@ -67,6 +53,8 @@ aws ec2 describe-instances --instance-ids i-123456789abcde123
 ```
 
 In the output that's returned, the `CoreCount` field indicates the number of cores for the instance\. The `ThreadsPerCore` field indicates the number of threads per core\.
+
+------
 
 Alternatively, connect to your instance and use a tool such as lscpu to view the CPU information for your instance\.
 

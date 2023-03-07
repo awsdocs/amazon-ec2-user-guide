@@ -19,7 +19,7 @@ The following table shows support across storage and instance types\.
 
 |   | 4 KiB blocks | 8 KiB blocks | 16 KiB blocks | 
 | --- | --- | --- | --- | 
-| Instance store volumes | All NVMe instance store volumes attached to [current generation instances](instance-types.md#current-gen-instances)\. | I4i instances supported by AWS Nitro SSD\. | 
+| Instance store volumes | All NVMe instance store volumes attached to [current generation I\-family instances](instance-types.md#current-gen-instances)\. | I4i, Im4gn, and Is4gen instances supported by AWS Nitro SSD\. | 
 | Amazon EBS volumes | All Amazon EBS volumes attached to [nitro\-based instances](instance-types.md#ec2-nitro-instances)\. | 
 
 To confirm whether your instance and volume support torn write prevention, query to check if the instance supports torn write prevention and other details, like supported block and boundary sizes\. For more information, see [Check torn write prevention support and configuration](#twp-namespace)\.

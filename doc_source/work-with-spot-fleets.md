@@ -44,7 +44,7 @@ You can configure your fleet to replace unhealthy Spot Instances\. After enablin
 + Health check replacement is supported only for Spot Fleets that maintain a target capacity \(fleets of type `maintain`\), not for one\-time Spot Fleets \(fleets of type `request`\)\.
 + Health check replacement is supported only for Spot Instances\. This feature is not supported for On\-Demand Instances\.
 + You can configure your Spot Fleet to replace unhealthy instances only when you create it\.
-+ IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
++ Users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
 
 ------
 #### [ Console ]
@@ -68,23 +68,23 @@ You can configure your fleet to replace unhealthy Spot Instances\. After enablin
 
 ## Spot Fleet permissions<a name="spot-fleet-prerequisites"></a>
 
-If your IAM users will create or manage a Spot Fleet, you need to grant them the required permissions\.
+If your users will create or manage a Spot Fleet, you need to grant them the required permissions\.
 
 If you use the Amazon EC2 console to create a Spot Fleet, it creates two service\-linked roles named `AWSServiceRoleForEC2SpotFleet` and `AWSServiceRoleForEC2Spot`, and a role named `aws-ec2-spot-fleet-tagging-role` that grant the Spot Fleet the permissions to request, launch, terminate, and tag resources on your behalf\. If you use the AWS CLI or an API, you must ensure that these roles exist\.
 
 Use the following instructions to grant the required permissions and create the roles\.
 
 **Topics**
-+ [Grant permission to IAM users for Spot Fleet](#spot-fleet-iam-users)
++ [Grant permission to users for Spot Fleet](#spot-fleet-iam-users)
 + [Service\-linked role for Spot Fleet](#service-linked-roles-spot-fleet-requests)
 + [Service\-linked role for Spot Instances](#service-linked-roles-spot-instances)
 + [IAM role for tagging a Spot Fleet](#spot-fleet-service-linked-role)
 
-### Grant permission to IAM users for Spot Fleet<a name="spot-fleet-iam-users"></a>
+### Grant permission to users for Spot Fleet<a name="spot-fleet-iam-users"></a>
 
-If your IAM users will create or manage a Spot Fleet, be sure to grant them the required permissions as follows\.
+If your users will create or manage a Spot Fleet, be sure to grant them the required permissions\.
 
-**To grant an IAM user permissions for Spot Fleet**
+**To create a policy for Spot Fleet**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -128,7 +128,7 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
    }
    ```
 
-   The preceding example policy grants an IAM user the permissions required for most Spot Fleet use cases\. To limit the user to specific API actions, specify only those API actions instead\.
+   The preceding example policy grants a user the permissions required for most Spot Fleet use cases\. To limit the user to specific API actions, specify only those API actions instead\.
 
    **Required EC2 and IAM APIs**
 
@@ -140,7 +140,7 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
    + `iam:ListRoles` – Required to enumerate existing IAM roles
    + `iam:ListInstanceProfiles` – Required to enumerate existing instance profiles
 **Important**  
-If you specify a role for the IAM instance profile in the launch specification or launch template, you must grant the IAM user the permission to pass the role to the service\. To do this, in the IAM policy include `"arn:aws:iam::*:role/IamInstanceProfile-role"` as a resource for the `iam:PassRole` action\. For more information, see [Granting a user permissions to pass a role to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\.
+If you specify a role for the IAM instance profile in the launch specification or launch template, you must grant the user the permission to pass the role to the service\. To do this, in the IAM policy include `"arn:aws:iam::*:role/IamInstanceProfile-role"` as a resource for the `iam:PassRole` action\. For more information, see [Granting a user permissions to pass a role to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\.
 
    **Spot Fleet APIs**
 
@@ -154,7 +154,7 @@ If you specify a role for the IAM instance profile in the launch specification o
 
    **Optional IAM APIs**
 
-   \(Optional\) To enable an IAM user to create roles or instance profiles using the IAM console, you must add the following actions to the policy:
+   \(Optional\) To enable a user to create roles or instance profiles using the IAM console, you must add the following actions to the policy:
    + `iam:AddRoleToInstanceProfile`
    + `iam:AttachRolePolicy`
    + `iam:CreateInstanceProfile`
@@ -166,13 +166,16 @@ If you specify a role for the IAM instance profile in the launch specification o
 
 1. On the **Review policy** page, enter a policy name and description, and choose **Create policy**\.
 
-1. In the navigation pane, choose **Users** and select the user\.
+1. To provide access, add permissions to your users, groups, or roles:
+   + Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
 
-1. Choose **Permissions**, **Add permissions**\.
+     Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
+   + Users managed in IAM through an identity provider:
 
-1. Choose **Attach existing policies directly**\. Select the policy that you created earlier and choose **Next: Review**\.
-
-1. Choose **Add permissions**\.
+     Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
+   + IAM users:
+     + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+     + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.
 
 ### Service\-linked role for Spot Fleet<a name="service-linked-roles-spot-fleet-requests"></a>
 
@@ -261,7 +264,7 @@ Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Spot** to l
 The `aws-ec2-spot-fleet-tagging-role` IAM role grants the Spot Fleet permission to tag the Spot Fleet request, instances, and volumes\. For more information, see [Tag a Spot Fleet](#tag-spot-fleet)\.
 
 **Important**  
-If you choose to tag instances in the fleet and you also choose to maintain target capacity \(the Spot Fleet request is of type `maintain`\), the differences in the permissions that are set for the IAM user and the `IamFleetRole` might lead to inconsistent tagging behavior of instances in the fleet\. If the `IamFleetRole` does not include the `CreateTags` permission, some of the instances launched by the fleet might not be tagged\. While we are working to fix this inconsistency, to ensure that all instances launched by the fleet are tagged, we recommend that you use the `aws-ec2-spot-fleet-tagging-role` role for the `IamFleetRole`\. Alternatively, to use an existing role, attach the `AmazonEC2SpotFleetTaggingRole` AWS Managed Policy to the existing role\. Otherwise, you need to manually add the `CreateTags` permission to your existing policy\.
+If you choose to tag instances in the fleet and you also choose to maintain target capacity \(the Spot Fleet request is of type `maintain`\), the differences in the permissions that are set for the user and the `IamFleetRole` might lead to inconsistent tagging behavior of instances in the fleet\. If the `IamFleetRole` does not include the `CreateTags` permission, some of the instances launched by the fleet might not be tagged\. While we are working to fix this inconsistency, to ensure that all instances launched by the fleet are tagged, we recommend that you use the `aws-ec2-spot-fleet-tagging-role` role for the `IamFleetRole`\. Alternatively, to use an existing role, attach the `AmazonEC2SpotFleetTaggingRole` AWS Managed Policy to the existing role\. Otherwise, you need to manually add the `CreateTags` permission to your existing policy\.
 
 **To create the IAM role for tagging a Spot Fleet**
 
@@ -532,12 +535,12 @@ For more information about how tags work, see [Tag your Amazon EC2 resources](Us
 
 ### Prerequisite<a name="tag-spot-fleet-prereqs"></a>
 
-Grant the IAM user the permission to tag resources\. For more information, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
+Grant the user the permission to tag resources\. For more information, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
 
-**To grant an IAM user the permission to tag resources**  
-Create a IAM policy that includes the following:
-+ The `ec2:CreateTags` action\. This grants the IAM user permission to create tags\.
-+ The `ec2:RequestSpotFleet` action\. This grants the IAM user permission to create a Spot Fleet request\.
+**To grant a user the permission to tag resources**  
+Create an IAM policy that includes the following:
++ The `ec2:CreateTags` action\. This grants the user permission to create tags\.
++ The `ec2:RequestSpotFleet` action\. This grants the user permission to create a Spot Fleet request\.
 + For `Resource`, you must specify `"*"`\. This allows users to tag all resource types\.
 
 ```
@@ -570,6 +573,17 @@ We currently do not support resource\-level permissions for the `spot-fleet-requ
     "Resource": "arn:aws:ec2:us-east-1:111122223333:spot-fleet-request/*"
 }
 ```
+
+To provide access, add permissions to your users, groups, or roles:
++ Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
+
+  Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
++ Users managed in IAM through an identity provider:
+
+  Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
++ IAM users:
+  + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+  + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.
 
 ### Tag a new Spot Fleet<a name="tag-new-spot-fleet"></a>
 
@@ -947,7 +961,11 @@ aws ec2 modify-spot-fleet-request \
 
 ## Cancel a Spot Fleet request<a name="cancel-spot-fleet"></a>
 
-When you are finished using your Spot Fleet, you can cancel the Spot Fleet request\. This cancels all Spot requests associated with the Spot Fleet, so that no new Spot Instances are launched for your Spot Fleet\. You must specify whether the Spot Fleet should terminate its Spot Instances\. If you terminate the instances, the Spot Fleet request enters the `cancelled_terminating` state\. Otherwise, the Spot Fleet request enters the `cancelled_running` state and the instances continue to run until they are interrupted or you terminate them manually\.
+If you no longer require a Spot Fleet, you can cancel the Spot Fleet request\. After you cancel a fleet request, all Spot requests associated with the fleet are also canceled, so that no new Spot Instances are launched\.
+
+When you cancel a Spot Fleet request, you must also specify if you want to terminate all of its instances\. These include both On\-Demand Instances and Spot Instances\.
+
+If you specify that the instances must be terminated when the fleet request is canceled, the fleet request enters the `cancelled_terminating` state\. Otherwise, the fleet request enters the `cancelled_running` state and the instances continue to run until they are interrupted or you terminate them manually\.
 
 **To cancel a Spot Fleet request \(console\)**
 
@@ -955,12 +973,16 @@ When you are finished using your Spot Fleet, you can cancel the Spot Fleet reque
 
 1. Select your Spot Fleet request\.
 
-1. Choose **Actions**, **Cancel spot request**\.
+1. Choose **Actions**, **Cancel request**\.
 
-1. In **Cancel spot request**, verify that you want to cancel the Spot Fleet\. To keep the fleet at its current size, clear **Terminate instances**\. When you are ready, choose **Confirm**\.
+1. In the **Cancel Spot request** dialog box, do the following:
 
-**To cancel a Spot Fleet request using the AWS CLI**  
-Use the [cancel\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-fleet-requests.html) command to cancel the specified Spot Fleet request and terminate the instances\.
+   1. To terminate the associated instances at the same time as canceling the Spot Fleet request, leave the **Terminate instances** check box selected\. To cancel the Spot Fleet request without terminating the associated instances, clear the **Terminate instances** check box\.
+
+   1. Choose **Confirm**\.
+
+**To cancel a Spot Fleet request and terminate its instances using the AWS CLI**  
+Use the [cancel\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-fleet-requests.html) command to cancel the specified Spot Fleet request and terminate its On\-Demand Instances and Spot Instances\.
 
 ```
 aws ec2 cancel-spot-fleet-requests \
@@ -968,7 +990,7 @@ aws ec2 cancel-spot-fleet-requests \
     --terminate-instances
 ```
 
-The following is example output:
+Example output
 
 ```
 {
@@ -983,7 +1005,8 @@ The following is example output:
 }
 ```
 
-You can modify the previous command as follows to cancel the specified Spot Fleet request without terminating the instances\.
+**To cancel a Spot Fleet request without terminating its instances using the AWS CLI**  
+You can modify the previous command using the `--no-terminate-instances` parameter to cancel the specified Spot Fleet request without terminating its On\-Demand Instances and Spot Instances\.
 
 ```
 aws ec2 cancel-spot-fleet-requests \
@@ -991,7 +1014,7 @@ aws ec2 cancel-spot-fleet-requests \
     --no-terminate-instances
 ```
 
-The following is example output:
+Example output
 
 ```
 {

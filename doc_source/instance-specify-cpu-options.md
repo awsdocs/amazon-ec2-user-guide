@@ -15,7 +15,25 @@ The following examples are for an `r4.4xlarge` instance type, which has the foll
 
 To disable multithreading, specify one thread per core\.
 
-**To disable multithreading during instance launch \(console\)**
+------
+#### [ New console ]
+
+**To disable multithreading during instance launch**
+
+1. Follow the [Quickly launch an instance](ec2-launch-instance-wizard.md#liw-quickly-launch-instance) procedure and configure your instance as needed\.
+
+1. Expand **Advanced details**, and select the **Specify CPU options** check box\.
+
+1. For **Core count**, choose the number of required CPU cores\. In this example, to specify the default CPU core count for an `r4.4xlarge` instance, choose `8`\.
+
+1. To disable multithreading, for **Threads per core**, choose **1**\.
+
+1. In the **Summary** panel, review your instance configuration, and then choose **Launch instance**\. For more information, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\.
+
+------
+#### [ Old console ]
+
+**To disable multithreading during instance launch**
 
 1. Follow the [Launch an instance using the old launch instance wizard](launching-instance.md) procedure\.
 
@@ -27,7 +45,10 @@ To disable multithreading, specify one thread per core\.
 
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
-**To disable multithreading during instance launch \(AWS CLI\)**  
+------
+#### [ AWS CLI ]
+
+**To disable multithreading during instance launch**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify a value of `1` for `ThreadsPerCore` for the `--cpu-options` parameter\. For `CoreCount`, specify the number of CPU cores\. In this example, to specify the default CPU core count for an `r4.4xlarge` instance, specify a value of `8`\.
 
 ```
@@ -38,13 +59,33 @@ aws ec2 run-instances \
     --key-name MyKeyPair
 ```
 
+------
+
 ## Specify a custom number of vCPUs<a name="cpu-options-customer-number-of-vCPUs"></a>
 
 You can customize the number of CPU cores and threads per core for the instance\.
 
-**To specify a custom number of vCPUs during instance launch \(console\)**
-
 The following example launches an `r4.4xlarge` instance with six vCPUs\.
+
+------
+#### [ New console ]
+
+**To specify a custom number of vCPUs during instance launch**
+
+1. Follow the [Quickly launch an instance](ec2-launch-instance-wizard.md#liw-quickly-launch-instance) procedure and configure your instance as needed\.
+
+1. Expand **Advanced details**, and select the **Specify CPU options** check box\.
+
+1. To get six vCPUs, specify three CPU cores and two threads per core, as follows:
+   + For **Core count**, choose **3**\.
+   + For **Threads per core**, choose **2**\.
+
+1. In the **Summary** panel, review your instance configuration, and then choose **Launch instance**\. For more information, see [Launch an instance using the new launch instance wizard](ec2-launch-instance-wizard.md)\.
+
+------
+#### [ Old console ]
+
+**To specify a custom number of vCPUs during instance launch**
 
 1. Follow the [Launch an instance using the old launch instance wizard](launching-instance.md) procedure\.
 
@@ -56,9 +97,10 @@ The following example launches an `r4.4xlarge` instance with six vCPUs\.
 
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the old launch instance wizard](launching-instance.md)\.
 
-**To specify a custom number of vCPUs during instance launch \(AWS CLI\)**  
-The following example launches an `r4.4xlarge` instance with six vCPUs\.
+------
+#### [ AWS CLI ]
 
+**To specify a custom number of vCPUs during instance launch**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify the number of CPU cores and number of threads in the `--cpu-options` parameter\. You can specify three CPU cores and two threads per core to get six vCPUs\.
 
 ```
@@ -78,3 +120,5 @@ aws ec2 run-instances \
     --cpu-options "CoreCount=6,ThreadsPerCore=1" \
     --key-name MyKeyPair
 ```
+
+------

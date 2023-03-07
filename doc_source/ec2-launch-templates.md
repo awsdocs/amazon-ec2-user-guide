@@ -6,7 +6,7 @@ For each launch template, you can create one or more numbered *launch template v
 
 The following diagram shows a launch template with three versions\. The first version specifies the instance type, AMI ID, subnet, and key pair to use to launch the instance\. The second version is based on the first version and also specifies a security group for the instance\. The third version uses different values for some of the parameters\. Version 2 is set as the default version\. If you launched an instance from this launch template, the launch parameters from version 2 would be used if no other version were specified\.
 
-![\[Launch template\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch-template-diagram.png)
+![\[Launch template with three versions.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch-template-diagram.png)
 
 **Topics**
 + [Launch template restrictions](launch-template-restrictions.md)

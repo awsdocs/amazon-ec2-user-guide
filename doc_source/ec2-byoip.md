@@ -42,7 +42,7 @@ The onboarding process for BYOIP has two phases, for which you must perform thre
 
 **Preparation phase**
 
-1\. [Create an RSA key pair](#byoip-certificate), and use it to generate a self\-signed X\.509 certificate for authentication purposes\. This certificate is only used during the provisioning phase. 
+1\. [Create an RSA key pair](#byoip-certificate), and use it to generate a self\-signed X\.509 certificate for authentication purposes\. This certificate is only used during the provisioning phase\.
 
 **RIR configuration phase**
 
@@ -282,7 +282,7 @@ Add the certificate that you previously created to the RDAP record for your RIR\
 + For RIPE, add the certificate as a new "descr" field for your address range\. Do not add it to the comments section for your organization\.
 + For APNIC, email the certificate to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field for your address range\. Send the email using the APNIC authorized contact for the IP addresses\.
 
-You can remove the certificate from your RIR's record after the provisioning stage below has been completed. 
+You can remove the certificate from your RIR's record after the provisioning stage below has been completed\. 
 
 ### 3\. Create a ROA object in your RIR<a name="byoip-create-roa-object"></a>
 
@@ -498,18 +498,18 @@ For more information about working with IPv6 CIDR blocks in the VPC console, see
 
    Validate that the certificate has been uploaded and is valid via the whois command\.
 
-   For ARIN, use `whois -h whois.arin.net r + 2001:0DB8:6172::/48` to look up the RDAP record for your address range\. Check the `remarks` section for the `NetRange` \(network range\) in the command output\. The certificate should be added in the `Public Comments` section for the address range\.
+   For ARIN, use `whois -h whois.arin.net r + 2001:0DB8:6172::/48` to look up the RDAP record for your address range\. Check the `Public Comments` section for the `NetRange` \(network range\) in the command output\. The certificate should be added in the `Public Comments` section for the address range\.
 
-   You can inspect the `remarks` containing the certificate using the following command:
+   You can inspect the `Public Comments` containing the certificate using the following command:
 
    ```
-   whois -h whois.arin.net r + 2001:0DB8:6172::/48 | grep Comment | grep BEGIN
+   whois -h whois.arin.net r + 2001:0DB8:6172::/48 | grep Comments | grep BEGIN
    ```
 
    This returns output with the contents of the key, which should be similar to the following:
 
    ```
-   remarks:
+   Public Comments:
    -----BEGIN CERTIFICATE-----
    MIID1zCCAr+gAwIBAgIUBkRPNSLrPqbRAFP8RDAHSP+I1TowDQYJKoZIhvcNAQE
    LBQAwezELMAkGA1UEBhMCTloxETAPBgNVBAgMCEF1Y2tsYW5kMREwDwYDVQQHDA
@@ -535,7 +535,7 @@ For more information about working with IPv6 CIDR blocks in the VPC console, see
    -----END CERTIFICATE-----
    ```
 
-   For RIPE, use `whois -r -h whois.ripe.net 2001:0DB8:7269::/48` to look up the RDAP record for your address range\. Check the `descr` section for the `inetnum` object \(network range\) in the command output\. The certificate should be added as a new `desc` field for the address range\.
+   For RIPE, use `whois -r -h whois.ripe.net 2001:0DB8:7269::/48` to look up the RDAP record for your address range\. Check the `descr` section for the `inetnum` object \(network range\) in the command output\. The certificate should be added as a new `descr` field for the address range\.
 
    You can inspect the `descr` containing the certificate using the following command:
 
@@ -572,9 +572,9 @@ For more information about working with IPv6 CIDR blocks in the VPC console, see
    -----END CERTIFICATE-----
    ```
 
-   For APNIC, use `whois -h whois.apnic.net 2001:0DB8:6170::/48` to look up the RDAP record for your BYOIP address range\. Check the `remarks` section for the `inetnum` object \(network range\) in the command output\. The certificate should be added as a new `desc` field for the address range\.
+   For APNIC, use `whois -h whois.apnic.net 2001:0DB8:6170::/48` to look up the RDAP record for your BYOIP address range\. Check the `remarks` section for the `inetnum` object \(network range\) in the command output\. The certificate should be added as a new `remarks` field for the address range\.
 
-   You can inspect the `descr` containing the certificate using the following command:
+   You can inspect the `remarks` containing the certificate using the following command:
 
    ```
    whois -h whois.apnic.net 2001:0DB8:6170::/48 | grep remarks | grep BEGIN
@@ -611,39 +611,61 @@ For more information about working with IPv6 CIDR blocks in the VPC console, see
 
 1. Validate the creation of a ROA object
 
-   Validate the successful creation of the ROA objects using a `whois` command\. Be sure to test your address range against the Amazon ASNs 16509 and 14618, plus the ASNs that are currently authorized to advertise the address range\.
+   Validate the successful creation of the ROA objects usingthe RIPEstat Data API\. Be sure to test your address range against the Amazon ASNs 16509 and 14618, plus the ASNs that are currently authorized to advertise the address range\.
 
    You can inspect the ROA objects from different Amazon ASNs with your address range by using the following command:
 
    ```
-   whois -h whois.bgpmon.net " --roa 16509 2001:0DB8:1000::/48"
+   curl --location --request GET "https://stat.ripe.net/data/rpki-validation/data.json?resource=ASN&prefix=CIDR
    ```
 
-   In this example output, the response has a result of `0 - Valid` for the Amazon ASN 16509\. This indicates the ROA object for the address range was created successfully:
+   In this example output, the response has a result of `"status": "valid"` for the Amazon ASN 16509\. This indicates the ROA object for the address range was created successfully:
 
    ```
-   0 - Valid
-   ------------------------
-   ROA Details
-   ------------------------
-   Origin ASN:       AS16509
-   Not valid Before: 2021-11-19 05:00:00
-   Not valid After:  2021-12-24 05:00:00  Expires in 16d8h39m12s
-   Trust Anchor:     rpki.arin.net
-   Prefixes:         2001:0DB8::/32 (max length /48)
+   {
+       "messages": [],
+       "see_also": [],
+       "version": "0.3",
+       "data_call_name": "rpki-validation",
+       "data_call_status": "supported",
+       "cached": false,
+       "data": {
+           "validating_roas": [
+               {
+                   "origin": "16509",
+                   "prefix": "2001:0DB8::/32",
+                   "max_length": 48,
+                   "validity": "valid"
+               },
+               {
+                   "origin": "14618",
+                   "prefix": "2001:0DB8::/32",
+                   "max_length": 48,
+                   "validity": "invalid_asn"
+               },
+               {
+                   "origin": "64496",
+                   "prefix": "2001:0DB8::/32",
+                   "max_length": 48,
+                   "validity": "invalid_asn"
+               }
+           ],
+           "status": "valid",
+           "validator": "routinator",
+           "resource": "16509",
+           "prefix": "2001:0DB8::/32"
+       },
+       "query_id": "20230224152430-81e6384e-21ba-4a86-852a-31850787105f",
+       "process_time": 58,
+       "server_id": "app116",
+       "build_version": "live.2023.2.1.142",
+       "status": "ok",
+       "status_code": 200,
+       "time": "2023-02-24T15:24:30.773654"
+   }
    ```
 
-   In this example output, the response has an error of `1 - Not Found`\. This indicates the ROA object for the address range has not been created:
-
-   ```
-   1 - Not Found
-   ```
-
-   In this example output, the response has an error of `2 - Not Valid`\. This indicates the ROA object for the address range was not created successfully:
-
-   ```
-   2 - Not Valid: Invalid Origin ASN, expected 15169
-   ```
+A status of `“unknown”` indicates the ROA object for the address range has not been created\. A status of `“invalid_asn”` indicates that the ROA object for the address range was not created successfully\.
 
 ## Learn more<a name="byoip-learn-more"></a>
 

@@ -1,12 +1,14 @@
 # Determine the supported boot modes of an instance type<a name="instance-type-boot-mode"></a>
 
-**To determine the supported boot modes of an instance type \(AWS CLI version 1\.19\.34 and later and version 2\.1\.32 and later\)**  
-Use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command to determine the supported boot modes of an instance type\. By including the `--query` parameter, you can filter the output\. In this example, the output is filtered to return only the supported boot modes\.
+You can use the AWS CLI to determine the supported boot modes of an instance type\.
+
+**To determine the supported boot modes of an instance type**  
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command to determine the supported boot modes of an instance type\. By including the `--query` parameter, you can filter the output\. In this example, the output is filtered to return only the supported boot modes\.
 
 The following example shows that `m5.2xlarge` supports both UEFI and Legacy BIOS boot modes\.
 
 ```
-aws ec2 --region us-east-1 describe-instance-types --instance-types m5.2xlarge --query "InstanceTypes[*].SupportedBootModes"
+aws ec2 describe-instance-types --region us-east-1 --instance-types m5.2xlarge --query "InstanceTypes[*].SupportedBootModes"
 ```
 
 Expected output

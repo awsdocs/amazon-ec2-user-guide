@@ -72,7 +72,7 @@ For more information, see [Amazon EC2 Hpc6a Instances](http://aws.amazon.com/ec2
 + [Instance performance](#compute-performance)
 + [Network performance](#compute-network-performance)
 + [Amazon EBS I/O performance](#compute-ebs-perf)
-+ [Instance store volume I/O performance](#compute-ssd-perf)
++ [SSD\-based instance store volume I/O performance](#compute-ssd-perf)
 + [Release notes](#compute-instance-release-notes)
 
 ## Hardware specifications<a name="compute-instances-hardware"></a>
@@ -209,6 +209,7 @@ The following is a summary of the hardware specifications for compute optimized 
 | c7g\.8xlarge | 32 | 64\.00 | 
 | c7g\.12xlarge | 48 | 96\.00 | 
 | c7g\.16xlarge | 64 | 128\.00 | 
+| c7g\.metal | 64 | 128\.00 | 
 | cc2\.8xlarge | 32 | 60\.50 | 
 | hpc6a\.48xlarge | 96 | 384\.00 | 
 
@@ -373,6 +374,7 @@ The following is a summary of network performance for compute optimized instance
 | c7g\.8xlarge | 15\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 | c7g\.12xlarge | 22\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 | c7g\.16xlarge | 30\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| c7g\.metal | 30\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
 | hpc6a\.48xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.
@@ -383,56 +385,49 @@ Amazon EBS optimized instances use an optimized configuration stack and provide 
 
 For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-## Instance store volume I/O performance<a name="compute-ssd-perf"></a>
+## SSD\-based instance store volume I/O performance<a name="compute-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| c1\.medium | 33600 | 8000 | 
-| c1\.xlarge | 144000 | 32000 | 
-| c3\.large | 18240 | 16000 | 
-| c3\.xlarge | 38400 | 25600 | 
-| c3\.2xlarge | 64000 | 44800 | 
-| c3\.4xlarge | 118400 | 76800 | 
-| c3\.8xlarge | 227200 | 140800 | 
-| c5ad\.large | 16283 | 7105 | 
-| c5ad\.xlarge | 32566 | 14211 | 
-| c5ad\.2xlarge | 65132 | 28421 | 
-| c5ad\.4xlarge | 130262 | 56842 | 
-| c5ad\.8xlarge | 260526 | 113684 | 
-| c5ad\.12xlarge | 412500 | 180000 | 
-| c5ad\.16xlarge | 521052 | 227368 | 
-| c5ad\.24xlarge | 825000 | 360000 | 
-| c5d\.large | 20000 | 9000 | 
-| c5d\.xlarge | 40000 | 18000 | 
-| c5d\.2xlarge | 80000 | 37000 | 
-| c5d\.4xlarge | 175000 | 75000 | 
-| c5d\.9xlarge | 350000 | 170000 | 
-| c5d\.12xlarge | 700000 | 340000 | 
-| c5d\.18xlarge | 700000 | 340000 | 
-| c5d\.24xlarge | 1400000 | 680000 | 
-| c5d\.metal | 1400000 | 680000 | 
-| c6gd\.medium | 13438 | 5625 | 
-| c6gd\.large | 26875 | 11250 | 
-| c6gd\.xlarge | 53750 | 22500 | 
-| c6gd\.2xlarge | 107500 | 45000 | 
-| c6gd\.4xlarge | 215000 | 90000 | 
-| c6gd\.8xlarge | 430000 | 180000 | 
-| c6gd\.12xlarge | 645000 | 270000 | 
-| c6gd\.16xlarge | 860000 | 360000 | 
-| c6gd\.metal | 860000 | 360000 | 
-| c6id\.large | 33542 | 16771 | 
-| c6id\.xlarge | 67083 | 33542 | 
-| c6id\.2xlarge | 134167 | 67084 | 
-| c6id\.4xlarge | 268333 | 134167 | 
-| c6id\.8xlarge | 536666 | 268334 | 
-| c6id\.12xlarge | 804998 | 402500 | 
-| c6id\.16xlarge | 1073332 | 536668 | 
-| c6id\.24xlarge | 1609996 | 805000 | 
-| c6id\.32xlarge | 2146664 | 1073336 | 
-| c6id\.metal | 2146664 | 1073336 | 
+| c5ad\.large | 16,283 | 7,105 | 
+| c5ad\.xlarge | 32,566 | 14,211 | 
+| c5ad\.2xlarge | 65,132 | 28,421 | 
+| c5ad\.4xlarge | 130,263 | 56,842 | 
+| c5ad\.8xlarge | 260,526 | 113,684 | 
+| c5ad\.12xlarge | 412,500 | 180,000 | 
+| c5ad\.16xlarge | 521,053 | 227,368 | 
+| c5ad\.24xlarge | 825,000 | 360,000 | 
+| c5d\.large | 20,000 | 9,000 | 
+| c5d\.xlarge | 40,000 | 18,000 | 
+| c5d\.2xlarge | 80,000 | 37,000 | 
+| c5d\.4xlarge | 175,000 | 75,000 | 
+| c5d\.9xlarge | 350,000 | 170,000 | 
+| c5d\.12xlarge | 700,000 | 340,000 | 
+| c5d\.18xlarge | 700,000 | 340,000 | 
+| c5d\.24xlarge | 1,400,000 | 680,000 | 
+| c5d\.metal | 1,400,000 | 680,000 | 
+| c6gd\.medium | 13,438 | 5,625 | 
+| c6gd\.large | 26,875 | 11,250 | 
+| c6gd\.xlarge | 53,750 | 22,500 | 
+| c6gd\.2xlarge | 107,500 | 45,000 | 
+| c6gd\.4xlarge | 215,000 | 90,000 | 
+| c6gd\.8xlarge | 430,000 | 180,000 | 
+| c6gd\.12xlarge | 645,000 | 270,000 | 
+| c6gd\.16xlarge | 860,000 | 360,000 | 
+| c6gd\.metal | 860,000 | 360,000 | 
+| c6id\.large | 33,542 | 16,771 | 
+| c6id\.xlarge | 67,083 | 33,542 | 
+| c6id\.2xlarge | 134,167 | 67,084 | 
+| c6id\.4xlarge | 268,333 | 134,167 | 
+| c6id\.8xlarge | 536,666 | 268,334 | 
+| c6id\.12xlarge | 804,999 | 402,501 | 
+| c6id\.16xlarge | 1,073,332 | 536,668 | 
+| c6id\.24xlarge | 1,609,998 | 805,002 | 
+| c6id\.32xlarge | 2,146,664 | 1,073,336 | 
+| c6id\.metal | 2,146,664 | 1,073,336 | 
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 

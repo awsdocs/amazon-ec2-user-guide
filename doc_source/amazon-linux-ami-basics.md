@@ -33,7 +33,7 @@ Amazon Linux does not allow remote root secure shell \(SSH\) by default\. Also, 
 Each image contains a unique `/etc/image-id` file that identifies it\. This file contains the following information about the image:
 + `image_name`, `image_version`, `image_arch` – Values from the build recipe that Amazon used to construct the image\.
 + `image_stamp` – A unique, random hex value generated during image creation\.
-+ `image_date` – The UTC time of image creation, in *YYYYMMDDhhmmss* format
++ `image_date` – The UTC time of image creation, in *YYYYMMDDhhmmss* format\.
 + `recipe_name`, `recipe_id` – The name and ID of the build recipe Amazon used to construct the image\.
 
 Amazon Linux contains an `/etc/system-release` file that specifies the current release that is installed\. This file is updated using yum and is part of the `system-release` RPM Package Manager \(RPM\)\.
@@ -42,7 +42,7 @@ Amazon Linux also contains a machine\-readable version of `/etc/system-release` 
 
 ### Amazon Linux 2<a name="image-id-amazon-linux-2"></a>
 
-The following is an example of `/etc/image-id` for the current version of Amazon Linux 2:
+The following is an example of `/etc/image-id` for the current version of Amazon Linux 2\.
 
 ```
 [ec2-user ~]$ cat /etc/image-id
@@ -56,14 +56,14 @@ recipe_name="amzn2 ami"
 recipe_id="c652686a-2415-9819-65fb-4dee-9792-289d-1e2846bd"
 ```
 
-The following is an example of `/etc/system-release` for the current version of Amazon Linux 2:
+The following is an example of `/etc/system-release` for the current version of Amazon Linux 2\.
 
 ```
 [ec2-user ~]$ cat /etc/system-release
 Amazon Linux 2
 ```
 
-The following is an example of `/etc/os-release` for Amazon Linux 2:
+The following is an example of `/etc/os-release` for Amazon Linux 2\.
 
 ```
 [ec2-user ~]$ cat /etc/os-release
@@ -80,7 +80,7 @@ HOME_URL="https://amazonlinux.com/"
 
 ### Amazon Linux AMI<a name="image-id-amazon-linux-ami"></a>
 
-The following is an example of `/etc/image-id` for the current Amazon Linux AMI:
+The following is an example of `/etc/image-id` for the current Amazon Linux AMI\.
 
 ```
 [ec2-user ~]$ cat /etc/image-id
@@ -94,7 +94,7 @@ recipe_name="amzn ami"
 recipe_id="5b283820-dc60-a7ea-d436-39fa-439f-02ea-5c802dbd"
 ```
 
-The following is an example of `/etc/system-release` for the current Amazon Linux AMI:
+The following is an example of `/etc/system-release` for the current Amazon Linux AMI\.
 
 ```
 [ec2-user ~]$ cat /etc/system-release
@@ -164,7 +164,7 @@ To upload your applications onto a running Amazon Linux instance, use scp or sft
 
 ### Security updates<a name="security-updates"></a>
 
-Security updates are provided using the package repositories as well as updated AMI security alerts are published in the [Amazon Linux Security Center](https://alas.aws.amazon.com)\. For more information about AWS security policies or to report a security problem, go to the [AWS Security Center](https://aws.amazon.com/security/)\.
+Security updates are provided using the package repositories as well as updated AMI security alerts are published in the [Amazon Linux Security Center](https://alas.aws.amazon.com)\. For more information about AWS security policies or to report a security problem, see [AWS Cloud Security](https://aws.amazon.com/security/)\.
 
 Amazon Linux is configured to download and install critical or important security updates at launch time\. We recommend that you make the necessary updates for your use case after launch\. For example, you may want to apply all updates \(not just security updates\) at launch, or evaluate each update and apply only the ones applicable to your system\. This is controlled using the following cloud\-init setting: `repo_upgrade`\. The following snippet of cloud\-init configuration shows how you can change the settings in the user data text you pass to your instance initialization:
 

@@ -27,4 +27,4 @@ The UEFI Forum maintains a publicly available dbx for many known\-bad binaries a
 **Important**  
 UEFI Secure Boot enforces signature validation on any UEFI binaries\. To permit execution of a UEFI binary in UEFI Secure Boot, you sign it with any of the private db keys described above\.
 
-By default, UEFI Secure Boot is disabled and the system is in SetupMode\. When the system is in SetupMode, all key variables can be updated without a cryptographic signature\. When the PK is set, UEFI Secure Boot is enabled and the SetupMode is exited\.
+By default, UEFI Secure Boot is disabled and the system is in `SetupMode`\. When the system is in `SetupMode`, all key variables can be updated without a cryptographic signature\. When the PK is set, UEFI Secure Boot is enabled and the SetupMode is exited\.

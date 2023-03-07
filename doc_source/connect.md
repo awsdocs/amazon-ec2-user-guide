@@ -1,6 +1,6 @@
 # Connect<a name="connect"></a>
 
-After you've launched an instance, you can connect to it\. You can also connect your instance to another AWS resource\.
+This section of the *Amazon EC2 User Guide for Linux Instances* provides information to help you connect to your Linux instance after you have launched it\. It also provides information to help you connect your Linux instance to another AWS resource\.
 
 **Topics**
 + [Connect to your Linux instance](AccessingInstances.md)

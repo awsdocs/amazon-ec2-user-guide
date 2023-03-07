@@ -118,7 +118,7 @@ For more information, see [Amazon EC2 z1d Instances](https://aws.amazon.com/ec2/
 + [Instance performance](#memory-compute-perf)
 + [Network performance](#memory-network-perf)
 + [Amazon EBS I/O performance](#memory-ebs-perf)
-+ [Instance store volume I/O performance](#instances-ssd-perf)
++ [SSD\-based instance store volume I/O performance](#instances-ssd-perf)
 + [Support for vCPUs](#high-cpu-support)
 + [Release notes](#memory-instance-limits)
 
@@ -270,6 +270,15 @@ The following is a summary of the hardware specifications for memory optimized i
 | r6id\.24xlarge | 96 | 768\.00 | 
 | r6id\.32xlarge | 128 | 1024\.00 | 
 | r6id\.metal | 128 | 1024\.00 | 
+| r7g\.medium | 1 | 8\.00 | 
+| r7g\.large | 2 | 16\.00 | 
+| r7g\.xlarge | 4 | 32\.00 | 
+| r7g\.2xlarge | 8 | 64\.00 | 
+| r7g\.4xlarge | 16 | 128\.00 | 
+| r7g\.8xlarge | 32 | 256\.00 | 
+| r7g\.12xlarge | 48 | 384\.00 | 
+| r7g\.16xlarge | 64 | 512\.00 | 
+| r7g\.metal | 64 | 512\.00 | 
 | u\-3tb1\.56xlarge | 224 | 3072\.00 | 
 | u\-6tb1\.56xlarge | 224 | 6144\.00 | 
 | u\-6tb1\.112xlarge | 448 | 6144\.00 | 
@@ -508,6 +517,15 @@ The following is a summary of network performance for memory optimized instances
 | r6id\.24xlarge | 37\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 | r6id\.32xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
 | r6id\.metal | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r7g\.medium † | 0\.52 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r7g\.large † | 0\.937 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r7g\.xlarge † | 1\.876 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r7g\.2xlarge † | 3\.75 | 15\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r7g\.4xlarge † | 7\.5 | 15\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r7g\.8xlarge | 15\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r7g\.12xlarge | 22\.5 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| r7g\.16xlarge | 30\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| r7g\.metal | 30\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
 | u\-3tb1\.56xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 | u\-6tb1\.56xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
 | u\-6tb1\.112xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
@@ -571,109 +589,97 @@ Amazon EBS optimized instances use an optimized configuration stack and provide 
 
 For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-## Instance store volume I/O performance<a name="instances-ssd-perf"></a>
+## SSD\-based instance store volume I/O performance<a name="instances-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| hpc6id\.32xlarge | 2146664 | 1073336 | 
-| r3\.large | 16000 | 11200 | 
-| r3\.xlarge | 30400 | 22400 | 
-| r3\.2xlarge | 43200 | 11200 | 
-| r3\.4xlarge | 62400 | 43200 | 
-| r3\.8xlarge | 243200 | 172800 | 
-| r5ad\.large | 30000 | 15000 | 
-| r5ad\.xlarge | 59000 | 29000 | 
-| r5ad\.2xlarge | 117000 | 57000 | 
-| r5ad\.4xlarge | 234000 | 114000 | 
-| r5ad\.8xlarge | 466666 | 233334 | 
-| r5ad\.12xlarge | 700000 | 340000 | 
-| r5ad\.16xlarge | 933332 | 466668 | 
-| r5ad\.24xlarge | 1400000 | 680000 | 
-| r5d\.large | 30000 | 15000 | 
-| r5d\.xlarge | 59000 | 29000 | 
-| r5d\.2xlarge | 117000 | 57000 | 
-| r5d\.4xlarge | 234000 | 114000 | 
-| r5d\.8xlarge | 466666 | 233334 | 
-| r5d\.12xlarge | 700000 | 340000 | 
-| r5d\.16xlarge | 933332 | 466668 | 
-| r5d\.24xlarge | 1400000 | 680000 | 
-| r5d\.metal | 1400000 | 680000 | 
-| r5dn\.large | 29000 | 14500 | 
-| r5dn\.xlarge | 58000 | 29000 | 
-| r5dn\.2xlarge | 116000 | 58000 | 
-| r5dn\.4xlarge | 232000 | 116000 | 
-| r5dn\.8xlarge | 464000 | 232000 | 
-| r5dn\.12xlarge | 700000 | 350000 | 
-| r5dn\.16xlarge | 930000 | 465000 | 
-| r5dn\.24xlarge | 1400000 | 700000 | 
-| r5dn\.metal | 1400000 | 700000 | 
-| r6gd\.medium | 13438 | 5625 | 
-| r6gd\.large | 26875 | 11250 | 
-| r6gd\.xlarge | 53750 | 22500 | 
-| r6gd\.2xlarge | 107500 | 45000 | 
-| r6gd\.4xlarge | 215000 | 90000 | 
-| r6gd\.8xlarge | 430000 | 180000 | 
-| r6gd\.12xlarge | 645000 | 270000 | 
-| r6gd\.16xlarge | 860000 | 360000 | 
-| r6gd\.metal | 860000 | 360000 | 
-| r6idn\.large | 33542 | 16771 | 
-| r6idn\.xlarge | 67083 | 33542 | 
-| r6idn\.2xlarge | 134167 | 67084 | 
-| r6idn\.4xlarge | 268333 | 134167 | 
-| r6idn\.8xlarge | 536666 | 268334 | 
-| r6idn\.12xlarge | 804998 | 402500 | 
-| r6idn\.16xlarge | 1073332 | 536668 | 
-| r6idn\.24xlarge | 1609996 | 805000 | 
-| r6idn\.32xlarge | 2146664 | 1073336 | 
-| r6id\.large | 33542 | 16771 | 
-| r6id\.xlarge | 67083 | 33542 | 
-| r6id\.2xlarge | 134167 | 67084 | 
-| r6id\.4xlarge | 268333 | 134167 | 
-| r6id\.8xlarge | 536666 | 268334 | 
-| r6id\.12xlarge | 804998 | 402500 | 
-| r6id\.16xlarge | 1073332 | 536668 | 
-| r6id\.24xlarge | 1609996 | 805000 | 
-| r6id\.32xlarge | 2146664 | 1073336 | 
-| r6id\.metal | 2146664 | 1073336 | 
-| x1\.16xlarge | 175000 | 75000 | 
-| x1\.32xlarge | 350000 | 150000 | 
-| x2gd\.medium | 13438 | 5625 | 
-| x2gd\.large | 26875 | 11250 | 
-| x2gd\.xlarge | 53750 | 22500 | 
-| x2gd\.2xlarge | 107500 | 45000 | 
-| x2gd\.4xlarge | 215000 | 90000 | 
-| x2gd\.8xlarge | 430000 | 180000 | 
-| x2gd\.12xlarge | 645000 | 270000 | 
-| x2gd\.16xlarge | 860000 | 360000 | 
-| x2gd\.metal | 860000 | 360000 | 
-| x2idn\.16xlarge | 430000 | 180000 | 
-| x2idn\.24xlarge | 645000 | 270000 | 
-| x2idn\.32xlarge | 860000 | 360000 | 
-| x2idn\.metal | 860000 | 360000 | 
-| x2iedn\.xlarge | 26875 | 11250 | 
-| x2iedn\.2xlarge | 53750 | 22500 | 
-| x2iedn\.4xlarge | 107500 | 45000 | 
-| x2iedn\.8xlarge | 215000 | 90000 | 
-| x2iedn\.16xlarge | 430000 | 180000 | 
-| x2iedn\.24xlarge | 645000 | 270000 | 
-| x2iedn\.32xlarge | 860000 | 360000 | 
-| x2iedn\.metal | 860000 | 360000 | 
-| x1e\.xlarge | 175000 | 75000 | 
-| x1e\.2xlarge | 175000 | 75000 | 
-| x1e\.4xlarge | 175000 | 75000 | 
-| x1e\.8xlarge | 175000 | 75000 | 
-| x1e\.16xlarge | 175000 | 75000 | 
-| x1e\.32xlarge | 350000 | 150000 | 
-| z1d\.large | 30000 | 15000 | 
-| z1d\.xlarge | 59000 | 29000 | 
-| z1d\.2xlarge | 117000 | 57000 | 
-| z1d\.3xlarge | 175000 | 75000 | 
-| z1d\.6xlarge | 350000 | 170000 | 
-| z1d\.12xlarge | 700000 | 340000 | 
-| z1d\.metal | 700000 | 340000 | 
+| hpc6id\.32xlarge | 2,146,664 | 1,073,336 | 
+| r5ad\.large | 30,000 | 15,000 | 
+| r5ad\.xlarge | 59,000 | 29,000 | 
+| r5ad\.2xlarge  | 117,000 | 57,000 | 
+| r5ad\.4xlarge | 234,000 | 114,000 | 
+| r5ad\.8xlarge | 466,666 | 233,333 | 
+| r5ad\.12xlarge | 700,000 | 340,000 | 
+| r5ad\.16xlarge | 933,333 | 466,666 | 
+| r5ad\.24xlarge | 1,400,000 | 680,000 | 
+| r5d\.large | 30,000 | 15,000 | 
+| r5d\.xlarge | 59,000 | 29,000 | 
+| r5d\.2xlarge | 117,000 | 57,000 | 
+| r5d\.4xlarge | 234,000 | 114,000 | 
+| r5d\.8xlarge | 466,666 | 233,333 | 
+| r5d\.12xlarge | 700,000 | 340,000 | 
+| r5d\.16xlarge  | 933,333 | 466,666 | 
+| r5d\.24xlarge | 1,400,000 | 680,000 | 
+| r5d\.metal | 1,400,000 | 680,000 | 
+| r5dn\.large | 30,000 | 15,000 | 
+| r5dn\.xlarge | 59,000 | 29,000 | 
+| r5dn\.2xlarge | 117,000 | 57,000 | 
+| r5dn\.4xlarge | 234,000 | 114,000 | 
+| r5dn\.8xlarge | 466,666 | 233,333 | 
+| r5dn\.12xlarge | 700,000 | 340,000 | 
+| r5dn\.16xlarge | 933,333 | 466,666 | 
+| r5dn\.24xlarge | 1,400,000 | 680,000 | 
+| r5dn\.metal | 1,400,000 | 680,000 | 
+| r6id\.metal | 3,219,995 | 1,610,005 | 
+| r6gd\.medium | 13,438 | 5,625 | 
+| r6gd\.large | 26,875 | 11,250 | 
+| r6gd\.xlarge | 53,750 | 22,500 | 
+| r6gd\.2xlarge | 107,500 | 45,000 | 
+| r6gd\.4xlarge | 215,000 | 90,000 | 
+| r6gd\.8xlarge | 430,000 | 180,000 | 
+| r6gd\.12xlarge | 645,000 | 270,000 | 
+| r6gd\.16xlarge | 860,000 | 360,000 | 
+| r6gd\.metal | 860,000 | 360,000 | 
+| r6id\.large | 33,542 | 16,771 | 
+| r6id\.xlarge | 67,083 | 33,542 | 
+| r6id\.2xlarge | 134,167 | 67,084 | 
+| r6id\.4xlarge | 268,333 | 134,167 | 
+| r6id\.8xlarge | 536,666 | 268,334 | 
+| r6id\.12xlarge | 804,999 | 402,501 | 
+| r6id\.16xlarge | 1,073,332 | 536,668 | 
+| r6id\.24xlarge | 1,609,998 | 805,002 | 
+| r6id\.32xlarge | 2,146,664 | 1,073,336 | 
+| r6id\.metal | 2,146,664 | 1,073,336 | 
+| r6idn\.large | 33,542 | 16,771 | 
+| r6idn\.xlarge | 67,083 | 33,542 | 
+| r6idn\.2xlarge | 134,167 | 67,084 | 
+| r6idn\.4xlarge | 268,333 | 134,167 | 
+| r6idn\.8xlarge | 536,666 | 268,334 | 
+| r6idn\.12xlarge | 804,999 | 402,501 | 
+| r6idn\.16xlarge | 1,073,332 | 536,668 | 
+| r6idn\.24xlarge | 1,609,998 | 805,002 | 
+| r6idn\.32xlarge | 2,146,664 | 1,073,336 | 
+| x2gd\.medium | 13,438 | 5,625 | 
+| x2gd\.large | 26,875 | 11,250 | 
+| x2gd\.xlarge | 53,750 | 22,500 | 
+| x2gd\.2xlarge | 107,500 | 45,000 | 
+| x2gd\.4xlarge | 215,000 | 90,000 | 
+| x2gd\.8xlarge | 430,000 | 180,000 | 
+| x2gd\.12xlarge | 645,000 | 270,000 | 
+| x2gd\.16xlarge | 860,000 | 360,000 | 
+| x2gd\.metal | 860,000 | 360,000 | 
+| x2idn\.16xlarge | 430,000 | 180,000 | 
+| x2idn\.24xlarge | 645,000 | 270,000 | 
+| x2idn\.32xlarge | 860,000 | 360,000 | 
+| x2idn\.metal | 860,000 | 360,000 | 
+| x2iedn\.xlarge | 26,875 | 11,250 | 
+| x2iedn\.2xlarge | 53,750 | 22,500 | 
+| x2iedn\.4xlarge | 107,500 | 45,000 | 
+| x2iedn\.8xlarge | 215,000 | 90,000 | 
+| x2iedn\.16xlarge | 430,000 | 180,000 | 
+| x2iedn\.24xlarge | 645,000 | 270,000 | 
+| x2iedn\.32xlarge | 860,000 | 360,000 | 
+| x2iedn\.metal | 860,000 | 360,000 | 
+| z1d\.large | 30,000 | 15,000 | 
+| z1d\.xlarge | 59,000 | 29,000 | 
+| z1d\.2xlarge | 117,000 | 57,000 | 
+| z1d\.3xlarge | 175,000 | 75,000 | 
+| z1d\.6xlarge | 350,000 | 170,000 | 
+| z1d\.12xlarge | 700,000 | 340,000 | 
+| z1d\.metal | 700,000 | 340,000 | 
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
@@ -730,7 +736,7 @@ AWS Graviton\-based instance types require Ubuntu 18\.04 or later with `linux-aw
   + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
   + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.3\.18\-24\.15\.1
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
-+ All `io2` volumes attached to C6in, C7g, M6in, M6idn, R5b, R6in, R6idn, Trn1, X2idn, and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
++ All `io2` volumes attached to C6in, C7g, M6in, M6idn, M7g, R5b, R6in, R6idn, R7g, Trn1, X2idn, and X2iedn instances, during or after launch, automatically run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

@@ -18,6 +18,20 @@ If it appears that your instance is stuck terminating and it has been longer tha
 
 After you terminate an instance, it remains visible for a short while before being deleted\. The state shows as `terminated`\. If the entry is not deleted after several hours, contact Support\.
 
+## Error: The instance may not be terminated\. Modify its 'disableApiTermination' instance attribute<a name="termination-protection-enabled"></a>
+
+If you try to terminate an instance and get the `The instance instance_id may not be terminated. Modify its 'disableApiTermination' instance attribute` error message, it indicates that the instance has been enabled for termination protection\. Termination protection prevents the instance from being accidentally terminated\. For more information, see [Enable termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
+
+You must disable termination protection before you can terminate the instance\.
+
+To disable termination protection using the Amazon EC2 console, select the instance and then choose **Actions**, **Instance Settings**, **Change Termination Protection**\.
+
+To disable termination protection using the AWS CLI, use the following command\.
+
+```
+$ aws ec2 modify-instance-attribute --instance-id instance_id --no-disable-api-termination
+```
+
 ## Instances automatically launched or terminated<a name="automatic-instance-create-or-delete"></a>
 
 Generally, the following behaviors mean that you've used Amazon EC2 Auto Scaling, EC2 Fleet, or Spot Fleet to scale your computing resources automatically based on criteria that you've defined:

@@ -20,6 +20,7 @@ Some typical use cases include:
 + [Pricing and billing](#snapshot-archive-pricing)
 + [Quotas](#archive-quotas)
 + [Guidelines and best practices for archiving snapshots](archiving-guidelines.md)
++ [Required IAM permissions](snapshot-archiving-iam.md)
 + [Work with snapshot archiving](working-with-snapshot-archiving.md)
 + [Monitor snapshot archiving](monitor-snapshot-archiving.md)
 

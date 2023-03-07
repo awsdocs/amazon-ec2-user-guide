@@ -10,11 +10,11 @@ The following examples show launch configurations that you can use with the [cre
 + [Example 5: Launch On\-Demand Instances using multiple Capacity Reservations](#ec2-fleet-config5)
 + [Example 6: Launch On\-Demand Instances using Capacity Reservations when the total target capacity exceeds the number of unused Capacity Reservations](#ec2-fleet-config6)
 + [Example 7: Launch On\-Demand Instances using targeted Capacity Reservations](#ec2-fleet-config7)
-+ [Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances](#ec2-fleet-config9)
-+ [Example 9: Launch Spot Instances in a capacity\-optimized fleet](#ec2-fleet-config10)
-+ [Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities](#ec2-fleet-config11)
-+ [Example 11: Launch Spot Instances in a price\-capacity\-optimized fleet](#ec2-fleet-config12)
-+ [Example 12: Configure attribute\-based instance type selection](#ec2-fleet-config13)
++ [Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances](#ec2-fleet-config8)
++ [Example 9: Launch Spot Instances in a capacity\-optimized fleet](#ec2-fleet-config9)
++ [Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities](#ec2-fleet-config10)
++ [Example 11: Launch Spot Instances in a price\-capacity\-optimized fleet](#ec2-fleet-config11)
++ [Example 12: Configure attribute\-based instance type selection](#ec2-fleet-config12)
 
 ## Example 1: Launch Spot Instances as the default purchasing option<a name="ec2-fleet-config1"></a>
 
@@ -490,7 +490,7 @@ After the fleet is launched, you can run [describe\-capacity\-reservations](http
 }
 ```
 
-## Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances<a name="ec2-fleet-config9"></a>
+## Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances<a name="ec2-fleet-config8"></a>
 
 The following example configures the EC2 Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation for a Spot Instance in the fleet\. To configure the automatic replacement of Spot Instances, for `ReplacementStrategy`, specify `launch-before-terminate`\. To configure the time delay from when the new replacement Spot Instances are launched to when the old Spot Instances are automatically deleted, for `termination-delay`, specify a value in seconds\. For more information, see [Configuration options](ec2-fleet-capacity-rebalance.md#ec2-fleet-capacity-rebalance-config-options)\.
 
@@ -549,7 +549,7 @@ The effectiveness of the Capacity Rebalancing strategy depends on the number of 
 }
 ```
 
-## Example 9: Launch Spot Instances in a capacity\-optimized fleet<a name="ec2-fleet-config10"></a>
+## Example 9: Launch Spot Instances in a capacity\-optimized fleet<a name="ec2-fleet-config9"></a>
 
 The following example demonstrates how to configure an EC2 Fleet with a Spot allocation strategy that optimizes for capacity\. To optimize for capacity, you must set `AllocationStrategy` to `capacity-optimized`\.
 
@@ -596,7 +596,7 @@ In the following example, the three launch specifications specify three Spot cap
 }
 ```
 
-## Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities<a name="ec2-fleet-config11"></a>
+## Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities<a name="ec2-fleet-config10"></a>
 
 The following example demonstrates how to configure an EC2 Fleet with a Spot allocation strategy that optimizes for capacity while using priority on a best\-effort basis\.
 
@@ -648,7 +648,7 @@ In the following example, the three launch specifications specify three Spot cap
 }
 ```
 
-## Example 11: Launch Spot Instances in a price\-capacity\-optimized fleet<a name="ec2-fleet-config12"></a>
+## Example 11: Launch Spot Instances in a price\-capacity\-optimized fleet<a name="ec2-fleet-config11"></a>
 
 The following example demonstrates how to configure an EC2 Fleet with a Spot allocation strategy that optimizes for both capacity and lowest price\. To optimize for capacity while taking price into consideration, you must set the Spot `AllocationStrategy` to `price-capacity-optimized`\.
 
@@ -702,7 +702,7 @@ In the following example, the three launch specifications specify three Spot cap
 }
 ```
 
-## Example 12: Configure attribute\-based instance type selection<a name="ec2-fleet-config13"></a>
+## Example 12: Configure attribute\-based instance type selection<a name="ec2-fleet-config12"></a>
 
 The following example demonstrates how to configure an EC2 Fleet to use attribute\-based instance type selection for identifying instance types\. To specify the required instance attributes, you specify the attributes in the `InstanceRequirements` structure\.
 

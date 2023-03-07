@@ -6,6 +6,7 @@ Create a new launch template using parameters that you define, or use an existin
 + [Create a new launch template using parameters you define](#create-launch-template-define-parameters)
 + [Create a launch template from an existing launch template](#create-launch-template-from-existing-launch-template)
 + [Create a launch template from an instance](#create-launch-template-from-instance)
++ [Use a Systems Manager parameter instead of an AMI ID](#use-an-ssm-parameter-instead-of-an-ami-id)
 
 ## Create a new launch template using parameters you define<a name="create-launch-template-define-parameters"></a>
 
@@ -72,13 +73,14 @@ First select the OS that you need, and then, from **Amazon Machine Image \(AMI\)
 Choose **Browse more AMIs** to browse the full AMI catalog\.  
 + To search through all available AMIs, enter a keyword in the search bar and then press **Enter**\.
 + To find an AMI using a Systems Manager parameter, choose the arrow button to the right of the search bar, and then choose **Search by Systems Manager parameter**\. For more information, see [Use a Systems Manager parameter to find an AMI](finding-an-ami.md#using-systems-manager-parameter-to-find-AMI)\.
++ To specify a Systems Manager parameter that will resolve to an AMI at the time an instance is launched from the launch template, choose the arrow button to the right of the search bar, and then choose **Specify custom value/Systems Manager parameter**\. For more information, see [Use a Systems Manager parameter instead of an AMI ID](#use-an-ssm-parameter-instead-of-an-ami-id)\.
 + To search by category, choose **Quickstart AMIs**, **My AMIs**, **AWS Marketplace AMIs**, or **Community AMIs**\.
 
   The AWS Marketplace is an online store where you can buy software that runs on AWS, including AMIs\. For more information about launching an instance from the AWS Marketplace, see [Launch an AWS Marketplace instance](launch-marketplace-console.md)\. In **Community AMIs**, you can find AMIs that AWS community members have made available for others to use\. AMIs from Amazon or a verified partner are marked **Verified provider**\.
 + To filter the list of AMIs, select one or more check boxes under **Refine results** on the left of the screen\. The filter options are different depending on the selected search category\.
 + Check the **Root device type** listed for each AMI\. Notice which AMIs are the type that you need: either **ebs** \(backed by Amazon EBS\) or **instance\-store** \(backed by instance store\)\. For more information, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\. 
 + Check the **Virtualization** type listed for each AMI\. Notice which AMIs are the type that you need: either **hvm** or **paravirtual**\. For example, some instance types require HVM\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
-+ Check the **Boot mode** listed for each AMI\. Notice which AMIs use the boot mode that you need: either **legacy\-bios** or **uefi**\. For more information, see [Boot modes](ami-boot.md)\.
++ Check the **Boot mode** listed for each AMI\. Notice which AMIs use the boot mode that you need: either **legacy\-bios**, **uefi**, or **uefi\-preferred**\. For more information, see [Boot modes](ami-boot.md)\.
 + Choose an AMI that meets your needs, and then choose **Select**\.
 
 #### Instance type<a name="lt-instance-type"></a>
@@ -401,3 +403,117 @@ You can use the AWS CLI to create a launch template from an existing instance by
 + Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) command to create a launch template using the output from the previous procedure\. For more information about creating a launch template using the AWS CLI, see [Create a new launch template using parameters you define](#create-launch-template-define-parameters)\.
 
 ------
+
+## Use a Systems Manager parameter instead of an AMI ID<a name="use-an-ssm-parameter-instead-of-an-ami-id"></a>
+
+Instead of specifying an AMI ID in your launch templates, you can specify an AWS Systems Manager parameter\. If the AMI ID changes, you can update the AMI ID in one place by updating the Systems Manager parameter in the Systems Manager Parameter Store\. By using a Systems Manager parameter, all your launch templates can be updated in a single action\.
+
+A Systems Manager parameter is a user\-defined key\-value pair that you create in the Systems Manager Parameter Store\. The Parameter Store provides a central place to store your application configuration values\. For more information, see [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) in the *AWS Systems Manager User Guide*\.
+
+In the following diagram, the `golden-ami` parameter is first mapped to the original AMI `ami-aabbccddeeffgghhi` in the Parameter Store\. In the launch template, the value for the AMI ID is `golden-ami`\. When an instance is launched using this launch template, the AMI ID resolves to `ami-aabbccddeeffgghhi`\. Later, the AMI is updated resulting in a new AMI ID\. In the Parameter Store, the `golden-ami` parameter is mapped to the new `ami-00112233445566778`\. *The launch template remains unchanged\.* When an instance is launched using this launch template, the AMI ID resolves to the new `ami-00112233445566778`\.
+
+![\[Using Systems Manager parameters in the Parameter Store to update a launch template.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/launch-template-ami-alias.png)
+
+### Systems Manager parameter format for AMI IDs<a name="ssm-parameter-format-for-ami-ids"></a>
+
+Launch templates require that user\-defined Systems Manager parameters adhere to the following format when used in place of an AMI ID:
++ Parameter type: `String`
++ Parameter data type: `aws:ec2:image` – This ensures that Parameter Store validates that the value you enter is in the proper format for an AMI ID\.
+
+For more information about creating a valid parameter for an AMI ID, see [Creating Systems Manager parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html) in the *AWS Systems Manager User Guide*\.
+
+### Systems Manager parameter format in launch templates<a name="ssm-parameter-format-in-launch-templates"></a>
+
+To use a Systems Manager parameter in place of an AMI ID in a launch template, you must use one of the following formats when specifying the parameter in the launch template:
++ `resolve:ssm:parameter-name`
++ `resolve:ssm:parameter-name:version-number` – The version number itself is a default label
++ `resolve:ssm:parameter-name:label`
+
+**Parameter versions**
+
+Systems Manager parameters are versioned resources\. When you update a parameter, you create new, successive versions of the parameter\. Systems Manager supports [parameter labels](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html) that you can map to specific versions of a parameter\.
+
+For example, the `golden-ami` parameter can have three versions: `1`, `2`, and `3`\. You can create a parameter label `beta` that maps to version `2`, and a parameter label `prod` that maps to version `3`\.
+
+In a launch template, you can specify version 3 of the `golden-ami` parameter by using either of the following formats:
++ `resolve:ssm:golden-ami:3`
++ `resolve:ssm:golden-ami:prod`
+
+Specifying the version or label is optional\. If a version or label is not specified, the latest version of the parameter is used\.
+
+### Specify a Systems Manager parameter in a launch template<a name="specify-systems-manager-parameter-in-launch-template"></a>
+
+You can specify a Systems Manager parameter in a launch template instead of an AMI ID when you create a launch template or a new version of a launch template\.
+
+------
+#### [ Console ]
+
+**To specify a Systems Manager parameter in a launch template**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Launch Templates**, and then choose **Create launch template**\. 
+
+1. For **Launch template name**, enter a descriptive name for the launch template\.
+
+1. Under **Application and OS Images \(Amazon Machine Image\)**, choose **Browse more AMIs**\.
+
+1. Choose the arrow button to the right of the search bar, and then choose **Specify custom value/Systems Manager parameter**\.
+
+1. In the **Specify custom value or Systems Manager parameter** dialog box, do the following:
+
+   1. For **AMI ID or Systems Manager parameter string**, enter the Systems Manager parameter name using one of the following formats:
+      + **resolve:ssm:*parameter\-name***
+      + **resolve:ssm:*parameter\-name*:*version\-number***
+      + **resolve:ssm:*parameter\-name*:*label***
+
+   1. Choose **Save**\.
+
+1. Specify any other launch template parameters as needed, and then choose **Create launch template**\.
+
+For more information, see [Create a new launch template using parameters you define](#create-launch-template-define-parameters)\.
+
+------
+#### [ AWS CLI ]
+
+**To specify a Systems Manager parameter in a launch template**
++ Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) command to create the launch template\. To specify the AMI to use, enter the Systems Manager parameter name using one of the following formats:
+  + `resolve:ssm:parameter-name`
+  + `resolve:ssm:parameter-name:version-number`
+  + `resolve:ssm:parameter-name:label`
+
+  The following example creates a launch template that specifies the following:
+  + A name for the launch template \(`TemplateForWebServer`\)
+  + A tag for the launch template \(`purpose`=`production`\)
+  + The data for the instance configuration, specified in a JSON file:
+    + The AMI to use \(`resolve:ssm:golden-ami`\)
+    + The instance type to launch \(`m5.4xlarge`\)
+    + A tag for the instance \(`Name`=`webserver`\)
+
+  ```
+  aws ec2 create-launch-template \
+      --launch-template-name TemplateForWebServer \
+      --tag-specifications 'ResourceType=launch-template,Tags=[{Key=purpose,Value=production}]' \
+      --launch-template-data file://template-data.json
+  ```
+
+  The following is an example JSON file that contains the launch template data for the instance configuration\. The value for `ImageId` is the Systems Manager parameter name, entered in the required format `resolve:ssm:golden-ami`\.
+
+  ```
+  {"LaunchTemplateData": {
+      "ImageId": "resolve:ssm:golden-ami",
+      "InstanceType": "m5.4xlarge",
+      "TagSpecifications": [{
+          "ResourceType": "instance",
+          "Tags": [{
+              "Key":"Name",
+              "Value":"webserver"
+          }]
+      }]
+    }
+  }
+  ```
+
+------
+
+For more information about using a launch template in an Auto Scaling group, see [Using AWS Systems Manager parameters instead of AMI IDs in launch templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/using-systems-manager-parameters.html) in the *Amazon EC2 Auto Scaling User Guide*\.

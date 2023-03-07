@@ -25,7 +25,7 @@ You can view, add, and delete tags using one of the following methods\.
 #### [ AWS CLI ]
 
 **To view public key tags**  
-Use the [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html) AWS CLI command\. In the following example, you describe the tags for all of your public keys\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html) AWS CLI command\. In the following example, you describe the tags for all of your public keys\.
 
 ```
 $ aws ec2 describe-tags --filters "Name=resource-type,Values=key-pair"
@@ -50,7 +50,7 @@ $ aws ec2 describe-tags --filters "Name=resource-type,Values=key-pair"
 ```
 
 **To describe the tags for a specific public key**  
-Use the [ describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) AWS CLI command\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) AWS CLI command\.
 
 ```
 $ aws ec2 describe-key-pairs --key-pair-ids key-0123456789EXAMPLE
@@ -73,28 +73,28 @@ $ aws ec2 describe-key-pairs --key-pair-ids key-0123456789EXAMPLE
 ```
 
 **To tag a public key**  
-Use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) AWS CLI command\. In the following example, the public key is tagged with `Key=Cost-Center` and `Value=CC-123`\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) AWS CLI command\. In the following example, the public key is tagged with `Key=Cost-Center` and `Value=CC-123`\.
 
 ```
 $ aws ec2 create-tags --resources key-0123456789EXAMPLE --tags Key=Cost-Center,Value=CC-123
 ```
 
 **To delete a tag from a public key**  
-Use the [delete\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html) AWS CLI command\. For examples, see [Examples](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html#examples) in the *AWS CLI Command Reference*\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html) AWS CLI command\. For examples, see [Examples](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html#examples) in the *AWS CLI Command Reference*\.
 
 ------
 #### [ PowerShell ]
 
 **To view public key tags**  
-Use the [Get\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html) command\.
+Use the [https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html) command\.
 
 **To describe the tags for a specific public key**  
-Use the [Get\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2KeyPair.html) command\.
+Use the [https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2KeyPair.html](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2KeyPair.html) command\.
 
 **To tag a public key**  
-Use the [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) command\.
+Use the [https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) command\.
 
 **To delete a tag from a public key**  
-Use the [Remove\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Tag.html) command\.
+Use the [https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Tag.html](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Tag.html) command\.
 
 ------

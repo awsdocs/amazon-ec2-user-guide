@@ -215,6 +215,7 @@ The following is an example of the `policyDetails.json` file\.
 ## Considerations for AMI lifecycle policies<a name="ami-considerations"></a>
 
 The following **general considerations** apply to creating AMI lifecycle policies:
++ AMI lifecycle policies target only instances that are in the same Region as the policy\.
 + The first AMI creation operation starts within one hour after the specified start time\. Subsequent AMI creation operations start within one hour of their scheduled time\.
 + When Amazon Data Lifecycle Manager deregisters an AMI, it automatically deletes it backing snapshots\.
 + Target resource tags are case sensitive\.

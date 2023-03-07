@@ -32,7 +32,7 @@ SSD\-backed volumes are optimized for transactional workloads involving frequent
 
 † To achieve maximum throughput of 1,000 MiB/s, the volume must be provisioned with 64,000 IOPS and it must be attached to an [instance built on the Nitro System](instance-types.md#ec2-nitro-instances)\. `io1` volumes created before **December 6, 2017** and that have not been modified since creation, might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
 
-‡ `io2` Block Express volumes are supported with C6in, C7g, M6in, M6idn, R5b, R6in, R6idn, Trn1, X2idn, and X2iedn instances only\. `io2` volumes attached to these instances, during or after launch, automatically run on Block Express\. For more information, see [`io2` Block Express volumes](provisioned-iops.md#io2-block-express)\.
+‡ `io2` Block Express volumes are supported with C6in, C7g, M6in, M6idn, M7g, R5b, R6in, R6idn, R7g, Trn1, X2idn, and X2iedn instances only\. `io2` volumes attached to these instances, during or after launch, automatically run on Block Express\. For more information, see [`io2` Block Express volumes](provisioned-iops.md#io2-block-express)\.
 
 For more information about the SSD\-backed volume types, see the following:
 + [General Purpose SSD volumes](general-purpose.md)
@@ -58,4 +58,21 @@ For more information about the Hard disk drives \(HDD\) volumes, see [Throughput
 
 ## Previous generation volumes<a name="vol-type-prev"></a>
 
-Previous generation volumes are hard disk drives that you can use for workloads with small datasets where data is accessed infrequently and performance is not of primary importance\. We recommend that you consider a current generation volume type instead\. For more information, see [Previous generation Magnetic volumes](EBSVolumeTypes_standard.md)\.
+Magnetic \(`standard`\) volumes are previous generation volumes that are backed by magentic drives\. They are suited for workloads with small datasets where data is accessed infrequently and performance is not of primary importance\. These volumes deliver approximately 100 IOPS on average, with burst capability of up to hundreds of IOPS, and they can range in size from 1 GiB to 1 TiB\.
+
+**Tip**  
+Magnetic is a previous generation volume type\. If you need higher performance or performance consistency than previous\-generation volumes can provide, we recommend using one of the newer volume types\.
+
+The following table describes previous\-generation EBS volume types\.
+
+
+|  | Magnetic | 
+| --- | --- | 
+| Volume type | standard | 
+| Use cases | Workloads where data is infrequently accessed | 
+| Volume size | 1 GiB\-1 TiB | 
+| Max IOPS per volume | 40–200 | 
+| Max throughput per volume | 40–90 MiB/s | 
+| Boot volume | Supported | 
+
+For more information, see [ Previous Generation Volumes](http://aws.amazon.com/ebs/previous-generation/)\.

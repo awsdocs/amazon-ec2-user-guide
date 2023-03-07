@@ -5,5 +5,5 @@ Access to Amazon Data Lifecycle Manager requires credentials\. Those credentials
 **Topics**
 + [AWS managed policies](managed-policies.md)
 + [IAM service roles](service-role.md)
-+ [Permissions for IAM users](dlm-access-control.md)
++ [Permissions for users](dlm-access-control.md)
 + [Permissions for encryption](dlm-access-cmk.md)

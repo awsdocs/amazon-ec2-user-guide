@@ -10,4 +10,4 @@ Here's an example of some of the questions that you can answer when using Cost E
 + How well am I using my Reserved Instances?
 + Are my Reserved Instances helping me save money?
 
-For more information about working with reports in Cost Explorer, including saving reports, see [Analyzing your costs with Cost Explorer](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-explorer-what-is.html)\.
+For more information about working with reports in Cost Explorer, including saving reports, see [Analyzing your costs with AWS Cost Explorer](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-explorer-what-is.html) in the *AWS Cost Management User Guide*\.

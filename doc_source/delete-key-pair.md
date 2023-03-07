@@ -29,12 +29,12 @@ You can delete a public key on Amazon EC2 using the following methods\.
 #### [ AWS CLI ]
 
 **To delete your public key on Amazon EC2**  
-Use the [delete\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-key-pair.html) AWS CLI command\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-key-pair.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-key-pair.html) AWS CLI command\.
 
 ------
 #### [ PowerShell ]
 
 **To delete your public key on Amazon EC2**  
-Use the [Remove\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2KeyPair.html) AWS Tools for Windows PowerShell command\.
+Use the [https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2KeyPair.html](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2KeyPair.html) AWS Tools for Windows PowerShell command\.
 
 ------

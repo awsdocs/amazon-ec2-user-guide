@@ -8,6 +8,9 @@ For protocols other than TCP, UDP, or ICMP, only the IP address and protocol num
 
 When you change a security group rule, its tracked connections are not immediately interrupted\. The security group continues to allow packets until existing connections time out\. To ensure that traffic is immediately interrupted, or that all traffic is subject to firewall rules regardless of the tracking state, you can use a network ACL for your subnet\. Network ACLs are stateless and therefore do not automatically allow response traffic\. Adding a network ACL that blocks traffic in either direction breaks existing connections\. For more information, see [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html) in the *Amazon VPC User Guide*\.
 
+**Note**  
+Security groups have no effect on DNS traffic to or from the Route 53 Resolver, sometimes referred to as the 'VPC\+2 IP address' \(see [What is Amazon Route 53 Resolver?](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html) in the *Amazon Route 53 Developer Guide*\), or the ‘AmazonProvidedDNS’ \(see [Work with DHCP option sets](https://docs.aws.amazon.com/vpc/latest/userguide/DHCPOptionSet.html) in the *Amazon Virtual Private Cloud User Guide*\)\. If you wish to filter DNS requests through the Route 53 Resolver, you can enable Route 53 Resolver DNS Firewall \(see [Route 53 Resolver DNS Firewall](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall.html) in the *Amazon Route 53 Developer Guide*\)\.
+
 ## Untracked connections<a name="untracked-connections"></a>
 
 Not all flows of traffic are tracked\. If a security group rule permits TCP or UDP flows for all traffic \(0\.0\.0\.0/0 or ::/0\) and there is a corresponding rule in the other direction that permits all response traffic \(0\.0\.0\.0/0 or ::/0\) for all ports \(0\-65535\), then that flow of traffic is not tracked, unless it is part of an [automatically tracked connection](#automatic-tracking)\. The response traffic for an untracked flow is allowed based on the inbound or outbound rule that permits the response traffic, not based on tracking information\.
@@ -16,7 +19,7 @@ An untracked flow of traffic is immediately interrupted if the rule that enables
 
 ## Automatically tracked connections<a name="automatic-tracking"></a>
 
-All ICMP connections are automatically tracked\. Connections made through the following are automatically tracked, even if the security group configuration does not otherwise require tracking\. These connections must be tracked to ensure symmetric routing, as there could be multiple valid reply paths\.
+Connections made through the following are automatically tracked, even if the security group configuration does not otherwise require tracking\. These connections must be tracked to ensure symmetric routing, as there could be multiple valid reply paths\.
 + Egress\-only internet gateways
 + Gateway Load Balancers
 + Global Accelerator accelerators

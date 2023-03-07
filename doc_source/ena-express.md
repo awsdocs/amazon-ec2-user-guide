@@ -9,7 +9,12 @@ ENA Express is powered by AWS Scalable Reliable Datagram \(SRD\) technology\. SR
 + Handles some tasks directly in the network layer, such as packet reordering on the receiving end, and most retransmits that are needed\. This frees up the application layer for other work\.
 
 **Note**  
-If your application sends or receives a high volume of packets per second, and needs to minimize P50 latency, [Enhanced networking](enhanced-networking.md) might be a better fit for your network\.
+If your application sends or receives a high volume of packets per second, and needs to optimize for latency most of the time, especially during periods when there is no congestion on the network, [Enhanced networking](enhanced-networking.md) might be a better fit for your network\.
+
+During periods of time when network traffic is light, you might notice a slight increase in packet latency \(tens of microseconds\) when the packet uses ENA Express\. During those times, applications that prioritize specific network performance characteristics can benefit from ENA Express as follows:
++ Processes can benefit from increased maximum single flow bandwidth from 5 Gbps to 25 Gbps within the same subnet\.
++ Longer running processes should experience reduced tail latency during periods of network congestion\.
++ Processes can benefit from a smoother and more standard distribution for network response times\.
 
 ## Prerequisites<a name="ena-express-prerequisites"></a>
 
@@ -39,16 +44,32 @@ To ensure that ENA Express can manage network traffic as intended, sending and r
   In this case, TCP traffic between the two instances can use ENA Express, as both instances have enabled it\. However, since one of the instances does not use ENA Express for UDP traffic, communication between these two instances over UDP uses standard ENA transmission\.
 + The sending and receiving instances must run in the same subnet\.
 + The network path between the instances must not include middleware boxes\. ENA Express doesn't currently support middleware boxes\.
++ To utilize full bandwidth potential, use driver version 2\.2\.9 or higher\.
++ To produce metrics, use driver version 2\.8 or higher\.
 
-If any requirement is unmet, the instances use the standard ENA driver to communicate\.
-
-Amazon EC2 refers to the relationship between an instance and a network interface that's attached to it as an *attachment*\. ENA Express settings apply to the attachment\. If the network interface is detached from the instance, the attachment no longer exists, and the ENA Express settings that applied to it are no longer in force\. The same is true when an instance is terminated, even if the network interface remains\.
+If any requirement is unmet, the instances use the standard TCP/UDP protocol but without SRD to communicate\.
 
 To ensure that your instance network driver is configured for optimum performance, review the recommended best practices for ENA drivers\. These best practices apply to ENA Express, as well\. For more information, see the [ENA Linux Driver Best Practices and Performance Optimization Guide](https://github.com/amzn/amzn-drivers/blob/master/kernel/linux/ena/ENA_Linux_Best_Practices.rst) on the GitHub website\.
 
+**Note**  
+Amazon EC2 refers to the relationship between an instance and a network interface that's attached to it as an *attachment*\. ENA Express settings apply to the attachment\. If the network interface is detached from the instance, the attachment no longer exists, and the ENA Express settings that applied to it are no longer in force\. The same is true when an instance is terminated, even if the network interface remains\.
+
 ## Supported instance types for ENA Express<a name="ena-express-supported-instance-types"></a>
 
-ENA Express is supported by the c6gn\.16xl instance type\.
+The following table contains instance types that support ENA Express\.
+
+
+| Instance family | Instance type | Instance size | Architecture | 
+| --- | --- | --- | --- | 
+| General purpose | m6i | m6i\.32xl, m6i\.metal | x86\_64 | 
+| General purpose | m6id | m6id\.32xl, m6id\.metal | x86\_64 | 
+| Compute optimized | c6gn | c6gn\.16xl | arm64 | 
+| Compute optimized | c6i | c6i\.32xl, c6i\.metal | x86\_64 | 
+| Compute optimized | c6id | c6id\.32xl, c6id\.metal | x86\_64 | 
+| Memory optimized | r6i | r6i\.32xl, r6i\.metal | x86\_64 | 
+| Memory optimized | r6id | r6id\.32xl, r6id\.metal | x86\_64 | 
+| Storage optimized | i4i | i4i\.32xl, i4i\.metal | x86\_64 | 
+| Storage optimized | im4gn | im4gn\.16xl | arm64 | 
 
 ## List and view ENA Express settings<a name="ena-express-list-view"></a>
 

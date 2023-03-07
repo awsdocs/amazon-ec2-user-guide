@@ -55,6 +55,7 @@ The following table lists the Regions provided by an AWS account\. You can't des
 | ap\-east\-1 | Asia Pacific \(Hong Kong\) | Required | 
 | ap\-south\-2 | Asia Pacific \(Hyderabad\) | Required | 
 | ap\-southeast\-3 | Asia Pacific \(Jakarta\) | Required | 
+| ap\-southeast\-4 | Asia Pacific \(Melbourne\) | Required | 
 | ap\-south\-1 | Asia Pacific \(Mumbai\) | Not required | 
 | ap\-northeast\-3 | Asia Pacific \(Osaka\) | Not required | 
 | ap\-northeast\-2 | Asia Pacific \(Seoul\) | Not required | 

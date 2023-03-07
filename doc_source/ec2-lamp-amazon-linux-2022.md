@@ -6,9 +6,6 @@ The following procedures help you install an Apache web server with PHP and [Mar
 These procedures are intended for use with Amazon Linux 2022, which is still in preview\. You can access the official Amazon Linux 2022 AMIs in the AWS Management Console by using the search filters **Amazon Linux 2022** and **Owner alias = amazon** when searching through the AMI catalog, or by clicking directly from the [Amazon Linux 2022](https://aws.amazon.com/linux/amazon-linux-2022/) news post\.  
 If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux 2, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. For Amazon Linux AMI, see [Tutorial: Install a LAMP web server on the Amazon Linux AMI](install-LAMP.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
 
-**Option: Complete this tutorial using automation**  
-To complete this tutorial using AWS Systems Manager Automation instead of the following tasks, run the [AWSDocs\-InstallALAMPServer\-AL2](https://console.aws.amazon.com/systems-manager/automation/execute/AWSDocs-InstallALAMPServer-AL2) Automation document\.
-
 **Topics**
 + [Step 1: Prepare the LAMP server](#prepare-lamp-server-2022)
 + [Step 2: Test your LAMP server](#test-lamp-server-2022)
@@ -32,13 +29,13 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
    The `-y` option installs the updates without asking for confirmation\. If you would like to examine the updates before installing, you can omit this option\.
 
    ```
-   [ec2-user ~]$ sudo yum update -y
+   [ec2-user ~]$ sudo dnf update -y
    ```
 
 1. Install the latest versions of Apache web server and PHP packages for Amazon Linux 2022\.
 
    ```
-   [ec2-user ~]$ sudo yum install -y httpd wget php-fpm php-mysqli php-json php php-devel
+   [ec2-user ~]$ sudo dnf install -y httpd wget php-fpm php-mysqli php-json php php-devel
    ```
 
 1. Install the MariaDB software packages\. Use the dnf install command to install multiple software packages and all related dependencies at the same time\.
@@ -50,7 +47,32 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
    You can view the current versions of these packages using the following command:
 
    ```
-   yum info package_name
+   [ec2-user ~]$ sudo dnf info package_name
+   ```
+
+   Example:
+
+   ```
+   [root@ip-172-31-25-170 ec2-user]# dnf info mariadb105
+   Last metadata expiration check: 0:00:16 ago on Tue Feb 14 21:35:13 2023.
+   Installed Packages
+   Name         : mariadb105
+   Epoch        : 3
+   Version      : 10.5.16
+   Release      : 1.amzn2022.0.6
+   Architecture : x86_64
+   Size         : 18 M
+   Source       : mariadb105-10.5.16-1.amzn2022.0.6.src.rpm
+   Repository   : @System
+   From repo    : amazonlinux
+   Summary      : A very fast and robust SQL database server
+   URL          : http://mariadb.org
+   License      : GPLv2 and LGPLv2
+   Description  : MariaDB is a community developed fork from MySQL - a multi-user, multi-threaded
+                : SQL database server. It is a client/server implementation consisting of
+                : a server daemon (mariadbd) and many different client programs and libraries.
+                : The base package contains the standard MariaDB/MySQL client programs and
+                : utilities.
    ```
 
 1. Start the Apache web server\.
@@ -179,7 +201,7 @@ If your server is installed and running, and your file permissions are set corre
    If you do not see this page, verify that the `/var/www/html/phpinfo.php` file was created properly in the previous step\. You can also verify that all of the required packages were installed with the following command\.
 
    ```
-   [ec2-user ~]$ sudo yum list installed httpd mariadb-server php-mysqlnd
+   [ec2-user ~]$ sudo dnf list installed httpd mariadb-server php-mysqlnd
    ```
 
    If any of the required packages are not listed in your output, install them with the sudo yum install *package* command\.
@@ -250,7 +272,7 @@ We do not recommend using `phpMyAdmin` to access a LAMP server unless you have e
 1. Install the required dependencies\.
 
    ```
-   [ec2-user ~]$ sudo yum install php-mbstring php-xml -y
+   [ec2-user ~]$ sudo dnf install php-mbstring php-xml -y
    ```
 
 1. Restart Apache\.

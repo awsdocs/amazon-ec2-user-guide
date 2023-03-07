@@ -55,7 +55,7 @@ You can allocate an Elastic IP address from Amazon's pool of public IPv4 address
 You can allocate an Elastic IP address using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To allocate an Elastic IP address**
 
@@ -81,21 +81,6 @@ You can allocate an Elastic IP address using one of the following methods\.
 1. Choose **Allocate**\.
 
 ------
-#### [ Old console ]
-
-**To allocate an Elastic IP address**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic IPs**\.
-
-1. Choose **Allocate new address**\.
-
-1. For **IPv4 address pool**, choose **Amazon pool**\.
-
-1. Choose **Allocate**, and close the confirmation screen\.
-
-------
 #### [ AWS CLI ]
 
 **To allocate an Elastic IP address**  
@@ -114,7 +99,7 @@ Use the [New\-EC2Address](https://docs.aws.amazon.com/powershell/latest/referenc
 You can describe an Elastic IP address using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To describe your Elastic IP addresses**
 
@@ -123,17 +108,6 @@ You can describe an Elastic IP address using one of the following methods\.
 1. In the navigation pane, choose **Elastic IPs**\.
 
 1. Select the Elastic IP address to view and choose **Actions**, **View details**\.
-
-------
-#### [ Old console ]
-
-**To describe your Elastic IP addresses**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic IPs**\. 
-
-1. Select a filter from the Resource Attribute list to begin searching\. You can use multiple filters in a single search\.
 
 ------
 #### [ AWS CLI ]
@@ -158,7 +132,7 @@ Cost allocation tracking using Elastic IP address tags is not supported\.
 You can tag an Elastic IP address using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To tag an Elastic IP address**
 
@@ -173,25 +147,6 @@ You can tag an Elastic IP address using one of the following methods\.
 1. Specify a tag key and value pair\.
 
 1. \(Optional\) Choose **Add tag** to add additional tags\.
-
-1. Choose **Save**\.
-
-------
-#### [ Old console ]
-
-**To tag an Elastic IP address**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic IPs**\. 
-
-1. Select the Elastic IP address to tag and choose **Tags**\. 
-
-1. Choose **Add/Edit Tags**\.
-
-1. In the **Add/Edit Tags** dialog box, choose **Create Tag**, and then specify the key and value for the tag\.
-
-1. \(Optional\) Choose **Create Tag** to add additional tags to the Elastic IP address\.
 
 1. Choose **Save**\.
 
@@ -232,7 +187,7 @@ If you're associating an Elastic IP address with your instance to enable communi
 You can associate an Elastic IP address with an instance or network interface using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To associate an Elastic IP address with an instance**
 
@@ -267,19 +222,6 @@ You can associate an Elastic IP address with an instance or network interface us
 1. Choose **Associate**\.
 
 ------
-#### [ Old console ]
-
-**To associate an Elastic IP address with an instance**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic IPs**\. 
-
-1. Select an Elastic IP address and choose **Actions**, **Associate address**\. 
-
-1. Select the instance from **Instance** and then choose **Associate**\.
-
-------
 #### [ AWS CLI ]
 
 **To associate an Elastic IP address**  
@@ -300,7 +242,7 @@ You can disassociate an Elastic IP address from an instance or network interface
 You can disassociate an Elastic IP address using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To disassociate and reassociate an Elastic IP address**
 
@@ -311,19 +253,6 @@ You can disassociate an Elastic IP address using one of the following methods\.
 1. Select the Elastic IP address to disassociate, choose **Actions**, **Disassociate Elastic IP address**\.
 
 1. Choose **Disassociate**\.
-
-------
-#### [ Old console ]
-
-**To disassociate and reassociate an Elastic IP address**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic IPs**\. 
-
-1. Select the Elastic IP address, choose **Actions**, and then select **Disassociate address**\. 
-
-1. Choose **Disassociate address**\.
 
 ------
 #### [ AWS CLI ]
@@ -508,7 +437,7 @@ If you no longer need an Elastic IP address, we recommend that you release it us
 If you contacted AWS support to set up reverse DNS for an Elastic IP \(EIP\) address, you can remove the reverse DNS, but you can’t release the Elastic IP address because it’s been locked by AWS support\. To unlock the Elastic IP address, contact [AWS Support](https://console.aws.amazon.com/support/home#/)\. Once the Elastic IP address is unlocked, you can release the Elastic IP address\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To release an Elastic IP address**
 
@@ -519,17 +448,6 @@ If you contacted AWS support to set up reverse DNS for an Elastic IP \(EIP\) add
 1. Select the Elastic IP address to release and choose **Actions**, **Release Elastic IP addresses**\.
 
 1. Choose **Release**\.
-
-------
-#### [ Old console ]
-
-**To release an Elastic IP address**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Elastic IPs**\.
-
-1. Select the Elastic IP address, choose **Actions**, and then select **Release addresses**\. Choose **Release** when prompted\.
 
 ------
 #### [ AWS CLI ]

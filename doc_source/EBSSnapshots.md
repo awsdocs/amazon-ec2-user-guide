@@ -16,7 +16,7 @@ Snapshots can be used to create a backup of critical workloads, such as a large 
 Charges for your snapshots are based on the amount of data stored\. Because snapshots are incremental, deleting a snapshot might not reduce your data storage costs\. Data referenced exclusively by a snapshot is removed when that snapshot is deleted, but data referenced by other snapshots is preserved\. For more information, see [Amazon Elastic Block Store Volumes and Snapshots](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html#checkebsvolumes) in the *AWS Billing User Guide*\.
 
 **Topics**
-+ [How incremental snapshots work](#how_snapshots_work)
++ [How snapshots work](#how_snapshots_work)
 + [Copy and share snapshots](#copy-and-share)
 + [Encryption support for snapshots](#encryption-support)
 + [Create Amazon EBS snapshots](ebs-creating-snapshot.md)
@@ -30,36 +30,47 @@ Charges for your snapshots are based on the amount of data stored\. Because snap
 + [Use EBS direct APIs to access the contents of an EBS snapshot](ebs-accessing-snapshot.md)
 + [Automate the snapshot lifecycle](automating-snapshots.md)
 
-## How incremental snapshots work<a name="how_snapshots_work"></a>
+## How snapshots work<a name="how_snapshots_work"></a>
 
-This section shows how an EBS snapshot captures the state of a volume at a point in time, and how successive snapshots of a changing volume create a history of those changes\.
+The first snapshot that you create from a volume is always a *full snapshot*\. It includes all of the data blocks written to the volume at the time of creating the snapshot\. Subsequent snapshots of the same volume are *incremental snapshots*\. They include only changed and new data blocks written to the volume since the last snapshot was created
 
- **Relations among multiple snapshots of the same volume** 
+The size of a full snapshot is determined by the size of the data being backed up, not the size of the source volume\. Similarly, the storage costs associated with a full snapshot is determined by the size of the snapshot, not the size of the source volume\. For example, you create the first snapshot of a `200 GiB` Amazon EBS volume that contains only `50 GiB` of data\. This results in a full snapshot that is `50 GiB` in size, and you are billed for `50 GiB` snapshot storage\.
 
-The diagram in this section shows Volume 1 at three points in time\. A snapshot is taken of each of these three volume states\. The diagram specifically shows the following:
-+ In State 1, the volume has `10 GiB` of data\. Because **Snap A** is the first snapshot taken of the volume, the entire `10 GiB` of data must be copied\.
-+ In State 2, the volume still contains `10 GiB` of data, but `4 GiB` have changed\. **Snap B** needs to copy and store only the `4 GiB` that changed after **Snap A** was taken\. The other `6 GiB` of unchanged data, which are already copied and stored in **Snap A**, are *referenced* by **Snap B** rather than being copied again\. This is indicated by the dashed arrow\.
-+ In State 3, `2 GiB` of data have been added to the volume, for a total of `12 GiB`\. **Snap C** needs to copy the `2 GiB` that were added after **Snap B** was taken\. As shown by the dashed arrows, **Snap C** also references `4 GiB` of data stored in **Snap B**, and `6 GiB` of data stored in **Snap A**\. 
-+ The total storage required for the three snapshots is `16 GiB`\.
+Similarly, the size and storage costs of an incremental snapshot are determined by the size of any data that was written to the volume since the previous snapshot was created\. Continuing this example, if you create a second snapshot of the `200 GiB` volume after changing `20 GiB` of data and adding `10 GiB` of data, the incremental snapshot is `30 GiB` in size\. You are then billed for that additional `30 GiB` snapshot storage\.
+
+For more information about snapshot pricing, see [ Amazon EBS pricing](http://aws.amazon.com/ebs/pricing/)\.
+
+**Important**  
+When you archive an incremental snapshot, it is converted to a full snapshot that includes all of the blocks written to the volume at the time that the snapshot was created\. It is then moved to the Amazon EBS Snapshots Archive tier\. Snapshots in the archive tier are billed at a different rate from snapshots in the standard tier\. For more information, see [Pricing and billing](snapshot-archive.md#snapshot-archive-pricing)\.
+
+The following sections show how an EBS snapshot captures the state of a volume at a point in time, and how subsequent snapshots of a changing volume create a history of those changes\.
+
+ **Multiple snapshots of the same volume** 
+
+The diagram in this section shows Volume 1, which is `15 GiB` in size, at three points in time\. A snapshot is taken of each of these three volume states\. The diagram specifically shows the following:
++ In **State 1**, the volume has `10 GiB` of data\. **Snap A** is the first snapshot taken of the volume\. **Snap A** is a full snapshot and the entire `10 GiB` of data is backed up\.
++ In **State 2**, the volume still contains `10 GiB` of data, but only `4 GiB` have changed after **Snap A** was taken\. **Snap B** is an incremental snapshot\. It needs to back up only the `4 GiB` that changed\. The other `6 GiB` of unchanged data, which are already backed up in **Snap A**, are *referenced* by **Snap B** rather than being backed up again\. This is indicated by the dashed arrow\.
++ In **State 3**, `2 GiB` of data have been added to the volume, for a total of `12 GiB`, after **Snap B** was taken\. **Snap C** is an incremental snapshot\. It needs to back up only the `2 GiB` that were added after **Snap B** was taken\. As shown by the dashed arrows, **Snap C** also references the `4 GiB` of data stored in **Snap B**, and the `6 GiB` of data stored in **Snap A**\.
++ The total storage required for the three snapshots is `16 GiB` total\. This accounts for 10 GiB for Snap A, 4 GiB for Snap B, and 2 GiB for Snap C\.
 
 ![\[Snapshots capturing an initial volume state and two subsequent states after data has been changed.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1a.png)
 
- **Relations among incremental snapshots of different volumes** 
+ **Incremental snapshots of different volumes** 
 
 The diagram in this section shows how incremental snapshots can be taken from different volumes\.
 
-**Important**  
-The diagram assumes that you own **Vol 1** and that you have created **Snap A**\. If **Vol 1** was owned by another AWS account and that account took **Snap A** and shared it with you, then **Snap B** would be a full snapshot\.
-
-1. **Vol** 1 has `10 GiB` of data\. Because **Snap A** is the first snapshot taken of the volume, the entire `10 GiB` of data is copied and stored\.
+1. **Vol 1**, which is `14 GiB` in size, has `10 GiB` of data\. Because **Snap A** is the first snapshot taken of the volume, it is a full snapshot and the entire `10 GiB` of data is backed up\.
 
 1. **Vol 2** is created from **Snap A**, so it is an exact replica of **Vol 1** at the time the snapshot was taken\.
 
-1. Over time, `4 GiB` of data is added to **Vol 2** and its total size becomes `14 GiB`\.
+1. Over time, `4 GiB` of data is added to **Vol 2** and the total size of its data is `14 GiB`\.
 
-1. **Snap B** is taken from **Vol 2**\. For **Snap B**, only the `4 GiB` of data that was added after the volume was created from **Snap A** is copied and stored\. The other `10 GiB` of unchanged data, which is already stored in **Snap A**, is referenced by **Snap B** instead of being copied and stored again\.
+1. **Snap B** is taken from **Vol 2**\. For **Snap B**, only the `4 GiB` of data that was added after the volume was created from **Snap A** is backed up\. The other `10 GiB` of unchanged data, which is already stored in **Snap A**, is referenced by **Snap B** instead of being backed up again\.
 
    **Snap B** is an incremental snapshot of **Snap A**, even though it was created from a different volume\.
+
+**Important**  
+The diagram assumes that you own **Vol 1** and **Snap A**, and that **Vol 2** is encrypted with the same KMS key as Vol 1\. If **Vol 1** was owned by another AWS account and that account took **Snap A** and shared it with you, then **Snap B** would be a full snapshot\. Or, if **Vol 2** was encrypted with a different KMS key than **Vol 1**, then **Snap B** would be a full snapshot\.
 
 ![\[Snapshots capturing an initial volume state and two subsequent states after data has been changed.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1c.png)
 

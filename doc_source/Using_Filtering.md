@@ -3,9 +3,9 @@
 You can get a list of some types of resources using the Amazon EC2 console\. You can get a list of each type of resource using its corresponding command or API action\. If you have many resources, you can filter the results to include, or exclude, only the resources that match certain criteria\.
 
 **Topics**
-+ [List and filter resources using the console](#advancedsearch)
-+ [List and filter using the CLI and API](#Filtering_Resources_CLI)
-+ [List and filter resources across Regions using Amazon EC2 Global View](#global-view)
++ [Console steps](#advancedsearch)
++ [CLI and API steps](#Filtering_Resources_CLI)
++ [Global View \(cross\-Region\)](#global-view)
 
 ## List and filter resources using the console<a name="advancedsearch"></a>
 
@@ -98,7 +98,7 @@ When searching by tag, you can use the following values:
 You can use the following techniques to enhance or refine your searches:
 
 **Inverse search**  
-Inverse searches let you search for resources that do **not** match a specified value\. In the **Instances** and **AMIs** screens, inverse searches are performed by selecting the **\!=** \(Does not equal\) or **\!:** \(Does not contain\) operator and then selecting a value\. In other screens, inverse searches are peformed by prefixing the search keyword with the exclamation mark \(\!\) character\.  
+Inverse searches let you search for resources that do **not** match a specified value\. In the **Instances** and **AMIs** screens, inverse searches are performed by selecting the **\!=** \(Does not equal\) or **\!:** \(Does not contain\) operator and then selecting a value\. In other screens, inverse searches are performed by prefixing the search keyword with the exclamation mark \(\!\) character\.  
 Inverse search is supported with keyword searches and attribute searches on *client* filters only\. It is not supported with attribute searches on API filters\.
 For example, you can search the **Instance state** attribute for all of your instances to exclude all instances that are in the `terminated` state\. To do this:  
 
@@ -179,7 +179,7 @@ To see the supported filters for each Amazon EC2 resource, see the following doc
 + Query API: The `Describe` API actions in the [Amazon EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/)\.
 
 **Example: Specify a single filter**  
-You can list your Amazon EC2 instances using [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)\. Without filters, the response contains information for all of your resources\. You can use the following command to include only the running instances in your output\.  
+You can list your Amazon EC2 instances using [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)\. Without filters, the response contains information for all of your resources\. You can use the following command to include only the running instances in your output\.  
 
 ```
 aws ec2 describe-instances --filters Name=instance-state-name,Values=running
@@ -233,7 +233,7 @@ aws ec2 describe-snapshots --filters Name=description,Values=database????
 ```
 
 **Example: Filter based on date**  
-With the AWS CLI, you can use JMESPath to filter results using expressions\. For example, the following [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html) command displays the IDs of all snapshots created by your AWS account \(represented by *123456789012*\) before the specified date \(represented by *2020\-03\-31*\)\. If you do not specify the owner, the results include all public snapshots\.  
+With the AWS CLI, you can use JMESPath to filter results using expressions\. For example, the following [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html) command displays the IDs of all snapshots created by your AWS account \(represented by *123456789012*\) before the specified date \(represented by *2020\-03\-31*\)\. If you do not specify the owner, the results include all public snapshots\.  
 
 ```
 aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "Snapshots[?(StartTime<='2020-03-31')].[SnapshotId]" --output text
@@ -254,7 +254,7 @@ Amazon EC2 Global View enables you to view some of your Amazon EC2 and Amazon VP
 Amazon EC2 Global View does not let you modify resources in any way\.
 
 **Required permissions**  
-An IAM user must have the following permissions to use Amazon EC2 Global View\.
+A user must have the following permissions to use Amazon EC2 Global View\.
 
 ```
 {

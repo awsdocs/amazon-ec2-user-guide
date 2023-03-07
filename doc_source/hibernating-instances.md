@@ -3,9 +3,9 @@
 You can hibernate an instance if the instance is [enabled for hibernation](enabling-hibernation.md) and meets the [hibernation prerequisites](hibernating-prerequisites.md)\. If an instance cannot hibernate successfully, a normal shutdown occurs\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
-**To hibernate an Amazon EBS\-backed instance using the console**
+**To hibernate an Amazon EBS\-backed instance**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -16,22 +16,9 @@ You can hibernate an instance if the instance is [enabled for hibernation](enabl
 1. When prompted for confirmation, choose **Hibernate**\. It can take a few minutes for the instance to hibernate\. The instance state first changes to **Stopping**, and then changes to **Stopped** when the instance has hibernated\.
 
 ------
-#### [ Old console ]
-
-**To hibernate an Amazon EBS\-backed instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select an instance, and choose **Actions**, **Instance State**, **Stop \- Hibernate**\. If **Stop \- Hibernate** is disabled, the instance is already hibernated or stopped, or it can't be hibernated\. For more information, see [Hibernation prerequisites](hibernating-prerequisites.md)\.
-
-1. In the confirmation dialog box, choose **Yes, Stop \- Hibernate**\. It can take a few minutes for the instance to hibernate\. The **Instance State** first changes to **Stopping**, and then changes to **Stopped** when the instance has hibernated\.
-
-------
 #### [ AWS CLI ]
 
-**To hibernate an Amazon EBS\-backed instance using the AWS CLI**  
+**To hibernate an Amazon EBS\-backed instance**  
 Use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and specify the `--hibernate` parameter\.
 
 ```
@@ -57,9 +44,9 @@ Stop-EC2Instance `
  
 
 ------
-#### [ New console ]
+#### [ Console ]
 
-**To view if hibernation was initiated on an instance using the console**
+**To view if hibernation was initiated on an instance**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -68,20 +55,9 @@ Stop-EC2Instance `
 1. Select the instance and, on the **Details** tab, in the **Instance details** section, inspect **State transition message**\. The message **Client\.UserInitiatedHibernate: User initiated hibernate** indicates that hibernation was initiated on the instance\.
 
 ------
-#### [ Old console ]
-
-**To view if hibernation was initiated on an instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance and, in the details pane, inspect **State transition reason message**\. The message **Client\.UserInitiatedHibernate: User initiated hibernate** indicates that hibernation was initiated on the instance\.
-
-------
 #### [ AWS CLI ]
 
-**To view if hibernation was initiated on an instance using the AWS CLI**  
+**To view if hibernation was initiated on an instance**  
 Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `state-reason-code` filter to see the instances on which hibernation was initiated\.
 
 ```

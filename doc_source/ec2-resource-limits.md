@@ -8,9 +8,9 @@ For more information, see [Amazon EC2 endpoints and quotas](https://docs.aws.ama
 
 ## View your current limits<a name="view-limits"></a>
 
-Use the **Limits** page in the Amazon EC2 console to view the current limits for resources provided by Amazon EC2 and Amazon VPC, on a per\-Region basis\.
+You can view and manage your limits for each Region using the Amazon EC2 console or the Service Quotas console\.
 
-**To view your current limits**
+**To view your current limits using the Amazon EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -21,11 +21,19 @@ Use the **Limits** page in the Amazon EC2 console to view the current limits for
 
 1. Locate the resource in the list\. You can use the search fields to filter the list by resource name or resource group\. The **Current limit** column displays the current maximum for the resource for your account\.
 
+**To view your current limits using the Service Quotas console**
+
+1. Open the Service Quotas console at [https://console\.aws\.amazon\.com/servicequotas/home/services/ec2/quotas/](https://console.aws.amazon.com/servicequotas/home/services/ec2/quotas/)\.
+
+1. From the navigation bar, select a Region\.
+
+1. Use the search bar to filter the list by resource name\. For example, enter **On\-Demand** to locate the limits for On\-Demand Instances\.
+
+1. To view more information, choose the quota name to open the details page for the quota\.
+
 ## Request an increase<a name="request-increase"></a>
 
-Use the **Limits** page in the Amazon EC2 console to request an increase in your Amazon EC2 or Amazon VPC resources, on a per\-Region basis\.
-
-Alternatively, request an increase using Service Quotas\. For more information, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
+You can view and manage your limits for each Region\.
 
 **To request an increase using the Amazon EC2 console**
 
@@ -35,9 +43,23 @@ Alternatively, request an increase using Service Quotas\. For more information, 
 
 1. From the navigation pane, choose **Limits**\.
 
-1. Select the resource in the list, and choose **Request limit increase**\.
+1. Select the resource from the list and choose **Request limit increase**\.
 
 1. Complete the required fields on the limit increase form and choose **Submit**\. We'll respond to you using the contact method that you specified\.
+
+**To request an increase using the Service Quotas console**
+
+1. Open the Service Quotas console at [https://console\.aws\.amazon\.com/servicequotas/home/services/ec2/quotas/](https://console.aws.amazon.com/servicequotas/home/services/ec2/quotas/)\.
+
+1. From the navigation bar, select a Region\.
+
+1. Use the search bar to filter the list by resource name\.
+
+1. If the quota is adjustable, select the quota and choose **Request quota increase**\.
+
+1. Enter the new quota value and choose **Request**\.
+
+   You can track your request case using the AWS Support console\. For more information, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
 
 ## Restriction on email sent using port 25<a name="port-25-throttle"></a>
 

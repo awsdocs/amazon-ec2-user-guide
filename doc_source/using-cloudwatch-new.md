@@ -17,14 +17,14 @@ The following describes the data interval and charge for basic and detailed moni
 
 ## Required IAM permissions<a name="iam-detailed-monitoring"></a>
 
-To enable detailed monitoring for an instance, your IAM user must have permission to use the [ MonitorInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_MonitorInstances.html) API action\. To turn off detailed monitoring for an instance, your IAM user must have permission to use the [UnmonitorInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_UnmonitorInstances.html) API action\. 
+To enable detailed monitoring for an instance, your user must have permission to use the [https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_MonitorInstances.html](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_MonitorInstances.html) API action\. To turn off detailed monitoring for an instance, your user must have permission to use the [https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_UnmonitorInstances.html](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_UnmonitorInstances.html) API action\. 
 
 ## Enable detailed monitoring<a name="enable-detailed-monitoring"></a>
 
 You can enable detailed monitoring on an instance as you launch it or after the instance is running or stopped\. Enabling detailed monitoring on an instance does not affect the monitoring of the EBS volumes attached to the instance\. For more information, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To enable detailed monitoring for an existing instance**
 
@@ -39,24 +39,6 @@ You can enable detailed monitoring on an instance as you launch it or after the 
 1. Choose **Save**\.
 
 **To enable detailed monitoring when launching an instance**  
-When launching an instance using the AWS Management Console, select the **Monitoring** check box on the **Configure Instance Details** page\.
-
-------
-#### [ Old console ]
-
-**To enable detailed monitoring for an existing instance**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance and choose **Actions**, **CloudWatch Monitoring**, **Enable Detailed Monitoring**\.
-
-1. In the **Enable Detailed Monitoring** dialog box, choose **Yes, Enable**\.
-
-1. Choose **Close**\.
-
-**To enable detailed monitoring when launching an instance \(console\)**  
 When launching an instance using the AWS Management Console, select the **Monitoring** check box on the **Configure Instance Details** page\.
 
 ------
@@ -83,7 +65,7 @@ aws ec2 run-instances --image-id ami-09092360 --monitoring Enabled=true...
 You can turn off detailed monitoring on an instance as you launch it or after the instance is running or stopped\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To turn off detailed monitoring**
 
@@ -96,21 +78,6 @@ You can turn off detailed monitoring on an instance as you launch it or after th
 1. On the **Detailed monitoring** detail page, for **Detailed monitoring**, clear the **Enable** check box\.
 
 1. Choose **Save**\.
-
-------
-#### [ Old console ]
-
-**To turn off detailed monitoring**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance and choose **Actions**, **CloudWatch Monitoring**, **Disable Detailed Monitoring**\.
-
-1. In the **Disable Detailed Monitoring** dialog box, choose **Yes, Disable**\.
-
-1. Choose **Close**\.
 
 ------
 #### [ AWS CLI ]

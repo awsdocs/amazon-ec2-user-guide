@@ -31,7 +31,7 @@ You can use the Amazon EC2 console or AWS CLI to view information about your pub
 #### [ AWS CLI ]
 
 **To describe a public key**  
-Use the [describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command and specify the `--key-names` parameter\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command and specify the `--key-names` parameter\.
 
 ```
 aws ec2 describe-key-pairs --key-names key-pair-name
@@ -161,7 +161,7 @@ If you specify a key pair when launching a Linux instance, when the instance boo
 
 **To retrieve the public key material from an instance**
 
-1. [Connect to your instance\.](AccessingInstances.md)
+1. [Connect to your instance](AccessingInstances.md)\.
 
 1. In the terminal window, open the `authorized_keys` file using your favorite text editor \(such as vim or nano\)\.
 
@@ -183,7 +183,7 @@ If you specify a key pair when launching a Linux instance, when the instance boo
 #### [ From describe\-key\-pairs ]
 
 **To retrieve the public key material from the `describe-key-pairs`AWS CLI command**  
-Use the [describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command and specify the `--key-names` parameter to identify the public key\. To include the public key material in the output, specify the `--include-public-key` parameter\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command and specify the `--key-names` parameter to identify the public key\. To include the public key material in the output, specify the `--include-public-key` parameter\.
 
 ```
 aws ec2 describe-key-pairs --key-names key-pair-name --include-public-key

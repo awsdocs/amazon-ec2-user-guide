@@ -7,7 +7,7 @@ No list of security guidelines can be exhaustive\. Build your shared AMIs carefu
 
 **Topics**
 + [Update the AMI tools before using them](#public-amis-update-ami-tools)
-+ [Disable password\-based remote logins for root](#public-amis-disable-password-logins-for-root)
++ [Disable password\-based remote logins for the root user](#public-amis-disable-password-logins-for-root)
 + [Disable local root access](#restrict-root-access)
 + [Remove SSH host key pairs](#remove-ssh-host-key-pairs)
 + [Install public key credentials](#public-amis-install-credentials)
@@ -38,13 +38,13 @@ Upgrade the AMI tools with the following command:
 
 For other distributions, make sure you have the latest AMI tools\.
 
-## Disable password\-based remote logins for root<a name="public-amis-disable-password-logins-for-root"></a>
+## Disable password\-based remote logins for the root user<a name="public-amis-disable-password-logins-for-root"></a>
 
 Using a fixed root password for a public AMI is a security risk that can quickly become known\. Even relying on users to change the password after the first login opens a small window of opportunity for potential abuse\. 
 
 To solve this problem, disable password\-based remote logins for the root user\.
 
-**To disable password\-based remote logins for root**
+**To disable password\-based remote logins for the root user**
 
 1. Open the `/etc/ssh/sshd_config` file with a text editor and locate the following line:
 
@@ -149,7 +149,7 @@ fi
 
 ------
 
- This can be applied to any user account; you do not need to restrict it to `root`\.
+ This can be applied to any user; you do not need to restrict it to the `root` user\.
 
 **Note**  
 Rebundling an instance based on this AMI includes the key with which it was launched\. To prevent the key's inclusion, you must clear out \(or delete\) the `authorized_keys` file or exclude this file from rebundling\. 
@@ -178,8 +178,8 @@ The location of this configuration file can differ for your distribution or if y
 ## Protect yourself<a name="public-amis-protect-yourself"></a>
 
 We recommend against storing sensitive data or software on any AMI that you share\. Users who launch a shared AMI might be able to rebundle it and register it as their own\. Follow these guidelines to help you to avoid some easily overlooked security risks: 
-+ We recommend using the `--exclude directory` option on `ec2-bundle-vol` to skip any directories and subdirectories that contain secret information that you would not like to include in your bundle\. In particular, exclude all user\-owned SSH public/private key pairs and SSH `authorized_keys` files when bundling the image\. The Amazon public AMIs store these in `/root/.ssh` for the root account, and `/home/user_name/.ssh/` for regular user accounts\. For more information, see [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol)\.
-+ Always delete the shell history before bundling\. If you attempt more than one bundle upload in the same AMI, the shell history contains your secret access key\. The following example should be the last command you run before bundling from within the instance\.
++ We recommend using the `--exclude directory` option on `ec2-bundle-vol` to skip any directories and subdirectories that contain secret information that you would not like to include in your bundle\. In particular, exclude all user\-owned SSH public/private key pairs and SSH `authorized_keys` files when bundling the image\. The Amazon public AMIs store these in `/root/.ssh` for the root user, and `/home/user_name/.ssh/` for regular users\. For more information, see [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol)\.
++ Always delete the shell history before bundling\. If you attempt more than one bundle upload in the same AMI, the shell history contains your access key\. The following example should be the last command you run before bundling from within the instance\.
 
   ```
   [ec2-user ~]$ shred -u ~/.*history

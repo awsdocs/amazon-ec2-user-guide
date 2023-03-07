@@ -1,6 +1,8 @@
 # Example policies for working in the Amazon EC2 console<a name="iam-policies-ec2-console"></a>
 
-You can use IAM policies to grant users permissions to view and work with specific resources in the Amazon EC2 console\. You can use the example policies in the previous section; however, they are designed for requests that are made with the AWS CLI or an AWS SDK\. The console uses additional API actions for its features, so these policies may not work as expected\. For example, a user that has permission to use only the `DescribeVolumes` API action will encounter errors when trying to view volumes in the console\. This section demonstrates policies that enable users to work with specific parts of the console\.
+You must grant users the permissions they require for Amazon EC2 using IAM policies\. You can use IAM policies to grant users permissions to view and work with specific resources in the Amazon EC2 console\. You can use the example policies in the previous section; however, they are designed for requests that are made with the AWS CLI or an AWS SDK\. For more information, see [Example policies for working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md) and [Creating IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the IAM User Guide\. 
+
+The console uses additional API actions for its features, so these policies may not work as expected\. For example, a user that has permission to use only the `DescribeVolumes` API action will encounter errors when trying to view volumes in the console\. This section demonstrates policies that enable users to work with specific parts of the console\. For additional information about creating policies for the Amazon EC2 console, see the following AWS Security Blog post: [Granting Users Permission to Work in the Amazon EC2 Console](https://aws.amazon.com/blogs/security/granting-users-permission-to-work-in-the-amazon-ec2-console/)\.
 
 **Tip**  
 To help you work out which API actions are required to perform tasks in the console, you can use a service such as AWS CloudTrail\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\. If your policy does not grant permission to create or modify a specific resource, the console displays an encoded message with diagnostic information\. You can decode the message using the [DecodeAuthorizationMessage](https://docs.aws.amazon.com/STS/latest/APIReference/API_DecodeAuthorizationMessage.html) API action for AWS STS, or the [decode\-authorization\-message](https://docs.aws.amazon.com/cli/latest/reference/sts/decode-authorization-message.html) command in the AWS CLI\.
@@ -12,8 +14,6 @@ To help you work out which API actions are required to perform tasks in the cons
 + [Work with security groups](#ex-security-groups)
 + [Work with Elastic IP addresses](#ex-eip)
 + [Work with Reserved Instances](#ex-reservedinstances)
-
-For additional information about creating policies for the Amazon EC2 console, see the following AWS Security Blog post: [Granting Users Permission to Work in the Amazon EC2 Console](https://aws.amazon.com/blogs/security/granting-users-permission-to-work-in-the-amazon-ec2-console/)\.
 
 ## Example: Read\-only access<a name="ex-read-only"></a>
 
@@ -114,7 +114,7 @@ You can add API actions to your policy to provide more options for users, for ex
 + `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Grant permission to tag resources during creation](supported-iam-actions-tagging.md)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
 **Important**  
 Specifying a **Name** while launching an instance creates a tag and requires the `ec2:CreateTags` action\. Be careful about granting users permission to use the `ec2:CreateTags` action, because doing so limits your ability to use the `aws:ResourceTag` condition key to restrict their use of other resources\. If you grant users permission to use the `ec2:CreateTags` action, they can change a resource's tag in order to bypass those restrictions\. For more information, see [Control access to EC2 resources using resource tags](control-access-with-tags.md)\.
-+ To use Systems Manager parameters when selecting an AMI, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your policy\. `ssm:DescribeParameters` grants your IAM users the permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your IAM users the permission to get the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see **Restrict access to specific Systems Manager parameters** later in this section\.
++ To use Systems Manager parameters when selecting an AMI, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your policy\. `ssm:DescribeParameters` grants your users the permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your users the permission to get the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see **Restrict access to specific Systems Manager parameters** later in this section\.
 
 Currently, the Amazon EC2 `Describe*` API actions do not support resource\-level permissions, so you cannot restrict which individual resources users can view in the launch wizard\. However, you can apply resource\-level permissions on the `ec2:RunInstances` API action to restrict which resources users can use to launch an instance\. The launch fails if users select options that they are not authorized to use\. 
 
@@ -391,7 +391,7 @@ The following policy allows users to view, allocate, and associate Elastic IP ad
 
 ## Example: Work with Reserved Instances<a name="ex-reservedinstances"></a>
 
-The following policy can be attached to an IAM user\. It gives the user access to view and modify Reserved Instances in your account, as well as purchase new Reserved Instances in the AWS Management Console\.
+The following policy allows users to view and modify Reserved Instances in your account, as well as purchase new Reserved Instances in the AWS Management Console\.
 
 This policy allows users to view all the Reserved Instances, as well as On\-Demand Instances, in the account\. It's not possible to set resource\-level permissions for individual Reserved Instances\.
 

@@ -56,7 +56,7 @@ ec2e1916-9099-7caf-fd21-012345abcdef
 A virtual machine generation identifier consists of a unique buffer of 128\-bit interpreted as cryptographic random integer identifier\. You can retrieve the virtual machine generation identifier to identify your Amazon Elastic Compute Cloud instance\. The generation identifier is exposed within the guest operating system of the instance through an ACPI table entry\. The value will change if your machine is cloned, copied, or imported into AWS, such as with [VM Import/Export](https://docs.aws.amazon.com/vm-import/latest/userguide/what-is-vmimport.html)\.
 
 **Example : Retrieve the virtual machine generation identifier from Linux**  
-You can use the following commands retrieve the virtual machine generation identifier from your instances running Linux:  
+You can use the following commands to retrieve the virtual machine generation identifier from your instances running Linux\.  
 
 1. Update your existing software packages, as necessary, using the following command:
 

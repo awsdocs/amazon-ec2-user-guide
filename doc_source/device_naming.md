@@ -17,7 +17,7 @@ There are two types of virtualization available for Linux instances: paravirtual
 The following table lists the available device names that you can specify in a block device mapping or when attaching an EBS volume\.
 
 
-| Virtualization type | Available | Reserved for root | Recommended for EBS volumes | Instance store volumes | 
+| Virtualization type | Available | Reserved for root volume | Recommended for EBS volumes | Instance store volumes | 
 | --- | --- | --- | --- | --- | 
 |  Paravirtual  |  /dev/sd\[a\-z\] /dev/sd\[a\-z\]\[1\-15\] /dev/hd\[a\-z\] /dev/hd\[a\-z\]\[1\-15\]  |  /dev/sda1  |  /dev/sd\[f\-p\] /dev/sd\[f\-p\]\[1\-6\]  |  /dev/sd\[b\-e\]  | 
 | HVM |  /dev/sd\[a\-z\] /dev/xvd\[b\-c\]\[a\-z\]  |  Differs by AMI /dev/sda1 or /dev/xvda  |  /dev/sd\[f\-p\] \*  |  /dev/sd\[b\-e\] /dev/sd\[b\-h\] \(h1\.16xlarge\) /dev/sd\[b\-y\] \(d2\.8xlarge\) /dev/sd\[b\-i\] \(i2\.8xlarge\) \*\*  | 

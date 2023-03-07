@@ -2,7 +2,9 @@
 
 Complete the tasks in this section to get set up for launching an Amazon EC2 instance for the first time: 
 
-1. [Sign up for AWS](#sign-up-for-aws)
+1. [Sign up for an AWS account](#sign-up-for-aws)
+
+1. [Create an administrative user](#create-an-admin)
 
 1. [Create a key pair](#create-a-key-pair)
 
@@ -10,15 +12,11 @@ Complete the tasks in this section to get set up for launching an Amazon EC2 ins
 
 When you are finished, you will be ready for the [Amazon EC2 Getting started](EC2_GetStarted.md) tutorial\.
 
-## Sign up for AWS<a name="sign-up-for-aws"></a>
+## Sign up for an AWS account<a name="sign-up-for-aws"></a>
 
-When you sign up for Amazon Web Services, your AWS account is automatically signed up for all services in AWS, including Amazon EC2\. You are charged only for the services that you use\.
+If you do not have an AWS account, complete the following steps to create one\.
 
-With Amazon EC2, you pay only for what you use\. If you are a new AWS customer, you can get started with Amazon EC2 for free\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
-
-If you have an AWS account already, skip to the next task\. If you don't have an AWS account, use the following procedure to create one\.
-
-**To create an AWS account**
+**To sign up for an AWS account**
 
 1. Open [https://portal\.aws\.amazon\.com/billing/signup](https://portal.aws.amazon.com/billing/signup)\.
 
@@ -28,11 +26,37 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
    When you sign up for an AWS account, an *AWS account root user* is created\. The root user has access to all AWS services and resources in the account\. As a security best practice, [assign administrative access to an administrative user](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html), and use only the root user to perform [tasks that require root user access](https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html)\.
 
+AWS sends you a confirmation email after the sign\-up process is complete\. At any time, you can view your current account activity and manage your account by going to [https://aws\.amazon\.com/](https://aws.amazon.com/) and choosing **My Account**\.
+
+## Create an administrative user<a name="create-an-admin"></a>
+
+After you sign up for an AWS account, create an administrative user so that you don't use the root user for everyday tasks\.
+
+**Secure your AWS account root user**
+
+1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
+
+   For help signing in by using root user, see [Signing in as the root user](https://docs.aws.amazon.com/signin/latest/userguide/console-sign-in-tutorials.html#introduction-to-root-user-sign-in-tutorial) in the *AWS Sign\-In User Guide*\.
+
+1. Turn on multi\-factor authentication \(MFA\) for your root user\.
+
+   For instructions, see [Enable a virtual MFA device for your AWS account root user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root) in the *IAM User Guide*\.
+
+**Create an administrative user**
++ For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM Identity Center \(successor to AWS Single Sign\-On\)\.
+
+  For instructions, see [Getting started](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
+
+**Sign in as the administrative user**
++ To sign in with your IAM Identity Center user, use the sign\-in URL that was sent to your email address when you created the IAM Identity Center user\.
+
+  For help signing in using an IAM Identity Center user, see [Signing in to the AWS access portal](https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html) in the *AWS Sign\-In User Guide*\.
+
 ## Create a key pair<a name="create-a-key-pair"></a>
 
 AWS uses public\-key cryptography to secure the login information for your instance\. A Linux instance has no password; you use a key pair to log in to your instance securely\. You specify the name of the key pair when you launch your instance, then provide the private key when you log in using SSH\. 
 
-If you haven't created a key pair already, you can create one by using the Amazon EC2 console\. Note that if you plan to launch instances in multiple Regions, you'll need to create a key pair in each Region\. For more information about Regions, see [Regions and Zones](using-regions-availability-zones.md)\.
+If you haven't created a key pair already, you can create one by using the Amazon EC2 console\. Note that if you plan to launch instances in multiple AWS Regions, you'll need to create a key pair in each Region\. For more information about Regions, see [Regions and Zones](using-regions-availability-zones.md)\.
 
 **To create your key pair**
 
@@ -54,7 +78,7 @@ If you haven't created a key pair already, you can create one by using the Amazo
 **Important**  
 This is the only chance for you to save the private key file\.
 
-1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
+1. If you plan to use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
    ```
    chmod 400 key-pair-name.pem
@@ -68,10 +92,10 @@ For more information, see [Amazon EC2 key pairs and Linux instances](ec2-key-pai
 
 Security groups act as a firewall for associated instances, controlling both inbound and outbound traffic at the instance level\. You must add rules to a security group that enable you to connect to your instance from your IP address using SSH\. You can also add rules that allow inbound and outbound HTTP and HTTPS access from anywhere\.
 
-Note that if you plan to launch instances in multiple Regions, you'll need to create a security group in each Region\. For more information about Regions, see [Regions and Zones](using-regions-availability-zones.md)\.
+Note that if you plan to launch instances in multiple AWS Regions, you'll need to create a security group in each Region\. For more information about Regions, see [Regions and Zones](using-regions-availability-zones.md)\.
 
 **Prerequisites**  
-You'll need the public IPv4 address of your local computer\. The security group editor in the Amazon EC2 console can automatically detect the public IPv4 address for you\. Alternatively, you can use the search phrase "what is my IP address" in an Internet browser, or use the following service: [Check IP](http://checkip.amazonaws.com/)\. If you are connecting through an Internet service provider \(ISP\) or from behind a firewall without a static IP address, you need to find out the range of IP addresses used by client computers\.
+You'll need the public IPv4 address of your local computer\. The security group editor in the Amazon EC2 console can automatically detect the public IPv4 address for you\. Alternatively, you can use the search phrase "what is my IP address" in an internet browser, or use the following service: [Check IP](http://checkip.amazonaws.com/)\. If you are connecting through an Internet service provider \(ISP\) or from behind a firewall without a static IP address, you need to find out the range of IP addresses used by client computers\.
 
 You can create a custom security group using one of the following methods\.
 
@@ -82,7 +106,7 @@ You can create a custom security group using one of the following methods\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the top navigation bar, select a Region for the security group\. Security groups are specific to a Region, so you should select the same Region in which you created your key pair\.
+1. From the top navigation bar, select an AWS Region for the security group\. Security groups are specific to a Region, so you should select the same Region in which you created your key pair\.
 
 1. In the left navigation pane, choose **Security Groups**\.
 
@@ -142,8 +166,8 @@ For security reasons, do not allow SSH access from all IP addresses to your inst
 **To create a security group with least privilege**
 
 Use one of the following commands:
-+ [create\-security\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-security-group.html) \(AWS CLI\)
-+ [New\-EC2SecurityGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SecurityGroup.html) \(AWS Tools for Windows PowerShell\)
++ [https://docs.aws.amazon.com/cli/latest/reference/ec2/create-security-group.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-security-group.html) \(AWS CLI\)
++ [https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SecurityGroup.html](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SecurityGroup.html) \(AWS Tools for Windows PowerShell\)
 
 ------
 

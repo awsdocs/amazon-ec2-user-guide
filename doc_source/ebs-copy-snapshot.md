@@ -40,6 +40,8 @@ Whether a snapshot copy is incremental is determined by the most recently comple
 
 If the most recent snapshot copy was deleted, the next copy is a full copy, not an incremental copy\. If a copy is still pending when you start a another copy, the second copy starts only after the first copy finishes\.
 
+Incremental snapshot copying reduces the time required to copy snapshots and saves on data transfer and storage costs by not duplicating data\.
+
 We recommend that you tag your snapshots with the volume ID and creation time so that you can keep track of the most recent snapshot copy of a volume in the destination Region or account\.
 
 To see whether your snapshot copies are incremental, check the [copySnapshot](ebs-cloud-watch-events.md#copy-snapshot-complete) CloudWatch event\.

@@ -10,4 +10,4 @@ You can only access UEFI variables from within an instance\. Anyone who can conn
 **UEFI variable persistence**
 + For instances that were launched on or before May 10, 2022, UEFI variables are wiped on reboot or stop\.
 + For instances that are launched on or after May 11, 2022, UEFI variables that are marked as non\-volatile are persisted on reboot and stop/start\.
-+ Bare metal instances do not preserve UEFI non\-volatile variables across instance stop/start operations\.
++ Bare metal instances don't preserve UEFI non\-volatile variables across instance stop/start operations\.

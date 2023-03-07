@@ -23,9 +23,6 @@ Decide whether you'll support SSH access to your instances using EC2 Instance Co
 
 Security groups act as a firewall for associated instances, controlling both inbound and outbound traffic at the instance level\. You must add rules to a security group to enable you to connect to your Linux instance from your IP address using SSH\.
 
-------
-#### [ New console ]
-
 **To add a rule to a security group for inbound SSH traffic over IPv4 \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -54,29 +51,7 @@ Security groups act as a firewall for associated instances, controlling both inb
 
    1. Choose **Save rules**\.
 
-------
-#### [ Old console ]
-
-**To add a rule to a security group for inbound SSH traffic over IPv4 \(console\)**
-
-1. In the navigation pane of the Amazon EC2 console, choose **Instances**\. Select your instance and look at the **Description** tab; **Security groups** lists the security groups that are associated with the instance\. Choose **view inbound rules** to display a list of the rules that are in effect for the instance\.
-
-1. In the navigation pane, choose **Security Groups**\. Select one of the security groups associated with your instance\.
-
-1. In the details pane, on the **Inbound** tab, choose **Edit**\. In the dialog, choose **Add Rule**, and then choose **SSH** from the **Type** list\.
-
-1. In the **Source** field, choose **My IP** to automatically populate the field with the public IPv4 address of your local computer\. Alternatively, choose **Custom** and specify the public IPv4 address of your computer or network in CIDR notation\. For example, if your IPv4 address is `203.0.113.25`, specify `203.0.113.25/32` to list this single IPv4 address in CIDR notation\. If your company allocates addresses from a range, specify the entire range, such as `203.0.113.0/24`\.
-
-   For information about finding your IP address, see [Before you start](#authorizing-access-prereqs)\.
-
-1. Choose **Save**\.
-
-------
-
 If you launched an instance with an IPv6 address and want to connect to your instance using its IPv6 address, you must add rules that allow inbound IPv6 traffic over SSH\.
-
-------
-#### [ New console ]
 
 **To add a rule to a security group for inbound SSH traffic over IPv6 \(console\)**
 
@@ -101,25 +76,6 @@ If you launched an instance with an IPv6 address and want to connect to your ins
    1. For **Source**, choose **Custom** and enter the IPv6 address of your computer in CIDR notation\. For example, if your IPv6 address is `2001:db8:1234:1a00:9691:9503:25ad:1761`, enter `2001:db8:1234:1a00:9691:9503:25ad:1761/128` to list the single IP address in CIDR notation\. If your company allocates addresses from a range, enter the entire range, such as `2001:db8:1234:1a00::/64`\.
 
    1. Choose **Save rules**\.
-
-------
-#### [ Old console ]
-
-**To add a rule to a security group for inbound SSH traffic over IPv6 \(console\)**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Security Groups**\. Select the security group for your instance\.
-
-1. Choose **Inbound**, **Edit**, **Add Rule**\.
-
-1. For **Type**, choose **SSH**\.
-
-1. In the **Source** field, specify the IPv6 address of your computer in CIDR notation\. For example, if your IPv6 address is `2001:db8:1234:1a00:9691:9503:25ad:1761`, specify `2001:db8:1234:1a00:9691:9503:25ad:1761/128` to list the single IP address in CIDR notation\. If your company allocates addresses from a range, specify the entire range, such as `2001:db8:1234:1a00::/64`\.
-
-1. Choose **Save**\.
-
-------
 
 **Note**  
 Be sure to run the following commands on your local system, not on the instance itself\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.

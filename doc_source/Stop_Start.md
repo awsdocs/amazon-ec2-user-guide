@@ -16,6 +16,7 @@ If you decide that you no longer need an instance, you can terminate it\. As soo
 + [Stop and start your instances on a schedule](#stop-start-ec2-instances-on-a-schedule)
 + [Enable stop protection](#Using_StopProtection)
 + [Modify a stopped instance](#Using_ChangingAttributesWhileInstanceStopped)
++ [Find all running and stopped instances](#find-running-and-stopped-instances-in-globalview)
 + [Troubleshoot stopping your instance](#troubleshoot-instance-stop)
 
 ## Overview<a name="instance_stop"></a>
@@ -75,9 +76,9 @@ For more information, see [Differences between reboot, stop, hibernate, and term
 You can stop and start your Amazon EBS\-backed instance using the console or the command line\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
-**To stop and start an Amazon EBS\-backed instance using the console**
+**To stop and start an Amazon EBS\-backed instance**
 
 1. When you stop an instance, the data on any instance store volumes is erased\. Before you stop an instance, verify that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
 
@@ -94,31 +95,15 @@ You can stop and start your Amazon EBS\-backed instance using the console or the
 1. It can take a few minutes for the instance to enter the `running` state\.
 
 ------
-#### [ Old console ]
+#### [ Command line ]
 
-**To stop and start an Amazon EBS\-backed instance using the console**
-
-1. When you stop an instance, the data on any instance store volumes is erased\. Before you stop an instance, verify that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
-
-1. In the navigation pane, choose **Instances** and select the instance\.
-
-1. Choose **Actions**, **Instance State**, **Stop**\. If this option is disabled, either the instance is already stopped or its root device is an instance store volume\.
-
-1. When prompted for confirmation, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
-
-1. \(Optional\) While your instance is stopped, you can modify certain instance attributes\. For more information, see [modify\-stopped\-instance](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html)\.
-
-1. To start the stopped instance, select the instance, and choose **Actions**, **Instance State**, **Start**\.
-
-1. In the confirmation dialog box, choose **Yes, Start**\. It can take a few minutes for the instance to enter the `running` state\.
-
-------
-
-**To stop and start an Amazon EBS\-backed instance using the command line**
+**To stop and start an Amazon EBS\-backed instance**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) and [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
 + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) and [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 **To run a controlled fault injection experiment**  
 You can use AWS Fault Injection Simulator to test how your application responds when your instance is stopped and started\. For more information, see the [AWS Fault Injection Simulator User Guide](https://docs.aws.amazon.com/fis/latest/userguide)\.
@@ -139,7 +124,7 @@ By default, you can stop your instance using the Amazon EC2 console, command lin
 
 The `DisableApiStop` attribute controls whether the instance can be stopped using the Amazon EC2 console, AWS CLI, or API\. You can set the value of this attribute when you launch the instance, while the instance is running, or while the instance is stopped\.
 
-The `DisableApiStop` attribute does not prevent you from stopping an instance by initiating shutdown from the instance \(using an operating system command for system shutdown\)\. 
+The `DisableApiStop` attribute does not prevent you from stopping an instance by initiating shutdown from the instance \(using an operating system command for system shutdown\)\.
 
 **Considerations**
 + Enabling stop protection does not prevent AWS from stopping the instance when the instance has a [scheduled event](monitoring-instances-status-check_sched.md) that stops the instance\.
@@ -154,7 +139,7 @@ The `DisableApiStop` attribute does not prevent you from stopping an instance by
 You can enable stop protection for an instance when launching the instance using one of the following methods\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To enable stop protection for an instance at launch**
 
@@ -165,19 +150,6 @@ You can enable stop protection for an instance when launching the instance using
 1. Configure your instance in the [new launch instance wizard](ec2-launch-instance-wizard.md)\.
 
    To enable stop protection, under **Advanced details**, for **Stop protection**, choose **Enable**\.
-
-------
-#### [ Old console ]
-
-**To enable stop protection for an instance at launch**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. On the dashboard, choose **Launch instance**\.
-
-1. Configure your instance in the [old launch instance wizard](launching-instance.md)\.
-
-   To disable stop protection, on the **Configure Instance Details** page, for **Enable stop protection**, select the **Protect against accidental stoppage** check box\.
 
 ------
 #### [ AWS CLI ]
@@ -198,10 +170,10 @@ aws ec2 run-instances \
 
 ### Enable stop protection for a running or stopped instance<a name="enable-stop-protection-on-running-or-stopped-instance"></a>
 
-You can enable stop protection for an instance while the instance is running or stopped using one of the following methods\. Note that the *old* **Instances** console does not support enabling stop protection for a running or stopped instance\.
+You can enable stop protection for an instance while the instance is running or stopped using one of the following methods\. 
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To enable stop protection for a running or stopped instance**
 
@@ -229,10 +201,10 @@ aws ec2 modify-instance-attribute \
 
 ### Disable stop protection for a running or stopped instance<a name="disable-stop-protection-on-running-or-stopped-instance"></a>
 
-You can disable stop protection for a running or stopped instance using one of the following methods\. Note that the *old* **Instances** console does not support disabling stop protection for a running or stopped instance\.
+You can disable stop protection for a running or stopped instance using one of the following methods\. 
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To disable stop protection for a running or stopped instance**
 
@@ -273,6 +245,10 @@ You can change the instance type, user data, and EBS\-optimization attributes of
 You can use one of the following commands\. For more information about these command line interfaces see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
+
+## Find all running and stopped instances<a name="find-running-and-stopped-instances-in-globalview"></a>
+
+You can find all your running and stopped instances across all AWS Regions on a single page in Amazon EC2 Global View\. This is especially useful for taking inventory and finding forgotten instances\. For information about how to use Global View, see [List and filter resources across Regions using Amazon EC2 Global View](Using_Filtering.md#global-view)\.
 
 ## Troubleshoot stopping your instance<a name="troubleshoot-instance-stop"></a>
 

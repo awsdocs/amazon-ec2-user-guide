@@ -1,6 +1,8 @@
 # Troubleshoot connecting to your instance<a name="TroubleshootingInstancesConnecting"></a>
 
-The following information can help you troubleshoot issues with connecting to your instance\. For additional help with Windows instances, see [Troubleshoot Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+The following information and common errors can help you troubleshoot connecting to your Linux instance\. 
+
+To troubleshoot connecting to Windows instances, see [Troubleshoot Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Topics**
 + [Common causes for connection issues](#TroubleshootingInstancesCommonCauses)
@@ -19,27 +21,18 @@ The following information can help you troubleshoot issues with connecting to yo
 
 ## Common causes for connection issues<a name="TroubleshootingInstancesCommonCauses"></a>
 
-We recommend that you begin troubleshooting by checking some common causes for issues connecting to your instance\.
+We recommend that you start to troubleshoot instance connection problems by verifying that you have accurately performed the following tasks\.
 
-**Verify the user name for your instance**  
-You can connect to your instance using the user name for your user account or the default user name for the AMI that you used to launch your instance\.  
-+ **Get the user name for your user account\.**
+**Verify the username for your instance**  
+You can connect to your instance using the username for your user account or the default username for the AMI that you used to launch your instance\.  
++ **Get the username for your user account\.**
 
-  For more information about how to create a user account, see [Manage user accounts on your Linux instance](managing-users.md)\.
-+ **Get the default user name for the AMI that you used to launch your instance:**
-  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-  + For a CentOS AMI, the user name is `centos` or `ec2-user`\.
-  + For a Debian AMI, the user name is `admin`\.
-  + For a Fedora AMI, the user name is `fedora` or `ec2-user`\.
-  + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-  + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-  + For an Ubuntu AMI, the user name is `ubuntu`\.
-  + For an Oracle AMI, the user name is `ec2-user`\.
-  + For a Bitnami AMI, the user name is `bitnami`\.
-  + Otherwise, check with the AMI provider\.
+  For more information about how to create a user account, see [Manage users on your Linux instance](managing-users.md)\.
++ **Get the default username for the AMI that you used to launch your instance:**    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
 
 **Verify that your security group rules allow traffic**  
-Make sure your security group rules allow inbound traffic from your public IPv4 address on the proper port\. For steps to verify, see [Error connecting to your instance: Connection timed out](#TroubleshootingInstancesConnectionTimeout)
+Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch instance wizard enables SSH traffic by default\. For steps to add a rule for inbound SSH traffic to your Linux instance, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\. For steps to verify, see [Error connecting to your instance: Connection timed out](#TroubleshootingInstancesConnectionTimeout)\.
 
 **Verify that your instance is ready**  
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check your instance to make sure it is running and has passed its status checks\.  
@@ -54,12 +47,24 @@ After you launch an instance, it can take a few minutes for the instance to be r
 
    1. In the **Status check** column, verify that your instance has passed the two status checks\.
 
-**Verify the general prerequisites for connecting to your instance**  
-For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+**Verify that you have performed the setup tasks and prerequisites to connect to your instance**  
+For general setup tasks, see [Set up to connect to your instance](connection-prereqs.md)\.   
+For prerequisites specific to connection types, such as SSH, EC2 Instance Connect, OpenSSH, PuTTY, and more, see the following options\.  
+**Linux or macOS X**  
+If your local computer operating system is Linux or macOS X, check the specific prerequisites for the following connection options:
++ [SSH client](AccessingInstancesLinux.md)
++ [EC2 Instance Connect](Connect-using-EC2-Instance-Connect.md)
++ [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)
+**Windows**  
+If your local computer operating system is Windows, check the specific prerequisites for the following connection options:
++ [OpenSSH](openssh.md)
++ [PuTTY](putty.md)
++ [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)
++ [Windows Subsystem for Linux](WSL.md)
 
 ## Error connecting to your instance: Connection timed out<a name="TroubleshootingInstancesConnectionTimeout"></a>
 
-If you try to connect to your instance and get an error message `Network error: Connection timed out` or `Error connecting to [instance], reason: -> Connection timed out: connect`, try the following:
+If you try to connect to your instance and get the error message `Network error: Connection timed out` or `Error connecting to [instance], reason: -> Connection timed out: connect`, try the following:
 
 **Check your security group rules\.**  
 You need a security group rule that allows inbound traffic from your local computer's public IPv4 address on the proper port\.
@@ -246,17 +251,8 @@ Alternatively, you can create a new key pair using a third\-party tool\. For mor
 + Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connect to your Linux instance from Windows using PuTTY](putty.md)\.
 **Note**  
 In PuTTYgen, load your private key file and select **Save Private Key** rather than **Generate**\. 
-+ Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **Host name** box in the **PuTTY Configuration** window\.
-  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-  + For a CentOS AMI, the user name is `centos` or `ec2-user`\.
-  + For a Debian AMI, the user name is `admin`\.
-  + For a Fedora AMI, the user name is `fedora` or `ec2-user`\.
-  + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-  + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-  + For an Ubuntu AMI, the user name is `ubuntu`\.
-  + For an Oracle AMI, the user name is `ec2-user`\.
-  + For a Bitnami AMI, the user name is `bitnami`\.
-  + Otherwise, check with the AMI provider\.
++ Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **Host name** box in the **PuTTY Configuration** window\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
 + Verify that you have an inbound security group rule to allow inbound traffic to the appropriate port\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\. 
 
 ## Error: Permission denied or connection closed by \[instance\] port 22<a name="TroubleshootingInstancesConnectingSSH"></a>
@@ -264,16 +260,20 @@ In PuTTYgen, load your private key file and select **Save Private Key** rather t
 If you connect to your instance using SSH and get any of the following errors, `Host key not found in [directory]`, `Permission denied (publickey)`, `Authentication failed, permission denied`, or `Connection closed by [instance] port 22`, verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key \(`.pem)` file for your instance\.
 
 The appropriate user names are as follows:
-+ For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-+ For a CentOS AMI, the user name is `centos` or `ec2-user`\.
-+ For a Debian AMI, the user name is `admin`\.
-+ For a Fedora AMI, the user name is `fedora` or `ec2-user`\.
-+ For a RHEL AMI, the user name is `ec2-user` or `root`\.
-+ For a SUSE AMI, the user name is `ec2-user` or `root`\.
-+ For an Ubuntu AMI, the user name is `ubuntu`\.
-+ For an Oracle AMI, the user name is `ec2-user`\.
-+ For a Bitnami AMI, the user name is `bitnami`\.
-+ Otherwise, check with the AMI provider\.
+
+
+| AMI used to launch instance | Default username | 
+| --- | --- | 
+|  Amazon Linux 2022 Amazon Linux 2 Amazon Linux  | ec2\-user  | 
+| CentOS | centos or ec2\-user | 
+| Debian | admin | 
+| Fedora  | fedora or ec2\-user | 
+| RHEL | ec2\-user or root | 
+| SUSE  | ec2\-user or root | 
+| Ubuntu  | ubuntu | 
+| Oracle  | ec2\-user | 
+| Bitnami  | bitnami | 
+| Other | Check with the AMI provider | 
 
 For example, to use an SSH client to connect to an Amazon Linux instance, use the following command:
 
@@ -425,18 +425,22 @@ ssh-keygen -m PEM
 If you use PuTTY to connect to your instance and get either of the following errors, Error: Server refused our key or Error: No supported authentication methods available, verify that you are connecting with the appropriate user name for your AMI\. Type the user name in **User name** in the **PuTTY Configuration** window\.
 
 The appropriate user names are as follows:
-+ For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-+ For a CentOS AMI, the user name is `centos` or `ec2-user`\.
-+ For a Debian AMI, the user name is `admin`\.
-+ For a Fedora AMI, the user name is `fedora` or `ec2-user`\.
-+ For a RHEL AMI, the user name is `ec2-user` or `root`\.
-+ For a SUSE AMI, the user name is `ec2-user` or `root`\.
-+ For an Ubuntu AMI, the user name is `ubuntu`\.
-+ For an Oracle AMI, the user name is `ec2-user`\.
-+ For a Bitnami AMI, the user name is `bitnami`\.
-+ Otherwise, check with the AMI provider\.
 
-You should also verify:
+
+| AMI used to launch instance | Default username | 
+| --- | --- | 
+|  Amazon Linux 2022 Amazon Linux 2 Amazon Linux  | ec2\-user  | 
+| CentOS | centos or ec2\-user | 
+| Debian | admin | 
+| Fedora  | fedora or ec2\-user | 
+| RHEL | ec2\-user or root | 
+| SUSE  | ec2\-user or root | 
+| Ubuntu  | ubuntu | 
+| Oracle  | ec2\-user | 
+| Bitnami  | bitnami | 
+| Other | Check with the AMI provider | 
+
+You should also verify that:
 + You are using the latest version of PuTTY\. For more information, see the [PuTTY web page](https://www.chiark.greenend.org.uk/~sgtatham/putty/)\.
 + Your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connect to your Linux instance from Windows using PuTTY](putty.md)\.
 

@@ -63,12 +63,15 @@ To specify the metadata options for an instance using AWS CloudFormation, see th
 
 ### Configure the AMI<a name="configure-IMDS-new-instances-ami-configuration"></a>
 
-When you register your AMI, you can set the `imds-support` parameter to `v2.0`\. Instances launched from this AMI will have **Metadata version** set to **V2 only \(token required\)** \(console\) or `HttpTokens` set to `required` \(AWS CLI\) \. With these settings, the instance requires that IMDSv2 is used when requesting instance metadata\.
+When you register a new AMI or modify an existing AMI, you can set the `imds-support` parameter to `v2.0`\. Instances launched from this AMI will have **Metadata version** set to **V2 only \(token required\)** \(console\) or `HttpTokens` set to `required` \(AWS CLI\) \. With these settings, the instance requires that IMDSv2 is used when requesting instance metadata\.
 
 Note that when you set `imds-support` to `v2.0`, instances launched from this AMI will also have **Metadata response hop limit** \(console\) or `http-put-response-hop-limit` \(AWS CLI\) set to **2**\.
 
-**To configure an AMI for IMDSv2**  
-The following [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) example registers an AMI using the specified snapshot of an EBS root volume as device `/dev/xvda`\. Specify `v2.0` for the `imds-support` parameter so that the AMI is configured to specify that instances launched from it will require the use of IMDSv2\.
+**Important**  
+Do not use this parameter unless your AMI software supports IMDSv2\. After you set the value to `v2.0`, you can't undo it\. The only way to "reset" your AMI is to create a new AMI from the underlying snapshot\.
+
+**To configure a new AMI for IMDSv2**  
+The following [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) example registers an AMI using the specified snapshot of an EBS root volume as device `/dev/xvda`\. Specify `v2.0` for the `imds-support` parameter so that instances launched from this AMI will require that IMDSv2 is used when requesting instance metadata\.
 
 ```
 aws ec2 register-image \
@@ -78,12 +81,21 @@ aws ec2 register-image \
     --imds-support v2.0
 ```
 
+**To configure an existing AMI for IMDSv2**  
+The following [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) example modifies an existing AMI for IMDSv2 only\. Specify `v2.0` for the `imds-support` parameter so that instances launched from this AMI will require that IMDSv2 is used when requesting instance metadata\.
+
+```
+aws ec2 modify-image-attribute \
+    --image-id ami-0123456789example \
+    --imds-support v2.0
+```
+
 ### Use an IAM policy<a name="configure-IMDS-new-instances-iam-policy"></a>
 
-You can create an IAM policy that prevents IAM users from launching new instances unless they require IMDSv2 on the new instance\.
+You can create an IAM policy that prevents users from launching new instances unless they require IMDSv2 on the new instance\.
 
 **To enforce the use of IMDSv2 on all new instances by using an IAM policy**  
-To ensure that IAM users can only launch instances that require the use of IMDSv2 when requesting instance metadata, you can specify that the condition to require IMDSv2 must be met before an instance can be launched\. For the example IAM policy, see [Work with instance metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
+To ensure that users can only launch instances that require the use of IMDSv2 when requesting instance metadata, you can specify that the condition to require IMDSv2 must be met before an instance can be launched\. For the example IAM policy, see [Work with instance metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
 
 ## Configure IPv4 and IPv6 endpoints<a name="configure-IMDS-new-instances-ipv4-ipv6-endpoints"></a>
 

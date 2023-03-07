@@ -8,7 +8,6 @@ The following illustration shows how Spot Instance requests work\. Notice that t
 
 **Topics**
 + [Spot Instance request states](#creating-spot-request-status)
-+ [Define a duration for your Spot Instances](#fixed-duration-spot-instances)
 + [Specify a tenancy for your Spot Instances](#spot-instance-tenancy)
 + [Service\-linked role for Spot Instance requests](#service-linked-roles-spot-instance-requests)
 + [Create a Spot Instance request](#using-spot-instances-request)
@@ -39,10 +38,6 @@ A one\-time Spot Instance request remains active until Amazon EC2 launches the S
 A persistent Spot Instance request remains active until it expires or you cancel it, even if the request is fulfilled\. If capacity is not available, your Spot Instance is interrupted\. After your instance is interrupted, when capacity becomes available again, the Spot Instance is started if stopped or resumed if hibernated\. You can stop a Spot Instance and start it again if capacity is available\. If the Spot Instance is terminated \(irrespective of whether the Spot Instance is in a stopped or running state\), the Spot Instance request is opened again and Amazon EC2 launches a new Spot Instance\. For more information, see [Stop a Spot Instance](#stopping-a-spot-instance), [Start a Spot Instance](#starting-a-spot-instance), and [Terminate a Spot Instance](#terminating-a-spot-instance)\.
 
 You can track the status of your Spot Instance requests, as well as the status of the Spot Instances launched, through the status\. For more information, see [Spot request status](spot-request-status.md)\.
-
-## Define a duration for your Spot Instances<a name="fixed-duration-spot-instances"></a>
-
-Spot Instances with a defined duration \(also known as Spot blocks\) are no longer available to new customers from July 1, 2021\. For customers who have previously used the feature, we will continue to support Spot Instances with a defined duration until December 31, 2022\. 
 
 ## Specify a tenancy for your Spot Instances<a name="spot-instance-tenancy"></a>
 
@@ -203,7 +198,7 @@ If you specify a maximum price, your instances will be interrupted more frequent
 
       1. **Block duration \(minutes\)** 
 **Note**  
-Spot Instances with a defined duration \(also known as Spot blocks\) are no longer available to new customers from July 1, 2021\. For customers who have previously used the feature, we will continue to support Spot Instances with a defined duration until December 31, 2022\.
+Spot Instances with a defined duration \(also known as Spot blocks\) are no longer supported\.
 
 1. On the **Summary** panel, for **Number of instances**, enter the number of instances to launch\.
 **Note**  
@@ -390,17 +385,17 @@ For more information about how tags work, see [Tag your Amazon EC2 resources](Us
 
 ### Prerequisites<a name="tag-spot-request-prereqs"></a>
 
-Grant the IAM user the permission to tag resources\. For more information about IAM policies and example policies, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
+Grant the user the permission to tag resources\. For more information about IAM policies and example policies, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
 
 The IAM policy you create is determined by which method you use for creating a Spot Instance request\.
-+ If you use the launch instance wizard or `run-instances` to request Spot Instances, see [To grant an IAM user the permission to tag resources when using the launch instance wizard or run-instances](#iam-run-instances)\.
-+ If you use the `request-spot-instances` command to request Spot Instances, see [To grant an IAM user the permission to tag resources when using request-spot-instances](#iam-request-spot-instances)\.
++ If you use the launch instance wizard or `run-instances` to request Spot Instances, see [To grant a user the permission to tag resources when using the launch instance wizard or run-instances](#iam-run-instances)\.
++ If you use the `request-spot-instances` command to request Spot Instances, see [To grant a user the permission to tag resources when using request-spot-instances](#iam-request-spot-instances)\.
 
-**To grant an IAM user the permission to tag resources when using the launch instance wizard or run\-instances**  
+**To grant a user the permission to tag resources when using the launch instance wizard or run\-instances**  
 Create a IAM policy that includes the following:
-+ The `ec2:RunInstances` action\. This grants the IAM user permission to launch an instance\.
++ The `ec2:RunInstances` action\. This grants the user permission to launch an instance\.
 + For `Resource`, specify `spot-instances-request`\. This allows users to create Spot Instance requests, which request Spot Instances\.
-+ The `ec2:CreateTags` action\. This grants the IAM user permission to create tags\.
++ The `ec2:CreateTags` action\. This grants the user permission to create tags\.
 + For `Resource`, specify `*`\. This allows users to tag all resources that are created during instance launch\.
 
 ```
@@ -445,10 +440,10 @@ If you use RunInstances to create a Spot Instance request and intend to tag the 
 If you use RunInstances to create a Spot Instance request and intend to tag the Spot Instance request on create, you must specify the `spot-instances-request` resource or include a `*` wildcard in the CreateTags allow statement, otherwise the call will fail\.
 For example IAM policies, including policies that are not supported for Spot Instance requests, see [Work with Spot Instances](ExamplePolicies_EC2.md#iam-example-spot-instances)\.
 
-**To grant an IAM user the permission to tag resources when using request\-spot\-instances**  
+**To grant a user the permission to tag resources when using request\-spot\-instances**  
 Create a IAM policy that includes the following:
-+ The `ec2:RequestSpotInstances` action\. This grants the IAM user permission to create a Spot Instance request\.
-+ The `ec2:CreateTags` action\. This grants the IAM user permission to create tags\.
++ The `ec2:RequestSpotInstances` action\. This grants the user permission to create a Spot Instance request\.
++ The `ec2:CreateTags` action\. This grants the user permission to create tags\.
 + For `Resource`, specify `spot-instances-request`\. This allows users to tag only the Spot Instance request\.
 
 ```

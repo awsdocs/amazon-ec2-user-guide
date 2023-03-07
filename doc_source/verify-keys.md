@@ -24,7 +24,7 @@ The following table lists the hash functions that are used to calculate the fing
 
 ### When using the same key pair in different Regions<a name="when-using-same-key-pair-in-different-regions"></a>
 
-If you plan to use the same key pair to connect to instances in different AWS Regions, you must import the public key to all of the Regions in which you'll use it\. If you use Amazon EC2 to create the key pair, you can [generate a public key from the Amazon EC2 private key](describe-keys.md#retrieving-the-public-key) so that you can import the public key to the other Regions\.
+If you plan to use the same key pair to connect to instances in different AWS Regions, you must import the public key to all of the Regions in which you'll use it\. If you use Amazon EC2 to create the key pair, you can [Retrieve the public key material](describe-keys.md#retrieving-the-public-key) so that you can import the public key to the other Regions\.
 
 **Note**  
 If you create an RSA key pair using Amazon EC2, and then you generate a public key from the Amazon EC2 private key, the imported public keys will have a different fingerprint than the original public key\. This is because the fingerprint of the original RSA key created using Amazon EC2 is calculated using a SHA\-1 hash function, while the fingerprint of the imported RSA keys is calculated using an MD5 hash function\.
@@ -43,13 +43,13 @@ If you're using a Windows local machine, you can run the following commands usin
   For RSA key pairs:
 
   ```
-  $ openssl pkcs8 -in path_to_private_key -inform PEM -outform DER -topk8 -nocrypt | openssl sha1 -c
+  openssl pkcs8 -in path_to_private_key -inform PEM -outform DER -topk8 -nocrypt | openssl sha1 -c
   ```
 
   For ED25519 key pairs:
 
   ```
-  $ ssh-keygen -l -f path_to_private_key
+  ssh-keygen -l -f path_to_private_key
   ```
 + **\(RSA key pairs only\) If you imported the public key to Amazon EC2**
 
@@ -58,7 +58,7 @@ If you're using a Windows local machine, you can run the following commands usin
   Use the OpenSSL tools to generate the fingerprint as shown in the following example\.
 
   ```
-  $ openssl rsa -in path_to_private_key -pubout -outform DER | openssl md5 -c
+  openssl rsa -in path_to_private_key -pubout -outform DER | openssl md5 -c
   ```
 + **If you created an OpenSSH key pair using OpenSSH 7\.8 or later and imported the public key to Amazon EC2**
 
@@ -67,11 +67,11 @@ If you're using a Windows local machine, you can run the following commands usin
   For RSA key pairs:
 
   ```
-  $ ssh-keygen -ef path_to_private_key -m PEM | openssl rsa -RSAPublicKey_in -outform DER | openssl md5 -c
+  ssh-keygen -ef path_to_private_key -m PEM | openssl rsa -RSAPublicKey_in -outform DER | openssl md5 -c
   ```
 
   For ED25519 key pairs:
 
   ```
-  $ ssh-keygen -l -f path_to_private_key
+  ssh-keygen -l -f path_to_private_key
   ```

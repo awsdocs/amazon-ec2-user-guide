@@ -351,7 +351,7 @@ The following is an example of the `policyDetails.json` file\.
 ]}
 ```
 
-**Example 5—Snapshot lifecycle policy with an archive\-enabled, age\-based shcedule**  
+**Example 5—Snapshot lifecycle policy with an archive\-enabled, age\-based schedule**  
 This example creates a snapshot lifecycle policy that targets volumes tagged with `Name=Prod`\. The policy has one age\-based schedule that creates snapshots on the first day of each month at 09:00\. The schedule retains each snapshot in the standard tier for one day, after which it moves them to the archive tier\. Snapshots are stored in the archive tier for 90 days before being deleted\.
 
 ```
@@ -401,7 +401,7 @@ The following is an example of the `policyDetails.json` file\.
 }
 ```
 
-**Example 6—Snapshot lifecycle policy with an archive\-enabled, count\-based shcedule**  
+**Example 6—Snapshot lifecycle policy with an archive\-enabled, count\-based schedule**  
 This example creates a snapshot lifecycle policy that targets volumes tagged with `Purpose=Test`\. The policy has one count\-based schedule that creates snapshots on the first day of each month at 09:00\. The schedule archives snapshots immediately after creation and retains a maximum of three snapshots in the archive tier\.
 
 ```
@@ -454,6 +454,7 @@ The following is an example of the `policyDetails.json` file\.
 ## Considerations for snapshot lifecycle policies<a name="snapshot-considerations"></a>
 
 The following **general considerations** apply to snapshot lifecycle policies:
++ Snapshot lifecycle policies target only instances or volumes that are in the same Region as the policy\.
 + The first snapshot creation operation starts within one hour after the specified start time\. Subsequent snapshot creation operations start within one hour of their scheduled time\.
 + You can create multiple policies to back up a volume or instance\. For example, if a volume has two tags, where tag *A* is the target for policy *A* to create a snapshot every 12 hours, and tag *B* is the target for policy *B* to create a snapshot every 24 hours, Amazon Data Lifecycle Manager creates snapshots according to the schedules for both policies\. Alternatively, you can achieve the same result by creating a single policy that has multiple schedules\. For example, you can create a single policy that targets only tag *A*, and specify two schedules — one for every 12 hours and one for every 24 hours\.
 + Target resource tags are case sensitive\.

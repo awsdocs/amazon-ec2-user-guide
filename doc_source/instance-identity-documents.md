@@ -12,21 +12,21 @@ You can retrieve the instance identity document from a running instance at any t
 
 | Data | Description | 
 | --- | --- | 
-| devpayProductCodes | Deprecated\. | 
-| marketplaceProductCodes | The AWS Marketplace product code of the AMI used to launch the instance\. | 
-| availabilityZone | The Availability Zone in which the instance is running\. | 
-| privateIp | The private IPv4 address of the instance\. | 
-| version | The version of the instance identity document format\. | 
-| instanceId | The ID of the instance\. | 
-| billingProducts | The billing products of the instance\. | 
-| instanceType | The instance type of the instance\. | 
 | accountId | The ID of the AWS account that launched the instance\. | 
-| imageId | The ID of the AMI used to launch the instance\. | 
-| pendingTime | The date and time that the instance was launched\. | 
 | architecture | The architecture of the AMI used to launch the instance \(i386 \| x86\_64 \| arm64\)\. | 
+| availabilityZone | The Availability Zone in which the instance is running\. | 
+| billingProducts | The billing products of the instance\. | 
+| devpayProductCodes | Deprecated\. | 
+| imageId | The ID of the AMI used to launch the instance\. | 
+| instanceId | The ID of the instance\. | 
+| instanceType | The instance type of the instance\. | 
 | kernelId | The ID of the kernel associated with the instance, if applicable\. | 
+| marketplaceProductCodes | The AWS Marketplace product code of the AMI used to launch the instance\. | 
+| pendingTime | The date and time that the instance was launched\. | 
+| privateIp | The private IPv4 address of the instance\. | 
 | ramdiskId | The ID of the RAM disk associated with the instance, if applicable\. | 
 | region | The Region in which the instance is running\. | 
+| version | The version of the instance identity document format\. | 
 
 ## Retrieve the plaintext instance identity document<a name="retrieve-iid"></a>
 
