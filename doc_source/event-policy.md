@@ -4,7 +4,7 @@ Automating cross\-account snapshot copies enables you to copy your Amazon EBS sn
 
 Automating cross\-account snapshot copies involves two accounts:
 + **Source account**—The source account is the account that creates and shares the snapshots with the target account\. In this account, you must create an EBS snapshot policy that creates snapshots at set intervals and then shares them with other AWS accounts\.
-+ **Target account**—The target account is the account with destination account with which the snapshots are shared, and it is the account that creates copies of the shared snapshots\. In this account, you must create a cross\-account copy event policy that automatically copies snapshots that are shared with it by one or more specified source accounts\.
++ **Target account**—The target account is the account with which the snapshots are shared, and it is the account that creates copies of the shared snapshots\. In this account, you must create a cross\-account copy event policy that automatically copies snapshots that are shared with it by one or more specified source accounts\.
 
 **Topics**
 + [Create cross\-account snapshot copy policies](#create-cac-policy)
