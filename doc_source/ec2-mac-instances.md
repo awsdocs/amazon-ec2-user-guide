@@ -389,18 +389,22 @@ After you increase the size of the volume, you must increase the size of your AP
       2:                 Apple_APFS Container disk2        321.9 GB     disk0s2
    ```
 
-1. Copy and paste the following command\.
+1. Repair the partition map layout of a whole disk.
+
+   Copy and paste the following command\.
 
    ```
-   PDISK=$(diskutil list physical external | head -n1 | cut -d" " -f1)
-   APFSCONT=$(diskutil list physical external | grep "Apple_APFS" | tr -s " " | cut -d" " -f8)
-   yes | sudo diskutil repairDisk $PDISK
+   PHYSICAL_DISK=$(diskutil list physical external | awk 'NR == 1 {print $1}')
+   yes | diskutil repairDisk "${PHYSICAL_DISK}"
    ```
 
-1. Copy and paste the following command\.
+1. With `diskutil apfs resizeContainer`, you can specify a size of zero (0) to grow the targeted APFS Physical Store such that all remaining space is filled to the next partition or the end of the partition map.
+
+   Copy and paste the following command\.
 
    ```
-   sudo diskutil apfs resizeContainer $APFSCONT 0
+   APFS_CONTAINER=$(diskutil list physical external | awk '/Apple_APFS/ {print $NF}')
+   sudo diskutil apfs resizeContainer "${APFS_CONTAINER}" 0
    ```
 
 ## Stop and terminate your Mac instance<a name="mac-instance-stop"></a>
