@@ -36,6 +36,7 @@ The following considerations apply to Mac instances:
   + macOS Catalina \(version 10\.15\) \(x86 Mac Instances only\)
   + macOS Big Sur \(version 11\)
   + macOS Monterey \(version 12\)
+  + macOS Ventura \(version 13\)
 + EBS hotplug is supported\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
