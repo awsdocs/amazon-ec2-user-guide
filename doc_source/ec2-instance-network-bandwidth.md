@@ -1,6 +1,6 @@
 # Amazon EC2 instance network bandwidth<a name="ec2-instance-network-bandwidth"></a>
 
-The network bandwidth available to an EC2 instance depends on several factors\.
+Instance bandwidth specifications apply to both inbound and outbound traffic for the instance\. For example, if an instance specifies up to 10 Gbps of bandwidth, that means is has up to 10 Gbps of bandwidth for inbound traffic , and 10 Gbps for outbound traffic\. The network bandwidth that's available to an EC2 instance depends on several factors, as follows\.
 
 **Multi\-flow traffic**
 
@@ -9,7 +9,10 @@ Bandwidth for aggregate multi\-flow traffic available to an instance depends on 
 + To other Regions, an internet gateway, Direct Connect, or local gateways \(LGW\) – Traffic can utilize up to 50% of the network bandwidth available to a [current generation instance](instance-types.md#current-gen-instances) with a minimum of 32 vCPUs\. Bandwidth for a current generation instance with less than 32 vCPUs is limited to 5 Gbps\.
 
 **Single\-flow traffic**  
-Bandwidth for single\-flow \(5\-tuple\) traffic is limited to 5 Gbps when instances are not in the same [cluster placement group](placement-groups.md#placement-groups-cluster)\. For use cases that require low latency and high single\-flow bandwidth, use a cluster placement group to achieve up to 10 Gbps for instances in the same placement group\. Alternatively, set up multiple paths between two endpoints to achieve higher bandwidth using Multipath TCP \(MPTCP\)\.
+Baseline bandwidth for single\-flow \(5\-tuple\) traffic is limited to 5 Gbps when instances are not in the same [cluster placement group](placement-groups.md#placement-groups-cluster)\. To reduce latency and increase single\-flow bandwidth, try one of the following:
++ Use a cluster placement group to achieve up to 10 Gbps bandwidth for instances within the same placement group\.
++ Set up multiple paths between two endpoints to achieve higher bandwidth with Multipath TCP \(MPTCP\)\.
++ Configure ENA Express for eligible instances within the same subnet to achieve up to 25 Gbps between those instances\.
 
 ## Available instance bandwidth<a name="available-instance-bandwidth"></a>
 

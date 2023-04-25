@@ -462,7 +462,7 @@ MyInstance
 
 We throttle queries to the instance metadata service on a per\-instance basis, and we place limits on the number of simultaneous connections from an instance to the instance metadata service\. 
 
-If you're using the instance metadata service to retrieve AWS security credentials, avoid querying for credentials during every transaction or concurrently from a high number of threads or processes, as this might lead to throttling\. Instead, we recommend that you cache the credentials until they start approaching their expiry time\. 
+If you're using the instance metadata service to retrieve AWS security credentials, avoid querying for credentials during every transaction or concurrently from a high number of threads or processes, as this might lead to throttling\. Instead, we recommend that you cache the credentials until they start approaching their expiry time\. For more information about IAM role and security credentials associated with the role, see [Retrieve security credentials from instance metadata](iam-roles-for-amazon-ec2.md#instance-metadata-security-credentials)\.
 
 If you are throttled while accessing the instance metadata service, retry your query with an exponential backoff strategy\.
 

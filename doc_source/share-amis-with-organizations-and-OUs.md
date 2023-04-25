@@ -2,7 +2,7 @@
 
  [AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services_list.html) is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage\. You can share an AMI with an organization or an organizational unit \(OU\) that you have created, in addition to [sharing it with specific accounts](sharingamis-explicit.md)\.
 
-An organization is an entity that you create to consolidate and centrally manage your AWS accounts\. You can organize the accounts in a hierarchical, tree\-like structure, with a [root](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#root) at the top and [organizational units](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#organizationalunit) nested under the root\. Each account can be added directly to the root, or placed in one of the OUs in the hierarchy\. For more information, see [AWS Organizations terminology and concepts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html) in the *AWS Organizations User Guide*\.
+An organization is an entity that you create to consolidate and centrally manage your AWS accounts\. You can organize the accounts in a hierarchical, tree\-like structure, with a [root](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#root) at the top and [organizational units](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#organizationalunit) nested under the organization root\. Each account can be added directly to the root, or placed in one of the OUs in the hierarchy\. For more information, see [AWS Organizations terminology and concepts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html) in the *AWS Organizations User Guide*\.
 
 When you share an AMI with an organization or an OU, all of the children accounts gain access to the AMI\. For example, in the following diagram, the AMI is shared with a top\-level OU \(indicated by the arrow at the number **1**\)\. All of the OUs and accounts that are nested underneath that top\-level OU \(indicated by the dotted line at number **2**\) also have access to the AMI\. The accounts in the organization and OU outside the dotted line \(indicated by the number **3**\) do not have access to the AMI because they are not children of the OU that the AMI is shared with\.
 
@@ -17,7 +17,7 @@ Consider the following when sharing AMIs with specific organizations or organiza
 + **Sharing limits** – The AMI owner can share an AMI with any organization or OU, including organizations and OUs that they’re not a member of\.
 
   For the maximum number of entities to which an AMI can be shared within a Region, see the [Amazon EC2 service quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html#limits_ec2)\.
-+ **Tags** – User\-defined tags that you attach to a shared AMI are available only to your AWS accounts, and not to the AWS accounts in the other organizations and OUs with which the AMI is shared\. 
++ **Tags** – You can't share user\-defined tags \(tags that you attach to an AMI\)\. When you share an AMI, your user\-defined tags are not available to any AWS account in an organization or OU with which the AMI is shared\.
 + **ARN format** – When you specify an organization or OU in a command, make sure to use the correct ARN format\. You'll get an error if you specify only the ID, for example, if you specify only `o-123example` or `ou-1234-5example`\.
 
   Correct ARN formats:
@@ -41,7 +41,7 @@ Consider the following when sharing AMIs with specific organizations or organiza
 
 If you share an AMI that is backed by encrypted snapshots, you must also allow the organizations or OUs to use the AWS KMS keysthat were used to encrypt the snapshots\.
 
-Use the `aws:PrincipalOrgID` and `aws:PrincipalOrgPaths` keys to compare the AWS Organizations path for the principal who is making the request to the path in the policy\. That principal can be an IAM user, IAM role, federated user, or AWS account root user\. In a policy, this condition key ensures that the requester is an account member within the specified organization root or OUs in AWS Organizations\. For more example condition statements, see [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid) and [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths) in the *IAM User Guide*\.
+Use the `aws:PrincipalOrgID` and `aws:PrincipalOrgPaths` keys to compare the AWS Organizations path for the principal who is making the request to the path in the policy\. That principal can be a user, IAM role, federated user, or AWS account root user\. In a policy, this condition key ensures that the requester is an account member within the specified organization root or OUs in AWS Organizations\. For more example condition statements, see [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid) and [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths) in the *IAM User Guide*\.
 
 For information about editing a key policy, see [Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide* and [Share a KMS key](ebs-modifying-snapshot-permissions.md#share-kms-key)\.
 
@@ -49,7 +49,7 @@ To give an organization or OU permission to use a KMS key, add the following sta
 
 ```
 {
-    "Sid": "Allow access for Org Admin",
+    "Sid": "Allow access for organization root",
     "Effect": "Allow",
     "Principal": "*",
     "Action": [

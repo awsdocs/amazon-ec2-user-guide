@@ -33,7 +33,7 @@ Before you can create an AMI, you must complete the following tasks:
 
   To create an S3 bucket, open the Amazon S3 console and click **Create Bucket**\. Alternatively, you can use the AWS CLI [mb](https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command\.
 + Ensure that you have your AWS account ID\. For more information, see [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) in the *AWS General Reference*\.
-+ Ensure that you have your access key ID and secret access key\. For more information, see [Access Keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) in the *AWS General Reference*\.
++ Ensure that you have credentials to use the AWS CLI\. For more information, see [Best Practices for AWS accounts](https://docs.aws.amazon.com/accounts/latest/reference/best-practices.html) in the *AWS Account Management Reference Guide*\.
 + Ensure that you have an X\.509 certificate and corresponding private key\.
   + If you need to create an X\.509 certificate, see [Manage signing certificates](set-up-ami-tools.md#ami-tools-managing-certs)\. The X\.509 certificate and private key are used to encrypt and decrypt your AMI\.
   + \[China \(Beijing\)\] Use the `$EC2_AMITOOL_HOME/etc/ec2/amitools/cert-ec2-cn-north-1.pem` certificate\.

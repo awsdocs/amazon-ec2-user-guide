@@ -2,7 +2,9 @@
 
 When you launch an instance in Amazon EC2, you have the option of passing user data to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts\. You can pass two types of user data to Amazon EC2: shell scripts and cloud\-init directives\. You can also pass this data into the launch instance wizard as plain text, as a file \(this is useful for launching instances using the command line tools\), or as base64\-encoded text \(for API calls\)\.
 
-If you are interested in more complex automation scenarios, consider using AWS CloudFormation and AWS OpsWorks\. For more information, see the [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/) and the [AWS OpsWorks User Guide](https://docs.aws.amazon.com/opsworks/latest/userguide/)\.
+If you're interested in more complex automation scenarios, you might consider AWS CloudFormation or AWS OpsWorks\. For more information, see the following:
++ [Deploying applications on Amazon EC2 with AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/deploying.applications.html) in the *AWS CloudFormation User Guide*\.
++ [AWS OpsWorks User Guide](https://docs.aws.amazon.com/opsworks/latest/userguide/)\.
 
 For information about running commands on your Windows instance at launch, see [Run commands on your Windows instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html) and [Manage Windows instance configuration](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-configuration-manage.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -38,7 +40,7 @@ By default, user data scripts and cloud\-init directives run only during the boo
 
 User data shell scripts must start with the `#!` characters and the path to the interpreter you want to read the script \(commonly /bin/bash\)\. For a great introduction on shell scripting, see [the BASH Programming HOW\-TO](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html) at the Linux Documentation Project \([tldp\.org](http://tldp.org)\)\.
 
-Scripts entered as user data are run as the `root` user, so do not use the sudo command in the script\. Remember that any files you create will be owned by `root`; if you need non\-root users to have file access, you should modify the permissions accordingly in the script\. Also, because the script is not run interactively, you cannot include commands that require user feedback \(such as yum update without the `-y` flag\)\.
+Scripts entered as user data are run as the root user, so do not use the sudo command in the script\. Remember that any files you create will be owned by the root user; if you need a non\-root user to have file access, you should modify the permissions accordingly in the script\. Also, because the script is not run interactively, you cannot include commands that require user feedback \(such as yum update without the `-y` flag\)\.
 
 If you use an AWS API, including the AWS CLI, in a user data script, you must use an instance profile when launching the instance\. An instance profile provides the appropriate AWS credentials required by the user data script to issue the API call\. For more information, see [Using instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) in the IAM User Guide\. The permissions you assign to the IAM role depend on which services you are calling with the API\. For more information, see [IAM roles for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)\.
 
@@ -98,9 +100,6 @@ To update the instance user data, you must first stop the instance\. If the inst
 **Warning**  
 When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
 
-------
-#### [ New console ]
-
 **To modify instance user data**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -116,27 +115,6 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 1. Modify the user data as needed, and then choose **Save**\.
 
 1. Start the instance\. The new user data is visible on your instance after you start it; however, user data scripts are not run\.
-
-------
-#### [ Old console ]
-
-**To modify instance user data**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance and choose **Actions**, **Instance State**, **Stop**\. If this option is disabled, either the instance is already stopped or its root device is an instance store volume\.
-
-1. When prompted for confirmation, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
-
-1. With the instance still selected, choose **Actions**, **Instance Settings**, **View/Change User Data**\.
-
-1. In the **View/Change User Data** dialog box, update the user data, and then choose **Save**\.
-
-1. Restart the instance\. The new user data is visible on your instance after you restart it; however, user data scripts are not run\.
-
-------
 
 ## User data and cloud\-init directives<a name="user-data-cloud-init"></a>
 

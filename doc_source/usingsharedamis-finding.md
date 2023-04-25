@@ -115,7 +115,7 @@ To ensure that you don't accidentally lose access to your instance, we recommend
 
    Restart the sshd service\.
 
-1. Check whether there are any other user accounts that are able to log in to your instance\. Accounts with superuser privileges are particularly dangerous\. Remove or lock the password of any unknown accounts\.
+1. Check whether there are any other users that are able to log in to your instance\. Users with superuser privileges are particularly dangerous\. Remove or lock the password of any unknown accounts\.
 
 1. Check for open ports that you aren't using and running network services listening for incoming connections\.
 

@@ -2,7 +2,7 @@
 
 **Important**  
 The CloudWatch monitoring scripts are deprecated\. We provide information about the monitoring scripts for customers who have not yet migrated from the deprecated monitoring scripts to the CloudWatch agent\.  
-We recommend that you use the CloudWatch agent to collect metrics and logs\. For more information, see [Collect Metrics from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
+We recommend that you use the CloudWatch agent to collect metrics and logs\. For more information, see [Collect metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
 
 The monitoring scripts demonstrate how to produce and consume custom metrics for Amazon CloudWatch\. These sample Perl scripts comprise a fully functional example that reports memory, swap, and disk space utilization metrics for a Linux instance\. 
 
@@ -30,10 +30,10 @@ The monitoring scripts were tested on instances using the following systems\. Us
 ## Required permissions<a name="mon-scripts-permissions"></a>
 
 Ensure that the scripts have permission to call the following actions by associating an IAM role with your instance:
-+ cloudwatch:PutMetricData
-+ cloudwatch:GetMetricStatistics
-+ cloudwatch:ListMetrics
-+ ec2:DescribeTags
++ `cloudwatch:PutMetricData`
++ `cloudwatch:GetMetricStatistics`
++ `cloudwatch:ListMetrics`
++ `ec2:DescribeTags`
 
 For more information, see [Work with IAM roles](iam-roles-for-amazon-ec2.md#working-with-iam-roles)\.
 
@@ -126,7 +126,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 ## Install monitoring scripts<a name="mon-scripts-getstarted"></a>
 
-The following steps show you how to download, uncompress, and configure the CloudWatch Monitoring Scripts on an EC2 Linux instance\.
+The following steps show you how to download, uncompress, and configure the CloudWatch monitoring scripts on an EC2 Linux instance\.
 
 **To download, install, and configure the monitoring scripts**
 
@@ -178,9 +178,9 @@ This script collects memory, swap, and disk space utilization data on the curren
 |   `--aws-secret-key=VALUE `   |  Specifies the AWS secret access key to use to sign the request to CloudWatch\. Must be used together with the `--aws-access-key-id` option\. Do not use this option with `--aws-credential-file` parameter\.  | 
 |   `--aws-iam-role=VALUE`   |  Specifies the IAM role used to provide AWS credentials\. The value `=VALUE` is required\. If no credentials are specified, the default IAM role associated with the EC2 instance is applied\. Only one IAM role can be used\. If no IAM roles are found, or if more than one IAM role is found, the script will return an error\. Do not use this option with the `--aws-credential-file`, `--aws-access-key-id`, or `--aws-secret-key` parameters\.  | 
 |   `--aggregated[=only]`   |  Adds aggregated metrics for instance type, AMI ID, and overall for the Region\. The value `=only` is optional; if specified, the script reports only aggregated metrics\.  | 
-|   `--auto-scaling[=only]`   |  Adds aggregated metrics for the Auto Scaling group\. The value `=only` is optional; if specified, the script reports only Auto Scaling metrics\. The [IAM policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingPolicies.html) associated with the IAM account or role using the scripts need to have permissions to call the EC2 action [DescribeTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html)\.  | 
+|   `--auto-scaling[=only]`   |  Adds aggregated metrics for the Auto Scaling group\. The value `=only` is optional; if specified, the script reports only Auto Scaling metrics\. The [IAM policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingPolicies.html) associated with the IAM user or role using the scripts need to have permissions to call the EC2 action [https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html)\.  | 
 |   `--verify `   |  Performs a test run of the script that collects the metrics, prepares a complete HTTP request, but does not actually call CloudWatch to report the data\. This option also checks that credentials are provided\. When run in verbose mode, this option outputs the metrics that will be sent to CloudWatch\.   | 
-|   `--from-cron `   |  Use this option when calling the script from cron\. When this option is used, all diagnostic output is suppressed, but error messages are sent to the local system log of the user account\.   | 
+|   `--from-cron `   |  Use this option when calling the script from cron\. When this option is used, all diagnostic output is suppressed, but error messages are sent to the local system log of the user\.   | 
 |   `--verbose `   |  Displays detailed information about what the script is doing\.   | 
 |   `--help `   |  Displays usage information\.   | 
 |   `--version `   |  Displays the version number of the script\.   | 

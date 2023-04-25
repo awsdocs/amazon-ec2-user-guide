@@ -1,6 +1,6 @@
 # Share an AMI with specific AWS accounts<a name="sharingamis-explicit"></a>
 
-You can share an AMI with specific AWS accounts without making the AMI public\. All you need is the AWS account IDs\.
+You can share an AMI with specific AWS accounts without making the AMI public\. All you need are the AWS account IDs\.
 
 
 
@@ -9,7 +9,7 @@ You can share an AMI with specific AWS accounts without making the AMI public\. 
 Consider the following when sharing AMIs with specific AWS accounts\.
 + **Ownership** – To share an AMI, your AWS account must own the AMI\.
 + **Sharing limits** – For the maximum number of entities to which an AMI can be shared within a Region, see the [Amazon EC2 service quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html#limits_ec2)\.
-+ **Tags** – User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the other accounts that the AMI is shared with\.
++ **Tags** – You can't share user\-defined tags \(tags that you attach to an AMI\)\. When you share an AMI, your user\-defined tags are not available to any AWS account that the AMI is shared with\.
 + **Encryption and keys** – You can share AMIs that are backed by unencrypted and encrypted snapshots\.
   + The encrypted snapshots must be encrypted with a KMS key\. You can’t share AMIs that are backed by snapshots that are encrypted with the default AWS managed key\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
   + If you share an AMI that is backed by encrypted snapshots, you must allow the AWS accounts to use the KMS keys that were used to encrypt the snapshots\. For more information, see [Allow organizations and OUs to use a KMS key](share-amis-with-organizations-and-OUs.md#allow-org-ou-to-use-key)\.

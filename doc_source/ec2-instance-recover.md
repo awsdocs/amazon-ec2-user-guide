@@ -25,17 +25,22 @@ When a simplified automatic recovery event succeeds, you are notified by an AWS 
 
 For more information, see [ Amazon EventBridge rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html)\.
 
+**Topics**
++ [Requirements](#requirements-for-recovery)
++ [Limitations](#limitations-simplified-recovery)
++ [Verify the recovery behavior](#verify-recovery-behavior)
++ [Set the recovery behavior](#set-recovery-behavior)
+
 ### Requirements<a name="requirements-for-recovery"></a>
 
 Simplified automatic recovery is supported by an instance if the instance has the following characteristics:
 + It uses `default` or `dedicated` instance tenancy\.
 + It does not use an Elastic Fabric Adapter\.
 + It uses one of the following instance types:
-  + General purpose: A1, M3, M4, M5, M5a, M5n, M5zn, M6a, M6g, M6i, M6in, T1, T2, T3, T3a, and T4g
-  + Compute optimized: C3, C4, C5, C5a, C5n, C6a, C6g, C6gn, C6i, C6in, C7g, and Hpc6a
-  + Memory optimized: R3, R4, R5, R5a, R5b, R5n, R6a, R6g, R6i, R6in, U\-3tb1, U\-6tb1, U\-9tb1, U\-12tb1, X1, X2idn, X2iedn, X2iezn, and X1e
-  + Storage optimized: I4i
-  + Accelerated computing: G3, G5g, Inf1, P2, P3, and VT1
+  + **General purpose:** A1 \| M3 \| M4 \| M5 \| M5a \| M5n \| M5zn \| M6a \| M6g \| M6i \| M6in \| M7g \| T1 \| T2 \| T3 \| T3a \| T4g
+  + **Compute optimized:** C3 \| C4 \| C5 \| C5a \| C5n \| C6a \| C6g \| C6gn \| C6i \| C6in \| C7g \| Hpc6a
+  + **Memory optimized:** R3 \| R4 \| R5 \| R5a \| R5b \| R5n \| R6a \| R6g \| R6i \| R6in \| R7g \| u\-3tb1 \| u\-6tb1 \| u\-9tb1 \| u\-12tb1 \| u\-18tb1 \| u\-24tb1 \| X1 \| X1e \| X2iezn
+  + **Accelerated computing:** G3 \| G3s \| G5g \| Inf1 \| P2 \| P3 \| VT1
 + It does not have instance store volumes\.
 
 ### Limitations<a name="limitations-simplified-recovery"></a>
@@ -152,10 +157,13 @@ Use Amazon CloudWatch action based recovery if you want to customize when to rec
 
 When the `StatusCheckFailed_System` alarm is triggered, and the recovery action is initiated, you're notified by the Amazon SNS topic that you selected when you created the alarm and associated the recovery action\. When the recovery action is complete, information is published to the Amazon SNS topic you configured for the alarm\. Anyone who is subscribed to this Amazon SNS topic receives an email notification that includes the status of the recovery attempt and any further instructions\. As a last step in the recovery action, the recovered instance reboots\.
 
-All of the instance types supported by simplified automatic recovery are also supported by CloudWatch action based recovery\. For more information, see [Requirements](#requirements-for-recovery)\. Amazon CloudWatch action based recovery does not support instances with instance store volumes, except the following instance types\. If the instance has instance store volumes attached, the data is lost during recovery\.
-+ General purpose: M3
-+ Compute optimized: C3
-+ Memory optimized: R3 \| X1 \| X1e \| X2idn \| X2iedn
+All of the instance types [supported by simplified automatic recovery](#requirements-for-recovery) are also supported by CloudWatch action based recovery\. Additionaly, Amazon CloudWatch action based recovery supports the following instance types with instance store volumes\.
++ **General purpose:** M3
++ **Compute optimized:** C3
++ **Memory optimized:** R3 \| X1 \| X1e \| X2idn \| X2iedn
+
+**Important**  
+If the instance has instance store volumes attached, the data is lost during recovery\.
 
 Amazon CloudWatch action based recovery does not support recovery for instances with Amazon EC2 Dedicated Hosts tenancy and metal instances\.
 

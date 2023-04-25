@@ -43,8 +43,8 @@ Support for other versions of Ubuntu and other operating systems is coming soon\
 For information about the supported Windows AMIs, see [Supported Windows AMIs](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/hibernating-prerequisites.html#hibernation-prereqs-supported-amis) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ## Supported instance families<a name="hibernation-prereqs-supported-instance-families"></a>
-+ General purpose: M3, M4, M5, M5a, M5ad, M5d, M6i, T2, T3, and T3a
-+ Compute optimized: C3, C4, C5, C5d, and C6i
++ General purpose: M3, M4, M5, M5a, M5ad, M5d, M6i, M6id, T2, T3, and T3a
++ Compute optimized: C3, C4, C5, C5d, C6i, and C6id
 + Memory optimized: R3, R4, R5, R5a, R5ad, and R5d
 + Storage optimized: I3, and I3en
 

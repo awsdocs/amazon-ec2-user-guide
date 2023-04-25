@@ -15,6 +15,7 @@ For information about the configurations supported on Dedicated Hosts, see [Dedi
 + [Work with shared Dedicated Hosts](dh-sharing.md)
 + [Dedicated Hosts on AWS Outposts](dh-outposts.md)
 + [Host recovery](dedicated-hosts-recovery.md)
++ [Host maintenance](dedicated-hosts-maintenance.md)
 + [Track configuration changes](dedicated-hosts-aws-config.md)
 
 ## Differences between Dedicated Hosts and Dedicated Instances<a name="dedicated-hosts-dedicated-instances"></a>
@@ -31,10 +32,8 @@ There are no performance, security, or physical differences between Dedicated In
 | Host and instance affinity | Allows you to consistently deploy your instances to the same physical server over time | Not supported | 
 | Targeted instance placement | Provides additional visibility and control over how instances are placed on a physical server | Not supported | 
 | Automatic instance recovery | Supported\. For more information, see [Host recovery](dedicated-hosts-recovery.md)\. | Supported | 
-| Bring Your Own License \(BYOL\) | Supported | Partial support \* | 
+| Bring Your Own License \(BYOL\) | Supported | Not supported | 
 | Capacity Reservations | Not supported | Supported | 
-
-\* Microsoft SQL Server with License Mobility through Software Assurance, and Windows Virtual Desktop Access \(VDA\) licenses can be used with Dedicated Instances\.
 
 ## Bring your own license<a name="dedicated-hosts-BYOL"></a>
 

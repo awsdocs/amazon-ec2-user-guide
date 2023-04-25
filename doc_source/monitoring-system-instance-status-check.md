@@ -53,9 +53,6 @@ You can view and work with status checks using the Amazon EC2 console or the AWS
 
 To view status checks using the Amazon EC2 console, perform the following steps\.
 
-------
-#### [ New console ]
-
 **To view status checks \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -73,29 +70,6 @@ To view status checks using the Amazon EC2 console, perform the following steps\
    + **Status check failed \(any\)**
    + **Status check failed \(instance\)**
    + **Status check failed \(system\)**
-
-------
-#### [ Old console ]
-
-**To view status checks \(console\)**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. On the **Instances** page, the **Status Checks** column lists the operational status of each instance\.
-
-1. To view the status of a specific instance, select the instance, and then choose the **Status Checks** tab\.  
-![\[Viewing status.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab_old.png)
-
-   To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
-
-1. To review the CloudWatch metrics for status checks, select the instance, and then choose the **Monitoring** tab\. Scroll until you see the graphs for the following metrics:
-   + **Status Check Failed \(Any\)**
-   + **Status Check Failed \(Instance\)**
-   + **Status Check Failed \(System\)**
-
-------
 
 ### View status using the command line<a name="viewing_status-cli"></a>
 
@@ -135,9 +109,6 @@ We use reported feedback to identify issues impacting multiple customers, but do
 
 ### Report status feedback using the console<a name="reporting_status-new-console"></a>
 
-------
-#### [ New console ]
-
 **To report instance status \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -147,21 +118,6 @@ We use reported feedback to identify issues impacting multiple customers, but do
 1. Select the instance, choose the **Status Checks** tab, choose **Actions** \(the second **Actions** menu in the bottom half of the page\), and then choose **Report instance status**\.
 
 1. Complete the **Report instance status** form, and then choose **Submit**\.
-
-------
-#### [ Old console ]
-
-**To report instance status \(console\)**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance, choose the **Status Checks** tab, and choose **Submit feedback**\.
-
-1. Complete the **Report Instance Status** form, and then choose **Submit**\.
-
-------
 
 ### Report status feedback using the command line<a name="reporting_status-cli"></a>
 
@@ -185,9 +141,6 @@ You can use the [status check metrics](viewing_metrics_with_cloudwatch.md#status
 ### Create a status check alarm using the console<a name="using-cloudwatch-new-console2"></a>
 
 Use the following procedure to configure an alarm that sends you a notification by email, or stops, terminates, or recovers an instance when it fails a status check\.
-
-------
-#### [ New console ]
 
 **To create a status check alarm \(console\)**
 
@@ -215,39 +168,7 @@ Use the following procedure to configure an alarm that sends you a notification 
 
 1. Choose **Create**\.
 
-------
-#### [ Old console ]
-
-**To create a status check alarm \(console\)**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance, choose the **Status Checks** tab, and choose **Create Status Check Alarm**\.
-
-1. Select **Send a notification to**\. Choose an existing SNS topic, or choose **create topic** to create a new one\. If creating a new topic, in **With these recipients**, enter your email address and the addresses of any additional recipients, separated by commas\.
-
-1. \(Optional\) Select **Take the action**, and then select the action that you'd like to take\.
-
-1. In **Whenever**, select the status check that you want to be notified about\.
-
-   If you selected **Recover this instance** in the previous step, select **Status Check Failed \(System\)**\.
-
-1. In **For at least**, set the number of periods you want to evaluate and in **consecutive periods**, select the evaluation period duration before triggering the alarm and sending an email\.
-
-1. \(Optional\) In **Name of alarm**, replace the default name with another name for the alarm\.
-
-1. Choose **Create Alarm**\.
-**Important**  
-If you added an email address to the list of recipients or created a new topic, Amazon SNS sends a subscription confirmation email message to each new address\. Each recipient must confirm the subscription by choosing the link contained in that message\. Alert notifications are sent only to confirmed addresses\.
-
-------
-
 If you need to make changes to an instance status alarm, you can edit it\.
-
-------
-#### [ New console ]
 
 **To edit a status check alarm using the console**
 
@@ -262,23 +183,6 @@ If you need to make changes to an instance status alarm, you can edit it\.
 1. For **Search for alarm**, choose the alarm\.
 
 1. When you are finished making changes, choose **Update**\.
-
-------
-#### [ Old console ]
-
-**To edit a status check alarm using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance and choose **Actions**, **CloudWatch Monitoring**, **Add/Edit Alarms**\.
-
-1. In the **Alarm Details** dialog box, choose the name of the alarm\.
-
-1. In the **Edit Alarm** dialog box, make the desired changes, and then choose **Save**\.
-
-------
 
 ### Create a status check alarm using the AWS CLI<a name="using-cloudwatch-new-cli2"></a>
 

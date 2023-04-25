@@ -128,9 +128,9 @@ If you enabled encryption by default in this AWS Region, you can omit `Encrypted
  
 
 ------
-#### [ New console ]
+#### [ Console ]
 
-**To view if an instance is enabled for hibernation using the console**
+**To view if an instance is enabled for hibernation**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -139,20 +139,9 @@ If you enabled encryption by default in this AWS Region, you can omit `Encrypted
 1. Select the instance and, on the **Details** tab, in the **Instance details** section, inspect **Stop\-hibernate behavior**\. **Enabled** indicates that the instance is enabled for hibernation\.
 
 ------
-#### [ Old console ]
-
-**To view if an instance is enabled for hibernation using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance and, in the details pane, inspect **Stop \- Hibernation behavior**\. **Enabled** indicates that the instance is enabled for hibernation\.
-
-------
 #### [ AWS CLI ]
 
-**To view if an instance is enabled for hibernation using the AWS CLI**  
+**To view if an instance is enabled for hibernation**  
 Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--filters "Name=hibernation-options.configured,Values=true"` parameter to filter instances that are enabled for hibernation\.
 
 ```

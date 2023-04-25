@@ -2,7 +2,7 @@
 
 After you launch an instance, you can connect it to one or more AWS resources\.
 
-Currently this page only describes how to automatically connect an Amazon EC2 instance to an Amazon RDS database\. In the future, this page will provide instructions on how to connect other resources to your instance\.
+This section describes how to automatically connect an Amazon EC2 instance to an Amazon RDS database\. 
 
 ## Automatically connect an EC2 instance to an RDS database<a name="connect-ec2-instance-to-rds-database"></a>
 

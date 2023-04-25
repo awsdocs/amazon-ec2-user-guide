@@ -10,7 +10,7 @@ If data was present on a volume held in an earlier snapshot or series of snapsho
 
 When you delete a snapshot, only the data that is referenced exclusively by that snapshot is removed\. Unique data is only deleted if all of the snapshots that reference it are deleted\. Deleting previous snapshots of a volume does not affect your ability to create volumes from later snapshots of that volume\.
 
-Deleting a snapshot might not reduce your organization's data storage costs\. Other snapshots might reference that snapshot's data, and referenced data is always preserved\. If you delete a snapshot containing data being used by a later snapshot, costs associated with the referenced data are allocated to the later snapshot\. For more information about how snapshots store data, see [How incremental snapshots work](EBSSnapshots.md#how_snapshots_work) and the following example\.
+Deleting a snapshot might not reduce your organization's data storage costs\. Other snapshots might reference that snapshot's data, and referenced data is always preserved\. If you delete a snapshot containing data being used by a later snapshot, costs associated with the referenced data are allocated to the later snapshot\. For more information about how snapshots store data, see [How snapshots work](EBSSnapshots.md#how_snapshots_work) and the following example\.
 
 In the following diagram, Volume 1 is shown at three points in time\. A snapshot has captured each of the first two states, and in the third, a snapshot has been deleted\. 
 + In State 1, the volume has 10 GiB of data\. Because Snap A is the first snapshot taken of the volume, the entire 10 GiB of data must be copied\.

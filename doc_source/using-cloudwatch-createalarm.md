@@ -5,9 +5,6 @@ You can create a CloudWatch alarm that monitors CloudWatch metrics for one of yo
 **To create an alarm using the CloudWatch console**  
 For examples, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
 
-------
-#### [ New console ]
-
 **To create an alarm using the Amazon EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -27,29 +24,5 @@ For examples, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.co
 1. \(Optional\) For **Sample metric data**, choose **Add to dashboard**\.
 
 1. Choose **Create**\.
-
-------
-#### [ Old console ]
-
-**To create an alarm using the Amazon EC2 console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance\.
-
-1. On the **Monitoring** tab located at the bottom of the page, choose **Create Alarm**\. Or, from the **Actions** dropdown, choose **CloudWatch Monitoring**, **Add/Edit Alarm**\.
-
-1. In the **Create Alarm** dialog box, do the following:
-
-   1. Choose **create topic**\. For **Send a notification to**, enter a name for the SNS topic\. For **With these recipients**, enter one or more email addresses to receive notification\.
-
-   1. Specify the metric and the criteria for the policy\. For example, you can leave the default settings for **Whenever** \(Average of CPU Utilization\)\. For **Is**, choose `>=` and enter `80` percent\. For **For at least**, enter `1` consecutive period of `5 Minutes`\.
-
-   1. Choose **Create Alarm**\.  
-![\[Create a CloudWatch alarm using the Amazon EC2 console.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/monitoring_create_alarm.png)
-
-------
 
 You can edit your CloudWatch alarm settings from the Amazon EC2 console or the CloudWatch console\. If you want to delete your alarm, you can do so from the CloudWatch console\. For more information, see [Editing or deleting a CloudWatch alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Edit-CloudWatch-Alarm.html) in the *Amazon CloudWatch User Guide*\.

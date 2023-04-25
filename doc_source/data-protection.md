@@ -10,7 +10,7 @@ For data protection purposes, we recommend that you protect AWS account credenti
 + Use advanced managed security services such as Amazon Macie, which assists in discovering and securing sensitive data that is stored in Amazon S3\.
 + If you require FIPS 140\-2 validated cryptographic modules when accessing AWS through a command line interface or an API, use a FIPS endpoint\. For more information about the available FIPS endpoints, see [Federal Information Processing Standard \(FIPS\) 140\-2](http://aws.amazon.com/compliance/fips/)\.
 
-We strongly recommend that you never put confidential or sensitive information, such as your customers' email addresses, into tags or free\-form fields such as a **Name** field\. This includes when you work with Amazon EC2 or other AWS services using the console, API, AWS CLI, or AWS SDKs\. Any data that you enter into tags or free\-form fields used for names may be used for billing or diagnostic logs\. If you provide a URL to an external server, we strongly recommend that you do not include credentials information in the URL to validate your request to that server\.
+We strongly recommend that you never put confidential or sensitive information, such as your customers' email addresses, into tags or free\-form text fields such as a **Name** field\. This includes when you work with Amazon EC2 or other AWS services using the console, API, AWS CLI, or AWS SDKs\. Any data that you enter into tags or free\-form text fields used for names may be used for billing or diagnostic logs\. If you provide a URL to an external server, we strongly recommend that you do not include credentials information in the URL to validate your request to that server\.
 
 **Topics**
 + [Amazon EBS data security](#ebs-data-security)
@@ -53,9 +53,9 @@ All cross\-Region traffic that uses Amazon VPC and Transit Gateway peering is au
 **Encryption between instances**  
 AWS provides secure and private connectivity between EC2 instances of all types\. In addition, some instance types use the offload capabilities of the underlying Nitro System hardware to automatically encrypt in\-transit traffic between instances, using AEAD algorithms with 256\-bit encryption\. There is no impact on network performance\. To support this additional in\-transit traffic encryption between instances, the following requirements must be met:
 + The instances use the following instance types:
-  + **General purpose**: M5dn, M5n, M5zn, M6a, M6i, M6id, M6idn, and M6in
+  + **General purpose**: M5dn, M5n, M5zn, M6a, M6i, M6id, M6idn, M6in, and M7g
   + **Compute optimized:** C5a, C5ad, C5n, C6a, C6gn, C6i, C6id, C6in, C7g, and Hpc6a
-  + **Memory optimized:** Hpc6id, R5dn, R5n, R6a, R6i, R6idn, R6in, R6id, U\-3tb1, U\-6tb1, U\-9tb1, U\-12tb1, U\-18tb1, U\-24tb1, X2idn, X2iedn, and X2iezn
+  + **Memory optimized:** Hpc6id, R5dn, R5n, R6a, R6i, R6idn, R6in, R6id, R7g, U\-3tb1, U\-6tb1, U\-9tb1, U\-12tb1, U\-18tb1, U\-24tb1, X2idn, X2iedn, and X2iezn
   + **Storage optimized:** D3, D3en, I3en, I4i, Im4gn, and Is4gen
   + **Accelerated computing:** DL1, G4ad, G4dn, G5, Inf1, P3dn, P4d, P4de, Trn1, and VT1
 + The instances are in the same Region\.

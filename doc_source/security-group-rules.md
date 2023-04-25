@@ -13,6 +13,8 @@ The following are the characteristics of security group rules:
 + When you associate multiple security groups with an instance, the rules from each security group are effectively aggregated to create one set of rules\. Amazon EC2 uses this set of rules to determine whether to allow access\.
 
   You can assign multiple security groups to an instance\. Therefore, an instance can have hundreds of rules that apply\. This might cause problems when you access the instance\. We recommend that you condense your rules as much as possible\. 
+**Note**  
+Security groups cannot block DNS requests to or from the Route 53 Resolver, sometimes referred to as the 'VPC\+2 IP address' \(see [What is Amazon Route 53 Resolver?](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html) in the *Amazon Route 53 Developer Guide*\), or the ‘AmazonProvidedDNS’ \(see [Work with DHCP option sets](https://docs.aws.amazon.com/vpc/latest/userguide/DHCPOptionSet.html) in the *Amazon Virtual Private Cloud User Guide*\)\. If you wish to filter DNS requests through the Route 53 Resolver, you can enable Route 53 Resolver DNS Firewall \(see [Route 53 Resolver DNS Firewall](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall.html) in the *Amazon Route 53 Developer Guide*\)\.
 
 For each rule, you specify the following:
 + **Name**: The name for the security group \(for example, "my\-security\-group"\)\. 

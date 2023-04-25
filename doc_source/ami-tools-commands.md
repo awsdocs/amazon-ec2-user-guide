@@ -2,7 +2,7 @@
 
 You can use the AMI tools commands to create and manage instance store\-backed Linux AMIs\. To set up the tools, see [Set up the AMI tools](set-up-ami-tools.md)\.
 
-For information about your access keys, see [Best Practices for Managing AWS Access Keys](https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html)\.
+For information about your access keys, see [Best Practices for AWS accounts](https://docs.aws.amazon.com/accounts/latest/reference/best-practices.html) in the *AWS Account Management Reference Guide*\.
 
 **Topics**
 + [ec2\-ami\-tools\-version](#ami-tools-version)

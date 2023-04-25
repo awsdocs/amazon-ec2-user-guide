@@ -51,7 +51,7 @@ The following illustration represents the transitions between the EC2 Fleet requ
 + [Launch template](#ec2-fleet-prerequisites-launch-template)
 + [Service\-linked role for EC2 Fleet](#ec2-fleet-service-linked-role)
 + [Grant access to customer managed keys for use with encrypted AMIs and EBS snapshots](#ec2-fleet-service-linked-roles-access-to-cmks)
-+ [Permissions for EC2 Fleet IAM users](#ec2-fleet-iam-users)
++ [Permissions for EC2 Fleet users](#ec2-fleet-iam-users)
 
 ### Launch template<a name="ec2-fleet-prerequisites-launch-template"></a>
 
@@ -108,11 +108,11 @@ When providing permissions, grants are an alternative to key policies\. For more
       --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
   ```
 
-### Permissions for EC2 Fleet IAM users<a name="ec2-fleet-iam-users"></a>
+### Permissions for EC2 Fleet users<a name="ec2-fleet-iam-users"></a>
 
-If your IAM users will create or manage an EC2 Fleet, be sure to grant them the required permissions as follows\.
+If your users will create or manage an EC2 Fleet, be sure to grant them the required permissions\.
 
-**To grant an IAM user permissions for EC2 Fleet**
+**To create a policy for EC2 Fleet**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -146,11 +146,11 @@ If your IAM users will create or manage an EC2 Fleet, be sure to grant them the 
    }
    ```
 
-   The `ec2:*` grants an IAM user permission to call all Amazon EC2 API actions\. To limit the user to specific Amazon EC2 API actions, specify those actions instead\.
+   The `ec2:*` grants a user permission to call all Amazon EC2 API actions\. To limit the user to specific Amazon EC2 API actions, specify those actions instead\.
 
-   An IAM user must have permission to call the `iam:ListRoles` action to enumerate existing IAM roles, the `iam:PassRole` action to specify the EC2 Fleet role, and the `iam:ListInstanceProfiles` action to enumerate existing instance profiles\.
+   The user must have permission to call the `iam:ListRoles` action to enumerate existing IAM roles, the `iam:PassRole` action to specify the EC2 Fleet role, and the `iam:ListInstanceProfiles` action to enumerate existing instance profiles\.
 
-   \(Optional\) To enable an IAM user to create roles or instance profiles using the IAM console, you must also add the following actions to the policy:
+   \(Optional\) To enable a user to create roles or instance profiles using the IAM console, you must also add the following actions to the policy:
    + `iam:AddRoleToInstanceProfile`
    + `iam:AttachRolePolicy`
    + `iam:CreateInstanceProfile`
@@ -160,13 +160,16 @@ If your IAM users will create or manage an EC2 Fleet, be sure to grant them the 
 
 1. On the **Review policy** page, enter a policy name and description, and choose **Create policy**\.
 
-1. In the navigation pane, choose **Users** and select the user\.
+1. To provide access, add permissions to your users, groups, or roles:
+   + Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
 
-1. On the **Permissions** tab, choose **Add permissions**\.
+     Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
+   + Users managed in IAM through an identity provider:
 
-1. Choose **Attach existing policies directly**\. Select the policy that you created earlier and choose **Next: Review**\.
-
-1. Choose **Add permissions**\.
+     Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
+   + IAM users:
+     + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+     + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.
 
 ## EC2 Fleet health checks<a name="ec2-fleet-health-checks"></a>
 
@@ -180,7 +183,7 @@ You can configure your fleet to replace unhealthy Spot Instances\. After setting
 + Health check replacement is supported only for EC2 Fleets that maintain a target capacity \(fleets of type `maintain`\), and not for fleets of type `request` or `instant`\.
 + Health check replacement is supported only for Spot Instances\. This feature is not supported for On\-Demand Instances\.
 + You can configure your EC2 Fleet to replace unhealthy instances only when you create it\.
-+ IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
++ Users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
 
 **To configure an EC2 Fleet to replace unhealthy Spot Instances**
 
@@ -523,12 +526,12 @@ For more information about how tags work, see [Tag your Amazon EC2 resources](Us
 
 **Prerequisite**
 
-Grant the IAM user the permission to tag resources\. For more information, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
+Grant the user the permission to tag resources\. For more information, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
 
-**To grant an IAM user the permission to tag resources**  
+**To grant a user the permission to tag resources**  
 Create a IAM policy that includes the following:
-+ The `ec2:CreateTags` action\. This grants the IAM user permission to create tags\.
-+ The `ec2:CreateFleet` action\. This grants the IAM user permission to create an EC2 Fleet request\.
++ The `ec2:CreateTags` action\. This grants the user permission to create tags\.
++ The `ec2:CreateFleet` action\. This grants the user permission to create an EC2 Fleet request\.
 + For `Resource`, we recommend that you specify `"*"`\. This allows users to tag all resource types\.
 
 ```
@@ -559,6 +562,17 @@ We currently do not support resource\-level permissions for the `create-fleet` r
     "Resource": "arn:aws:ec2:us-east-1:111122223333:create-fleet/*"
 }
 ```
+
+To provide access, add permissions to your users, groups, or roles:
++ Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
+
+  Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
++ Users managed in IAM through an identity provider:
+
+  Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
++ IAM users:
+  + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+  + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.
 
 **To tag a new EC2 Fleet request**  
 To tag an EC2 Fleet request when you create it, specify the key\-value pair in the [JSON file](#ec2-fleet-cli-skeleton) used to create the fleet\. The value for `ResourceType` must be `fleet`\. If you specify another value, the fleet request fails\.
@@ -762,16 +776,18 @@ aws ec2 modify-fleet \
 
 ## Delete an EC2 Fleet<a name="delete-fleet"></a>
 
-If you no longer require an EC2 Fleet, you can delete it\. After you delete a fleet, it launches no new instances\.
+If you no longer require an EC2 Fleet, you can delete it\. After you delete a fleet, all Spot requests associated with the fleet are canceled, so that no new Spot Instances are launched\.
 
-When you delete an EC2 Fleet, you must specify if you want to also terminate its instances\. If you specify that the instances must be terminated when the fleet is deleted, it enters the `deleted_terminating` state\. Otherwise, it enters the `deleted_running` state, and the instances continue to run until they are interrupted or you terminate them manually\.
+When you delete an EC2 Fleet, you must also specify if you want to terminate all of its instances\. These include both On\-Demand Instances and Spot Instances\.
+
+If you specify that the instances must be terminated when the fleet is deleted, the fleet enters the `deleted_terminating` state\. Otherwise, it enters the `deleted_running` state, and the instances continue to run until they are interrupted or you terminate them manually\.
 
 **Restrictions**
 + You can delete up to 25 `instant` fleets in a single request\. If you exceed this number, no `instant` fleets are deleted and an error is returned\. There is no restriction on the number of fleets of type `maintain` or `request` that can be deleted in a single request\.
 + Up to 1000 instances can be terminated in a single request to delete `instant` fleets\. 
 
 **To delete an EC2 Fleet and terminate its instances \(AWS CLI\)**  
-Use the [delete\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-fleets.html) command and the `--terminate-instances` parameter to delete the specified EC2 Fleet and terminate the instances\.
+Use the [delete\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-fleets.html) command and the `--terminate-instances` parameter to delete the specified EC2 Fleet and terminate its associated instances\.
 
 ```
 aws ec2 delete-fleets \
@@ -779,7 +795,7 @@ aws ec2 delete-fleets \
     --terminate-instances
 ```
 
-The following is example output\.
+Example output
 
 ```
 {
@@ -794,8 +810,8 @@ The following is example output\.
 }
 ```
 
-**To delete an EC2 Fleet without terminating the instances \(AWS CLI\)**  
-You can modify the previous command using the `--no-terminate-instances` parameter to delete the specified EC2 Fleet without terminating the instances\.
+**To delete an EC2 Fleet without terminating its instances \(AWS CLI\)**  
+You can modify the previous command using the `--no-terminate-instances` parameter to delete the specified EC2 Fleet without terminating its associated instances\.
 
 **Note**  
 `--no-terminate-instances` is not supported for `instant` fleets\.
@@ -806,7 +822,7 @@ aws ec2 delete-fleets \
     --no-terminate-instances
 ```
 
-The following is example output\.
+Example output
 
 ```
 {

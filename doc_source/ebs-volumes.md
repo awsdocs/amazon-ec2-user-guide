@@ -26,6 +26,7 @@ For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.c
 + [Monitor the status of your volumes](monitoring-volume-status.md)
 + [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)
 + [Delete an Amazon EBS volume](ebs-deleting-volume.md)
++ [Fault testing on Amazon EBS](ebs-fis.md)
 
 ## Benefits of using EBS volumes<a name="EBSFeatures"></a>
 

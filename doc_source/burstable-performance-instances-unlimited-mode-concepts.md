@@ -1,6 +1,6 @@
 # Unlimited mode concepts<a name="burstable-performance-instances-unlimited-mode-concepts"></a>
 
-The `unlimited` mode is a credit configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\. You can set `unlimited` as the default credit option at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\.
+The `unlimited` mode is a credit configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\. You can [set `unlimited` as the default credit option](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account) at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\.
 
 ## How Unlimited burstable performance instances work<a name="how-burstable-performance-instances-unlimited-works"></a>
 

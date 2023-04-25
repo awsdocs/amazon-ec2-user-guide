@@ -74,6 +74,9 @@ ENA Express is powered by AWS Scalable Reliable Datagram \(SRD\) technology\. SR
 + Calculate the percentage of outgoing traffic that uses SRD for the instance\.
 + Calculate the percentage of incoming traffic that uses SRD for the instance\.
 
+**Note**  
+To produce metrics, use driver version 2\.8 or higher\.
+
 The following ENA Express metrics are available using the ethtool command for Linux based instances\.
 + `ena_srd_mode` – Describes which ENA Express features are enabled\. Values are as follows:
   + `0` = ENA Express off, UDP off

@@ -1,8 +1,11 @@
 # Example policies for working with the AWS CLI or an AWS SDK<a name="ExamplePolicies_EC2"></a>
 
-The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example policies for working in the Amazon EC2 console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Identity and Access Management for Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/security-iam.html)\.
+You must grant users the permissions they require for Amazon EC2 using IAM policies\. The following examples show policy statements that you could use to control the permissions that users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For more information, see [Creating IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the IAM User Guide\. For example policies for working in the Amazon EC2 console, see [Example policies for working in the Amazon EC2 console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Identity and Access Management for Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/security-iam.html)\.
 
 In the following examples, replace each *user input placeholder* with your own information\.
+
+**Note**  
+ 
 
 **Topics**
 + [Read\-only access](#iam-example-read-only)
@@ -172,7 +175,7 @@ The third statement allows users to terminate all instances in the US East \(N\.
 
 When an API action requires a caller to specify multiple resources, you must create a policy statement that allows users to access all required resources\. If you need to use a `Condition` element with one or more of these resources, you must create multiple statements as shown in this example\.
 
-The following policy allows users to attach volumes with the tag "`volume_user`=*iam\-user\-name*" to instances with the tag "`department=dev`", and to detach those volumes from those instances\. If you attach this policy to an IAM group, the `aws:username` policy variable gives each IAM user in the group permission to attach or detach volumes from the instances with a tag named `volume_user` that has his or her IAM user name as a value\.
+The following policy allows users to attach volumes with the tag "`volume_user`=*iam\-user\-name*" to instances with the tag "`department=dev`", and to detach those volumes from those instances\. If you attach this policy to an IAM group, the `aws:username` policy variable gives each user in the group permission to attach or detach volumes from the instances with a tag named `volume_user` that has their username as a value\.
 
 ```
 {
@@ -1769,7 +1772,7 @@ The following policy allows users to use the `CreateTags` action to apply tags t
 }
 ```
 
-The following policy allows users to tag any taggable resource that already has a tag with a key of `owner` and a value of the IAM username\. In addition, users must specify a tag with a key of `anycompany:environment-type` and a value of either `test` or `prod` in the request\. Users can specify additional tags in the request\.
+The following policy allows users to tag any taggable resource that already has a tag with a key of `owner` and a value of the username\. In addition, users must specify a tag with a key of `anycompany:environment-type` and a value of either `test` or `prod` in the request\. Users can specify additional tags in the request\.
 
 ```
 {
@@ -1815,7 +1818,7 @@ If you delete a resource, all tags associated with the resource are also deleted
 }
 ```
 
-This policy allows users to delete only the `environment=prod` tag on any resource, and only if the resource is already tagged with a key of `owner` and a value of the IAM username\. Users cannot delete any other tags for a resource\.
+This policy allows users to delete only the `environment=prod` tag on any resource, and only if the resource is already tagged with a key of `owner` and a value of the username\. Users can't delete any other tags for a resource\.
 
 ```
 {
@@ -1845,7 +1848,7 @@ This policy allows users to delete only the `environment=prod` tag on any resour
 
 The following policy allows users to attach, replace, and detach an IAM role to instances that have the tag `department=test`\. Replacing or detaching an IAM role requires an association ID, therefore the policy also grants users permission to use the `ec2:DescribeIamInstanceProfileAssociations` action\. 
 
-IAM users must have permission to use the `iam:PassRole` action in order to pass the role to the instance\. 
+Users must have permission to use the `iam:PassRole` action in order to pass the role to the instance\. 
 
 ```
 {
@@ -2080,7 +2083,7 @@ The following policy specifies that you can’t call the RunInstances API unless
 
 ### Limit who can modify the instance metadata options<a name="iam-example-instance-metadata-limit-modify-IMDS-options"></a>
 
-The following policy removes the ability for the general population of administrators to modify instance metadata options, and permits only users with the role `ec2-imds-admins` to make changes\. If any principal other than the `ec2-imds-admins` role tries to call the ModifyInstanceMetadataOptions API, it will get an `UnauthorizedOperation` error\. This statement could be used to control the use of the ModifyInstanceMetadataOptions API; there are currently no fine\-grained access controls \(conditions\) for the ModifyInstanceMetadataOptions API\.
+The following policy permits only users with the role `ec2-imds-admins` to make changes to the instance metadata options\. If any principal other than the `ec2-imds-admins` role tries to call the ModifyInstanceMetadataOptions API, it will get an `UnauthorizedOperation` error\. This statement could be used to control the use of the ModifyInstanceMetadataOptions API; there are currently no fine\-grained access controls \(conditions\) for the ModifyInstanceMetadataOptions API\.
 
 ```
 {

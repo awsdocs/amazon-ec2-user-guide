@@ -3,6 +3,7 @@
 The following AMIs support hibernation, but to hibernate an instance that was launched with one of these AMIs, additional configuration is required before you can hibernate the instance\.
 
 **Topics**
++ [Amazon Linux 2 minimal AMI released 2019\.08\.29 or later](#configure-AL2-minimal-for-hibernation)
 + [Amazon Linux 2 released before 2019\.08\.29](#configure-AL2-for-hibernation)
 + [Amazon Linux released before 2018\.11\.16](#configure-AL-for-hibernation)
 + [CentOS version 8 or later](#configure-centos-for-hibernation)
@@ -15,10 +16,26 @@ The following AMIs support hibernation, but to hibernate an instance that was la
 For more information, see [Update instance software on your Amazon Linux instance](install-updates.md)\.
 
 **No additional configuration is required for the following AMIs because they're already configured to support hibernation:**
-+ Amazon Linux 2 AMI released 2019\.08\.29 or later
++ Amazon Linux 2 full AMI released 2019\.08\.29 or later
 + Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later
 + Ubuntu 20\.04 LTS \- Focal AMI released with serial number 20210820 or later
 + Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later
+
+## Amazon Linux 2 minimal AMI released 2019\.08\.29 or later<a name="configure-AL2-minimal-for-hibernation"></a>
+
+**To configure an Amazon Linux 2 minimal AMI released 2019\.08\.29 or later to support hibernation**
+
+1. Install the `ec2-hibinit-agent` package from the repositories\.
+
+   ```
+   [ec2-user ~]$ sudo yum install ec2-hibinit-agent
+   ```
+
+1. Restart the service\.
+
+   ```
+   [ec2-user ~]$ sudo systemctl start hibinit-agent
+   ```
 
 ## Amazon Linux 2 released before 2019\.08\.29<a name="configure-AL2-for-hibernation"></a>
 

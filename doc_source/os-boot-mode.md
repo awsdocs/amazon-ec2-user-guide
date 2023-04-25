@@ -1,6 +1,6 @@
 # Determine the boot mode of the operating system<a name="os-boot-mode"></a>
 
-The boot mode of the operating system guides Amazon EC2 on which boot mode to use to boot an instance\. To view whether the operating system of your instance is configured for UEFI, you need to connect to your instance via SSH\.
+The boot mode of the AMI guides Amazon EC2 on which boot mode to use to boot an instance\. To view whether the operating system of your instance is configured for UEFI, you need to connect to your instance using SSH\.
 
 **To determine the boot mode of the instance’s operating system**
 

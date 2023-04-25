@@ -18,7 +18,7 @@ We designed IAM roles so that your applications can securely make API requests f
 
 1. Have the application retrieve a set of temporary credentials and use them\.
 
-For example, you can use IAM roles to grant permissions to applications running on your instances that need to use a bucket in Amazon S3\. You can specify permissions for IAM roles by creating a policy in JSON format\. These are similar to the policies that you create for IAM users\. If you change a role, the change is propagated to all instances\.
+For example, you can use IAM roles to grant permissions to applications running on your instances that need to use a bucket in Amazon S3\. You can specify permissions for IAM roles by creating a policy in JSON format\. These are similar to the policies that you create for users\. If you change a role, the change is propagated to all instances\.
 
 When creating IAM roles, associate least privilege IAM policies that restrict access to the specific API calls the application requires\.
 
@@ -29,7 +29,7 @@ You can apply resource\-level permissions to your IAM policies to control the us
 **Topics**
 + [Instance profiles](#ec2-instance-profile)
 + [Retrieve security credentials from instance metadata](#instance-metadata-security-credentials)
-+ [Grant an IAM user permission to pass an IAM role to an instance](#permission-to-pass-iam-roles)
++ [Grant a user permission to pass an IAM role to an instance](#permission-to-pass-iam-roles)
 + [Work with IAM roles](#working-with-iam-roles)
 
 ## Instance profiles<a name="ec2-instance-profile"></a>
@@ -86,9 +86,9 @@ For applications, AWS CLI, and Tools for Windows PowerShell commands that run on
 
 For more information about instance metadata, see [Instance metadata and user data](ec2-instance-metadata.md)\. For information about the instance metadata IP address, see [Retrieve instance metadata](instancedata-data-retrieval.md)\.
 
-## Grant an IAM user permission to pass an IAM role to an instance<a name="permission-to-pass-iam-roles"></a>
+## Grant a user permission to pass an IAM role to an instance<a name="permission-to-pass-iam-roles"></a>
 
-To enable an IAM user to launch an instance with an IAM role or to attach or replace an IAM role for an existing instance, you must grant the user permission to use the following API actions:
+To enable a user to launch an instance with an IAM role or to attach or replace an IAM role for an existing instance, you must grant the user permission to use the following API actions:
 + `iam:PassRole`
 + `ec2:AssociateIamInstanceProfile` 
 + `ec2:ReplaceIamInstanceProfileAssociation`
@@ -96,7 +96,7 @@ To enable an IAM user to launch an instance with an IAM role or to attach or rep
 For example, the following IAM policy grants users permission to launch instances with an IAM role, or to attach or replace an IAM role for an existing instance using the AWS CLI\.
 
 **Note**  
-If you want the policy to grant IAM users access to all of your roles, specify the resource as `*` in the policy\. However, please consider the principle of [least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) as a best\-practice \.
+If you want the policy to grant users access to all of your roles, specify the resource as `*` in the policy\. However, please consider the principle of [least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) as a best\-practice \.
 
 ```
 {
@@ -381,7 +381,7 @@ You can use the AWS CLI to associate a role with an instance during launch\. You
 To attach an IAM role to an instance that has no role, the instance can be in the `stopped` or `running` state\.
 
 ------
-#### [ New console ]<a name="attach-iam-role-console"></a>
+#### [ Console ]<a name="attach-iam-role-console"></a>
 
 **To attach an IAM role to an instance**
 
@@ -392,19 +392,6 @@ To attach an IAM role to an instance that has no role, the instance can be in th
 1. Select the instance, choose **Actions**, **Security**, **Modify IAM role**\.
 
 1. Select the IAM role to attach to your instance, and choose **Save**\.
-
-------
-#### [ Old console ]
-
-**To attach an IAM role to an instance**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance, choose **Actions**, **Instance Settings**, **Attach/Replace IAM role**\.
-
-1. Select the IAM role to attach to your instance, and choose **Apply**\.
 
 ------
 #### [ Command line ]<a name="attach-iam-role-instance-cli"></a>
@@ -452,7 +439,7 @@ Alternatively, use the following Tools for Windows PowerShell commands:
 To replace the IAM role on an instance that already has an attached IAM role, the instance must be in the `running` state\. You can do this if you want to change the IAM role for an instance without detaching the existing one first\. For example, you can do this to ensure that API actions performed by applications running on the instance are not interrupted\.
 
 ------
-#### [ New console ]<a name="replace-iam-role-console"></a>
+#### [ Console ]<a name="replace-iam-role-console"></a>
 
 **To replace an IAM role for an instance**
 
@@ -463,19 +450,6 @@ To replace the IAM role on an instance that already has an attached IAM role, th
 1. Select the instance, choose **Actions**, **Security**, **Modify IAM role**\.
 
 1. Select the IAM role to attach to your instance, and choose **Save**\.
-
-------
-#### [ Old console ]
-
-**To replace an IAM role for an instance**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance, choose **Actions**, **Instance Settings**, **Attach/Replace IAM role**\.
-
-1. Select the IAM role to attach to your instance, and choose **Apply**\.
 
 ------
 #### [ Command line ]<a name="replace-iam-role-cli"></a>
@@ -523,7 +497,7 @@ Alternatively, use the following Tools for Windows PowerShell commands:
 You can detach an IAM role from a running or stopped instance\.
 
 ------
-#### [ New console ]<a name="detach-iam-role-console"></a>
+#### [ Console ]<a name="detach-iam-role-console"></a>
 
 **To detach an IAM role from an instance**
 
@@ -536,21 +510,6 @@ You can detach an IAM role from a running or stopped instance\.
 1. For **IAM role**, choose **No IAM Role**\. Choose **Save**\.
 
 1. In the confirmation dialog box, enter ** Detach**, and then choose **Detach**\.
-
-------
-#### [ Old console ]
-
-**To detach an IAM role from an instance**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance, choose **Actions**, **Instance Settings**, **Attach/Replace IAM role**\.
-
-1. For **IAM role**, choose **No Role**\. Choose **Apply**\.
-
-1. In the confirmation dialog box, choose **Yes, Detach**\.
 
 ------
 #### [ Command line ]<a name="detach-iam-role-cli"></a>

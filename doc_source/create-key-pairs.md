@@ -40,7 +40,7 @@ You can use Amazon EC2 to create a key pair using one of the following methods\.
 **Important**  
 This is the only chance for you to save the private key file\.
 
-1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
+1. If you plan to use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
    ```
    chmod 400 key-pair-name.pem
@@ -53,7 +53,7 @@ This is the only chance for you to save the private key file\.
 
 **To create a key pair using Amazon EC2**
 
-1. Use the [create\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) command as follows to generate the key pair and to save the private key to a `.pem` file\.
+1. Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) command as follows to generate the key pair and to save the private key to a `.pem` file\.
 
    For `--key-name`, specify a name for the public key\. The name can be up to 255 ASCII characters\.
 
@@ -74,7 +74,7 @@ This is the only chance for you to save the private key file\.
        --output text > my-key-pair.pem
    ```
 
-1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
+1. If you plan to use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
    ```
    chmod 400 key-pair-name.pem
@@ -86,7 +86,7 @@ This is the only chance for you to save the private key file\.
 #### [ PowerShell ]
 
 **To create a key pair using Amazon EC2**  
-Use the [New\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) AWS Tools for Windows PowerShell command as follows to generate the key and save it to a `.pem` or `.ppk` file\.
+Use the [https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) AWS Tools for Windows PowerShell command as follows to generate the key and save it to a `.pem` or `.ppk` file\.
 
 For `-KeyName`, specify a name for the public key\. The name can be up to 255 ASCII characters\.
 
@@ -126,7 +126,7 @@ For more information, see [AWS Systems Manager Parameter Store](https://docs.aws
          KeyName: new-key-pair
    ```
 
-1. Use the [describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command as follows to get the ID of the key pair\.
+1. Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) command as follows to get the ID of the key pair\.
 
    ```
    aws ec2 describe-key-pairs --filters Name=key-name,Values=new-key-pair --query KeyPairs[*].KeyPairId --output text
@@ -138,7 +138,7 @@ For more information, see [AWS Systems Manager Parameter Store](https://docs.aws
    key-05abb699beEXAMPLE
    ```
 
-1. Use the [get\-parameter](https://docs.aws.amazon.com/cli/latest/reference/ssm/get-parameter.html) command as follows to get the parameter for your key and save the key material in a `.pem` file\.
+1. Use the [https://docs.aws.amazon.com/cli/latest/reference/ssm/get-parameter.html](https://docs.aws.amazon.com/cli/latest/reference/ssm/get-parameter.html) command as follows to get the parameter for your key and save the key material in a `.pem` file\.
 
    ```
    aws ssm get-parameter --name /ec2/keypair/key-05abb699beEXAMPLE --with-decryption --query Parameter.Value --output text > new-key-pair.pem
@@ -146,9 +146,9 @@ For more information, see [AWS Systems Manager Parameter Store](https://docs.aws
 
 **Required IAM permissions**
 
-To enable AWS CloudFormation to manage Parameter Store parameters on your behalf, the IAM role assumed by AWS CloudFormation or your IAM user must have the following permissions:
+To enable AWS CloudFormation to manage Parameter Store parameters on your behalf, the IAM role assumed by AWS CloudFormation or your user must have the following permissions:
 + `ssm:PutParameter` – Grants permission to create a parameter for the private key material\.
-+ `ssm:DeleteParameter` \- Grants permission to delete the parameter that stored the private key material\. This permission is required whether the key pair was imported or created by AWS CloudFormation\.
++ `ssm:DeleteParameter` – Grants permission to delete the parameter that stored the private key material\. This permission is required whether the key pair was imported or created by AWS CloudFormation\.
 
 When AWS CloudFormation deletes a key pair that was created or imported by a stack, it performs a permissions check to determine whether you have permission to delete parameters, even though AWS CloudFormation creates a parameter only when it creates a key pair, not when it imports a key pair\. AWS CloudFormation tests for the required permission using a fabricated parameter name that does not match any parameter in your account\. Therefore, you might see a fabricated parameter name in the `AccessDeniedException` error message\.
 
@@ -206,18 +206,18 @@ When you connect to your instance from the EC2 console, the console suggests thi
 #### [ AWS CLI ]
 
 **To import the public key to Amazon EC2**  
-Use the [import\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/import-key-pair.html) AWS CLI command\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/import-key-pair.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/import-key-pair.html) AWS CLI command\.
 
 **To verify that the key pair was imported successfully**  
-Use the [describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) AWS CLI command\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) AWS CLI command\.
 
 ------
 #### [ PowerShell ]
 
 **To import the public key to Amazon EC2**  
-Use the [Import\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/Import-EC2KeyPair.html) AWS Tools for Windows PowerShell command\.
+Use the [https://docs.aws.amazon.com/powershell/latest/reference/items/Import-EC2KeyPair.html](https://docs.aws.amazon.com/powershell/latest/reference/items/Import-EC2KeyPair.html) AWS Tools for Windows PowerShell command\.
 
 **To verify that the key pair was imported successfully**  
-Use the [Get\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2KeyPair.html) AWS Tools for Windows PowerShell command\.
+Use the [https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2KeyPair.html](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2KeyPair.html) AWS Tools for Windows PowerShell command\.
 
 ------

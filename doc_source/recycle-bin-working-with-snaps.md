@@ -15,17 +15,17 @@ For more information, see [Recycle Bin](recycle-bin.md)\.
 
 ## Permissions for working with snapshots in the Recycle Bin<a name="snap-perms"></a>
 
-By default, IAM users don't have permission to work with snapshots that are in the Recycle Bin\. To allow IAM users to work with these resources, you must create IAM policies that grant permission to use specific resources and API actions\. You then attach those policies to the IAM users or the groups that require those permissions\.
+By default, users don't have permission to work with snapshots that are in the Recycle Bin\. To allow users to work with these resources, you must create IAM policies that grant permission to use specific resources and API actions\. Once the policies are created, you must add permissions to your users, groups, or roles\.
 
-To view and recover snapshots that are in the Recycle Bin, IAM users must have the following permissions:
+To view and recover snapshots that are in the Recycle Bin, users must have the following permissions:
 + `ec2:ListSnapshotsInRecycleBin`
 + `ec2:RestoreSnapshotFromRecycleBin`
 
-To manage tags for snapshots in the Recycle Bin, IAM users need the following additional permissions\.
+To manage tags for snapshots in the Recycle Bin, users need the following additional permissions\.
 + `ec2:CreateTags`
 + `ec2:DeleteTags`
 
-To use the Recycle Bin console, IAM users need the `ec2:DescribeTags` permission\.
+To use the Recycle Bin console, users need the `ec2:DescribeTags` permission\.
 
 The following is an example IAM policy\. It includes the `ec2:DescribeTags` permission for console users, and it includes the `ec2:CreateTags` and `ec2:DeleteTags` permissions for managing tags\. If the permissions are not needed, you can remove them from the policy\.
 
@@ -54,6 +54,17 @@ The following is an example IAM policy\. It includes the `ec2:DescribeTags` perm
     ]
 }
 ```
+
+To provide access, add permissions to your users, groups, or roles:
++ Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
+
+  Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
++ Users managed in IAM through an identity provider:
+
+  Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
++ IAM users:
+  + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+  + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.
 
 For more information about the permissions needed to use Recycle Bin, see [Permissions for working with Recycle Bin and retention rules](recycle-bin-perms.md#rule-perms)\.
 

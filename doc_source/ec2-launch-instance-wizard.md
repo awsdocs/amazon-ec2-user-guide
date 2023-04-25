@@ -126,7 +126,7 @@ Choose **Browse more AMIs** to browse the full AMI catalog\.
 + To filter the list of AMIs, select one or more check boxes under **Refine results** on the left of the screen\. The filter options are different depending on the selected search category\.
 + Check the **Root device type** listed for each AMI\. Notice which AMIs are the type that you need: either **ebs** \(backed by Amazon EBS\) or **instance\-store** \(backed by instance store\)\. For more information, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\. 
 + Check the **Virtualization** type listed for each AMI\. Notice which AMIs are the type that you need: either **hvm** or **paravirtual**\. For example, some instance types require HVM\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
-+ Check the **Boot mode** listed for each AMI\. Notice which AMIs use the boot mode that you need: either **legacy\-bios** or **uefi**\. For more information, see [Boot modes](ami-boot.md)\.
++ Check the **Boot mode** listed for each AMI\. Notice which AMIs use the boot mode that you need: either **legacy\-bios**, **uefi**, or **uefi\-preferred**\. For more information, see [Boot modes](ami-boot.md)\.
 + Choose an AMI that meets your needs, and then choose **Select**\.
 
 **Warning when changing the AMI**  

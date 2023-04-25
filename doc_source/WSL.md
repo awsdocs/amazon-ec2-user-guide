@@ -25,7 +25,7 @@ Before you connect to your Linux instance, complete the following prerequisites\
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status check** column on the **Instances** page\.
 
 **Verify the general prerequisites for connecting to your instance**  
-To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [Set up to connect to your instance](connection-prereqs.md)\.
 
 **Install the Windows Subsystem for Linux \(WSL\) and a Linux distribution on your local computer**  
 Install the WSL and a Linux distribution using the instructions in the [Windows 10 Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)\. The example in the instructions installs the Ubuntu distribution of Linux, but you can install any distribution\. You are prompted to restart your computer for the changes to take effect\.
@@ -82,7 +82,7 @@ One way to transfer files between your local computer and a Linux instance is to
 **Prerequisites**
 + **Verify the general prerequisites for transferring files to your instance\.**
 
-  The general prerequisites for transferring files to an instance are the same as the general prerequisites for connecting to an instance\. For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+  The general prerequisites for transferring files to an instance are the same as the general prerequisites for connecting to an instance\. For more information, see [Set up to connect to your instance](connection-prereqs.md)\.
 + **Install an SCP client**
 
   Most Linux, Unix, and Apple computers include an SCP client by default\. If yours doesn't, the OpenSSH project provides a free implementation of the full suite of SSH tools, including an SCP client\. For more information, see [https://www\.openssh\.com](https://www.openssh.com/)\.

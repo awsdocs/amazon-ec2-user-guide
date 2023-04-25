@@ -39,7 +39,7 @@ You can create snapshot lifecycle policies to automate the creation and retentio
 ## Considerations<a name="ebs-create-snapshot-limitations"></a>
 
 The following considerations apply to creating snapshots:
-+ When you create a snapshot for an EBS volume that serves as a root device, you should stop the instance before taking the snapshot\.
++ When you create a snapshot for an EBS volume that serves as a root device, we recommend that you stop the instance before taking the snapshot\.
 + You cannot create snapshots from instances for which hibernation is enabled, or from hibernated instances\. If you create a snapshot or AMI from an instance that is hibernated or has hibernation enabled, you might not be able to connect to a new instance that is launched from the AMI, or from an AMI that was created from the snapshot\. 
 + Although you can take a snapshot of a volume while a previous snapshot of that volume is in the `pending` status, having multiple `pending` snapshots of a volume can result in reduced volume performance until the snapshots complete\.
 + There is a limit of one `pending` snapshot for a single `st1` or `sc1` volume, or five `pending` snapshots for a single volume of the other volume types\. If you receive a `ConcurrentSnapshotLimitExceeded` error while trying to create multiple concurrent snapshots of the same volume, wait for one or more of the `pending` snapshots to complete before creating another snapshot of that volume\.

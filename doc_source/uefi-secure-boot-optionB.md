@@ -29,7 +29,7 @@ You can create the variable store *offline* without a running instance by using 
 
 ## Step 2: Upload the binary blob on AMI creation<a name="uefi-secure-boot-upload-binary-blob-on-ami-creation"></a>
 
-Use [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to pass your UEFI variable store data\. For the `--uefi-data` parameter, specify your binary blob, and for the `--boot-mode` parameter, specify `uefi`\.
+Use [https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to pass your UEFI variable store data\. For the `--uefi-data` parameter, specify your binary blob, and for the `--boot-mode` parameter, specify `uefi`\.
 
 ```
 aws ec2 register-image \

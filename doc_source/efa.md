@@ -49,9 +49,9 @@ EFAs support the following interfaces and libraries:
 ## Supported instance types<a name="efa-instance-types"></a>
 
 The following instance types support EFAs:
-+ General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5n.metal` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.48xlarge` \| `m6a.metal` \| `m6i.32xlarge` \| `m6i.metal` \| `m6id.32xlarge` \| `m6id.metal` \| `m6idn.32xlarge` \| `m6in.32xlarge`
-+ Compute optimized: `c5n.9xlarge` \| `c5n.18xlarge` \| `c5n.metal` \| `c6a.48xlarge` \| `c6a.metal` \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal` \| `c6id.32xlarge` \| `c6id.metal` \| `c6in.32xlarge` \| `c7g.16xlarge` \| `hpc6a.48xlarge`
-+ Memory optimized: `hpc6id.32xlarge` \| `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6a.48xlarge` \| `r6a.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `r6idn.32xlarge` \| `r6in.32xlarge` \| `r6id.32xlarge` \| `r6id.metal` \| `x2idn.32xlarge` \| `x2idn.metal` \| `x2iedn.32xlarge` \| `x2iedn.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal`
++ General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5n.metal` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.48xlarge` \| `m6a.metal` \| `m6i.32xlarge` \| `m6i.metal` \| `m6id.32xlarge` \| `m6id.metal` \| `m6idn.32xlarge` \| `m6in.32xlarge` \| `m7g.16xlarge` \| `m7g.metal`
++ Compute optimized: `c5n.9xlarge` \| `c5n.18xlarge` \| `c5n.metal` \| `c6a.48xlarge` \| `c6a.metal` \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal` \| `c6id.32xlarge` \| `c6id.metal` \| `c6in.32xlarge` \| `c7g.16xlarge` \| `c7g.metal` \| `hpc6a.48xlarge`
++ Memory optimized: `hpc6id.32xlarge` \| `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6a.48xlarge` \| `r6a.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `r6idn.32xlarge` \| `r6in.32xlarge` \| `r6id.32xlarge` \| `r6id.metal` \| `r7g.16xlarge` \| `r7g.metal` \| `x2idn.32xlarge` \| `x2idn.metal` \| `x2iedn.32xlarge` \| `x2iedn.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal`
 + Storage optimized: `i3en.12xlarge` \| `i3en.24xlarge` \| `i3en.metal` \| `i4i.32xlarge` \| `i4i.metal` \| `im4gn.16xlarge`
 + Accelerated computing: `dl1.24xlarge` \| `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge` \| `p4de.24xlarge` \| `trn1.32xlarge` \| `vt1.24xlarge`
 
@@ -99,8 +99,10 @@ The following operating systems support EFAs with Arm\-based \(Graviton 2\) inst
 ## EFA limitations<a name="efa-limits"></a>
 
 EFAs have the following limitations:
-+ All `p4d` instance types support NVIDIA GPUDirect Remote Direct Memory Access \(RDMA\); `p4d.24xlarge` and `dl1.24xlarge` instances support up to four EFAs\. All other supported instance types support only one EFA per instance\.
-+ For `c7g.16xlarge` Dedicated Instances and Dedicated Hosts are not supported when an EFA is attached\.
++ All `p4d` instance types support NVIDIA GPUDirect Remote Direct Memory Access \(RDMA\)\.
++ [Instance types that support multiple network cards](using-eni.md#network-cards) can be configured with one EFA per network card\. All other supported instance types support only one EFA per instance\.
++ For `c7g.16xlarge`, `m7g.16xlarge` and `r7g.16xlarge` Dedicated Instances and Dedicated Hosts are not supported when an EFA is attached\.
 + EFA OS\-bypass traffic is limited to a single subnet\. In other words, EFA traffic cannot be sent from one subnet to another\. Normal IP traffic from the EFA can be sent from one subnet to another\.
 + EFA OS\-bypass traffic is not routable\. Normal IP traffic from the EFA remains routable\.
 + The EFA must be a member of a security group that allows all inbound and outbound traffic to and from the security group itself\.
++ EFA is not supported on AWS [Outposts](https://docs.aws.amazon.com/outposts/index.html) 

@@ -95,7 +95,7 @@ Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/la
 When you launch an instance, you can automatically configure it to use IMDSv2 by default \(the `HttpTokens` parameter is set to `required`\) by launching it with an AMI that is configured with the `ImdsSupport` parameter set to `v2.0`\. You set the `ImdsSupport` parameter to `v2.0` when you register the AMI using the [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) CLI command\. For more information, see [Configure the AMI](configuring-IMDS-new-instances.md#configure-IMDS-new-instances-ami-configuration)\.
 
 **IAM policies and SCPs**  
-You can use an IAM policy or AWS Organizations service control policy \(SCP\) to control IAM users as follows:  
+You can use an IAM policy or AWS Organizations service control policy \(SCP\) to control users as follows:  
 + Can't launch an instance using the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API unless the instance is configured to use IMDSv2\.
 + Can't modify a running instance using the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API to re\-enable IMDSv1\.
 The IAM policy or SCP must contain the following IAM condition keys:  

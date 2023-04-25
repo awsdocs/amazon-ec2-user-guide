@@ -68,7 +68,7 @@ For more information, see [Amazon EC2 Im4gn and Is4gen Instances](https://aws.am
 + [Instance performance](#storage-performance)
 + [Network performance](#storage-network-performance)
 + [Amazon EBS I/O performance](#storage-ebs-perf)
-+ [Instance store volume I/O performance](#storage-instances-diskperf)
++ [SSD\-based instance store volume I/O performance](#storage-instances-diskperf)
 + [Support for vCPUs](#d2-instances-cpu-support)
 + [Release notes](#storage-instance-release-notes)
 
@@ -239,7 +239,7 @@ Amazon EBS optimized instances use an optimized configuration stack and provide 
 
 For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-## Instance store volume I/O performance<a name="storage-instances-diskperf"></a>
+## SSD\-based instance store volume I/O performance<a name="storage-instances-diskperf"></a>
 
 The primary data storage for D2, D3, and D3en instances is HDD instance store volumes\. The primary data storage for I3 and I3en instances is non\-volatile memory express \(NVMe\) SSD instance store volumes\.
 
@@ -250,63 +250,41 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| d2\.xlarge | 144000 | 115200 | 
-| d2\.2xlarge | 268800 | 230400 | 
-| d2\.4xlarge | 499200 | 460800 | 
-| d2\.8xlarge | 998400 | 921600 | 
-| d3\.xlarge | 450000 | 450000 | 
-| d3\.2xlarge | 1800000 | 1800000 | 
-| d3\.4xlarge | 7200000 | 7200000 | 
-| d3\.8xlarge | 28800000 | 28800000 | 
-| d3en\.xlarge | 200000 | 200000 | 
-| d3en\.2xlarge | 800000 | 800000 | 
-| d3en\.4xlarge | 3200000 | 3200000 | 
-| d3en\.6xlarge | 7200000 | 7200000 | 
-| d3en\.8xlarge | 12800000 | 12800000 | 
-| d3en\.12xlarge | 28800000 | 28800000 | 
-| h1\.2xlarge | 2100 | 1350 | 
-| h1\.4xlarge | 3300 | 2800 | 
-| h1\.8xlarge | 6400 | 5200 | 
-| h1\.16xlarge | 12800 | 10400 | 
-| i2\.xlarge | 118400 | 113600 | 
-| i2\.2xlarge | 256800 | 227200 | 
-| i2\.4xlarge | 513600 | 454400 | 
-| i2\.8xlarge | 947200 | 908800 | 
-| i3\.large | 124800 | 49600 | 
-| i3\.xlarge | 248000 | 99200 | 
-| i3\.2xlarge | 492800 | 198400 | 
-| i3\.4xlarge | 982400 | 396800 | 
-| i3\.8xlarge | 1964800 | 793600 | 
-| i3\.16xlarge | 3929600 | 1587200 | 
-| i3\.metal | 3300000 | 1440000 | 
-| i3en\.large | 42500 | 32500 | 
-| i3en\.xlarge | 85000 | 65000 | 
-| i3en\.2xlarge | 170000 | 130000 | 
-| i3en\.3xlarge | 250000 | 200000 | 
-| i3en\.6xlarge | 500000 | 400000 | 
-| i3en\.12xlarge | 1000000 | 800000 | 
-| i3en\.24xlarge | 2000000 | 1600000 | 
-| i3en\.metal | 2000000 | 1600000 | 
-| i4i\.large | 50000 | 27500 | 
-| i4i\.xlarge | 100000 | 55000 | 
-| i4i\.2xlarge | 200000 | 110000 | 
-| i4i\.4xlarge | 400000 | 220000 | 
-| i4i\.8xlarge | 800000 | 440000 | 
-| i4i\.16xlarge | 1600000 | 880000 | 
-| i4i\.32xlarge | 3200000 | 1760000 | 
-| i4i\.metal | 3200000 | 1760000 | 
-| im4gn\.large | 31250 | 25000 | 
-| im4gn\.xlarge | 62500 | 50000 | 
-| im4gn\.2xlarge | 125000 | 100000 | 
-| im4gn\.4xlarge | 250000 | 200000 | 
-| im4gn\.8xlarge | 500000 | 400000 | 
-| im4gn\.16xlarge | 1000000 | 800000 | 
-| is4gen\.medium | 31250 | 25000 | 
-| is4gen\.large | 62500 | 50000 | 
-| is4gen\.xlarge | 125000 | 100000 | 
-| is4gen\.2xlarge | 250000 | 200000 | 
-| is4gen\.4xlarge | 500000 | 400000 | 
-| is4gen\.8xlarge | 1000000 | 800000 | 
+| i3\.large | 100,125 | 35,000 | 
+| i3\.xlarge | 206,250 | 70,000 | 
+| i3\.2xlarge | 412,500 | 180,000 | 
+| i3\.4xlarge | 825,000 | 360,000 | 
+| i3\.8xlarge | 1,650,000 | 720,000 | 
+| i3\.16xlarge | 3,300,000 | 1,400,000 | 
+| i3\.metal | 3,300,000 | 1,400,000 | 
+| i3en\.large | 42,500 | 32,500 | 
+| i3en\.xlarge | 85,000 | 65,000 | 
+| i3en\.2xlarge | 170,000 | 130,000 | 
+| i3en\.3xlarge | 250,000 | 200,000 | 
+| i3en\.6xlarge | 500,000 | 400,000 | 
+| i3en\.12xlarge | 1,000,000 | 800,000 | 
+| i3en\.24xlarge | 2,000,000 | 1,600,000 | 
+| i3en\.metal | 2,000,000 | 1,600,000 | 
+| i4i\.large | 50,000 | 27,500 | 
+| i4i\.xlarge | 100,000 | 55,000 | 
+| i4i\.2xlarge | 200,000 | 110,000 | 
+| i4i\.4xlarge | 400,000 | 220,000 | 
+| i4i\.8xlarge | 800,000 | 440,000 | 
+| i4i\.16xlarge | 1,600,000 | 880,000 | 
+| i4i\.32xlarge | 3,200,000 | 1,760,000 | 
+| i4i\.metal | 3,200,000 | 1,760,000 | 
+| im4gn\.large | 31,250 | 25,000 | 
+| im4gn\.xlarge | 62,000 | 50,000 | 
+| im4gn\.2xlarge | 125,000 | 100,000 | 
+| im4gn\.4xlarge | 250,000 | 200,000 | 
+| im4gn\.8xlarge | 500,000 | 400,000 | 
+| im4gn\.16xlarge | 1,000,000 | 800,000 | 
+| is4gen\.medium | 31,250 | 25,000 | 
+| is4gen\.large | 62,000 | 50,000 | 
+| is4gen\.xlarge | 125,000 | 100,000 | 
+| is4gen\.2xlarge | 250,000 | 200,000 | 
+| is4gen\.4xlarge | 500,000 | 400,000 | 
+| is4gen\.8xlarge | 1,000,000 | 800,000 | 
 
 As you fill your SSD\-based instance store volumes, the I/O performance that you get decreases\. This is due to the extra work that the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 

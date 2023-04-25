@@ -15,7 +15,7 @@ If you require high processing capability, you'll benefit from using accelerated
 + [Instance performance](#gpu-instance-performance)
 + [Network performance](#gpu-network-performance)
 + [Amazon EBS I/O performance](#accelerated-ebs-perf)
-+ [Instance store volume I/O performance](#accelerated-computing-ssd-perf)
++ [SSD\-based instance store volume I/O performance](#accelerated-computing-ssd-perf)
 + [Release notes](#gpu-instance-release-notes)
 + [Install NVIDIA drivers on Linux instances](install-nvidia-driver.md)
 + [Install AMD drivers on Linux instances](install-amd-driver.md)
@@ -300,39 +300,26 @@ Amazon EBS optimized instances use an optimized configuration stack and provide 
 
 For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-## Instance store volume I/O performance<a name="accelerated-computing-ssd-perf"></a>
+## SSD\-based instance store volume I/O performance<a name="accelerated-computing-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you can get up to the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| dl1\.24xlarge | 2000000 | 1600000 | 
-| g4ad\.xlarge | 10417 | 8333 | 
-| g4ad\.2xlarge | 20833 | 16667 | 
-| g4ad\.4xlarge | 41667 | 33333 | 
-| g4ad\.8xlarge | 83333 | 66667 | 
-| g4ad\.16xlarge | 166666 | 133332 | 
-| g4dn\.xlarge | 42500 | 32500 | 
-| g4dn\.2xlarge | 42500 | 32500 | 
-| g4dn\.4xlarge | 85000 | 65000 | 
-| g4dn\.8xlarge | 250000 | 200000 | 
-| g4dn\.12xlarge | 250000 | 200000 | 
-| g4dn\.16xlarge | 250000 | 200000 | 
-| g4dn\.metal | 500000 | 400000 | 
-| g5\.xlarge | 40625 | 20313 | 
-| g5\.2xlarge | 40625 | 20313 | 
-| g5\.4xlarge | 125000 | 62500 | 
-| g5\.8xlarge | 250000 | 125000 | 
-| g5\.12xlarge | 312500 | 156250 | 
-| g5\.16xlarge | 250000 | 125000 | 
-| g5\.24xlarge | 312500 | 156250 | 
-| g5\.48xlarge | 625000 | 312500 | 
-| p3dn\.24xlarge | 700000 | 340000 | 
-| p4d\.24xlarge | 2000000 | 1600000 | 
-| p4de\.24xlarge | 2000000 | 1600000 | 
-| trn1\.2xlarge | 107500 | 45000 | 
-| trn1\.32xlarge | 1720000 | 720000 | 
+| g4ad\.xlarge | 10,417 | 8,333 | 
+| g4ad\.2xlarge | 20,833 | 16,667 | 
+| g4ad\.4xlarge | 41,667 | 33,333 | 
+| g4ad\.8xlarge | 83,333 | 66,667 | 
+| g4ad\.16xlarge | 166,667 | 133,333 | 
+| g5\.xlarge | 40,625 | 20,313 | 
+| g5\.2xlarge | 40,625 | 20,313 | 
+| g5\.4xlarge | 125,000 | 62,500 | 
+| g5\.8xlarge | 250,000 | 125,000 | 
+| g5\.12xlarge | 312,500 | 156,250 | 
+| g5\.16xlarge | 250,000 | 125,000 | 
+| g5\.24xlarge | 312,500 | 156,250 | 
+| g5\.48xlarge | 625,000 | 312,500 | 
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 

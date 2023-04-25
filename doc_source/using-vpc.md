@@ -46,4 +46,4 @@ For the subnets that you create in your VPCs, do one of the following to ensure 
 
 ## SSH access to your instances<a name="ssh-access-to-vpc"></a>
 
-To connect to an instance, you must authorize SSH traffic to the instance from your network\. You must also specify a key pair when you launch the instance and specify the `.pem` file when you connect to the instance\. For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+To connect to an instance, you must authorize SSH traffic to the instance from your network\. You must also specify a key pair when you launch the instance and specify the `.pem` file when you connect to the instance\. For more information, see [Set up to connect to your instance](connection-prereqs.md)\.

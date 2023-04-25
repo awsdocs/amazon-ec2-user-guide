@@ -53,6 +53,9 @@ If, after 10 minutes, the instance has not stopped, post a request for help on [
 
 To attempt to resolve the problem while you are waiting for assistance from [AWS re:Post](https://repost.aws/) or the [Support Center](https://console.aws.amazon.com/support/home#/), create a replacement instance\. Create an AMI of the stuck instance, and launch a new instance using the new AMI\. 
 
+**Important**  
+Creating a replacement instance is recommended if it's registering [system status checks](monitoring-instances-status-check.md) only, as instance status checks will result in the AMI copying over an exact replica of the broken OS\. Once you've confirmed the status message, create the AMI and launch a new instance using the new AMI\. 
+
 ------
 #### [ New console ]
 

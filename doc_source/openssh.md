@@ -16,7 +16,7 @@ Before you connect to your Linux instance from Windows using OpenSSH, complete t
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status check** column on the **Instances** page\.
 
 **Verify the general prerequisites for connecting to your instance**  
-To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [Set up to connect to your instance](connection-prereqs.md)\.
 
 **Verify your Windows version**  
 To connect to your Linux instance from Windows using OpenSSH, the Windows version must be Windows Server 2019 and later\.

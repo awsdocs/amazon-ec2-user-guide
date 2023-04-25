@@ -71,7 +71,7 @@ Keep the following in mind when working with local snapshots\.
 + When copying a snapshot from an AWS region to an Outpost, the data is transferred over the service link\. Copying multiple snapshots simultaneously could impact other services running on the Outpost\.
 + You can't share local snapshots\.
 + You must use IAM policies to ensure that your data residency requirements are met\. For more information, see [Controlling access with IAM](#iam)\.
-+ Local snapshots are incremental backups\. Only the blocks in the volume that have changed after your most recent snapshot are saved\. Each local snapshot contains all of the information that is needed to restore your data \(from the moment when the snapshot was taken\) to a new EBS volume\. For more information, see [How incremental snapshots work](EBSSnapshots.md#how_snapshots_work)\.
++ Local snapshots are incremental backups\. Only the blocks in the volume that have changed after your most recent snapshot are saved\. Each local snapshot contains all of the information that is needed to restore your data \(from the moment when the snapshot was taken\) to a new EBS volume\. For more information, see [How snapshots work](EBSSnapshots.md#how_snapshots_work)\.
 + You can’t use IAM policies to enforce data residency for **CopySnapshot** and **CopyImage** actions\.
 
 ## Controlling access with IAM<a name="iam"></a>

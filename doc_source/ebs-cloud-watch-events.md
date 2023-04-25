@@ -235,15 +235,15 @@ The listing below is an example of a JSON object emitted by EBS for a successful
   "time": "yyyy-mm-ddThh:mm:ssZ",
   "region": "us-east-1",
   "resources": [
-     "arn:aws:ec2:us-west-2::snapshot/snap-01234567"
+     "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
   ],
   "detail": {
     "event": "createSnapshot",
     "result": "succeeded",
     "cause": "",
     "request-id": "",
-    "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
-    "source": "arn:aws:ec2:us-west-2::volume/vol-01234567",
+    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
+    "source": "arn:aws:ec2::us-west-2:volume/vol-01234567",
     "startTime": "yyyy-mm-ddThh:mm:ssZ",
     "endTime": "yyyy-mm-ddThh:mm:ssZ"  }
 }
@@ -347,15 +347,15 @@ The listing below is an example of a JSON object emitted by EBS after a successf
   "time": "yyyy-mm-ddThh:mm:ssZ",
   "region": "us-east-1",
   "resources": [
-    "arn:aws:ec2:us-west-2::snapshot/snap-01234567"
+    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
   ],
   "detail": {
     "event": "copySnapshot",
     "result": "succeeded",
     "cause": "",
     "request-id": "",
-    "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
-    "source": "arn:aws:ec2:eu-west-1::snapshot/snap-76543210",
+    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
+    "source": "arn:aws:ec2::eu-west-1:snapshot/snap-76543210",
     "startTime": "yyyy-mm-ddThh:mm:ssZ",
     "endTime": "yyyy-mm-ddThh:mm:ssZ",
     "Incremental": "true"
@@ -375,15 +375,15 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
   "time": "yyyy-mm-ddThh:mm:ssZ",
   "region": "us-east-1",
   "resources": [
-    "arn:aws:ec2:us-west-2::snapshot/snap-01234567"
+    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
   ],
   "detail": {
     "event": "copySnapshot",
     "result": "failed",
     "cause": "Source snapshot ID is not valid",
     "request-id": "",
-    "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
-    "source": "arn:aws:ec2:eu-west-1::snapshot/snap-76543210",
+    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
+    "source": "arn:aws:ec2::eu-west-1:snapshot/snap-76543210",
     "startTime": "yyyy-mm-ddThh:mm:ssZ",
     "endTime": "yyyy-mm-ddThh:mm:ssZ"
   }
@@ -407,14 +407,14 @@ The following is an example of a JSON object emitted by EBS after a completed `s
   "time": "yyyy-mm-ddThh:mm:ssZ",
   "region": "us-east-1",
   "resources": [
-    "arn:aws:ec2:us-west-2::snapshot/snap-01234567"
+    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
   ],
   "detail": {
     "event": "shareSnapshot",
     "result": "succeeded",
     "cause": "",
     "request-id": "",
-    "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
+    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
     "source": 012345678901,
     "startTime": "yyyy-mm-ddThh:mm:ssZ",
     "endTime": "yyyy-mm-ddThh:mm:ssZ"
@@ -483,7 +483,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
 
 **To copy a completed snapshot to another Region**
 
-1. Create an IAM policy, such as the one shown in the following example, to provide permissions to use the `CopySnapshot` action and write to the EventBridge log\. Assign the policy to the IAM user that will handle the EventBridge event\.
+1. Create an IAM policy, such as the one shown in the following example, to provide permissions to use the `CopySnapshot` action and write to the EventBridge log\. Assign the policy to the user that will handle the EventBridge event\.
 
    ```
    {

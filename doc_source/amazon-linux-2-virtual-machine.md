@@ -45,7 +45,7 @@ To generate the `seed.iso` boot image, you need two configuration files:
 
    1. Save and close the `meta-data` configuration file\.
 
-   For an example `meta-data` configuration file that specifies a VM hostname \(`amazonlinux.onprem`\), configures the default network interface \(`eth0`\), and specifies static IP addresses for the necessary network devices, see the [ sample Seed\.iso file](https://cdn.amazonlinux.com/os-images/2.0.20190612/)\.
+   For an example `meta-data` configuration file that specifies a VM hostname \(`amazonlinux.onprem`\), configures the default network interface \(`eth0`\), and specifies static IP addresses for the necessary network devices, see the [ sample Seed\.iso file](https://cdn.amazonlinux.com/os-images/latest/)\.
 
 1. Create the `user-data` configuration file\.
 
@@ -82,7 +82,7 @@ To generate the `seed.iso` boot image, you need two configuration files:
 
    1. Save and close the `user-data` configuration file\.
 
-   You can also create additional user accounts and specify their access mechanisms, passwords, and key pairs\. For more information about the supported directives, see [ Modules](http://cloudinit.readthedocs.io/en/latest/topics/modules.html)\. For an example `user-data` file that creates three additional users and specifies a custom password for the default `ec2-user` user account, see the [ sample Seed\.iso file](https://cdn.amazonlinux.com/os-images/2.0.20190612/)\.
+   You can also create additional user accounts and specify their access mechanisms, passwords, and key pairs\. For more information about the supported directives, see [ Module reference](http://cloudinit.readthedocs.io/en/latest/topics/modules.html)\. For an example `user-data` file that creates three additional users and specifies a custom password for the default `ec2-user` user account, see the [sample Seed\.iso file](https://cdn.amazonlinux.com/os-images/latest/)\.
 
 1. Create the `seed.iso` boot image using the `meta-data` and `user-data` configuration files\.
 

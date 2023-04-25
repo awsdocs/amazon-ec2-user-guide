@@ -12,7 +12,7 @@ After you have created the [three key pairs](uefi-secure-boot-create-three-key-p
 When you [launch an instance](LaunchingAndUsingInstances.md) with the following prerequisites, the instance will then be ready to be configured to support UEFI Secure Boot\. You can only enable support for UEFI Secure Boot on an instance at launch; you can't enable it later\.
 
 **Prerequisites**
-+ **AMI** \- The Linux AMI must support UEFI boot mode\. To verify that the AMI supports UEFI boot mode, the AMI boot mode parameter must be **uefi**\. For more information, see [Determine the boot mode parameter of an AMI](ami-boot-mode.md)\.
++ **AMI** – The Linux AMI must support UEFI boot mode\. To verify that the AMI supports UEFI boot mode, the AMI boot mode parameter must be **uefi**\. For more information, see [Determine the boot mode parameter of an AMI](ami-boot-mode.md)\.
 
   Note that AWS only provides Linux AMIs configured to support UEFI for Graviton\-based instance types\. AWS currently does not provide x86\_64 Linux AMIs that support UEFI boot mode\. You can configure your own AMI to support UEFI boot mode for all architectures\. To configure your own AMI to support UEFI boot mode, you must perform a number of configuration steps on your own AMI\. For more information, see [Set the boot mode of an AMI](set-ami-boot-mode.md)\.
 + **Instance type** – All virtualized instance types that support UEFI also support UEFI Secure Boot\. Bare metal instance types do not support UEFI Secure Boot\. For the instance types that support UEFI Secure Boot, see [Considerations](launch-instance-boot-mode.md#boot-considerations)\.
@@ -21,7 +21,7 @@ When you [launch an instance](LaunchingAndUsingInstances.md) with the following 
 After you’ve launched your instance, you can verify that it is ready to be configured to support UEFI Secure Boot \(in other words, you can proceed to [Step 2](#step2-launch-uefi-sb)\) by checking whether UEFI data is present\. The presence of UEFI data indicates that non\-volatile data is persisted\.
 
 **To verify whether your instance is ready for Step 2**  
-Use the [get\-instance\-uefi\-data](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-instance-uefi-data.html) command and specify the instance ID\.
+Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/get-instance-uefi-data.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-instance-uefi-data.html) command and specify the instance ID\.
 
 ```
 aws ec2 get-instance-uefi-data --instance-id i-0123456789example
@@ -66,11 +66,11 @@ If SetupMode is enabled \(the value is `1`\), the keys can be enrolled by runnin
 **To verify that UEFI Secure Boot is enabled**  
 To verify that UEFI Secure Boot is enabled, follow the steps in [Verify whether a Linux instance is enabled for UEFI Secure Boot](verify-uefi-secure-boot.md)\.
 
-You can now export your UEFI variable store with the `GetInstanceUefiData` API, or you continue to the next step and sign your boot images to reboot into a UEFI Secure Boot\-enabled instance\.
+You can now export your UEFI variable store with the [https://docs.aws.amazon.com/cli/latest/reference/ec2/get-instance-uefi-data.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-instance-uefi-data.html) CLI command, or you continue to the next step and sign your boot images to reboot into a UEFI Secure Boot\-enabled instance\.
 
 ## Step 3: Create an AMI from the instance<a name="step3-launch-uefi-sb"></a>
 
 To create an AMI from the instance, you can use the console or the `CreateImage` API, CLI, or SDKs\. For the console instructions, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\. For the API instructions, see [CreateImage](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateImage.html)\.
 
 **Note**  
-The CreateImage API automatically copies the UEFI variable store of the instance to the AMI\. The console uses the CreateImage API\. After you launch instances using this AMI, the instances will have the same UEFI variable store\.
+The `CreateImage` API automatically copies the UEFI variable store of the instance to the AMI\. The console uses the `CreateImage` API\. After you launch instances using this AMI, the instances will have the same UEFI variable store\.

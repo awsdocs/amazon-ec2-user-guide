@@ -86,10 +86,7 @@ The **AWSDataLifecycleManagerServiceRoleForAMIManagement** policy provides appro
                 "ec2:DescribeInstances",
                 "ec2:DescribeImageAttribute",
                 "ec2:DescribeVolumes",
-                "ec2:DescribeSnapshots",
-                "ec2:EnableImageDeprecation",
-                "ec2:DisableImageDeprecation"
-                
+                "ec2:DescribeSnapshots"
             ],
             "Resource": "*"
         },
@@ -108,6 +105,14 @@ The **AWSDataLifecycleManagerServiceRoleForAMIManagement** policy provides appro
                 "ec2:ModifyImageAttribute"
             ],
             "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:EnableImageDeprecation",
+                "ec2:DisableImageDeprecation"
+            ],
+            "Resource": "arn:aws:ec2:*::image/*"
         }
     ]
 }

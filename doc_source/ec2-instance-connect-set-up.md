@@ -19,7 +19,10 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
 **Prerequisites for installing EC2 Instance Connect**
 + **Verify the general prerequisites for connecting to your instance using SSH\.**
 
-  For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+  For more information, see [Set up to connect to your instance](connection-prereqs.md)\.
++ **Get the ID of the instance\.**
+
+  You can get the ID of your instance using the Amazon EC2 console \(from the **Instance ID** column\)\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
 + **Install an SSH client on your local computer\.**
 
   Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
@@ -186,7 +189,7 @@ $ pip install ec2instanceconnectcli
 
 For your IAM principals to connect to an instance using EC2 Instance Connect, you must grant them permission to push the public key to the instance\. You grant them the permission by creating an IAM policy and attaching the policy to the IAM principals that require the permission\. For more information, see [Actions, resources, and condition keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2instanceconnect.html)\.
 
-The following instructions explain how to create the policy and attach it to an IAM user using the AWS CLI\. The same policy could be applied to other IAM principals, such as IAM roles\. For instructions that use the AWS Management Console, see [Creating IAM policies \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-console.html), [Adding permissions by attaching policies directly to the user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console), and [Creating IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) in the *IAM User Guide*\.
+The following instructions explain how to create the policy and attach it to a user using the AWS CLI\. The same policy could be applied to other IAM principals, such as IAM roles\. For instructions that use the AWS Management Console, see [Creating IAM policies \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-console.html), [Adding permissions by attaching policies directly to the user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console), and [Creating IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) in the *IAM User Guide*\.
 
 **To grant an IAM principal permission for EC2 Instance Connect \(AWS CLI\)**
 
@@ -223,7 +226,7 @@ The following instructions explain how to create the policy and attach it to an 
    }
    ```
 
-   The preceding policy allows access to specific instances, identified by their instance ID\. Alternatively, you can use resource tags to control access to an instance\. Attribute\-based access control is an authorization strategy that defines permissions based on tags that can be attached to users and AWS resources\. For example, the following policy allows an IAM user to access an instance only if that instance has a resource tag with key=`tag-key` and value=`tag-value`\. For more information about using tags to control access to your AWS resources, see [Controlling access to AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html#access_tags_control-resources) in the *IAM User Guide*\.
+   The preceding policy allows access to specific instances, identified by their instance ID\. Alternatively, you can use resource tags to control access to an instance\. Attribute\-based access control is an authorization strategy that defines permissions based on tags that can be attached to users and AWS resources\. For example, the following policy allows a user to access an instance only if that instance has a resource tag with key=`tag-key` and value=`tag-value`\. For more information about using tags to control access to your AWS resources, see [Controlling access to AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html#access_tags_control-resources) in the *IAM User Guide*\.
 
    ```
    { 
@@ -248,13 +251,13 @@ The following instructions explain how to create the policy and attach it to an 
    }
    ```
 
-1. Use the [create\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html) command to create a new managed policy, and specify the JSON document that you created to use as the content for the new policy\.
+1. Use the [https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html](https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html) command to create a new managed policy, and specify the JSON document that you created to use as the content for the new policy\.
 
    ```
    $ aws iam create-policy --policy-name my-policy --policy-document file://JSON-file-name
    ```
 
-1. Use the [attach\-user\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/attach-user-policy.html) command to attach the managed policy to the specified IAM user\. For the `--user-name` parameter, specify the friendly name \(not the ARN\) of the IAM user\.
+1. Use the [https://docs.aws.amazon.com/cli/latest/reference/iam/attach-user-policy.html](https://docs.aws.amazon.com/cli/latest/reference/iam/attach-user-policy.html) command to attach the managed policy to the specified user\. For the `--user-name` parameter, specify the friendly name \(not the ARN\) of the user\.
 
    ```
    $ aws iam attach-user-policy --policy-arn arn:aws:iam::account-id:policy/my-policy --user-name IAM-friendly-name

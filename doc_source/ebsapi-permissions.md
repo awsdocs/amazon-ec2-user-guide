@@ -1,11 +1,11 @@
 # IAM permissions for EBS direct APIs<a name="ebsapi-permissions"></a>
 
-An AWS Identity and Access Management \(IAM\) user must have the following policies to use the EBS direct APIs\. For more information, see [ Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html)\.
+A user must have the following policies to use the EBS direct APIs\. For more information, see [ Changing permissions for a user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html)\.
 
 For more information about the EBS direct APIs resources, actions, and condition context keys for use in IAM permission policies, see [ Actions, resources, and condition keys for Amazon Elastic Block Store](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonelasticblockstore.html) in the *Service Authorization Reference*\.
 
 **Important**  
-Be cautious when assigning the following policies to IAM users\. By assigning these policies, you might give access to a user who is denied access to the same resource through the Amazon EC2 APIs, such as the CopySnapshot or CreateVolume actions\.
+Be cautious when assigning the following policies to users\. By assigning these policies, you might give access to a user who is denied access to the same resource through the Amazon EC2 APIs, such as the CopySnapshot or CreateVolume actions\.
 
 ## Permissions to read snapshots<a name="ebsapi-read-permissions"></a>
 
@@ -79,7 +79,7 @@ The following policy allows all of the *read* EBS direct APIs to be used on all 
 }
 ```
 
-For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
+For more information, see [Changing permissions for a user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
 
 ## Permissions to write snapshots<a name="ebsapi-write-permissions"></a>
 
@@ -198,7 +198,7 @@ The following policy allows all of the *write* EBS direct APIs to be used on all
 }
 ```
 
-For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
+For more information, see [Changing permissions for a user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
 
 ## Permissions to use AWS KMS keys<a name="ebsapi-kms-permissions"></a>
 
@@ -230,4 +230,4 @@ By default, all principals in the account have access to the default AWS managed
 }
 ```
 
-For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
+For more information, see [Changing permissions for a user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.

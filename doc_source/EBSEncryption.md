@@ -78,9 +78,9 @@ Encryption is supported by all EBS volume types\. You can expect the same IOPS p
 
 Amazon EBS encryption is available on all [current generation](instance-types.md#current-gen-instances) instance types and the following [previous generation](instance-types.md#previous-gen-instances) instance types: A1, C1, C3, `cr1.8xlarge`, G2, I2, M1, M2, M3, and R3\.
 
-### Permissions for IAM users<a name="ebs-encryption-permissions"></a>
+### Permissions for users<a name="ebs-encryption-permissions"></a>
 
-When you configure a KMS key as the default key for EBS encryption, the default KMS key policy allows any IAM user with access to the required KMS actions to use this KMS key to encrypt or decrypt EBS resources\. You must grant IAM users permission to call the following actions in order to use EBS encryption:
+When you configure a KMS key as the default key for EBS encryption, the default KMS key policy allows any user with access to the required KMS actions to use this KMS key to encrypt or decrypt EBS resources\. You must grant users permission to call the following actions in order to use EBS encryption:
 + `kms:CreateGrant`
 + `kms:Decrypt`
 + `kms:DescribeKey`

@@ -28,7 +28,7 @@ There are no charges for copying an AMI\. However, standard storage and data tra
 
 ## Permissions for copying an instance store\-backed AMI<a name="copy-ami-permissions"></a>
 
-If you use an IAM user to copy an instance store\-backed AMI, the user must have the following Amazon S3 permissions: `s3:CreateBucket`, `s3:GetBucketAcl`, `s3:ListAllMyBuckets`, `s3:GetObject`, `s3:PutObject`, and `s3:PutObjectAcl`\.
+To copy an instance store\-backed AMI, the user must have the following Amazon S3 permissions: `s3:CreateBucket`, `s3:GetBucketAcl`, `s3:ListAllMyBuckets`, `s3:GetObject`, `s3:PutObject`, and `s3:PutObjectAcl`\.
 
 The following example policy allows the user to copy the AMI source in the specified bucket to the specified Region\.
 
@@ -69,7 +69,7 @@ The following example policy allows the user to copy the AMI source in the speci
 To find the Amazon Resource Name \(ARN\) of the AMI source bucket, open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/), in the navigation pane choose **AMIs**, and locate the bucket name in the **Source** column\.
 
 **Note**  
-The `s3:CreateBucket` permission is only needed the first time that the IAM user copies an instance store\-backed AMI to an individual Region\. After that, the Amazon S3 bucket that is already created in the Region is used to store all future AMIs that you copy to that Region\.
+The `s3:CreateBucket` permission is only needed the first time that the user copies an instance store\-backed AMI to an individual Region\. After that, the Amazon S3 bucket that is already created in the Region is used to store all future AMIs that you copy to that Region\.
 
 ## Copy an AMI<a name="ami-copy-steps"></a>
 

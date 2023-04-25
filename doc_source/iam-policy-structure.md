@@ -31,7 +31,7 @@ An IAM policy is a JSON document that consists of one or more statements\. Each 
 ```
 
 There are various elements that make up a statement:
-+ **Effect:** The *effect* can be `Allow` or `Deny`\. By default, IAM users don't have permission to use resources and API actions, so all requests are denied\. An explicit allow overrides the default\. An explicit deny overrides any allows\.
++ **Effect:** The *effect* can be `Allow` or `Deny`\. By default, users don't have permission to use resources and API actions, so all requests are denied\. An explicit allow overrides the default\. An explicit deny overrides any allows\.
 + **Action**: The *action* is the specific API action for which you are granting or denying permission\. To learn about specifying *action*, see [Actions for Amazon EC2](#UsingWithEC2_Actions)\. 
 + **Resource**: The resource that's affected by the action\. Some Amazon EC2 API actions allow you to include specific resources in your policy that can be created or modified by the action\. You specify a resource using an Amazon Resource Name \(ARN\) or using the wildcard \(\*\) to indicate that the statement applies to all resources\. For more information, see [Supported resource\-level permissions for Amazon EC2 API actions](#ec2-supported-iam-actions-resources)\. 
 + **Condition**: Conditions are optional\. They can be used to control when your policy is in effect\. For more information about specifying conditions for Amazon EC2, see [Condition keys for Amazon EC2](#amazon-ec2-keys)\.
@@ -124,7 +124,7 @@ To specify all resources, or if a specific API action does not support ARNs, use
 "Resource": "*"
 ```
 
-Many Amazon EC2 API actions involve multiple resources\. For example, `AttachVolume` attaches an Amazon EBS volume to an instance, so an IAM user must have permissions to use the volume and the instance\. To specify multiple resources in a single statement, separate their ARNs with commas, as follows\.
+Many Amazon EC2 API actions involve multiple resources\. For example, `AttachVolume` attaches an Amazon EBS volume to an instance, so a user must have permissions to use the volume and the instance\. To specify multiple resources in a single statement, separate their ARNs with commas, as follows\.
 
 ```
 "Resource": ["arn1", "arn2"]
@@ -163,7 +163,7 @@ To use a condition key in your IAM policy, use the `Condition` statement\. For e
 
 If you specify multiple conditions, or multiple keys in a single condition, we evaluate them using a logical AND operation\. If you specify a single condition with multiple values for one key, we evaluate the condition using a logical OR operation\. For permissions to be granted, all conditions must be met\.
 
-You can also use placeholders when you specify conditions\. For example, you can grant an IAM user permission to use resources with a tag that specifies his or her IAM user name\. For more information, see [IAM policy elements: Variables and tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/PolicyVariables.html) in the *IAM User Guide*\.
+You can also use placeholders when you specify conditions\. For more information, see [IAM policy elements: Variables and tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/PolicyVariables.html) in the *IAM User Guide*\.
 
 **Important**  
 Many condition keys are specific to a resource, and some API actions use multiple resources\. If you write a policy with a condition key, use the `Resource` element of the statement to specify the resource to which the condition key applies\. If not, the policy may prevent users from performing the action at all, because the condition check fails for the resources to which the condition key does not apply\. If you do not want to specify a resource, or if you've written the `Action` element of your policy to include multiple API actions, then you must use the `...IfExists` condition type to ensure that the condition key is ignored for resources that do not use it\. For more information, see [\.\.\.IfExists Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#Conditions_IfExists) in the *IAM User Guide*\.
@@ -227,7 +227,7 @@ The following example policy uses the `ec2:Attribute` condition key to filter ac
 
 After you've created an IAM policy, we recommend that you check whether it grants users the permissions to use the particular API actions and resources they need before you put the policy into production\.
 
-First, create an IAM user for testing purposes, and then attach the IAM policy that you created to the test user\. Then, make a request as the test user\.
+First, create a user for testing purposes, and then attach the IAM policy that you created to the test user\. Then, make a request as the test user\.
 
 If the Amazon EC2 action that you are testing creates or modifies a resource, you should make the request using the `DryRun` parameter \(or run the AWS CLI command with the `--dry-run` option\)\. In this case, the call completes the authorization check, but does not complete the operation\. For example, you can check whether the user can terminate a particular instance without actually terminating it\. If the test user has the required permissions, the request returns `DryRunOperation`; otherwise, it returns `UnauthorizedOperation`\.
 

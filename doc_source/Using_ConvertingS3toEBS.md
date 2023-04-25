@@ -24,12 +24,22 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
       pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem  100%  717     0.7KB/s   00:00
       ```
 
-1. Set environment variables for your AWS access key and secret key\.
+1. Configure your environment variables to use the AWS CLI\. For more information, see [Creating a key pair](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-creds-create)\.
 
-   ```
-   [ec2-user ~]$ export AWS_ACCESS_KEY_ID=your_access_key_id
-   [ec2-user ~]$ export AWS_SECRET_ACCESS_KEY=your_secret_access_key
-   ```
+   1. \(Recommended\) Set environment variables for your AWS access key, secret key, and session token\.
+
+      ```
+      [ec2-user ~]$ export AWS_ACCESS_KEY_ID=your_access_key_id
+      [ec2-user ~]$ export AWS_SECRET_ACCESS_KEY=your_secret_access_key
+      [ec2-user ~]$ export AWS_SESSION_TOKEN=your_session_token
+      ```
+
+   1. Set environment variables for your AWS access key, and secret key\.
+
+      ```
+      [ec2-user ~]$ export AWS_ACCESS_KEY_ID=your_access_key_id
+      [ec2-user ~]$ export AWS_SECRET_ACCESS_KEY=your_secret_access_key
+      ```
 
 1. Prepare an Amazon Elastic Block Store \(Amazon EBS\) volume for your new AMI\.
 

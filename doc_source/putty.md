@@ -19,7 +19,7 @@ Before you connect to your Linux instance using PuTTY, complete the following pr
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status check** column on the **Instances** page\.
 
 **Verify the general prerequisites for connecting to your instance**  
-To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [Set up to connect to your instance](connection-prereqs.md)\.
 
 **Install PuTTY on your local computer**  
 Download and install PuTTY from the [PuTTY download page](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. If you already have an older version of PuTTY installed, we recommend that you download the latest version\. Be sure to install the entire suite\.
@@ -132,7 +132,7 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
    + \(IPv6\) Alternatively, if your instance has an IPv6 address, to log in using your instance's IPv6 address, enter the IPv6 address for your instance\.
 
 1. For **User name**, enter the default user name for your AMI\.
-   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
+   + For Amazon Linux 2022, Amazon Linux 2, or the Amazon Linux AMI, the user name is `ec2-user`\.
    + For a CentOS AMI, the user name is `centos` or `ec2-user`\.
    + For a Debian AMI, the user name is `admin`\.
    + For a Fedora AMI, the user name is `fedora` or `ec2-user`\.

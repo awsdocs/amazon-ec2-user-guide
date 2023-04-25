@@ -2,7 +2,7 @@
 
 You can configure EC2 Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation to notify you that a Spot Instance is at an elevated risk of interruption\. Capacity Rebalancing helps you maintain workload availability by proactively augmenting your fleet with a new Spot Instance before a running instance is interrupted by Amazon EC2\. For more information, see [EC2 instance rebalance recommendations](rebalance-recommendations.md)\.
 
-To configure EC2 Fleet to launch a replacement Spot Instance, use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command and the relevant parameters in the `MaintenanceStrategies` structure\. For more information, see the [example launch configuration](ec2-fleet-examples.md#ec2-fleet-config9)\.
+To configure EC2 Fleet to launch a replacement Spot Instance, use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command and the relevant parameters in the `MaintenanceStrategies` structure\. For more information, see the [example launch configuration](ec2-fleet-examples.md#ec2-fleet-config8)\.
 
 ## Limitations<a name="ec2-fleet-capacity-rebalance-limitations"></a>
 + Capacity Rebalancing is available only for fleets of type `maintain`\.

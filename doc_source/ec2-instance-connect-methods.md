@@ -109,7 +109,7 @@ You can use your own SSH key and connect to your instance from the SSH client of
 
 **Push your SSH public key to the instance**
 
-   Use the [send\-ssh\-public\-key](https://docs.aws.amazon.com/cli/latest/reference/ec2-instance-connect/send-ssh-public-key.html) command to push your SSH public key to the instance\. If you launched your instance using Amazon Linux 2, the default user name for the AMI is `ec2-user`\. If you launched your instance using Ubuntu, the default user name for the AMI is `ubuntu`\.
+   Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2-instance-connect/send-ssh-public-key.html](https://docs.aws.amazon.com/cli/latest/reference/ec2-instance-connect/send-ssh-public-key.html) command to push your SSH public key to the instance\. If you launched your instance using Amazon Linux 2, the default user name for the AMI is `ec2-user`\. If you launched your instance using Ubuntu, the default user name for the AMI is `ubuntu`\.
 
    The following example pushes the public key to the specified instance in the specified Availability Zone, to authenticate `ec2-user`\.
 
