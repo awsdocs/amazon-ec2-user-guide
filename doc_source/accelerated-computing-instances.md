@@ -36,6 +36,7 @@ For more information, see [Amazon EC2 G5 Instances](http://aws.amazon.com/ec2/in
 G5g instances use NVIDIA T4G GPUs and provide high performance for graphics\-intensive applications such as game streaming and rendering that leverage industry\-standard APIs, such as OpenGL and Vulkan\. These instances are also suitable for running deep learning models for applications such as natural language processing and computer vision\. These instances feature up to 2 NVIDIA T4G Tensor Core GPUs, AWS Graviton2 processors, and up to 25 Gbps of network bandwidth\.
 
 For more information, see [Amazon EC2 G5g Instances](http://aws.amazon.com/ec2/instance-types/g5g/)\.
+
 <a name="g4-instances"></a>
 **G4ad and G4dn instances**  
 G4ad instances use AMD Radeon Pro V520 GPUs and 2nd generation AMD EPYC processors, and are well\-suited for graphics applications such as remote graphics workstations, game streaming, and rendering that leverage industry\-standard APIs such as OpenGL, DirectX, and Vulkan\. They provide up to 4 AMD Radeon Pro V520 GPUs, 64 vCPUs, 25 Gbps networking, and 2\.4 TB local NVMe\-based SSD storage\.
@@ -45,6 +46,7 @@ G4dn instances use NVIDIA Tesla GPUs and provide a cost\-effective, high\-perfor
 For more information, see [Amazon EC2 G4 Instances](http://aws.amazon.com/ec2/instance-types/g4/)\.
 
 G4dn instances support NVIDIA GRID Virtual Workstation\. For more information, see [NVIDIA Marketplace offerings](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g4dn.xlarge&searchTerms=NVIDIA%20GRID)\.
+
 <a name="g3-instances"></a>
 **G3 instances**  
 These instances use NVIDIA Tesla M60 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. G3 instances also provide NVIDIA GRID Virtual Workstation features, such as support for four monitors with resolutions up to 4096x2160, and NVIDIA GRID Virtual Applications\. G3 instances are well\-suited for applications such as 3D visualizations, graphics\-intensive remote workstations, 3D rendering, video encoding, virtual reality, and other server\-side graphics workloads requiring massively parallel processing power\. 
@@ -52,9 +54,11 @@ These instances use NVIDIA Tesla M60 GPUs and provide a cost\-effective, high\-p
 For more information, see [Amazon EC2 G3 Instances](http://aws.amazon.com/ec2/instance-types/g3/)\.
 
 G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual Applications\. To activate either of these features, see [Activate NVIDIA GRID Virtual Applications](activate_grid.md)\.
+
 <a name="g2-instances"></a>
 **G2 instances**  
 These instances use NVIDIA GRID K520 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. NVIDIA GRID GPUs also support NVIDIA’s fast capture and encode API operations\. Example applications include video creation services, 3D visualizations, streaming graphics\-intensive applications, and other server\-side graphics workloads\.
+
 <a name="p4-instances"></a>
 **P4d instances**  
 These instances use NVIDIA A100 GPUs and provide a high\-performance platform for machine learning and HPC workloads\. P4d instances offer 400 Gbps of aggregate network bandwidth throughput and support, Elastic Fabric Adapter \(EFA\)\. They are the first EC2 instances to provide multiple network cards\.
@@ -64,6 +68,7 @@ For more information, see [Amazon EC2 P4d Instances](http://aws.amazon.com/ec2/i
 P4d instances support NVIDIA NVSwitch GPU interconnect and NVIDIA GPUDirect RDMA\.
 
 P4de instances offer NVIDIA 80GB\-A100s GPUs
+
 <a name="p3-instances"></a>
 **P3 instances**  
 These instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and up to 32 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\.
@@ -71,6 +76,7 @@ These instances use NVIDIA Tesla V100 GPUs and are designed for general purpose 
 For more information, see [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3)\.
 
 P3 instances support NVIDIA NVLink peer to peer transfers\. For more information, see [NVIDIA NVLink](https://devblogs.nvidia.com/parallelforall/how-nvlink-will-enable-faster-easier-multi-gpu-computing/)\.
+
 <a name="p2-instances"></a>
 **P2 instances**  
 P2 instances use NVIDIA Tesla K80 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models\. P2 instances provide high\-bandwidth networking, powerful single and double precision floating\-point capabilities, and 12 GiB of memory per GPU, which makes them ideal for deep learning, graph databases, high\-performance databases, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\.
@@ -121,6 +127,7 @@ For more information, see [Amazon EC2 DL1 Instances](https://aws.amazon.com/ec2/
 ## Video transcoding instances<a name="video-transcoding"></a>
 
 These instances are designed to accelerate video transcoding workloads, such as live broadcast, video conferencing, and just\-in\-time transcoding\.
+
 <a name="vt1-instances"></a>
 **VT1 instances**  
 VT1 instances feature Xilinx Alveo U30 media accelerators and are designed for live video transcoding workloads\. These instances offer up to 8 Xilinx Alveo U30 acceleration cards, provide up to 192 GB of system memory, and up to 25 Gbps of network bandwidth\. VT1 instances feature H\.264/AVC and H\.265/HEVC codecs and support up to 4K UHD resolutions for multi\-stream video transcoding\.
