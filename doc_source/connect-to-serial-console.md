@@ -2,45 +2,25 @@
 
 You can connect to the serial console of your EC2 instance by using the Amazon EC2 console or via SSH\. After connecting to the serial console, you can use it for troubleshooting boot, network configuration, and other issues\. For more information about troubleshooting, see [Troubleshoot your Linux instance using the EC2 Serial ConsoleTroubleshoot your instance using the EC2 Serial Console](troubleshoot-using-serial-console.md)\.
 
-**Topics**
-+ [Considerations](#sc-considerations)
-+ [Prerequisites](#sc-prerequisites)
-+ [Connect to the EC2 Serial Console](#sc-connection-methods)
-+ [EC2 Serial Console fingerprints](#sc-fingerprints)
-
-## Considerations<a name="sc-considerations"></a>
-+ Only one active serial console connection is supported per instance\.
-+ The serial console connection typically lasts for one hour unless you terminate it\. However, during system maintenance, Amazon EC2 will terminate the serial console session\.
+**Considerations**
++ Only 1 active serial console connection is supported per instance\.
++ The serial console connection typically lasts for 1 hour unless you terminate it\. However, during system maintenance, Amazon EC2 will terminate the serial console session\.
 + It takes 30 seconds to tear down a session after you've disconnected from the serial console in order to allow a new session\.
 + Supported serial console port for Linux: ttyS0
 + When you connect to the serial console, you might observe a slight drop in your instance’s throughput\.
 
-## Prerequisites<a name="sc-prerequisites"></a>
-+ Supported in all AWS Regions except Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Hyderabad\), Asia Pacific \(Melbourne\), Asia Pacific \(Osaka\), China \(Beijing\), China \(Ningxia\), Europe \(Milan\), Europe \(Spain\), Europe \(Zurich\), Middle East \(Bahrain\), and Middle East \(UAE\)\.
-+ Not supported in Local Zones, Wavelength Zones, or AWS Outposts\.
-+ Supported for all virtualized instances built on the [Nitro System](instance-types.md#nitro-instance-types)\.
-+ Not supported on bare metal instances\.
-+ Configure access to the EC2 Serial Console, as follows:
-  + [Manage account access to the EC2 Serial Console](configure-access-to-serial-console.md#serial-console-account-access)\.
-  + [Configure IAM policies for EC2 Serial Console access](configure-access-to-serial-console.md#serial-console-iam)\. All users who will use the serial console must have the required permissions\.
-  + [Set an OS user password](configure-access-to-serial-console.md#set-user-password)\.
-+ To connect to the serial console [using the browser\-based client](#sc-connect-browser-based-client), your browser must support WebSocket\. If your browser does not support WebSocket, connect to the serial console [using your own key and an SSH client\.](#sc-connect-SSH)
-+ The instance must be in the `running` state\. If the instance is in the `pending`, `stopping`, `stopped`, `shutting-down`, or `terminated` state, you can't connect to the serial console\. For more information about the instance states, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
-+ If the instance uses Amazon EC2 Systems Manager, then SSM Agent version 3\.0\.854\.0 or later must be installed on the instance\. For information about SSM Agent, see [Working with SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
-
-You do not need an sshd server installed or running on your instance\.
-
-## Connect to the EC2 Serial Console<a name="sc-connection-methods"></a>
-
 **Topics**
 + [Connect using the browser\-based client](#sc-connect-browser-based-client)
 + [Connect using your own key and SSH client](#sc-connect-SSH)
++ [EC2 Serial Console fingerprints](#sc-fingerprints)
 
-### Connect using the browser\-based client<a name="sc-connect-browser-based-client"></a>
+## Connect using the browser\-based client<a name="sc-connect-browser-based-client"></a>
 
 You can connect to your EC2 instance's serial console by using the browser\-based client\. You do this by selecting the instance in the Amazon EC2 console and choosing to connect to the serial console\. The browser\-based client handles the permissions and provides a successful connection\.
 
 EC2 serial console works from most browsers, and supports keyboard and mouse input\.
+
+Before connecting, make sure you have completed the [prerequisites](ec2-serial-console-prerequisites.md)\.
 
 **To connect to your instance's serial port using the browser\-based client \(Amazon EC2 console\)**
 
@@ -72,9 +52,11 @@ EC2 serial console works from most browsers, and supports keyboard and mouse inp
 
    You are now logged onto the instance and can use the serial console for troubleshooting\.
 
-### Connect using your own key and SSH client<a name="sc-connect-SSH"></a>
+## Connect using your own key and SSH client<a name="sc-connect-SSH"></a>
 
 You can use your own SSH key and connect to your instance from the SSH client of your choice while using the serial console API\. This enables you to benefit from the serial console capability to push a public key to the instance\.
+
+Before connecting, make sure you have completed the [prerequisites](ec2-serial-console-prerequisites.md)\.
 
 **To connect to an instance's serial console using SSH**
 

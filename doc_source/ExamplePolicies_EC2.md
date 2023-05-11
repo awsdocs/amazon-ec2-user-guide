@@ -4,9 +4,6 @@ You must grant users the permissions they require for Amazon EC2 using IAM polic
 
 In the following examples, replace each *user input placeholder* with your own information\.
 
-**Note**  
- 
-
 **Topics**
 + [Read\-only access](#iam-example-read-only)
 + [Restrict access to a specific Region](#iam-example-region)
@@ -2031,6 +2028,7 @@ For an Auto Scaling group that uses a launch template, make sure that it uses a 
 
 **Topics**
 + [Require the use of IMDSv2](#iam-example-instance-metadata-requireIMDSv2)
++ [Deny opt\-out of IMDSv2](#iam-example-instance-metadata-denyoptoutIMDSv2)
 + [Specify maximum hop limit](#iam-example-instance-metadata-maxHopLimit)
 + [Limit who can modify the instance metadata options](#iam-example-instance-metadata-limit-modify-IMDS-options)
 + [Require role credentials to be retrieved from IMDSv2](#iam-example-instance-metadata-require-roles-to-use-IMDSv2-credentials)
@@ -2055,6 +2053,31 @@ The following policy specifies that you can’t call the RunInstances API unless
             }
         }
     ]
+}
+```
+
+### Deny opt\-out of IMDSv2<a name="iam-example-instance-metadata-denyoptoutIMDSv2"></a>
+
+The following policy specifies that you cannot call the `ModifyInstanceMetadataOptions` API and allow the option of IMDSv1 or IMDSv2\. If you call the `ModifyInstanceMetadataOptions` API, the `HttpTokens` attribute must be set to `required`\. 
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyIMDSv1ConfurationModification",
+            "Effect": "Deny",
+            "Action": "ec2:ModifyInstanceMetadataOptions",
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "StringEquals": {
+                    "ec2:Attribute": "HttpTokens"
+                },
+                "StringNotEquals": {
+                    "ec2:Attribute/HttpTokens": "required"
+                }
+            }
+        }
 }
 ```
 

@@ -241,7 +241,15 @@ The following considerations apply to AMI policies and **AMI deprecation:**
 + If an AMI is created by multiple conflicting schedules, and one or more of those schedules do not have an AMI deprecation rule, Amazon Data Lifecycle Manager will not deprecate that AMI\.
 + If an AMI is created by multiple conflicting schedules, and all of those schedules have an AMI deprecation rule, Amazon Data Lifecycle Manager will use the deprecation rule that results in the latest deprecation date\.
 
-The following considerations apply to AMI lifecycle policies that are in the **error** state:
+The following considerations apply to AMI policies and **[Recycle Bin](recycle-bin.md)**:
++ If Amazon Data Lifecycle Manager deregisters an AMI and sends it to the Recycle Bin when the policy's retention threshold is reached, and you manually restore that AMI from the Recycle Bin, you must manually deregister the AMI when it is no longer needed\. Amazon Data Lifecycle Manager will no longer manage the AMI\.
++ If you manually deregister an AMI that was created by a policy, and that AMI is in the Recycle Bin when the policy’s retention threshold is reached, Amazon Data Lifecycle Manager will not deregister the AMI\. Amazon Data Lifecycle Manager does not manage AMIs while they are in the Recycle Bin\.
+
+  If the AMI is restored from the Recycle Bin before the policy's retention threshold is reached, Amazon Data Lifecycle Manager will deregister the AMI when the policy's retention threshold is reached\.
+
+  If the AMI is restored from the Recycle Bin after the policy's retention threshold is reached, Amazon Data Lifecycle Manager will no longer deregister the AMI\. You must manually delete it when it is no longer needed\.
+
+The following considerations apply to AMI policies that are in the **error** state:
 + For policies with age\-based retention schedules, AMIs that are set to expire while the policy is in the `error` state are retained indefinitely\. You must deregister the AMIs manually\. When you re\-enable the policy, Amazon Data Lifecycle Manager resumes deregistering AMIs as their retention periods expire\.
 + For policies with count\-based retention schedules, the policy stops creating and deregistering AMIs while it is in the `error` state\. When you re\-enable the policy, Amazon Data Lifecycle Manager resumes creating AMIs, and it resumes deregistering AMIs as the retention threshold is met\.
 

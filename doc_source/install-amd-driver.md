@@ -26,7 +26,7 @@ AWS offers different Amazon Machine Images \(AMI\) that come with the AMD driver
 
 ## AMD driver download<a name="download-amd-driver"></a>
 
-If you aren't using an AMI with the AMD driver installed, you can download the AMD driver and install it on your instance\. 
+If you aren't using an AMI with the AMD driver installed, you can download the AMD driver and install it on your instance\. The AMD driver is only supported on Amazon Linux 2 with kernel version 4\.14\.
 
 These downloads are available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the AMD Radeon Pro V520 hardware\. Upon installation of the software, you are bound by the terms of the [AMD Software End User License Agreement](https://www.amd.com/en/support/eula)\.
 

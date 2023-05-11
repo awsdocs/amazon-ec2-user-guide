@@ -15,6 +15,6 @@ You can't use Capacity Reservation groups in a Wavelength Zone\.
 
 1. Create a Capacity Reservation in the Wavelength Zone\. For **Availability Zone**, choose the Wavelength\. The Wavelength is represented by an AWS Region code followed by an identifier that indicates the location, for example `us-east-1-wl1-bos-wlz-1`\. For more information, see [Create a Capacity Reservation](capacity-reservations-using.md#capacity-reservations-create)\.
 
-1. Create a subnet in the Wavelength Zone\. For **Availability Zone**, choose the Wavelength Zone\. For more information, see [Creating a subnet in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#AddaSubnet) in the *Amazon VPC User Guide*\. 
+1. Create a subnet in the Wavelength Zone\. For **Availability Zone**, choose the Wavelength Zone\. For more information, see [Create a subnet in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html) in the *Amazon VPC User Guide*\. 
 
 1. Launch an instance\. For **Subnet**, choose the subnet in the Wavelength Zone \(for example `subnet-123abc | us-east-1-wl1-bos-wlz-1`\), and for **Capacity Reservation**, choose the specification \(either `open` or target it by ID\) that's required for the Capacity Reservation that you created in the Wavelength\. For more information, see [Launch instances into an existing Capacity Reservation](capacity-reservations-using.md#capacity-reservations-launch)\. 

@@ -79,9 +79,9 @@ P2 instances support NVIDIA GPUDirect peer to peer transfers\. For more informat
 
 ## Instances with AWS Trainium<a name="aws-trainium-instances"></a>
 
-Amazon EC2 Trn1 instances, powered by [AWS Trainium](http://aws.amazon.com/machine-learning/trainium/), are purpose built for high\-performance, cost\-effective deep learning training\. You can use Trn1 instances to train natural language processing, computer vision, and recommender models used across a broad set of applications, such as speech recognition, recommendation, fraud detection, and image and video classification\. Use your existing workflows in popular ML frameworks, such as PyTorch and TensorFlow\. [AWS Neuron SDK](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/) integrates seamlessly with these frameworks so that you can get started with only a few lines of code changes\.
+Amazon EC2 Trn1 and Trn1n instances, powered by [AWS Trainium](http://aws.amazon.com/machine-learning/trainium/), are purpose built for high\-performance, cost\-effective deep learning training\. You can use Trn1 and Trn1n instances to train natural language processing, computer vision, and recommender models used across a broad set of applications, such as speech recognition, recommendation, fraud detection, and image and video classification\. Use your existing workflows in popular ML frameworks, such as PyTorch and TensorFlow\. [AWS Neuron SDK](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/) integrates seamlessly with these frameworks so that you can get started with only a few lines of code changes\.
 
-For more information, see [Amazon EC2 Trn1 Instances](https://aws.amazon.com/ec2/instance-types/trn1/)\.
+For more information, see [Amazon EC2 Trn1 instances](http://aws.amazon.com/ec2/instance-types/trn1/)\.
 
 ## Instances with AWS Inferentia<a name="aws-inferentia-instances"></a>
 
@@ -89,9 +89,9 @@ These instances are designed to accelerate machine learning using [AWS Inferenti
 
 There are a variety of ways that you can get started:
 + Use SageMaker, a fully\-managed service that is the easiest way to get started with machine learning models\. For more information, see [Get Started with SageMaker](https://docs.aws.amazon.com/sagemaker/latest/dg/gs.html) in the *Amazon SageMaker Developer Guide*\.
-+ Launch an Inf1 instance using the Deep Learning AMI\. For more information, see [AWS Inferentia with DLAMI](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-inferentia.html) in the *AWS Deep Learning AMI Developer Guide*\.
-+ Launch an Inf1 instance using your own AMI and install the [AWS Neuron SDK](https://github.com/aws/aws-neuron-sdk), which enables you to compile, run, and profile deep learning models for AWS Inferentia\.
-+ Launch a container instance using an Inf1 instance and an Amazon ECS\-optimized AMI\. For more information, see [Amazon Linux 2 \(Inferentia\) AMIs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*\.
++ Launch an Inf1 or Inf2 instance using the Deep Learning AMI\. For more information, see [AWS Inferentia with DLAMI](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-inferentia.html) in the *AWS Deep Learning AMI Developer Guide*\.
++ Launch an Inf1 or Inf2 instance using your own AMI and install the [AWS Neuron SDK](https://github.com/aws/aws-neuron-sdk), which enables you to compile, run, and profile deep learning models for AWS Inferentia\.
++ Launch a container instance using an Inf1 or Inf2 instance and an Amazon ECS\-optimized AMI\. For more information, see [Amazon Linux 2 \(Inferentia\) AMIs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*\.
 + Create an Amazon EKS cluster with nodes running Inf1 instances\. For more information, see [Inferentia support](https://docs.aws.amazon.com/eks/latest/userguide/inferentia-support.html) in the **Amazon EKS User Guide**\.
 
 For more information, see [Machine Learning on AWS](http://aws.amazon.com/machine-learning/)\.
@@ -100,6 +100,11 @@ For more information, see [Machine Learning on AWS](http://aws.amazon.com/machin
 Inf1 instances use AWS Inferentia machine learning inference chips\. Inferentia was developed to enable highly cost\-effective low latency inference performance at any scale\.
 
 For more information, see [Amazon EC2 Inf1 Instances](https://aws.amazon.com/ec2/instance-types/inf1/)\.
+
+**Inf2 instances**  
+Inf2 instances use AWS Inferentia2 machine learning inference chips\. These second\-generation instances offer up to 25 percent improvement in cost\-per\-inference over Inf1 instances and up to 70 percent better cost\-per\-inference over comparable Amazon EC2 instances\. These instances are ideal for a wide range of workloads that use deep learning models\.
+
+For more information, see [Amazon EC2 Inf2 Instances](https://aws.amazon.com/ec2/instance-types/inf2/)\.
 
 ## Instances with Habana accelerators<a name="habana-instances"></a>
 
@@ -194,6 +199,10 @@ The following is a summary of the hardware specifications for accelerated comput
 | inf1\.2xlarge | 8 | 16\.00 | 1 inference accelerators | 
 | inf1\.6xlarge | 24 | 48\.00 | 4 inference accelerators | 
 | inf1\.24xlarge | 96 | 192\.00 | 16 inference accelerators | 
+| inf2\.xlarge | 4 | 16\.00 | 1 inference accelerators | 
+| inf2\.8xlarge | 32 | 128\.00 | 1 inference accelerators | 
+| inf2\.24xlarge | 96 | 384\.00 | 6 inference accelerators | 
+| inf2\.48xlarge | 192 | 768\.00 | 12 inference accelerators | 
 | p2\.xlarge | 4 | 61\.00 | 1 GPUs | 
 | p2\.8xlarge | 32 | 488\.00 | 8 GPUs | 
 | p2\.16xlarge | 64 | 732\.00 | 16 GPUs | 
@@ -205,11 +214,14 @@ The following is a summary of the hardware specifications for accelerated comput
 | p4de\.24xlarge | 96 | 1152\.00 | 8 GPUs | 
 | trn1\.2xlarge | 8 | 32\.00 | 
 | trn1\.32xlarge | 128 | 512\.00 | 
+| trn1n\.32xlarge | 128 | 512\.00 | 
 | vt1\.3xlarge | 12 | 24\.00 | 
 | vt1\.6xlarge | 24 | 48\.00 | 
 | vt1\.24xlarge | 96 | 192\.00 | 
 
 **Note**  
+**Trn1n** instances feature the following number of Trainium Accelerators\.  
+`trn1n.32xlarge` — 16
 **Trn1** instances feature the following number of Trainium Accelerators\.  
 `trn1.2xlarge` — 1
 `trn1.32xlarge` — 16
@@ -249,50 +261,79 @@ You can enable enhanced networking on supported instance types to provide lower 
 
 The following is a summary of network performance for accelerated computing instances that support enhanced networking\.
 
+**Note**  
+Instance types indicated with a **†** have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.
 
-| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | Enhanced networking features | 
-| --- | --- | --- | --- | 
-| dl1\.24xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| g4ad\.xlarge † | 2\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g4ad\.2xlarge † | 4\.167 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g4ad\.4xlarge † | 8\.333 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g4ad\.8xlarge | 15\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g4ad\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g4dn\.xlarge † | 5\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g4dn\.2xlarge † | 10\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g4dn\.4xlarge † | 20\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g4dn\.8xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| g4dn\.12xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| g4dn\.16xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g4dn\.metal | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| g5\.xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5\.2xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5\.4xlarge † | 10\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5\.8xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5\.12xlarge | 40\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5\.24xlarge | 50\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5\.48xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| g5g\.xlarge † | 1\.25 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5g\.2xlarge † | 2\.5 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5g\.4xlarge † | 5\.0 | 10\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5g\.8xlarge | 12\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5g\.16xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| g5g\.metal | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| inf1\.xlarge † | 5\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| inf1\.2xlarge † | 5\.0 | 25\.0 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| inf1\.6xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| inf1\.24xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| p3dn\.24xlarge | 100\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| p4d\.24xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| p4de\.24xlarge | 400\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| trn1\.2xlarge † | 3\.125 | 12\.5 | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| trn1\.32xlarge | 800\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
-| vt1\.3xlarge | 3\.125 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| vt1\.6xlarge | 6\.25 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
-| vt1\.24xlarge | 25\.0 | \- | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
 
-† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.
+| Instance type | Network performance | Enhanced networking features | 
+| --- | --- | --- | 
+| dl1\.24xlarge | 4x 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g4ad\.xlarge † | Up to 10 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4ad\.2xlarge † | Up to 10 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4ad\.4xlarge † | Up to 10 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4ad\.8xlarge | 15 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4ad\.16xlarge | 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4dn\.xlarge † | Up to 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4dn\.2xlarge † | Up to 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4dn\.4xlarge † | Up to 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g4dn\.8xlarge | 50 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g4dn\.12xlarge | 50 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g4dn\.16xlarge | 50 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g4dn\.metal | 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g5\.xlarge † | Up to 10 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.2xlarge † | Up to 10 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.4xlarge † | Up to 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5\.8xlarge | 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g5\.12xlarge | 40 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g5\.16xlarge | 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g5\.24xlarge | 50 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g5\.48xlarge | 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| g5g\.xlarge † | Up to 10 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.2xlarge † | Up to 10 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.4xlarge † | Up to 10 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.8xlarge | 12 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.16xlarge | 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| g5g\.metal | 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf1\.xlarge † | Up to 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf1\.2xlarge † | Up to 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf1\.6xlarge | 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf1\.24xlarge | 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| inf2\.xlarge † | Up to 15 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf2\.8xlarge † | Up to 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf2\.24xlarge | 50 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| inf2\.48xlarge | 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| p3dn\.24xlarge | 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| p4d\.24xlarge | 4x 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| p4de\.24xlarge | 4x 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| trn1\.2xlarge † | Up to 12\.5 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| trn1\.32xlarge | 8x 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| trn1n\.32xlarge | 16x 100 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+| vt1\.3xlarge | 3\.12 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| vt1\.6xlarge | 6\.25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) | 
+| vt1\.24xlarge | 25 Gigabit | [ENA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html) \| [EFA](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html) | 
+
+The following table shows the baseline and burst bandwidth for instance types that use the network I/O credit mechanism to burst beyond their baseline bandwidth\.
+
+
+| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
+| --- | --- | --- | 
+| g4ad\.xlarge | 2\.0 | 10\.0 | 
+| g4ad\.2xlarge | 4\.167 | 10\.0 | 
+| g4ad\.4xlarge | 8\.333 | 10\.0 | 
+| g4dn\.xlarge | 5\.0 | 25\.0 | 
+| g4dn\.2xlarge | 10\.0 | 25\.0 | 
+| g4dn\.4xlarge | 20\.0 | 25\.0 | 
+| g5\.xlarge | 2\.5 | 10\.0 | 
+| g5\.2xlarge | 5\.0 | 10\.0 | 
+| g5\.4xlarge | 10\.0 | 25\.0 | 
+| g5g\.xlarge | 1\.25 | 10\.0 | 
+| g5g\.2xlarge | 2\.5 | 10\.0 | 
+| g5g\.4xlarge | 5\.0 | 10\.0 | 
+| inf1\.xlarge | 5\.0 | 25\.0 | 
+| inf1\.2xlarge | 5\.0 | 25\.0 | 
+| inf2\.xlarge | 2\.083 | 15\.0 | 
+| inf2\.8xlarge | 16\.667 | 25\.0 | 
+| trn1\.2xlarge | 3\.125 | 12\.5 | 
 
 ## Amazon EBS I/O performance<a name="accelerated-ebs-perf"></a>
 
@@ -307,19 +348,32 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| g4ad\.xlarge | 10,417 | 8,333 | 
-| g4ad\.2xlarge | 20,833 | 16,667 | 
-| g4ad\.4xlarge | 41,667 | 33,333 | 
-| g4ad\.8xlarge | 83,333 | 66,667 | 
-| g4ad\.16xlarge | 166,667 | 133,333 | 
-| g5\.xlarge | 40,625 | 20,313 | 
-| g5\.2xlarge | 40,625 | 20,313 | 
-| g5\.4xlarge | 125,000 | 62,500 | 
-| g5\.8xlarge | 250,000 | 125,000 | 
-| g5\.12xlarge | 312,500 | 156,250 | 
-| g5\.16xlarge | 250,000 | 125,000 | 
-| g5\.24xlarge | 312,500 | 156,250 | 
-| g5\.48xlarge | 625,000 | 312,500 | 
+| g4ad\.xlarge | 10417 | 8333 | 
+| g4ad\.2xlarge | 20833 | 16667 | 
+| g4ad\.4xlarge | 41667 | 33333 | 
+| g4ad\.8xlarge | 83333 | 66667 | 
+| g4ad\.16xlarge | 166666 | 133332 | 
+| g4dn\.xlarge | 42500 | 32500 | 
+| g4dn\.2xlarge | 42500 | 32500 | 
+| g4dn\.4xlarge | 85000 | 65000 | 
+| g4dn\.8xlarge | 250000 | 200000 | 
+| g4dn\.12xlarge | 250000 | 200000 | 
+| g4dn\.16xlarge | 250000 | 200000 | 
+| g4dn\.metal | 500000 | 400000 | 
+| g5\.xlarge | 40625 | 20313 | 
+| g5\.2xlarge | 40625 | 20313 | 
+| g5\.4xlarge | 125000 | 62500 | 
+| g5\.8xlarge | 250000 | 125000 | 
+| g5\.12xlarge | 312500 | 156250 | 
+| g5\.16xlarge | 250000 | 125000 | 
+| g5\.24xlarge | 312500 | 156250 | 
+| g5\.48xlarge | 625000 | 312500 | 
+| p3dn\.24xlarge | 700000 | 340000 | 
+| p4d\.24xlarge | 2000000 | 1600000 | 
+| p4de\.24xlarge | 2000000 | 1600000 | 
+| trn1\.2xlarge | 107500 | 45000 | 
+| trn1\.32xlarge | 1720000 | 720000 | 
+| trn1n\.32xlarge | 1720000 | 720000 | 
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 

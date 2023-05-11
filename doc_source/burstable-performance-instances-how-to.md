@@ -194,6 +194,8 @@ The following is example output\.
 
 You can switch the credit specification of a running or stopped instance at any time between `unlimited` and `standard`\.
 
+Note that in `unlimited` mode, an instance can spend surplus credits, which might incur an additional charge\. For more information, see [Surplus credits can incur charges](burstable-performance-instances-unlimited-mode-concepts.md#unlimited-mode-surplus-credits)\.
+
 ------
 #### [ Console ]
 

@@ -30,6 +30,7 @@ The following table lists some of the platform details and usage operation value
 |  SQL Server Standard  |  RunInstances:0004  | 
 |  SQL Server Web  |  RunInstances:0200  | 
 |  SUSE Linux  |  RunInstances:000g  | 
+| Ubuntu Pro |  RunInstances:0g00  | 
 |  Windows  |  RunInstances:0002  | 
 |  Windows BYOL  |  RunInstances:0800  | 
 |  Windows with SQL Server Enterprise \*  |  RunInstances:0102  | 

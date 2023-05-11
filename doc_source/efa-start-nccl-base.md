@@ -4,7 +4,7 @@ The following steps help you to get started with Elastic Fabric Adapter using an
 
 **Note**  
 Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
-Only Amazon Linux 2, RHEL 7/8, CentOS 7, Rocky Linux 8/9, and Ubuntu 18\.04/20\.04 base AMIs are supported\.
+Only Amazon Linux 2, RHEL 7/8, CentOS 7, Rocky Linux 8/9, Ubuntu 20\.04, and Debian 10 base AMIs are supported\.
 
 **Topics**
 + [Step 1: Prepare an EFA\-enabled security group](#nccl-start-base-setup)
@@ -514,13 +514,15 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
    The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
 
 ------
-#### [ Ubuntu 18\.04/20\.04 ]
+#### [ Ubuntu 20\.04 and Debian 10 ]
 
 **To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\.
 
-   sudo apt\-get update && sudo apt\-get upgrade \-y
+   ```
+   $ sudo apt-get update && sudo apt-get upgrade -y
+   ```
 
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
 
@@ -562,37 +564,20 @@ You must provision an additional 10 to 20 GiB of storage for the Nvidia CUDA Too
 
 1. Reboot the instance and reconnect to it\.
 
-1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
+1. Add the CUDA repository and install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
 
-   1. Add the CUDA repository and install the CUDA driver\.
-     + Ubuntu 18\.04
-
-       ```
-       $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub \
-       && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb \
-       && sudo dpkg -i /tmp/deeplearning.deb \
-       && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin \
-       && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
-       && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub \
-       && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /' \
-       && sudo apt update \ 
-       && sudo apt install nvidia-dkms-515 \
-       && sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
-       ```
-     + Ubuntu 20\.04
-
-       ```
-       $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/7fa2af80.pub \
-       && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/nvidia-machine-learning-repo-ubuntu2004_1.0.0-1_amd64.deb \
-       && sudo dpkg -i /tmp/deeplearning.deb \
-       && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin \
-       && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
-       && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub \
-       && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /' \
-       && sudo apt update \
-       && sudo apt install nvidia-dkms-515 \
-       && sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
-       ```
+   ```
+   $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/7fa2af80.pub \
+   && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/nvidia-machine-learning-repo-ubuntu2004_1.0.0-1_amd64.deb \
+   && sudo dpkg -i /tmp/deeplearning.deb \
+   && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin \
+   && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
+   && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub \
+   && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /' \
+   && sudo apt update \
+   && sudo apt install nvidia-dkms-515 \
+   && sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
+   ```
 
 1. Reboot the instance and reconnect to it\.
 
@@ -693,7 +678,7 @@ Install GDRCopy to improve the performance of Libfabric\. For more information a
    ```
 
 ------
-#### [ Ubuntu 18\.04/20\.04 ]
+#### [ Ubuntu 20\.04 and Debian 10 ]
 
 **To install GDRCopy**
 
@@ -738,7 +723,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.22.0.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.23.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -766,7 +751,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.22.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.22.0.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.23.0.tar.gz.sig && gpg --verify ./aws-efa-installer-1.23.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -784,7 +769,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.22.0.tar.gz && cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.23.0.tar.gz && cd aws-efa-installer
    ```
 
 1. Run the EFA software installation script\.
@@ -879,22 +864,16 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
    $ cd $HOME
    ```
 
-1. \(Ubuntu only\) Install the utilities that are required to install the **aws\-ofi\-nccl** plugin\. To install the required utilities, run the following command\.
+1. Download the aws\-ofi\-nccl plugin files\. The files are packaged into a compressed tarball \(`.tar.gz`\)\.
 
    ```
-   $ sudo apt-get install libtool autoconf -y
+   $ wget https://github.com/aws/aws-ofi-nccl/releases/download/v1.6.0/aws-ofi-nccl-1.6.0.tar.gz
    ```
 
-1. Clone the `aws` branch of the official AWS aws\-ofi\-nccl repository to the instance and navigate into the local cloned repository\.
+1. Extract the files from the compressed \.tar\.gz file and navigate into the extracted directory\.
 
    ```
-   $ git clone https://github.com/aws/aws-ofi-nccl.git -b aws && cd aws-ofi-nccl
-   ```
-
-1. To generate the `configure` script, run the `autogen.sh` script\.
-
-   ```
-   $ ./autogen.sh
+   $ tar -xf aws-ofi-nccl-1.6.0.tar.gz && cd aws-ofi-nccl-1.6.0
    ```
 
 1. To generate the *make* files, run the `configure` script and specify the MPI, Libfabric, NCCL, and CUDA installation directories\. 
@@ -941,7 +920,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib64:$LD_LIBRARY_PATH
      ```
-   + Ubuntu 18\.04/20\.04
+   + Ubuntu 20\.04 and Debian 10
 
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib:$LD_LIBRARY_PATH

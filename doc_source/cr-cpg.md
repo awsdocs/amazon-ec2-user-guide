@@ -87,7 +87,7 @@ You create a Capacity Reservation in a cluster placement group in the same way t
 + If you create an `open` Capacity Reservation in a cluster placement group and there are existing running instances that have matching attributes \(placement group ARN, instance type, Availability Zone, platform, and tenancy\), those instances automatically run in the Capacity Reservation\.
 + Your request to create a Capacity Reservation could fail if one of the following is true:
   + Amazon EC2 does not have sufficient capacity to fulfill the request\. Either try again at a later time, try a different Availability Zone, or try a smaller capacity\. If your workload is flexible across instance types and sizes, try different instance attributes\.
-  + The requested quantity exceeds your On\-Demand Instance limit for the selected instance family\. Increase your On\-Demand Instance limit for the instance family and try again\. For more information, see [On\-Demand Instance limits](ec2-on-demand-instances.md#ec2-on-demand-instances-limits)\.
+  + The requested quantity exceeds your On\-Demand Instance limit for the selected instance family\. Increase your On\-Demand Instance limit for the instance family and try again\. For more information, see [On\-Demand Instance quotas](ec2-on-demand-instances.md#ec2-on-demand-instances-limits)\.
 
 You can create the Capacity Reservation in the cluster placement group using one of the following methods\.
 

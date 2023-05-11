@@ -1,8 +1,7 @@
 # Dedicated Instances<a name="dedicated-instance"></a>
 
-Dedicated Instances are Amazon EC2 instances that run in a virtual private cloud \(VPC\) on hardware that's dedicated to a single customer\. Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account\. However, Dedicated Instances might share hardware with other instances from the same AWS account that are not Dedicated Instances\.
+By default, EC2 instances run on shared tenancy hardware\. Dedicated Instances are EC2 instances that run on hardware that's dedicated to a single customer\. Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account\. However, Dedicated Instances might share hardware with other instances from the same AWS account that are not Dedicated Instances\.
 
-**Note**  
 A *Dedicated Host* is also a physical server that's dedicated for your use\. With a Dedicated Host, you have visibility and control over how instances are placed on the server\. For more information, see [Dedicated Hosts](dedicated-hosts-overview.md)\.
 
 **Topics**
@@ -15,18 +14,9 @@ A *Dedicated Host* is also a physical server that's dedicated for your use\. Wit
 
 ## Dedicated Instance basics<a name="dedicated-howitworks"></a>
 
-Dedicated Instances can be launched into an Amazon VPC only\.
-
-When you launch an instance, the instance's tenancy attribute determines the hardware that it runs on\. To launch a Dedicated Instance, you must specify an instance tenancy of `dedicated`\.
-
-**Note**  
-Instances with a tenancy value of `default` run on shared tenancy hardware\. Instances with a tenancy value of `host` run on a Dedicated Host\. For more information about working with Dedicated Hosts, see [Dedicated Hosts](dedicated-hosts-overview.md)\.
-
-The tenancy of the VPC into which you launch the instance can also determine the instance's tenancy\. A VPC can have a tenancy of either `default` or `dedicated`\. If you launch an instance into a VPC that has a tenancy of `default`, the instance runs on shared tenancy hardware by default, unless you specify a different tenancy for the instance\. If you launch an instance into a VPC that has a tenancy of `dedicated`, the instance runs as a Dedicated Instance by default, unless you specify a different tenancy for the instance\. 
-
-To launch Dedicated Instances, you can do the following:
-+ Create a VPC with a tenancy of `dedicated` and launch all instances as Dedicated Instances by default\. For more information, see [Create a VPC with a dedicated instance tenancy](dedicated-usage-overview.md#creatingdedicatedvpc)\.
-+ Create a VPC with a tenancy of `default` and manually specify a tenancy of `dedicated` for the instances that you want to run as Dedicated Instances\. For more information, see [Launch Dedicated Instances into a VPC](dedicated-usage-overview.md#dedicatedinstancesintovpc)\.
+A VPC can have a tenancy of either `default` or `dedicated`\. By default, your VPCs have `default` tenancy and instances launched into a `default` tenancy VPC have `default` tenancy\. To launch Dedicated Instances, do the following:
++ Create a VPC with a tenancy of `dedicated`, so that all instances in the VPC run as Dedicated Instances\. For more information, see [Create a VPC with a dedicated instance tenancy](dedicated-usage-overview.md#creatingdedicatedvpc)\.
++ Create a VPC with a tenancy of `default` and manually specify a tenancy of `dedicated` for the instances to run as Dedicated Instances\. For more information, see [Launch Dedicated Instances into a VPC](dedicated-usage-overview.md#dedicatedinstancesintovpc)\.
 
 ## Supported features<a name="features"></a>
 
@@ -75,11 +65,12 @@ There are no performance, security, or physical differences between Dedicated In
 |  | Dedicated Host | Dedicated Instance | 
 | --- | --- | --- | 
 | Billing | Per\-host billing | Per\-instance billing | 
-| Visibility of sockets, cores, and host ID | Provides visibility of the number of sockets and physical cores on the host | No visibility | 
-| Host and instance affinity | Allows you to consistently deploy your instances onto the same host over time | Not supported | 
-| Targeted instance placement | Provides control over how instances are placed on the host | Not supported | 
-| Automatic instance recovery | Supported | Supported | 
+| Visibility of sockets, cores, and host ID | Provides visibility of the number of sockets and physical cores | No visibility | 
+| Host and instance affinity | Allows you to consistently deploy your instances to the same physical server over time | Not supported | 
+| Targeted instance placement | Provides additional visibility and control over how instances are placed on a physical server | Not supported | 
+| Automatic instance recovery | Supported\. For more information, see [Host recovery](dedicated-hosts-recovery.md)\. | Supported | 
 | Bring Your Own License \(BYOL\) | Supported | Partial support \* | 
+| Capacity Reservations | Not supported | Supported | 
 
 \* Microsoft SQL Server with License Mobility through Software Assurance, and Windows Virtual Desktop Access \(VDA\) licenses can be used with Dedicated Instance\.
 

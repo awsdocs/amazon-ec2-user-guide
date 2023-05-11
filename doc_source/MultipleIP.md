@@ -15,7 +15,7 @@ It can be useful to assign multiple IP addresses to an instance in your VPC to d
 ## How multiple IP addresses work<a name="MultipleIPReqs"></a>
 
 The following list explains how multiple IP addresses work with network interfaces:
-+ You can assign a secondary private IPv4 address to any network interface\. The network interface does not need to be attached to the instance\.
++ You can assign a secondary private IPv4 address to any network interface\.
 + You can assign multiple IPv6 addresses to a network interface that's in a subnet that has an associated IPv6 CIDR block\.
 + You must choose a secondary IPv4 address from the IPv4 CIDR block range of the subnet for the network interface\.
 + You must choose IPv6 addresses from the IPv6 CIDR block range of the subnet for the network interface\.
@@ -215,7 +215,7 @@ You can assign multiple IPv6 addresses to your instance, view the IPv6 addresses
 
 ### Assign multiple IPv6 addresses<a name="assign-multiple-ipv6"></a>
 
-You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\. For more information, see [IPv6 addresses](https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html#vpc-ipv6-addresses) in the *Amazon VPC User Guide*\.
+You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\.
 
 ------
 #### [ New console ]

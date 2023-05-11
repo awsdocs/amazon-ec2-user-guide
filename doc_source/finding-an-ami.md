@@ -138,7 +138,7 @@ Running instances are not affected when you change the AMI ID pointed to by the 
 
 ### Permissions<a name="systems-manager-permissions"></a>
 
-If you use Systems Manager parameters that point to AMI IDs in the launch instance wizard, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your IAM policy\. `ssm:DescribeParameters` grants your users permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your users permission to retrieve the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see [Use the EC2 launch wizard](iam-policies-ec2-console.md#ex-launch-wizard)\.
+If you use Systems Manager parameters that point to AMI IDs in the launch instance wizard, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your IAM policy\. `ssm:DescribeParameters` grants your users permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your users permission to retrieve the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see [Use the EC2 launch instance wizard](iam-policies-ec2-console.md#ex-launch-wizard)\.
 
 ### Limitations<a name="AMI-systems-manager-parameter-limitations"></a>
 

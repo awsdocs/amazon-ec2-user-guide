@@ -49,10 +49,10 @@ First, you need to get set up to use Amazon EC2\. After you are set up, you are 
 
 **Working with Linux instances**
 + [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) in the *AWS Systems Manager User Guide*
-+ [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)
-+ [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)
++ [Install LAMP on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)
++ [Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)
 
-If you have questions about whether AWS is right for you, [contact AWS Sales](https://aws.amazon.com/contact-us/)\. If you have technical questions about Amazon EC2, use the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. 
+If you have questions about whether AWS is right for you, [contact AWS Sales](https://aws.amazon.com/contact-us/)\. If you have technical questions about Amazon EC2, use [AWS re:Post](https://repost.aws/)\.
 
 ## Related services<a name="related-services"></a>
 

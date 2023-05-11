@@ -107,7 +107,7 @@ To configure GRUB, choose one of the following procedures based on the AMI that 
    GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
    GRUB_DEFAULT=saved
    GRUB_DISABLE_SUBMENU=true
-   GRUB_CMDLINE_LINUX="console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=auto"
+   GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8 net.ifnames=0 rd.blacklist=nouveau nvme_core.io_timeout=4294967295 crashkernel=auto"
    GRUB_DISABLE_RECOVERY="true"
    GRUB_ENABLE_BLSCFG=true
    GRUB_TERMINAL="console serial"
@@ -154,7 +154,7 @@ Single user mode will boot the kernel at a lower runlevel\. For example, it migh
 
 **To boot into single user mode**
 
-1. [Connect](connect-to-serial-console.md#sc-connection-methods) to the instance's serial console\.
+1. [Connect](connect-to-serial-console.md) to the instance's serial console\.
 
 1. Reboot the instance using the following command\.
 

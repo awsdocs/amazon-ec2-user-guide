@@ -13,7 +13,7 @@ After you create a Capacity Reservation Fleet, you can manage the Capacity Reser
 + [Capacity Reservation Fleet concepts](crfleet-concepts.md)
 + [Work with Capacity Reservation Fleets](work-with-cr-fleets.md)
 + [Example configurations](example-configs.md)
-+ [Using Service\-Linked Roles](using-service-linked-roles.md)
++ [Using service\-linked roles](using-service-linked-roles.md)
 
 ## How Capacity Reservation Fleets work<a name="how-it-works"></a>
 

@@ -26,7 +26,7 @@ Dedicated Hosts are also integrated with AWS License Manager\. With License Mana
 
 To begin using Dedicated Hosts, you must allocate Dedicated Hosts in your account using the Amazon EC2 console or the command line tools\. After you allocate the Dedicated Host, the Dedicated Host capacity is made available in your account immediately and you can start launching instances onto the Dedicated Host\.
 
-Support for multiple instance sizes of the same instance family on the same Dedicated Host is available for the following instance families: `c5`, `m5`, `r5`, `c5n`, `r5n`, and `m5n`\. Other instance families support only one instance size on the same Dedicated Host\.
+Support for multiple instance sizes of the same instance family on the same Dedicated Host is available for the following instance families: A1, C5, M5, R5, C5n, M5n, R5n, and T3\. Other instance families support only one instance size on the same Dedicated Host\.
 
 Due to a hardware limitation with N\-type Dedicated Hosts, such as C5n, M5n, and R5n, you cannot mix smaller instance sizes \(`large`, `xlarge`, and `2xlarge`\) with larger instance sizes \(`4xlarge`, `9xlarge`, `18xlarge`, and `.metal`\)\. If you require smaller and larger instance sizes on N\-type hosts at the same time, you must allocate separate hosts for the smaller and larger instance sizes\.
 
@@ -362,7 +362,7 @@ PS C:\> Edit-EC2Host --AutoPlacement 1 --HostId h-012a3456b7890cdef
 
 ## Modify the supported instance types<a name="modify-host-support"></a>
 
-Support for multiple instance types on the same Dedicated Host is available for the following instance families: `c5`, `m5`, `r5`, `c5n`, `r5n`, and `m5n`\. Other instance families support only a single instance type on the same Dedicated Host\.
+Support for multiple instance types on the same Dedicated Host is available for the following instance families: C5, M5, R5, C5n, R5n, M5n, and T3\. Other instance families support only a single instance type on the same Dedicated Host\.
 
 You can allocate a Dedicated Host using the following methods\.
 
@@ -458,7 +458,7 @@ PS C:\> Edit-EC2Host --InstanceType m5.xlarge --HostId h-012a3456b7890cdef
 
 ## Modify instance tenancy and affinity<a name="moving-instances-dedicated-hosts"></a>
 
-You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated`, after you have launched it\. You can also modify the affinity between the instance and the host\. To modify either instance tenancy or affinity, the instance must be in the `stopped` state\.
+You can change the tenancy of an instance  after you have launched it\. You can also modify the affinity between the instance and the host\. To modify either instance tenancy or affinity, the instance must be in the `stopped` state\.
 
 **Note**  
 For T3 instances, you can't change the tenancy from `dedicated` to `host`, or from `host` to `dedicated`\. Attempting to make one of these unsupported tenancy changes results in the `InvalidTenancy` error code\.

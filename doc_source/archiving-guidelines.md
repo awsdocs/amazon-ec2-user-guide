@@ -340,7 +340,7 @@ To determine the reduction in storage and storage costs in the standard tier, us
 
 1. Compare the output returned by both commands in the previous step\. If the same block index appears in both command outputs, it indicates that the block contains unreferenced data\.
 
-   For example, the command outputs in the previous step indicate that blocks 4, 5, 13, and 15 are unique to snapshot `snap-09c9114207084f0d9` and that they are not referenced by any other snapshots in the snapshot lineage\.
+   For example, the command output in the previous step indicates that blocks 4, 5, 13, and 14 are unique to snapshot `snap-09c9114207084f0d9` and that they are not referenced by any other snapshots in the snapshot lineage\.
 
    To determine the reduction in standard tier storage, multiply the number of blocks that appear in both command outputs by 512 KiB, which is the snapshot block size\.
 

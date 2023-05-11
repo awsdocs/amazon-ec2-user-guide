@@ -26,63 +26,56 @@ When you mount an Amazon FSx file system to an instance using the launch instanc
 
 If you choose to automatically create the security groups that are needed to enable access to the file system, the launch instance wizard creates and attaches two security groups \- one security group is attached to the instance, and the other is attached to the file system\. For more information about the security group requirements, see [FSx for ONTAP file system access control with Amazon VPC](https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/limit-access-security-groups.html) and [FSx for OpenZFS file system access control with Amazon VPC](https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/limit-access-security-groups.html)\.
 
-The security group that is **created and attached to the instance** is tagged with `Name=instance-sg-1`, and it includes the following inbound and outbound rules:
+We add the tag `Name=instance-sg-1` to the security group that is created and attached to the instance\. The value in the tag is automatically incremented each time the launch instance wizard creates a security group for Amazon FSx file systems\.
 
-**Note**  
-The value in the `Name` tag is automatically incremented each time the launch instance wizard creates a new security group for Amazon FSx file systems\.
-
-
-| 
-| 
-| **Inboud rules** | 
-| --- |
-| No inbound rules | 
-| **Outbound rules** | 
-| --- |
-| **Protocol type** | **Port number** | **Destination** | 
-| --- |--- |--- |
-| UDP | 111 | File system security group \(fsx\-sg\-1\) | 
-| UDP | 20001 \- 20003 | File system security group \(fsx\-sg\-1\) | 
-| UDP | 4049 | File system security group \(fsx\-sg\-1\) | 
-| UDP | 2049 | File system security group \(fsx\-sg\-1\) | 
-| UDP | 635 | File system security group \(fsx\-sg\-1\) | 
-| UDP | 4045 \- 4046 | File system security group \(fsx\-sg\-1\) | 
-| TCP | 4049 | File system security group \(fsx\-sg\-1\) | 
-| TCP | 635 | File system security group \(fsx\-sg\-1\) | 
-| TCP | 2049 | File system security group \(fsx\-sg\-1\) | 
-| TCP | 111 | File system security group \(fsx\-sg\-1\) | 
-| TCP | 4045 \- 4046 | File system security group \(fsx\-sg\-1\) | 
-| TCP | 20001 \- 20003 | File system security group \(fsx\-sg\-1\) | 
-| All | All | File system security group \(fsx\-sg\-1\) | 
-
-The security group that is **created and attached to the file system** is tagged with `Name=fsx-sg-1`, and it includes the following inbound and outbound rules:
-
-**Note**  
-The value in the `Name` tag is automatically incremented each time the launch instance wizard creates a new security group for Amazon FSx file systems\.
+The security group includes the following output rules, but no inbound rules\.
 
 
-| 
-| 
-| **Inbound rules** | 
-| --- |
-| **Protocol type** | **Port number** | **Source** | 
-| --- |--- |--- |
-| UDP | 2049 | Instance security group \(instance\-sg\-1\) | 
-| UDP | 20001 \- 20003 | Instance security group \(instance\-sg\-1\) | 
-| UDP | 4049 | Instance security group \(instance\-sg\-1\) | 
-| UDP | 111 | Instance security group \(instance\-sg\-1\) | 
-| UDP | 635 | Instance security group \(instance\-sg\-1\) | 
-| UDP | 4045 \- 4046 | Instance security group \(instance\-sg\-1\) | 
-| TCP | 4045 \- 4046 | Instance security group \(instance\-sg\-1\) | 
-| TCP | 635 | Instance security group \(instance\-sg\-1\) | 
-| TCP | 2049 | Instance security group \(instance\-sg\-1\) | 
-| TCP | 4049 | Instance security group \(instance\-sg\-1\) | 
-| TCP | 20001 \- 20003 | Instance security group \(instance\-sg\-1\) | 
-| TCP | 111 | Instance security group \(instance\-sg\-1\) | 
-| **Outbound rules** | 
-| --- |
-| **Protocol type** | **Port number** | **Destination** | 
-| --- |--- |--- |
+**Outbound rules**  
+
+| Protocol type | Port number | Destination | 
+| --- | --- | --- | 
+| UDP | 111 | file system security group | 
+| UDP | 20001 \- 20003 | file system security group | 
+| UDP | 4049 | file system security group | 
+| UDP | 2049 | file system security group | 
+| UDP | 635 | file system security group | 
+| UDP | 4045 \- 4046 | file system security group | 
+| TCP | 4049 | file system security group | 
+| TCP | 635 | file system security group | 
+| TCP | 2049 | file system security group | 
+| TCP | 111 | file system security group | 
+| TCP | 4045 \- 4046 | file system security group | 
+| TCP | 20001 \- 20003 | file system security group | 
+| All | All | file system security group | 
+
+The security group that is created and attached to the file system is tagged with `Name=fsx-sg-1`\. The value in the tag is automatically incremented each time the launch instance wizard creates a security group for Amazon FSx file systems\.
+
+The security group includes the following rules\.
+
+
+**Inbound rules**  
+
+| Protocol type | Port number | Source | 
+| --- | --- | --- | 
+| UDP | 2049 | instance security group | 
+| UDP | 20001 \- 20003 | instance security group | 
+| UDP | 4049 | instance security group | 
+| UDP | 111 | instance security group | 
+| UDP | 635 | instance security group | 
+| UDP | 4045 \- 4046 | instance security group | 
+| TCP | 4045 \- 4046 | instance security group | 
+| TCP | 635 | instance security group | 
+| TCP | 2049 | instance security group | 
+| TCP | 4049 | instance security group | 
+| TCP | 20001 \- 20003 | instance security group | 
+| TCP | 111 | instance security group | 
+
+
+**Outbound rules**  
+
+| Protocol type | Port number | Destination | 
+| --- | --- | --- | 
 | All | All | 0\.0\.0\.0/0 | 
 
 ### User data script<a name="fsx-user-data"></a>

@@ -15,6 +15,6 @@ You can't use Capacity Reservation groups in a Local Zone\.
 
 1. Create a Capacity Reservation in the Local Zone\. For **Availability Zone**, choose the Local Zone\. The Local Zone is represented by an AWS Region code followed by an identifier that indicates the location, for example `us-west-2-lax-1a`\. For more information, see [Create a Capacity Reservation](capacity-reservations-using.md#capacity-reservations-create)\. 
 
-1. Create a subnet in the Local Zone\. For **Availability Zone**, choose the Local Zone\. For more information, see [ Creating a subnet in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#AddaSubnet) in the *Amazon VPC User Guide*\. 
+1. Create a subnet in the Local Zone\. For **Availability Zone**, choose the Local Zone\. For more information, see [Create a subnet in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html) in the *Amazon VPC User Guide*\. 
 
 1. Launch an instance\. For **Subnet**, choose the subnet in the Local Zone \(for example `subnet-123abc | us-west-2-lax-1a`\), and for **Capacity Reservation**, choose the specification \(either `open` or target it by ID\) that's required for the Capacity Reservation that you created in the Local Zone\. For more information, see [Launch instances into an existing Capacity Reservation](capacity-reservations-using.md#capacity-reservations-launch)\. 

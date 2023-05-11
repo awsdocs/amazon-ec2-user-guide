@@ -49,11 +49,11 @@ EFAs support the following interfaces and libraries:
 ## Supported instance types<a name="efa-instance-types"></a>
 
 The following instance types support EFAs:
-+ General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5n.metal` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.48xlarge` \| `m6a.metal` \| `m6i.32xlarge` \| `m6i.metal` \| `m6id.32xlarge` \| `m6id.metal` \| `m6idn.32xlarge` \| `m6in.32xlarge` \| `m7g.16xlarge` \| `m7g.metal`
-+ Compute optimized: `c5n.9xlarge` \| `c5n.18xlarge` \| `c5n.metal` \| `c6a.48xlarge` \| `c6a.metal` \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal` \| `c6id.32xlarge` \| `c6id.metal` \| `c6in.32xlarge` \| `c7g.16xlarge` \| `c7g.metal` \| `hpc6a.48xlarge`
-+ Memory optimized: `hpc6id.32xlarge` \| `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6a.48xlarge` \| `r6a.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `r6idn.32xlarge` \| `r6in.32xlarge` \| `r6id.32xlarge` \| `r6id.metal` \| `r7g.16xlarge` \| `r7g.metal` \| `x2idn.32xlarge` \| `x2idn.metal` \| `x2iedn.32xlarge` \| `x2iedn.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal`
-+ Storage optimized: `i3en.12xlarge` \| `i3en.24xlarge` \| `i3en.metal` \| `i4i.32xlarge` \| `i4i.metal` \| `im4gn.16xlarge`
-+ Accelerated computing: `dl1.24xlarge` \| `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.metal` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge` \| `p4de.24xlarge` \| `trn1.32xlarge` \| `vt1.24xlarge`
++ General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5n.metal` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6a.48xlarge` \| `m6a.metal` \| `m6i.32xlarge` \| `m6i.metal` \| `m6id.32xlarge` \| `m6id.metal` \| `m6idn.32xlarge` \| `m6idn.metal` \| `m6in.32xlarge` \| `m6in.metal` \| `m7g.16xlarge` \| `m7g.metal`
++ Compute optimized: `c5n.9xlarge` \| `c5n.18xlarge` \| `c5n.metal` \| `c6a.48xlarge` \| `c6a.metal` \| `c6gn.16xlarge` \| `c6i.32xlarge` \| `c6i.metal` \| `c6id.32xlarge` \| `c6id.metal` \| `c6in.32xlarge` \| `c6in.metal` \| `c7g.16xlarge` \| `c7g.metal` \| `hpc6a.48xlarge`
++ Memory optimized: `hpc6id.32xlarge` \| `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` \| `r6a.48xlarge` \| `r6a.metal` \| `r6i.32xlarge` \| `r6i.metal` \| `r6idn.32xlarge` \| `r6idn.metal` \| `r6in.32xlarge` \| `r6in.metal` \| `r6id.32xlarge` \| `r6id.metal` \| `r7g.16xlarge` \| `r7g.metal` \| `x2idn.32xlarge` \| `x2idn.metal` \| `x2iedn.32xlarge` \| `x2iedn.metal` \| `x2iezn.12xlarge` \| `x2iezn.metal`
++ Storage optimized: `i3en.12xlarge` \| `i3en.24xlarge` \| `i3en.metal` \| `i4g.16xlarge` \| `i4i.32xlarge` \| `i4i.metal` \| `im4gn.16xlarge`
++ Accelerated computing: `dl1.24xlarge` \| `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.16xlarge` \| `g4dn.metal` \| `g5.8xlarge` \| `g5.12xlarge` \| `g5.16xlarge` \| `g5.24xlarge` \| `g5.48xlarge` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge` \| `p4de.24xlarge` \| `trn1.32xlarge` \| `trn1n.32xlarge` \| `vt1.24xlarge`
 
 **To see the available instance types that support EFAs in a specific Region**  
 The available instance types vary by Region\. To see the available instance types that support EFAs in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` parameter\. Include the `--filters` parameter to scope the results to the instance types that support EFA and the `--query` parameter to scope the output to the value of `InstanceType`\.
@@ -62,38 +62,26 @@ The available instance types vary by Region\. To see the available instance type
 aws ec2 describe-instance-types  --region us-east-1  --filters Name=network-info.efa-supported,Values=true  --query "InstanceTypes[*].[InstanceType]"  --output text | sort
 ```
 
-Example output
-
-```
-c5n.18xlarge
-c5n.9xlarge
-c5n.metal
-c6a.32xlarge
-c6a.48xlarge
-c6a.metal
-c6gn.16xlarge
-c6i.32xlarge
-...
-```
-
 ## Supported operating systems<a name="efa-os"></a>
 
 The following operating systems support EFAs with Intel/AMD x86\-based instance types:
 + Amazon Linux 2
 + CentOS 7
 + RHEL 7 and 8
++ Debian 10
 + Rocky Linux 8 and 9
-+ Ubuntu 18\.04, 20\.04, and 22\.04
++ Ubuntu 20\.04 and 22\.04
 + SUSE Linux Enterprise 15 SP2 and later
 + OpenSUSE Leap 15\.4 and later
 
 **Note**  
 Ubuntu 20\.04 supports peer direct support when used with `dl1.24xlarge` instances\.
 
-The following operating systems support EFAs with Arm\-based \(Graviton 2\) instance types:
+The following operating systems support EFAs with Arm\-based \(Graviton\) instance types:
 + Amazon Linux 2
 + RHEL 8 and Rocky Linux 8 and 9
-+ Ubuntu 18\.04, 20\.04, and 22\.04
++ Debian 10
++ Ubuntu 20\.04 and 22\.04
 + SUSE Linux Enterprise 15 SP2 and later
 
 ## EFA limitations<a name="efa-limits"></a>

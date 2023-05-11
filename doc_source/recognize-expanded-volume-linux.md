@@ -19,11 +19,22 @@ To extend a file system on Linux, you need to:
 
 ## Extend the file system of EBS volumes<a name="extend-file-system"></a>
 
-Use the following procedure to extend the file system for a resized volume\. Note that device and partition naming differs for Xen instances and [Nitro instances](instance-types.md#ec2-nitro-instances)\. To determine whether your instance is Xen\-based or Nitro\-based, use the following command:
+Use the following procedure to extend the file system for a resized volume\.
 
-```
-[ec2-user ~]$ aws ec2 describe-instance-types --instance-type instance_type --query "InstanceTypes[].Hypervisor"
-```
+Note that device and partition naming differs for Xen instances and [Nitro instances](instance-types.md#ec2-nitro-instances)\. To determine whether your instance is Xen\-based or Nitro\-based, use one of the methods:
++ **AWS CLI**
+
+  ```
+  [ec2-user ~]$ aws ec2 describe-instance-types --instance-type instance_type --query "InstanceTypes[].Hypervisor"
+  ```
++ **IMDSv2**
+
+  ```
+  [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+  && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/system
+  ```
+
+  `nitro` indicates that your instance in Nitro\-based\. `xen` or `xen-on-nitro` indicates that you instance in Xen\-based\.
 
 **To extend the file system of EBS volumes**
 

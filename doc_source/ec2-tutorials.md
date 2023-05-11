@@ -1,14 +1,9 @@
 # Tutorials for Amazon EC2 instances running Linux<a name="ec2-tutorials"></a>
 
-The following tutorials show you how to perform common tasks using EC2 instances running Linux\. AWS provides Amazon Linux 2022, Amazon Linux 2, and the Amazon Linux AMI\. For more information, see [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/), [Amazon Linux 2022](https://aws.amazon.com/linux/amazon-linux-2022/), and [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. For video tutorials, see [AWS Instructional Videos and Labs](https://aws.amazon.com/training/intro_series/)\.
+The following tutorials show you how to perform common tasks using EC2 instances running Linux\. AWS provides Amazon Linux 2023, Amazon Linux 2, and the Amazon Linux AMI\. For more information, see [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/), [Amazon Linux 2023](https://aws.amazon.com/linux/amazon-linux-2023/), and [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. For video tutorials, see [AWS Instructional Videos and Labs](https://aws.amazon.com/training/intro_series/)\.
 
-**Tutorials**
-+ [Install LAMP on Amazon Linux 2022](ec2-lamp-amazon-linux-2022.md)
-+ [Install LAMP on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)
-+ [Install LAMP on the Amazon Linux AMI](install-LAMP.md)
-+ [Configure SSL/TLS on Amazon Linux 2022](SSL-on-amazon-linux-2022.md)
-+ [Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)
-+ [Configure SSL/TLS with the Amazon Linux AMI](SSL-on-amazon-linux-ami.md)
+**Topics**
++ [Install LAMP](tuts-lamp.md)
++ [Configure SSL/TLS](tuts-ssl.md)
++ [Host a WordPress blog](tuts-wordpress.md)
 + [Increase size of Amazon EBS volume](modify-ebs-volume-on-instance.md)
-+ [Host a WordPress blog on Amazon Linux 2022](hosting-wordpress-aml-2022.md)
-+ [Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)

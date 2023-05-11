@@ -10,19 +10,17 @@ Additionally, AWS supports managed policies for job functions that span multiple
 
 You can attach the `AmazonEC2FullAccess` policy to your IAM identities\. This policy grants permissions that allow full access to Amazon EC2\.
 
-To view the permissions for this policy, see [AmazonEC2FullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AmazonEC2FullAccess) in the AWS Management Console\.
+To view the permissions for this policy, see [AmazonEC2FullAccess](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEC2FullAccess.html) in the *AWS Managed Policy Reference*\.
 
 ## AWS managed policy: AmazonEC2ReadOnlyAccess<a name="security-iam-awsmanpol-AmazonEC2ReadOnlyAccess"></a>
 
 You can attach the `AmazonEC2ReadOnlyAccess` policy to your IAM identities\. This policy grants permissions that allow read\-only access to Amazon EC2\.
 
-To view the permissions for this policy, see [AmazonEC2ReadOnlyAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess) in the AWS Management Console\.
+To view the permissions for this policy, see [AmazonEC2ReadOnlyAccess](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEC2ReadOnlyAccess.html) in the *AWS Managed Policy Reference*\.
 
 ## AWS managed policy: AWSEC2CapacityReservationFleetRolePolicy<a name="security-iam-awsmanpol-AWSEC2CapacityReservationFleetRolePolicy"></a>
 
-This policy is attached to the service\-linked role named **AWSServiceRoleForEC2CapacityReservationFleet** to allow Capacity Reservations to create, modify, and cancel Capacity Reservations on your behalf\.
-
-To view the permissions for this policy, see [AWSServiceRoleForEC2CapacityReservationFleet](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AWSServiceRoleForEC2CapacityReservationFleet) in the AWS Management Console\.
+This policy is attached to the service\-linked role named **AWSServiceRoleForEC2CapacityReservationFleet** to allow Capacity Reservations to create, modify, and cancel Capacity Reservations on your behalf\. For more information, see [Service\-linked role for Capacity Reservation Fleet](using-service-linked-roles.md)\.
 
 ## AWS managed policy: AWSEC2FleetServiceRolePolicy<a name="security-iam-awsmanpol-AWSEC2FleetServiceRolePolicy"></a>
 

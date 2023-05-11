@@ -1,9 +1,9 @@
-# Tutorial: Install a LAMP web server on the Amazon Linux AMI<a name="install-LAMP"></a>
+# Install LAMP on Amazon Linux<a name="install-LAMP"></a>
 
 The following procedures help you install an Apache web server with PHP and MySQL support on your Amazon Linux instance \(sometimes called a LAMP web server or LAMP stack\)\. You can use this server to host a static website or deploy a dynamic PHP application that reads and writes information to a database\.
 
 **Important**  
-If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux 2, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
+If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux 2, see [Install LAMP on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
 
 **Option: Complete this tutorial using automation**  
 To complete this tutorial using AWS Systems Manager Automation instead of the following tasks, run the [AWSDocs\-InstallALAMPServer\-AL](https://console.aws.amazon.com/systems-manager/automation/execute/AWSDocs-InstallALAMPServer-AL) Automation document\.
@@ -161,7 +161,7 @@ Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete
 **\(Optional\) Secure your web server**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
 
-For information about enabling HTTPS on your server, see [Tutorial: Configure SSL/TLS with the Amazon Linux AMI](SSL-on-amazon-linux-ami.md)\.
+For information about enabling HTTPS on your server, see [Configure SSL/TLS on Amazon Linux](SSL-on-amazon-linux-ami.md)\.
 
 ## Step 2: Test your Lamp server<a name="test-lamp-server-alami"></a>
 
@@ -394,7 +394,7 @@ Now you can install the latest packages, as described earlier\.
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
 + [Transfer files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
 + [Transfer files to Linux instances using an SCP client](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-+ [Tutorial: Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)
++ [Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)

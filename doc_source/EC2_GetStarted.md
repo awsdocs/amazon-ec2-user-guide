@@ -100,4 +100,4 @@ After you start your instance, you might want to try some of the following exerc
 + Learn how to remotely manage your EC2 instance using Run Command\. For more information, see [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) in the *AWS Systems Manager User Guide*\.
 + Configure a CloudWatch alarm to notify you if your usage exceeds the Free Tier\. For more information, see [Tracking your AWS Free Tier usage](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html) in the *AWS Billing User Guide*\.
 + Add an EBS volume\. For more information, see [Create an Amazon EBS volume](ebs-creating-volume.md) and [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
-+ Install the LAMP stack\. For more information, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.
++ Install the LAMP stack\. For more information, see [Install LAMP on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.

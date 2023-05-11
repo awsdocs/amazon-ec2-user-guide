@@ -21,9 +21,9 @@ http://[fd00:ec2::254]/latest/meta-data/
 The IP addresses are link\-local addresses and are valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
 
 **Note**  
-The examples in this section use the IPv4 address of the instance metadata service: `169.254.169.254`\. If you are retrieving instance metadata for EC2 instances over the IPv6 address, ensure that you enable and use the IPv6 address instead: `fd00:ec2::254`\. The IPv6 address of the instance metadata service is compatible with IMDSv2 commands\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
+The examples in this section use the IPv4 address of the IMDS: `169.254.169.254`\. If you are retrieving instance metadata for EC2 instances over the IPv6 address, ensure that you enable and use the IPv6 address instead: `fd00:ec2::254`\. The IPv6 address of the IMDS is compatible with IMDSv2 commands\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
-The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
+The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both versions of the IMDS\. To require the use of IMDSv2, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
 
 You can use a tool such as cURL, as shown in the following example\.
 
@@ -69,7 +69,7 @@ A request for a general metadata resource \(the URI ends with a /\) returns a li
 For requests made using Instance Metadata Service Version 2, the following HTTP error codes can be returned:
 + `400 - Missing or Invalid Parameters` – The `PUT` request is not valid\.
 + `401 - Unauthorized` – The `GET` request uses an invalid token\. The recommended action is to generate a new token\.
-+ `403 - Forbidden` – The request is not allowed or the instance metadata service is turned off\.
++ `403 - Forbidden` – The request is not allowed or the IMDS is turned off\.
 
 ## Examples of retrieving instance metadata<a name="instancedata-meta-data-retrieval-examples"></a>
 
@@ -460,15 +460,15 @@ MyInstance
 
 ## Query throttling<a name="instancedata-throttling"></a>
 
-We throttle queries to the instance metadata service on a per\-instance basis, and we place limits on the number of simultaneous connections from an instance to the instance metadata service\. 
+We throttle queries to the IMDS on a per\-instance basis, and we place limits on the number of simultaneous connections from an instance to the IMDS\. 
 
-If you're using the instance metadata service to retrieve AWS security credentials, avoid querying for credentials during every transaction or concurrently from a high number of threads or processes, as this might lead to throttling\. Instead, we recommend that you cache the credentials until they start approaching their expiry time\. For more information about IAM role and security credentials associated with the role, see [Retrieve security credentials from instance metadata](iam-roles-for-amazon-ec2.md#instance-metadata-security-credentials)\.
+If you're using the IMDS to retrieve AWS security credentials, avoid querying for credentials during every transaction or concurrently from a high number of threads or processes, as this might lead to throttling\. Instead, we recommend that you cache the credentials until they start approaching their expiry time\. For more information about IAM role and security credentials associated with the role, see [Retrieve security credentials from instance metadata](iam-roles-for-amazon-ec2.md#instance-metadata-security-credentials)\.
 
-If you are throttled while accessing the instance metadata service, retry your query with an exponential backoff strategy\.
+If you are throttled while accessing the IMDS, retry your query with an exponential backoff strategy\.
 
-## Limit instance metadata service access<a name="instance-metadata-limiting-access"></a>
+## Limit IMDS access<a name="instance-metadata-limiting-access"></a>
 
-You can consider using local firewall rules to disable access from some or all processes to the instance metadata service\.
+You can consider using local firewall rules to disable access from some or all processes to the IMDS\.
 
 **Note**  
 For [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances), IMDS can be reached from your own network when a network appliance within your VPC, such as a virtual router, forwards packets to the IMDS address, and the default [source/destination check](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) on the instance is disabled\. To prevent a source from outside your VPC reaching IMDS, we recommend that you modify the configuration of the network appliance to drop packets with the destination IPv4 address of IMDS 169\.254\.169\.254 and, if you enabled the IPv6 endpoint, the IPv6 address of IMDS fd00:ec2::254\.
@@ -483,7 +483,7 @@ $ sudo iptables --append OUTPUT --proto tcp --destination 169.254.169.254 --matc
 
 Or, you can consider only allowing access to particular users or groups, by using *allow rules*\. Allow rules might be easier to manage from a security perspective, because they require you to make a decision about what software needs access to instance metadata\. If you use *allow rules*, it's less likely you will accidentally allow software to access the metadata service \(that you did not intend to have access\) if you later change the software or configuration on an instance\. You can also combine group usage with allow rules, so that you can add and remove users from a permitted group without needing to change the firewall rule\.
 
-The following example prevents access to the instance metadata service by all processes, except for processes running in the user account `trustworthy-user`\.
+The following example prevents access to the IMDS by all processes, except for processes running in the user account `trustworthy-user`\.
 
 ```
 $ sudo iptables --append OUTPUT --proto tcp --destination 169.254.169.254 --match owner ! --uid-owner trustworthy-user --jump REJECT
@@ -496,7 +496,7 @@ The iptables `owner` module only matches group membership if the group is the pr
 
 **Using PF or IPFW to limit access**
 
-If you are using FreeBSD or OpenBSD, you can also consider using PF or IPFW\. The following examples limit access to the instance metadata service to just the root user\.
+If you are using FreeBSD or OpenBSD, you can also consider using PF or IPFW\. The following examples limit access to the IMDS to just the root user\.
 
 **PF**
 

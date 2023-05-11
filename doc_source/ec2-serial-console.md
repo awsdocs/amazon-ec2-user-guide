@@ -11,6 +11,7 @@ The serial console is available at no additional cost\.
 If you are using a Windows instance, see [EC2 Serial Console for Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-serial-console.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Topics**
++ [Prerequisites](ec2-serial-console-prerequisites.md)
 + [Configure access to the EC2 Serial Console](configure-access-to-serial-console.md)
 + [Connect to the EC2 Serial Console](connect-to-serial-console.md)
 + [Terminate an EC2 Serial Console session](terminate-serial-console-session.title.md)

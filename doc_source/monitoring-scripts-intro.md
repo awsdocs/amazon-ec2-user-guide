@@ -1,8 +1,8 @@
 # Deprecated: Collect metrics using the CloudWatch monitoring scripts<a name="monitoring-scripts-intro"></a>
 
 **Important**  
-The CloudWatch monitoring scripts are deprecated\. We provide information about the monitoring scripts for customers who have not yet migrated from the deprecated monitoring scripts to the CloudWatch agent\.  
-We recommend that you use the CloudWatch agent to collect metrics and logs\. For more information, see [Collect metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
+The CloudWatch monitoring scripts are deprecated\. This page provides information about those monitoring scripts for customers who are still using them, but the monitoring scripts are no longer available\.  
+We strongly recommend that you use the CloudWatch agent to collect metrics and logs\. For more information, see [Collect metrics and logs from Amazon EC2 instances and on\-premises servers with the CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
 
 The monitoring scripts demonstrate how to produce and consume custom metrics for Amazon CloudWatch\. These sample Perl scripts comprise a fully functional example that reports memory, swap, and disk space utilization metrics for a Linux instance\. 
 

@@ -31,15 +31,15 @@ The following is the contents of `instanceTypeSpecification.json`\.
         "InstanceType": "m5.4xlarge",                        
         "InstancePlatform":"Windows",            
         "Weight": 16,
-        "AvailabilityZone":"us-east-1",        
+        "AvailabilityZone":"us-east-1a",        
         "EbsOptimized": true,            
         "Priority" : 2
-	},
-	{             
+    },
+    {             
         "InstanceType": "m5.12xlarge",                        
         "InstancePlatform":"Windows",            
         "Weight": 48,
-        "AvailabilityZone":"us-east-1",        
+        "AvailabilityZone":"us-east-1a",        
         "EbsOptimized": true,            
         "Priority" : 1
 	}

@@ -25,7 +25,7 @@ Expected output
 The following example shows that `t2.xlarge` supports only Legacy BIOS\.
 
 ```
-aws ec2 --region us-east-1 describe-instance-types --instance-types t2.xlarge --query "InstanceTypes[*].SupportedBootModes"
+aws ec2 describe-instance-types --region us-east-1 --instance-types t2.xlarge --query "InstanceTypes[*].SupportedBootModes"
 ```
 
 Expected output

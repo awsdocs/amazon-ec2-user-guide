@@ -54,7 +54,7 @@ The replacement root volume gets the same type, size, and delete on termination 
 
 ### Replace a root volume using an AMI<a name="replace-ami"></a>
 
-You can perform a root volume replacement using an AMI that you own, an AMI that is shared with you, or an AWS Marketplace AMI\. The AMI must have the same product code, billing information, architecture type, and virtualization type as that of the instance\.
+You can perform a root volume replacement using an AMI that you own or an AMI that is shared with you\. The AMI must have the same product code, billing information, architecture type, and virtualization type as that of the instance\.
 
 If the instance is enabled for NitroTPM, ENA, or sriov\-net, then you must use an AMI that supports those features\. If the instance is not enabled for NitroTPM, ENA, or sriov\-net, then you can select an AMI that does not support those features, or you can select an AMI that does support them, in which case support is added to the instance\.
 
@@ -77,7 +77,7 @@ The new AMI ID is also reflected in the instance metadata\.
 
 **Considerations for using an AMI:**
 + If you use an AMI that has multiple block device mappings, only the root volume of the AMI is used\. The other \(non\-root\) volumes are ignored\.
-+ You can only use AMIs for which your account has launch permissions\.
++ You can only use this feature if you have permissions to the AMI and its associated root volume snapshot\. You cannot use this feature with AWS Marketplace AMIs\.
 + You can only use an AMI without a product code only if the instance does not have a product code\.
 + You can't specify the encryption status for the replacement root volume\. The following table summarizes the possible encryption outcomes\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/replace-root.html)

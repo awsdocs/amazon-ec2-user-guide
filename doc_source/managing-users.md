@@ -22,7 +22,7 @@ Linux system users should not be confused with IAM users\. For more information,
 The default user name for your EC2 instance is determined by the AMI that was specified when you launched the instance\.
 
 The default user names are:
-+ For Amazon Linux 2022, Amazon Linux 2, or the Amazon Linux AMI, the user name is `ec2-user`\.
++ For Amazon Linux 2023, Amazon Linux 2, or the Amazon Linux AMI, the user name is `ec2-user`\.
 + For a CentOS AMI, the user name is `centos` or `ec2-user`\.
 + For a Debian AMI, the user name is `admin`\.
 + For a Fedora AMI, the user name is `fedora` or `ec2-user`\.

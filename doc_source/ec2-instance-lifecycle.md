@@ -6,7 +6,7 @@ The following illustration represents the transitions between instance states\. 
 
 ![\[The instance lifecycle.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_lifecycle.png)
 
-The following table provides a brief description of each instance state and indicates whether it is billed or not\.
+The following table provides a brief description of each instance state and indicates whether it is billed\.
 
 **Note**  
 The table indicates billing for instance usage only\. Some AWS resources, such as Amazon EBS volumes and Elastic IP addresses, incur charges regardless of the instance's state\. For more information, see [Avoiding Unexpected Charges](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html) in the *AWS Billing User Guide*\.
@@ -14,9 +14,9 @@ The table indicates billing for instance usage only\. Some AWS resources, such a
 
 | Instance state | Description | Instance usage billing | 
 | --- | --- | --- | 
-|  `pending`  |  The instance is preparing to enter the `running` state\. An instance enters the `pending` state when it launches for the first time, or when it is started after being in the `stopped` state\.  |  Not billed  | 
+|  `pending`  |  The instance is preparing to enter the `running` state\. An instance enters the `pending` state when it is launched or when it is started after being in the `stopped` state\.  |  Not billed  | 
 |  `running`  |  The instance is running and ready for use\.  |  Billed  | 
-|  `stopping`  |  The instance is preparing to be stopped or stop\-hibernated\.  |  Not billed if preparing to stop Billed if preparing to hibernate  | 
+|  `stopping`  |  The instance is preparing to be stopped\.  |  Not billed  | 
 |  `stopped`  |  The instance is shut down and cannot be used\. The instance can be started at any time\.  |  Not billed  | 
 |  `shutting-down`  |  The instance is preparing to be terminated\.  |  Not billed  | 
 |  `terminated`  |  The instance has been permanently deleted and cannot be started\.  |  Not billed  Reserved Instances that applied to terminated instances are billed until the end of their term according to their payment option\. For more information, see [Reserved Instances](ec2-reserved-instances.md)   | 

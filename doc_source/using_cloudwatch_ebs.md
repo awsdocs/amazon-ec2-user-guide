@@ -74,15 +74,15 @@ After you create a volume, you can view the volume's monitoring graphs in the Am
 
 | Graph | Description using raw metrics | 
 | --- | --- | 
-|  Read Bandwidth \(KiB/s\)  | Sum\(VolumeReadBytes\) / Period / 1024 | 
-|  Write Bandwidth \(KiB/s\)  | Sum\(VolumeWriteBytes\) / Period / 1024 | 
-|  Read Throughput \(IOPS\)  | Sum\(VolumeReadOps\) / Period | 
-|  Write Throughput \(IOPS\)  |  Sum\(VolumeWriteOps\) / Period  | 
-|  Avg Queue Length \(Operations\)  |  Avg\(VolumeQueueLength\)  | 
-|  % Time Spent Idle  |  Sum\(VolumeIdleTime\) / Period × 100  | 
-|  Avg Read Size \(KiB/Operation\)  |  `Avg(VolumeReadBytes) / 1024` For Nitro\-based instances, the following formula derives Average Read Size using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeReadBytes) / Sum(VolumeReadOps)) / 1024` The `VolumeReadBytes` and `VolumeReadOps` metrics are available in the EBS CloudWatch console\.  | 
-|  Avg Write Size \(KiB/Operation\)  |  `Avg(VolumeWriteBytes) / 1024` For Nitro\-based instances, the following formula derives Average Write Size using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeWriteBytes) / Sum(VolumeWriteOps)) / 1024` The `VolumeWriteBytes` and `VolumeWriteOps` metrics are available in the EBS CloudWatch console\.  | 
-|  Avg Read Latency \(ms/Operation\)  |  `Avg(VolumeTotalReadTime) × 1000` For Nitro\-based instances, the following formula derives Average Read Latency using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeTotalReadTime) / Sum(VolumeReadOps)) × 1000` The `VolumeTotalReadTime` and `VolumeReadOps` metrics are available in the EBS CloudWatch console\.  | 
-|  Avg Write Latency \(ms/Operation\)  |  `Avg(VolumeTotalWriteTime) × 1000` For Nitro\-based instances, the following formula derives Average Write Latency using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeTotalWriteTime) / Sum(VolumeWriteOps)) * 1000` The `VolumeTotalWriteTime` and `VolumeWriteOps` metrics are available in the EBS CloudWatch console\.  | 
+|  Read throughput \(KiB/s\)  | Sum\(VolumeReadBytes\) / Period / 1024 | 
+|  Write throughput \(KiB/s\)  | Sum\(VolumeWriteBytes\) / Period / 1024 | 
+|  Read operations \(Ops/s\)  | Sum\(VolumeReadOps\) / Period | 
+|  Write operations \(Ops/s\)  |  Sum\(VolumeWriteOps\) / Period  | 
+|  Average queue length \(Operations\)  |  Avg\(VolumeQueueLength\)  | 
+|  Time spent idle \(%\)  |  Sum\(VolumeIdleTime\) / Period × 100  | 
+|  Average read size \(KiB/op\)  |  `Avg(VolumeReadBytes) / 1024` For Nitro\-based instances, the following formula derives Average Read Size using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeReadBytes) / Sum(VolumeReadOps)) / 1024` The `VolumeReadBytes` and `VolumeReadOps` metrics are available in the EBS CloudWatch console\.  | 
+|  Average write size \(KiB/op\)  |  `Avg(VolumeWriteBytes) / 1024` For Nitro\-based instances, the following formula derives Average Write Size using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeWriteBytes) / Sum(VolumeWriteOps)) / 1024` The `VolumeWriteBytes` and `VolumeWriteOps` metrics are available in the EBS CloudWatch console\.  | 
+|  Average read latency \(ms/op\)  |  `Avg(VolumeTotalReadTime) × 1000` For Nitro\-based instances, the following formula derives Average Read Latency using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeTotalReadTime) / Sum(VolumeReadOps)) × 1000` The `VolumeTotalReadTime` and `VolumeReadOps` metrics are available in the EBS CloudWatch console\.  | 
+|  Average write latency \(ms/op\)  |  `Avg(VolumeTotalWriteTime) × 1000` For Nitro\-based instances, the following formula derives Average Write Latency using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeTotalWriteTime) / Sum(VolumeWriteOps)) * 1000` The `VolumeTotalWriteTime` and `VolumeWriteOps` metrics are available in the EBS CloudWatch console\.  | 
 
 For the average latency graphs and average size graphs, the average is calculated over the total number of operations \(read or write, whichever is applicable to the graph\) that completed during the period\.

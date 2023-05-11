@@ -76,7 +76,7 @@ Encryption is supported by all EBS volume types\. You can expect the same IOPS p
 
 ### Supported instance types<a name="EBSEncryption_supported_instances"></a>
 
-Amazon EBS encryption is available on all [current generation](instance-types.md#current-gen-instances) instance types and the following [previous generation](instance-types.md#previous-gen-instances) instance types: A1, C1, C3, `cr1.8xlarge`, G2, I2, M1, M2, M3, and R3\.
+Amazon EBS encryption is available on all [current generation](instance-types.md#current-gen-instances) and [previous generation](instance-types.md#previous-gen-instances) instance types\.
 
 ### Permissions for users<a name="ebs-encryption-permissions"></a>
 
@@ -87,7 +87,8 @@ When you configure a KMS key as the default key for EBS encryption, the default 
 + `kms:GenerateDataKeyWithoutPlainText`
 + `kms:ReEncrypt`
 
-To follow the principle of least privilege, do not allow full access to `kms:CreateGrant`\. Instead, allow the user to create grants on the KMS key only when the grant is created on the user's behalf by an AWS service, as shown in the following example\.
+**Tip**  
+To follow the principle of least privilege, do not allow full access to `kms:CreateGrant`\. Instead, use the `kms:GrantIsForAWSResource` condition key to allow the user to create grants on the KMS key only when the grant is created on the user's behalf by an AWS service, as shown in the following example\.
 
 ```
 {

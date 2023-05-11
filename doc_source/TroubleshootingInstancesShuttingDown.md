@@ -12,7 +12,7 @@ If your instance remains in the `shutting-down` state longer than a few minutes,
 
 Another possible cause is a problem with the underlying host computer\. If your instance remains in the `shutting-down` state for several hours, Amazon EC2 treats it as a stuck instance and forcibly terminates it\.
 
-If it appears that your instance is stuck terminating and it has been longer than several hours, post a request for help to the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. To help expedite a resolution, include the instance ID and describe the steps that you've already taken\. Alternatively, if you have a support plan, create a technical support case in the [Support Center](https://console.aws.amazon.com/support/home#/)\.
+If it appears that your instance is stuck terminating and it has been longer than several hours, post a request for help to [AWS re:Post](https://repost.aws/)\. To help expedite a resolution, include the instance ID and describe the steps that you've already taken\. Alternatively, if you have a support plan, create a technical support case in the [Support Center](https://console.aws.amazon.com/support/home#/)\.
 
 ## Terminated instance still displayed<a name="terminated-instance-still-displaying"></a>
 

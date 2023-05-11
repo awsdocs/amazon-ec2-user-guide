@@ -621,7 +621,7 @@ To upload objects to an S3 bucket for your instance store\-backed Linux AMI, ACL
 ### Options<a name="upload-bundle-parameters"></a>
 
 `-b, --bucket` *bucket*  
-The name of the Amazon S3 bucket in which to store the bundle, followed by an optional '/'\-delimited path prefix\. If the bucket doesn't exist, it's created if the bucket name is available\.  
+The name of the Amazon S3 bucket in which to store the bundle, followed by an optional '/'\-delimited path prefix\. If the bucket doesn't exist, it's created if the bucket name is available\. Additionally, if the bucket doesn't exist and the AMI tools version is 1\.5\.18 or later, this command sets the ACLs for the bucket\.  
 Required: Yes
 
 `-a, --access-key` *access\_key\_id*  

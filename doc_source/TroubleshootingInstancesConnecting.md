@@ -84,7 +84,7 @@ You need a security group rule that allows inbound traffic from your local compu
 
 1. For the rule that allows inbound traffic, check the **Source** field\. If the value is a single IP address, and if the IP address is not static, a new IP address will be assigned each time you restart your computer\. This will result in the rule not including your computer's IP address traffic\. The IP address might not be static if your computer is on a corporate network, or you're connecting through an internet service provider \(ISP\), or your computer IP address is dynamic and changes each time you restart your computer\. To ensure that your security group rule allows inbound traffic from your local computer, instead of specifying a single IP address for **Source**, rather specify the range of IP addresses used by your client computers\.
 
-   For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\.
+   For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html) in the *Amazon VPC User Guide*\.
 
 ------
 #### [ Old console ]
@@ -101,7 +101,7 @@ You need a security group rule that allows inbound traffic from your local compu
 
 1. Each time you restart your local computer, a new IP address \(and host name\) can be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address might not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\.
 
-   For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\.
+   For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules) in the *Amazon VPC User Guide*\.
 
 ------
 
@@ -187,8 +187,8 @@ AWS automatically provides data such as Amazon CloudWatch metrics and instance s
 + Your subnet must be associated with a route table that has a route for IPv6 traffic \(`::/0`\) to an internet gateway\. 
 + Your security group rules must allow inbound traffic from your local IPv6 address on the proper port \(22 for Linux and 3389 for Windows\)\.
 + Your network ACL rules must allow inbound and outbound IPv6 traffic\.
-+ If you launched your instance from an older AMI, it might not be configured for DHCPv6 \(IPv6 addresses are not automatically recognized on the network interface\)\. For more information, see [Configure IPv6 on Your Instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.
-+ Your local computer must have an IPv6 address, and must be configured to use IPv6\. 
++ If you launched your instance from an older AMI, it might not be configured for DHCPv6 \(IPv6 addresses are not automatically recognized on the network interface\)\. For more information, see [Configure IPv6 on your instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.
++ Your local computer must have an IPv6 address, and must be configured to use IPv6\.
 
 ## Error: unable to load key \.\.\. Expecting: ANY PRIVATE KEY<a name="troubleshoot-instance-connect-key-file"></a>
 
@@ -264,7 +264,7 @@ The appropriate user names are as follows:
 
 | AMI used to launch instance | Default username | 
 | --- | --- | 
-|  Amazon Linux 2022 Amazon Linux 2 Amazon Linux  | ec2\-user  | 
+|  Amazon Linux 2023 Amazon Linux 2 Amazon Linux  | ec2\-user  | 
 | CentOS | centos or ec2\-user | 
 | Debian | admin | 
 | Fedora  | fedora or ec2\-user | 
@@ -429,7 +429,7 @@ The appropriate user names are as follows:
 
 | AMI used to launch instance | Default username | 
 | --- | --- | 
-|  Amazon Linux 2022 Amazon Linux 2 Amazon Linux  | ec2\-user  | 
+|  Amazon Linux 2023 Amazon Linux 2 Amazon Linux  | ec2\-user  | 
 | CentOS | centos or ec2\-user | 
 | Debian | admin | 
 | Fedora  | fedora or ec2\-user | 

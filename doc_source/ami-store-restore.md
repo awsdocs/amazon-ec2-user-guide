@@ -98,6 +98,7 @@ The time it takes to complete the AMI restoration task depends on the size of th
 The sum of the sizes of all of the AMIs in progress is limited to 300 GB \(based on the size after restoration\) of EBS snapshot data per account\. Further task creation will be rejected until the tasks in progress are less than the limit\.
 
 ## Limitations<a name="limitations"></a>
++ To store an AMI, your AWS account must either own the AMI and its snapshots, or the AMI and its snapshots must be [shared directly with your account](sharingamis-explicit.md)\. You can't store an AMI if it is only [publicly shared](sharingamis-intro.md)\.
 + Only EBS\-backed AMIs can be stored using these APIs\.
 + Paravirtual \(PV\) AMIs are not supported\.
 + The size of an AMI \(before compression\) that can be stored is limited to 5,000 GB\.

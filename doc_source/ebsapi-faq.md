@@ -29,6 +29,9 @@ To access an encrypted snapshot, the user must have access to the KMS key used t
 **Are public snapshots supported?**  
 Public snapshots are not supported\.
 
+**Are Amazon EBS local snapshots on Outposts supported?**  
+Amazon EBS local snapshots on Outposts are not supported\.
+
 **Does list snapshot block return all block indexes and block tokens in a snapshot, or only those that have data written to them?**  
 It returns only block indexes and tokens that have data written to them\.
 

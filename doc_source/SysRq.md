@@ -62,7 +62,7 @@ To use SysRq, choose one of the following procedures based on the client that yo
 
 **To use SysRq in the serial console browser\-based client**
 
-1. [Connect](connect-to-serial-console.md#sc-connection-methods) to the instance's serial console\.
+1. [Connect](connect-to-serial-console.md) to the instance's serial console\.
 
 1. To send a break request, press `CTRL+0` \(zero\)\. If your keyboard supports it, you can also send a break request using the Pause or Break key\.
 
@@ -89,7 +89,7 @@ To use SysRq, choose one of the following procedures based on the client that yo
 
 **To use SysRq in an SSH client**
 
-1. [Connect](connect-to-serial-console.md#sc-connection-methods) to the instance's serial console\.
+1. [Connect](connect-to-serial-console.md) to the instance's serial console\.
 
 1. To send a break request, press `~B` \(tilde, followed by uppercase `B`\)\.
 

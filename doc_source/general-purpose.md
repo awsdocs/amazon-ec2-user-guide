@@ -40,7 +40,7 @@ A gp3 volume can range in size from 1 GiB to 16 TiB\.
 
 If you are currently using gp2 volumes, you can migrate your volumes to gp3 using [Amazon EBS Elastic Volumes](ebs-modify-volume.md) operations\. You can use Amazon EBS Elastic Volumes operations to modify the volume type, IOPS, and throughput of your existing volumes without interrupting your Amazon EC2 instances\. Also, when you create a new volume, launch a new instance, or create an AMI, you can select gp3 as the volume type at that point, instead of using the default gp2 volume type\.
 
-To find out how much you can save by migrating your gp2 volumes to gp3, use the [Amazon EBS gp2 to gp3 migration cost savings calculator](http://aws.amazon.com/ebs/resources/)\.
+To find out how much you can save by migrating your gp2 volumes to gp3, use the [Amazon EBS gp2 to gp3 migration cost savings calculator](https://d1.awsstatic.com/product-marketing/Storage/EBS/gp2_gp3_CostOptimizer.dd5eac2187ef7678f4922fcc3d96982992964ba5.xlsx)\.
 
 ## General Purpose SSD \(gp2\) volumes<a name="EBSVolumeTypes_gp2"></a>
 
@@ -48,7 +48,7 @@ General Purpose SSD \(`gp2`\) volumes are the default Amazon EBS volume type for
 
 **Tip**  
 `gp3` volumes are the latest generation of General Purpose SSD volumes\. They offer more predictable performance scaling and prices that are up to 20 percent lower than `gp2` volumes\. For more information, see [General Purpose SSD \(gp3\) volumes](#gp3-ebs-volume-type)\.   
-To find out how much you can save by migrating your `gp2` volumes to `gp3`, use the [Amazon EBS gp2 to gp3 migration cost savings calculator](http://aws.amazon.com/ebs/resources/)\.
+To find out how much you can save by migrating your `gp2` volumes to `gp3`, use the [Amazon EBS gp2 to gp3 migration cost savings calculator](https://d1.awsstatic.com/product-marketing/Storage/EBS/gp2_gp3_CostOptimizer.dd5eac2187ef7678f4922fcc3d96982992964ba5.xlsx)\.
 
 `gp2` volumes provide single\-digit millisecond latency and 99\.8 percent to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. AWS designs `gp2` volumes to deliver their provisioned performance 99 percent of the time\.
 

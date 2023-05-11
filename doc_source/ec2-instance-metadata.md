@@ -10,7 +10,7 @@ EC2 instances can also include *dynamic data*, such as an instance identity docu
 Although you can only access instance metadata and user data from within the instance itself, the data is not protected by authentication or cryptographic methods\. Anyone who has direct access to the instance, and potentially any software running on the instance, can view its metadata\. Therefore, you should not store sensitive data, such as passwords or long\-lived encryption keys, as user data\.
 
 **Note**  
-The examples in this section use the IPv4 address of the instance metadata service: `169.254.169.254`\. If you are retrieving instance metadata for EC2 instances over the IPv6 address, ensure that you enable and use the IPv6 address instead: `fd00:ec2::254`\. The IPv6 address of the instance metadata service is compatible with IMDSv2 commands\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
+The examples in this topic use the IPv4 address of the Instance Metadata Service \(IMDS\): `169.254.169.254`\. If you are retrieving instance metadata for EC2 instances over the IPv6 address, ensure that you enable and use the IPv6 address instead: `fd00:ec2::254`\. The IPv6 address of the IMDS is compatible with IMDSv2 commands\. The IPv6 address is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
 **Topics**
 + [Use IMDSv2](configuring-instance-metadata-service.md)
@@ -21,3 +21,4 @@ The examples in this section use the IPv4 address of the instance metadata servi
 + [Instance metadata categories](instancedata-data-categories.md)
 + [Example: AMI launch index value](AMI-launch-index-examples.md)
 + [Instance identity documents](instance-identity-documents.md)
++ [Instance identity roles](ec2-instance-identity-roles.md)

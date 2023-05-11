@@ -75,7 +75,7 @@ VPCs that are in the `10.0.0.0/16` and `10.1.0.0/16` IP address ranges can be en
 **Important**  
 If your VPC CIDR block is a publicly routable IP address range, consider the security implications before you link an EC2\-Classic instance to your VPC\. For example, if your linked EC2\-Classic instance receives an incoming Denial of Service \(DoS\) request flood attack from a source IP address that falls within the VPC’s IP address range, the response traffic is sent into your VPC\. We strongly recommend that you create your VPC using a private IP address range as specified in [RFC 1918](http://www.faqs.org/rfcs/rfc1918.html)\.
 
-For more information about route tables and routing in your VPC, see [Route Tables](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html) in the *Amazon VPC User Guide*\.
+For more information about route tables and routing in your VPC, see [Route tables](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html) in the *Amazon VPC User Guide*\.
 
 ### Enable a VPC peering connection for ClassicLink<a name="classiclink-peering"></a>
 
@@ -413,45 +413,44 @@ You have one security group in EC2\-Classic, and the other in your VPC\. You ass
 The following are the security group rules for the EC2\-Classic security group \(`sg-1a1a1a1a`\)\.
 
 
-| 
-| 
-| Inbound | 
-| --- |
-|  Source  |  Type  |  Port Range  |  Comments  | 
+**Inbound**  
+
+| Source | Type | Port Range | Comments | 
+| --- | --- | --- | --- | 
 |  0\.0\.0\.0/0  |  HTTPS  |  443  |  Allows Internet traffic to reach your web server\.  | 
 
 The following are the security group rules for the VPC security group \(`sg-2b2b2b2b`\)\.
 
 
-| 
-| 
-| Outbound | 
-| --- |
-|  Destination  |  Type  |  Port Range  |  Comments  | 
+**Outbound**  
+
+| Destination | Type | Port Range | Comments | 
+| --- | --- | --- | --- | 
 |  sg\-3c3c3c3c  |  TCP  |  6001  |  Allows outbound traffic from your web server to your application server in your VPC \(or to any other instance associated with `sg-3c3c3c3c`\)\.  | 
 
 **Security group for your application server \(`sg-3c3c3c3c`\)**  
 The following are the security group rules for the VPC security group that's associated with your application server\.
 
 
-| 
-| 
-| Inbound | 
-| --- |
-|  Source  |  Type  |  Port Range  |  Comments  | 
+**Inbound**  
+
+| Source | Type | Port range | Comments | 
+| --- | --- | --- | --- | 
 |  sg\-2b2b2b2b  |  TCP  |  6001  |  Allows the specified type of traffic from your web server \(or any other instance associated with `sg-2b2b2b2b`\) to reach your application server\.  | 
-| Outbound | 
-| --- |
-|  Destination  |  Type  |  Port Range  |  Comments  | 
+
+
+**Outbound**  
+
+| Destination | Type | Port range | Comments | 
+| --- | --- | --- | --- | 
 | sg\-4d4d4d4d | TCP | 6004 | Allows outbound traffic from the application server to the database server \(or to any other instance associated with sg\-4d4d4d4d\)\. | 
 
 **Security group for your database server \(`sg-4d4d4d4d`\)**  
 The following are the security group rules for the VPC security group that's associated with your database server\.
 
 
-| 
-| 
-| Inbound | 
-| --- |
-|  Source  |  Type  |  Port Range  |  Comments  | 
+**Inbound**  
+
+| Source | Type | Port range | Comments | 
+| --- | --- | --- | --- | 
 |  sg\-3c3c3c3c  |  TCP  |  6004  |  Allows the specified type of traffic from your application server \(or any other instance associated with `sg-3c3c3c3c`\) to reach your database server\.  | 

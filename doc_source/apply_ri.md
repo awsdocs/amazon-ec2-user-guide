@@ -28,17 +28,15 @@ A Reserved Instance that is purchased for a Region is called a regional Reserved
 
 ## Instance size flexibility<a name="ri-instance-size-flexibility"></a>
 
-With instance size flexibility, the Reserved Instance discount applies to instance usage within the instance family\. The Reserved Instance is applied from the smallest to the largest instance size within the instance family based on the normalization factor\. For an example of how the Reserved Instance discount is applied, see [Scenario 2: Reserved Instances in a single account using the normalization factor](#ri-usage-ex2)\.
+With instance size flexibility, the Reserved Instance discount applies to instance usage for instances that have the same [family, generation, and attribute](instance-types.md#instance-type-names)\. The Reserved Instance is applied from the smallest to the largest instance size within the instance family based on the normalization factor\. For an example of how the Reserved Instance discount is applied, see [Scenario 2: Reserved Instances in a single account using the normalization factor](#ri-usage-ex2)\.
 
 ### Limitations<a name="ri-instance-size-flexibility-limitations"></a>
-
-Instance size flexibility applies only to Regional Reserved Instances\.
-
-Instance size flexibility does not apply to the following Reserved Instances:
-+ Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\)
-+ Reserved Instances with dedicated tenancy
-+ Reserved Instances for Windows Server, Windows Server with SQL Standard, Windows Server with SQL Server Enterprise, Windows Server with SQL Server Web, RHEL, and SUSE Linux Enterprise Server
-+ Reserved Instances for G4ad, G4dn, G5, G5g, and Inf1 instances
++ **Supported: **Instance size flexibility is only supported for Regional Reserved Instances\.
++ **Not supported:** Instance size flexibility is *not supported* for the following Reserved Instances:
+  + Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\)
+  + Reserved Instances for G4ad, G4dn, G5, G5g, and Inf1 instances
+  + Reserved Instances for Windows Server, Windows Server with SQL Standard, Windows Server with SQL Server Enterprise, Windows Server with SQL Server Web, RHEL, and SUSE Linux Enterprise Server
+  + Reserved Instances with dedicated tenancy
 
 ### Instance size flexibility determined by normalization factor<a name="ri-normalization-factor"></a>
 

@@ -30,7 +30,7 @@ Capacity Reservations can only be used by instances that match their attributes\
 + [Capacity Reservations on AWS Outposts](capacity-reservations-outposts.md)
 + [Work with shared Capacity Reservations](capacity-reservation-sharing.md)
 + [Capacity Reservation Fleets](cr-fleets.md)
-+ [CloudWatch metrics for On\-Demand Capacity Reservations](capacity-reservation-cw-metrics.md)
++ [Monitoring Capacity Reservations](cr-monitor.md)
 
 ## Differences between Capacity Reservations, Reserved Instances, and Savings Plans<a name="capacity-reservations-differences"></a>
 

@@ -1,10 +1,8 @@
 # Use an AWS Deep Learning AMI<a name="efa-start-nccl-dlami"></a>
 
 The following steps help you to get started with one of the following AWS Deep Learning AMIs:
-+ Deep Learning AMI \(Amazon Linux 2\) Version 25\.0 and later
-+ Deep Learning AMI \(Amazon Linux\) Version 25\.0 and later
-+ Deep Learning AMI \(Ubuntu 18\.04\) Version 25\.0 and later
-+ Deep Learning AMI \(Ubuntu 16\.04\) Version 25\.0 and later
++ Deep Learning AMI \(Amazon Linux 2\)
++ Deep Learning AMI \(Ubuntu 20\.04\)
 
 For more information, see the [https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html)\.
 

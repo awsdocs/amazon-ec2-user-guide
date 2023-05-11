@@ -18,7 +18,7 @@ When you [launch an instance](ec2-launch-instance-wizard.md#liw-quickly-launch-i
 + Amazon EC2 console: Set **Metadata version** to **V2 only \(token required\)**\.
 + AWS CLI: Set `HttpTokens` to `required`\.
 
-When you specify that IMDSv2 is required, you must also enable the instance metadata service endpoint by setting **Metadata accessible** to **Enabled** \(console\) or `HttpEndpoint` to `enabled` \(AWS CLI\)\.
+When you specify that IMDSv2 is required, you must also enable the Instance Metadata Service \(IMDS\) endpoint by setting **Metadata accessible** to **Enabled** \(console\) or `HttpEndpoint` to `enabled` \(AWS CLI\)\.
 
 ------
 #### [ New console ]
@@ -101,10 +101,10 @@ To ensure that users can only launch instances that require the use of IMDSv2 wh
 
 By default, the IPv6 endpoint is disabled\. This is true even if you are launching an instance into an IPv6\-only subnet\. You can choose to enable the IPv6 endpoint at instance launch when using the AWS CLI\. This option is not available in the Amazon EC2 console\.
 
-The IPv6 endpoint for the instance metadata service is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
+The IPv6 endpoint for the IMDS is only accessible on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
 **Configure IPv4 and IPv6 endpoints**  
-The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) example launches a `t3.large` instance with the IPv6 endpoint enabled for the instance metadata service\. To enable the IPv6 endpoint, for the `--metadata-options` parameter, specify `HttpProtocolIpv6=enabled`\. When you specify a value for `HttpProtocolIpv6`, you must also set `HttpEndpoint` to `enabled`\.
+The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) example launches a `t3.large` instance with the IPv6 endpoint enabled for the IMDS\. To enable the IPv6 endpoint, for the `--metadata-options` parameter, specify `HttpProtocolIpv6=enabled`\. When you specify a value for `HttpProtocolIpv6`, you must also set `HttpEndpoint` to `enabled`\.
 
 ```
 aws ec2 run-instances \
@@ -116,7 +116,7 @@ aws ec2 run-instances \
 
 ## Turn off access to instance metadata<a name="configure-IMDS-new-instances--turn-off-instance-metadata"></a>
 
-You can ensure that access to your instance metadata is turned off, regardless of which version of the instance metadata service you are using\. You can turn on access later by using the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) command\.
+You can ensure that access to your instance metadata is turned off, regardless of which version of the IMDS you are using\. You can turn on access later\. For more information, see [Turn on access to instance metadata](configuring-IMDS-existing-instances.md#enable-instance-metadata-on-existing-instances)\.
 
 ------
 #### [ New console ]

@@ -10,6 +10,7 @@ After you have successfully launched and logged into your Amazon Linux instance,
 + [I/O scheduler](io-scheduler.md)
 + [Set the time for your Linux instance](set-time.md)
 + [Optimize CPU options](instance-optimize-cpu.md)
++ [CPU features](cpu-features.md)
 + [Change the hostname of your Amazon Linux instance](set-hostname.md)
 + [Set up dynamic DNS on your Amazon Linux instance](dynamic-dns.md)
 + [Run commands on your Linux instance at launch](user-data.md)

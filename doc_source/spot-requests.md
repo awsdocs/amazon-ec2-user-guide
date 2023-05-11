@@ -106,7 +106,7 @@ When providing permissions, grants are an alternative to key policies\. For more
   aws kms create-grant \
       --region us-east-1 \
       --key-id arn:aws:kms:us-east-1:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab \
-      --grantee-principal arn:aws:iam::111122223333:role/AWSServiceRoleForEC2Spot \
+      --grantee-principal arn:aws:iam::111122223333:role/aws-service-role/spot.amazonaws.com/AWSServiceRoleForEC2Spot \
       --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
   ```
 

@@ -16,7 +16,7 @@ You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 insta
 
 ## Types of status checks<a name="types-of-instance-status-checks"></a>
 
-There are two types of status checks: system status checks and instance status checks\.
+We provide system status checks and instance status checks\.
 
 ### System status checks<a name="system-status-checks"></a>
 
@@ -28,7 +28,9 @@ The following are examples of problems that can cause system status checks to fa
 + Software issues on the physical host
 + Hardware issues on the physical host that impact network reachability
 
-**Note**  
+If a system status check fails, we increment the [StatusCheckFailed\_System](viewing_metrics_with_cloudwatch.md#status-check-metrics) metric\.
+
+**Bare metal instances**  
 If you perform a restart from the operating system on a bare metal instance, the system status check might temporarily return a fail status\. When the instance becomes available, the system status check should return a pass status\.
 
 ### Instance status checks<a name="instance-status-checks"></a>
@@ -42,7 +44,9 @@ The following are examples of problems that can cause instance status checks to 
 + Corrupted file system
 + Incompatible kernel
 
-**Note**  
+If an instance status check fails, we increment the [StatusCheckFailed\_Instance](viewing_metrics_with_cloudwatch.md#status-check-metrics) metric\.
+
+**Bare metal instances**  
 If you perform a restart from the operating system on a bare metal instance, the instance status check might temporarily return a fail status\. When the instance becomes available, the instance status check should return a pass status\.
 
 ## View status checks<a name="viewing_status"></a>
@@ -70,6 +74,8 @@ To view status checks using the Amazon EC2 console, perform the following steps\
    + **Status check failed \(any\)**
    + **Status check failed \(instance\)**
    + **Status check failed \(system\)**
+
+   For more information, see [Status check metrics](viewing_metrics_with_cloudwatch.md#status-check-metrics)\.
 
 ### View status using the command line<a name="viewing_status-cli"></a>
 

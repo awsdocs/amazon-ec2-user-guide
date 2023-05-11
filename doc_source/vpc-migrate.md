@@ -17,7 +17,7 @@ To migrate from EC2\-Classic to a VPC, you must migrate or recreate your EC2\-Cl
 You can migrate or move some of your resources to a VPC\. Some resources can only be migrated from EC2\-Classic to a VPC that's in the same Region and in the same AWS account\. If the resource cannot be migrated, you must create a new resource for use in your VPC\.
 
 **Prerequisites**  
-Before you begin, you must have a VPC\. If you don't have a default VPC, you can create a nondefault VPC\. For more information, see [Create a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC)\.
+Before you begin, you must have a VPC\. If you don't have a default VPC, you can create a nondefault VPC\. For more information, see [Virtual private clouds](using-vpc.md)\.
 
 **Topics**
 + [Security groups](#vpc-migrate-security-group)
@@ -212,12 +212,12 @@ The first part of migrating to a VPC is deciding what kind of VPC architecture s
 ![\[A web application in a VPC\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/vpc-migrate-example-vpc.png)
 
 To migrate your web application to a VPC, you can follow these steps:
-+ **Create a VPC**: For more information, see [Create a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC) in the *Amazon VPC User Guide*\. For information about VPC architecture scenarios, see [Scenarios](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-scenarios-intro.html) in the *Amazon VPC User Guide*\. 
++ **Create a VPC**: For more information, see [Create a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html) in the *Amazon VPC User Guide*\.
 + **Configure your security groups**: In your EC2\-Classic environment, you have one security group for your web servers, and another security group for your database server\. You can use the Amazon EC2 console to copy the rules from each security group into new security groups for your VPC\. For more information, see [Security groups](#vpc-migrate-security-group)\. 
 **Tip**  
 Create the security groups that are referenced by other security groups first\.
 + **Create AMIs and launch new instances**: Create an AMI from one of your web servers, and a second AMI from your database server\. Then, launch replacement web servers into your public subnet, and launch your replacement database server into your private subnet\. For more information, see [Create an AMI](#vpc-migrate-create-ami)\.
-+ **Configure your NAT device**: If you are using a NAT instance, you must create a security group for it that allows HTTP and HTTPS traffic from your private subnet\. For more information, see [NAT instances](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html)\. If you are using a NAT gateway, traffic from your private subnet is automatically allowed\.
++ **Configure your NAT device**: If you are using a NAT instance, you must create a security group for it that allows HTTP and HTTPS traffic from your private subnet\. For more information, see [NAT instances](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html) in the *Amazon VPC User Guide*\. If you are using a NAT gateway, traffic from your private subnet is automatically allowed\.
 + **Configure your database**: When you created an AMI from your database server in EC2\-Classic, all of the configuration information that was stored in that instance was copied to the AMI\. You might have to connect to your new database server and update the configuration details\. For example, if you configured your database to grant full read, write, and modification permissions to your web servers in EC2\-Classic, you need to update the configuration files to grant the same permissions to your new VPC web servers instead\. 
 + **Configure your web servers**: Your web servers will have the same configuration settings as your instances in EC2\-Classic\. For example, if you configured your web servers to use the database in EC2\-Classic, update your web servers' configuration settings to point to your new database instance\.
 **Note**  

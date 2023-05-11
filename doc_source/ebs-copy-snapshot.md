@@ -22,7 +22,7 @@ For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot
 **Considerations**
 + There is a limit of `20` concurrent snapshot copy requests per destination Region\. If you exceed this quota, you receive a `ResourceLimitExceeded` error\. If you receive this error, wait for one or more of the copy requests to complete before making a new snapshot copy request\.
 + User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
-+ Snapshots created by a snapshot copy operation have an arbitrary volume ID that should not be used for any purpose\.
++ Snapshots created by a snapshot copy operation have an arbitrary volume ID, such as `vol-ffff` or `vol-ffffffff`\. These arbitrary volume IDs should not be used for any purpose\.
 + Resource\-level permissions specified for the snapshot copy operation apply only to the new snapshot\. You cannot specify resource\-level permissions for the source snapshot\. For an example, see [Example: Copying snapshots](ExamplePolicies_EC2.md#iam-copy-snapshot)\.
 
 **Pricing**
@@ -56,19 +56,9 @@ You apply encryption to EBS snapshot copies by setting the `Encrypted` parameter
 
 Optionally, you can use `KmsKeyId` to specify a custom key to use to encrypt the snapshot copy\. \(The `Encrypted` parameter must also be set to `true`, even if encryption by default is enabled\.\) If `KmsKeyId` is not specified, the key that is used for encryption depends on the encryption state of the source snapshot and its ownership\.
 
-The following tables describe the encryption outcome for each possible combination of settings\.
+The following table describes the encryption outcomes for each possible combination of settings when copying snapshots that you own and snapshots that are shared with you\.
 
 **Topics**
-+ [Encryption outcomes: Copying snapshots that you own](#own-snapshots)
-+ [Encryption outcomes: Copying snapshots that are shared with you](#shared-snapshots)
-
-### Encryption outcomes: Copying snapshots that you own<a name="own-snapshots"></a>
-
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
-
-\*\* This is a customer managed key specified for the copy action\. This customer managed key is used instead of the default customer managed key for the AWS account and Region\.
-
-### Encryption outcomes: Copying snapshots that are shared with you<a name="shared-snapshots"></a>
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
 

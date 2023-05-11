@@ -105,9 +105,7 @@ The following rules apply to partition placement groups:
 + A partition placement group supports a maximum of seven partitions per Availability Zone\. The number of instances that you can launch in a partition placement group is limited only by your account limits\.
 + When instances are launched into a partition placement group, Amazon EC2 tries to evenly distribute the instances across all partitions\. Amazon EC2 doesn’t guarantee an even distribution of instances across all partitions\.
 + A partition placement group with Dedicated Instances can have a maximum of two partitions\.
-+ You can't use Capacity Reservations to reserve capacity in a partition placement group\.
-
-  Capacity Reservations do not reserve capacity in a partition placement group\.
++ Capacity Reservations do not reserve capacity in a partition placement group\.
 
 ### Spread placement group rules and limitations<a name="placement-groups-limitations-spread"></a>
 
@@ -115,9 +113,7 @@ The following rules apply to spread placement groups:
 + A rack spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a Region with three Availability Zones, you can run a total of 21 instances in the group, with seven instances in each Availability Zone\. If you try to start an eighth instance in the same Availability Zone and in the same spread placement group, the instance will not launch\. If you need more than seven instances in an Availability Zone, we recommend that you use multiple spread placement groups\. Using multiple spread placement groups does not provide guarantees about the spread of instances between groups, but it does help ensure the spread for each group, thus limiting the impact from certain classes of failures\. 
 + Spread placement groups are not supported for Dedicated Instances\.
 + Host level spread placement groups are only supported for placement groups on AWS Outposts\. There are no restrictions for the number of running instances with host level spread placement groups\.
-+ You can't use Capacity Reservations to reserve capacity in a spread placement group\.
-
-  Capacity Reservations do not reserve capacity in a spread placement group\.
++ Capacity Reservations do not reserve capacity in a spread placement group\.
 
 ## Working with placement groups<a name="concepts-placement-groups"></a>
 

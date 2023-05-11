@@ -17,10 +17,11 @@ Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs 
 
 `io1` volumes are designed to provide 99\.8 percent to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
 
-Provisioned IOPS SSD `io1` and `io2` volumes are available for all Amazon EC2 instance types\. Provisioned IOPS SSD `io2` volumes attached to C6in, C7g, M6in, M6idn, M7g, R5b, R6in, R6idn, R7g, Trn1, X2idn, and X2iedn instances run on EBS Block Express\. For more information, see [`io2` Block Express volumes](#io2-block-express)\.
+Provisioned IOPS SSD `io1` and `io2` volumes are available for all Amazon EC2 instance types\. Provisioned IOPS SSD `io2` volumes attached to C6a, C6in, C7g, Inf2, M6a, M6in, M6idn, M7g, R5b, R6in, R6idn, R7g, Trn1, Trn1n, X2idn, and X2iedn instances run on EBS Block Express\. For more information, see [`io2` Block Express volumes](#io2-block-express)\.
 
 **Considerations for `io2` volumes**  
 
++ `io2` volumes are currently available in the following Regions: US East \(Ohio\), US East \(N\. Virginia\), US West \(N\. California\), US West \(Oregon\), Asia Pacific \(Hong Kong\), Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Canada \(Central\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), Europe \(Stockholm\), and Middle East \(Bahrain\)\.
 + Keep the following in mind when **launching instances with `io2` volumes**:
   + If you launch an instance with an `io2` volume using an instance type that supports Block Express, the volume automatically runs on Block Express, regardless of the volume's size and IOPS\.
   + You can't launch an instance type that does not support [Block Express](#io2-block-express) with an `io2` volume that has a size greater than 16 TiB or IOPS greater than 64,000\.
@@ -51,7 +52,7 @@ Your per\-I/O latency experience depends on the provisioned IOPS and on your wor
 ## `io2` Block Express volumes<a name="io2-block-express"></a>
 
 **Note**  
-`io2` Block Express volumes are supported with C6in, C7g, M6in, M6idn, M7g, R5b, R6in, R6idn, R7g, Trn1, X2idn, and X2iedn instances\.
+`io2` Block Express volumes are supported with C6a, C6in, C7g, Inf2, M6a, M6in, M6idn, M7g, R5b, R6in, R6idn, R7g, Trn1, Trn1n, X2idn, and X2iedn instances\.
 
 `io2` Block Express volumes is the next generation of Amazon EBS storage server architecture\. It has been built for the purpose of meeting the performance requirements of the most demanding I/O intensive applications that run on Nitro\-based Amazon EC2 instances\. 
 
@@ -71,7 +72,7 @@ You can't attach a Multi\-Attach enabled `io2` volume to instance types that sup
 + [Pricing and billing](#io2-bx-pricing)
 
 ### Considerations<a name="io2-bx-considerations"></a>
-+ `io2` Block Express volumes are currently supported with C6in, C7g, M6in, M6idn, M7g, R5b, R6in, R6idn, R7g, Trn1, X2idn, and X2iedn instances only\.
++ `io2` Block Express volumes are currently supported with C6a, C6in, C7g, Inf2, M6a, M6in, M6idn, M7g, R5b, R6in, R6idn, R7g, Trn1, Trn1n, X2idn, and X2iedn instances\.
 + `io2` Block Express volumes are currently available in all Regions where supported instances are available, including US East \(Ohio\), US East \(N\. Virginia\), US West \(Oregon\), Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Canada \(Central\), Europe \(Frankfurt\), Europe \(Ireland\), Europe \(London\), and Europe \(Stockholm\)\. Instance availability might vary by Availability Zone\. For more information, see [Find an Amazon EC2 instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-discovery.html)\.
 
 ### Performance<a name="io2-bx-perf"></a>

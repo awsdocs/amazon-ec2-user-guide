@@ -59,17 +59,28 @@ Amazon EC2 refers to the relationship between an instance and a network interfac
 The following table contains instance types that support ENA Express\.
 
 
-| Instance family | Instance type | Instance size | Architecture | 
-| --- | --- | --- | --- | 
-| General purpose | m6i | m6i\.32xl, m6i\.metal | x86\_64 | 
-| General purpose | m6id | m6id\.32xl, m6id\.metal | x86\_64 | 
-| Compute optimized | c6gn | c6gn\.16xl | arm64 | 
-| Compute optimized | c6i | c6i\.32xl, c6i\.metal | x86\_64 | 
-| Compute optimized | c6id | c6id\.32xl, c6id\.metal | x86\_64 | 
-| Memory optimized | r6i | r6i\.32xl, r6i\.metal | x86\_64 | 
-| Memory optimized | r6id | r6id\.32xl, r6id\.metal | x86\_64 | 
-| Storage optimized | i4i | i4i\.32xl, i4i\.metal | x86\_64 | 
-| Storage optimized | im4gn | im4gn\.16xl | arm64 | 
+| Instance type | Architecture | 
+| --- | --- | 
+| General purpose | 
+| m6i\.32xlarge | x86\_64 | 
+| m6i\.metal | x86\_64 | 
+| m6id\.32xlarge | x86\_64 | 
+| m6id\.metal | x86\_64 | 
+| Compute optimized | 
+| c6gn\.16xlarge | arm64 | 
+| c6i\.32xlarge | x86\_64 | 
+| c6i\.metal | x86\_64 | 
+| c6id\.32xlarge | x86\_64 | 
+| c6id\.metal | x86\_64 | 
+| Memory optimized | 
+| r6i\.32xlarge | x86\_64 | 
+| r6i\.metal | x86\_64 | 
+| r6id\.32xlarge | x86\_64 | 
+| r6id\.metal | x86\_64 | 
+| Storage optimized | 
+| i4i\.32xlarge | x86\_64 | 
+| i4i\.metal | x86\_64 | 
+| im4gn\.16xlarge | arm64 | 
 
 ## List and view ENA Express settings<a name="ena-express-list-view"></a>
 

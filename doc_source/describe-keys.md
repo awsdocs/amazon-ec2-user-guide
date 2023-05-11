@@ -225,7 +225,7 @@ If you specify a public key when you launch an instance, the public key name is 
 
 1. In the navigation pane, choose **Instances**, and then select your instance\.
 
-1. On the **Details** tab, under **Instance details**, the **Key pair name** field displays the name of the public key that you specified when you launched the instance\.
+1. On the **Details** tab, under **Instance details**, the **Key pair assigned at launch** field displays the name of the public key that you specified when you launched the instance\.
 
 **Note**  
-The value of the **Key pair name** field does not change even if you change the public key on the instance, or add public keys\.
+The value of the **Key pair assigned at launch** field does not change even if you change the public key on the instance, or add public keys\.

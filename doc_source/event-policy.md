@@ -80,6 +80,9 @@ Open the key policy using your preferred text editor\. Add the ARN of the IAM ro
 
 For example, in the following policy, we added the ARN of the default IAM role, and the ARN of the root account for target account `222222222222.`
 
+**Tip**  
+To follow the principle of least privilege, do not allow full access to `kms:CreateGrant`\. Instead, use the `kms:GrantIsForAWSResource` condition key to allow the user to create grants on the KMS key only when the grant is created on the user's behalf by an AWS service, as shown in the following example\.
+
 ```
 {
     "Sid" : "Allow use of the key",
@@ -271,6 +274,8 @@ Use one of the following methods to add the required policies to the IAM role\.
 If you are copying from multiple source accounts, then you must specify the corresponding KMS key ARN from each source account\.
 
    In the following example, the policy grants the IAM role permission to use KMS key `1234abcd-12ab-34cd-56ef-1234567890ab`, which was shared by source account `111111111111`, and KMS key `4567dcba-23ab-34cd-56ef-0987654321yz`, which exists in target account `222222222222`\.
+**Tip**  
+To follow the principle of least privilege, do not allow full access to `kms:CreateGrant`\. Instead, use the `kms:GrantIsForAWSResource` condition key to allow the user to create grants on the KMS key only when the grant is created on the user's behalf by an AWS service, as shown in the following example\.
 
    ```
     {
@@ -324,6 +329,9 @@ Using your preferred text editor, create a new JSON file named `policyDetails.js
 If you are copying from multiple source accounts, then you must specify the corresponding KMS key ARN from each source account\.
 
 In the following example, the policy grants the IAM role permission to use KMS key `1234abcd-12ab-34cd-56ef-1234567890ab`, which was shared by source account `111111111111`, and KMS key `4567dcba-23ab-34cd-56ef-0987654321yz`, which exists in target account `222222222222`\.
+
+**Tip**  
+To follow the principle of least privilege, do not allow full access to `kms:CreateGrant`\. Instead, use the `kms:GrantIsForAWSResource` condition key to allow the user to create grants on the KMS key only when the grant is created on the user's behalf by an AWS service, as shown in the following example\.
 
 ```
  {

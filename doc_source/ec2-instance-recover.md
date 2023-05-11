@@ -28,7 +28,6 @@ For more information, see [ Amazon EventBridge rules](https://docs.aws.amazon.co
 **Topics**
 + [Requirements](#requirements-for-recovery)
 + [Limitations](#limitations-simplified-recovery)
-+ [Verify the recovery behavior](#verify-recovery-behavior)
 + [Set the recovery behavior](#set-recovery-behavior)
 
 ### Requirements<a name="requirements-for-recovery"></a>
@@ -41,43 +40,13 @@ Simplified automatic recovery is supported by an instance if the instance has th
   + **Compute optimized:** C3 \| C4 \| C5 \| C5a \| C5n \| C6a \| C6g \| C6gn \| C6i \| C6in \| C7g \| Hpc6a
   + **Memory optimized:** R3 \| R4 \| R5 \| R5a \| R5b \| R5n \| R6a \| R6g \| R6i \| R6in \| R7g \| u\-3tb1 \| u\-6tb1 \| u\-9tb1 \| u\-12tb1 \| u\-18tb1 \| u\-24tb1 \| X1 \| X1e \| X2iezn
   + **Accelerated computing:** G3 \| G3s \| G5g \| Inf1 \| P2 \| P3 \| VT1
-+ It does not have instance store volumes\.
++ It does not have instance store volumes\. If a Nitro instance type has instance store volumes or if a Xen\-based instance has mapped instance store volumes, the instance will not be automatically recovered\. You should regularly backup your instance store volume data to more persistent storage, such as Amazon EBS, Amazon S3, or Amazon EFS\. In the event of a system status check failure, you can stop and start instances with instance store volumes and then restore your instance store volume using the backed\-up data\.
 
 ### Limitations<a name="limitations-simplified-recovery"></a>
 + Instances with instance store volumes and metal instance types are not supported by simplified automatic recovery\.
-+ If your instance is part of an Auto Scaling group with health checks enabled, then the instance is replaced when it becomes impaired\. Automatic recovery is not initiated for instances inside an Auto Scaling group\.
++ Simplified automatic recovery is not initiated for instances in an Auto Scaling group\. If your instance is part of an Auto Scaling group with health checks enabled, then the instance is replaced when it becomes impaired\.
 + Simplified automatic recovery applies to unplanned events only\. It does not apply to scheduled events\.
 + Terminated or stopped instances cannot be recovered\.
-
-### Verify the recovery behavior<a name="verify-recovery-behavior"></a>
-
-You can use the AWS Management Console or the AWS CLI to view the instance types that support simplified automatic recovery\.
-
-------
-#### [ Console ]
-
-**To view the instance types that support simplified automatic recovery**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the left navigation pane, choose **Instance Types**\.
-
-1. In the filter bar, enter **Auto Recovery support: true**\. Alternatively, as you enter the characters and the filter name appears, you can select it\.
-
-   The **Instance types** table displays all the instance types that support simplified automatic recovery\.
-
-------
-#### [ AWS CLI ]
-
-**To view the instance types that support simplified automatic recovery**  
-Use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command\.
-
-```
-aws ec2 describe-instance-types --filters Name=auto-recovery-supported,Values=true 
---query "InstanceTypes[*].[InstanceType]" --output text | sort
-```
-
-------
 
 ### Set the recovery behavior<a name="set-recovery-behavior"></a>
 
@@ -157,7 +126,11 @@ Use Amazon CloudWatch action based recovery if you want to customize when to rec
 
 When the `StatusCheckFailed_System` alarm is triggered, and the recovery action is initiated, you're notified by the Amazon SNS topic that you selected when you created the alarm and associated the recovery action\. When the recovery action is complete, information is published to the Amazon SNS topic you configured for the alarm\. Anyone who is subscribed to this Amazon SNS topic receives an email notification that includes the status of the recovery attempt and any further instructions\. As a last step in the recovery action, the recovered instance reboots\.
 
-All of the instance types [supported by simplified automatic recovery](#requirements-for-recovery) are also supported by CloudWatch action based recovery\. Additionaly, Amazon CloudWatch action based recovery supports the following instance types with instance store volumes\.
+You can use Amazon CloudWatch alarms to recover an instance even if simplified automatic recovery is not disabled\. For information about creating an Amazon CloudWatch alarm to recover an instance, see [Add recover actions to Amazon CloudWatch alarms](UsingAlarmActions.md#AddingRecoverActions)\.
+
+### Supported instance types<a name="verify-recovery-behavior"></a>
+
+All of the instance types [supported by simplified automatic recovery](#requirements-for-recovery) are also supported by CloudWatch action based recovery\. Additionally, Amazon CloudWatch action based recovery supports the following instance types with instance store volumes\.
 + **General purpose:** M3
 + **Compute optimized:** C3
 + **Memory optimized:** R3 \| X1 \| X1e \| X2idn \| X2iedn
@@ -167,16 +140,41 @@ If the instance has instance store volumes attached, the data is lost during rec
 
 Amazon CloudWatch action based recovery does not support recovery for instances with Amazon EC2 Dedicated Hosts tenancy and metal instances\.
 
-You can use Amazon CloudWatch alarms to recover an instance even if simplified automatic recovery is not disabled\. For information about creating an Amazon CloudWatch alarm to recover an instance, see [Add recover actions to Amazon CloudWatch alarms](UsingAlarmActions.md#AddingRecoverActions)\.
+You can use the AWS Management Console or the AWS CLI to view the instance types that support Amazon CloudWatch action based recovery\.
+
+------
+#### [ Console ]
+
+**To view the instance types that support Amazon CloudWatch action based recovery**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigation pane, choose **Instance Types**\.
+
+1. In the filter bar, enter **Auto Recovery support: true**\. Alternatively, as you enter the characters and the filter name appears, you can select it\.
+
+   The **Instance types** table displays all the instance types that support Amazon CloudWatch action based recovery\.
+
+------
+#### [ AWS CLI ]
+
+**To view the instance types that support Amazon CloudWatch action based recovery**  
+Use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command\.
+
+```
+aws ec2 describe-instance-types --filters Name=auto-recovery-supported,Values=true 
+--query "InstanceTypes[*].[InstanceType]" --output text | sort
+```
+
+------
 
 ## Troubleshoot instance recovery failures<a name="TroubleshootingInstanceRecovery"></a>
 
 The following issues can cause the recovery of your instance to fail:
-+ Service Health Dashboard events or events that impact the underlying rack\. During such events, simplified automatic recovery does not recover instances\. You will not receive recovery failure notifications for such events\. Any ongoing Service Health Dashboard events may also prevent Amazon CloudWatch action based recovery from successfully recovering an instance\. See [http://status\.aws\.amazon\.com/](http://status.aws.amazon.com/) for the latest service availability information\.
++ During Service Health Dashboard events, simplified automatic recovery might not recover your instance\. You might not receive recovery failure notifications for such events\. Any ongoing Service Health Dashboard events might also prevent CloudWatch action based recovery from successfully recovering an instance\. For the latest service availability information, see [http://status\.aws\.amazon\.com/](http://status.aws.amazon.com/)\.
 + Temporary, insufficient capacity of replacement hardware\.
-+ The instance has an attached instance store storage, which is an unsupported configuration for automatic instance recovery\.
 + The instance has reached the maximum daily allowance of three recovery attempts\.
 
-The automatic recovery process attempts to recover your instance for up to three separate failures per day\. If the instance system status check failure persists, we recommend that you manually stop and start the instance\. For more information, see [Stop and start your instance](Stop_Start.md)\.
+The automatic recovery process attempts to recover your instance for up to three separate failures per day\. If the instance system status check failure persists, we recommend that you manually stop and start the instance\. Data on instance store volumes is lost when the instance is stopped\. For more information, see [Stop and start your instance](Stop_Start.md)\.
 
 Your instance might subsequently be retired if automatic recovery fails and a hardware degradation is determined to be the root cause for the original system status check failure\.

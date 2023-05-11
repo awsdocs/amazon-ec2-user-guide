@@ -39,7 +39,7 @@ Consider the following when sharing AMIs with specific organizations or organiza
 
 ## Allow organizations and OUs to use a KMS key<a name="allow-org-ou-to-use-key"></a>
 
-If you share an AMI that is backed by encrypted snapshots, you must also allow the organizations or OUs to use the AWS KMS keysthat were used to encrypt the snapshots\.
+If you share an AMI that is backed by encrypted snapshots, you must also allow the organizations or OUs to use the AWS KMS keys that were used to encrypt the snapshots\.
 
 Use the `aws:PrincipalOrgID` and `aws:PrincipalOrgPaths` keys to compare the AWS Organizations path for the principal who is making the request to the path in the policy\. That principal can be a user, IAM role, federated user, or AWS account root user\. In a policy, this condition key ensures that the requester is an account member within the specified organization root or OUs in AWS Organizations\. For more example condition statements, see [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid) and [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgpaths) in the *IAM User Guide*\.
 

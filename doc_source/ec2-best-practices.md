@@ -7,6 +7,7 @@ To ensure the maximum benefit from Amazon EC2, we recommend that you perform the
 + Implement the least permissive rules for your security group\. For more information, see [Security group rules](security-group-rules.md)\.
 + Regularly patch, update, and secure the operating system and applications on your instance\. For more information about updating Amazon Linux 2 or the Amazon Linux AMI, see [Manage software on your Linux instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 + Use Amazon Inspector to automatically discover and scan Amazon EC2 instances for software vulnerabilities and unintended network exposure\. For more information, see the [Amazon Inspector User Guide](https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html)\.
++ Use AWS Security Hub controls to monitor your Amazon EC2 resources against security best practices and security standards\. For more information about using Security Hub, see [Amazon Elastic Compute Cloud controls](https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html) in the *AWS Security Hub User Guide*\.
 
 **Storage**
 + Understand the implications of the root device type for data persistence, backup, and recovery\. For more information, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.

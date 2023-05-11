@@ -14,9 +14,6 @@ The ability to reboot instances that are otherwise unreachable is valuable for b
 
  Just as you can reset a computer by pressing the reset button, you can reset EC2 instances using the Amazon EC2 console, CLI, or API\. For more information, see [Reboot your instance](ec2-instance-reboot.md) 
 
-**Warning**  
-For Windows instances, this operation performs a hard reboot that might result in data corruption\. 
-
 ## Instance console output<a name="instance-console-console-output"></a>
 
 Console output is a valuable tool for problem diagnosis\. It is especially useful for troubleshooting kernel problems and service configuration issues that could cause an instance to terminate or become unreachable before its SSH daemon can be started\. 

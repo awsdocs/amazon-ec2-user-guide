@@ -4,7 +4,7 @@ The AWS [shared responsibility model](http://aws.amazon.com/compliance/shared-re
 
 For data protection purposes, we recommend that you protect AWS account credentials and set up individual users with AWS IAM Identity Center \(successor to AWS Single Sign\-On\) or AWS Identity and Access Management \(IAM\)\. That way, each user is given only the permissions necessary to fulfill their job duties\. We also recommend that you secure your data in the following ways:
 + Use multi\-factor authentication \(MFA\) with each account\.
-+ Use SSL/TLS to communicate with AWS resources\. We recommend TLS 1\.2 or later\.
++ Use SSL/TLS to communicate with AWS resources\. We require TLS 1\.2 and recommend TLS 1\.3\.
 + Set up API and user activity logging with AWS CloudTrail\.
 + Use AWS encryption solutions, along with all default security controls within AWS services\.
 + Use advanced managed security services such as Amazon Macie, which assists in discovering and securing sensitive data that is stored in Amazon S3\.
@@ -56,8 +56,8 @@ AWS provides secure and private connectivity between EC2 instances of all types\
   + **General purpose**: M5dn, M5n, M5zn, M6a, M6i, M6id, M6idn, M6in, and M7g
   + **Compute optimized:** C5a, C5ad, C5n, C6a, C6gn, C6i, C6id, C6in, C7g, and Hpc6a
   + **Memory optimized:** Hpc6id, R5dn, R5n, R6a, R6i, R6idn, R6in, R6id, R7g, U\-3tb1, U\-6tb1, U\-9tb1, U\-12tb1, U\-18tb1, U\-24tb1, X2idn, X2iedn, and X2iezn
-  + **Storage optimized:** D3, D3en, I3en, I4i, Im4gn, and Is4gen
-  + **Accelerated computing:** DL1, G4ad, G4dn, G5, Inf1, P3dn, P4d, P4de, Trn1, and VT1
+  + **Storage optimized:** D3, D3en, I3en, I4g, I4i, Im4gn, and Is4gen
+  + **Accelerated computing:** DL1, G4ad, G4dn, G5, Inf1, Inf2, P3dn, P4d, P4de, Trn1, Trn1n, and VT1
 + The instances are in the same Region\.
 + The instances are in the same VPC or peered VPCs, and the traffic does not pass through a virtual network device or service, such as a load balancer or a transit gateway\.
 

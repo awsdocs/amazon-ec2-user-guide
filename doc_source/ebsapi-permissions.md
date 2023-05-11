@@ -207,6 +207,9 @@ The following policy grants permission to decrypt an encrypted snapshot using a 
 **Note**  
 By default, all principals in the account have access to the default AWS managed KMS key for Amazon EBS encryption, and they can use it for EBS encryption and decryption operations\. If you are using a customer managed key, you must create a new key policy or modify the existing key policy for the customer managed key to grant the principal access to the customer managed key\. For more information, see [Key policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
 
+**Tip**  
+To follow the principle of least privilege, do not allow full access to `kms:CreateGrant`\. Instead, use the `kms:GrantIsForAWSResource` condition key to allow the user to create grants on the KMS key only when the grant is created on the user's behalf by an AWS service, as shown in the following example\.
+
 ```
 {
     "Version": "2012-10-17",
@@ -224,7 +227,12 @@ By default, all principals in the account have access to the default AWS managed
                 "ec2:CreateTags",
                 "kms:DescribeKey"
             ],
-            "Resource": "arn:aws:kms:<Region>:<AccountId>:key/<KeyId>"
+            "Resource": "arn:aws:kms:<Region>:<AccountId>:key/<KeyId>",
+            "Condition": {
+                "Bool": {
+                    "kms:GrantIsForAWSResource": true
+                }
+            }
         }
     ]
 }

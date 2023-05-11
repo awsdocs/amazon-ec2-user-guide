@@ -89,4 +89,4 @@ A zonal Reserved Instance—a Reserved Instance that is purchased for a specific
 
 ## View your Reserved Instance quotas and request a quota increase<a name="view-ri-quotas"></a>
 
-The Amazon EC2 console provides quota information\. You can also request an increase in your quotas\. For more information, see [View your current limits](ec2-resource-limits.md#view-limits) and [Request an increase](ec2-resource-limits.md#request-increase)\.
+The Amazon EC2 console provides quota information\. You can also request an increase in your quotas\. For more information, see [View your current quotas](ec2-resource-limits.md#view-limits) and [Request an increase](ec2-resource-limits.md#request-increase)\.

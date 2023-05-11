@@ -4,6 +4,10 @@ As your needs change, you might find that your instance is over\-utilized \(the 
 
 If you want a recommendation for an instance type that is best able to handle your existing workload, you can use AWS Compute Optimizer\. For more information, see [Get recommendations for an instance type](ec2-instance-recommendations.md)\.
 
+When you change the instance type, you'll start paying the rate of the new instance type\. For the on\-demand rates of all instance types, see [Amazon EC2 On\-Demand Pricing](http://aws.amazon.com/ec2/pricing/on-demand/)\.
+
+If you want to add additional storage to your instance without changing the instance type, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+
 ## Which instructions to follow?<a name="choose-instance-resize-instructions"></a>
 
 There are different instructions for changing the instance type\. The instructions to use depend on the instance's root volume, and whether the instance type is compatible with the instance's current configuration\. For information about how compatibility is determined, see [Compatibility for changing the instance type](resize-limitations.md)\.

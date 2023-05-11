@@ -30,7 +30,7 @@ Use the following procedure to create a VPC with the subnets, gateways, and rout
    + If your instances can be in a public subnet, select a nonzero value for **Number of public subnets**\. Keep both options under **DNS options** selected\. You can optionally add private subnets now or later on\.
    + If your instances must be in a private subnet, select **0** for **Number of public subnets**\. For **Number of private subnets**, select a number depending on your needs \(the possible values correspond to 1 or 2 private subnets per Availability Zone\)\. For **NAT gateways**, if your instances in both Availability Zones send or receive a significant volume of traffic across Availability Zones, select **1 per AZ**\. Otherwise, select **In 1 AZ** and launch instances that send or receive cross\-zone traffic in the same Availability Zone as the NAT gateway\.
 
-1. Expand **Customize subnet CIDR blocks**\. Either keep the default suggestions, or enter a CIDR block for each subnet\. For more information, see [Subnet sizing](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-sizing) in the *Amazon VPC User Guide*\.
+1. Expand **Customize subnet CIDR blocks**\. Either keep the default suggestions, or enter a CIDR block for each subnet\. For more information, see [Subnet CIDR blocks](https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html) in the *Amazon VPC User Guide*\.
 
 1. Review the **Preview** pane, which shows the VPC resources that will be created based on your selections\.
 
@@ -41,7 +41,7 @@ Use the following procedure to create a VPC with the subnets, gateways, and rout
 Instances launched into a default subnet have access to the internet, as the VPC is configured to assign public IP addresses and DNS hostnames, and the main route table is configured with a route to an internet gateway attached to the VPC\.
 
 For the subnets that you create in your VPCs, do one of the following to ensure that instances that you launch in these subnets have access to the internet:
-+ Configure an internet gateway\. For more information, see [Connect subnets to the internet using an internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
++ Configure an internet gateway\. For more information, see [Connect to the internet using an internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 + Configure a public NAT gateway\. For more information, see [Access the internet from a private subnet](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-scenarios.html#public-nat-internet-access) in the *Amazon VPC User Guide*\.
 
 ## SSH access to your instances<a name="ssh-access-to-vpc"></a>

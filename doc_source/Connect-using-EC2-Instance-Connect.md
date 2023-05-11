@@ -4,7 +4,7 @@ Amazon EC2 Instance Connect provides a simple and secure way to connect to your 
 
 You can use EC2 Instance Connect to connect to your instances using the Amazon EC2 console, the EC2 Instance Connect CLI, or the SSH client of your choice\.
 
-When you connect to an instance using EC2 Instance Connect, the Instance Connect API pushes a one\-time\-use SSH public key to the [instance metadata](ec2-instance-metadata.md) where it remains for 60 seconds\. An IAM policy attached to your user authorizes your user to push the public key to the instance metadata\. The SSH daemon uses `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser`, which are configured when Instance Connect is installed, to look up the public key from the instance metadata for authentication, and connects you to the instance\.
+When you connect to an instance using EC2 Instance Connect, the Instance Connect API pushes an SSH public key to the [instance metadata](ec2-instance-metadata.md) where it remains for 60 seconds\. An IAM policy attached to your user authorizes your user to push the public key to the instance metadata\. The SSH daemon uses `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser`, which are configured when Instance Connect is installed, to look up the public key from the instance metadata for authentication, and connects you to the instance\.
 
 You can use EC2 Instance Connect to connect to instances that have public or private IP addresses\. For more information, see [Connect using EC2 Instance Connect](ec2-instance-connect-methods.md)\.
 

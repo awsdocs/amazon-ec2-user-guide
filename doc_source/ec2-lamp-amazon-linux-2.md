@@ -1,9 +1,9 @@
-# Tutorial: Install a LAMP web server on Amazon Linux 2<a name="ec2-lamp-amazon-linux-2"></a>
+# Install LAMP on Amazon Linux 2<a name="ec2-lamp-amazon-linux-2"></a>
 
 The following procedures help you install an Apache web server with PHP and [MariaDB](https://mariadb.org/about/) \(a community\-developed fork of MySQL\) support on your Amazon Linux 2 instance \(sometimes called a LAMP web server or LAMP stack\)\. You can use this server to host a static website or deploy a dynamic PHP application that reads and writes information to a database\.
 
 **Important**  
-If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux AMI, see [Tutorial: Install a LAMP web server on the Amazon Linux AMI](install-LAMP.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
+If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux AMI, see [Install LAMP on Amazon Linux](install-LAMP.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
 
 **Option: Complete this tutorial using automation**  
 To complete this tutorial using AWS Systems Manager Automation instead of the following tasks, run the [AWSDocs\-InstallALAMPServer\-AL2](https://console.aws.amazon.com/systems-manager/automation/execute/AWSDocs-InstallALAMPServer-AL2) Automation document\.
@@ -49,7 +49,7 @@ Note, this install package is bundled with Mariadb \(lamp\-mariadb10\.2\-php7\.2
    cat /etc/system-release
    ```
 
-   To set up a LAMP web server on Amazon Linux AMI , see [Tutorial: Install a LAMP web server on the Amazon Linux AMI](install-LAMP.md)\.
+   To set up a LAMP web server on Amazon Linux AMI , see [Install LAMP on Amazon Linux](install-LAMP.md)\.
 
 1. Now that your instance is current, you can install the Apache web server, MariaDB, and PHP software packages\. 
 
@@ -161,7 +161,7 @@ Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete
 **To secure your web server \(Optional\)**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
 
-For information about enabling HTTPS on your server, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
+For information about enabling HTTPS on your server, see [Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
 
 ## Step 2: Test your LAMP server<a name="test-lamp-server"></a>
 
@@ -253,7 +253,7 @@ The default installation of the MariaDB server has several features that are gre
 [phpMyAdmin](https://www.phpmyadmin.net/) is a web\-based database management tool that you can use to view and edit the MySQL databases on your EC2 instance\. Follow the steps below to install and configure `phpMyAdmin` on your Amazon Linux instance\.
 
 **Important**  
-We do not recommend using `phpMyAdmin` to access a LAMP server unless you have enabled SSL/TLS in Apache; otherwise, your database administrator password and other data are transmitted insecurely across the internet\. For security recommendations from the developers, see [Securing your phpMyAdmin installation](https://docs.phpmyadmin.net/en/latest/setup.html#securing-your-phpmyadmin-installation)\. For general information about securing a web server on an EC2 instance, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
+We do not recommend using `phpMyAdmin` to access a LAMP server unless you have enabled SSL/TLS in Apache; otherwise, your database administrator password and other data are transmitted insecurely across the internet\. For security recommendations from the developers, see [Securing your phpMyAdmin installation](https://docs.phpmyadmin.net/en/latest/setup.html#securing-your-phpmyadmin-installation)\. For general information about securing a web server on an EC2 instance, see [Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
 
 **To install phpMyAdmin**
 
@@ -351,7 +351,7 @@ Perform the following checks to see if your Apache web server is running and acc
 Perform the following checks to see if your Apache web server is configured to support HTTPS\.
 + **Is the web server correctly configured?**
 
-  After you install Apache, the server is configured for HTTP traffic\. To support HTTPS, enable TLS on the server and install an SSL certificate\. For information, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
+  After you install Apache, the server is configured for HTTP traffic\. To support HTTPS, enable TLS on the server and install an SSL certificate\. For information, see [Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
 + **Is the firewall correctly configured?**
 
   Verify that the security group for the instance contains a rule to allow HTTPS traffic on port 443\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
@@ -361,7 +361,7 @@ Perform the following checks to see if your Apache web server is configured to s
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
 + [Transfer files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
 + [Transfer files to Linux instances using an SCP client](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-+ [Tutorial: Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)
++ [Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)

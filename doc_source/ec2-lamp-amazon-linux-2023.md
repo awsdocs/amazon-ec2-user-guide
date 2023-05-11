@@ -1,24 +1,23 @@
-# Tutorial: Install a LAMP web server on Amazon Linux 2022<a name="ec2-lamp-amazon-linux-2022"></a>
+# Install LAMP on Amazon Linux 2023<a name="ec2-lamp-amazon-linux-2023"></a>
 
-The following procedures help you install an Apache web server with PHP and [MariaDB](https://mariadb.org/about/) \(a community\-developed fork of MySQL\) support on your Amazon Linux 2022 instance \(sometimes called a LAMP web server or LAMP stack\)\. You can use this server to host a static website or deploy a dynamic PHP application that reads and writes information to a database\.
+The following procedures help you install an Apache web server with PHP and [MariaDB](https://mariadb.org/about/) \(a community\-developed fork of MySQL\) support on your Amazon Linux 2023 instance \(sometimes called a LAMP web server or LAMP stack\)\. You can use this server to host a static website or deploy a dynamic PHP application that reads and writes information to a database\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux 2022, which is still in preview\. You can access the official Amazon Linux 2022 AMIs in the AWS Management Console by using the search filters **Amazon Linux 2022** and **Owner alias = amazon** when searching through the AMI catalog, or by clicking directly from the [Amazon Linux 2022](https://aws.amazon.com/linux/amazon-linux-2022/) news post\.  
-If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux 2, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. For Amazon Linux AMI, see [Tutorial: Install a LAMP web server on the Amazon Linux AMI](install-LAMP.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
+These procedures are intended for use with Amazon Linux 2023\. If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux 2, see [Install LAMP on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. For Amazon Linux AMI, see [Install LAMP on Amazon Linux](install-LAMP.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
 
 **Topics**
-+ [Step 1: Prepare the LAMP server](#prepare-lamp-server-2022)
-+ [Step 2: Test your LAMP server](#test-lamp-server-2022)
-+ [Step 3: Secure the database server](#secure-mariadb-lamp-server-2022)
-+ [Step 4: \(Optional\) Install phpMyAdmin](#install-phpmyadmin-lamp-server-2022)
-+ [Troubleshoot](#lamp-troubleshooting-2022)
-+ [Related topics](#lamp-more-info-2022)
++ [Step 1: Prepare the LAMP server](#prepare-lamp-server-2023)
++ [Step 2: Test your LAMP server](#test-lamp-server-2023)
++ [Step 3: Secure the database server](#secure-mariadb-lamp-server-2023)
++ [Step 4: \(Optional\) Install phpMyAdmin](#install-phpmyadmin-lamp-server-2023)
++ [Troubleshoot](#lamp-troubleshooting-2023)
++ [Related topics](#lamp-more-info-2023)
 
-## Step 1: Prepare the LAMP server<a name="prepare-lamp-server-2022"></a>
+## Step 1: Prepare the LAMP server<a name="prepare-lamp-server-2023"></a>
 
 **Prerequisites**
-+ This tutorial assumes that you have already launched a new instance using Amazon Linux 2022, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
-+ The following procedure installs the latest PHP version available on Amazon Linux 2022, currently 7\.4\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with 7\.4\.<a name="install_apache-2022"></a>
++ This tutorial assumes that you have already launched a new instance using Amazon Linux 2023, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
++ The following procedure installs the latest PHP version available on Amazon Linux 2023, currently 7\.4\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with 7\.4\.<a name="install_apache-2023"></a>
 
 **To prepare the LAMP server**
 
@@ -32,7 +31,7 @@ If you are trying to set up a LAMP web server on a different distribution, such 
    [ec2-user ~]$ sudo dnf update -y
    ```
 
-1. Install the latest versions of Apache web server and PHP packages for Amazon Linux 2022\.
+1. Install the latest versions of Apache web server and PHP packages for Amazon Linux 2023\.
 
    ```
    [ec2-user ~]$ sudo dnf install -y httpd wget php-fpm php-mysqli php-json php php-devel
@@ -59,10 +58,10 @@ If you are trying to set up a LAMP web server on a different distribution, such 
    Name         : mariadb105
    Epoch        : 3
    Version      : 10.5.16
-   Release      : 1.amzn2022.0.6
+   Release      : 1.amzn2023.0.6
    Architecture : x86_64
    Size         : 18 M
-   Source       : mariadb105-10.5.16-1.amzn2022.0.6.src.rpm
+   Source       : mariadb105-10.5.16-1.amzn2023.0.6.src.rpm
    Repository   : @System
    From repo    : amazonlinux
    Summary      : A very fast and robust SQL database server
@@ -125,7 +124,7 @@ If you are not using Amazon Linux, you might also need to configure the firewall
 
 Apache httpd serves files that are kept in a directory called the Apache document root\. The Amazon Linux Apache document root is `/var/www/html`, which by default is owned by root\.
 
-To allow the `ec2-user` account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add `ec2-user` to the `apache` group to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="setting-file-permissions-2022"></a>
+To allow the `ec2-user` account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add `ec2-user` to the `apache` group to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="setting-file-permissions-2023"></a>
 
 **To set file permissions**
 
@@ -173,9 +172,9 @@ Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete
 **To secure your web server \(Optional\)**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
 
-For information about enabling HTTPS on your server, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
+For information about enabling HTTPS on your server, see [Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
 
-## Step 2: Test your LAMP server<a name="test-lamp-server-2022"></a>
+## Step 2: Test your LAMP server<a name="test-lamp-server-2023"></a>
 
 If your server is installed and running, and your file permissions are set correctly, your `ec2-user` account should be able to create a PHP file in the `/var/www/html` directory that is available from the internet\.
 
@@ -187,7 +186,7 @@ If your server is installed and running, and your file permissions are set corre
    [ec2-user ~]$ echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
    ```
 
-   If you get a "Permission denied" error when trying to run this command, try logging out and logging back in again to pick up the proper group permissions that you configured in [To set file permissions](#setting-file-permissions-2022)\.
+   If you get a "Permission denied" error when trying to run this command, try logging out and logging back in again to pick up the proper group permissions that you configured in [To set file permissions](#setting-file-permissions-2023)\.
 
 1. In a web browser, type the URL of the file that you just created\. This URL is the public DNS address of your instance followed by a forward slash and the file name\. For example:
 
@@ -214,9 +213,9 @@ If your server is installed and running, and your file permissions are set corre
 
 You should now have a fully functional LAMP web server\. If you add content to the Apache document root at `/var/www/html`, you should be able to view that content at the public DNS address for your instance\. 
 
-## Step 3: Secure the database server<a name="secure-mariadb-lamp-server-2022"></a>
+## Step 3: Secure the database server<a name="secure-mariadb-lamp-server-2023"></a>
 
-The default installation of the MariaDB server has several features that are great for testing and development, but they should be disabled or removed for production servers\. The mysql\_secure\_installation command walks you through the process of setting a root password and removing the insecure features from your installation\. Even if you are not planning on using the MariaDB server, we recommend performing this procedure\.<a name="securing-maria-db-2022"></a>
+The default installation of the MariaDB server has several features that are great for testing and development, but they should be disabled or removed for production servers\. The mysql\_secure\_installation command walks you through the process of setting a root password and removing the insecure features from your installation\. Even if you are not planning on using the MariaDB server, we recommend performing this procedure\.<a name="securing-maria-db-2023"></a>
 
 **To secure the MariaDB server**
 
@@ -260,12 +259,12 @@ The default installation of the MariaDB server has several features that are gre
    [ec2-user ~]$ sudo systemctl enable mariadb
    ```
 
-## Step 4: \(Optional\) Install phpMyAdmin<a name="install-phpmyadmin-lamp-server-2022"></a>
+## Step 4: \(Optional\) Install phpMyAdmin<a name="install-phpmyadmin-lamp-server-2023"></a>
 
 [phpMyAdmin](https://www.phpmyadmin.net/) is a web\-based database management tool that you can use to view and edit the MySQL databases on your EC2 instance\. Follow the steps below to install and configure `phpMyAdmin` on your Amazon Linux instance\.
 
 **Important**  
-We do not recommend using `phpMyAdmin` to access a LAMP server unless you have enabled SSL/TLS in Apache; otherwise, your database administrator password and other data are transmitted insecurely across the internet\. For security recommendations from the developers, see [Securing your phpMyAdmin installation](https://docs.phpmyadmin.net/en/latest/setup.html#securing-your-phpmyadmin-installation)\. For general information about securing a web server on an EC2 instance, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
+We do not recommend using `phpMyAdmin` to access a LAMP server unless you have enabled SSL/TLS in Apache; otherwise, your database administrator password and other data are transmitted insecurely across the internet\. For security recommendations from the developers, see [Securing your phpMyAdmin installation](https://docs.phpmyadmin.net/en/latest/setup.html#securing-your-phpmyadmin-installation)\. For general information about securing a web server on an EC2 instance, see [Configure SSL/TLS on Amazon Linux 2023](SSL-on-amazon-linux-2023.md)\.
 
 **To install phpMyAdmin**
 
@@ -338,11 +337,11 @@ We do not recommend using `phpMyAdmin` to access a LAMP server unless you have e
 
     For information about using phpMyAdmin, see the [phpMyAdmin User Guide](http://docs.phpmyadmin.net/en/latest/user.html)\.
 
-## Troubleshoot<a name="lamp-troubleshooting-2022"></a>
+## Troubleshoot<a name="lamp-troubleshooting-2023"></a>
 
 This section offers suggestions for resolving common problems you might encounter while setting up a new LAMP server\. 
 
-### I can't connect to my server using a web browser<a name="is_apache_on_2022"></a>
+### I can't connect to my server using a web browser<a name="is_apache_on_2023"></a>
 
 Perform the following checks to see if your Apache web server is running and accessible\.
 + **Is the web server running?**
@@ -353,27 +352,27 @@ Perform the following checks to see if your Apache web server is running and acc
   [ec2-user ~]$ sudo systemctl is-enabled httpd
   ```
 
-  If the httpd process is not running, repeat the steps described in [To prepare the LAMP server](ec2-lamp-amazon-linux-2.md#install_apache-2)\.
+  If the httpd process is not running, repeat the steps described in [To prepare the LAMP server](#install_apache-2023)\.
 + **Is the firewall correctly configured?**
 
   Verify that the security group for the instance contains a rule to allow HTTP traffic on port 80\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
-### I can't connect to my server using HTTPS<a name="is-https-enabled-2022"></a>
+### I can't connect to my server using HTTPS<a name="is-https-enabled-2023"></a>
 
 Perform the following checks to see if your Apache web server is configured to support HTTPS\.
 + **Is the web server correctly configured?**
 
-  After you install Apache, the server is configured for HTTP traffic\. To support HTTPS, enable TLS on the server and install an SSL certificate\. For information, see [Tutorial: Configure SSL/TLS on Amazon Linux 2022](SSL-on-amazon-linux-2022.md)\.
+  After you install Apache, the server is configured for HTTP traffic\. To support HTTPS, enable TLS on the server and install an SSL certificate\. For information, see [Configure SSL/TLS on Amazon Linux 2023](SSL-on-amazon-linux-2023.md)\.
 + **Is the firewall correctly configured?**
 
   Verify that the security group for the instance contains a rule to allow HTTPS traffic on port 443\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
-## Related topics<a name="lamp-more-info-2022"></a>
+## Related topics<a name="lamp-more-info-2023"></a>
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
 + [Transfer files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
 + [Transfer files to Linux instances using an SCP client](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-+ [Tutorial: Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)
++ [Host a WordPress blog on Amazon Linux 2023](hosting-wordpress-aml-2023.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)

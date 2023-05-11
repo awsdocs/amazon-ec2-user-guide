@@ -4,6 +4,17 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [New storage optimized instances](#DocumentHistory) | I4g is a new storage optimized instance that features the AWS Graviton2 processor and AWS Nitro SSDs\. | May 9, 2023 | 
+| [Trn1n instances](#DocumentHistory) | New accelerated computing instances optimized for machine learning training powered by AWS Trainium accelerators\. | April 13, 2023 | 
+| [Inf2 instances](#DocumentHistory) | New instances featuring AWS Inferentia2 accelerators, the latest machine learning chip designed by AWS\. | April 13, 2023 | 
+| [EC2 Serial Console bare metal instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-serial-console-prerequisites.html#sc-prereqs-instance-types) | The EC2 serial console now supports connectivity to the serial port of selected bare metal instances\. | April 11, 2023 | 
+| [Launch template quotas](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launch-template-restrictions.html) | You can now view your quotas for launch templates and launch template versions in the Service Quotas console and by using the Service Quotas CLI\. | April 3, 2023 | 
+| [Capacity Reservation utilization notifications](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-cr-utilization.html) | AWS Health now sends notifications when capacity utilization for Capacity Reservations in your account drops below 20 percent\. | April 3, 2023 | 
+| [Amazon EBS performance updates](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html#current) | Updated Amazon EBS performance for M6a and C6a instances\. | April 3, 2023 | 
+| [Capacity Reservation groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-cr-group.html) | You can now add Capacity Reservations that are shared with you to Capacity Reservation groups that you own\. | March 30, 2023 | 
+| [New bare metal instances](#DocumentHistory) | Bare metal instances for C6in, M6idn, M6in, R6idn, and R6in\. | March 21, 2023 | 
+| [Modify instance metadata options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-existing-instances.html) | You can now use the Amazon EC2 console to modify instance metadata options\. | March 20, 2023 | 
+| [In\-place macOS operating system updates](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-mac-instances.html#mac2) | You can now perform in\-place Apple macOS operating system updates on M1 Mac instances\. | March 14, 2023 | 
 | [UEFI preferred](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-ami-boot-mode.html) | You can now create a single AMI that supports both Unified Extensible Firmware Interface \(UEFI\) and Legacy BIOS boot modes\. | March 3, 2023 | 
 | [Modify an AMI for IMDSv2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration) | Modify your existing AMI so that instances launched from the AMI require IMDSv2 by default\. | February 28, 2023 | 
 | [Add supported instances for ENA Express](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ena-express.html) | Added a table with new and existing supported instance types for ENA Express\. | February 13, 2023 | 
@@ -11,7 +22,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 | [AMI alias in launch templates](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-launch-template.html#use-an-ssm-parameter-instead-of-an-ami-id) | You can specify an AWS Systems Manager parameter instead of the AMI ID in your launch templates to avoid having to update the templates every time the AMI ID changes\. | January 19, 2023 | 
 | [Hibernation support for C6i, I3en, and M6i](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html#hibernation-prereqs-supported-instance-families) | Hibernate your newly\-launched instances running on C6i, I3en, and M6i instance types\. | December 19, 2022 | 
 | [Torn write prevention](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/storage-twp.html) | Improve the performance of your I/O\-intensive relational database workloads and reduce latency without negatively impacting data resiliency with torn write prevention, a block storage feature\. | November 29, 2022 | 
-| [Hpc6id\.32xlarge instance](#DocumentHistory) | New memory optimized instances featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | November 29, 2022 | 
+| [Hpc6id instance](#DocumentHistory) | New memory optimized instance featuring 3rd generation Intel Xeon Scalable processors \(Ice Lake\)\. | November 29, 2022 | 
 | [R6in and R6idn instances](#DocumentHistory) | New memory optimized instances for network\-intensive workloads\. | November 28, 2022 | 
 | [M6in and M6idn instances](#DocumentHistory) | New general computing instances types\. | November 28, 2022 | 
 | [ENA Express](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ena-express.html) | Increase throughput and minimize tail latency of network traffic between EC2 instances with ENA Express\. | November 28, 2022 | 

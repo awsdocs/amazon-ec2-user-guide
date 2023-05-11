@@ -1,6 +1,6 @@
 # Add or remove a public key on your instance<a name="replacing-key-pair"></a>
 
-When you launch an instance, you are [prompted for a key pair](launching-instance.md#step-7-review-instance-launch)\. If you specify a key pair at launch, when your instance boots for the first time, the public key material is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\.
+When you launch an instance, you can [specify a key pair](ec2-launch-instance-wizard.md#liw-key-pair)\. If you specify a key pair at launch, when your instance boots for the first time, the public key material is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\.
 
 You can change the key pair that is used to access the default system account of your instance by adding a new public key on the instance, or by replacing the public key \(deleting the existing public key and adding a new one\) on the instance\. You can also remove all public keys from an instance\. You might take these actions for the following reasons:
 + If a user in your organization requires access to the system user using a separate key pair, you can add the public key to your instance\.

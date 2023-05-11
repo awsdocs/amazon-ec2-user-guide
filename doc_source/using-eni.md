@@ -32,7 +32,7 @@ You can create a network interface, attach it to an instance, detach it from an 
 Each instance has a default network interface, called the *primary network interface*\. You cannot detach a primary network interface from an instance\. You can create and attach additional network interfaces\. The maximum number of network interfaces that you can use varies by instance type\. For more information, see [IP addresses per network interface per instance type](#AvailableIpPerENI)\.
 
 **Public IPv4 addresses for network interfaces**  
-In a VPC, all subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are assigned a public IPv4 address\. For more information, see [IP addressing behavior for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. The public IPv4 address is assigned from Amazon's pool of public IPv4 addresses\. When you launch an instance, the IP address is assigned to the primary network interface that's created\.
+In a VPC, all subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are assigned a public IPv4 address\. For more information, see [Subnet settings](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-settings) in the *Amazon VPC User Guide*\. The public IPv4 address is assigned from Amazon's pool of public IPv4 addresses\. When you launch an instance, the IP address is assigned to the primary network interface that's created\.
 
 When you create a network interface, it inherits the public IPv4 addressing attribute from the subnet\. If you later modify the public IPv4 addressing attribute of the subnet, the network interface keeps the setting that was in effect when it was created\. If you launch an instance and specify an existing network interface as the primary network interface, the public IPv4 address attribute is determined by this network interface\.
 
@@ -46,7 +46,7 @@ If you disassociate an Elastic IP address from a network interface, you can rele
 **IPv6 addresses for network interfaces**  
 If you associate IPv6 CIDR blocks with your VPC and subnet, you can assign one or more IPv6 addresses from the subnet range to a network interface\. Each IPv6 address can be assigned to one network interface\.
 
-All subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are automatically assigned an IPv6 address from the range of the subnet\. For more information, see [IP addressing behavior for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. When you launch an instance, the IPv6 address is assigned to the primary network interface that's created\.
+All subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are automatically assigned an IPv6 address from the range of the subnet\. For more information, see [Subnet settings](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-settings) in the *Amazon VPC User Guide*\. When you launch an instance, the IPv6 address is assigned to the primary network interface that's created\.
 
 For more information, see [IPv6 addresses](using-instance-addressing.md#ipv6-addressing)\.
 
@@ -74,15 +74,21 @@ The following instances support multiple network cards\. All other instance type
 | Instance type | Number of network cards | 
 | --- | --- | 
 | c6in\.32xlarge | 2 | 
+| c6in\.metal | 2 | 
 | dl1\.24xlarge | 4 | 
 | hpc6id\.32xlarge | 2 | 
 | m6idn\.32xlarge | 2 | 
+| m6idn\.metal | 2 | 
 | m6in\.32xlarge | 2 | 
+| m6in\.metal | 2 | 
 | p4d\.24xlarge | 4 | 
 | p4de\.24xlarge | 4 | 
 | r6idn\.32xlarge | 2 | 
+| r6idn\.metal | 2 | 
 | r6in\.32xlarge | 2 | 
+| r6in\.metal | 2 | 
 | trn1\.32xlarge | 8 | 
+| trn1n\.32xlarge | 16 | 
 
 ## IP addresses per network interface per instance type<a name="AvailableIpPerENI"></a>
 
@@ -240,6 +246,7 @@ The following tables list the maximum number of network interfaces per instance 
 | m6idn\.16xlarge | 15 | 50 | 50 | 
 | m6idn\.24xlarge | 15 | 50 | 50 | 
 | m6idn\.32xlarge | 14 | 50 | 50 | 
+| m6idn\.metal | 14 | 50 | 50 | 
 | m6in\.large | 3 | 10 | 10 | 
 | m6in\.xlarge | 4 | 15 | 15 | 
 | m6in\.2xlarge | 4 | 15 | 15 | 
@@ -249,6 +256,7 @@ The following tables list the maximum number of network interfaces per instance 
 | m6in\.16xlarge | 15 | 50 | 50 | 
 | m6in\.24xlarge | 15 | 50 | 50 | 
 | m6in\.32xlarge | 14 | 50 | 50 | 
+| m6in\.metal | 14 | 50 | 50 | 
 | m7g\.medium | 2 | 4 | 4 | 
 | m7g\.large | 3 | 10 | 10 | 
 | m7g\.xlarge | 4 | 15 | 15 | 
@@ -414,6 +422,7 @@ The following tables list the maximum number of network interfaces per instance 
 | c6in\.16xlarge | 15 | 50 | 50 | 
 | c6in\.24xlarge | 15 | 50 | 50 | 
 | c6in\.32xlarge | 14 | 50 | 50 | 
+| c6in\.metal | 14 | 50 | 50 | 
 | c7g\.medium | 2 | 4 | 4 | 
 | c7g\.large | 3 | 10 | 10 | 
 | c7g\.xlarge | 4 | 15 | 15 | 
@@ -553,6 +562,7 @@ The following tables list the maximum number of network interfaces per instance 
 | r6idn\.16xlarge | 15 | 50 | 50 | 
 | r6idn\.24xlarge | 15 | 50 | 50 | 
 | r6idn\.32xlarge | 14 | 50 | 50 | 
+| r6idn\.metal | 14 | 50 | 50 | 
 | r6in\.large | 3 | 10 | 10 | 
 | r6in\.xlarge | 4 | 15 | 15 | 
 | r6in\.2xlarge | 4 | 15 | 15 | 
@@ -562,6 +572,7 @@ The following tables list the maximum number of network interfaces per instance 
 | r6in\.16xlarge | 15 | 50 | 50 | 
 | r6in\.24xlarge | 15 | 50 | 50 | 
 | r6in\.32xlarge | 14 | 50 | 50 | 
+| r6in\.metal | 14 | 50 | 50 | 
 | r6id\.large | 3 | 10 | 10 | 
 | r6id\.xlarge | 4 | 15 | 15 | 
 | r6id\.2xlarge | 4 | 15 | 15 | 
@@ -677,6 +688,12 @@ The following tables list the maximum number of network interfaces per instance 
 | i3en\.12xlarge | 8 | 30 | 30 | 
 | i3en\.24xlarge | 15 | 50 | 50 | 
 | i3en\.metal | 15 | 50 | 50 | 
+| i4g\.large | 3 | 10 | 10 | 
+| i4g\.xlarge | 4 | 15 | 15 | 
+| i4g\.2xlarge | 4 | 15 | 15 | 
+| i4g\.4xlarge | 8 | 30 | 30 | 
+| i4g\.8xlarge | 8 | 30 | 30 | 
+| i4g\.16xlarge | 15 | 50 | 50 | 
 | i4i\.large | 3 | 10 | 10 | 
 | i4i\.xlarge | 4 | 15 | 15 | 
 | i4i\.2xlarge | 4 | 15 | 15 | 
@@ -742,6 +759,10 @@ The following tables list the maximum number of network interfaces per instance 
 | inf1\.2xlarge | 4 | 10 | 10 | 
 | inf1\.6xlarge | 8 | 30 | 30 | 
 | inf1\.24xlarge | 11 | 30 | 30 | 
+| inf2\.xlarge | 4 | 15 | 15 | 
+| inf2\.8xlarge | 8 | 30 | 30 | 
+| inf2\.24xlarge | 15 | 50 | 50 | 
+| inf2\.48xlarge | 15 | 50 | 50 | 
 | p2\.xlarge | 4 | 15 | 15 | 
 | p2\.8xlarge | 8 | 30 | 30 | 
 | p2\.16xlarge | 8 | 30 | 30 | 
@@ -753,6 +774,7 @@ The following tables list the maximum number of network interfaces per instance 
 | p4de\.24xlarge | 60 | 50 | 50 | 
 | trn1\.2xlarge | 4 | 15 | 15 | 
 | trn1\.32xlarge | 40 | 50 | 50 | 
+| trn1n\.32xlarge | 80 | 50 | 50 | 
 | vt1\.3xlarge | 4 | 15 | 15 | 
 | vt1\.6xlarge | 8 | 30 | 30 | 
 | vt1\.24xlarge | 15 | 50 | 50 | 

@@ -36,7 +36,7 @@ This topic explains how to verify the instance identity document using the PKCS7
 ------
 #### [ Other AWS Regions ]
 
-   The following AWS public certificate is for all AWS Regions, except Hong Kong, Bahrain, Cape Town, Milan, Jakarta, China, and GovCloud\.
+   The following AWS public certificate is for all AWS Regions, except Hong Kong, Bahrain, UAE, Cape Town, Milan, Spain, Zurich, Jakarta, Melbourne, Hyderabad, and China\.
 
    ```
    $  echo "-----BEGIN CERTIFICATE-----
@@ -190,6 +190,58 @@ This topic explains how to verify the instance identity document using the PKCS7
    ```
 
 ------
+#### [ Europe \(Spain\) ]
+
+   The AWS public certificate for Europe \(Spain\) is as follows\.
+
+   ```
+   $  echo "-----BEGIN CERTIFICATE-----
+   MIIC8DCCAq+gAwIBAgIGAXjwLk46MAkGByqGSM44BAMwXDELMAkGA1UEBhMCVVMx
+   GTAXBgNVBAgMEFdhc2hpbmd0b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAe
+   BgNVBAoMF0FtYXpvbiBXZWIgU2VydmljZXMgTExDMB4XDTIxMDQyMDE2NDc0OVoX
+   DTQ3MDQyMDE2NDc0OVowXDELMAkGA1UEBhMCVVMxGTAXBgNVBAgMEFdhc2hpbmd0
+   b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAeBgNVBAoMF0FtYXpvbiBXZWIg
+   U2VydmljZXMgTExDMIIBtzCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9K
+   nC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00
+   b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNa
+   FpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA
+   9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJ
+   FnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7
+   zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYQAAoGAGG2m8EKmaf5q
+   Qqj3Z+rzSaTaXE3B/R/4A2VuGqRYR7MljPtwdmU6/3CPjCACcZmTIcOAKbFiDHqa
+   dQgBZXfzGpzw8Zo+eYmmk5fXycgnj57PYH1dIWU6I7mCbAah5MZMcmHaTmIsomGr
+   hcnWB8d8qOU7oZ0UWK4lbiAQs1MihoUwCQYHKoZIzjgEAwMwADAtAhUAjO0FsFML
+   ThbHO4f/WmbaU7YM5GwCFCvIJOesO5hZ8PHC52dAR8WWC6oe
+   -----END CERTIFICATE-----" >> certificate
+   ```
+
+------
+#### [ Europe \(Zurich\) ]
+
+   The AWS public certificate for Europe \(Zurich\) is as follows\.
+
+   ```
+   $  echo "-----BEGIN CERTIFICATE-----
+   MIIC7zCCAq+gAwIBAgIGAXjXiKJnMAkGByqGSM44BAMwXDELMAkGA1UEBhMCVVMx
+   GTAXBgNVBAgMEFdhc2hpbmd0b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAe
+   BgNVBAoMF0FtYXpvbiBXZWIgU2VydmljZXMgTExDMB4XDTIxMDQxNTIxNTU1OVoX
+   DTQ3MDQxNTIxNTU1OVowXDELMAkGA1UEBhMCVVMxGTAXBgNVBAgMEFdhc2hpbmd0
+   b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAeBgNVBAoMF0FtYXpvbiBXZWIg
+   U2VydmljZXMgTExDMIIBtzCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9K
+   nC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00
+   b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNa
+   FpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA
+   9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJ
+   FnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7
+   zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYQAAoGAYNjaCNg/cfgQ
+   Ol1BUj5ClUulqwZ9Q+SfDzPZh9D2C0VbiRANiZoxrV8RdgmzzC5T7VcriVwjwvta
+   2Ch//b+sZ86E5h0XWWr+BeEjD9cu3eDj12XB5sWEbNHNx49p5Tmtu5r2LDtlL8X/
+   Rpfalu2Z2OJgjFJWGf7hRwxe456n+lowCQYHKoZIzjgEAwMvADAsAhRChsLcj4U5
+   CVb2cp5M0RE1XbXmhAIUeGSnH+aiUQIWmPEFja+itWDufIk=
+   -----END CERTIFICATE-----" >> certificate
+   ```
+
+------
 #### [ Asia Pacific \(Jakarta\) ]
 
    The AWS public certificate for Asia Pacific \(Jakarta\) is as follows\.
@@ -212,6 +264,58 @@ This topic explains how to verify the instance identity document using the PKCS7
    VgXAqdpBwfaHC6NUzre8U8iJ8FMNnlP9Gw1oUIlgQBjORyynVJexoB31TDZM+/52
    g9O/bpq1QqNyKbeIgyBBlc1dAtr1QLnsMAkGByqGSM44BAMDLwAwLAIUK8E6RDIR
    twK+9qnaTOBhvO/njuQCFFocyT1OxK+UDR888oNsdgtif2Sf
+   -----END CERTIFICATE-----" >> certificate
+   ```
+
+------
+#### [ Asia Pacific \(Melbourne\) ]
+
+   The AWS public certificate for Asia Pacific \(Melbourne\) is as follows\.
+
+   ```
+   $  echo "-----BEGIN CERTIFICATE-----
+   MIIC7zCCAq+gAwIBAgIGAXjWF7P2MAkGByqGSM44BAMwXDELMAkGA1UEBhMCVVMx
+   GTAXBgNVBAgMEFdhc2hpbmd0b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAe
+   BgNVBAoMF0FtYXpvbiBXZWIgU2VydmljZXMgTExDMB4XDTIxMDQxNTE1MTMwMFoX
+   DTQ3MDQxNTE1MTMwMFowXDELMAkGA1UEBhMCVVMxGTAXBgNVBAgMEFdhc2hpbmd0
+   b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAeBgNVBAoMF0FtYXpvbiBXZWIg
+   U2VydmljZXMgTExDMIIBtzCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9K
+   nC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00
+   b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNa
+   FpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA
+   9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJ
+   FnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7
+   zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYQAAoGAPRXSsQP9E3dw
+   8QXKlrgBgEVCprLHdK/bbrMas0XMu1EhOD+q+0PcTr8+iwbtoXlY5MCeatWIp1Gr
+   XQjVqsF8vQqxlEuRuYKbR3nq4mWwaeGlx9AG5EjQHRa3GQ44wWHOdof0M3NRI1MP
+   rx2gQtEf4jWhuenOah6+G5xQ7Iw8JtkwCQYHKoZIzjgEAwMvADAsAhRy2y65od7e
+   uQhmqdNkadeep9YDJAIUX5LjQjT4Nvp1P3a7WbNiDd2nz5E=
+   -----END CERTIFICATE-----" >> certificate
+   ```
+
+------
+#### [ Asia Pacific \(Hyderabad\) ]
+
+   The AWS public certificate for Asia Pacific \(Hyderabad\) is as follows\.
+
+   ```
+   $  echo "-----BEGIN CERTIFICATE-----
+   MIIC8DCCArCgAwIBAgIGAXjrQ4+XMAkGByqGSM44BAMwXDELMAkGA1UEBhMCVVMx
+   GTAXBgNVBAgMEFdhc2hpbmd0b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAe
+   BgNVBAoMF0FtYXpvbiBXZWIgU2VydmljZXMgTExDMB4XDTIxMDQxOTE3NTI1NloX
+   DTQ3MDQxOTE3NTI1NlowXDELMAkGA1UEBhMCVVMxGTAXBgNVBAgMEFdhc2hpbmd0
+   b24gU3RhdGUxEDAOBgNVBAcMB1NlYXR0bGUxIDAeBgNVBAoMF0FtYXpvbiBXZWIg
+   U2VydmljZXMgTExDMIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9K
+   nC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00
+   b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNa
+   FpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA
+   9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJ
+   FnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7
+   zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUAAoGBAJCKGBBoxIUx
+   qBk94JHhwZZbgvbP0DAOoHENQWxp/98lI7/YOfYJOVMJS22aCnHDurofmo5rvNIk
+   gXi7Rztbhu+lko9rK6DgpmpUwBU0WZtf34aZ2IWNBwHaVhHvWAQf9/46u18dMa2Y
+   ucK1Wi+Vc+M+KldrvgXmhym6ErNlzhJyMAkGByqGSM44BAMDLwAwLAIUaaPKxaOH
+   oYvwz709xXpsQueIq+UCFFa/GpzoDOSokl1057NU/2hnsiW4
    -----END CERTIFICATE-----" >> certificate
    ```
 
@@ -240,32 +344,6 @@ This topic explains how to verify the instance identity document using the PKCS7
    5pZlnIDnVVxqRike7BFy8tKyPj7HzoPEF5mh9Kfnn1YoSVu+61lMVv/qRjnyKfS9
    c96nE98sYFj0ZVBzXw8Sq4Gh8FiVmFHbQp1peGC19idOUqxPxWsasWxQXO0azYsP
    9RyWLHKxH1dMuA==
-   -----END CERTIFICATE-----" >> certificate
-   ```
-
-------
-#### [ AWS GovCloud \(US\) ]
-
-   The AWS public certificate for AWS GovCloud \(US\-East\) and AWS GovCloud \(US\-West\) is as follows\.
-
-   ```
-   $  echo "-----BEGIN CERTIFICATE-----
-   MIIC7TCCAq0CCQCWukjZ5V4aZzAJBgcqhkjOOAQDMFwxCzAJBgNVBAYTAlVTMRkw
-   FwYDVQQIExBXYXNoaW5ndG9uIFN0YXRlMRAwDgYDVQQHEwdTZWF0dGxlMSAwHgYD
-   VQQKExdBbWF6b24gV2ViIFNlcnZpY2VzIExMQzAeFw0xMjAxMDUxMjU2MTJaFw0z
-   ODAxMDUxMjU2MTJaMFwxCzAJBgNVBAYTAlVTMRkwFwYDVQQIExBXYXNoaW5ndG9u
-   IFN0YXRlMRAwDgYDVQQHEwdTZWF0dGxlMSAwHgYDVQQKExdBbWF6b24gV2ViIFNl
-   cnZpY2VzIExMQzCCAbcwggEsBgcqhkjOOAQBMIIBHwKBgQCjkvcS2bb1VQ4yt/5e
-   ih5OO6kK/n1Lzllr7D8ZwtQP8fOEpp5E2ng+D6Ud1Z1gYipr58Kj3nssSNpI6bX3
-   VyIQzK7wLclnd/YozqNNmgIyZecN7EglK9ITHJLP+x8FtUpt3QbyYXJdmVMegN6P
-   hviYt5JH/nYl4hh3Pa1HJdskgQIVALVJ3ER11+Ko4tP6nwvHwh6+ERYRAoGBAI1j
-   k+tkqMVHuAFcvAGKocTgsjJem6/5qomzJuKDmbJNu9Qxw3rAotXau8Qe+MBcJl/U
-   hhy1KHVpCGl9fueQ2s6IL0CaO/buycU1CiYQk40KNHCcHfNiZbdlx1E9rpUp7bnF
-   lRa2v1ntMX3caRVDdbtPEWmdxSCYsYFDk4mZrOLBA4GEAAKBgEbmeve5f8LIE/Gf
-   MNmP9CM5eovQOGx5ho8WqD+aTebs+k2tn92BBPqeZqpWRa5P/+jrdKml1qx4llHW
-   MXrs3IgIb6+hUIB+S8dz8/mmO0bpr76RoZVCXYab2CZedFut7qc3WUH9+EUAH5mw
-   vSeDCOUMYQR7R9LINYwouHIziqQYMAkGByqGSM44BAMDLwAwLAIUWXBlk40xTwSw
-   7HX32MxXYruse9ACFBNGmdX2ZBrVNGrN9N2f6ROk0k9K
    -----END CERTIFICATE-----" >> certificate
    ```
 

@@ -20,7 +20,7 @@ After you create the Capacity Reservation, the capacity is available immediately
 
 Your request to create a Capacity Reservation could fail if one of the following is true:
 + Amazon EC2 does not have sufficient capacity to fulfill the request\. Either try again at a later time, try a different Availability Zone, or try a smaller capacity\. If your application is flexible across instance types and sizes, try different instance attributes\.
-+ The requested quantity exceeds your On\-Demand Instance limit for the selected instance family\. Increase your On\-Demand Instance limit for the instance family and try again\. For more information, see [On\-Demand Instance limits](ec2-on-demand-instances.md#ec2-on-demand-instances-limits)\.
++ The requested quantity exceeds your On\-Demand Instance limit for the selected instance family\. Increase your On\-Demand Instance limit for the instance family and try again\. For more information, see [On\-Demand Instance quotas](ec2-on-demand-instances.md#ec2-on-demand-instances-limits)\.
 
 **To create a Capacity Reservation using the console**
 

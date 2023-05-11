@@ -102,7 +102,7 @@ For more information about installing and configuring the driver, see the [NVIDI
 
 ### Option 3: GRID drivers \(G5, G4dn, and G3 instances\)<a name="nvidia-GRID-driver"></a>
 
-These downloads are available to AWS customers only\. By downloading, in order to adhere to requirements of the AWS solution referred to in the NVIDIA GRID Cloud End User License Agreement \(EULA\), you agree to use the downloaded software only to develop AMIs for use with the NVIDIA A10G, NVIDIA Tesla T4, or NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
+These downloads are available to AWS customers only\. By downloading, in order to adhere to requirements of the AWS solution referred to in the NVIDIA GRID Cloud End User License Agreement \(EULA\), you agree to use the downloaded software only to develop AMIs for use with the NVIDIA A10G, NVIDIA Tesla T4, or NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\. For information about the version of the NVIDIA GRID driver for your operating system, see the [NVIDIA® Virtual GPU \(vGPU\) Software Documentation](https://docs.nvidia.com/grid/) on the *NVIDIA website*\.
 
 **Prerequisites**
 + Install the AWS CLI on your Linux instance and configure default credentials\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.

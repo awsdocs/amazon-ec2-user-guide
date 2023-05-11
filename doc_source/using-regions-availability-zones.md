@@ -42,7 +42,7 @@ Your account determines the Regions that are available to you\.
 + An AWS GovCloud \(US\-West\) account provides access to the AWS GovCloud \(US\-West\) Region and the AWS GovCloud \(US\-East\) Region\. For more information, see [AWS GovCloud \(US\)](https://aws.amazon.com/govcloud-us/)\.
 + An Amazon AWS \(China\) account provides access to the Beijing and Ningxia Regions only\. For more information, see [Amazon Web Services in China](https://www.amazonaws.cn/about-aws/china/)\.
 
-The following table lists the Regions provided by an AWS account\. You can't describe or access additional Regions from an AWS account, such as AWS GovCloud \(US\) Region or the China Regions\. To use a Region introduced after March 20, 2019, you must enable the Region\. For more information, see [Managing AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html) in the *AWS General Reference*\.
+The following table lists the Regions provided by an AWS account\. You can't describe or access additional Regions from an AWS account, such as the AWS GovCloud \(US\) Regions or the China Regions\. To use a Region introduced after March 20, 2019, you must enable the Region\. For more information, see [Managing AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html) in the *AWS General Reference*\.
 
 
 | Code | Name | Opt\-in Status | 
@@ -77,7 +77,7 @@ The following table lists the Regions provided by an AWS account\. You can't des
 
 For more information, see [AWS Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)\.
 
-The number and mapping of Availability Zones per Region may vary between AWS accounts\. To get a list of the Availability Zones that are available to your account, you can use the Amazon EC2 console or the command line interface\. For more information, see [Describe your Regions](#using-regions-availability-zones-describe)\.
+The number and mapping of Availability Zones per Region may vary between AWS accounts To list the Availability Zones that are available to your account, you can use the Amazon EC2 console or the command line interface\. For more information, see [Describe your Regions](#using-regions-availability-zones-describe)\.
 
 ### Regions and endpoints<a name="using-regions-endpoints"></a>
 

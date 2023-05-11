@@ -96,6 +96,9 @@ Users of your shared customer managed key who are accessing encrypted snapshots 
 + `kms:ReEncrypt`
 + `kms:Decrypt`
 
+**Tip**  
+To follow the principle of least privilege, do not allow full access to `kms:CreateGrant`\. Instead, use the `kms:GrantIsForAWSResource` condition key to allow the user to create grants on the KMS key only when the grant is created on the user's behalf by an AWS service\.
+
 For more information about controlling access to a customer managed key, see [ Using key policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
 
 **To share customer managed key using the AWS KMS console**

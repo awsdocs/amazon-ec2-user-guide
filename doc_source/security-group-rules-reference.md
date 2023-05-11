@@ -126,33 +126,7 @@ To mount an Amazon EFS file system on your Amazon EC2 instance, you must connect
 
 ## Elastic Load Balancing rules<a name="sg-rules-elb"></a>
 
-If you're using a load balancer, the security group associated with your load balancer must have rules that allow communication with your instances or targets\.
-
-
-| 
-| 
-| **Inbound** | 
-| --- |
-| Protocol type | Protocol number | Port | Source IP | Notes | 
-| TCP | 6 | The listener port |  For an Internet\-facing load\-balancer: 0\.0\.0\.0/0 \(all IPv4 addresses\) For an internal load\-balancer: the IPv4 CIDR block of the VPC  | Allow inbound traffic on the load balancer listener port\. | 
-| **Outbound** | 
-| --- |
-| Protocol type | Protocol number | Port | Destination IP | Notes | 
-| TCP | 6 | The instance listener port | The ID of the instance security group | Allow outbound traffic to instances on the instance listener port\. | 
-| TCP | 6 | The health check port | The ID of the instance security group | Allow outbound traffic to instances on the health check port\. | 
-
-The security group rules for your instances must allow the load balancer to communicate with your instances on both the listener port and the health check port\.
-
-
-| 
-| 
-| **Inbound** | 
-| --- |
-| Protocol type | Protocol number | Port | Source IP | Notes | 
-| TCP | 6 | The instance listener port |  The ID of the load balancer security group  | Allow traffic from the load balancer on the instance listener port\. | 
-| TCP | 6 | The health check port | The ID of the load balancer security group | Allow traffic from the load balancer on the health check port\. | 
-
-For more information, see [Configure security groups for your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html) in the *User Guide for Classic Load Balancers*, and [Security groups for your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-update-security-groups.html) in the *User Guide for Application Load Balancers*\.
+If you're using a load balancer, the security group associated with your load balancer must have rules that allow communication with your instances or targets\. For more information, see [Configure security groups for your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html) in the *User Guide for Classic Load Balancers*, and [Security groups for your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-update-security-groups.html) in the *User Guide for Application Load Balancers*\.
 
 ## VPC peering rules<a name="peer-vpc-rules"></a>
 

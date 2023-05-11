@@ -26,7 +26,7 @@ Connect to your instance and customize it for your needs\. Your new AMI will inc
 You can perform any of the following actions on your instance to customize it:  
 + Install software and applications
 + Copy data
-+ Reduce start time by deleting temporary files, defragmenting your hard drive, and zeroing out free space
++ Reduce start time by deleting temporary files and defragmenting your hard drive
 + Attach additional EBS volumes
 
 **4 – Create image**  

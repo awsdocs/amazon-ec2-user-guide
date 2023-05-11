@@ -33,5 +33,6 @@ Amazon EC2 supports the following event types:
 + [EC2 Spot Fleet State Change](spot-fleet-event-types.md#spot-fleet-state-change)
 + [EC2 Spot Instance Interruption Warning](spot-instance-termination-notices.md#ec2-spot-instance-interruption-warning-event)
 + [EC2 Spot Instance Request Fulfillment](spot-request-status.md#spot-request-fulfillment-event)
++ [EC2 ODCR Underutilization Notification](cr-eventbridge.md)
 
 For information about the event types supported by Amazon EBS, see [EventBridge for Amazon EBS](ebs-cloud-watch-events.md)\.

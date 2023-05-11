@@ -36,12 +36,12 @@ The following considerations apply to Mac instances:
   + macOS Catalina \(version 10\.15\) \(x86 Mac Instances only\)
   + macOS Big Sur \(version 11\)
   + macOS Monterey \(version 12\)
+  + macOS Ventura \(version 13\)
 + EBS hotplug is supported\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
 + [Mac instances support Amazon EC2 Auto Scaling\.](http://aws.amazon.com/blogs/compute/implementing-autoscaling-for-ec2-mac-instances/) 
 + On x86 Mac instances, automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
-+ On M1 Mac instances, in\-place software updates are currently unsupported\. We will distribute new Amazon Machine Images \(AMIs\) for major, minor, and patch versions of macOS\.
 + When you stop or terminate a Mac instance, a scrubbing workflow is performed on the Dedicated Host\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
 
 **Warning**  
@@ -49,9 +49,7 @@ Do not use FileVault\. If data\-at\-rest and data\-in\-transit is required, use 
 
 ## Instance readiness<a name="mac-instance-readiness"></a>
 
-After you launch a Mac instance, you'll need to wait till the instance is ready before you can connect to it\. The approximate times you might wait are as follows:
-+ x86 Mac instances – up to 15 minutes from launch
-+ M1 Mac instances – up to 40 minutes from launch
+After you launch a Mac instance, you'll need to wait until the instance is ready before you can connect to it\. For an AWS vended AMI with a x86 Mac instance or a M1 Mac instance, the launch time can range from approximately 6 minutes to 20 minutes\. Depending on the chosen Amazon EBS volume sizes, the inclusion of additional scripts to *user data*, or additional loaded software on a custom macOS AMI, the launch time may increase\.
 
 You can use a small shell script, like the one below, to poll the describe\-instance\-status API to know when the instance is ready to be connected to\. In the following command, replace the example instance ID with your own\.
 
@@ -105,8 +103,6 @@ You can launch a Mac instance using the AWS Management Console or the AWS CLI\.
       1. In the **Summary** panel, choose **Launch instance**\.
 
    1. A confirmation page lets you know that your instance is launching\. Choose **View all instances** to close the confirmation page and return to the console\. The initial state of an instance is `pending`\. The instance is ready when its state changes to `running` and it passes status checks\.
-**Note**  
-Mac instances can take up to 15\-40 minutes to be ready\. For more information, see [Instance readiness](#mac-instance-readiness)\.
 
 ### Launch a Mac instance using the AWS CLI<a name="mac-instance-launch-cli"></a>
 
@@ -167,20 +163,14 @@ The following is example output for an instance that is running and has passed s
 }
 ```
 
-**Note**  
-Mac instances can take up to 15\-40 minutes to be ready\. For more information, see [Instance readiness](#mac-instance-readiness)\.
-
 ## Connect to your Mac instance<a name="connect-to-mac-instance"></a>
 
 You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
 
-**Note**  
-After you launch a Mac instance, it can take up to 15\-40 minutes to be ready before you can connect to it\. For more information, see [Instance readiness](#mac-instance-readiness)\.
-
 ### Connect to your instance using SSH<a name="mac-instance-ssh"></a>
 
 **Important**  
-Multiple users can access the OS simultaneously; however, please review the appropriate [macOS SLA](https://www.apple.com/legal/sla/) with your counsel to confirm workload compliance\. Typically there is a 1:1 user:GUI session due to the built\-in Screen Sharing service on port 5900\. Using SSH within macOS supports multiple sessions up until the "Max Sessions" limit in sshd\_config file\.
+Multiple users can access the OS simultaneously\. Typically there is a 1:1 user:GUI session due to the built\-in Screen Sharing service on port 5900\. Using SSH within macOS supports multiple sessions up until the "Max Sessions" limit in the sshd\_config file\.
 
 Amazon EC2 Mac instances do not allow remote root SSH by default\. Password authentication is disabled to prevent brute\-force password attacks\. The ec2\-user account is configured to log in remotely using SSH\. The ec2\-user account also has sudo privileges\. After you connect to your instance, you can add other users\.
 
@@ -209,7 +199,7 @@ Use the following procedure to connect to your instance using Apple Remote Deskt
 **Note**  
 macOS 10\.14 and later only allows control if Screen Sharing is enabled through [System Preferences](https://support.apple.com/guide/remote-desktop/enable-remote-management-apd8b1c65bd/mac)\.
 
-**To connect to your instance using ARD**
+**To connect to your instance using ARD client or VNC client**
 
 1. Verify that your local computer has an ARD client or a VNC client that supports ARD installed\. On macOS, you can leverage the built\-in Screen Sharing application\. Otherwise, search for ARD for your operating system and install it\.
 
@@ -229,17 +219,21 @@ macOS 10\.14 and later only allows control if Screen Sharing is enabled through 
    -restart -agent -privs -all
    ```
 
+1. Disconnect from your instance by typing **exit** and pressing Enter\.
+
 1. From your computer, connect to your instance using the following ssh command\. In addition to the options shown in the previous section, use the \-L option to enable port forwarding and forward all traffic on local port 5900 to the ARD server on the instance\.
 
    ```
    ssh -L 5900:localhost:5900 -i /path/key-pair-name.pem ec2-user@instance-public-dns-name
    ```
 
-1. From your local computer, use the ARD client or VNC client that supports ARD to connect to localhost on port 5900\. For example, use the Screen Sharing application on macOS as follows:
+1. From your local computer, use the ARD client or VNC client that supports ARD to connect to `localhost:5900`\. For example, use the Screen Sharing application on macOS as follows:
 
-   1. Open Finder and launch the Screen Sharing application\.
+   1. Open **Finder** and select **Go**\.
 
-   1. For **Connect to**, enter **localhost**\.
+   1. Select **Connect to Server**\.
+
+   1. In the **Server Address** field, enter `vnc://localhost:5900`\.
 
    1. Log in as prompted, using **ec2\-user** as the user name and the password that you created for the ec2\-user account\.
 
@@ -297,7 +291,13 @@ AWS provides updated EC2 macOS AMIs on a regular basis that include updates to p
 **Warning**  
 Do not install beta or pre\-release macOS versions on your EC2 Mac instances, as this configuration is currently not supported\. Installing beta or pre release macOS versions will lead to degradation of your EC2 Mac Dedicated Host when you stop or terminate your instance, and will prevent you from starting or launching a new instance on that host\. 
 
-On x86 Mac instances, you can install operating system updates from Apple using the `softwareupdate` command\. In\-place operating system updates are not currently supported on M1 Mac instances\.
+**Topics**
++ [Update software on x86 Mac instances](#x86-mac1)
++ [Update software on M1 Mac instances](#mac2)
+
+### Update software on x86 Mac instances<a name="x86-mac1"></a>
+
+On x86 Mac instances, you can install operating system updates from Apple using the `softwareupdate` command\.
 
 ****To install operating system updates from Apple on x86 Mac instances****
 
@@ -349,6 +349,214 @@ You can use Homebrew to install updates to packages in the EC2 macOS AMIs, so th
    [ec2-user ~]$ brew upgrade
    ```
 
+### Update software on M1 Mac instances<a name="mac2"></a>
+
+#### Considerations<a name="mac2-ena-update"></a>
+
+**Elastic Network Adapter \(ENA\) driver**  
+Due to an update in the network driver configuration, ENA driver version 1\.0\.2 isn't compatible with macOS 13\.3 or greater\. If you want to update to macOS 13\.3 from an older version and have not installed the latest ENA driver, use the following procedure to install a new version of the driver\.
+
+**To install a new version of the ENA driver**
+
+1. In a Terminal window, connect to your M1 Mac instance using [SSH](#mac-instance-ssh)\.
+
+1. Download the ENA application into the `Applications` file using the following command\.
+
+   ```
+   brew install amazon-ena-ethernet-dext
+   ```
+**Troubleshooting tip**  
+If you receive the warning `No available formula with the name amazon-ena-ethernet-dext`, run the following command\.  
+
+   ```
+   brew update
+   ```
+
+1. Disconnect from your instance by typing **exit** and pressing return\.
+
+1. Use the VNC client to activate the ENA application\.
+
+   1. Setup the VNC client using [Connect to your instance using Apple Remote Desktop](#mac-instance-vnc)\.
+
+   1. Once you have connected to your instance using the Screen Sharing application, go to the **Applications** folder and open the ENA application\. 
+
+   1. Choose **Activate**
+
+   1. To confirm the driver was activated correctly, run the following command in the Terminal window\. The output of the command shows that the old driver is in the terminating state and the new driver is in the activated state\.
+
+      ```
+      systemextensionsctl list;
+      ```
+
+   1. After you restart the instance, only the new driver will be present\.
+
+#### Software update on M1 Mac instances<a name="mac2-software-update"></a>
+
+On M1 Mac instances, you must complete several steps to perform an in\-place operating system update\. First, access the internal disk of the instance using the GUI with a VNC \(Virtual Network Computing\) client\. This procedure uses macOS Screen Sharing, the built in VNC client\. Then, delegate ownership to the administrative user \(`ec2-user`\) by signing in as `aws-managed-user` on the Amazon EBS volume\.
+
+As you work through this procedure, you create two passwords\. One password is for the administrative user \(`ec2-user`\) and the other password is for a special administrative user \(`aws-managed-user`\)\. Remember these passwords since you will use them as you work through the procedure\.
+
+**Note**  
+With this procedure on macOS Big Sur, you can only perform minor updates such as updating from macOS Big Sur 11\.7\.3 to macOS Big Sur 11\.7\.4\. For macOS Monterey or above, you can perform major software updates\.
+
+##### <a name="access-internal-disk"></a>
+
+****To access the internal disk****
+
+1. From your local computer, in the Terminal, connect to your M1 Mac instance using SSH with the following command\. For more information, see [Connect to your instance using SSH](#mac-instance-ssh)\.
+
+   ```
+   ssh -i /path/key-pair-name.pem ec2-user@instance-public-dns-name
+   ```
+
+1. Install and start MacOS Screen Sharing using the following command\.
+
+   ```
+   sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false && 
+   sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist
+   ```
+
+1. Set a password for `ec2-user` with the following command\. Remember the password as you will use it later\.
+
+   ```
+   sudo /usr/bin/dscl . -passwd /Users/ec2-user
+   ```
+
+1. Disconnect from the instance by typing **exit** and pressing return\.
+
+1. From your local computer, in the Terminal, reconnect to your instance with an SSH tunnel to the VNC port using the following command\.
+
+   ```
+   ssh -i /path/key-pair-name.pem -L 5900:localhost:5900 ec2-user@instance-public-dns-name
+   ```
+**Note**  
+Do not exit this SSH session until the following VNC connection and GUI steps are completed\. When the instance is restarted, the connection will close automatically\.
+
+1. From your local computer, connect to `localhost:5900` using the following steps:
+
+   1. Open **Finder** and select **Go**\.
+
+   1. Select **Connect to Server**\.
+
+   1. In the **Server Address** field, enter `vnc://localhost:5900`\.
+
+1. In the macOS window, connect to the remote session of the M1 Mac instance as `ec2-user` with the password you created in [Step 3](#passwd-step)\.
+
+1. Access the internal disk, named **InternalDisk**, using one of the following options\.
+
+   1. For macOS Ventura or above: Open **System Settings**, select **General** in the left pane, then **Startup Disk** at the lower right of the pane\.
+
+   1. For macOS Monterey or below: Open **System Preferences**, select **Startup Disk**, then unlock the pane by choosing the lock icon in the lower left of the window\.
+**Troubleshooting tip**  
+If you need to mount the internal disk, run the following command in the Terminal\.  
+
+   ```
+   APFSVolumeName="InternalDisk" ; SSDContainer=$(diskutil list | grep "Physical Store disk0" -B 3 | grep "/dev/disk" | awk {'print $1'} ) ; diskutil apfs addVolume $SSDContainer APFS $APFSVolumeName
+   ```
+
+1. Choose the internal disk, named **InternalDisk**, and select **Restart**\. Select **Restart** again when prompted\.
+**Important**  
+If the internal disk is named **Macintosh HD** instead of **InternalDisk**, your instance needs to be stopped and restarted so the dedicated host can be updated\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
+
+##### <a name="delegate-access"></a>
+
+Use the following procedure to delegate ownership to the administrative user\. When you reconnect to your instance with SSH, you boot from the internal disk using the special administrative user \(`aws-managed-user`\)\. The initial password for `aws-managed-user` is blank, so you need to overwrite it on your first connection\. Then, you need to repeat the steps to install and start macOS Screen Sharing since the boot volume has changed\.
+
+**To delegate ownership to the administrator on an Amazon EBS volume**
+
+1. From your local computer, in the Terminal, connect to your M1 Mac instance using the following command\. 
+
+   ```
+   ssh -i /path/key-pair-name.pem aws-managed-user@instance-public-dns-name
+   ```
+
+1. When you receive the warning `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!`, use one of the following commands to resolve this issue\.
+
+   1. Clear out the known hosts using the following command\. Then, repeat the previous step\.
+
+      ```
+      rm ~/.ssh/known_hosts
+      ```
+
+   1. Add the following to the SSH command in the previous step\.
+
+      ```
+      -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+      ```
+
+1. Set the password for `aws-managed-user` with the following command\. The `aws-managed-user` initial password is blank, so you need to overwrite it on your first connection\.
+
+   1. 
+
+      ```
+      sudo /usr/bin/dscl . -passwd /Users/aws-managed-user password
+      ```
+
+   1. When you receive the prompt, `Permission denied. Please enter user's old password:`, press enter\.
+**Troubleshooting tip**  
+If you get the error `passwd: DS error: eDSAuthFailed`, use the following command\.  
+
+      ```
+      sudo passwd aws-managed-user
+      ```
+
+1. Install and start macOS Screen Sharing using the following command\.
+
+   ```
+   sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false && 
+   sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist
+   ```
+
+1. Disconnect from the instance by typing **exit** and pressing return\.
+
+1. From your local computer, in the Terminal, reconnect to your instance with an SSH tunnel to the VNC port using the following command\.
+
+   ```
+   ssh -i /path/key-pair-name.pem -L 5900:localhost:5900 aws-managed-user@instance-public-dns-name
+   ```
+
+1. From your local computer, connect to `localhost:5900` using the following steps:
+
+   1. Open **Finder** and select **Go**\.
+
+   1. Select **Connect to Server**\.
+
+   1. In the **Server Address** field, enter `vnc://localhost:5900`\.
+
+1.  In the macOS window, connect to the remote session of the M1 Mac instance as `aws-managed-user` with the password you created in [Step 3](#amu-passwd)\.
+**Note**  
+When prompted to sign in with your Apple ID, select **Set Up Later**\.
+
+1. Access the Amazon EBS volume using one of the following options\.
+
+   1. For macOS Ventura or above: Open **System Settings**, select **General** in the left pane, then **Startup Disk** at the lower right of the pane\.
+
+   1. For macOS Monterey or below: Open **System Preferences**, select **Startup Disk**, then unlock the pane using the lock icon in the lower left of the window\.
+**Note**  
+Until the reboot takes place, when prompted for an administrator password, use the password you set above for `aws-managed-user`\. This password may be different from the one you set for `ec2-user` or the default administrator account on your instance\. The following instructions specify when to use your instance's administrator password\.
+
+1. Select the Amazon EBS volume \(the volume not named **InternalDisk** in the **Startup Disk** window\) and choose **Restart**\.
+**Note**  
+If you have multiple bootable Amazon EBS volumes attached to your M1 Mac instance, be sure to use a unique name for each volume\.
+
+1. Confirm the restart, then choose **Authorize Users** when prompted\.
+
+1. On the **Authorize user on this volume** pane, verify that the administrative user \(`ec2-user` by default\) is selected, then select **Authorize**\.
+
+1. Enter the `ec2-user` password you created in [Step 3](#passwd-step) of the previous procedure, then select **Continue**\.
+
+1. Enter the password for the special administrative user \(`aws-managed-user`\) when prompted\.
+
+1. From your local computer, in the Terminal, reconnect to your instance using SSH with user name `ec2-user`\.
+**Troubleshooting tip**  
+If you get the warning `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!`, run the following command and reconnect to your instance using SSH\.  
+
+   ```
+   rm ~/.ssh/known_hosts
+   ```
+
+1. To perform the software update, use the commands under [Update software on x86 Mac instances](#x86-mac1)\.
+
 ## EC2 macOS Init<a name="ec2-macos-init"></a>
 
 EC2 macOS Init is used to initialize EC2 Mac instances at launch\. It uses priority groups to run logical groups of tasks at the same time\.
@@ -376,7 +584,7 @@ After you increase the size of the volume, you must increase the size of your AP
 
 **Make increased disk space available for use**
 
-1. Determine if a restart is needed\. If you resized an existing EBS volume on a running Mac instance, you must [reboot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) the instance to make the new size available\. If disk space modification was done during launch time, a reboot will not be needed\. 
+1. Determine if a restart is required\. If you resized an existing EBS volume on a running Mac instance, you must [reboot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) the instance to make the new size available\. If disk space modification was done during launch time, a reboot will not be required\.
 
    View current status of disk sizes: 
 

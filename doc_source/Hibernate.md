@@ -16,7 +16,7 @@ If an instance or application takes a long time to bootstrap and build a memory 
 
 1. Hibernate it so that it's ready to be resumed to the desired state whenever needed\.
 
-You're not charged for instance usage for a hibernated instance when it is in the `stopped` state\. However, you are charged for instance usage while the instance is in the `stopping` state, while the contents of the RAM are transferred to the EBS root volume\. \(This is different from when you [stop an instance](Stop_Start.md) without hibernating it\.\) You're not charged for data transfer\. However, you are charged for storage of any EBS volumes, including storage for the RAM contents\.
+You're not charged for instance usage for a hibernated instance when it is in the `stopped` state or for data transfer when the contents of the RAM are transferred to the EBS root volume\. You are charged for storage of any EBS volumes, including storage for the RAM contents\.
 
 If you no longer need an instance, you can terminate it at any time, including when it is in a `stopped` \(hibernated\) state\. For more information, see [Terminate your instance](terminating-instances.md)\.
 

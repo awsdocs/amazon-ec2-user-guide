@@ -13,7 +13,7 @@ You can create a VPC with an instance tenancy of `dedicated` to ensure that all 
 
 When you create a VPC, you have the option of specifying its instance tenancy\. If you launch an instance into a VPC that has an instance tenancy of `dedicated`, your instance is automatically a Dedicated Instance, regardless of the tenancy of the instance\.
 
-For more information on creating a VPC and choosing the tenancy options, see [Create a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC) in the *Amazon VPC User Guide*\.
+For more information about creating a VPC and choosing the tenancy options, see [Create a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html) in the *Amazon VPC User Guide*\.
 
 ## Launch Dedicated Instances into a VPC<a name="dedicatedinstancesintovpc"></a>
 
@@ -103,10 +103,9 @@ For more information about launching an instance with a tenancy of `host`, see [
 
 ## Change the tenancy of an instance<a name="dedicated-change-tenancy"></a>
 
-You can change the tenancy of a stopped instance only from `dedicated` to `host`, or from `host` to `dedicated` after launch\. The changes that you make take effect the next time the instance starts\.
+You can change the tenancy of a stopped instance  after launch\. The changes that you make take effect the next time the instance starts\.
 
 **Note**  
-You can't change the tenancy of an instance from `default` to `dedicated` or `host` after launch\. And you can't change the tenancy of an instance from `dedicated` or `host` to `default` after launch\.
 For T3 instances, you can't change the tenancy from `dedicated` to `host`, or from `host` to `dedicated`\. Attempting to make one of these unsupported tenancy changes results in the `InvalidTenancy` error code\.
 
 ------

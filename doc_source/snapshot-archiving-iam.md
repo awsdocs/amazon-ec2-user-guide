@@ -16,6 +16,9 @@ To archive and restore encrypted snapshots, the following additional AWS KMS per
 
 The following is an example IAM policy that gives IAM users permission to archive, restore, and view encrypted and unencrypted snapshots\. It includes the `ec2:DescribeSnapshots` permission for console users\. If some permissions are not needed, you can remove them from the policy\.
 
+**Tip**  
+To follow the principle of least privilege, do not allow full access to `kms:CreateGrant`\. Instead, use the `kms:GrantIsForAWSResource` condition key to allow the user to create grants on the KMS key only when the grant is created on the user's behalf by an AWS service, as shown in the following example\.
+
 ```
 {
     "Version": "2012-10-17",
@@ -30,7 +33,12 @@ The following is an example IAM policy that gives IAM users permission to archiv
             "kms:Decrypt",
             "kms:DescribeKey"
         ],
-        "Resource": "*"
+        "Resource": "*",
+        "Condition": {
+                "Bool": {
+                    "kms:GrantIsForAWSResource": true
+                }
+            }
     }]
 }
 ```

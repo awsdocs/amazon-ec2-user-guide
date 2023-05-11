@@ -24,7 +24,7 @@ The following are the key elements that you should understand before getting sta
 Snapshots are the primary means to back up data from your EBS volumes\. With the EBS direct APIs, you can also back up data from your on\-premises disks to snapshots\. To save storage costs, successive snapshots are incremental, containing only the volume data that changed since the previous snapshot\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
 **Note**  
-Public snapshots are not supported by the EBS direct APIs\.
+EBS direct APIs does not support public snapshots and local snapshots on Outposts\.
 
 ### Blocks<a name="ebsapi-blocks"></a>
 

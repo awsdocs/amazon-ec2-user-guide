@@ -1,6 +1,6 @@
 # Amazon EC2 instance network bandwidth<a name="ec2-instance-network-bandwidth"></a>
 
-Instance bandwidth specifications apply to both inbound and outbound traffic for the instance\. For example, if an instance specifies up to 10 Gbps of bandwidth, that means is has up to 10 Gbps of bandwidth for inbound traffic , and 10 Gbps for outbound traffic\. The network bandwidth that's available to an EC2 instance depends on several factors, as follows\.
+Instance bandwidth specifications apply to both inbound and outbound traffic for the instance\. For example, if an instance specifies up to 10 Gbps of bandwidth, that means is has up to 10 Gbps of bandwidth for inbound traffic, and 10 Gbps for outbound traffic\. The network bandwidth that's available to an EC2 instance depends on several factors, as follows\.
 
 **Multi\-flow traffic**
 
@@ -21,6 +21,8 @@ The available network bandwidth of an instance depends on the number of vCPUs th
 Typically, instances with 16 vCPUs or fewer \(size `4xlarge` and smaller\) are documented as having "up to" a specified bandwidth; for example, "up to 10 Gbps"\. These instances have a baseline bandwidth\. To meet additional demand, they can use a network I/O credit mechanism to burst beyond their baseline bandwidth\. Instances can use burst bandwidth for a limited time, typically from 5 to 60 minutes, depending on the instance size\.
 
 An instance receives the maximum number of network I/O credits at launch\. If the instance exhausts its network I/O credits, it returns to its baseline bandwidth\. A running instance earns network I/O credits whenever it uses less network bandwidth than its baseline bandwidth\. A stopped instance does not earn network I/O credits\. Instance burst is on a best effort basis, even when the instance has credits available, as burst bandwidth is a shared resource\.
+
+There are separate network I/O credit buckets for inbound and outbound traffic\.
 
 **Base and burst network performance**
 

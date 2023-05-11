@@ -42,18 +42,20 @@ With Elastic Load Balancing, if you exceed the maximum number of connections tha
 In the following example, the security group has inbound rules that allow TCP and ICMP traffic, and outbound rules that allow all outbound traffic\.
 
 
-| 
-| 
-| **Inbound rules** | 
-| --- |
-| Protocol type | Port number | Source IP | 
+**Inbound**  
+
+| Protocol type | Port number | Source | 
+| --- | --- | --- | 
 | TCP  | 22 \(SSH\) | 203\.0\.113\.1/32 | 
 | TCP  | 80 \(HTTP\) | 0\.0\.0\.0/0 | 
 | TCP  | 80 \(HTTP\) | ::/0 | 
 | ICMP | All | 0\.0\.0\.0/0 | 
-| **Outbound rules** | 
-| --- |
-| Protocol type | Port number | Destination IP | 
+
+
+**Outbound**  
+
+| Protocol type | Port number | Destination | 
+| --- | --- | --- | 
 | All | All | 0\.0\.0\.0/0 | 
 | All | All | ::/0 | 
 

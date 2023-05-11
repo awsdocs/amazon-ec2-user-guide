@@ -2,7 +2,7 @@
 
 You can bring part or all of your publicly routable IPv4 or IPv6 address range from your on\-premises network to your AWS account\. You continue to control the address range, but by default, AWS advertises it on the internet\. After you bring the address range to AWS, it appears in your AWS account as an address pool\.
 
-BYOIP is not available in all Regions and for all resources\. For a list of supported Regions and resources, see the [FAQ for Bring Your Own IP](https://aws.amazon.com/vpc/faqs/#Bring_Your_Own_IP)\.
+For a list of Regions where BYOIP is available, see [Regional availability](#byoip-reg-avail)\.
 
 **Note**  
 The following steps describe how to bring your own IP address range for use in Amazon EC2 only\. For steps to bring your own IP address range for use in AWS Global Accelerator, see [Bring your own IP addresses \(BYOIP\)](https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html) in the *AWS Global Accelerator Developer Guide*\.
@@ -14,6 +14,7 @@ The following steps describe how to bring your own IP address range for use in A
 + [Onboard your BYOIP](#byoip-onboard)
 + [Work with your address range](#byoip-working-with)
 + [Validate your BYOIP](#byoip-validation)
++ [Regional availability](#byoip-reg-avail)
 + [Learn more](#byoip-learn-more)
 
 ## BYOIP definitions<a name="byoip-definitions"></a>
@@ -490,8 +491,6 @@ aws ec2 get-associated-ipv6-pool-cidrs --pool-id pool-id --region us-east-1
 
 If you disassociate the IPv6 CIDR block from your VPC, it's released back into your IPv6 address pool\.
 
-For more information about working with IPv6 CIDR blocks in the VPC console, see [Working with VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html) in the *Amazon VPC User Guide*\.
-
 ## Validate your BYOIP<a name="byoip-validation"></a>
 
 1. Validate the self\-signed x\.509 key pair
@@ -666,6 +665,10 @@ For more information about working with IPv6 CIDR blocks in the VPC console, see
    ```
 
 A status of `“unknown”` indicates the ROA object for the address range has not been created\. A status of `“invalid_asn”` indicates that the ROA object for the address range was not created successfully\.
+
+## Regional availability<a name="byoip-reg-avail"></a>
+
+The BYOIP feature is currently available in the Africa \(Cape Town\), Asia Pacific \(Hong\-Kong\), Asia Pacific \(Hyderabad\), Asia Pacific \(Jakarta\), Asia Pacific \(Mumbai\), Asia Pacific \(Osaka\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Asia Pacific \(Seoul\), Asia Pacific \(Singapore\), Canada \(Central\), Europe \(Dublin\), Europe \(Frankfurt\), Europe \(London\), Europe \(Milan\), Europe \(Paris\), Europe \(Stockholm\), Middle East \(Bahrain\), Middle East \(UAE\), South America \(Sao Paulo\), US West \(Northern California\), US East \(N\. Virginia\), US East \(Ohio\), US West \(Oregon\), AWS GovCloud \(US\-West\) AWS GovCloud \(US\-East\) Regions\.
 
 ## Learn more<a name="byoip-learn-more"></a>
 

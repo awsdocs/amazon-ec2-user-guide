@@ -132,7 +132,7 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
    + \(IPv6\) Alternatively, if your instance has an IPv6 address, to log in using your instance's IPv6 address, enter the IPv6 address for your instance\.
 
 1. For **User name**, enter the default user name for your AMI\.
-   + For Amazon Linux 2022, Amazon Linux 2, or the Amazon Linux AMI, the user name is `ec2-user`\.
+   + For Amazon Linux 2023, Amazon Linux 2, or the Amazon Linux AMI, the user name is `ec2-user`\.
    + For a CentOS AMI, the user name is `centos` or `ec2-user`\.
    + For a Debian AMI, the user name is `admin`\.
    + For a Fedora AMI, the user name is `fedora` or `ec2-user`\.

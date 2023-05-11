@@ -44,7 +44,7 @@ If a system status check has failed, you can try one of the following options:
 + For an instance using an Amazon EBS\-backed AMI, stop and restart the instance\.
 + For an instance using an instance\-store backed AMI, terminate the instance and launch a replacement\.
 + Wait for Amazon EC2 to resolve the issue\.
-+ Post your issue to the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\.
++ Post your issue to [AWS re:Post](https://repost.aws/)\.
 + If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service automatically launches a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + Retrieve the system log and look for errors\.
 
@@ -68,7 +68,7 @@ If an instance status check fails, you can reboot the instance and retrieve the 
 
 1. If your experience differs from our check results, or if you are having an issue with your instance that our checks did not detect, choose **Submit feedback** on the **Status Checks** tab to help us improve our detection tests\.
 
-1. If your issue is not resolved, you can post your issue to the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\.
+1. If your issue is not resolved, you can post your issue to [AWS re:Post](https://repost.aws/)\.
 
 ## Troubleshoot system log errors for Linux\-based instances<a name="system-log-errors-linux"></a>
 

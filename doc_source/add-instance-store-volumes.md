@@ -85,15 +85,13 @@ When you launch an instance, the default block device mapping is provided by the
 
 1. From the dashboard, choose **Launch instance**\.
 
-1. In **Step 1: Choose an Amazon Machine Image \(AMI\)**, select the AMI to use and choose **Select**\.
+1. In the **Application and OS Images** section, select the AMI to use\.
 
-1. Follow the wizard to complete **Step 1: Choose an Amazon Machine Image \(AMI\)**, **Step 2: Choose an Instance Type**, and **Step 3: Configure Instance Details**\.
+1. In the **Configure storage** section, the **Instance store volumes** section lists the instance store volumes that can be attached to the instance\. The number of available instance store volumes depends on the instance type\.
 
-1. In **Step 4: Add Storage**, modify the existing entries as needed\. For each instance store volume to add, choose **Add New Volume**, from **Volume Type** select an instance store volume, and from **Device** select a device name\. The number of available instance store volumes depends on the instance type\.
+1. For each instance store volume to attach, for **Device name**, select the device name to use\.
 
-1. Complete the wizard and launch the instance\.
-
-1. \(Optional\) To view the instance store volumes available on your instance, run the lsblk command\.
+1. Configure the remaining instance settings as needed, and then choose **Launch instance**\.
 
 **To update the block device mapping for an instance using the command line**
 

@@ -1,4 +1,4 @@
-# Tutorial: Host a WordPress blog on Amazon Linux 2<a name="hosting-wordpress"></a>
+# Host a WordPress blog on Amazon Linux 2<a name="hosting-wordpress"></a>
 
 The following procedures will help you install, configure, and secure a WordPress blog on your Amazon Linux 2 instance\. This tutorial is a good introduction to using Amazon EC2 in that you have full control over a web server that hosts your WordPress blog, which is not typical with a traditional hosting service\.
 
@@ -15,7 +15,7 @@ These procedures are intended for use with Amazon Linux 2\. For more information
 
 ## Prerequisites<a name="hosting-wordpress-prereqs"></a>
 
-This tutorial assumes that you have launched an Amazon Linux 2 instance with a functional web server with PHP and database \(either MySQL or MariaDB\) support by following all of the steps in [Tutorial: Install a LAMP web server on the Amazon Linux AMI](install-LAMP.md) for [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) for Amazon Linux 2\. This tutorial also has steps for configuring a security group to allow `HTTP` and `HTTPS` traffic, as well as several steps to ensure that file permissions are set properly for your web server\. For information about adding rules to your security group, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
+This tutorial assumes that you have launched an Amazon Linux 2 instance with a functional web server with PHP and database \(either MySQL or MariaDB\) support by following all of the steps in [Install LAMP on Amazon Linux](install-LAMP.md) for [Install LAMP on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) for Amazon Linux 2\. This tutorial also has steps for configuring a security group to allow `HTTP` and `HTTPS` traffic, as well as several steps to ensure that file permissions are set properly for your web server\. For information about adding rules to your security group, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
 We strongly recommend that you associate an Elastic IP address \(EIP\) to the instance you are using to host a WordPress blog\. This prevents the public DNS address for your instance from changing and breaking your installation\. If you own a domain name and you want to use it for your blog, you can update the DNS record for the domain name to point to your EIP address \(for help with this, contact your domain name registrar\)\. You can have one EIP address associated with a running instance at no charge\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
 
@@ -61,13 +61,15 @@ Your WordPress installation needs to store information, such as blog posts and u
    [ec2-user ~]$ mysql -u root -p
    ```
 
-1. <a name="create_database_user"></a>Create a user and password for your MySQL database\. Your WordPress installation uses these values to communicate with your MySQL database\. Enter the following command, substituting a unique user name and password\.
+1. <a name="create_database_user"></a>Create a user and password for your MySQL database\. Your WordPress installation uses these values to communicate with your MySQL database\. 
+
+   Make sure that you create a strong password for your user\. Do not use the single quote character \( ' \) in your password, because this will break the preceding command\. For more information about creating a secure password, go to [http://www\.pctools\.com/guides/password/](http://www.pctools.com/guides/password/)\. Do not reuse an existing password, and make sure to store this password in a safe place\.
+
+   Enter the following command, substituting a unique user name and password\.
 
    ```
    CREATE USER 'wordpress-user'@'localhost' IDENTIFIED BY 'your_strong_password';
    ```
-
-   Make sure that you create a strong password for your user\. Do not use the single quote character \( ' \) in your password, because this will break the preceding command\. For more information about creating a secure password, go to [http://www\.pctools\.com/guides/password/](http://www.pctools.com/guides/password/)\. Do not reuse an existing password, and make sure to store this password in a safe place\.
 
 1. <a name="create_database"></a>Create your database\. Give your database a descriptive, meaningful name, such as `wordpress-db`\.
 **Note**  
@@ -226,10 +228,10 @@ Use the following command to install the PHP graphics drawing library on Amazon 
 [ec2-user ~]$ sudo yum install php-gd
 ```
 
-To verify the latest version, use the following command:
+To verify the installed version, use the following command:
 
 ```
-[ec2-user ~]$ php80-php-gd.x86_64                     8.0.17-1.el7.remi                     remi
+[ec2-user ~]$ sudo yum list installed php-gd
 ```
 
 The following is example output:

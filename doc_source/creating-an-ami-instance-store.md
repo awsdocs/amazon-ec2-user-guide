@@ -29,9 +29,9 @@ If you add instance store volumes to your instance in addition to the root devic
 Before you can create an AMI, you must complete the following tasks:
 + Install the AMI tools\. For more information, see [Set up the AMI tools](set-up-ami-tools.md)\.
 + Install the AWS CLI\. For more information, see [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html)\.
-+ Ensure that you have an S3 bucket for the bundle, and that your bucket has ACLs enabled\. 
-
-  To create an S3 bucket, open the Amazon S3 console and click **Create Bucket**\. Alternatively, you can use the AWS CLI [mb](https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command\.
++ Ensure that you have an S3 bucket for the bundle, and that your bucket has ACLs enabled\. For more information on configuring ACLs, see [Configuring ACLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/managing-acls.html)\.
+  + To create an S3 bucket using the AWS Management Console, open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/) and choose **Create Bucket**\.
+  + To create an S3 bucket with the AWS CLI, you can use the [mb](https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command\. If your installed version of the AMI tools is 1\.5\.18 or later, you can also use the `ec2-upload-bundle` command to create the S3 bucket\. For more information, see [ec2\-upload\-bundle](ami-tools-commands.md#ami-upload-bundle)\.
 + Ensure that you have your AWS account ID\. For more information, see [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) in the *AWS General Reference*\.
 + Ensure that you have credentials to use the AWS CLI\. For more information, see [Best Practices for AWS accounts](https://docs.aws.amazon.com/accounts/latest/reference/best-practices.html) in the *AWS Account Management Reference Guide*\.
 + Ensure that you have an X\.509 certificate and corresponding private key\.

@@ -20,9 +20,9 @@ For information about the configurations supported on Dedicated Hosts, see [Dedi
 
 ## Differences between Dedicated Hosts and Dedicated Instances<a name="dedicated-hosts-dedicated-instances"></a>
 
-Dedicated Hosts and Dedicated Instances can both be used to launch Amazon EC2 instances onto physical servers that are dedicated for your use\.
+Dedicated Instances and Dedicated Hosts can both be used to launch Amazon EC2 instances onto physical servers that are dedicated for your use\.
 
-There are no performance, security, or physical differences between Dedicated Instances and instances on Dedicated Hosts\. However, there are some differences between the two\. The following table highlights some of the key differences between Dedicated Hosts and Dedicated Instances:
+There are no performance, security, or physical differences between Dedicated Instances and instances on Dedicated Hosts\. However, there are some differences between the two\. The following table highlights some of the key differences between Dedicated Instances and Dedicated Hosts:
 
 
 |  | Dedicated Host | Dedicated Instance | 
@@ -32,8 +32,12 @@ There are no performance, security, or physical differences between Dedicated In
 | Host and instance affinity | Allows you to consistently deploy your instances to the same physical server over time | Not supported | 
 | Targeted instance placement | Provides additional visibility and control over how instances are placed on a physical server | Not supported | 
 | Automatic instance recovery | Supported\. For more information, see [Host recovery](dedicated-hosts-recovery.md)\. | Supported | 
-| Bring Your Own License \(BYOL\) | Supported | Not supported | 
+| Bring Your Own License \(BYOL\) | Supported | Partial support \* | 
 | Capacity Reservations | Not supported | Supported | 
+
+\* Microsoft SQL Server with License Mobility through Software Assurance, and Windows Virtual Desktop Access \(VDA\) licenses can be used with Dedicated Instance\.
+
+For more information about Dedicated Instances, see [Dedicated Instances](dedicated-instance.md)\.
 
 ## Bring your own license<a name="dedicated-hosts-BYOL"></a>
 
@@ -54,7 +58,7 @@ To track how your images are used in AWS, enable host recording in AWS Config\. 
 
 ## Dedicated Host instance capacity<a name="dedicated-hosts-limits"></a>
 
-Support for multiple instance sizes on the same Dedicated Host is available for the following instance families: `T3`, `A1`, `C5`, `M5`, `R5`, `C5n`, `R5n`, and `M5n`\. Other instance families support only a single instance size on the same Dedicated Host\.
+Support for multiple instance sizes on the same Dedicated Host is available for the following instance families: A1, C5, M5, R5, C5n, M5n, R5n, and T3\. Other instance families support only a single instance size on the same Dedicated Host\.
 
 For example, when you allocate an `R5` Dedicated Host, it has 2 sockets and 48 physical cores on which you can run different instance sizes, such as `r5.2xlarge` and `r5.4xlarge`, up to the core capacity associated with the host\. However, for each instance family, there is a limit on the number of instances that can be run for each instance size\. For example, an `R5` Dedicated Host supports up to 2 `r5.8xlarge` instances, which uses 32 of the physical cores\. Additional `R5` instances of another size can then be used to fill the host to core capacity\. For the supported number of instance sizes for each instance family, see [Dedicated Hosts Configuration](http://aws.amazon.com/ec2/dedicated-hosts/pricing/#host-configuration)\.
 
@@ -111,7 +115,7 @@ Before you allocate Dedicated Hosts, take note of the following limitations and 
 + To run RHEL, SUSE Linux, and SQL Server on Dedicated Hosts, you must bring your own AMIs\. RHEL, SUSE Linux, and SQL Server AMIs that are offered by AWS or that are available on AWS Marketplace can't be used with Dedicated Hosts\. For more information on how to create your own AMI, see [Bring your own license](#dedicated-hosts-BYOL)\.
 
   This restriction does not apply to hosts allocated for high memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, and `u-24tb1.metal`\)\. RHEL and SUSE Linux AMIs that are offered by AWS or that are available on AWS Marketplace can be used with these hosts\.
-+ Up to two On\-Demand Dedicated Hosts per instance family, per Region can be allocated\. It is possible to request a limit increase: [Request to Raise Allocation Limit on Amazon EC2 Dedicated Hosts](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=)\.
++ There is a limit on the number of running Dedicated Hosts per instance family per AWS account per Region\. To view the quotas for your account, or to request a quota increase, use the [ Service Quotas console](https://console.aws.amazon.com/servicequotas/home/services/ec2/quotas)\.
 + The instances that run on a Dedicated Host can only be launched in a VPC\.
 + Auto Scaling groups are supported when using a launch template that specifies a host resource group\. For more information, see [ Creating a Launch Template for an Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + Amazon RDS instances are not supported\.

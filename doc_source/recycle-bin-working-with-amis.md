@@ -81,7 +81,7 @@ You can view the AMIs in the Recycle Bin using one of the following methods\.
 
 **To view deleted AMIs in the Recycle Bin using the console**
 
-1. Open the Recycle Bin console at [console\.aws\.amazon\.com/rbin/home/](console.aws.amazon.com/rbin/home/)
+1. Open the Recycle Bin console at [console\.aws\.amazon\.com/rbin/home/](https://console.aws.amazon.com/rbin/home/)
 
 1. In the navigation pane, choose **Recycle Bin**\.
 

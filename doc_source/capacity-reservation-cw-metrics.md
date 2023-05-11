@@ -1,4 +1,4 @@
-# CloudWatch metrics for On\-Demand Capacity Reservations<a name="capacity-reservation-cw-metrics"></a>
+# Monitor Capacity Reservations using CloudWatch metrics<a name="capacity-reservation-cw-metrics"></a>
 
 With CloudWatch metrics, you can efficiently monitor your Capacity Reservations and identify unused capacity by setting CloudWatch alarms to notify you when usage thresholds are met\. This can help you maintain a constant Capacity Reservation volume and achieve a higher level of utilization\.
 
