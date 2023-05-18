@@ -104,7 +104,7 @@ The following is an example of an event that Recycle Bin generates daily while a
   "id": "exampleb-b491-4cf7-a9f1-bf370example", 
   "detail-type": "Recycle Bin Rule Unlocking Notice", 
   "source": "aws.rbin", 
-  "account": "123456789012, 
+  "account": "123456789012", 
   "time": "2022-08-10T16:37:50Z", 
   "region": "us-west-2", 
   "resources": [ 
