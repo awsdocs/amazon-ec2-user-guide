@@ -1,9 +1,0 @@
-# Plan a Spot Fleet request<a name="plan-spot-fleet"></a>
-
-Before you create a Spot Fleet request, review [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices)\. Use these best practices when you plan your Spot Fleet request so that you can provision the type of instances you want at the lowest possible price\. We also recommend that you do the following:
-+ Determine whether you want to create a Spot Fleet that submits a one\-time request for the desired target capacity, or one that maintains a target capacity over time\.
-+ Determine the instance types that meet your application requirements\.
-+ Determine the target capacity for your Spot Fleet request\. You can set the target capacity in instances or in custom units\. For more information, see [Spot Fleet instance weighting](spot-instance-weighting.md)\.
-+ Determine what portion of the Spot Fleet target capacity must be On\-Demand capacity\. You can specify 0 for On\-Demand capacity\.
-+ Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. If you are not using instance weighting, the default price per unit is the price per instance hour\.
-+ Review the possible options for your Spot Fleet request\. For more information, see the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command in the *AWS CLI Command Reference*\. For additional examples, see [Spot Fleet example configurations](spot-fleet-examples.md)\.

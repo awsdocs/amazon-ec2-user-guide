@@ -1,9 +1,0 @@
-# Launch template restrictions<a name="launch-template-restrictions"></a>
-
-The following rules apply to launch templates and launch template versions:
-+ **Quotas** – To view the quotas for your launch templates and launch template versions, open the [Service Quotas](https://console.aws.amazon.com/servicequotas/) console or use the [ list\-service\-quotas](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-service-quotas.html) AWS CLI command\. Each AWS account can have up to a maximum of 5,000 launch templates per Region and up to 10,000 versions per launch template\. Your accounts might have different quotas based on their age and usage history\.
-+ **Parameters are optional** – Launch template parameters are optional\. However, you must ensure that your request to launch an instance includes all the required parameters\. For example, if your launch template does not include an AMI ID, you must specify both the launch template and an AMI ID when you launch an instance\.
-+ **Parameters not validated** – Launch template parameters are not fully validated when you create the launch template\. If you specify incorrect values for parameters, or if you do not use supported parameter combinations, no instances can launch using this launch template\. Ensure that you specify the correct values for the parameters and that you use supported parameter combinations\. For example, to launch an instance in a placement group, you must specify a supported instance type\.
-+ **Tags** – You can tag a launch template, but you cannot tag a launch template version\.
-+ **Immutable** – Launch templates are immutable\. To modify a launch template, you must create a new version of the launch template\.
-+ **Version numbers** – Launch template versions are numbered in the order in which they are created\. When you create a launch template version, you cannot specify the version number yourself\.
